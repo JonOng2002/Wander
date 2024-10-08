@@ -5,6 +5,9 @@
         <input type="file" @change="onFileChange" accept="video/*" />
         <button type="submit">Upload Video</button>
       </form>
+      <router-link to="/" style="font-size: 20px; text-decoration: none; color: blue;">
+      Go to Home Page
+      </router-link>
     </div>
   </template>
   
