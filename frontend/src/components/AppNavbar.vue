@@ -9,10 +9,10 @@
       <!-- Navigation Links -->
       <ul class="navbar-nav d-flex flex-row align-items-center">
         <li class="nav-item me-4">
-          <router-link to="/mainpage" class="nav-link">Main Page</router-link>
+          <router-link to="/mainpage" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/itinerary" class="nav-link">Itinerary</router-link>
+          <router-link to="/itinerary" class="nav-link">Saved Places</router-link>
         </li>
         <li class="nav-item me-4">
           <router-link to="/upload" class="nav-link">Destinations</router-link>
