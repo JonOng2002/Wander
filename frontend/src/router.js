@@ -5,6 +5,8 @@ import AnalyseLink from '@/components/AnalyseLink.vue';
 import ProfilePage from '@/views/ProfilePage.vue'; 
 import ItineraryPage from '@/views/ItineraryPage.vue';
 import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
+import SignIn from '@/views/SignIn.vue';
+import LogIn from '@/views/LogIn.vue';
 
 const routes = [
   {
@@ -41,6 +43,16 @@ const routes = [
     path: '/generated',
     name: 'GeneratedItinerary',
     component: GeneratedItinerary,
+  },
+  {
+    path: '/sign-in',
+    name: 'SignIn',
+    component: SignIn,
+  },
+  {
+    path: '/log-in',
+    name: 'LogIn',
+    component: LogIn,
   }
 ];
 
