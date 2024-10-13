@@ -1,20 +1,64 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from './views/HomePage.vue'; // Ensure your component path is correct
-import AboutPage from './views/AboutPage.vue'; // Ensure your component path is correct
-import AnalyseLink from './components/AnalyseLink.vue';
-import SearchedLocation from './views/SearchedLocation.vue';
+import MainPage from '@/views/MainPage.vue';
+import UploadVideo from '@/components/UploadVideo.vue';
+import AnalyseLink from '@/components/AnalyseLink.vue';
+import ProfilePage from '@/views/ProfilePage.vue'; 
+import ItineraryPage from '@/views/ItineraryPage.vue';
+import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
+import SignIn from '@/views/SignIn.vue';
+import LogIn from '@/views/LogIn.vue';
 
 const routes = [
-    { path: '/', component: AnalyseLink },
-    { path: '/about', component: AboutPage },
-    { path: '/home', component: HomePage },
-    { path: '/location', component: SearchedLocation , props: (route) => ({ tiktokUrl: route.query.url }) },
+  {
+    path: '/', // Root path loads MainPage
+    name: 'MainPage',
+    component: MainPage,
+  },
+  {
+    path: '/mainpage',
+    name: 'MainPageAlias',
+    component: MainPage,
+  },
+  {
+    path: '/upload',
+    name: 'UploadVideo',
+    component: UploadVideo,
+  },
+  {
+    path: '/analyze',
+    name: 'AnalyseLink',
+    component: AnalyseLink,
+  },
+  {
+    path: '/profile',
+    name: 'ProfilePage',
+    component: ProfilePage,
+  },
+  {
+    path: '/itinerary',
+    name: 'ItineraryPage',
+    component: ItineraryPage,
+  },
+  {
+    path: '/generated',
+    name: 'GeneratedItinerary',
+    component: GeneratedItinerary,
+  },
+  {
+    path: '/sign-in',
+    name: 'SignIn',
+    component: SignIn,
+  },
+  {
+    path: '/log-in',
+    name: 'LogIn',
+    component: LogIn,
+  }
 ];
 
 const router = createRouter({
-    history: createWebHistory(),  // Use Web History API for clean URLs
-    routes,
+  history: createWebHistory(),
+  routes,
 });
-
 
 export default router;
