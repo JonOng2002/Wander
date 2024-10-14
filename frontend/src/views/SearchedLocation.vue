@@ -27,13 +27,20 @@
           <strong>Coordinates:</strong> ({{ place.coordinates.latitude }}, {{ place.coordinates.longitude }}) <br/>
           <strong>Image:</strong><br/>
           <img :src="place.place_png" alt="Image of {{ place.place_name }}" width="300px"/>
+
+          <!-- Save button for each related place -->
+        <save-place-button :placeName="place.place_name" :userId="userId"></save-place-button>
         </li>
       </ul>
     </div>
   </template>
   
   <script>
+  import SavePlaceButton from '@/components/SavePlaceButton.vue';
   export default {
+    components: {
+      SavePlaceButton
+    },
     data() {
       return {
         videoInfo: null, // To hold video info data

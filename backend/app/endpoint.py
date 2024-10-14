@@ -8,7 +8,6 @@ import json
 from dotenv import load_dotenv
 from .unsplashAPI import update_openai_response_with_images
 
-
 main = Blueprint("main", __name__)
 # Initialize the OpenAI API key'
 
@@ -37,7 +36,7 @@ async def generate_openai_response(video_info, comments):
                     Video Info: {video_info}
                     Comments: {comments}
 
-                    Base on the metadata and comments section provided, please summarize this information and provide the details of this travel location with 3 similar places. For each place, provide a query that can be used by Unsplash API. Strictly follow the JSON schema provided.
+                    Base on the metadata and comments section provided, please summarize this information and provide the details of this travel location with 1 to 3 similar places to it. For each place, provide a query that can be used by Unsplash API. Try your best and please strictly follow the JSON schema provided.
                     """
                 }
             ],
@@ -115,7 +114,6 @@ async def generate_openai_response(video_info, comments):
                 }
         }
     )
-
         openai_response = response.choices[0].message.content
 
         openai_response_with_images = update_openai_response_with_images(json.loads(openai_response))

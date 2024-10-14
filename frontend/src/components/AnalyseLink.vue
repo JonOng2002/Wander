@@ -1,106 +1,91 @@
 <template>
   <div id="app">
-    <!-- Navigation Bar (Always Visible) -->
+    <!-- Navigation Bar -->
     <nav>
       <h1>Wander</h1>
     </nav>
-    
-    <!-- Conditional Display: Only show if `showQueryScreen` is true -->
-    <div v-if="showQueryScreen">
-      <!-- Input field for the TikTok link -->
+
+    <!-- TikTok Analyser Input -->
+    <div>
       <input v-model="tiktokLink" placeholder="Paste TikTok link here" />
       <button @click="analyse">Find out the place!</button>
-      
+
       <!-- Loading bar --> 
       <LoadingBar :isLoading="isLoading" />
-    </div>
+
       <!-- Error Message -->
       <div v-if="errorMessage">{{ errorMessage }}</div>
+    </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
 import axios from 'axios';
-import LoadingBar from './LoadingBar.vue';
+import { useRouter } from 'vue-router'; // for navigation
+import LoadingBar from './LoadingBar.vue'; // Loading component
 
-export default {
-  components: {
-    LoadingBar,
-  },
-  data() {
-    return {
-      tiktokLink: '', // To store the user's input (TikTok link)
-      videoInfo: null, // To store the video info
-      relatedPlaces: [], // To store the related places
-      errorMessage: '', // To store any error messages
-      isLoading: false, // Loading state for showing the loading bar
-      showQueryScreen: true // Determines whether to show the input screen or results
-    };
-  },
-  methods: {
-    isValidUrl(url) {
-      const regex = /^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[\w.-]+\/video\/\d+)|(vt\.tiktok\.com\/[\w\d]+)).*$/;
-      return regex.test(url);
-    },
-  // Function to fetch video info and related places from the backend
-  async analyse() {
-    if (this.isValidUrl(this.tiktokLink)) {
-      this.isLoading = true; // Show the loading bar
-      this.errorMessage = ''; // Clear any previous error messages
-      this.videoInfo = null; // Clear any previous video info
-      this.relatedPlaces = []; // Clear any previous related places
+// Define reactive state variables
+const tiktokLink = ref(""); // TikTok link input
+const videoInfo = ref(null); // Video info from the response
+const relatedPlaces = ref([]); // Related places from the response
+const errorMessage = ref(""); // Error message to display
+const isLoading = ref(false); // Loading state
+
+// Get the router instance
+const router = useRouter();
+
+// Helper function to validate the TikTok link
+const isValidUrl = (url) => {
+  const regex =
+    /^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[\w.-]+\/video\/\d+)|(vt\.tiktok\.com\/[\w\d]+)).*$/;
+  return regex.test(url);
+};
+
+// Function to handle the TikTok analysis
+const analyse = async () => {
+  if (isValidUrl(tiktokLink.value)) {
+    isLoading.value = true; // Start loading
+    errorMessage.value = ""; // Clear error messages
+    videoInfo.value = null; // Reset video info
+    relatedPlaces.value = []; // Reset related places
+
+    try {
+      const response = await axios.get(`http://127.0.0.1:5000/video-info-comments`, {
+        params: {
+          url: tiktokLink.value,
+          withCredentials: true,
+        },
+      });
+
+      const data = response.data.openai_response;
+
+      if (data.error) {
+            throw new Error("Error generating response from OpenAI.");
+          }
       
-      console.log('Analyzing TikTok link:', this.tiktokLink);
-      try {
-        // Make an API call to the Flask backend with the TikTok link as a param
-        const response = await axios.get(`http://127.0.0.1:5000/video-info-comments`, {
-          params: {
-            url: this.tiktokLink, // Pass the TikTok link directly
-            withCredentials: true,
-          },
-        });
+      // Set video info and related places from the response
+      videoInfo.value = data.video_info;
+      relatedPlaces.value = data.related_places;
 
-        console.log("Backend response:", response.data);
-
-          // Directly assign the openai_response object, no need to JSON.parse
-          const data = response.data.openai_response;
-
-          // Set video info and related places
-          this.videoInfo = data.video_info;
-          this.locationInfo = data.location_info;
-          this.relatedPlaces = data.related_places;
-
-          // Navigate to SearchedLocation component and pass the data as route params
-          this.$router.push({
-            path: '/location',
-            query: {
-              videoInfo: JSON.stringify(this.videoInfo),
-              locationInfo: JSON.stringify(this.locationInfo),
-              relatedPlaces: JSON.stringify(this.relatedPlaces)
-            }
-          });
-
-      } catch (error) {
-        console.error(error);
-        this.handleError(error); // Handle the error
-      } finally {
-        this.isLoading = false; // Hide the loading bar
-      }
-    } else {
-      this.errorMessage = 'Invalid TikTok link. Please check and try again.'; // Handle invalid TikTok links
+      // Redirect to the SearchedLocation component with query params
+      router.push({
+        path: "/location",
+        query: {
+          videoInfo: JSON.stringify(videoInfo.value),
+          locationInfo: JSON.stringify(data.location_info),
+          relatedPlaces: JSON.stringify(relatedPlaces.value),
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      errorMessage.value = "Error generating response from OpenAI.";
+    } finally {
+      isLoading.value = false; // Stop loading
     }
-  },
-
-  handleError(error) {
-    if (error.response && error.response.status === 500) {
-      this.errorMessage = 'Server error. Please try again later.';
-    } else if (error.message === 'Network Error') {
-      this.errorMessage = 'Network issue! Please check your connection.';
-    } else {
-      this.errorMessage = 'An unexpected error occurred. Please try again.';
-    }
+  } else {
+    errorMessage.value = "Invalid TikTok link. Please try again.";
   }
-}
 };
 </script>
 
