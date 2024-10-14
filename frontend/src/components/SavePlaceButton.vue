@@ -5,16 +5,37 @@
 <script setup>
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
-// Props: `placeName` and `userId`
+// Props: these fields are passed from the parent
+// eslint-disable-next-line
 const props = defineProps({
   placeName: {
     type: String,
-    required: true
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  latitude: {
+    type: [String, Number], // allow both number and string
+    required: true,
+  },
+  longitude: {
+    type: [String, Number],
+    required: true,
+  },
+  placePng: {
+    type: String,
+    default: '', // fallback if no image is provided
   },
   userId: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 // Firestore initialization
@@ -22,14 +43,22 @@ const db = getFirestore();
 
 // Function to save the place to Firestore
 const savePlace = async () => {
-  if (!props.placeName || !props.userId) {
-    console.error('Missing placeName or userId');
+  // Ensure none of the required fields are undefined
+  if (!props.placeName || !props.country || !props.city || !props.latitude || !props.longitude || !props.userId) {
+    console.error('Missing required data to save the place');
     return;
   }
-  
+
   try {
     const docRef = await addDoc(collection(db, 'savedPlaces'), {
       placeName: props.placeName,
+      country: props.country,
+      city: props.city,
+      coordinates: {
+        latitude: props.latitude || 0,  // provide default if needed
+        longitude: props.longitude || 0, // provide default if needed
+      },
+      placePng: props.placePng || '',  // optional field
       userId: props.userId,
       timestamp: new Date(),
     });
@@ -39,3 +68,7 @@ const savePlace = async () => {
   }
 };
 </script>
+
+<style scoped>
+/* Add styles if needed */
+</style>

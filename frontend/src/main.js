@@ -4,6 +4,7 @@ import App from './views/App.vue'; // Main App component
 import router from './router'; // Router instance
 import { initializeApp } from 'firebase/app'
 import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 
 
@@ -21,6 +22,8 @@ const firebaseConfig = {
 
 const fireapp = initializeApp(firebaseConfig);
 
+const db = getFirestore(fireapp);
+
 const auth = getAuth(fireapp);
 // if (location.hostname === "localhost") {
 //   connectAuthEmulator(auth, "http://localhost:9099");
@@ -37,4 +40,4 @@ app.use(router);
 // Mount the app
 app.mount('#app');
 
-export { auth };
+export { auth, db };

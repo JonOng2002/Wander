@@ -3,10 +3,10 @@ import HomePage from './views/HomePage.vue';
 import AboutPage from './views/AboutPage.vue';
 import AnalyseLink from './components/AnalyseLink.vue';
 import SearchedLocation from './views/SearchedLocation.vue';
-import SavePlaceButton from './components/SavePlaceButton.vue';
 import Signin from './components/SignIn.vue';
 import UserFeed from './components/UserFeed.vue';
 import RegisterAcc from './components/RegisterAcc.vue';
+import SavedPlaces from './views/SavedPlaces.vue';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
@@ -15,10 +15,10 @@ const routes = [
   { path: '/about', component: AboutPage },
   { path: '/home', component: HomePage },
   { path: '/location', component: SearchedLocation },
-  { path: '/savePlace', component: SavePlaceButton },
   { path: '/register', component: RegisterAcc },
   { path: '/feed', component: UserFeed },
   { path: '/signin', component: Signin },
+  { path: '/savedPlaces', component: SavedPlaces },
 ];
 
 const router = createRouter({

@@ -6,6 +6,8 @@
       <router-link class="nav-link" to="/"> Wander </router-link> |
       <router-link class="nav-link" to="/about"> About </router-link> |
       <router-link class="nav-link" to="/home"> HomePage </router-link> |
+      <router-link class="nav-link" to="/savedPlace"> Saved Places |
+      </router-link>
       </span>
       <!-- Links visible based on authentication state -->
       <span v-if="isLoggedIn"> 

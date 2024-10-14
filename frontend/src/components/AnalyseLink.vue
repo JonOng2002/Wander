@@ -8,7 +8,9 @@
     <!-- TikTok Analyser Input -->
     <div>
       <input v-model="tiktokLink" placeholder="Paste TikTok link here" />
-      <button @click="analyse">Find out the place!</button>
+      <button :disabled="isLoading" @click="analyse">
+        {{ isLoading ? 'Loading...' : 'Find out the place!' }}
+      </button>
 
       <!-- Loading bar --> 
       <LoadingBar :isLoading="isLoading" />
