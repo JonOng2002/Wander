@@ -64,8 +64,9 @@
 </template>
 
 <script>
-import { auth, googleProvider, facebookProvider } from "@/firebase";
-import { signInWithPopup } from 'firebase/auth';  // Ensure this import is correct
+import { auth, googleProvider, facebookProvider, db } from "@/firebase";
+import { signInWithPopup } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"; // Import Firestore methods
 
 export default {
     data() {
@@ -79,33 +80,53 @@ export default {
         };
     },
     methods: {
+        // Store user data in Firestore
+        async storeUserData(userId, name, email) {
+            try {
+                const userRef = doc(db, "users", userId);
+                await setDoc(userRef, {
+                    name: name,
+                    email: email,
+                    savedPlaces: [],
+                    generatedItineraries: []
+                }, { merge: true }); // Merge to avoid overwriting existing fields
+                console.log('User data saved in Firestore');
+            } catch (error) {
+                console.error('Error storing user data:', error);
+            }
+        },
+
         async signInWithGoogle() {
             try {
-                const result = await signInWithPopup(auth, googleProvider);  // Make sure this is called correctly
-                const user = result.user;  // User info
-                console.log('User signed in:', user);
+                const result = await signInWithPopup(auth, googleProvider);
+                const user = result.user;
 
-                // Redirect on successful sign-in
+                // Save user data in Firestore
+                await this.storeUserData(user.uid, user.displayName, user.email);
+
+                // Redirect after successful sign-in
                 this.$router.push('/');
             } catch (error) {
                 console.error('Error signing in with Google:', error.code, error.message);
-                alert('Failed to sign in. Please try again.');
             }
         },
+
         async signInWithFacebook() {
             try {
                 const result = await signInWithPopup(auth, facebookProvider);
-                const user = result.user;  // User information
-                console.log('User signed in with Facebook:', user);
+                const user = result.user;
 
-                // Redirect or perform any post-login action here
+                // Save user data in Firestore
+                await this.storeUserData(user.uid, user.displayName, user.email);
+
+                // Redirect after successful sign-in
                 this.$router.push('/');
             } catch (error) {
                 console.error('Error signing in with Facebook:', error.code, error.message);
-                alert('Failed to sign in with Facebook. Please try again.');
             }
         },
-        handleSubmit() {
+
+        async handleSubmit() {
             if (!this.form.agreeToTerms) {
                 alert('Please agree to the terms and policy');
                 return;
@@ -114,12 +135,23 @@ export default {
                 alert('Please fill in all fields: Name, Email, and Password.');
                 return;
             }
-            // Handle form submission logic (e.g., sending data to an API)
-            console.log('Sign up data:', this.form);
-            this.$router.push('/');  // Redirect after form submission (modify route if necessary)
-        },
+
+            // Assuming you'd later implement Firebase Email/Password auth
+            try {
+                const user = await auth.createUserWithEmailAndPassword(this.form.email, this.form.password);
+                
+                // Store user data in Firestore
+                await this.storeUserData(user.uid, this.form.name, this.form.email);
+
+                // Redirect after form submission
+                this.$router.push('/');
+            } catch (error) {
+                console.error('Error signing up with email:', error.code, error.message);
+            }
+        }
     },
 };
+
 </script>
 
 <style scoped>

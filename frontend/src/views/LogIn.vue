@@ -62,63 +62,89 @@
 </template>
 
 <script>
-import { auth, googleProvider, facebookProvider } from "@/firebase";
-import { signInWithPopup } from 'firebase/auth';  // Ensure this import is correct
+import { auth, googleProvider, facebookProvider, db } from "@/firebase";
+import { signInWithPopup } from 'firebase/auth';
+import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';  // Firestore functions
 
 export default {
     data() {
         return {
             form: {
-                name: '',
                 email: '',
                 password: '',
-                agreeToTerms: false,
             },
         };
     },
     methods: {
         async signInWithGoogle() {
             try {
-                const result = await signInWithPopup(auth, googleProvider);  // Make sure this is called correctly
-                const user = result.user;  // User info
-                console.log('User signed in:', user);
+                const result = await signInWithPopup(auth, googleProvider);
+                const user = result.user;
 
-                // Redirect on successful sign-in
+                // Reference to user document
+                const userDocRef = doc(db, "users", user.uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (!userDocSnap.exists()) {
+                    // If the user does not exist, create a new document with default values
+                    await setDoc(userDocRef, {
+                        email: user.email,
+                        savedPlaces: [],
+                        generatedItineraries: [],
+                        lastLogin: new Date(),  // Track last login time
+                    });
+                } else {
+                    // Update the lastLogin if user exists
+                    await updateDoc(userDocRef, {
+                        lastLogin: new Date(),
+                    });
+                }
+
+                console.log('User signed in with Google:', user);
                 this.$router.push('/');
             } catch (error) {
                 console.error('Error signing in with Google:', error.code, error.message);
-                alert('Failed to sign in. Please try again.');
             }
         },
         async signInWithFacebook() {
             try {
                 const result = await signInWithPopup(auth, facebookProvider);
-                const user = result.user;  // User information
-                console.log('User signed in with Facebook:', user);
+                const user = result.user;
 
-                // Redirect or perform any post-login action here
+                // Reference to user document
+                const userDocRef = doc(db, "users", user.uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (!userDocSnap.exists()) {
+                    // If the user does not exist, create a new document with default values
+                    await setDoc(userDocRef, {
+                        email: user.email,
+                        savedPlaces: [],
+                        generatedItineraries: [],
+                        lastLogin: new Date(),  // Track last login time
+                    });
+                } else {
+                    // Update the lastLogin if user exists
+                    await updateDoc(userDocRef, {
+                        lastLogin: new Date(),
+                    });
+                }
+
+                console.log('User signed in with Facebook:', user);
                 this.$router.push('/');
             } catch (error) {
                 console.error('Error signing in with Facebook:', error.code, error.message);
-                alert('Failed to sign in with Facebook. Please try again.');
             }
         },
         handleSubmit() {
-            if (!this.form.agreeToTerms) {
-                alert('Please agree to the terms and policy');
-                return;
-            }
-            if (!this.form.name || !this.form.email || !this.form.password) {
-                alert('Please fill in all fields: Name, Email, and Password.');
-                return;
-            }
-            // Handle form submission logic (e.g., sending data to an API)
-            console.log('Sign up data:', this.form);
-            this.$router.push('/');  // Redirect after form submission (modify route if necessary)
+            // Handle manual email/password login logic here
+            console.log("Form submission for email/password login: ", this.form);
         },
     },
 };
 </script>
+
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap');
