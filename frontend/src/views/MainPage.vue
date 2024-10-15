@@ -2,7 +2,9 @@
   <div class="homepage">
     <p class="searchBarTitle">Where would you like to wander?</p>
     
-    <SearchBar @submit-link="handleLinkSubmit" />
+    <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
+
+    <LoadingBar :isLoading="isLoading" />
 
     <!-- Displaying saved places -->
     <div v-if="savedPlaces.length > 0" class="saved-places">
@@ -26,39 +28,46 @@
         </li>
       </ul>
     </div>
+
+    <!-- Error Message -->
+    <div v-if="errorMessage">{{ errorMessage }}</div>
+
+    <!-- Loading bar -->
+    <LoadingBar v-if="isLoading" />
   </div>
 </template>
 
 <script>
 import SearchBar from '@/components/SearchBar.vue';
-import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";  // Import Firestore functions
-import { db, auth } from "@/firebase";  // Import db and auth from your Firebase setup
-import { onAuthStateChanged } from 'firebase/auth'; // To get the current logged-in user
+import { doc, getDoc } from "firebase/firestore"; 
+import { db, auth } from "@/main";  
+import { onAuthStateChanged } from 'firebase/auth'; 
+import LoadingBar from '@/components/LoadingBar.vue'; 
+
+import axios from 'axios';
 
 export default {
   name: 'MainPage',
   components: {
-    SearchBar, // Register the SearchBar component
+    SearchBar, 
+    LoadingBar 
   },
   data() {
     return {
-      userId: null, // Store user ID
-      savedPlaces: [], // Store saved places
-      generatedItineraries: [], // Store generated itineraries
+      userId: null, 
+      savedPlaces: [],
+      generatedItineraries: [],
+      errorMessage: "",
+      isLoading: false,
+      tiktokLink: "", // Add tiktokLink to hold the link
     };
   },
   mounted() {
-    // Get the currently authenticated user and fetch their Firestore data
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         this.userId = user.uid;
         console.log("User ID:", this.userId);
         await this.fetchUserData();
-
-        // Optional: Add test data if it is a new user
-        if (this.savedPlaces.length === 0 && this.generatedItineraries.length === 0) {
-          await this.addTestData();
-        }
       } else {
         console.log("No user is signed in.");
       }
@@ -67,11 +76,58 @@ export default {
   methods: {
     handleLinkSubmit(link) {
       console.log('Link submitted on Home Page:', link);
-      // Handle the link submitted in this specific view
+      this.tiktokLink = link; // Update the tiktokLink with the submitted link
+      this.analyse(); // Call the analyse function with the link
     },
-    
-    // Fetch the user data from Firestore
-    async fetchUserData() {
+
+    async analyse() {
+      if (this.isValidUrl(this.tiktokLink)) {
+        this.isLoading = true; // Start loading
+        this.errorMessage = ""; // Clear error messages
+        try {
+          const response = await axios.get(`http://127.0.0.1:5000/video-info-comments`, {
+            params: {
+              url: this.tiktokLink,
+              withCredentials: true,
+            },
+          });
+
+          const data = response.data.openai_response;
+
+          if (data.error) {
+            throw new Error("Error generating response from OpenAI.");
+          }
+          
+          const videoInfo = data.video_info;
+          const relatedPlaces = data.related_places;
+
+          // Redirect to the SearchedLocation component with query params
+          this.$router.push({
+            path: "/location",
+            query: {
+              videoInfo: JSON.stringify(videoInfo),
+              locationInfo: JSON.stringify(data.location_info),
+              relatedPlaces: JSON.stringify(relatedPlaces),
+            },
+          });
+        } catch (error) {
+          console.error(error);
+          this.errorMessage = "Error generating response from OpenAI.";
+        } finally {
+          this.isLoading = false; // Stop loading
+        }
+      } else {
+        this.errorMessage = "Invalid TikTok link. Please try again.";
+      }
+    },
+
+    isValidUrl(url) {
+      const regex =
+        /^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[\w.-]+\/video\/\d+)|(vt\.tiktok\.com\/[\w\d]+)).*$/;
+      return regex.test(url);
+    },
+
+    async fetchUserData() { //need revisit this code again becaue change in the firebase from jiaxin's one to jon's.
       try {
         const userRef = doc(db, "users", this.userId);
         const userDoc = await getDoc(userRef);
@@ -87,40 +143,10 @@ export default {
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
-    },
-
-    // Add test data to Firestore
-    async addTestData() {
-      try {
-        const userRef = doc(db, "users", this.userId);
-
-        // Add a test saved place
-        await updateDoc(userRef, {
-          savedPlaces: arrayUnion({
-            name: "Marina Bay Sands",
-            location: "Singapore",
-            description: "Iconic hotel with a rooftop infinity pool",
-          }),
-        });
-        console.log("Test saved place added.");
-
-        // Add a test generated itinerary
-        await updateDoc(userRef, {
-          generatedItineraries: arrayUnion({
-            destination: "Japan",
-            activities: ["Visit Tokyo Tower", "Explore Shibuya Crossing", "Eat Sushi"],
-            duration: "5 days",
-          }),
-        });
-        console.log("Test itinerary added.");
-      } catch (error) {
-        console.error("Error adding test data:", error);
-      }
-    },
+    }
   }
 };
 </script>
-
 
 <style scoped>
 .homepage {

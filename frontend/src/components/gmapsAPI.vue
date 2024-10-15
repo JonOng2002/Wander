@@ -20,19 +20,15 @@
   
   <script setup>
   import { ref, onMounted } from 'vue';
+  import { useRoute } from 'vue-router';
   
   const center = ref({ lat: 51.093048, lng: 6.842120 }); // Default center of the map
   const markers = ref([]); // Empty marker list
-  
+
   // Sample function to fetch saved places with coordinates
   const getSavedPlaces = async () => {
-    // Here, you can fetch the saved places from Firebase or any backend
-    // The data below is just an example
-    const savedPlaces = [
-      { lat: 51.093048, lng: 6.842120, name: 'Place 1' },
-      { lat: 52.5200, lng: 13.4050, name: 'Place 2' }, // Berlin
-      { lat: 48.8566, lng: 2.3522, name: 'Place 3' }, // Paris
-    ];
+    
+    
   
     // Convert saved places into markers
     markers.value = savedPlaces.map(place => ({

@@ -1,4 +1,5 @@
 <template>
+    <!-- This Page is not styled yet -->
     <div>
       <h2>Your Saved Places</h2>
   

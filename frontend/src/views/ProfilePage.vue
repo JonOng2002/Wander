@@ -1,48 +1,88 @@
 <template>
-  <div class="profile-page">
-    <h1>Welcome to the Profile Page</h1>
-    <p>This is your profile page content.</p>
+  <div class="profile-container">
+    <h1>Profile</h1>
 
-    <button @click="logout" class="btn btn-danger">Logout</button>
+    <div v-if="user">
+      <h3>Welcome, {{ user.displayName || 'User' }}</h3>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      
+      <!-- Add more user information here if available -->
+      
+      <div class="actions">
+        <button @click="handleSignOut">Logout</button>
+      </div>
+    </div>
+
+    <div v-else>
+      <p>You must be logged in to view this page.</p>
+      <router-link to="/signin">Login</router-link>
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ProfilePage',
-  methods: {
-    logout() {
-      // Clear user session data here (if applicable)
-      // For example: localStorage.removeItem('userToken');
+<script setup>
+import { ref, onMounted } from 'vue';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { useRouter } from 'vue-router';
 
-      // Route to the sign-in page after logging out
-      this.$router.push({ name: 'SignIn' });
-    },
-  },
+// State for user data
+const user = ref(null);
+const router = useRouter();
+
+// Firebase authentication
+const auth = getAuth();
+
+// Fetch user info on component mount
+onMounted(() => {
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      user.value = currentUser;  // Store the user object in state
+    } else {
+      console.error("No user is logged in");
+      router.push('/signin');  // Redirect to login if not authenticated
+    }
+  });
+});
+
+// Function to log out the user
+const handleSignOut = () => {
+  signOut(auth).then(() => {
+    user.value = null;  // Clear the user data
+    router.push('/signin');  // Redirect to login page
+  }).catch((error) => {
+    console.error("Error signing out: ", error);
+  });
 };
 </script>
 
 <style scoped>
-.profile-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2em;
   margin-bottom: 20px;
 }
 
-p {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
+.actions {
+  margin-top: 20px;
 }
 
 button {
-  font-size: 1rem;
   padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #000000;
 }
 </style>

@@ -5,10 +5,11 @@
           type="text"
           v-model="link"
           class="form-control"
-          placeholder="Enter a link"
+          placeholder="Paste TikTok link here!"
           required
+          :disabled="isLoading"
         />
-        <button type="submit" class="btn btn-primary btn-lg ms-2">Analyze</button>
+        <button type="submit" class="btn btn-primary btn-lg ms-2">Search!</button>
       </form>
     </div>
   </template>
@@ -16,20 +17,29 @@
   <script>
   export default {
     name: 'SearchBar',
-    data() {
-      return {
-        link: '', // Data binding for the input field
-      };
-    },
-    methods: {
-      submitLink() {
-        // Emit the link to the parent component
-        this.$emit('submit-link', this.link);
-        // Clear the input field after submission
-        this.link = '';
-      },
-    },
+    props: {
+  tiktokLink: { // New prop for link
+    type: String,
+    default: ''
+  }
+},
+data() {
+  return {
+    link: this.tiktokLink, // Bind prop value to local data
   };
+},
+watch: {
+  tiktokLink(newValue) {
+    this.link = newValue; // Watch for changes to prop and update local data
+  }
+},
+methods: {
+  submitLink() {
+    // Emit the link to the parent component
+    this.$emit('submit-link', this.link);
+  },
+},
+};
   </script>
   
   <style scoped>

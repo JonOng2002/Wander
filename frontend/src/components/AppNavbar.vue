@@ -9,16 +9,16 @@
       <!-- Navigation Links -->
       <ul class="navbar-nav d-flex flex-row align-items-center">
         <li class="nav-item me-4">
-          <router-link to="/mainpage" class="nav-link">Main Page</router-link>
+          <router-link to="/" class="nav-link">Main Page</router-link>
         </li>
         <li class="nav-item me-4">
           <router-link to="/itinerary" class="nav-link">Itinerary</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/upload" class="nav-link">Destinations</router-link>
+          <router-link to="/savedPlaces" class="nav-link">My Saved Places</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/analyze" class="nav-link">Link:</router-link>
+          <router-link to="/about" class="nav-link">About</router-link>
         </li>
         <!-- Profile Picture -->
         <li class="nav-item me-4">
