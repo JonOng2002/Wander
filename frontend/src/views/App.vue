@@ -6,12 +6,12 @@
       <router-link class="nav-link" to="/"> Wander </router-link> |
       <router-link class="nav-link" to="/about"> About </router-link> |
       <router-link class="nav-link" to="/home"> HomePage </router-link> |
-      <router-link class="nav-link" to="/savedPlace"> Saved Places |
+      <router-link class="nav-link" to="/savedPlaces"> Saved Places |
       </router-link>
       </span>
       <!-- Links visible based on authentication state -->
       <span v-if="isLoggedIn"> 
-        <router-link class="nav-link" to="/feed"> Feed </router-link> |
+        <router-link class="nav-link" to="/feed"> My Profile </router-link> |
         <button class="signout-btn" @click="handleSignOut"> Logout </button>
       </span>
       <span v-else>
