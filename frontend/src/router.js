@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AboutPage from './views/AboutPage.vue';
 // import AnalyseLink from './components/AnalyseLink.vue';
 import SearchedLocation from './views/SearchedLocation.vue';
-import UserFeed from './components/UserFeed.vue';
 import SavedPlaces from './views/SavedPlaces.vue';
 import MainPage from '@/views/MainPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue'; 
@@ -18,7 +17,6 @@ const routes = [
 //   { path: '/', component: AnalyseLink },
   { path: '/about', component: AboutPage },
   { path: '/location', component: SearchedLocation },
-  { path: '/feed', component: UserFeed },
   { path: '/log-in', component: LogIn }, // Updated to use LogIn
   { path: '/savedPlaces', component: SavedPlaces },
   
