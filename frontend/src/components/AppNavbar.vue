@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom-black w-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom-black w-100 sticky-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <!-- Title -->
       <a class="navbar-brand" href="#">
@@ -12,10 +12,10 @@
           <router-link to="/" class="nav-link">Main Page</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/itinerary" class="nav-link">Itinerary</router-link>
+          <router-link to="/savedplaces" class="nav-link">Saved Places</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/savedPlaces" class="nav-link">My Saved Places</router-link>
+          <router-link to="/destinations" class="nav-link">Destinations</router-link>
         </li>
         <li class="nav-item me-4">
           <router-link to="/about" class="nav-link">About</router-link>
@@ -29,8 +29,6 @@
       </ul>
     </div>
   </nav>
-
-  
 </template>
 
 <script>
@@ -46,9 +44,11 @@ export default {
   color: black;
   margin-left: 20px;
 }
-.navbar{
-  border: 1px solid black
+
+.navbar {
+  border: 1px solid black;
 }
+
 .nav-link {
   font-weight: bold;
   font-size: 1.5vw;
@@ -64,5 +64,13 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+/* Sticky Navbar with Bootstrap's sticky-top class */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1020; /* Higher z-index to ensure it stays above other elements */
+  background-color: white;
 }
 </style>
