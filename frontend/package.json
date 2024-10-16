@@ -5,7 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "frontend": "npm run build && serve -s dist",
+    "backend": "cd ../backend && source venv/bin/activate && python main.py",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "prod": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
@@ -29,7 +32,8 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.7.1"
+    "eslint-plugin-vue": "^8.7.1",
+    "serve": "^14.2.4"
   },
   "eslintConfig": {
     "root": true,
