@@ -6,15 +6,7 @@
 
     <LoadingBar :isLoading="isLoading" />
 
-    <!-- Displaying saved places -->
-    <div v-if="savedPlaces.length > 0" class="saved-places">
-      <h3>Saved Places</h3>
-      <ul>
-        <li v-for="place in savedPlaces" :key="place.name">
-          <strong>{{ place.name }}</strong> - {{ place.location }}: {{ place.description }}
-        </li>
-      </ul>
-    </div>
+
 
     <!-- Displaying generated itineraries -->
     <div v-if="generatedItineraries.length > 0" class="generated-itineraries">
