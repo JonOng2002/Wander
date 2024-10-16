@@ -1,5 +1,5 @@
 <template>
-    <!-- This Page is not styled yet -->
+    <!-- This Page is not styled yet, it fetches the saved places from user's firestore-->
     <div>
       <h2>Your Saved Places</h2>
   

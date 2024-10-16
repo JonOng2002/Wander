@@ -1,6 +1,6 @@
 <template>
   <div class="homepage">
-    <p class="searchBarTitle">Where would you like to wander?</p>
+    <p class="searchBarTitle">Where would you like to wander?</p> 
     
     <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
 
@@ -32,7 +32,7 @@
     <!-- Error Message -->
     <div v-if="errorMessage">{{ errorMessage }}</div>
 
-    <!-- Loading bar -->
+    <!-- Loading bar, Yet to be styled -->
     <LoadingBar v-if="isLoading" />
   </div>
 </template>
