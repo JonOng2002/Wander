@@ -36,6 +36,14 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  activities: {
+    type: Array,
+    default: () => [], // default to empty array
+  },
+  summary: {
+    type: String,
+    default: '', // default to empty string
+  },
 });
 
 // Firestore initialization
@@ -44,7 +52,7 @@ const db = getFirestore();
 // Function to save the place to Firestore
 const savePlace = async () => {
   // Ensure none of the required fields are undefined
-  if (!props.placeName || !props.country || !props.city || !props.latitude || !props.longitude || !props.userId) {
+  if (!props.placeName || !props.country || !props.city || !props.latitude || !props.longitude || !props.userId || !props.summary || !props.activities) {
     console.error('Missing required data to save the place');
     return;
   }
@@ -61,6 +69,8 @@ const savePlace = async () => {
       placePng: props.placePng || '',  // optional field
       userId: props.userId,
       timestamp: new Date(),
+      activities: props.activities,
+      summary: props.summary,
     });
     console.log('Place saved with ID: ', docRef.id);
   } catch (e) {

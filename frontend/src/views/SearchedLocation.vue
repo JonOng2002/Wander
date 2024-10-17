@@ -35,7 +35,8 @@
         :latitude="locationInfo.coordinates.latitude"
         :longitude="locationInfo.coordinates.longitude"
         :placePng="locationInfo.place_png"
-        :userId="userId" 
+        :userId="userId"
+        :activities="locationInfo.activities" 
         :summary="locationInfo.summary"
       ></save-place-button>
     </div>
@@ -67,6 +68,7 @@
             :longitude="place.coordinates.longitude"
             :placePng="place.place_png"
             :userId="userId"
+            :activities="place.activities"
             :summary="place.summary"
           ></save-place-button>
         </li>
