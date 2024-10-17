@@ -97,15 +97,13 @@ export default {
           if (data.error) {
             throw new Error("Error generating response from OpenAI.");
           }
-          
-          const videoInfo = data.video_info;
+        
           const relatedPlaces = data.related_places;
 
           // Redirect to the SearchedLocation component with query params
           this.$router.push({
             path: "/location",
             query: {
-              videoInfo: JSON.stringify(videoInfo),
               locationInfo: JSON.stringify(data.location_info),
               relatedPlaces: JSON.stringify(relatedPlaces),
             },

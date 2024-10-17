@@ -84,7 +84,8 @@ async def generate_openai_response(video_info, comments):
                             },
                             "required": ["latitude", "longitude"]
                             },
-                            "activities": { "type": "array", "items": { "type": "string" } }
+                            "activities": { "type": "array", "items": { "type": "string" } },
+                            "location_summary": { "type": "string" }
                         },
                         "required": ["place_name", "country", "city","place_png", "coordinates", "activities", "location_summary"]
                         }
