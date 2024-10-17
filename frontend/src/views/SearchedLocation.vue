@@ -1,18 +1,8 @@
 <template>
   <div>
-    <!-- Video Information -->
-    <div v-if="videoInfo">
-      <h2>Video Information</h2>
-      <p><strong>Title:</strong> {{ videoInfo.title }}</p>
-      <p><strong>Author:</strong> {{ videoInfo.author }}</p>
-      <p><strong>Play Count:</strong> {{ videoInfo.play_count }}</p>
-      <p><strong>Likes:</strong> {{ videoInfo.likes }}</p>
-      <p><strong>Comments Count:</strong> {{ videoInfo.comments_count }}</p>
-    </div>
-    
     <!-- Location Information -->
     <div v-if="locationInfo">
-      <h3>Location Information</h3>
+      <h3>Fetched location</h3>
       <p><strong>Place:</strong> {{ locationInfo.place_name }}</p>
       <p><strong>Country:</strong> {{ locationInfo.country }}</p>
       <p><strong>City:</strong> {{ locationInfo.city }}</p>
@@ -39,6 +29,7 @@
         :longitude="locationInfo.coordinates.longitude"
         :placePng="locationInfo.place_png"
         :userId="userId" 
+        :summary="videoInfo.summary"
       ></save-place-button>
     </div>
 
@@ -61,7 +52,8 @@
             :latitude="place.coordinates.latitude"
             :longitude="place.coordinates.longitude"
             :placePng="place.place_png"
-            :userId="userId" 
+            :userId="userId"
+            :summary="place.summary"
           ></save-place-button>
         </li>
       </ul>
@@ -97,6 +89,7 @@ const formatLocation = (location) => {
       longitude: location?.coordinates?.longitude || 0,
     },
     place_png: location?.place_png || "/default-image.png", // Fallback if no image
+    summary: location?.summary || "No summary available",
   };
 };
 
