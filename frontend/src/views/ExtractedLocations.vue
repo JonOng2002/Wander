@@ -61,6 +61,7 @@
 </template>
 
 <script>
+/* global google */
 export default {
   name: 'ExtractedLocations',
   mounted() {
@@ -87,6 +88,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .card-img-top {
