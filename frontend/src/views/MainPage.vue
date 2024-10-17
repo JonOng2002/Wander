@@ -5,20 +5,32 @@
       <SearchBar @submit-link="handleLinkSubmit" />
     </div>
 
+    <!-- Add ExtractedLocations component -->
+    <ExtractedLocations v-if="showExtractedLocations" />
+
 
   </template>
   
   <script>
   import SearchBar from '@/components/SearchBar.vue'; // Import the SearchBar component
+  import ExtractedLocations from '@/views/ExtractedLocations.vue'; // Import ExtractedLocations component
   export default {
     name: 'MainPage',
     components:{
       SearchBar, // Register the SearchBar component
+      ExtractedLocations // Register the ExtractedLocations component
     },
+    data() {
+    return {
+      showExtractedLocations: false // Control visibility of ExtractedLocations
+    };
+  },
     methods: {
     handleLinkSubmit(link) {
       console.log('Link submitted on Home Page:', link);
       // Handle the link submitted in this specific view
+       // Optionally: You can also set this to true if you want to show the ExtractedLocations after a link is submitted
+       this.showExtractedLocations = true; // Show ExtractedLocations on link submit
     },
   },
 };
