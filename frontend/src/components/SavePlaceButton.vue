@@ -62,8 +62,7 @@ const props = defineProps({
 const db = getFirestore();
 
 // Function to save the place to the user's savedPlaces collection
-const savePlace = async () => {
-  console.log(props); // Inside `savePlace` in save-place-button.vue
+const savePlace = async () => { // Inside `savePlace` in save-place-button.vue
   // Check for undefined fields
   if (!props.placeId || !props.placeName || !props.country || !props.city || !props.latitude || !props.longitude || !props.userId) {
     console.error('Missing required data to save the place', {

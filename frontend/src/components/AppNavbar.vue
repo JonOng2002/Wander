@@ -21,7 +21,7 @@
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/itineraries" class="nav-link">Contact</router-link>
+          <router-link to="/itineraries" class="nav-link">My itineraries</router-link>
         </li>
         <!-- Profile Picture -->
         <li class="nav-item me-4">
@@ -59,7 +59,9 @@ export default {
   font-family: 'Cormorant Garamond', serif;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.router-link:active,
+.router-link-exact-active{
   text-decoration: underline;
 }
 
