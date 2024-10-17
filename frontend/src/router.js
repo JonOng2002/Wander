@@ -10,8 +10,6 @@ import LogIn from '@/views/LogIn.vue'; // Import LogIn component
 import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
-import ExtractedLocations from '@/views/ExtractedLocations.vue';
-
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
@@ -32,13 +30,7 @@ const routes = [
     name: 'DestinationDetails',
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
-  },
-  {
-    path: '/extractedlocations',
-    name: 'ExtractedLocations',
-    component: ExtractedLocations,
-  },
-
+  }
 ];
 
 // Router instance with Firebase authentication logic
