@@ -1,64 +1,41 @@
 <template>
   <div class="destination-details">
-    <!-- Flex container to hold the back button and heading in the same row -->
     <div class="header-row">
-      <!-- Back Button aligned to the left -->
       <button @click="goBack" class="btn back-button">
         Back to Destinations
       </button>
-
-      <!-- Heading aligned to the center -->
       <h1 class="page-title">Top Tourist Attractions in {{ country }}</h1>
     </div>
 
-    <!-- Display loading spinner while data is being fetched -->
     <div v-if="loading" class="loading">Loading...</div>
 
-    <!-- List of destinations (attractions) -->
     <div v-if="!loading" class="attractions-list">
-      <div
-        v-for="attraction in attractions"
-        :key="attraction.place_id"
-        class="attraction-card"
-      >
-        <img
-          :src="attraction.image"
-          alt="attraction-image"
-          class="attraction-image"
-        />
+      <div v-for="attraction in attractions" :key="attraction.place_id" class="attraction-card">
+        <img :src="attraction.image" alt="attraction-image" class="attraction-image" />
         <h2>{{ attraction.name }}</h2>
         <p>{{ attraction.vicinity }}</p>
-        <button @click="addToSavedPlaces(attraction)" class="btn">
-          Add to Saved Places
-        </button>
+        <button @click="addToSavedPlaces(attraction)" class="btn">Add to Saved Places</button>
       </div>
     </div>
 
-    <!-- Popup notification for added to saved places -->
     <div v-if="showPopup" class="popup">
       <p>Added to saved places!</p>
     </div>
 
-    <!-- Display the saved places list -->
     <div class="saved-places-list" v-if="savedPlaces.length > 0">
       <h2>Your Saved Places</h2>
       <ul>
-        <li v-for="(place, index) in savedPlaces" :key="index">
-          {{ place.name }} - {{ place.vicinity }}
-        </li>
+        <li v-for="(place, index) in savedPlaces" :key="index">{{ place.name }} - {{ place.vicinity }}</li>
       </ul>
-      <button @click="generateItinerary" class="btn generate-btn">
-        Generate Itinerary!
-      </button>
+      <button @click="generateItinerary" class="btn generate-btn">Generate Itinerary!</button>
     </div>
   </div>
 </template>
 
 <script>
-import { getFirestore, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getFirestore, doc, setDoc, arrayUnion } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
-
 
 export default {
   name: "DestinationDetails",
@@ -67,10 +44,10 @@ export default {
     return {
       attractions: [],
       loading: true,
-      country: this.$route.params.country, 
-      apiKey: "AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg",
+      country: this.$route.params.country,
+      apiKey: "AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg", // Replace with your actual API key
       savedPlaces: [],
-      showPopup: false, // For the popup notification
+      showPopup: false, // Popup state
     };
   },
   created() {
@@ -140,14 +117,19 @@ export default {
         const userRef = doc(db, "users", userId);
 
         try {
-          await updateDoc(userRef, {
-            savedPlaces: arrayUnion({
-              place_id: attraction.place_id,
-              name: attraction.name,
-              vicinity: attraction.vicinity,
-              image: attraction.image,
-            }),
-          });
+          // Use setDoc with merge: true to handle both new and existing users
+          await setDoc(
+            userRef,
+            {
+              savedPlaces: arrayUnion({
+                place_id: attraction.place_id,
+                name: attraction.name,
+                vicinity: attraction.vicinity,
+                image: attraction.image,
+              }),
+            },
+            { merge: true }
+          );
           console.log("Place added to saved places:", attraction.name);
 
           // Show the popup and hide it after 2 seconds
