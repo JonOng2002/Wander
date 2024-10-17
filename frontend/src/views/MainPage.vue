@@ -1,6 +1,6 @@
 <template>
   <div class="homepage">
-    <p class="searchBarTitle">Where would you like to wander?</p>
+    <p class="searchBarTitle">Where would you like to wander?</p> 
     
     <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
 
@@ -24,7 +24,7 @@
     <!-- Error Message -->
     <div v-if="errorMessage">{{ errorMessage }}</div>
 
-    <!-- Loading bar -->
+    <!-- Loading bar, Yet to be styled -->
     <LoadingBar v-if="isLoading" />
   </div>
 </template>
@@ -89,15 +89,13 @@ export default {
           if (data.error) {
             throw new Error("Error generating response from OpenAI.");
           }
-          
-          const videoInfo = data.video_info;
+        
           const relatedPlaces = data.related_places;
 
           // Redirect to the SearchedLocation component with query params
           this.$router.push({
             path: "/location",
             query: {
-              videoInfo: JSON.stringify(videoInfo),
               locationInfo: JSON.stringify(data.location_info),
               relatedPlaces: JSON.stringify(relatedPlaces),
             },

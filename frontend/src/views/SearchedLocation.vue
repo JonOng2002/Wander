@@ -1,24 +1,21 @@
 <template>
   <div>
-    <!-- Video Information -->
-    <div v-if="videoInfo">
-      <h2>Video Information</h2>
-      <p><strong>Title:</strong> {{ videoInfo.title }}</p>
-      <p><strong>Author:</strong> {{ videoInfo.author }}</p>
-      <p><strong>Play Count:</strong> {{ videoInfo.play_count }}</p>
-      <p><strong>Likes:</strong> {{ videoInfo.likes }}</p>
-      <p><strong>Comments Count:</strong> {{ videoInfo.comments_count }}</p>
-    </div>
-    
     <!-- Location Information -->
     <div v-if="locationInfo">
-      <h3>Location Information</h3>
+      <h3>Fetched location</h3>
       <p><strong>Place:</strong> {{ locationInfo.place_name }}</p>
       <p><strong>Country:</strong> {{ locationInfo.country }}</p>
       <p><strong>City:</strong> {{ locationInfo.city }}</p>
+      <p><strong>Activities:</strong> {{ locationInfo.activities?.join(', ') || 'No activities available' }}</p>
+      <p><strong>Summary:</strong> {{ locationInfo.summary || 'No summary available' }}</p>
       <p><strong>Latitude:</strong> {{ locationInfo.coordinates.latitude }}</p>
       <p><strong>Longitude:</strong> {{ locationInfo.coordinates.longitude }}</p>
-      <img :src="locationInfo.place_png" alt="Image of {{ locationInfo.place_name }}" width="300px"/>
+      <img 
+        :src="locationInfo.place_png" 
+        @error="handleImageError" 
+        alt="Image of {{ locationInfo.place_name }}" 
+        width="300px"
+      />
 
       <!-- Google Map displaying the location -->
       <GoogleMap
@@ -38,7 +35,9 @@
         :latitude="locationInfo.coordinates.latitude"
         :longitude="locationInfo.coordinates.longitude"
         :placePng="locationInfo.place_png"
-        :userId="userId" 
+        :userId="userId"
+        :activities="locationInfo.activities" 
+        :summary="locationInfo.summary"
       ></save-place-button>
     </div>
 
@@ -47,11 +46,18 @@
       <h2>Related Places:</h2>
       <ul>
         <li v-for="place in relatedPlaces" :key="place.place_name">
-          <strong>{{ place.place_name }}</strong> - {{ place.activities?.join(', ') || 'No activities available' }} <br />
+          <strong>Place:</strong> {{ place.place_name }}<br />
           <strong>Country:</strong> {{ place.country }} <br />
           <strong>City:</strong> {{ place.city }} <br />
           <strong>Coordinates:</strong> ({{ place.coordinates.latitude }}, {{ place.coordinates.longitude }}) <br />
-          <img :src="place.place_png" alt="Image of {{ place.place_name }}" width="300px" />
+          <strong>Activities:</strong> {{ place.activities?.join(', ') || 'No activities available' }} <br />
+          <strong>Summary:</strong> {{ place.summary || 'No summary available' }} <br />
+          <img 
+            :src="place.place_png" 
+            @error="handleImageError" 
+            alt="Image of {{ place.place_name }}" 
+            width="300px" 
+          />
 
           <!-- Save button for each related place -->
           <save-place-button 
@@ -61,7 +67,9 @@
             :latitude="place.coordinates.latitude"
             :longitude="place.coordinates.longitude"
             :placePng="place.place_png"
-            :userId="userId" 
+            :userId="userId"
+            :activities="place.activities"
+            :summary="place.summary"
           ></save-place-button>
         </li>
       </ul>
@@ -78,7 +86,6 @@ import { GoogleMap, Marker } from 'vue3-google-map';
 import { Loader } from '@googlemaps/js-api-loader';
 
 // Reactive state variables
-const videoInfo = ref(null);
 const relatedPlaces = ref([]);
 const locationInfo = ref(null);
 const userId = ref(null);
@@ -97,6 +104,8 @@ const formatLocation = (location) => {
       longitude: location?.coordinates?.longitude || 0,
     },
     place_png: location?.place_png || "/default-image.png", // Fallback if no image
+    summary: location?.location_summary || "No summary available", // Use location_summary for summary
+    activities: location?.activities || [], // Make sure to include activities
   };
 };
 
@@ -111,9 +120,6 @@ const apiPromise = loader.load();
 
 // Retrieve video and location data from query params
 onMounted(() => {
-  if (route.query.videoInfo) {
-    videoInfo.value = JSON.parse(route.query.videoInfo);
-  }
   if (route.query.locationInfo) {
     locationInfo.value = formatLocation(JSON.parse(route.query.locationInfo)); // Format location data
 
@@ -141,6 +147,11 @@ onMounted(() => {
     }
   });
 });
+
+// Function to handle image error
+const handleImageError = (event) => {
+  event.target.src = 'https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg'; // Set the src to the alternative image URL
+};
 </script>
 
 <style scoped>

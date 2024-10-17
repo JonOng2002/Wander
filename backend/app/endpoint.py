@@ -36,7 +36,7 @@ async def generate_openai_response(video_info, comments):
                     Video Info: {video_info}
                     Comments: {comments}
 
-                    Base on the metadata and comments section provided, please summarize this information and provide the details of this travel location with 1 to 3 similar places to it. For each place, provide a query that can be used by Unsplash API. Try your best and please strictly follow the JSON schema provided.
+                    Base on the metadata and comments section provided, please summarize this information and provide the details of this travel location with 1 to 3 similar places to it. For each place, provide a summary sentence about it and a query that can be used by Unsplash API. Try your best and please strictly follow the JSON schema provided.
                     """
                 }
             ],
@@ -47,18 +47,6 @@ async def generate_openai_response(video_info, comments):
                 "schema": {
                 "type": "object",
                 "properties": {
-                    "video_info": {
-                        "type": "object",
-                        "properties": {
-                        "id": { "type": "string" },
-                        "title": { "type": "string" },
-                        "author": { "type": "string" },
-                        "play_count": { "type": "integer" },
-                        "likes": { "type": "integer" },
-                        "comments_count": { "type": "integer" }
-                        },
-                        "required": ["id", "title", "author", "play_count", "likes", "comments_count"]
-                    },
                     "location_info": {
                         "type": "object",
                         "properties": {
@@ -75,16 +63,9 @@ async def generate_openai_response(video_info, comments):
                             "required": ["latitude", "longitude"]
                         },
                         "activities": { "type": "array", "items": { "type": "string" } },
-                        "place_details": {
-                            "type": "object",
-                            "properties": {
-                            "place_name": { "type": "string" },
-                            "goods_and_services_provided": { "type": "string" }
-                            },
-                            "required": ["place_name", "goods_and_services_provided"]
+                        "location_summary": { "type": "string" },
                         },
-                        },
-                        "required": ["place_name", "country","city", "place_png", "coordinates", "activities", "place_details"]
+                        "required": ["place_name", "country","city", "place_png", "coordinates", "activities", "location_summary"]
                     },
                     "related_places": {
                         "type": "array",
@@ -103,13 +84,14 @@ async def generate_openai_response(video_info, comments):
                             },
                             "required": ["latitude", "longitude"]
                             },
-                            "activities": { "type": "array", "items": { "type": "string" } }
+                            "activities": { "type": "array", "items": { "type": "string" } },
+                            "location_summary": { "type": "string" }
                         },
-                        "required": ["place_name", "country", "city","place_png", "coordinates", "activities"]
+                        "required": ["place_name", "country", "city","place_png", "coordinates", "activities", "location_summary"]
                         }
                     },
                     },
-                    "required": ["video_info", "location_info", "related_places"]
+                    "required": ["location_info", "related_places"]
                     }
                 }
         }

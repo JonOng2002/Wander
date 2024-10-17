@@ -28,10 +28,10 @@
               </button>
             </p>
 
-            <!-- Remove from saved places button-->
+            <!-- Remove from saved places button -->
             <p>
               <button @click="removeFromSavedPlaces(place.place_id)" type="button" class="btn btn-danger">
-                Remove
+                Remove 
               </button>
             </p>
           </div>
@@ -51,10 +51,10 @@
     <div v-if="showPopup" class="popup">
       <p>Added to itinerary!</p>
     </div>
-  </div>
 
-  <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
-    <p>Removed from itinerary!</p>
+    <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
+      <p>Removed from itinerary!</p>
+    </div>
   </div>
 </template>
 
@@ -88,7 +88,6 @@ export default {
           if (userDoc.exists()) {
             savedPlaces.value = userDoc.data().savedPlaces || [];
           } else {
-            // If user doesn't exist, create the document for the user
             await setDoc(userRef, { savedPlaces: [] });
             savedPlaces.value = [];
           }
@@ -166,6 +165,7 @@ export default {
 </script>
 
 <style scoped>
+/* Style elements for the page. Make sure all tags are properly closed */
 .itinerary-page {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -266,6 +266,11 @@ export default {
 
 .btn:hover {
   background-color: darkgray;
+  color: black;
+}
+
+.btn-danger :hover {
+  background-color: red;
   color: black;
 }
 

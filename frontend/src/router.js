@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
+
 import AboutPage from '@/views/AboutPage.vue';
 import SearchedLocation from '@/views/SearchedLocation.vue';
-import UserFeed from '@/components/UserFeed.vue';
 import SavedPlaces from '@/views/SavedPlaces.vue';
 import MainPage from '@/views/MainPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
@@ -15,14 +15,16 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
+
   { path: '/', name: 'MainPage', component: MainPage },  
   { path: '/about', name: 'AboutPage', component: AboutPage },
   { path: '/location', name: 'SearchedLocation', component: SearchedLocation },
-  { path: '/feed', name: 'UserFeed', component: UserFeed },
-  { path: '/log-in', name: 'LogIn', component: LogIn },
   { path: '/savedplaces', name: 'SavedPlaces', component: SavedPlaces },
+  { path: '/about', name: 'About', component: AboutPage },
+  { path: '/location', name: 'Location', component: SearchedLocation },
+  { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
-  { path: '/generated', name: 'GeneratedItinerary', component: GeneratedItinerary },
+  { path: '/itinerary', name: 'GeneratedItinerary', component: GeneratedItinerary },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
   {
