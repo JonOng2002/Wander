@@ -1,19 +1,25 @@
 <template>
   <div class="itinerary-page">
     <div class="row justify-content-between align-items-center sticky-header g-0 m-2">
+      <!-- Date Column -->
       <div class="col-3 date-column">
         <h2>My Saved Places</h2>
       </div>
+      <!-- Generate Itinerary Button -->
       <div class="col-auto generateButton">
         <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">Generate Itinerary!</button>
       </div>
     </div>
 
+    <!-- Loading indicator -->
     <div v-if="loading" class="empty-message">Loading saved places...</div>
+
+    <!-- No places saved message -->
     <div v-else-if="savedPlaces && savedPlaces.length === 0" class="empty-message">
       <p>No places saved yet.</p>
     </div>
 
+    <!-- Display saved places -->
     <div v-else class="row card-row justify-content-start g-0">
       <div v-for="place in savedPlaces" :key="place.place_id" class="card-container">
         <div class="card destination-card">
@@ -39,6 +45,7 @@
       </div>
     </div>
 
+    <!-- Itinerary List Display -->
     <div v-if="itinerary.length > 0" class="itinerary-list">
       <h3>Your Itinerary</h3>
       <ol class="list-group list-group-numbered">
@@ -48,11 +55,13 @@
       </ol>
     </div>
 
+    <!-- Popup notification -->
     <div v-if="showPopup" class="popup">
       <p>Added to itinerary!</p>
     </div>
   </div>
 
+  <!-- Remove Popup notification -->
   <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
     <p>Removed from itinerary!</p>
   </div>
@@ -60,9 +69,10 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { getFirestore, doc, getDoc, updateDoc, setDoc, arrayRemove } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, updateDoc, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
+
 
 export default {
   name: 'SavedPlaces',
@@ -87,10 +97,6 @@ export default {
           const userDoc = await getDoc(userRef);
           if (userDoc.exists()) {
             savedPlaces.value = userDoc.data().savedPlaces || [];
-          } else {
-            // If user doesn't exist, create the document for the user
-            await setDoc(userRef, { savedPlaces: [] });
-            savedPlaces.value = [];
           }
         } catch (error) {
           console.error("Error fetching saved places:", error);
@@ -129,19 +135,23 @@ export default {
         const userRef = doc(db, "users", userId);
 
         try {
+          // Find the place in the local savedPlaces array
           const placeToRemove = savedPlaces.value.find(place => place.place_id === placeId);
+
+          // Remove the place from Firebase using arrayRemove
           if (placeToRemove) {
             await updateDoc(userRef, {
               savedPlaces: arrayRemove(placeToRemove)
             });
 
+            // Update the local state after successful Firebase update
             savedPlaces.value = savedPlaces.value.filter(place => place.place_id !== placeId);
             itinerary.value = itinerary.value.filter(item => item.place_id !== placeId);
 
             showRemovePopup.value = true;
             setTimeout(() => {
               showRemovePopup.value = false;
-            }, 2000);
+            }, 2000); 
           }
         } catch (error) {
           console.error("Error removing place from Firebase:", error);
@@ -165,6 +175,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .itinerary-page {
   font-family: "Roboto", sans-serif;
@@ -172,6 +183,7 @@ export default {
   padding: 0;
 }
 
+/* Ensure the header is sticky */
 .sticky-header {
   position: sticky;
   top: 0;
@@ -181,6 +193,7 @@ export default {
   border-bottom: 1px solid lightgrey;
 }
 
+/* Ensure the date column is pushed to the left */
 .date-column {
   text-align: left;
   padding-left: 5%;
@@ -201,6 +214,7 @@ export default {
   margin-bottom: 10px;
 }
 
+/* Empty message styles */
 .empty-message {
   text-align: center;
   font-size: 1.2rem;
@@ -208,6 +222,7 @@ export default {
   padding: 20px;
 }
 
+/* Reset or minimize row margin */
 .row {
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -218,12 +233,14 @@ export default {
   margin-top: 10px;
 }
 
+/* card container styles */
 .card-container {
   padding-left: 5%;
   padding-right: 5%;
   margin-bottom: 10px;
 }
 
+/* card styles */
 .destination-card {
   margin-left: 0;
   padding: 15px;
@@ -269,6 +286,7 @@ export default {
   color: black;
 }
 
+/* Popup notification styles */
 .popup {
   position: fixed;
   top: 20px;
@@ -284,9 +302,10 @@ export default {
 }
 
 .remove-popup {
-  background-color: #f44336;
+  background-color: #f44336; /* Red background for remove popup */
 }
 
+/* Itinerary list styles */
 .itinerary-list {
   margin-top: 20px;
 }
