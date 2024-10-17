@@ -7,6 +7,7 @@ import SavedPlaces from '@/views/SavedPlaces.vue';
 import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
+import ExtractedLocations from '@/views/ExtractedLocations.vue';
 
 const routes = [
   {
@@ -54,6 +55,11 @@ const routes = [
     name: 'DestinationDetails',
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
+  },
+  {
+    path: '/extractedlocations',
+    name: 'ExtractedLocations',
+    component: ExtractedLocations,
   },
 ];
 
