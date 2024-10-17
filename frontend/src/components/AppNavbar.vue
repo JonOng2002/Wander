@@ -20,6 +20,9 @@
         <li class="nav-item me-4">
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
+        <li class="nav-item me-4">
+          <router-link to="/itineraries" class="nav-link">Contact</router-link>
+        </li>
         <!-- Profile Picture -->
         <li class="nav-item me-4">
           <router-link to="/profile" class="nav-link">

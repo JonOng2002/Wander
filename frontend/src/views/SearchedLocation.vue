@@ -1,21 +1,24 @@
 <template>
   <div>
+    <!-- Video Information -->
+    <div v-if="videoInfo">
+      <h2>Video Information</h2>
+      <p><strong>Title:</strong> {{ videoInfo.title }}</p>
+      <p><strong>Author:</strong> {{ videoInfo.author }}</p>
+      <p><strong>Play Count:</strong> {{ videoInfo.play_count }}</p>
+      <p><strong>Likes:</strong> {{ videoInfo.likes }}</p>
+      <p><strong>Comments Count:</strong> {{ videoInfo.comments_count }}</p>
+    </div>
+    
     <!-- Location Information -->
     <div v-if="locationInfo">
-      <h3>Fetched location</h3>
+      <h3>Location Information</h3>
       <p><strong>Place:</strong> {{ locationInfo.place_name }}</p>
       <p><strong>Country:</strong> {{ locationInfo.country }}</p>
       <p><strong>City:</strong> {{ locationInfo.city }}</p>
-      <p><strong>Activities:</strong> {{ locationInfo.activities?.join(', ') || 'No activities available' }}</p>
-      <p><strong>Summary:</strong> {{ locationInfo.summary || 'No summary available' }}</p>
       <p><strong>Latitude:</strong> {{ locationInfo.coordinates.latitude }}</p>
       <p><strong>Longitude:</strong> {{ locationInfo.coordinates.longitude }}</p>
-      <img 
-        :src="locationInfo.place_png" 
-        @error="handleImageError" 
-        alt="Image of {{ locationInfo.place_name }}" 
-        width="300px"
-      />
+      <img :src="locationInfo.place_png" alt="Image of {{ locationInfo.place_name }}" width="300px"/>
 
       <!-- Google Map displaying the location -->
       <GoogleMap
@@ -46,7 +49,7 @@
       <h2>Related Places:</h2>
       <ul>
         <li v-for="place in relatedPlaces" :key="place.place_name">
-          <strong>Place:</strong> {{ place.place_name }}<br />
+          <strong>{{ place.place_name }}</strong> - {{ place.activities?.join(', ') || 'No activities available' }} <br />
           <strong>Country:</strong> {{ place.country }} <br />
           <strong>City:</strong> {{ place.city }} <br />
           <strong>Coordinates:</strong> ({{ place.coordinates.latitude }}, {{ place.coordinates.longitude }}) <br />
@@ -86,6 +89,7 @@ import { GoogleMap, Marker } from 'vue3-google-map';
 import { Loader } from '@googlemaps/js-api-loader';
 
 // Reactive state variables
+const videoInfo = ref(null);
 const relatedPlaces = ref([]);
 const locationInfo = ref(null);
 const userId = ref(null);
@@ -120,6 +124,9 @@ const apiPromise = loader.load();
 
 // Retrieve video and location data from query params
 onMounted(() => {
+  if (route.query.videoInfo) {
+    videoInfo.value = JSON.parse(route.query.videoInfo);
+  }
   if (route.query.locationInfo) {
     locationInfo.value = formatLocation(JSON.parse(route.query.locationInfo)); // Format location data
 
@@ -147,8 +154,6 @@ onMounted(() => {
     }
   });
 });
-
-// Function to handle image error
 const handleImageError = (event) => {
   event.target.src = 'https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg'; // Set the src to the alternative image URL
 };
