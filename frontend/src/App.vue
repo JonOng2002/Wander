@@ -44,6 +44,16 @@ body {
 </style>
 
 <style scoped>
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: sticky; /* Ensures it sticks to the top */
+  top: 0;
+  z-index: 1000;
+  background-color: white; /* Ensure a solid background for the navbar */
+}
 #app {
   display: flex;
   flex-direction: column;

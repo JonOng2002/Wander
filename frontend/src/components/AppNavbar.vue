@@ -50,6 +50,7 @@ export default {
 
 .navbar {
   border: 1px solid black;
+  z-index: 1020; /* Higher z-index to ensure it stays above other elements */
 }
 
 .nav-link {
@@ -71,11 +72,5 @@ export default {
   border-radius: 50%;
 }
 
-/* Sticky Navbar with Bootstrap's sticky-top class */
-.sticky-top {
-  position: sticky;
-  top: 0;
-  z-index: 1020; /* Higher z-index to ensure it stays above other elements */
-  background-color: white;
-}
+
 </style>

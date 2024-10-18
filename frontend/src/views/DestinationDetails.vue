@@ -14,48 +14,40 @@
         <img :src="attraction.image" alt="attraction-image" class="attraction-image" />
         <h2>{{ attraction.name }}</h2>
         <p>{{ attraction.vicinity }}</p>
-        <save-place-button class="btn"
-        :placeId="attraction.place_id || `manual-${Date.now()}`"  
-          :placeName="attraction.name"
-          :vicinity="attraction.vicinity || 'Unknown vicinity'"      
-          :country="country"
-          :city="cityName ||  'Unknown City'"
-          :latitude="attraction.coordinates?.latitude || 0"         
-          :longitude="attraction.coordinates?.longitude || 0"       
-          :placePng="attraction.image || '/default-image.jpg'"     
-          :userId="userId"
-          :activities="[]"  
-          :summary="'Google Places Summary'"
-          :source="'google_places'"
-        >Add to save places</save-place-button>
+        <button @click="addToSavedPlaces(attraction)" class="btn">Add to Saved Places</button>
       </div>
     </div>
 
     <div v-if="showPopup" class="popup">
       <p>Added to saved places!</p>
     </div>
+
+    <div class="saved-places-list" v-if="savedPlaces.length > 0">
+      <h2>Your Saved Places</h2>
+      <ul>
+        <li v-for="(place, index) in savedPlaces" :key="index">{{ place.name }} - {{ place.vicinity }}</li>
+      </ul>
+      <button @click="generateItinerary" class="btn generate-btn">Generate Itinerary!</button>
+    </div>
   </div>
 </template>
 
 <script>
+import { getFirestore, doc, setDoc, arrayUnion } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
-import SavePlaceButton from "@/components/SavePlaceButton.vue";
 
 export default {
   name: "DestinationDetails",
-  components: {
-    SavePlaceButton,
-  },
+  inject: ["savedPlacesState"],
   data() {
     return {
       attractions: [],
       loading: true,
       country: this.$route.params.country,
-      apiKey: 'AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg',
-      cityName: this.$route.params.city || 'Unknown City', 
-      userId: null,
-      showPopup: false,
+      apiKey: "AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg", // Replace with your actual API key
+      savedPlaces: [],
+      showPopup: false, // Popup state
     };
   },
   created() {
@@ -77,16 +69,12 @@ export default {
       try {
         const response = await axios.get(url);
         this.attractions = response.data.results.map((place) => ({
-          place_id: place.place_id,
           name: place.name,
-          vicinity: place.vicinity || this.city,
-          coordinates: {
-            latitude: place.geometry.location.lat,
-            longitude: place.geometry.location.lng,
-          },
+          place_id: place.place_id,
+          vicinity: place.vicinity,
           image: place.photos
             ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
-            : '/default-image.jpg',
+            : "/default-image.jpg",
         }));
         this.loading = false;
       } catch (error) {
@@ -119,24 +107,56 @@ export default {
       };
       return coordinates[country] || null;
     },
+    async addToSavedPlaces(attraction) {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (user) {
+        const userId = user.uid;
+        const db = getFirestore();
+        const userRef = doc(db, "users", userId);
+
+        try {
+          // Use setDoc with merge: true to handle both new and existing users
+          await setDoc(
+            userRef,
+            {
+              savedPlaces: arrayUnion({
+                place_id: attraction.place_id,
+                name: attraction.name,
+                vicinity: attraction.vicinity,
+                image: attraction.image,
+              }),
+            },
+            { merge: true }
+          );
+          console.log("Place added to saved places:", attraction.name);
+
+          // Show the popup and hide it after 2 seconds
+          this.showPopup = true;
+          setTimeout(() => {
+            this.showPopup = false;
+          }, 2000);
+        } catch (error) {
+          console.error("Error saving place to Firebase:", error);
+        }
+      } else {
+        console.error("User is not authenticated");
+      }
+    },
     goBack() {
       this.$router.go(-1);
-    }
+    },
+    generateItinerary() {
+      console.log("Generating itinerary with these places:", this.savedPlaces);
+    },
   },
-  mounted() {
-    const auth = getAuth();
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.userId = user.uid; // Set the user ID when authenticated
-      } else {
-        console.error("No user is logged in");
-      }
-    });
-  }
 };
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 .destination-details {
   text-align: center;
   font-family: "Roboto", sans-serif;
@@ -207,6 +227,36 @@ h2 {
   margin: 10px 0;
 }
 
+.btn {
+  background-color: lightgray;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: darkgray;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.saved-places-list {
+  margin-top: 30px;
+}
+
+.generate-btn {
+  margin-top: 20px;
+}
+
+/* Popup notification styles */
 .popup {
   position: fixed;
   top: 20px;
@@ -219,17 +269,5 @@ h2 {
   z-index: 2000;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: opacity 0.3s ease;
-}
-.btn {
-  background-color: lightgray;
-  color: black;
-  border: 1px solid black;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 </style>

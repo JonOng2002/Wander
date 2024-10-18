@@ -4,7 +4,7 @@
 
 <script setup>
 import { getFirestore, collection, addDoc, doc, updateDoc, arrayUnion } from 'firebase/firestore';
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
 // Props: these fields are passed from the parent
 const props = defineProps({
@@ -58,6 +58,7 @@ const props = defineProps({
   }
 });
 
+const emit = defineEmits(['place-saved']);
 // Firestore initialization
 const db = getFirestore();
 
@@ -121,6 +122,7 @@ const savePlace = async () => { // Inside `savePlace` in save-place-button.vue
     });
 
     console.log('Place added to user\'s savedPlaces list.');
+    emit('place-saved');
 
   } catch (e) {
     console.error('Error adding document: ', e);
@@ -129,5 +131,16 @@ const savePlace = async () => { // Inside `savePlace` in save-place-button.vue
 </script>
 
 <style scoped>
-/* Add any relevant styles */
+.btn {
+  background-color: lightgray;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 </style>
