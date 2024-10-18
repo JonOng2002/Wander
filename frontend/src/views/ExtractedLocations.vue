@@ -61,6 +61,7 @@
 </template>
 
 <script>
+/* global google */
 export default {
   name: 'ExtractedLocations',
   mounted() {
