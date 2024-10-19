@@ -103,8 +103,18 @@ export default {
     });
 
     const navigateToGeneratedItinerary = () => {
-      router.push({ name: 'GeneratedItinerary' });
-    };
+  if (itinerary.value.length > 0) {
+    router.push({
+      name: 'GeneratedItinerary', // Match the route name for the itinerary page
+      query: {
+        itineraryGenerated: true,
+        itinerary: JSON.stringify(itinerary.value), // Pass itinerary data as query param
+      },
+    });
+  } else {
+    console.log('No itinerary to generate.');
+  }
+};
 
     const addToItinerary = (place) => {
       const isAlreadyInItinerary = itinerary.value.some(item => item.place_id === place.place_id);
