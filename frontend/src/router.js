@@ -8,53 +8,26 @@ import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
 import TestItinerary from '@/views/TestItinerary.vue';
-
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const routes = [
-  {
-    path: '/', // Root path loads MainPage
-    name: 'MainPage',
-    component: MainPage, 
-  },  
-  {
-    path: '/mainpage',
-    name: 'MainPageAlias',
-    component: MainPage,
-  },
-  {
-    path: '/upload',
-    name: 'UploadVideo',
-    component: UploadVideo,
-  },
-  {
-    path: '/analyze',
-    name: 'AnalyseLink',
-    component: AnalyseLink,
-  },
-  {
-    path: '/profile',
-    name: 'ProfilePage',
-    component: ProfilePage,
-  },
-  {
-    path: '/savedplaces',
-    name: 'SavedPlaces',
-    component: SavedPlaces,
-  },
-  {
-    path: '/generated',
-    name: 'GeneratedItinerary',
-    component: GeneratedItinerary, 
-  },
-  {
-    path: '/destinations',
-    name: 'MyDestinations',
-    component: MyDestinations,
-  },
-  {
-    path: '/testitinerary',
-    name: 'TestItinerary',
+
+  { path: '/', name: 'MainPage', component: MainPage },  
+  { path: '/about', name: 'AboutPage', component: AboutPage },
+  { path: '/location', name: 'ExtractedLocation', component: ExtractedLocation },
+  { path: '/savedplaces', name: 'SavedPlaces', component: SavedPlaces },
+  { path: '/about', name: 'About', component: AboutPage },
+  { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
+  { path: '/profile', name: 'ProfilePage', component: ProfilePage },
+  { path: '/itinerary', name: 'GeneratedItinerary', component: GeneratedItinerary },
+  { path: '/sign-up', name: 'SignUp', component: SignUp },
+  { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
+  { path: '/test-itinerary', name: 'TestItinerary', 
     component: TestItinerary,
+    props: (route) => ({
+    itineraryGenerated: route.query.itineraryGenerated === 'true',
+    itinerary: route.query.itinerary ? JSON.parse(route.query.itinerary) : []
+  })
   },
   {
     path: '/country/:country', // Ensure the param is named 'country'
