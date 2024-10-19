@@ -126,9 +126,23 @@ async function storeUserData(userId, email) {
 // Create Vue app
 const vueApp = createApp(App);
 
+const extractedLocationsState = reactive({
+    locationInfo: null,
+    relatedPlaces: [],
+    // Add any other shared state properties
+    setLocationInfo(info) {
+        this.locationInfo = info;
+      },
+    
+      setRelatedPlaces(places) {
+        this.relatedPlaces = places;
+      }
+  });
+
 // Provide global states to the app
 vueApp.provide('savedPlacesState', savedPlacesState);
 vueApp.provide('itineraryState', itineraryState);
+vueApp.provide('extractedLocationsState', extractedLocationsState);
 
 // Use router, BootstrapVue, and Google Login
 vueApp.use(router);

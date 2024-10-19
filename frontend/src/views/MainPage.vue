@@ -1,31 +1,21 @@
 <template>
   <div class="homepage">
     <p class="searchBarTitle">Where would you like to wander?</p> 
-    
+
     <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
 
-    <LoadingBar :isLoading="isLoading" />
-
-
-
-    <!-- Displaying generated itineraries -->
-    <div v-if="generatedItineraries.length > 0" class="generated-itineraries">
-      <h3>Generated Itineraries</h3>
-      <ul>
-        <li v-for="itinerary in generatedItineraries" :key="itinerary.destination">
-          <strong>{{ itinerary.destination }}</strong> - {{ itinerary.duration }}:
-          <ul>
-            <li v-for="activity in itinerary.activities" :key="activity">{{ activity }}</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <LoadingBar :isLoading="isLoading" v-if="isLoading"/>
 
     <!-- Error Message -->
     <div v-if="errorMessage">{{ errorMessage }}</div>
 
-    <!-- Loading bar, Yet to be styled -->
-    <LoadingBar v-if="isLoading" />
+    <ExtractedLocations 
+      v-if="extractedLocationsState.locationInfo && extractedLocationsState.relatedPlaces"
+      :locationInfo="extractedLocationsState.locationInfo"
+      :relatedPlaces="extractedLocationsState.relatedPlaces"
+      :userId="userId"
+      :savedPlaces="savedPlaces"
+    />
   </div>
 </template>
 
@@ -35,14 +25,21 @@ import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "@/main";  
 import { onAuthStateChanged } from 'firebase/auth'; 
 import LoadingBar from '@/components/LoadingBar.vue'; 
-
 import axios from 'axios';
+import ExtractedLocations from './ExtractedLocations.vue';
+import { inject } from 'vue';
 
 export default {
   name: 'MainPage',
   components: {
     SearchBar, 
-    LoadingBar 
+    LoadingBar,
+    ExtractedLocations,
+  },
+  setup() {
+    const extractedLocationsState = inject('extractedLocationsState'); // Inject the global state
+
+    return { extractedLocationsState };
   },
   data() {
     return {
@@ -58,16 +55,12 @@ export default {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         this.userId = user.uid;
-        console.log("User ID:", this.userId);
         await this.fetchUserData();
-      } else {
-        console.log("No user is signed in.");
       }
     });
   },
   methods: {
     handleLinkSubmit(link) {
-      console.log('Link submitted on Home Page:', link);
       this.tiktokLink = link; // Update the tiktokLink with the submitted link
       this.analyse(); // Call the analyse function with the link
     },
@@ -85,23 +78,16 @@ export default {
           });
 
           const data = response.data.openai_response;
+          console.log("Backend response:", data);
 
           if (data.error) {
             throw new Error("Error generating response from OpenAI.");
           }
         
-          const relatedPlaces = data.related_places;
-
-          // Redirect to the SearchedLocation component with query params
-          this.$router.push({
-            path: "/location",
-            query: {
-              locationInfo: JSON.stringify(data.location_info),
-              relatedPlaces: JSON.stringify(relatedPlaces),
-            },
-          });
+          // Set the location info and related places in the global state
+          this.extractedLocationsState.setLocationInfo(data.location_info);
+          this.extractedLocationsState.setRelatedPlaces(data.related_places);
         } catch (error) {
-          console.error(error);
           this.errorMessage = "Error generating response from OpenAI.";
         } finally {
           this.isLoading = false; // Stop loading
@@ -112,12 +98,11 @@ export default {
     },
 
     isValidUrl(url) {
-      const regex =
-        /^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[\w.-]+\/video\/\d+)|(vt\.tiktok\.com\/[\w\d]+)).*$/;
+      const regex = /^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[\w.-]+\/video\/\d+)|(vt\.tiktok\.com\/[\w\d]+)).*$/;
       return regex.test(url);
     },
 
-    async fetchUserData() { //need revisit this code again becaue change in the firebase from jiaxin's one to jon's.
+    async fetchUserData() {
       try {
         const userRef = doc(db, "users", this.userId);
         const userDoc = await getDoc(userRef);
@@ -126,9 +111,6 @@ export default {
           const userData = userDoc.data();
           this.savedPlaces = userData.savedPlaces || [];
           this.generatedItineraries = userData.generatedItineraries || [];
-          console.log("User data fetched successfully:", userData);
-        } else {
-          console.log("No user data found.");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);

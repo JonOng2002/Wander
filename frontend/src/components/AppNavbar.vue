@@ -21,7 +21,7 @@
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/itineraries" class="nav-link">My itineraries</router-link>
+          <router-link to="/itinerary" class="nav-link">My itineraries</router-link>
         </li>
         <!-- Profile Picture -->
         <li class="nav-item me-4">

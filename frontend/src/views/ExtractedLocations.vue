@@ -89,52 +89,36 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import { useRoute } from 'vue-router';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import SavePlaceButton from '@/components/SavePlaceButton.vue';
 import { GoogleMap, Marker } from 'vue3-google-map';
 import { Loader } from '@googlemaps/js-api-loader';
+import { defineProps } from 'vue';
+
+// Props coming from parent (MainPage.vue)
+const props = defineProps({
+  locationInfo: Object,
+  relatedPlaces: Array,
+  userId: {
+    type: String,
+    default: '',
+  },
+  savedPlaces: Array,
+});
 
 // Reactive state variables
-const videoInfo = ref(null);
-const relatedPlaces = ref([]);
-const locationInfo = ref(null);
-const userId = ref(null);
-const center = ref({ lat: 0, lng: 0 });
 const navItems = ref([]);
 const showPopup = ref(false);  // Popup visibility
-const savedPlaces = ref([]);  // Store saved places
-
-const route = useRoute();
-
-// Function to format location data
-const formatLocation = (location) => {
-  return {
-    place_name: location?.place_name || "Unknown Place",
-    country: location?.country || "Unknown Country",
-    city: location?.city || "Unknown City",
-    coordinates: {
-      latitude: location?.coordinates?.latitude || 0,
-      longitude: location?.coordinates?.longitude || 0,
-    },
-    place_png: location?.place_png || "/default-image.png", // Fallback if no image
-  };
-};
+const center = ref({ lat: 0, lng: 0 });
 
 // Handle place saved popup
 const handlePlaceSaved = () => {
-  // Show the popup
   showPopup.value = true;
-
-  // Hide the popup after 2 seconds
-  setTimeout(() => {
-    showPopup.value = false;
-  }, 2000);
+  setTimeout(() => showPopup.value = false, 2000);
 };
 
 // Load Google Maps API
 const loader = new Loader({
-  apiKey: 'AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k', // Replace with your actual API key
+  apiKey: 'AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k',
   version: 'weekly',
   libraries: ['places'],
 });
@@ -145,20 +129,20 @@ const generateNavItems = () => {
   const items = [];
 
   // Add the main location to navItems
-  if (locationInfo.value) {
+  if (props.locationInfo) {
     items.push({
-      id: locationInfo.value.id, // Unique ID for the link
-      name: locationInfo.value.place_name, // Display name in the nav
-      active: true, // Mark it as the first active link
+      id: props.locationInfo.place_name,
+      name: props.locationInfo.place_name,
+      active: true,
     });
   }
 
   // Add each related place to the navItems
-  relatedPlaces.value.forEach((place) => {
+  props.relatedPlaces.forEach((place) => {
     items.push({
-      id: place.id, // Unique ID for the link
-      name: place.place_name, // Display name in the nav
-      active: false, // Set the default as not active
+      id: place.place_name,
+      name: place.place_name,
+      active: false,
     });
   });
 
@@ -176,63 +160,31 @@ const handleScroll = () => {
 
     // Check if the section is in the viewport
     if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-      // Remove active class from all links
-      links.forEach(link => {
-        link.classList.remove('active');
-      });
-
-      // Add active class to the corresponding link
+      links.forEach(link => link.classList.remove('active'));
       const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-      if (activeLink) {
-        activeLink.classList.add('active');
-      }
+      if (activeLink) activeLink.classList.add('active');
     }
   });
 };
 
 onMounted(() => {
-  if (route.query.videoInfo) {
-    videoInfo.value = JSON.parse(route.query.videoInfo);
-  }
-  if (route.query.locationInfo) {
-    locationInfo.value = formatLocation(JSON.parse(route.query.locationInfo)); // Format location data
-
-    // Set map center based on the location coordinates
-    if (locationInfo.value.coordinates.latitude && locationInfo.value.coordinates.longitude) {
-      center.value = {
-        lat: locationInfo.value.coordinates.latitude,
-        lng: locationInfo.value.coordinates.longitude,
-      };
-    }
-  }
-  if (route.query.relatedPlaces) {
-    relatedPlaces.value = JSON.parse(route.query.relatedPlaces).map((place) =>
-      formatLocation(place)
-    ); // Standardize related places
+  if (props.locationInfo?.coordinates) {
+    center.value = {
+      lat: props.locationInfo.coordinates.latitude,
+      lng: props.locationInfo.coordinates.longitude,
+    };
   }
 
   generateNavItems();
-
-  // Retrieve user ID from Firebase Authentication
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      userId.value = user.uid; // Set the userId when authenticated
-    } else {
-      console.error("No user is logged in");
-    }
-  });
-
   window.addEventListener('scroll', handleScroll);
 });
 
 onUnmounted(() => {
-  // Clean up scroll event listener on component unmount
   window.removeEventListener('scroll', handleScroll);
 });
 
 const handleImageError = (event) => {
-  event.target.src = 'https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg'; // Set the src to the alternative image URL
+  event.target.src = 'https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg';
 };
 </script>
 
@@ -243,7 +195,7 @@ html {
 
 .contentbar {
   position: fixed;
-  top: 110px;
+  top: 40%;
   left: 10px;
   width: 200px;
   padding: 10px;
