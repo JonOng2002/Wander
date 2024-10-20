@@ -20,6 +20,9 @@
         <li class="nav-item me-4">
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
+        <li class="nav-item me-4">
+          <router-link to="/itinerary" class="nav-link">My itineraries</router-link>
+        </li>
         <!-- Profile Picture -->
         <li class="nav-item me-4">
           <router-link to="/profile" class="nav-link">
@@ -47,6 +50,7 @@ export default {
 
 .navbar {
   border: 1px solid black;
+  z-index: 1020; /* Higher z-index to ensure it stays above other elements */
 }
 
 .nav-link {
@@ -56,7 +60,9 @@ export default {
   font-family: 'Cormorant Garamond', serif;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.router-link:active,
+.router-link-exact-active{
   text-decoration: underline;
 }
 
@@ -66,11 +72,5 @@ export default {
   border-radius: 50%;
 }
 
-/* Sticky Navbar with Bootstrap's sticky-top class */
-.sticky-top {
-  position: sticky;
-  top: 0;
-  z-index: 1020; /* Higher z-index to ensure it stays above other elements */
-  background-color: white;
-}
+
 </style>

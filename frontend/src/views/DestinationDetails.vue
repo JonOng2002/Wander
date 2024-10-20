@@ -1,64 +1,41 @@
 <template>
   <div class="destination-details">
-    <!-- Flex container to hold the back button and heading in the same row -->
     <div class="header-row">
-      <!-- Back Button aligned to the left -->
       <button @click="goBack" class="btn back-button">
         Back to Destinations
       </button>
-
-      <!-- Heading aligned to the center -->
       <h1 class="page-title">Top Tourist Attractions in {{ country }}</h1>
     </div>
 
-    <!-- Display loading spinner while data is being fetched -->
     <div v-if="loading" class="loading">Loading...</div>
 
-    <!-- List of destinations (attractions) -->
     <div v-if="!loading" class="attractions-list">
-      <div
-        v-for="attraction in attractions"
-        :key="attraction.place_id"
-        class="attraction-card"
-      >
-        <img
-          :src="attraction.image"
-          alt="attraction-image"
-          class="attraction-image"
-        />
+      <div v-for="attraction in attractions" :key="attraction.place_id" class="attraction-card">
+        <img :src="attraction.image" alt="attraction-image" class="attraction-image" />
         <h2>{{ attraction.name }}</h2>
         <p>{{ attraction.vicinity }}</p>
-        <button @click="addToSavedPlaces(attraction)" class="btn">
-          Add to Saved Places
-        </button>
+        <button @click="addToSavedPlaces(attraction)" class="btn">Add to Saved Places</button>
       </div>
     </div>
 
-    <!-- Popup notification for added to saved places -->
     <div v-if="showPopup" class="popup">
       <p>Added to saved places!</p>
     </div>
 
-    <!-- Display the saved places list -->
     <div class="saved-places-list" v-if="savedPlaces.length > 0">
       <h2>Your Saved Places</h2>
       <ul>
-        <li v-for="(place, index) in savedPlaces" :key="index">
-          {{ place.name }} - {{ place.vicinity }}
-        </li>
+        <li v-for="(place, index) in savedPlaces" :key="index">{{ place.name }} - {{ place.vicinity }}</li>
       </ul>
-      <button @click="generateItinerary" class="btn generate-btn">
-        Generate Itinerary!
-      </button>
+      <button @click="generateItinerary" class="btn generate-btn">Generate Itinerary!</button>
     </div>
   </div>
 </template>
 
 <script>
-import { getFirestore, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getFirestore, doc, setDoc, arrayUnion } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
-
 
 export default {
   name: "DestinationDetails",
@@ -67,10 +44,10 @@ export default {
     return {
       attractions: [],
       loading: true,
-      country: this.$route.params.country, 
-      apiKey: "AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg",
+      country: this.$route.params.country,
+      apiKey: "AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg", // Replace with your actual API key
       savedPlaces: [],
-      showPopup: false, // For the popup notification
+      showPopup: false,
     };
   },
   created() {
@@ -127,6 +104,34 @@ export default {
         'Argentina': '-34.6037,-58.3816',
         'Netherlands': '52.3676,4.9041',
         'Greece': '37.9838,23.7275',
+        'Malaysia': '3.1390,101.6869',
+        'Egypt': '30.0444,31.2357',
+        'Switzerland': '46.9481,7.4474',
+        'Indonesia': '-6.2088,106.8456',
+        'Portugal': '38.7223,-9.1393',
+        'Austria': '48.2082,16.3738',
+        'Sweden': '59.3293,18.0686',
+        'Vietnam': '21.0285,105.8542',
+        'Singapore': '1.3521,103.8198',
+        'New Zealand': '-36.8485,174.7633',
+        'Poland': '52.2297,21.0122',
+        'Morocco': '31.6295,-7.9811',
+        'Philippines': '14.5995,120.9842',
+        'Chile': '-33.4489,-70.6693',
+        'South Korea': '37.5665,126.9780',
+        'United Arab Emirates': '25.276987,55.296249',
+        'Czech Republic': '50.0755,14.4378',
+        'Saudi Arabia': '24.7136,46.6753',
+        'Belgium': '50.8503,4.3517',
+        'Israel': '31.7683,35.2137',
+        'Peru': '-12.0464,-77.0428',
+        'Norway': '59.9139,10.7522',
+        'Denmark': '55.6761,12.5683',
+        'Hungary': '47.4979,19.0402',
+        'Ireland': '53.3498,-6.2603',
+        'Finland': '60.1695,24.9354',
+        'Colombia': '4.7110,-74.0721',
+        'Ukraine': '50.4501,30.5234',
       };
       return coordinates[country] || null;
     },
@@ -140,14 +145,19 @@ export default {
         const userRef = doc(db, "users", userId);
 
         try {
-          await updateDoc(userRef, {
-            savedPlaces: arrayUnion({
-              place_id: attraction.place_id,
-              name: attraction.name,
-              vicinity: attraction.vicinity,
-              image: attraction.image,
-            }),
-          });
+          // Use setDoc with merge: true to handle both new and existing users
+          await setDoc(
+            userRef,
+            {
+              savedPlaces: arrayUnion({
+                place_id: attraction.place_id,
+                name: attraction.name,
+                vicinity: attraction.vicinity,
+                image: attraction.image,
+              }),
+            },
+            { merge: true }
+          );
           console.log("Place added to saved places:", attraction.name);
 
           // Show the popup and hide it after 2 seconds

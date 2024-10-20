@@ -1,27 +1,35 @@
 <template>
   <div class="itinerary-page">
     <div class="row justify-content-between align-items-center sticky-header g-0 m-2">
-      <!-- Date Column -->
       <div class="col-3 date-column">
         <h2>My Saved Places</h2>
       </div>
-      <!-- Generate Itinerary Button -->
       <div class="col-auto generateButton">
         <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">Generate Itinerary!</button>
       </div>
     </div>
 
-    <!-- Loading indicator -->
     <div v-if="loading" class="empty-message">Loading saved places...</div>
-
-    <!-- No places saved message -->
     <div v-else-if="savedPlaces && savedPlaces.length === 0" class="empty-message">
       <p>No places saved yet.</p>
     </div>
 
-    <!-- Display saved places -->
-    <div v-else class="row card-row justify-content-start g-0">
-      <div v-for="place in savedPlaces" :key="place.place_id" class="card-container">
+    <!-- Cards with initial render delay -->
+    <transition-group
+      v-if="savedPlaces && savedPlaces.length > 0"
+      name="card-slide"
+      tag="div"
+      class="row card-row justify-content-start g-0"
+      appear
+    >
+      <div
+        v-for="(place, index) in savedPlaces"
+        :key="place.place_id"
+        class="card-container"
+        :class="{ 'is-visible': visibleCards.includes(place.place_id) }"
+        :data-id="place.place_id"
+        :style="{ transitionDelay: initialRender ? index * 0.2 + 's' : '0s' }"
+      >
         <div class="card destination-card">
           <img :src="place.image" class="card-img-side" alt="Image of {{ place.name }}" />
           <div class="card-body">
@@ -29,12 +37,12 @@
             <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
 
             <p>
-              <button @click="addToItinerary(place)" type="button" id="addToItinerary" class="btn">
+              <button @click="addToItinerary(place)" type="button" class="btn">
                 Add to Itinerary
               </button>
             </p>
 
-            <!-- Remove from saved places button-->
+            <!-- Remove from saved places button -->
             <p>
               <button @click="removeFromSavedPlaces(place.place_id)" type="button" class="btn btn-danger">
                 Remove
@@ -43,9 +51,8 @@
           </div>
         </div>
       </div>
-    </div>
+    </transition-group>
 
-    <!-- Itinerary List Display -->
     <div v-if="itinerary.length > 0" class="itinerary-list">
       <h3>Your Itinerary</h3>
       <ol class="list-group list-group-numbered">
@@ -55,24 +62,21 @@
       </ol>
     </div>
 
-    <!-- Popup notification -->
     <div v-if="showPopup" class="popup">
       <p>Added to itinerary!</p>
     </div>
-  </div>
 
-  <!-- Remove Popup notification -->
-  <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
-    <p>Removed from itinerary!</p>
+    <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
+      <p>Removed from itinerary!</p>
+    </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-import { getFirestore, doc, getDoc, updateDoc, arrayRemove } from 'firebase/firestore';
+import { ref, onMounted, nextTick } from 'vue';
+import { getFirestore, doc, getDoc, updateDoc, setDoc, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
-
 
 export default {
   name: 'SavedPlaces',
@@ -82,6 +86,8 @@ export default {
     const loading = ref(true);
     const showPopup = ref(false);
     const showRemovePopup = ref(false);
+    const visibleCards = ref([]); // Track visible cards
+    const initialRender = ref(true); // Track if it's the first render
     const db = getFirestore();
     const router = useRouter();
 
@@ -91,30 +97,70 @@ export default {
 
       if (user) {
         const userId = user.uid;
-        const userRef = doc(db, "users", userId);
+        const userRef = doc(db, 'users', userId);
 
         try {
           const userDoc = await getDoc(userRef);
           if (userDoc.exists()) {
             savedPlaces.value = userDoc.data().savedPlaces || [];
+          } else {
+            await setDoc(userRef, { savedPlaces: [] });
+            savedPlaces.value = [];
           }
         } catch (error) {
-          console.error("Error fetching saved places:", error);
+          console.error('Error fetching saved places:', error);
         } finally {
           loading.value = false;
         }
+
+        nextTick(() => {
+          observeCards();
+          // Start showing cards with a delay
+          setTimeout(() => {
+            savedPlaces.value.forEach((place, index) => {
+              setTimeout(() => {
+                visibleCards.value.push(place.place_id); // Show each card based on its index
+              }, index * 200); // Delay based on index
+            });
+            // Mark that initial render has completed after the last card has been shown
+            setTimeout(() => {
+              initialRender.value = false;
+            }, savedPlaces.value.length * 200);
+          }, 100); // Initial delay to ensure cards are ready to be observed
+        });
       } else {
-        console.error("User is not authenticated");
+        console.error('User is not authenticated');
         loading.value = false;
       }
     });
+
+    const observeCards = () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardId = entry.target.dataset.id;
+            if (!visibleCards.value.includes(cardId)) {
+              visibleCards.value.push(cardId);
+            }
+            // We do not remove the card from visibleCards when it goes out of view
+            // This prevents re-animation when scrolling back up
+          }
+        });
+      });
+
+      // Select and observe each card container
+      const cardElements = document.querySelectorAll('.card-container');
+      cardElements.forEach((card) => {
+        observer.observe(card);
+      });
+    };
 
     const navigateToGeneratedItinerary = () => {
       router.push({ name: 'GeneratedItinerary' });
     };
 
     const addToItinerary = (place) => {
-      const isAlreadyInItinerary = itinerary.value.some(item => item.place_id === place.place_id);
+      const isAlreadyInItinerary = itinerary.value.some((item) => item.place_id === place.place_id);
       if (!isAlreadyInItinerary) {
         itinerary.value.push(place);
         showPopup.value = true;
@@ -132,32 +178,28 @@ export default {
 
       if (user) {
         const userId = user.uid;
-        const userRef = doc(db, "users", userId);
+        const userRef = doc(db, 'users', userId);
 
         try {
-          // Find the place in the local savedPlaces array
-          const placeToRemove = savedPlaces.value.find(place => place.place_id === placeId);
-
-          // Remove the place from Firebase using arrayRemove
+          const placeToRemove = savedPlaces.value.find((place) => place.place_id === placeId);
           if (placeToRemove) {
             await updateDoc(userRef, {
-              savedPlaces: arrayRemove(placeToRemove)
+              savedPlaces: arrayRemove(placeToRemove),
             });
 
-            // Update the local state after successful Firebase update
-            savedPlaces.value = savedPlaces.value.filter(place => place.place_id !== placeId);
-            itinerary.value = itinerary.value.filter(item => item.place_id !== placeId);
+            savedPlaces.value = savedPlaces.value.filter((place) => place.place_id !== placeId);
+            itinerary.value = itinerary.value.filter((item) => item.place_id !== placeId);
 
             showRemovePopup.value = true;
             setTimeout(() => {
               showRemovePopup.value = false;
-            }, 2000); 
+            }, 2000);
           }
         } catch (error) {
-          console.error("Error removing place from Firebase:", error);
+          console.error('Error removing place from Firebase:', error);
         }
       } else {
-        console.error("User is not authenticated");
+        console.error('User is not authenticated');
       }
     };
 
@@ -170,20 +212,20 @@ export default {
       navigateToGeneratedItinerary,
       addToItinerary,
       removeFromSavedPlaces,
+      visibleCards,
+      initialRender, // Track initial render status
     };
   },
 };
 </script>
 
-
 <style scoped>
 .itinerary-page {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
 
-/* Ensure the header is sticky */
 .sticky-header {
   position: sticky;
   top: 0;
@@ -193,7 +235,6 @@ export default {
   border-bottom: 1px solid lightgrey;
 }
 
-/* Ensure the date column is pushed to the left */
 .date-column {
   text-align: left;
   padding-left: 5%;
@@ -214,7 +255,6 @@ export default {
   margin-bottom: 10px;
 }
 
-/* Empty message styles */
 .empty-message {
   text-align: center;
   font-size: 1.2rem;
@@ -222,7 +262,6 @@ export default {
   padding: 20px;
 }
 
-/* Reset or minimize row margin */
 .row {
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -233,14 +272,20 @@ export default {
   margin-top: 10px;
 }
 
-/* card container styles */
 .card-container {
   padding-left: 5%;
   padding-right: 5%;
   margin-bottom: 10px;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-/* card styles */
+.card-container.is-visible {
+  opacity: 1;
+  transform: translateX(0); /* Slide in from left to right */
+}
+
 .destination-card {
   margin-left: 0;
   padding: 15px;
@@ -286,7 +331,11 @@ export default {
   color: black;
 }
 
-/* Popup notification styles */
+.btn-danger:hover {
+  background-color: red;
+  color: black;
+}
+
 .popup {
   position: fixed;
   top: 20px;
@@ -302,10 +351,9 @@ export default {
 }
 
 .remove-popup {
-  background-color: #f44336; /* Red background for remove popup */
+  background-color: #f44336;
 }
 
-/* Itinerary list styles */
 .itinerary-list {
   margin-top: 20px;
 }
@@ -323,5 +371,30 @@ export default {
   margin: 10px 0;
   font-size: 1.2rem;
   text-align: center;
+}
+
+.card-slide-enter-active,
+.card-slide-leave-active {
+  transition: all 0.8s ease;
+}
+
+.card-slide-enter-from {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.card-slide-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.card-slide-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.card-slide-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 </style>

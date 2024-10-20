@@ -3,14 +3,22 @@
 </template>
 
 <script setup>
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { defineProps, defineEmits } from 'vue';
 
 // Props: these fields are passed from the parent
-// eslint-disable-next-line
 const props = defineProps({
+  placeId: {
+    type: String,
+    default: () => `manual-${Date.now()}`,
+  },
   placeName: {
     type: String,
     required: true,
+  },
+  vicinity: {
+    type: String,
+    default: '', // Use vicinity or city
   },
   country: {
     type: String,
@@ -36,33 +44,86 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  activities: {
+    type: Array,
+    default: () => [], // default to empty array
+  },
+  summary: {
+    type: String,
+    default: '', // default to empty string
+  },
+  source: {
+    type: String,
+    default: 'manual_entry', // Can be 'google_places' or 'manual_entry'
+  }
 });
 
+const emit = defineEmits(['place-saved']);
 // Firestore initialization
 const db = getFirestore();
 
-// Function to save the place to Firestore
-const savePlace = async () => {
-  // Ensure none of the required fields are undefined
-  if (!props.placeName || !props.country || !props.city || !props.latitude || !props.longitude || !props.userId) {
-    console.error('Missing required data to save the place');
+// Function to save the place to the user's savedPlaces collection
+const savePlace = async () => { // Inside `savePlace` in save-place-button.vue
+  // Check for undefined fields
+  if (!props.placeId || !props.placeName || !props.country || !props.city || !props.latitude || !props.longitude || !props.userId) {
+    console.error('Missing required data to save the place', {
+      placeId: props.placeId,
+      placeName: props.placeName,
+      country: props.country,
+      city: props.city,
+      latitude: props.latitude,
+      longitude: props.longitude,
+      userId: props.userId,
+    });
     return;
   }
 
   try {
+    // Create a new document in the 'savedPlaces' collection
     const docRef = await addDoc(collection(db, 'savedPlaces'), {
-      placeName: props.placeName,
+      place_id: props.placeId,
+      name: props.placeName,
+      vicinity: props.vicinity || props.city,
       country: props.country,
       city: props.city,
       coordinates: {
-        latitude: props.latitude || 0,  // provide default if needed
-        longitude: props.longitude || 0, // provide default if needed
+        latitude: props.latitude || 0,
+        longitude: props.longitude || 0,
       },
-      placePng: props.placePng || '',  // optional field
+      image: props.placePng || '',  // optional field
+      activities: props.activities || [], // optional array
+      summary: props.summary || '', // optional summary
+      source: props.source, // distinguish between 'google_places' or 'manual_entry'
       userId: props.userId,
       timestamp: new Date(),
     });
+
     console.log('Place saved with ID: ', docRef.id);
+
+    // Add the place reference to the user's 'savedPlaces' field in 'users' collection
+    const userRef = doc(db, 'users', props.userId);
+    await updateDoc(userRef, {
+      savedPlaces: arrayUnion({
+        place_id: props.placeId,
+        name: props.placeName,
+        vicinity: props.vicinity || props.city,
+        country: props.country,
+        city: props.city,
+        coordinates: {
+          latitude: props.latitude || 0,
+          longitude: props.longitude || 0,
+        },
+        image: props.placePng || '',  // optional field
+        activities: props.activities || [], // optional array
+        summary: props.summary || '', // optional summary
+        source: props.source,
+        timestamp: new Date(),
+      })
+    });
+
+    console.log('Place added to user\'s savedPlaces list.');
+    emit('place-saved');
+
   } catch (e) {
     console.error('Error adding document: ', e);
   }
@@ -70,5 +131,16 @@ const savePlace = async () => {
 </script>
 
 <style scoped>
-/* Add styles if needed */
+.btn {
+  background-color: lightgray;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 </style>
