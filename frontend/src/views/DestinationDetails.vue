@@ -47,7 +47,7 @@ export default {
       country: this.$route.params.country,
       apiKey: "AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg", // Replace with your actual API key
       savedPlaces: [],
-      showPopup: false, // Popup state
+      showPopup: false,
     };
   },
   created() {
@@ -104,6 +104,34 @@ export default {
         'Argentina': '-34.6037,-58.3816',
         'Netherlands': '52.3676,4.9041',
         'Greece': '37.9838,23.7275',
+        'Malaysia': '3.1390,101.6869',
+        'Egypt': '30.0444,31.2357',
+        'Switzerland': '46.9481,7.4474',
+        'Indonesia': '-6.2088,106.8456',
+        'Portugal': '38.7223,-9.1393',
+        'Austria': '48.2082,16.3738',
+        'Sweden': '59.3293,18.0686',
+        'Vietnam': '21.0285,105.8542',
+        'Singapore': '1.3521,103.8198',
+        'New Zealand': '-36.8485,174.7633',
+        'Poland': '52.2297,21.0122',
+        'Morocco': '31.6295,-7.9811',
+        'Philippines': '14.5995,120.9842',
+        'Chile': '-33.4489,-70.6693',
+        'South Korea': '37.5665,126.9780',
+        'United Arab Emirates': '25.276987,55.296249',
+        'Czech Republic': '50.0755,14.4378',
+        'Saudi Arabia': '24.7136,46.6753',
+        'Belgium': '50.8503,4.3517',
+        'Israel': '31.7683,35.2137',
+        'Peru': '-12.0464,-77.0428',
+        'Norway': '59.9139,10.7522',
+        'Denmark': '55.6761,12.5683',
+        'Hungary': '47.4979,19.0402',
+        'Ireland': '53.3498,-6.2603',
+        'Finland': '60.1695,24.9354',
+        'Colombia': '4.7110,-74.0721',
+        'Ukraine': '50.4501,30.5234',
       };
       return coordinates[country] || null;
     },

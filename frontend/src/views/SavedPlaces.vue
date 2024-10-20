@@ -14,8 +14,22 @@
       <p>No places saved yet.</p>
     </div>
 
-    <div v-else class="row card-row justify-content-start g-0">
-      <div v-for="place in savedPlaces" :key="place.place_id" class="card-container">
+    <!-- Cards with initial render delay -->
+    <transition-group
+      v-if="savedPlaces && savedPlaces.length > 0"
+      name="card-slide"
+      tag="div"
+      class="row card-row justify-content-start g-0"
+      appear
+    >
+      <div
+        v-for="(place, index) in savedPlaces"
+        :key="place.place_id"
+        class="card-container"
+        :class="{ 'is-visible': visibleCards.includes(place.place_id) }"
+        :data-id="place.place_id"
+        :style="{ transitionDelay: initialRender ? index * 0.2 + 's' : '0s' }"
+      >
         <div class="card destination-card">
           <img :src="place.image" class="card-img-side" alt="Image of {{ place.name }}" />
           <div class="card-body">
@@ -23,7 +37,7 @@
             <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
 
             <p>
-              <button @click="addToItinerary(place)" type="button" id="addToItinerary" class="btn">
+              <button @click="addToItinerary(place)" type="button" class="btn">
                 Add to Itinerary
               </button>
             </p>
@@ -31,13 +45,13 @@
             <!-- Remove from saved places button -->
             <p>
               <button @click="removeFromSavedPlaces(place.place_id)" type="button" class="btn btn-danger">
-                Remove 
+                Remove
               </button>
             </p>
           </div>
         </div>
       </div>
-    </div>
+    </transition-group>
 
     <div v-if="itinerary.length > 0" class="itinerary-list">
       <h3>Your Itinerary</h3>
@@ -59,7 +73,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 import { getFirestore, doc, getDoc, updateDoc, setDoc, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
@@ -72,6 +86,8 @@ export default {
     const loading = ref(true);
     const showPopup = ref(false);
     const showRemovePopup = ref(false);
+    const visibleCards = ref([]); // Track visible cards
+    const initialRender = ref(true); // Track if it's the first render
     const db = getFirestore();
     const router = useRouter();
 
@@ -81,7 +97,7 @@ export default {
 
       if (user) {
         const userId = user.uid;
-        const userRef = doc(db, "users", userId);
+        const userRef = doc(db, 'users', userId);
 
         try {
           const userDoc = await getDoc(userRef);
@@ -92,22 +108,59 @@ export default {
             savedPlaces.value = [];
           }
         } catch (error) {
-          console.error("Error fetching saved places:", error);
+          console.error('Error fetching saved places:', error);
         } finally {
           loading.value = false;
         }
+
+        nextTick(() => {
+          observeCards();
+          // Start showing cards with a delay
+          setTimeout(() => {
+            savedPlaces.value.forEach((place, index) => {
+              setTimeout(() => {
+                visibleCards.value.push(place.place_id); // Show each card based on its index
+              }, index * 200); // Delay based on index
+            });
+            // Mark that initial render has completed after the last card has been shown
+            setTimeout(() => {
+              initialRender.value = false;
+            }, savedPlaces.value.length * 200);
+          }, 100); // Initial delay to ensure cards are ready to be observed
+        });
       } else {
-        console.error("User is not authenticated");
+        console.error('User is not authenticated');
         loading.value = false;
       }
     });
+
+    const observeCards = () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardId = entry.target.dataset.id;
+            if (!visibleCards.value.includes(cardId)) {
+              visibleCards.value.push(cardId);
+            }
+            // We do not remove the card from visibleCards when it goes out of view
+            // This prevents re-animation when scrolling back up
+          }
+        });
+      });
+
+      // Select and observe each card container
+      const cardElements = document.querySelectorAll('.card-container');
+      cardElements.forEach((card) => {
+        observer.observe(card);
+      });
+    };
 
     const navigateToGeneratedItinerary = () => {
       router.push({ name: 'GeneratedItinerary' });
     };
 
     const addToItinerary = (place) => {
-      const isAlreadyInItinerary = itinerary.value.some(item => item.place_id === place.place_id);
+      const isAlreadyInItinerary = itinerary.value.some((item) => item.place_id === place.place_id);
       if (!isAlreadyInItinerary) {
         itinerary.value.push(place);
         showPopup.value = true;
@@ -125,17 +178,17 @@ export default {
 
       if (user) {
         const userId = user.uid;
-        const userRef = doc(db, "users", userId);
+        const userRef = doc(db, 'users', userId);
 
         try {
-          const placeToRemove = savedPlaces.value.find(place => place.place_id === placeId);
+          const placeToRemove = savedPlaces.value.find((place) => place.place_id === placeId);
           if (placeToRemove) {
             await updateDoc(userRef, {
-              savedPlaces: arrayRemove(placeToRemove)
+              savedPlaces: arrayRemove(placeToRemove),
             });
 
-            savedPlaces.value = savedPlaces.value.filter(place => place.place_id !== placeId);
-            itinerary.value = itinerary.value.filter(item => item.place_id !== placeId);
+            savedPlaces.value = savedPlaces.value.filter((place) => place.place_id !== placeId);
+            itinerary.value = itinerary.value.filter((item) => item.place_id !== placeId);
 
             showRemovePopup.value = true;
             setTimeout(() => {
@@ -143,10 +196,10 @@ export default {
             }, 2000);
           }
         } catch (error) {
-          console.error("Error removing place from Firebase:", error);
+          console.error('Error removing place from Firebase:', error);
         }
       } else {
-        console.error("User is not authenticated");
+        console.error('User is not authenticated');
       }
     };
 
@@ -159,15 +212,16 @@ export default {
       navigateToGeneratedItinerary,
       addToItinerary,
       removeFromSavedPlaces,
+      visibleCards,
+      initialRender, // Track initial render status
     };
   },
 };
 </script>
 
 <style scoped>
-/* Style elements for the page. Make sure all tags are properly closed */
 .itinerary-page {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -222,6 +276,14 @@ export default {
   padding-left: 5%;
   padding-right: 5%;
   margin-bottom: 10px;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.card-container.is-visible {
+  opacity: 1;
+  transform: translateX(0); /* Slide in from left to right */
 }
 
 .destination-card {
@@ -269,7 +331,7 @@ export default {
   color: black;
 }
 
-.btn-danger :hover {
+.btn-danger:hover {
   background-color: red;
   color: black;
 }
@@ -309,5 +371,30 @@ export default {
   margin: 10px 0;
   font-size: 1.2rem;
   text-align: center;
+}
+
+.card-slide-enter-active,
+.card-slide-leave-active {
+  transition: all 0.8s ease;
+}
+
+.card-slide-enter-from {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.card-slide-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.card-slide-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.card-slide-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 </style>
