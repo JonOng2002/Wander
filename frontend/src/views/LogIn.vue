@@ -100,7 +100,7 @@
           const user = result.user;
   
           console.log('User signed in with Google:', user);
-          router.push('/about'); // Redirect to about after successful sign-in
+          router.push('/'); // Redirect to about after successful sign-in
       } catch (error) {
           console.error('Error signing in with Google:', error.code, error.message);
       }
@@ -115,7 +115,7 @@
           const user = result.user;
   
           console.log('User signed in with Facebook:', user);
-          router.push('/about'); // Redirect to about after successful sign-in
+          router.push('/'); // Redirect to about after successful sign-in
       } catch (error) {
           console.error('Error signing in with Facebook:', error.code, error.message);
       }

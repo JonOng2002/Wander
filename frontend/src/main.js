@@ -20,13 +20,13 @@ import { vue3GoogleLogin } from 'vue3-google-login';
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAAJFpBoEJzVfrj8Ix_YTZPc0QifkaMyKw",
-  authDomain: "wander-wad.firebaseapp.com",
-  projectId: "wander-wad",
-  storageBucket: "wander-wad.appspot.com",
-  messagingSenderId: "109364472671",
-  appId: "1:109364472671:web:ff4324430b45ba7b58a4ea",
-  measurementId: "G-TZHQN5ZWG4"
+    apiKey: "AIzaSyBVl2PcKsshkWYITyO3jFBVkKNLObqRIX4",
+    authDomain: "wad2-proj-g8t9.firebaseapp.com",
+    projectId: "wad2-proj-g8t9",
+    storageBucket: "wad2-proj-g8t9.appspot.com",
+    messagingSenderId: "492171564263",
+    appId: "1:492171564263:web:dd89e494ad078782fe3e42",
+    measurementId: "G-63VKFQ7B15"
 };
 
 // Initialize Firebase
@@ -49,16 +49,16 @@ const savedPlacesState = reactive({
     savedPlaces: [],
 
     async loadSavedPlaces(userId) {
-      try {
-          console.log("Loading saved places for user:", userId);
-          const userDoc = await getDoc(doc(db, "users", userId));
-          console.log("Firebase document data:", userDoc.data());
-          // Process saved places...
-      } catch (error) {
-          console.error("Error loading saved places:", error);
-      }
-  },
-  
+        try {
+            console.log("Loading saved places for user:", userId);
+            const userDoc = await getDoc(doc(db, "users", userId));
+            console.log("Firebase document data:", userDoc.data());
+            // Process saved places...
+        } catch (error) {
+            console.error("Error loading saved places:", error);
+        }
+    },
+
 
     async addPlace(userId, place) {
         if (!this.savedPlaces.some(savedPlace => savedPlace.place_id === place.place_id)) {
@@ -148,7 +148,7 @@ vueApp.provide('extractedLocationsState', extractedLocationsState);
 vueApp.use(router);
 vueApp.use(BootstrapVue3);
 vueApp.use(vue3GoogleLogin, {
-    clientId: 'YOUR_GOOGLE_CLIENT_ID'
+    clientId: '534126756340-2vokn8in9452u0m1uretrg6n1it4cgni.apps.googleusercontent.com'
 });
 
 // Mount the app
