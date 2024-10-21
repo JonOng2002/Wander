@@ -132,12 +132,12 @@ const extractedLocationsState = reactive({
     // Add any other shared state properties
     setLocationInfo(info) {
         this.locationInfo = info;
-      },
-    
-      setRelatedPlaces(places) {
+    },
+
+    setRelatedPlaces(places) {
         this.relatedPlaces = places;
-      }
-  });
+    }
+});
 
 // Provide global states to the app
 vueApp.provide('savedPlacesState', savedPlacesState);

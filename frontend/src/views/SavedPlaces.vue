@@ -1,6 +1,7 @@
 <template>
   <div class="itinerary-page">
-    <div class="row justify-content-between align-items-center sticky-header g-0 m-2">
+    <AppNavbar class="sticky-top"></AppNavbar>
+    <div class="row justify-content-between align-items-center sticky-header g-0">
       <div class="col-3 date-column">
         <h2>My Saved Places</h2>
         <div class="filter-dropdown d-flex align-items-center">
@@ -86,6 +87,7 @@ import { ref, onMounted, computed } from 'vue';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
+import AppNavbar from '@/components/AppNavbar.vue';
 
 export default {
   name: 'SavedPlaces',
@@ -265,7 +267,8 @@ export default {
       filterPlaces,
       deleteAllPlaces,
       confirmDeleteAllPlaces,
-      toggleDeletePopup
+      toggleDeletePopup,
+      AppNavbar
     };
   },
 };
@@ -329,60 +332,52 @@ h2 {
 }
 
 .card-container {
-  flex: 0 0 auto; /* Prevent flex-grow */
-  max-width: 265px; /* Set maximum width for cards */
-  width: 100%; /* Ensure full width of card-container */
+  flex: 0 0 auto;
+  max-width: 265px;
+  width: 100%;
 }
 
 .card {
-  display: flex; /* Ensure card uses flex layout for content */
-  flex-direction: column; /* Align items vertically */
-  border: 1px solid #ccc; /* Optional: for visual clarity */
-  border-radius: 5px; /* Optional: for visual clarity */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 
 .destination-card {
   display: flex;
   flex-direction: column;
-  /* Aligns children vertically */
-  height: 100%;
-  /* Ensure the card takes full height */
-  /* You can also reduce the height if necessary */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* Smooth transitions */
+  justify-content: space-between; /* Ensures the button is at the bottom */
+  height: 400px; /* Set the fixed height for all cards */
   padding: 10px;
-  /* Add some padding to the card */
-  /* You can also set a max-width if you want further control */
-  max-width: 300px;
-  /* Optional: set a max width */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 
 .card-body {
-  flex: 1;
-  /* Takes all available space except for the button */
+  flex-grow: 1;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .button-container {
-  position: absolute;
-  /* Position it absolutely within the card */
-  bottom: 10px;
-  /* 10px from the bottom */
-  left: 10px;
-  /* 10px from the left */
-  right: 10px;
-  /* 10px from the right */
-  padding: 10px;
-  /* Add padding for aesthetics */
+  position: relative;
+  margin-top: 10px; /* Ensures there is space between the content and the button */
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
 }
 
-
 .itinerary-button {
-  width: 100%;
-  /* Makes the button take the full width */
+  width: 100%; /* Makes the button take the full width */
+  padding: 10px; /* Add some padding for a larger clickable area */
 }
 
 
@@ -469,6 +464,19 @@ h2 {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.sticky-top {
+  top: 0;
+  position: sticky;
+  z-index: 1020; /* Higher z-index to ensure navbar stays above other elements */
+  background-color: black; /* Ensure the background remains black */
+}
+
+.content {
+  padding: 20px;
+  /* Ensure enough space for scrolling */
+  min-height: 150vh; /* Adjust as needed for testing */
 }
 
 .sticky-header {
