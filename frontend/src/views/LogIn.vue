@@ -72,7 +72,7 @@
       try {
           await signInWithEmailAndPassword(auth, email.value, password.value); // Firebase sign-in logic
           console.log('Successfully logged in!');
-          router.push('/about'); // redirect to the about page
+          router.push({name: 'About'}); // redirect to the about page
       } catch (error) {
           switch (error.code) {
               case 'auth/invalid-email':

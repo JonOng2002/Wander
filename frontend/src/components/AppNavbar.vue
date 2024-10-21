@@ -9,7 +9,7 @@
       <!-- Navigation Links -->
       <ul class="navbar-nav d-flex flex-row align-items-center">
         <li class="nav-item me-4">
-          <router-link to="/" class="nav-link">Main Page</router-link>
+          <router-link to="/" class="nav-link" exact>Main Page</router-link>
         </li>
         <li class="nav-item me-4">
           <router-link to="/savedplaces" class="nav-link">Saved Places</router-link>
@@ -23,12 +23,16 @@
         <li class="nav-item me-4">
           <router-link to="/itinerary" class="nav-link">My itineraries</router-link>
         </li>
+        <li class="nav-item me-4">
+          <router-link to="/worldmap" class="nav-link">World Map</router-link>
+        </li>
         <!-- Profile Picture -->
         <li class="nav-item me-4">
           <router-link to="/profile" class="nav-link">
             <img src="@/assets/profilepic.png" alt="Profile" class="profile-pic img-fluid">
           </router-link>
         </li>
+        
       </ul>
     </div>
   </nav>
@@ -76,12 +80,52 @@ export default {
   color: #ffffff !important; /* Soft hover effect */
 }
 
-/* Active link styling */
-.router-link-active,
-.router-link-exact-active {
-  color: white !important; /* Ensure active links stay white */
-  text-decoration: underline;
+/* Main link when active or hovered */
+.router-link-active, .router-link-exact-active, .router-link:hover, .router-link-exact-active:hover {
+  position: relative;
+  color: black !important; /* Text remains black when active or hovered */
+  font-weight: bolder;
+  text-decoration: underline; /* No underline */
+  padding: 5px 10px; /* Add padding to create space for the background */
+  transition: color 0.2s ease-in-out; /* Adjust text color transition timing */
+  z-index: 1; /* Text stays above the background */
 }
+
+/* Sliding background effect using the before pseudo-element */
+.router-link-active::before, .router-link-exact-active::before,
+.router-link:hover::before, .router-link-exact-active:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white; /* White background color */
+  transition: transform 0.4s ease-in-out, background-color 0s; /* Smooth sliding effect */
+  transform: scaleX(0); /* Initially hidden background */
+  transform-origin: left; /* Sliding starts from the left */
+  z-index: -1; /* Keep the background behind the text */
+  border-radius: 0; /* Apply the same border-radius to the background */
+}
+
+/* Trigger the sliding effect on hover or active state */
+.router-link-active::before, .router-link-exact-active::before,
+.router-link:hover::before, .router-link-exact-active:hover::before {
+  transform: scaleX(1); /* Expand background to full width */
+  transition: transform 0.4s ease-in-out; /* Ensure the background fills smoothly */
+}
+
+/* Ensure the text remains on top of the sliding background */
+.router-link, .router-link-active {
+  transition: color 0.2s ease-in-out; /* Instant text color change */
+}
+
+/* Ensure text color remains black while hovering inside the white background */
+.router-link:hover, .router-link-exact-active:hover {
+  color: black; /* Keep text black during hover */
+}
+
+
 
 /* Profile picture styling */
 .profile-pic {

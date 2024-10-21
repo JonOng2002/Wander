@@ -1,6 +1,5 @@
 <template>
   <div class="itinerary-page">
-    <AppNavbar class="sticky-top"></AppNavbar>
     <div class="row justify-content-between align-items-center sticky-header g-0">
       <div class="col-3 date-column">
         <h2>My Saved Places</h2>
@@ -93,12 +92,12 @@ import { ref, onMounted, nextTick, computed } from 'vue';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
-import AppNavbar from '@/components/AppNavbar.vue';
+
 
 export default {
   name: 'SavedPlaces',
   components: {
-    AppNavbar
+    
   },
   setup() {
     const savedPlaces = ref([]);

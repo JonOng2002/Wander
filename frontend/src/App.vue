@@ -53,7 +53,9 @@ body {
   top: 0;
   z-index: 1000;
   background-color: white; /* Ensure a solid background for the navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
+
 #app {
   display: flex;
   flex-direction: column;
@@ -62,11 +64,6 @@ body {
   margin: 0;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
 
 .router-container {
   width: 100%;
