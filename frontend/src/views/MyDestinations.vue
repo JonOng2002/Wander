@@ -122,160 +122,143 @@ export default {
         {
           name: "Thailand",
           code: "TH",
-          image:
-            "https://images.unsplash.com/photo-1534876845279-a0a5e43f39b3?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/thailand.jpg'),
           description:
             "Thailand is a tropical paradise, renowned for its temples, beaches, and street food culture.",
         },
         {
           name: "Turkey",
           code: "TR",
-          image:
-            "https://images.unsplash.com/photo-1508182315036-e9b36dc67021?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/turkey.jpg'),
           description:
             "Turkey bridges Europe and Asia, offering ancient ruins, vibrant bazaars, and stunning coastlines.",
         },
         {
           name: "Australia",
           code: "AU",
-          image:
-            "https://images.unsplash.com/photo-1526454881448-88aa204c493b?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/australia.jpg'),
           description:
             "Australia is famous for its outback adventures, Great Barrier Reef, and cosmopolitan cities like Sydney.",
         },
         {
           name: "Brazil",
           code: "BR",
-          image:
-            "https://images.unsplash.com/photo-1583967262195-9333b06c65c7?crop=entropy&cs=tinysrgb&w=600",
+          image:  require('@/assets/countries/brazil.jpg'),
           description:
             "Brazil is home to the Amazon rainforest, the vibrant Carnival festival, and iconic landmarks like Christ the Redeemer.",
         },
         {
           name: "Canada",
           code: "CA",
-          image:
-            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/canada.jpg'),
           description:
             "Canada offers breathtaking landscapes, from the Rocky Mountains to Niagara Falls, and diverse cities.",
         },
         {
           name: "India",
           code: "IN",
-          image:
-            "https://images.unsplash.com/photo-1558740549-ffeb1f7847a4?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/india.jpg'),
           description:
             "India is a land of contrasts, known for its ancient temples, bustling cities, and the majestic Taj Mahal.",
         },
         {
           name: "South Africa",
           code: "ZA",
-          image:
-            "https://images.unsplash.com/photo-1567636780469-5b0e6d99213b?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/south_africa.jpg'),
           description:
             "South Africa offers diverse wildlife, beautiful landscapes, and vibrant cities like Cape Town.",
         },
         {
           name: "Russia",
           code: "RU",
-          image:
-            "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/russia.jpg'),
           description:
             "Russia, the largest country in the world, is known for its grand palaces, vast wilderness, and rich history.",
         },
         {
           name: "Argentina",
           code: "AR",
-          image:
-            "https://images.unsplash.com/photo-1565072983401-1a3c3561a013?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/argentina.jpg'),
           description:
             "Argentina is famous for its tango, vast pampas, and breathtaking Patagonia region.",
         },
         {
           name: "Netherlands",
           code: "NL",
-          image:
-            "https://images.unsplash.com/photo-1536742851556-8e4bca4b1f9b?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/netherlands.jpg'),
           description:
             "The Netherlands is known for its picturesque canals, tulip fields, and windmills.",
         },
         {
           name: "Greece",
           code: "GR",
-          image:
-            "https://images.unsplash.com/photo-1572276596230-0b484b75b20f?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/greece.jpg'),
           description:
             "Greece is the birthplace of democracy, known for its ancient ruins, crystal-clear waters, and islands.",
         },
         {
           name: "Malaysia",
           code: "MY",
-          image:
-            "https://images.unsplash.com/photo-1554540709-15b7243010bc?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/malaysia.jpg'),
           description:
             "Malaysia offers a mix of modern cities, lush rainforests, and stunning beaches.",
         },
         {
           name: "Egypt",
           code: "EG",
-          image:
-            "https://images.unsplash.com/photo-1503919545889-aef636e10ad2?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/egypt.jpg'),
           description:
             "Egypt is the land of the pharaohs, with awe-inspiring pyramids, temples, and the Nile River.",
         },
         {
           name: "Switzerland",
           code: "CH",
-          image:
-            "https://images.unsplash.com/photo-1519677100203-a0e668c92439?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/switzerland.jpg'),
           description:
             "Switzerland is renowned for its alpine scenery, luxury watches, and delicious chocolates.",
         },
         {
           name: "Indonesia",
           code: "ID",
-          image:
-            "https://images.unsplash.com/photo-1548932816-516eb0a6d5e1?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/indonesia.jpg'),
           description:
             "Indonesia, an archipelago of over 17,000 islands, offers diverse cultures, volcanoes, and beautiful beaches.",
         },
         {
           name: "Portugal",
           code: "PT",
-          image:
-            "https://images.unsplash.com/photo-1534081333815-ae5019106622?crop=entropy&cs=tinysrgb&w=600",
+          place: "Lagos",
+          image: require('@/assets/countries/portugal.jpg'),
           description:
             "Portugal is known for its stunning coastlines, historic cities like Lisbon, and world-class wine.",
         },
         {
           name: "Austria",
           code: "AT",
-          image:
-            "https://images.unsplash.com/photo-1544986581-efac024faf62?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/austria.jpg'),
           description:
             "Austria is celebrated for its alpine landscapes, classical music heritage, and charming cities like Vienna.",
         },
         {
           name: "Sweden",
           code: "SE",
-          image:
-            "https://images.unsplash.com/photo-1534333349925-d201dccd121f?crop=entropy&cs=tinysrgb&w=600",
+          image: require('@/assets/countries/sweden.jpg'),
           description:
             "Sweden is known for its innovative design, lush forests, and the picturesque city of Stockholm.",
         },
         {
           name: "Vietnam",
           code: "VN",
-          image:
-            "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&w=600",
+          place: "Hanoi",
+          image: require('@/assets/countries/vietnam.jpg'),
           description:
             "Vietnam is a Southeast Asian gem, famous for its vibrant street markets, stunning coastlines, and history.",
         },
         {
           name: "Singapore",
           code: "SG",
-          image:
-            "https://images.unsplash.com/photo-1584680194181-c558e7919e9d?crop=entropy&cs=tinysrgb&w=600",
+          place: "Singapore",
+          image: require('@/assets/countries/singapore.jpg'),
           description:
             "Singapore is a modern city-state known for its futuristic architecture, diverse cuisine, and clean streets.",
         },
