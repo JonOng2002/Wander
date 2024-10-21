@@ -5,7 +5,8 @@
         <h2>My Saved Places</h2>
       </div>
       <div class="col-auto generateButton">
-        <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">Generate Itinerary!</button>
+        <!-- Change the button to route to DropdownlistBefGenIti.vue -->
+        <button @click="navigateToDropdownList" type="button" class="btn btn-primary">View My Itinerary</button>
       </div>
     </div>
 
@@ -23,7 +24,8 @@
             <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
 
             <p>
-              <button @click="addToItinerary(place)" type="button" id="addToItinerary" class="btn">
+              <!-- Add the place to the itinerary and redirect to DropdownlistBefGenIti.vue -->
+              <button @click="addPlaceAndNavigate(place)" type="button" id="addToItinerary" class="btn">
                 Add to Itinerary
               </button>
             </p>
@@ -37,15 +39,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div v-if="itinerary.length > 0" class="itinerary-list">
-      <h3>Your Itinerary</h3>
-      <ol class="list-group list-group-numbered">
-        <li class="list-group-item" v-for="(item, index) in itinerary" :key="index">
-          {{ item.name }} - {{ item.vicinity }}
-        </li>
-      </ol>
     </div>
 
     <div v-if="showPopup" class="popup">
@@ -63,6 +56,7 @@ import { ref, onMounted } from 'vue';
 import { getFirestore, doc, getDoc, updateDoc, setDoc, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
+import { inject } from 'vue';
 
 export default {
   name: 'SavedPlaces',
@@ -74,6 +68,7 @@ export default {
     const showRemovePopup = ref(false);
     const db = getFirestore();
     const router = useRouter();
+    const itineraryState = inject('itineraryState');
 
     onMounted(async () => {
       const auth = getAuth();
@@ -102,33 +97,44 @@ export default {
       }
     });
 
-    const navigateToGeneratedItinerary = () => {
-  if (itinerary.value.length > 0) {
+    const navigateToDropdownList = () => {
+      // Navigate to DropdownlistBefGenIti.vue
+      if (itinerary.value.length > 0) {
     router.push({
-      name: 'GeneratedItinerary', // Match the route name for the itinerary page
+      name: 'DropdownlistBefGenIti',
       query: {
-        itineraryGenerated: true,
-        itinerary: JSON.stringify(itinerary.value), // Pass itinerary data as query param
+        itinerary: JSON.stringify(itinerary.value), // Passing the itinerary as a query parameter
       },
     });
   } else {
     console.log('No itinerary to generate.');
   }
-};
-
-    const addToItinerary = (place) => {
-      const isAlreadyInItinerary = itinerary.value.some(item => item.place_id === place.place_id);
-      if (!isAlreadyInItinerary) {
-        itinerary.value.push(place);
-        showPopup.value = true;
-        setTimeout(() => {
-          showPopup.value = false;
-        }, 2000);
-      } else {
-        console.log(`${place.name} is already in the itinerary`);
-      }
     };
 
+    const addPlaceAndNavigate = (place) => {
+  // Access the global itineraryState instead of a local reactive itinerary
+  const isAlreadyInItinerary = itineraryState.itinerary.some(item => item.place_id === place.place_id);
+  
+  if (!isAlreadyInItinerary) {
+    // Push to the globally shared itineraryState.itinerary
+    itineraryState.itinerary.push(place);
+    
+    showPopup.value = true;
+    setTimeout(() => {
+      showPopup.value = false;
+    }, 2000);
+
+    // After adding, navigate to DropdownlistBefGenIti.vue
+    router.push({
+      name: 'DropdownlistBefGenIti',
+    });
+
+    console.log(itineraryState.itinerary);  // This should now reflect the correct, globally updated itinerary
+    console.log(`${place.name} added to the itinerary`);
+  } else {
+    console.log(`${place.name} is already in the itinerary`);
+  }
+};
     const removeFromSavedPlaces = async (placeId) => {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -166,8 +172,8 @@ export default {
       loading,
       showPopup,
       showRemovePopup,
-      navigateToGeneratedItinerary,
-      addToItinerary,
+      navigateToDropdownList,
+      addPlaceAndNavigate,
       removeFromSavedPlaces,
     };
   },

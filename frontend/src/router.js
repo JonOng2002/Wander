@@ -9,7 +9,13 @@ import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
 import GeneratedItinerary from '@/views/TestItinerary.vue';
+import DropdownlistBefGenIti from '@/views/DropdownlistBefGenIti.vue';
+import CalendarPage from '@/views/CalendarPage.vue';
+import TagsPage from '@/views/TagsPage.vue';
+import TrvPartner from '@/views/TravellingWithWho.vue';
+import GenItiTest from '@/views/GenItiTest.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
 
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
@@ -22,7 +28,7 @@ const routes = [
   { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
   {
-    path: '/generated-itinerary',
+    path: '/itinerary',
     name: 'GeneratedItinerary',
     component: GeneratedItinerary,
     props: (route) => ({
@@ -37,7 +43,12 @@ const routes = [
     name: 'DestinationDetails',
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
-  }
+  },
+  { path: '/dropdownlist', name: 'DropdownlistBefGenIti', component: DropdownlistBefGenIti }, 
+  { path: '/calendar', name: 'CalendarPage', component: CalendarPage },
+  { path: '/tags', name: 'TagsPage', component: TagsPage },
+  { path: '/trvpartner', name: 'TrvPartner', component: TrvPartner },
+  { path: '/genititest', name: 'GenItiTest', component: GenItiTest },
 ];
 
 // Router instance with Firebase authentication logic

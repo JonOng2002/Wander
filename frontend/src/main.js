@@ -18,6 +18,10 @@ import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'; // BootstrapVue3 CSS
 // Google Login integration
 import { vue3GoogleLogin } from 'vue3-google-login';
 
+import VCalendar from 'v-calendar';
+import 'v-calendar/style.css';
+
+
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAAJFpBoEJzVfrj8Ix_YTZPc0QifkaMyKw",
@@ -82,31 +86,74 @@ const savedPlacesState = reactive({
 const itineraryState = reactive({
     itinerary: [],
 
-    async loadItinerary(userId) {
-        const userDoc = await getDoc(doc(db, "users", userId));
-        if (userDoc.exists()) {
-            this.itinerary = userDoc.data().generatedItineraries || [];
-        } else {
-            console.log("No itineraries found.");
-        }
-    },
-
     async addToItinerary(userId, place) {
-        this.itinerary.push(place);
-        await updateDoc(doc(db, "users", userId), {
-            generatedItineraries: arrayUnion(place)
-        });
-        console.log("Place added to itinerary");
-    },
-
+        try {
+          if (!this.itinerary.some(item => item.place_id === place.place_id)) {
+            this.itinerary.push(place);
+      
+            // Update Firebase under "savedForItinerary"
+            await updateDoc(doc(db, "users", userId), {
+              'savedForItinerary.itinerary': arrayUnion(place)  // Make sure 'place_id' exists in the place object
+            });
+            console.log("Place added to itinerary");
+          } else {
+            console.log("Place already exists in the itinerary.");
+          }
+        } catch (error) {
+          console.error("Error adding place to itinerary:", error);
+        }
+      },
+  
+    // Add a place to the "savedForItinerary.itinerary" field
+    async loadItinerary(userId) {
+        try {
+          const userDoc = await getDoc(doc(db, "users", userId));
+          if (userDoc.exists()) {
+            console.log("Fetched data from Firebase:", userDoc.data()); // ADD THIS LINE
+            const savedForItinerary = userDoc.data().savedForItinerary;
+            this.itinerary = savedForItinerary ? savedForItinerary.itinerary || [] : [];
+          } else {
+            console.log("No itinerary found.");
+            this.itinerary = []; // Ensure it's reset if nothing is found
+          }
+        } catch (error) {
+          console.error("Error loading itinerary:", error);
+        }
+      },
+  
+    // Remove a place from the "savedForItinerary.itinerary" field
     async removeFromItinerary(userId, placeId) {
-        this.itinerary = this.itinerary.filter(place => place.place_id !== placeId);
+        try {
+          this.itinerary = this.itinerary.filter(place => place.place_id !== placeId);
+      
+          // Update Firebase under "savedForItinerary"
+          await updateDoc(doc(db, "users", userId), {
+            'savedForItinerary.itinerary': arrayRemove({ place_id: placeId })  // Make sure this matches the exact object
+          });
+      
+          console.log("Place removed from itinerary");
+        } catch (error) {
+          console.error("Error removing place from itinerary:", error);
+        }
+      },
+  
+    // Clear the itinerary (resets both local state and Firebase)
+    async clearItinerary(userId) {
+      try {
+        this.itinerary = [];
+  
+        // Update Firebase to clear the itinerary
         await updateDoc(doc(db, "users", userId), {
-            generatedItineraries: arrayRemove({ place_id: placeId })
+          'savedForItinerary.itinerary': []
         });
-        console.log("Place removed from itinerary");
+  
+        console.log("Itinerary cleared");
+      } catch (error) {
+        console.error("Error clearing itinerary:", error);
+      }
     }
-});
+  });
+  
 
 // Function to store user data (called when a new user is created or signs in)
 async function storeUserData(userId, email) {
@@ -150,6 +197,7 @@ vueApp.use(BootstrapVue3);
 vueApp.use(vue3GoogleLogin, {
     clientId: 'YOUR_GOOGLE_CLIENT_ID'
 });
+vueApp.use(VCalendar, {})
 
 // Mount the app
 vueApp.mount('#app');
