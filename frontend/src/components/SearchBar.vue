@@ -9,7 +9,7 @@
         required
         :disabled="isLoading"
       />
-      <button type="submit" class="btn btn-primary btn-lg ms-2">Search!</button>
+      <button type="submit" class="btn btn-dark btn-lg ms-2">Search!</button>
     </form>
   </div>
 </template>

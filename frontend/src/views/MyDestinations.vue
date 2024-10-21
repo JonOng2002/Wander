@@ -1,6 +1,6 @@
 <template>
   <div class="my-destinations">
-    <h1>Top Destinations for Wanderers</h1>
+    <h1>Wander the World: Top Must-Visit Locations</h1>
 
     <!-- List of countries -->
     <div class="row countries-list" @scroll.passive="onScroll">
@@ -151,6 +151,14 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  color: #2c3e50; /* Darker color for better contrast */
+  font-size: 3rem;
+}
+
 .my-destinations {
   text-align: center;
   font-family: "Roboto", sans-serif;

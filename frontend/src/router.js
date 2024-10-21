@@ -10,7 +10,6 @@ import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
 
@@ -30,6 +29,7 @@ const routes = [
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
   }
+  
 ];
 
 // Router instance with Firebase authentication logic
