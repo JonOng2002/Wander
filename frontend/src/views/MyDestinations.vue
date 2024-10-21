@@ -9,6 +9,13 @@
     </div>
   </header>
 
+  <div class="secondary_header">
+    <div class="secondary_content">
+      <h2>Top Destinations for your next holiday</h2>
+      <h5>Here's where your fellow wanderers are headed:</h5>
+    </div>
+  </div>
+
   <div class="container">
     <div class="card_container">
       <article
@@ -546,6 +553,20 @@ header content h4 {
   color: hsl(0, 0%, 70%);
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+/*====== SECONDARY HEADER ======*/
+
+.secondary_header {
+  position: relative;
+  left: 50px;
+  top: 60px;
+  
+  
+}
+
+.secondary_content h5{
+  color: rgb(166, 163, 163);
 }
 
 /*====== CARD ======*/
