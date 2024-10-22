@@ -9,7 +9,6 @@ import LogIn from '@/views/LogIn.vue'; // Import LogIn component
 import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
-import WorldMap from '@/views/WorldMap.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
@@ -28,9 +27,6 @@ const routes = [
     name: 'DestinationDetails',
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
-  },
-  {
-    path: '/worldmap', name: 'WorldMap', component: WorldMap
   },
   
 ];

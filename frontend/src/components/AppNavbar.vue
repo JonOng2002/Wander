@@ -23,9 +23,7 @@
         <li class="nav-item me-4">
           <router-link to="/itinerary" class="nav-link">My itineraries</router-link>
         </li>
-        <li class="nav-item me-4">
-          <router-link to="/worldmap" class="nav-link">World Map</router-link>
-        </li>
+      
         <!-- Profile Picture -->
         <li class="nav-item me-4">
           <router-link to="/profile" class="nav-link">
