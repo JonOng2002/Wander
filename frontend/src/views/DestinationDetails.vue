@@ -45,7 +45,7 @@ export default {
       attractions: [],
       loading: true,
       country: this.$route.params.country,
-      apiKey: "AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg", // Replace with your actual API key
+      apiKey: "AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k", // Replace with your actual API key
       savedPlaces: [],
       showPopup: false, // Popup state
     };

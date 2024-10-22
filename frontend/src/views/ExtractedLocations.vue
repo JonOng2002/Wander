@@ -12,17 +12,27 @@
     <img :src="locationInfo.place_png" @error="handleImageError" class="card-img-top" alt="Image of {{ locationInfo.place_name }}">
     <div class="card-body pb-0">
       <h5 class="card-title">{{ locationInfo.place_name }}</h5>
-      <p class="card-text">{{ locationInfo.summary }}</p>
+      <p class="card-text">{{ locationInfo.location_summary }}</p> <!-- Updated: Display the location summary -->
     </div>
     <hr>
+
+    <!-- Correct separation for Location and Activities -->
     <div class="card-body py-0">
       <h5 class="card-title">Location</h5>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
-        <li class="list-group-item">Latitude: {{ locationInfo.coordinates.latitude }}</li>
-        <li class="list-group-item">Longitude: {{ locationInfo.coordinates.longitude }}</li>
       </ul>
-      <!-- Google Map displaying the location -->
+    </div>
+    <hr>
+    <div class="card-body py-0">
+      <h5 class="card-title">Activities</h5>
+      <ul class="list-group list-group-flush">
+        <li v-for="(activity, index) in locationInfo.activities" :key="index" class="list-group-item">{{ activity }}</li>
+      </ul>
+    </div>
+
+    <!-- Google Map displaying the location -->
+    <div class="card-body py-0">
       <div id="location-map" class="map">
         <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
           :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }" :zoom="15">
@@ -30,14 +40,21 @@
         </GoogleMap>
       </div>
     </div>
-    
+
     <hr>
     <div class="card-body pt-0">
-      <save-place-button class='btn btn-dark' @place-saved="handlePlaceSaved"
-        :placeName="locationInfo.place_name" :country="locationInfo.country"
-        :city="locationInfo.city" :latitude="locationInfo.coordinates.latitude"
-        :longitude="locationInfo.coordinates.longitude" :placePng="locationInfo.place_png" :userId="userId"
-        :activities="locationInfo.activities" :summary="locationInfo.summary" :savedPlaces="savedPlaces">
+      <save-place-button class='btn btn-dark' 
+        @place-saved="handlePlaceSaved"
+        :placeName="locationInfo.place_name" 
+        :country="locationInfo.country"
+        :city="locationInfo.city" 
+        :latitude="locationInfo.coordinates.latitude"  
+        :longitude="locationInfo.coordinates.longitude" 
+        :placePng="locationInfo.place_png" 
+        :userId="userId"
+        :activities="locationInfo.activities" 
+        :summary="locationInfo.location_summary" 
+        :savedPlaces="savedPlaces">
       </save-place-button>
     </div>
   </div>
@@ -55,17 +72,27 @@
         <img :src="place.place_png" class="card-img-top" alt="Image of {{ place.place_name }}" @error="handleImageError">
         <div class="card-body pb-0">
           <h5 class="card-title">{{ place.place_name }}</h5>
-          <p class="card-text">{{ place.summary }}</p>
+          <p class="card-text">{{ place.location_summary }}</p>
         </div>
         <hr>
+
+        <!-- Correct separation for Location and Activities -->
         <div class="card-body py-0">
           <h5 class="card-title">Location</h5>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
-            <li class="list-group-item">Latitude: {{ place.coordinates.latitude }}</li>
-            <li class="list-group-item">Longitude: {{ place.coordinates.longitude }}</li>
           </ul>
-          <!-- Google Map displaying the location -->
+        </div>
+        <hr>
+        <div class="card-body py-0">
+          <h5 class="card-title">Activities</h5>
+          <ul class="list-group list-group-flush">
+            <li v-for="(activity, index) in place.activities" :key="index" class="list-group-item">{{ activity }}</li>
+          </ul>
+        </div>
+
+        <!-- Google Map displaying the related place location -->
+        <div class="card-body py-0">
           <div id="location-map" class="map">
             <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
               :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
@@ -73,13 +100,21 @@
             </GoogleMap>
           </div>
         </div>
+
         <hr>
         <div class="card-body pt-0">
-          <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved"
-            :placeName="place.place_name" :country="place.country"
-            :city="place.city" :latitude="place.coordinates.latitude"
-            :longitude="place.coordinates.longitude" :placePng="place.place_png" :userId="userId"
-            :activities="place.activities" :summary="place.summary" :savedPlaces="savedPlaces">
+          <save-place-button class="btn btn-dark" 
+            @place-saved="handlePlaceSaved"
+            :placeName="place.place_name" 
+            :country="place.country"
+            :city="place.city" 
+            :latitude="place.coordinates.latitude" 
+            :longitude="place.coordinates.longitude" 
+            :placePng="place.place_png" 
+            :userId="userId"
+            :activities="place.activities" 
+            :summary="place.location_summary" 
+            :savedPlaces="savedPlaces">
           </save-place-button>
         </div>
       </li>
@@ -90,7 +125,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import SavePlaceButton from '@/components/SavePlaceButton.vue';
-import { GoogleMap, Marker } from 'vue3-google-map';
+import { GoogleMap, Marker } from 'vue3-google-map';  
 import { Loader } from '@googlemaps/js-api-loader';
 import { defineProps } from 'vue';
 
@@ -105,7 +140,6 @@ const props = defineProps({
   savedPlaces: Array,
 });
 
-// Reactive state variables
 const navItems = ref([]);
 const showPopup = ref(false);  // Popup visibility
 const center = ref({ lat: 0, lng: 0 });
@@ -202,7 +236,6 @@ html {
   border: 1px solid #ccc;
   background-color: #f8f9fa;
   border-radius: 5px;
-  z-index: 1019;
 }
 
 .nav-item {

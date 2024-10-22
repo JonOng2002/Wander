@@ -15,8 +15,7 @@ import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion, arrayRemove }
 import BootstrapVue3 from 'bootstrap-vue-3';
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'; // BootstrapVue3 CSS
 
-// Google Login integration
-import { vue3GoogleLogin } from 'vue3-google-login';
+// VCalendar imports
 
 import VCalendar from 'v-calendar';
 import 'v-calendar/style.css';
@@ -194,9 +193,6 @@ vueApp.provide('extractedLocationsState', extractedLocationsState);
 // Use router, BootstrapVue, and Google Login
 vueApp.use(router);
 vueApp.use(BootstrapVue3);
-vueApp.use(vue3GoogleLogin, {
-    clientId: 'YOUR_GOOGLE_CLIENT_ID'
-});
 vueApp.use(VCalendar, {})
 
 // Mount the app

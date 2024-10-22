@@ -63,6 +63,7 @@ export default {
                 summary: place.summary || 'No description available',
                 activities: place.activities || [],
                 timestamp: place.timestamp || new Date().toISOString(),
+                coordinates: place.coordinates || { lat: 0, lng: 0 },
             }));
 
             router.push({
