@@ -27,9 +27,6 @@
 
   // Sample function to fetch saved places with coordinates
   const getSavedPlaces = async () => {
-    
-    
-  
     // Convert saved places into markers
     markers.value = savedPlaces.map(place => ({
       position: { lat: place.lat, lng: place.lng }

@@ -4,13 +4,12 @@ import ExtractedLocation from '@/views/ExtractedLocations.vue';
 import SavedPlaces from '@/views/SavedPlaces.vue';
 import MainPage from '@/views/MainPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
 import LogIn from '@/views/LogIn.vue'; // Import LogIn component
 import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
-import GeneratedItinerary from '@/views/TestItinerary.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
 
@@ -21,15 +20,7 @@ const routes = [
   { path: '/about', name: 'About', component: AboutPage },
   { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
-  {
-    path: '/generated-itinerary',
-    name: 'GeneratedItinerary',
-    component: GeneratedItinerary,
-    props: (route) => ({
-      itineraryGenerated: route.query.itineraryGenerated === 'true',
-      itinerary: route.query.itinerary ? JSON.parse(route.query.itinerary) : []
-    })
-  },
+  { path: '/itinerary', name: 'GeneratedItinerary', component: GeneratedItinerary },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
   {
@@ -38,6 +29,7 @@ const routes = [
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
   }
+  
 ];
 
 // Router instance with Firebase authentication logic

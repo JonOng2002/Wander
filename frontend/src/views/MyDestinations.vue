@@ -1,6 +1,6 @@
 <template>
   <div class="my-destinations">
-    <h1>Top Destinations for Wanderers</h1>
+    <h1>Wander the World: Top Must-Visit Locations</h1>
 
     <!-- List of countries -->
     <div class="countries-list">
@@ -94,97 +94,71 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  color: #2c3e50; /* Darker color for better contrast */
+  font-size: 3rem;
+}
+
 .my-destinations {
   text-align: center;
   font-family: "Roboto", sans-serif;
+  padding: 20px; /* Padding for overall spacing */
 }
 
 .countries-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between cards */
 }
 
 .country-card {
-  margin: 20px;
   padding: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  width: 200px;
-  text-align: center;
-  transition: transform 0.3s ease;
-  /* Set a fixed height for consistency */
-  height: 300px; /* Adjust height to your needs */
-
-  /* Use flexbox to center content vertically */
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  /* Ensure consistency for the text */
-  overflow: hidden;
+  height: 300px; /* Consistent height */
 }
 
-.country-card h2 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+.country-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Enhanced shadow with darker effect */
+}
 
-  /* Force text to be consistent and avoid overflow */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+.country-card h2 {
+  font-size: 1.3rem;
+  margin: 10px 0;
+  color: #34495e; /* Slightly lighter text color */
 }
 
 .country-card img {
   width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.country-card p {
-  flex-grow: 1; /* Take up remaining space */
+  height: 150px; /* Fixed height for consistency */
+  object-fit: cover;
+  border-radius: 5px; /* Rounded corners for images */
 }
 
 .country-card button {
-  margin-top: auto;
-}
-
-
-.country-card:hover {
-  transform: scale(1.05);
-}
-
-.country-flag {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.btn {
-  background-color: lightgray;
-  color: black;
-  border: 1px solid black;
+  margin-top: 10px;
+  background-color: black; /* Brand color for buttons */
+  color: white;
+  border: none;
   padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
+  font-size: 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: darkgray;
-}
-
-button {
-  margin-top: 10px;
-}
-
-h1 {
-  margin-top: 20px;
+.country-card button:hover {
+  background-color: #333;
 }
 </style>
