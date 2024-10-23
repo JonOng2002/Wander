@@ -20,12 +20,13 @@
       <!-- Sort by Dropdown -->
       <div class="dropdown" @click="toggleDropdown('sort')">
         <button class="dropdown-btn">
-          Sort by: {{ sortLabel }}
+          Filter by: {{ sortLabel }}
           <span class="arrow-down">&#9662;</span>
         </button>
         <ul :style="{ display: showDropdowns.sort ? 'block' : 'none' }" class="dropdown-menu">
+          <li @click="selectSort('default')">Top Destinations</li>
           <li @click="selectSort('alphabetical')">Alphabetical Order</li>
-          <li @click="selectSort('default')">Default Order</li>
+          
         </ul>
       </div>
 
@@ -463,7 +464,7 @@ export default {
       sortOrder: 'default', // Track sorting order
       continentFilter: '',  // Track continent filter
       showDropdowns: { sort:false, filter:false },
-      sortLabel: 'Default Order',
+      sortLabel: 'Top Destinations',
       filterLabel: 'All Continents',
     };
   },
@@ -564,7 +565,7 @@ export default {
 
     selectSort(order) {
       this.sortOrder = order;
-      this.sortLabel = order === 'alphabetical' ? 'Alphabetical Order' : 'Default Order';
+      this.sortLabel = order === 'alphabetical' ? 'Alphabetical Order' : 'Top Destinations';
 
       if (order === 'default') {
         // Reset the countries list to the original order
@@ -744,6 +745,34 @@ header content h4 {
 .card_article {
   position: relative;
   overflow: hidden;
+  
+  --elevation: 16; /* Set the elevation to 8 */
+  --epx: calc(var(--elevation) * 1px);
+  
+  /* These 2 shadows serve as a border for 0-1 elevation */
+  --shadow1: 0 0 1px rgba(0, 0, 0, .1);
+  --shadow2: 0 1px 2px rgba(0, 0, 0, .08);
+  
+  /* Calculate the dynamic shadow based on the elevation */
+  --offset-y: calc(var(--epx) + 1px);
+  --blur: calc(var(--epx) * 2);
+  --spread: calc(var(--epx) * 0.3);
+  
+  /* Final shadow for elevation effect */
+  --shadow3: 
+    0 var(--offset-y) 
+    var(--blur) 
+    var(--spread) 
+    rgba(0, 0, 0, 0.2);
+
+  /* Apply the shadows */
+  box-shadow: 
+    var(--shadow1),
+    var(--shadow2),
+    var(--shadow3);
+
+  border-radius: 1.5rem;
+  transition: box-shadow 0.3s ease; /* Optional: smooth transitions for dynamic shadow changes */
 }
 
 .card_img {
@@ -751,6 +780,13 @@ header content h4 {
   height: 400px;
   border-radius: 1.5rem;
 }
+
+.card_img {
+  width: 328px;
+  height: 400px;
+  border-radius: 1.5rem;
+}
+
 
 /* Text overlay styling */
 .text_overlay {
@@ -863,7 +899,7 @@ header content h4 {
     transform: translateY(-10rem);
   }
   100% {
-    transform: translateY(5rem);
+    transform: translateY(7rem);
   }
 }
 
