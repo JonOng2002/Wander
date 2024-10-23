@@ -20,10 +20,15 @@
 
         <ul>
           <li v-for="(activity, actIndex) in day.activities" :key="actIndex">
-            <strong>{{ activity.time }}:</strong> {{ activity.activity_name }} <br>
-            <em>Location:</em> {{ activity.location.name }} <br>
-            <em>Description:</em> {{ activity.description }} <br>
-            <em>Coordinates:</em> Latitude: {{ activity.location.coordinates.latitude }}, Longitude: {{ activity.location.coordinates.longitude }}
+            <strong>{{ activity.time }}:</strong> 
+            {{ activity.activity_name || 'No activity name available' }} <br>
+            <em>Location:</em> 
+            {{ activity.location?.name || 'Unknown location' }} <br> <!-- Optional chaining for location.name -->
+            <em>Description:</em> 
+            {{ activity.description || 'No description available' }} <br>
+            <em>Coordinates:</em> 
+            Latitude: {{ activity.location?.coordinates?.latitude || 'N/A' }},
+            Longitude: {{ activity.location?.coordinates?.longitude || 'N/A' }}
           </li>
         </ul>
       </div>
@@ -48,7 +53,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import router from '@/router';
 
@@ -83,8 +88,7 @@ const submitData = async () => {
       },
       withCredentials: false
     });
-    
-    // Assign the response data to the itinerary ref
+
     itinerary.value = response.data;
 
   } catch (error) {
@@ -94,6 +98,11 @@ const submitData = async () => {
     loading.value = false;
   }
 };
+
+// Automatically call submitData when the component is mounted
+onMounted(() => {
+  submitData();
+});
 </script>
 
 <style scoped>
