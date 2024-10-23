@@ -20,14 +20,14 @@ import { vue3GoogleLogin } from 'vue3-google-login';
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBVl2PcKsshkWYITyO3jFBVkKNLObqRIX4",
-    authDomain: "wad2-proj-g8t9.firebaseapp.com",
-    projectId: "wad2-proj-g8t9",
-    storageBucket: "wad2-proj-g8t9.appspot.com",
-    messagingSenderId: "492171564263",
-    appId: "1:492171564263:web:dd89e494ad078782fe3e42",
-    measurementId: "G-63VKFQ7B15"
-};
+    apiKey: "AIzaSyAAJFpBoEJzVfrj8Ix_YTZPc0QifkaMyKw",
+    authDomain: "wander-wad.firebaseapp.com",
+    projectId: "wander-wad",
+    storageBucket: "wander-wad.appspot.com",
+    messagingSenderId: "109364472671",
+    appId: "1:109364472671:web:ff4324430b45ba7b58a4ea",
+    measurementId: "G-TZHQN5ZWG4"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

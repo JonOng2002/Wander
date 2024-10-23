@@ -46,11 +46,11 @@ export default {
     country: this.country,
     image: this.placePng,
     name: this.placeName,
-    place_id: this.placeId,
-    source: this.source,
-    summary: this.summary,
+    place_id: this.placeId || "saved_places",
+    source: this.source || "saved_places",
+    summary: this.summary || "No summary available.",
     timestamp: Timestamp.now(),
-    vicinity: this.vicinity,
+    vicinity: this.vicinity || "Unknown vicinity",
   };
 
   console.log("Saving place data:", placeData);
