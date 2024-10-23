@@ -54,7 +54,7 @@ export default {
       attractions: [],
       loading: true,
       country: this.$route.params.country,
-      apiKey: 'AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg',
+      apiKey: 'AIzaSyAOXjziKAewVGQL7N1IDTg1QpJNIa04TNo',
       cityName: this.$route.params.city || 'Unknown City',
       userId: null,
       showPopup: false,
@@ -86,6 +86,7 @@ export default {
 
       try {
         const response = await axios.get(url);
+        console.log("Fetched attractions:", response.data.results);
         this.attractions = response.data.results.map((place) => ({
           name: place.name,
           place_id: place.place_id,

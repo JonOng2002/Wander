@@ -1,23 +1,26 @@
 <template>
   <div class="itinerary-page">
-    <AppNavbar class="sticky-top"></AppNavbar>
-    <div class="row justify-content-between align-items-center sticky-header g-0">
-      <div class="col-3 date-column">
-        <h2>My Saved Places</h2>
-        <div class="filter-dropdown d-flex align-items-center">
-          <select @change="filterPlaces" class="form-select me-2">
-            <option value="">Select Filter</option>
-            <option value="alphabetical">Filter by Alphabet</option>
-            <option value="recently-added">Filter by Recently Added</option>
-          </select>
-          <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
-            Delete All
-          </button>
+    <div class="sticky-top">
+      <div class="row justify-content-between align-items-center sticky-header g-0">
+        <div class="col-3 date-column">
+          <h2>My Saved Places</h2>
+          <div class="filter-dropdown d-flex align-items-center">
+            <select @change="filterPlaces" class="form-select me-2">
+              <option value="">Select Filter</option>
+              <option value="alphabetical">Filter by Alphabet</option>
+              <option value="recently-added">Filter by Recently Added</option>
+            </select>
+            <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
+              Delete All
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="col-auto generateButton">
-        <button @click="toggleModal" type="button" class="btn btn-secondary view-itinerary-btn">View Itinerary</button>
-        <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">Generate Itinerary!</button>
+        <div class="col-auto generateButton">
+          <button @click="toggleModal" type="button" class="btn btn-secondary view-itinerary-btn">View
+            Itinerary</button>
+          <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">Generate
+            Itinerary!</button>
+        </div>
       </div>
     </div>
 
@@ -28,17 +31,15 @@
 
     <div v-else class="card-grid">
       <transition-group name="list" tag="div" class="transition-wrapper">
-        <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container">
+        <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs">
           <div class="card destination-card">
-            <!-- Close Button -->
             <button @click="removePlace(place)" type="button" class="btn close-button">X</button>
-
             <img :src="place.image" class="card-img-top" alt="Image of {{ place.name }}" />
             <div class="card-body">
               <h5 class="card-title">{{ place.name }}</h5>
               <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
               <div class="button-container">
-                <button @click="toggleItinerary(place)" type="button" class="btn itinerary-button">
+                <button @click="toggleItinerary(place, $event)" type="button" class="btn itinerary-button">
                   {{ isPlaceInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
                 </button>
               </div>
@@ -48,7 +49,6 @@
       </transition-group>
     </div>
 
-    <!-- Modal structure -->
     <div v-if="showModal" class="modal-overlay" @click.self="toggleModal">
       <div class="modal-content">
         <h3>Your Itinerary</h3>
@@ -58,6 +58,7 @@
             {{ item.name }} - {{ item.vicinity }}
           </li>
         </ol>
+        <button @click="navigateToGeneratedItinerary" class="btn mb-2">View Full Itinerary</button>
         <button @click="toggleModal" type="button" class="btn close-modal-btn">Close</button>
       </div>
     </div>
@@ -74,7 +75,6 @@
       <div v-if="showPopup" class="popup">
         <p>Added to itinerary!</p>
       </div>
-
       <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
         <p>Removed from itinerary!</p>
       </div>
@@ -83,11 +83,11 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { ref, onMounted } from 'vue';
+import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
-import AppNavbar from '@/components/AppNavbar.vue';
+import { gsap } from "gsap";
 
 export default {
   name: 'SavedPlaces',
@@ -102,6 +102,7 @@ export default {
     const showDeletePopup = ref(false);
     const db = getFirestore();
     const router = useRouter();
+    const cardRefs = ref([]); // Create a ref for card references
 
     //gettting data from firestore and stroing it in savedPlaces
     onMounted(async () => {
@@ -157,12 +158,19 @@ export default {
     };
 
     const navigateToGeneratedItinerary = () => {
-      saveItinerary();
-      router.push({ name: 'GeneratedItinerary' });
+      const itineraryPlaces = itinerary // your array of places
+      router.push({
+        name: 'generateditinerary',
+        query: { places: JSON.stringify(itineraryPlaces.value) }
+      });
     };
 
     const isPlaceInItinerary = (place) => {
       return itinerary.value.some(item => item.place_id === place.place_id);
+    };
+
+    const deleteAllPlaces = async () => {
+      toggleDeletePopup(); // Show delete confirmation popup
     };
 
     const togglePopup = (type) => {
@@ -183,15 +191,68 @@ export default {
       showDeletePopup.value = !showDeletePopup.value; // Toggle delete confirmation popup
     };
 
-    const toggleItinerary = (place) => {
-      if (isPlaceInItinerary(place)) {
-        itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
-        togglePopup('remove');
-      } else {
-        itinerary.value.push(place);
-        togglePopup('add');
+    const toggleItinerary = async (place, event) => {
+      const index = savedPlaces.value.findIndex(item => item.place_id === place.place_id);
+
+      if (index !== -1) {
+        const user = getAuth().currentUser;
+        const userId = user.uid; // Fetch the current user's unique ID
+        const userDocRef = doc(db, 'users', userId); // Use UID as document ID
+
+        try {
+          if (isPlaceInItinerary(place)) {
+            // Remove from itinerary (local and Firebase)
+            itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
+
+            // Update Firebase: remove place from generatedItineraries
+            await updateDoc(userDocRef, {
+              generatedItineraries: arrayRemove({
+                place_id: place.place_id,
+                name: place.name,
+                vicinity: place.vicinity,
+                country: place.country,
+                image: place.image
+              })
+            });
+
+            togglePopup('remove');
+          } else {
+            // Add to itinerary with pulse animation
+            const button = event.currentTarget;
+
+            gsap.fromTo(
+              button,
+              { scale: 1 }, // Start at normal scale
+              {
+                scale: 1.1, // Pulse effect (slightly larger)
+                duration: 0.2, // Short duration
+                yoyo: true, // Revert to original size
+                repeat: 1 // One pulse
+              }
+            );
+
+            // Add to itinerary (local and Firebase)
+            itinerary.value.push(place);
+
+            // Update Firebase: add place to generatedItineraries
+            await updateDoc(userDocRef, {
+              generatedItineraries: arrayUnion({
+                place_id: place.place_id,
+                name: place.name,
+                vicinity: place.vicinity,
+                country: place.country,
+                image: place.image
+              })
+            });
+
+            togglePopup('add');
+          }
+        } catch (error) {
+          console.error('Error updating itinerary in Firebase:', error);
+        }
       }
     };
+
 
     const toggleModal = () => {
       showModal.value = !showModal.value;
@@ -240,60 +301,94 @@ export default {
     };
 
     const filterRecentlyAdded = () => {
-      filteredPlaces.value = [...savedPlaces.value].sort((a, b) => b.timestamp - a.timestamp);
+      filteredPlaces.value = [...savedPlaces.value].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
     };
 
-
-
-    // Update the deleteAllPlaces method to confirm deletion
-    const deleteAllPlaces = async () => {
-      toggleDeletePopup(); // Show delete confirmation popup
-    };
-
-    // Confirm deletion of all places
     const confirmDeleteAllPlaces = async () => {
-      const user = getAuth().currentUser;
-      if (user) {
-        const userRef = doc(db, "users", user.uid);
+      // Close the delete confirmation popup first
+      toggleDeletePopup(); // Immediately hide the popup
 
-        savedPlaces.value = [];
-        filteredPlaces.value = [];
+      // Select all card containers for animation
+      const cardContainers = document.querySelectorAll(".card-container");
 
-        try {
-          await setDoc(userRef, { savedPlaces: [] }, { merge: true });
-          console.log("All saved places deleted successfully.");
-          toggleDeletePopup(); // Close the delete confirmation popup
-        } catch (error) {
-          console.error("Error deleting saved places:", error);
-        }
+      if (cardContainers.length > 0) {
+        // Animate the cards to fade out and scale down
+        gsap.to(cardContainers, {
+          opacity: 0,
+          scale: 0.9, // Shrink the cards slightly as they fade out
+          duration: 0.5,
+          stagger: 0.1, // Delay between each card's animation
+          onComplete: async () => {
+            // After animation, clear the places
+            const user = getAuth().currentUser;
+            if (user) {
+              const userRef = doc(db, "users", user.uid);
+
+              savedPlaces.value = [];
+              filteredPlaces.value = [];
+
+              try {
+                await setDoc(userRef, { savedPlaces: [] }, { merge: true });
+                console.log("All saved places deleted successfully.");
+              } catch (error) {
+                console.error("Error deleting saved places:", error);
+              }
+            }
+          }
+        });
+      } else {
+        console.log("No cards to delete.");
       }
     };
 
-    // Computed property to check if delete all button should be disabled
-    const isDeleteAllDisabled = computed(() => {
-      return savedPlaces.value.length === 0; // Disable button if savedPlaces is empty
-    });
+    // Function to add a place to the itinerary
+    const addPlaceToItinerary = async (place) => {
+      itinerary.value.push(place);
+
+      // Get the current user's email
+      const user = getAuth().currentUser;
+      const userEmail = user.email;
+
+      // Reference to the user's document in Firestore
+      const userDocRef = doc(db, 'users', userEmail);
+
+      try {
+        // Update the user's generatedItineraries array in Firestore
+        await updateDoc(userDocRef, {
+          generatedItineraries: arrayUnion({
+            place_id: place.place_id,
+            name: place.name,
+            vicinity: place.vicinity,
+            country: place.country
+            // Add any other place details you need
+          })
+        });
+        console.log("Place added to itinerary and saved to Firebase!");
+      } catch (error) {
+        console.error("Error updating itinerary in Firebase:", error);
+      }
+    };
 
     return {
       savedPlaces,
+      addPlaceToItinerary,
       filteredPlaces,
-      itinerary,
       loading,
+      toggleItinerary,
+      isPlaceInItinerary,
+      toggleModal,
+      removePlace,
+      filterPlaces,
+      confirmDeleteAllPlaces,
+      toggleDeletePopup,
+      navigateToGeneratedItinerary,
+      itinerary,
       showPopup,
       showRemovePopup,
       showModal,
       showDeletePopup,
-      isDeleteAllDisabled, // Expose the computed property
-      navigateToGeneratedItinerary,
-      toggleItinerary,
-      toggleModal,
-      isPlaceInItinerary,
-      removePlace,
-      filterPlaces,
       deleteAllPlaces,
-      confirmDeleteAllPlaces,
-      toggleDeletePopup,
-      AppNavbar
+      cardRefs, // Return cardRefs for use in the template
     };
   },
 };
@@ -323,7 +418,6 @@ h2 {
   /* High enough to overlap the navbar */
 }
 
-
 .modal-content {
   background: white;
   padding: 20px;
@@ -335,7 +429,6 @@ h2 {
   overflow-y: auto;
   /* Enable vertical scrolling */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
 }
 
 .modal-image {
@@ -348,42 +441,45 @@ h2 {
 
 /* Other styles remain unchanged */
 
+.card-container {
+  flex: 0 0 auto;
+  /* Fixed width for the cards, they won't grow */
+  max-width: 265px;
+  /* Ensures the cards stay at 265px */
+  margin: 0px;
+  /* Adds spacing between cards */
+}
+
 .card-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 15px;
-  padding: 20px;
-}
-
-.card-container {
-  flex: 0 0 auto;
-  max-width: 265px;
-  width: 100%;
+  /* Allows cards to wrap onto the next row */
+  justify-content: center;
+  /* Align the cards to the left */
+  gap: 17px;
+  /* Space between cards */
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  height: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
-
 .destination-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Ensures the button is at the bottom */
-  height: 400px; /* Set the fixed height for all cards */
+  justify-content: space-between;
+  /* Ensures the button is at the bottom */
+  height: 450px;
+  /* Set the fixed height for all cards */
   padding: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 .card-body {
   flex-grow: 1;
@@ -394,17 +490,19 @@ h2 {
 }
 
 .button-container {
-  position: relative;
-  margin-top: 10px; /* Ensures there is space between the content and the button */
   display: flex;
-  justify-content: center; /* Center the button horizontally */
+  justify-content: center;
+  /* Center the button horizontally */
+  margin-top: auto;
+  /* Pushes the button to the bottom */
 }
 
 .itinerary-button {
-  width: 100%; /* Makes the button take the full width */
-  padding: 10px; /* Add some padding for a larger clickable area */
+  width: 100%;
+  /* Makes the button take the full width */
+  padding: 10px;
+  /* Add some padding for a larger clickable area */
 }
-
 
 .destination-card:hover {
   transform: translateY(-5px);
@@ -412,7 +510,6 @@ h2 {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   /* Enhanced shadow with darker effect */
 }
-
 
 .card-img-top {
   width: 100%;
@@ -477,13 +574,9 @@ h2 {
   /* Rounded corners */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   /* Enhanced shadow with darker effect */
-  /* Shadow effect */
-  /* transition: opacity 0.3s ease; */
-  /* Transition for fading effects */
   transform: translateY(-5px);
   /* Lift effect on hover */
 }
-
 
 .itinerary-page {
   font-family: "Roboto", sans-serif;
@@ -491,20 +584,8 @@ h2 {
   padding: 0;
 }
 
+
 .sticky-top {
-  top: 0;
-  position: sticky;
-  z-index: 1020; /* Higher z-index to ensure navbar stays above other elements */
-  background-color: black; /* Ensure the background remains black */
-}
-
-.content {
-  padding: 20px;
-  /* Ensure enough space for scrolling */
-  min-height: 150vh; /* Adjust as needed for testing */
-}
-
-.sticky-header {
   position: sticky;
   top: 0;
   background-color: white;
@@ -577,23 +658,34 @@ h2 {
   width: 150px;
 }
 
-.list-enter-active, .list-leave-active {
+.list-enter-active,
+.list-leave-active {
   transition: all 0.5s ease;
 }
-.list-enter, .list-leave-to /* .list-leave-active in <2.1.8 */ {
+
+.list-enter,
+.list-leave-to
+
+/* .list-leave-active in <2.1.8 */
+  {
   opacity: 0;
   transform: translateY(30px);
 }
+
 .list-move {
   transition: transform 0.5s ease;
 }
 
 .transition-wrapper {
-  display: flex;        /* Ensure that transition group behaves like flexbox */
-  flex-wrap: wrap;     /* Allow items to wrap */
-  justify-content: flex-start; /* Align items to the start */
-  gap: 15px;           /* Optional: space between items */
-  padding: 20px;       /* Optional: padding around the grid */
+  display: flex;
+  /* Ensure that transition group behaves like flexbox */
+  flex-wrap: wrap;
+  /* Allow items to wrap */
+  justify-content: flex-start;
+  /* Align items to the start */
+  gap: 15px;
+  /* Optional: space between items */
+  padding: 20px;
+  /* Optional: padding around the grid */
 }
-
 </style>

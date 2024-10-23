@@ -83,11 +83,18 @@ const itineraryState = reactive({
     itinerary: [],
 
     async loadItinerary(userId) {
-        const userDoc = await getDoc(doc(db, "users", userId));
-        if (userDoc.exists()) {
-            this.itinerary = userDoc.data().generatedItineraries || [];
-        } else {
-            console.log("No itineraries found.");
+        console.log(`Loading itinerary for user: ${userId}`);
+        try {
+            const snapshot = await db.collection('itineraries').doc(userId).get();
+            if (snapshot.exists) {
+                this.itinerary = snapshot.data().places; // Adjust based on your actual data structure
+                console.log('Itinerary loaded:', this.itinerary);
+            } else {
+                console.log('No itinerary found for this user.');
+                this.itinerary = []; // Ensure it's an empty array if no data found
+            }
+        } catch (error) {
+            console.error('Error loading itinerary:', error);
         }
     },
 
