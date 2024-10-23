@@ -134,7 +134,7 @@ export default {
     });
 
     
-    // this will save the itinerary list to the firebase
+    //save itinerary to firestore
     const saveItinerary = async () => {
       console.log('start saving itinerary');
       console.log(itinerary.value);

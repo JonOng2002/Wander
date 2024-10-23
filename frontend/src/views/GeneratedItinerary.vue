@@ -19,15 +19,16 @@
     <div v-else class="main-content row g-0">
       <!-- Left Side: Itinerary Details -->
       <div class="col-md-6 col-12 itinerary-details">
-        <div class="row justify-content-between align-items-center g-0">
-          <div class="col-12 date-column">
-            <p>Review our recommendations</p>
-            <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2> <!-- User's name -->
-            <p>{{ country }} • {{ getNumDays }} days</p> <!-- Country and number of days -->
-          </div>
-          <!-- Save Itinerary button -->  
-          <!-- <button class="save-button">Save Itinerary</button> -->
+        <div class="row justify-content-between align-items-center g-0" style="position: relative;">
+        <div class="col-12 date-column">
+          <p>Review our recommendations</p>
+          <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2>
+          <p>{{ country }} • {{ getNumDays }} days</p>
         </div>
+        
+        <!-- Save Itinerary button -->
+        <button @click="navigateToSavedItinerary" type="button" class="save-button">Save Itinerary</button>
+      </div>
         <div v-for="(places, dayIndex) in splitIntoDays(generatedItinerary)" :key="dayIndex" class="day-section">
           <div class="day-header">Day {{ dayIndex + 1 }}</div>
           <p class="day-description">
@@ -62,11 +63,12 @@
 
 <script>
 import { ref } from "vue";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { setDoc } from "firebase/firestore";
 import { GoogleMap, Marker } from 'vue3-google-map';
 import { onMounted, computed } from "vue"; // Ensure computed is imported
+import router from "@/router";
 
 export default {
   name: "GeneratedItinerary",
@@ -160,6 +162,39 @@ export default {
       }
     });
 
+    // Function to save the itinerary to the Firestore database
+    const saveItinerary = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      const userId = user.uid;
+      const itineraryToSave = {
+        itinerary: generatedItinerary.value,  // Itinerary data
+        country: country.value,                // Country name
+        numDays: getNumDays.value,           // Number of days
+        savedAt: new Date().toISOString()    // Timestamp for when the itinerary was saved
+      };
+
+      try {
+        await updateDoc(doc(db, "users", userId), {
+          savedItineraries: arrayUnion(itineraryToSave) // Add the itinerary to the saved itineraries
+        });
+        console.log("Itinerary saved to savedItineraries successfully");
+      } catch (error) {
+        console.error("Error saving itinerary:", error);
+      }
+    } else {
+      console.error("User is not authenticated");
+    }
+  };
+
+  const navigateToSavedItinerary = () => {
+    saveItinerary();
+    router.push({ name: "SavedItinerary" });
+  }
+
+
+
     return {
       generatedItinerary,
       loading,
@@ -167,6 +202,7 @@ export default {
       generateTime,
       getNumDays,
       mapCenter,
+      navigateToSavedItinerary,
       userName,  // Return userName to template
       country,   // Return country to template
     };
@@ -198,17 +234,20 @@ h2 {
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
-  position: absolute; /* Make the button position absolute */
-  top: 0; /* Align it to the top */
-  right: 0; /* Align it to the right */
-  margin-top: 20px; /* Add some margin from the top */
-  margin-right: 50px; /* Adjust the space from the right to position the button */
+  display: inline-block; /* Change to inline-block to avoid full-width */
+  margin-top: 20px; /* Adjust this value to align it vertically as you prefer */
+  margin-right: 20px; /* Adjust the space from the right to position the button */
+  float: right; /* This will push the button to the right */
   z-index: 1000; /* Ensure it's above other content */
+  max-width: fit-content; /* Ensure the width fits the button content */
 }
 
 .save-button:hover {
   background-color: #555; /* Darker background on hover */
 }
+
+
+
 
 .no-itinerary-message {
   text-align: center;
