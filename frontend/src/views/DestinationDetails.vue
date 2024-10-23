@@ -1,4 +1,4 @@
-  <template>
+<template>
   <div class="destination-details">
     <div class="header-row">
       <button @click="goBack" class="btn back-button">Back to Destinations</button>
@@ -54,7 +54,7 @@ export default {
       attractions: [],
       loading: true,
       country: this.$route.params.country,
-      apiKey: 'AIzaSyCv4guJix6s5zFZjK2GokfshsfqlLAU3Lg',
+      apiKey: 'YOUR_API_KEY',
       cityName: this.$route.params.city || 'Unknown City',
       userId: null,
       showPopup: false,
