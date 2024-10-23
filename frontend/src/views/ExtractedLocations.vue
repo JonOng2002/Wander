@@ -118,7 +118,7 @@ const handlePlaceSaved = () => {
 
 // Load Google Maps API
 const loader = new Loader({
-  apiKey: 'AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k',
+  apiKey: 'AIzaSyDEQN9ULsxP4GwlXzrw7APt0kEssS08qbU',
   version: 'weekly',
   libraries: ['places'],
 });
