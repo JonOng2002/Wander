@@ -98,9 +98,10 @@ export default {
           name: "Italy",
           code: "IT",
           place: "Rome",
-          image: require("@/assets/countries/italy.jpeg"),
+          image: new URL('@/assets/countries/italy.jpeg', import.meta.url).href,
           description:
             "Rome is the cradle of Western civilization, home to iconic sites like the Colosseum and the Vatican.",
+
         },
         {
           name: "Japan",
