@@ -22,17 +22,18 @@
         <li class="list-group-item">Latitude: {{ locationInfo.coordinates.latitude }}</li>
         <li class="list-group-item">Longitude: {{ locationInfo.coordinates.longitude }}</li>
       </ul>
-      <!-- Google Map displaying the location -->
-      <div id="location-map" class="map">
+
+      <!-- Ensure Google Maps API is loaded and locationInfo is available before rendering -->
+      <div v-if="apiPromiseResolved && locationInfo && locationInfo.coordinates">
         <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
           :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }" :zoom="15">
-          <Marker :options="{ position: center }" />
+          <Marker :options="{ position: { lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude } }" />
         </GoogleMap>
       </div>
     </div>
-    
+
     <hr>
-    <div class="card-body pt-0">
+    <div class="card-body pt-0" v-if="userId">
       <save-place-button class='btn btn-dark' @place-saved="handlePlaceSaved"
         :placeName="locationInfo.place_name" :country="locationInfo.country"
         :city="locationInfo.city" :latitude="locationInfo.coordinates.latitude"
@@ -40,11 +41,6 @@
         :activities="locationInfo.activities" :summary="locationInfo.summary" :savedPlaces="savedPlaces">
       </save-place-button>
     </div>
-  </div>
-
-  <!-- Popup for confirmation -->
-  <div v-if="showPopup" class="popup">
-    <p>Added to saved places!</p>
   </div>
 
   <!-- Related Places Section -->
@@ -65,16 +61,16 @@
             <li class="list-group-item">Latitude: {{ place.coordinates.latitude }}</li>
             <li class="list-group-item">Longitude: {{ place.coordinates.longitude }}</li>
           </ul>
-          <!-- Google Map displaying the location -->
-          <div id="location-map" class="map">
+          <!-- Ensure Google Maps API is loaded and place coordinates are available before rendering the map -->
+          <div v-if="apiPromiseResolved && place.coordinates">
             <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
               :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
-              <Marker :options="{ position: center }" />
+              <Marker :options="{ position: { lat: place.coordinates.latitude, lng: place.coordinates.longitude } }" />
             </GoogleMap>
           </div>
         </div>
         <hr>
-        <div class="card-body pt-0">
+        <div class="card-body pt-0" v-if="userId">
           <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved"
             :placeName="place.place_name" :country="place.country"
             :city="place.city" :latitude="place.coordinates.latitude"
@@ -118,7 +114,7 @@ const handlePlaceSaved = () => {
 
 // Load Google Maps API
 const loader = new Loader({
-  apiKey: 'AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k',
+  apiKey: 'AIzaSyDEQN9ULsxP4GwlXzrw7APt0kEssS08qbU',
   version: 'weekly',
   libraries: ['places'],
 });
@@ -153,6 +149,10 @@ const generateNavItems = () => {
 const handleScroll = () => {
   const sections = document.querySelectorAll('.card');
   const links = document.querySelectorAll('.nav-link');
+
+  if (sections.length === 0 || links.length === 0) {
+    return; // Prevent errors if elements are not found
+  }
 
   sections.forEach((section) => {
     const rect = section.getBoundingClientRect();

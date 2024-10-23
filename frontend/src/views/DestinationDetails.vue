@@ -86,6 +86,7 @@ export default {
 
       try {
         const response = await axios.get(url);
+        console.log("Fetched attractions:", response.data.results);
         this.attractions = response.data.results.map((place) => ({
           name: place.name,
           place_id: place.place_id,
@@ -235,6 +236,10 @@ export default {
               name: attraction.name || 'Unknown',
               vicinity: attraction.vicinity || 'Unknown vicinity',
               image: attraction.image || '/default-image.jpg',
+              coordinates: {
+                latitude: attraction.latitude,
+                longitude: attraction.longitude
+              }
             };
 
             await setDoc(
