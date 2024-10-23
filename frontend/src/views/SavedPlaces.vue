@@ -103,6 +103,7 @@ export default {
     const db = getFirestore();
     const router = useRouter();
 
+    //gettting data from firestore and stroing it in savedPlaces
     onMounted(async () => {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -132,7 +133,31 @@ export default {
       }
     });
 
+    
+    // this will save the itinerary list to the firebase
+    const saveItinerary = async () => {
+      console.log('start saving itinerary');
+      console.log(itinerary.value);
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const userId = user.uid;
+      const userRef = doc(db, "users", userId);
+      try {
+        await setDoc(
+          userRef, 
+          { generatedItinerary: [...itinerary.value] }, 
+          { merge: true }
+        );
+        console.log('setdoc engaged');
+      } catch (error) {
+        console.error("Error saving itinerary:", error);
+      } finally {
+        console.log('end saving itinerary');
+      }
+    };
+
     const navigateToGeneratedItinerary = () => {
+      saveItinerary();
       router.push({ name: 'GeneratedItinerary' });
     };
 

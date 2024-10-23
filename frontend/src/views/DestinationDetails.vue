@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="destination-details">
     <div class="header-row">
       <button @click="goBack" class="btn back-button">Back to Destinations</button>
