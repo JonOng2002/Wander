@@ -1,9 +1,7 @@
 <template>
   <div class="itinerary-page">
     <div class="sticky-top">
-      <div
-        class="row justify-content-between align-items-center sticky-header g-0"
-      >
+      <div class="row justify-content-between align-items-center sticky-header g-0">
         <div class="col-3 date-column">
           <h2>My Saved Places</h2>
           <div class="filter-dropdown d-flex align-items-center">
@@ -12,147 +10,72 @@
               <option value="alphabetical">Filter by Alphabet</option>
               <option value="recently-added">Filter by Recently Added</option>
             </select>
-            <button
-              @click="deleteAllPlaces"
-              :disabled="isDeleteAllDisabled"
-              class="btn btn-delete-all"
-            >
+            <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
               Delete All
             </button>
           </div>
         </div>
         <div class="col-auto generateButton">
-          <button
-            @click="toggleModal"
-            type="button"
-            class="btn btn-secondary view-itinerary-btn"
-          >
-            View Itinerary
-          </button>
-          <button
-            @click="navigateToGeneratedItinerary"
-            type="button"
-            class="btn btn-primary"
-          >
-            View Full Itinerary
-          </button>
+          <button @click="toggleModal" type="button" class="btn btn-secondary view-itinerary-btn">View
+            Itinerary</button>
+          <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">View Full
+            Itinerary</button>
         </div>
       </div>
     </div>
-  </div>
 
-  <div v-if="loading" class="empty-message">Loading saved places...</div>
-  <div
-    v-else-if="filteredPlaces && filteredPlaces.length === 0"
-    class="empty-message"
-  >
-    <p>No places saved yet.</p>
-  </div>
+    <div v-if="loading" class="empty-message">Loading saved places...</div>
+    <div v-else-if="filteredPlaces && filteredPlaces.length === 0" class="empty-message">
+      <p>No places saved yet.</p>
+    </div>
 
-  <div v-else class="card-grid">
-    <transition-group name="list" tag="div" class="transition-wrapper">
-      <div
-        v-for="place in filteredPlaces"
-        :key="place.place_id"
-        class="card-container"
-        ref="cardRefs"
-      >
-        <div class="card destination-card">
-          <button
-            @click="removePlace(place)"
-            type="button"
-            class="btn close-button"
-          >
-            X
-          </button>
-          <img
-            :src="place.image"
-            class="card-img-top"
-            alt="Image of {{ place.name }}"
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ place.name }}</h5>
-            <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
-            <div class="button-container">
-              <button
-                @click="toggleItinerary(place, $event)"
-                type="button"
-                class="btn itinerary-button"
-              >
-                {{
-                  isPlaceInItinerary(place)
-                    ? "Remove from Itinerary"
-                    : "Add to Itinerary"
-                }}
-              </button>
+    <div v-else class="card-grid">
+      <transition-group name="list" tag="div" class="transition-wrapper">
+        <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs">
+          <div class="card destination-card">
+            <button @click="removePlace(place)" type="button" class="btn close-button">X</button>
+            <img :src="place.image" class="card-img-top" alt="Image of {{ place.name }}" />
+            <div class="card-body">
+              <h5 class="card-title">{{ place.name }}</h5>
+              <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
+              <div class="button-container">
+                <button @click="toggleItinerary(place, $event)" type="button" class="btn itinerary-button">
+                  {{ isPlaceInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </transition-group>
-  </div>
-
-  <div v-if="showModal" class="modal-overlay" @click.self="toggleModal">
-    <div class="modal-content">
-      <h3>Your Itinerary</h3>
-      <ol class="list-group list-group-numbered">
-        <li
-          class="list-group-item"
-          v-for="(item, index) in itinerary"
-          :key="index"
-        >
-          <img
-            :src="item.image"
-            class="modal-image"
-            alt="Image of {{ item.name }}"
-          />
-          {{ item.name }} - {{ item.vicinity }}
-        </li>
-      </ol>
-      <button @click="navigateToGeneratedItinerary" class="btn mb-2">
-        View Full Itinerary
-      </button>
-      <button @click="toggleModal" type="button" class="btn close-modal-btn">
-        Close
-      </button>
+      </transition-group>
     </div>
 
-    <!-- Delete confirmation modal -->
-    <transition name="modal">
-      <div
-        v-if="showDeletePopup"
-        class="modal-overlay"
-        @click.self="toggleDeletePopup"
-      >
-        <div class="modal-content">
-          <h3>Are you sure you want to delete all saved places?</h3>
-          <button
-            @click="confirmDeleteAllPlaces"
-            type="button"
-            class="btn mb-2"
-          >
-            Yes, Delete All
-          </button>
-          <button
-            @click="toggleDeletePopup"
-            type="button"
-            class="btn close-modal-btn"
-          >
-            Cancel
-          </button>
-        </div>
+    <div v-if="showModal" class="modal-overlay" @click.self="toggleModal">
+      <div class="modal-content">
+        <h3>Your Itinerary</h3>
+        <ol class="list-group list-group-numbered">
+          <li class="list-group-item" v-for="(item, index) in itinerary" :key="index">
+            <img :src="item.image" class="modal-image" alt="Image of {{ item.name }}" />
+            {{ item.name }} - {{ item.vicinity }}
+          </li>
+        </ol>
+        <button @click="navigateToGeneratedItinerary" class="btn mb-2">View Full Itinerary</button>
+        <button @click="toggleModal" type="button" class="btn close-modal-btn">Close</button>
       </div>
-    </transition>
+    </div>
+
+    <div v-if="showDeletePopup" class="modal-overlay" @click.self="toggleDeletePopup">
+      <div class="modal-content">
+        <h3>Are you sure you want to delete all saved places?</h3>
+        <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">Yes, Delete All</button>
+        <button @click="toggleDeletePopup" type="button" class="btn close-modal-btn">Cancel</button>
+      </div>
+    </div>
 
     <div class="popup-container">
       <div v-if="showPopup" class="popup">
         <p>Added to itinerary!</p>
       </div>
-      <div
-        v-if="showRemovePopup"
-        class="popup"
-        style="background-color: #f44336"
-      >
+      <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
         <p>Removed from itinerary!</p>
       </div>
     </div>
@@ -160,7 +83,7 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, onMounted } from 'vue';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
@@ -177,27 +100,9 @@ export default {
     const showRemovePopup = ref(false);
     const showModal = ref(false);
     const showDeletePopup = ref(false);
-    const visibleCards = ref([]); // Initialize visibleCards
-    const initialRender = ref(true); // Initialize initialRender
     const db = getFirestore();
     const router = useRouter();
     const cardRefs = ref([]); // Create a ref for card references
-
-    // Observe cards to trigger animations when they appear
-    const observeCards = () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Add any animation or class when the card enters the viewport
-            entry.target.classList.add('visible');
-          }
-        });
-      });
-
-      cardRefs.value.forEach((card) => {
-        observer.observe(card);
-      });
-    };
 
     // Fetching data from Firestore and storing it in savedPlaces
     onMounted(async () => {
@@ -206,7 +111,7 @@ export default {
 
       if (user) {
         const userId = user.uid;
-        const userRef = doc(db, 'users', userId);
+        const userRef = doc(db, "users", userId);
 
         try {
           const userDoc = await getDoc(userRef);
@@ -219,26 +124,12 @@ export default {
             filteredPlaces.value = [];
           }
         } catch (error) {
-          console.error('Error fetching saved places:', error);
+          console.error("Error fetching saved places:", error);
         } finally {
           loading.value = false;
         }
-
-        nextTick(() => {
-          observeCards(); // Correctly calling observeCards
-          setTimeout(() => {
-            savedPlaces.value.forEach((place, index) => {
-              setTimeout(() => {
-                visibleCards.value.push(place.place_id);
-              }, index * 200);
-            });
-            setTimeout(() => {
-              initialRender.value = false;
-            }, savedPlaces.value.length * 200);
-          }, 100);
-        });
       } else {
-        console.error('User is not authenticated');
+        console.error("User is not authenticated");
         loading.value = false;
       }
     });
@@ -289,7 +180,7 @@ export default {
     };
 
     const toggleDeletePopup = () => {
-      showDeletePopup.value = !showDeletePopup.value;
+      showDeletePopup.value = !showDeletePopup.value; // Toggle delete confirmation popup
     };
 
     const toggleItinerary = async (place, event) => {
@@ -314,8 +205,8 @@ export default {
             vicinity: place.vicinity,
             country: place.country,
             coordinates: {
-              latitude: place.coordinates.latitude,
-              longitude: place.coordinates.longitude
+              latitude: place.coordinates.latitude,   // Include latitude
+              longitude: place.coordinates.longitude   // Include longitude
             }
           };
 
@@ -353,6 +244,7 @@ export default {
       }
     };
 
+    // Ensure modal remains open if the place is still in generatedItineraries
     const toggleModal = async () => {
       showModal.value = !showModal.value;
 
@@ -390,16 +282,19 @@ export default {
 
         if (user) {
           const userId = user.uid;
-          const userRef = doc(db, 'users', userId);
+          const userRef = doc(db, "users", userId);
 
           setDoc(userRef, { savedPlaces: savedPlaces.value }, { merge: true })
             .then(() => {
+              console.log("Firestore updated successfully.");
               togglePopup('remove');
             })
             .catch((error) => {
-              console.error('Error updating Firestore:', error);
+              console.error("Error updating Firestore:", error);
             });
         }
+      } else {
+        console.log("Place not found in saved places.");
       }
     };
 
@@ -423,7 +318,7 @@ export default {
     };
 
     const confirmDeleteAllPlaces = async () => {
-      toggleDeletePopup();
+      toggleDeletePopup(); // Immediately hide the popup
 
       const cardContainers = document.querySelectorAll(".card-container");
 
@@ -471,8 +366,8 @@ export default {
             vicinity: place.vicinity,
             country: place.country,
             coordinates: {
-              latitude: place.coordinates.latitude,
-              longitude: place.coordinates.longitude
+              latitude: place.coordinates.latitude,   // Include latitude
+              longitude: place.coordinates.longitude   // Include longitude
             }
           })
         });
@@ -480,6 +375,7 @@ export default {
         console.error("Error updating itinerary in Firebase:", error);
       }
     };
+
 
     return {
       savedPlaces,
@@ -503,33 +399,33 @@ export default {
       saveItinerary,
       cardRefs, // Return cardRefs for use in the template
     };
-  }
+  },
 };
 </script>
 
 
+
 <style scoped>
-/* General Page Styles */
-.itinerary-page {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  padding: 0;
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: bolder;
 }
 
-.sticky-top {
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  /* Keep the modal overlay fixed */
   top: 0;
-  position: sticky;
-  z-index: 1020;
-  background-color: black;
-}
-
-.sticky-header {
-  position: sticky;
-  top: 0;
-  background-color: white;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  /* Dark background for the overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
-  padding: 10px 5%;
-  border-bottom: 1px solid lightgrey;
+  /* High enough to overlap the navbar */
 }
 
 .modal-content {
@@ -545,20 +441,15 @@ export default {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.generateButton {
-  text-align: right;
-  padding-right: 5%;
-  font-size: 1.5rem;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.modal-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  /* Keep the height consistent */
+  object-fit: cover;
 }
 
-.empty-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: grey;
-  margin-top: 20px;
-}
+/* Other styles remain unchanged */
 
 .card-container {
   flex: 0 0 auto;
@@ -625,33 +516,36 @@ export default {
 
 .destination-card:hover {
   transform: translateY(-5px);
+  /* Lift effect on hover */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  /* Enhanced shadow with darker effect */
 }
 
 .card-img-top {
   width: 100%;
   height: 200px;
+  /* Fixed height for consistency */
   object-fit: cover;
 }
 
 .card-body {
   padding: 10px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
-/* Button Styles */
 .btn {
   background-color: black;
+  /* Set button color to black */
   color: white;
+  /* Keep the text color white for contrast */
   border: none;
+  /* Remove default border */
 }
 
 .btn:hover {
   background-color: #333;
+  /* Darker color on hover for visual feedback */
   color: white;
+  /* Keep the text color white on hover */
 }
 
 .close-modal-btn:hover {
@@ -700,6 +594,7 @@ export default {
   padding: 0;
 }
 
+
 .sticky-top {
   position: sticky;
   top: 0;
@@ -713,7 +608,7 @@ export default {
   text-align: left;
   padding-left: 15px;
   /* Increase padding to move it left */
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   /* Change to your desired font */
   font-size: 1.5rem;
   /* Adjust font size if necessary */
@@ -739,42 +634,38 @@ export default {
 .close-button {
   position: absolute;
   top: 10px;
+  /* Adjust as needed */
   right: 10px;
+  /* Adjust as needed */
   background: transparent;
+  /* No background */
   border: none;
+  /* No border */
   color: white;
+  /* Color of the 'X' */
   font-size: 1.2rem;
+  /* Adjust size */
   cursor: pointer;
+  /* Pointer cursor */
   z-index: 1;
+  /* Ensure it is on top */
 }
 
 .close-button:hover {
   color: white;
+  /* Change color on hover */
 }
 
-/* Modal Styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+.filter-dropdown {
+  margin: 10px 0;
 }
 
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 500px;
+.filter-dropdown .form-select {
   width: 100%;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-delete-all {
+  width: 150px;
 }
 
 .list-enter-active,
@@ -785,7 +676,8 @@ export default {
 .list-enter,
 .list-leave-to
 
-/* .list-leave-active in <2.1.8 */ {
+/* .list-leave-active in <2.1.8 */
+  {
   opacity: 0;
   transform: translateY(30px);
 }
