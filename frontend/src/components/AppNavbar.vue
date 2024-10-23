@@ -32,6 +32,53 @@
             <img src="@/assets/profilepic.png" alt="Profile" class="profile-pic img-fluid">
           </router-link>
         </li>
+        <li>
+          <img src="@/assets/profilepic.png" class="user-pic" alt="user-pic" @click="toggleMenu">
+
+          <div class="sub-menu-wrap" :class="{ 'open-menu': isMenuOpen}"  id="subMenu">
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="@/assets/profilepic.png">
+                <h3>Ke Ping Fan</h3>
+
+                <div class="user-email">
+                  <h4>kepingfan@gmail.com</h4>
+                </div>
+
+              </div>
+
+              <hr>
+
+              <a href="#" class="sub-menu-link">
+                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="">
+                        <p>Edit Profile</p>
+                        <span>></span>
+                    </a>
+
+                    
+                    <a href="#" class="sub-menu-link">
+                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="">
+                        <p>Settings</p>
+                        <span>></span>
+                    </a>
+
+                    
+                    <a href="#" class="sub-menu-link">
+                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="">
+                        <p>Help</p>
+                        <span>></span>
+                    </a>
+
+                    
+                    <a href="#" class="sub-menu-link">
+                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="">
+                        <p>Logoout</p>
+                        <span>></span>
+                    </a>
+
+            </div>
+          </div>
+        </li>
         
       </ul>
     </div>
@@ -41,7 +88,21 @@
 <script>
 export default {
   name: 'AppNavbar',
+  data() {
+    return {
+      isMenuOpen: false // Initialize the menu state
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen; // Toggle the menu state
+    }
+  },
 };
+
+
+
+
 </script>
 
 <style scoped>
@@ -142,4 +203,114 @@ export default {
   z-index: 1020; /* Higher z-index to ensure navbar stays above other elements */
   background-color: black; /* Ensure the background remains black */
 }
+
+/*====== USER PROFILE MENU ======*/
+.user-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 30px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.sub-menu-wrap{
+        position: absolute;
+        top: 100%;
+        right: 9%;
+        width: 320px;
+        max-height: 0px;
+        overflow: hidden;
+        transition: max-height 0.6s;
+    }
+
+    .sub-menu-wrap.open-menu{
+        max-height: 400px;
+    }
+
+    .sub-menu{
+        background: #fff;
+        padding: 20px;
+        margin: 8px;
+        border-radius: 5%;
+        
+
+    }
+
+    .user-info{
+        display: flex;
+        align-items: center;
+
+    }
+
+    .user-info h3{
+        font-weight: 500;
+
+    }
+
+    .user-email {
+        
+        position:   absolute;
+        margin-top: 15%;
+        margin-left: 23.9%;
+    }
+
+    .user-email h4{
+        font-weight: 300;
+        font-size: 14px;
+    }
+
+    .user-info img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .sub-menu hr{
+        height: 1px;
+        border: 0;
+        width: 100%;
+        background: #ccc;
+        margin: 15px 0 10px;
+    }
+
+    .sub-menu-link{
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .sub-menu-link p{
+        
+        flex: 1;
+        margin: 0;
+    }
+
+    .sub-menu-link img{
+        width: 40px;
+        height: 40px;
+        background: #e5e5e5;
+        margin-right: 15px;
+        border-radius: 50%;
+        padding: 8px;
+    }
+
+    .sub-menu-link span{
+        font-size: 22px;
+        transition: transform 0.3s;
+
+    }
+
+    .sub-menu-link:hover span{
+        transform: translateX(5px);
+    }
+
+    .sub-menu-link:hover p{
+        font-weight: 600;
+    }
+
+
 </style>
