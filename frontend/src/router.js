@@ -5,6 +5,7 @@ import SavedPlaces from '@/views/SavedPlaces.vue';
 import MainPage from '@/views/MainPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
+import SavedItinerary from '@/views/SavedItinerary.vue';
 import LogIn from '@/views/LogIn.vue'; // Import LogIn component
 import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
@@ -20,7 +21,8 @@ const routes = [
   { path: '/about', name: 'About', component: AboutPage },
   { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
-  { path: '/itinerary', name: 'GeneratedItinerary', component: GeneratedItinerary },
+  { path: '/myitinerary', name: 'GeneratedItinerary', component: GeneratedItinerary },
+  { path: '/saveditinerary', name: 'SavedItinerary', component: SavedItinerary },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
   {

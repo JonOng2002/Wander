@@ -1,63 +1,66 @@
 <template>
-  <div class="generated-itinerary">
+<div class="created-itinerary">
     <AppNavbar class="sticky-top"></AppNavbar>
 
     <!-- If Loading /generatedItinerary is empty -->
     <div v-if="loading" class="empty-message">Loading itinerary...</div>
     <div v-else-if="!generatedItinerary.length" class="empty-message">
-      <div class="row justify-content-between align-items-center sticky-header g-0">
+    <div class="row justify-content-between align-items-center sticky-header g-0">
         <div class="col-3 date-column">
-          <h2>My Itineraries</h2>
+        <h2>My Itineraries</h2>
         </div>
-      </div>
-      <div class="no-itinerary-message">
+    </div>
+    <div class="no-itinerary-message">
         <p>No itinerary generated. Please <router-link to="/savedPlaces">add places</router-link> to generate an itinerary.</p>
-      </div>
+    </div>
     </div>
 
     <!-- When Itinerary exists -->
     <div v-else class="main-content row g-0">
-      <!-- Left Side: Itinerary Details -->
-      <div class="col-md-6 col-12 itinerary-details">
+    <!-- Left Side: Itinerary Details -->
+    <div class="col-md-6 col-12 itinerary-details">
         <div class="row justify-content-between align-items-center g-0">
-          <div class="col-12 date-column">
+        <div class="col-12 date-column">
             <p>Review our recommendations</p>
             <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2> <!-- User's name -->
             <p>{{ country }} • {{ getNumDays }} days</p> <!-- Country and number of days -->
-          </div>
-          <!-- Save Itinerary button -->  
-          <!-- <button class="save-button">Save Itinerary</button> -->
+            <div class="col-3 save-itinerary-btn-container">
+                <button @click="saveItinerary" class="btn save-itinerary-btn">Save Itinerary</button>
+            </div>
+        </div>
+        <!-- Save Itinerary button -->  
+        <!-- <button class="save-button">Save Itinerary</button> -->
         </div>
         <div v-for="(places, dayIndex) in splitIntoDays(generatedItinerary)" :key="dayIndex" class="day-section">
-          <div class="day-header">Day {{ dayIndex + 1 }}</div>
-          <p class="day-description">
+        <div class="day-header">Day {{ dayIndex + 1 }}</div>
+        <p class="day-description">
             Embark on a captivating journey through Japan’s diverse cultural and historical gems. Your adventure begins with a visit to the Cup Noodles Museum Yokohama, a fascinating tribute to the history of instant noodles and innovation in the world of food. Immerse yourself in interactive exhibits that showcase the humble beginnings of this global staple, while also crafting your personalized cup noodles as a souvenir.
 
             Following this, unwind at Shichifuku No Yu, a tranquil hot spring located in Toda. This peaceful retreat offers an authentic Japanese bathing experience where you can relax and rejuvenate in mineral-rich baths amidst serene surroundings. Next, you will step into history at Aoyama Cemetery, one of Tokyo’s most scenic and culturally significant cemeteries. Take a quiet walk along the cherry blossom-lined paths and reflect on the graves of prominent figures in Japanese history, nestled within beautifully landscaped grounds that blend the solemn with the scenic.
-          </p>
-          <div class="itinerary-table">
+        </p>
+        <div class="itinerary-table">
             <div class="itinerary-row" v-for="(place, timeIndex) in places" :key="timeIndex">
-              <div class="time-column">{{ generateTime(timeIndex) }}</div>
-              <div class="place-column">
+            <div class="time-column">{{ generateTime(timeIndex) }}</div>
+            <div class="place-column">
                 <h5>{{ place.name }}</h5>
                 <p>{{ place.vicinity }}</p>
                 <img :src="place.image" class="place-image" :alt="place.name" />
-              </div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Right Side: Google Maps -->
-      <div class="col-md-6 col-12 map-container">
-        <div id="location-map" class="map">
-          <GoogleMap :center="mapCenter" :zoom="15" style="width: 100%; height: 100%">
-            <Marker v-for="place in generatedItinerary" :key="place.place_id" :position="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" />
-          </GoogleMap>
         </div>
-      </div>
     </div>
-  </div>
+
+    <!-- Right Side: Google Maps -->
+    <div class="col-md-6 col-12 map-container">
+        <div id="location-map" class="map">
+        <GoogleMap :center="mapCenter" :zoom="15" style="width: 100%; height: 100%">
+            <Marker v-for="place in generatedItinerary" :key="place.place_id" :position="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" />
+        </GoogleMap>
+        </div>
+    </div>
+    </div>
+</div>
 </template>
 
 <script>
@@ -69,12 +72,12 @@ import { GoogleMap, Marker } from 'vue3-google-map';
 import { onMounted, computed } from "vue"; // Ensure computed is imported
 
 export default {
-  name: "GeneratedItinerary",
-  components: {
+name: "GeneratedItinerary",
+components: {
     GoogleMap,
     Marker,
-  },
-  setup() {
+},
+setup() {
     const generatedItinerary = ref([]);
     const db = getFirestore();
     const userName = ref(""); // Define userName as a ref
@@ -85,92 +88,92 @@ export default {
 
     // Google Maps API initialization (directly in the component)
     const loadGoogleMaps = async () => {
-      const { Loader } = await import('@googlemaps/js-api-loader');
-      const loader = new Loader({
+    const { Loader } = await import('@googlemaps/js-api-loader');
+    const loader = new Loader({
         apiKey: 'AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE',  // Replace with your actual Google Maps API key
         version: 'weekly',
         libraries: ['places'],
-      });
+    });
 
-      loader.load().then(() => {
+    loader.load().then(() => {
         console.log('Google Maps API loaded successfully!');
-      }).catch((error) => {
+    }).catch((error) => {
         console.error('Error loading Google Maps API:', error);
-      });
+    });
     };
 
     // Helper function to assign time slots to places
     const generateTime = (index) => {
-      return timeSlots[index % timeSlots.length];
+    return timeSlots[index % timeSlots.length];
     };
 
     // Mock function to split itinerary into days, say each day has 4 places
     const splitIntoDays = (itinerary) => {
-      const days = [];
-      const daySize = 4;  // Number of places per day
-      for (let i = 0; i < itinerary.length; i += daySize) {
+    const days = [];
+    const daySize = 4;  // Number of places per day
+    for (let i = 0; i < itinerary.length; i += daySize) {
         days.push(itinerary.slice(i, i + daySize));
-      }
-      return days;
+    }
+    return days;
     };
 
     // Dynamically compute the number of days
     const getNumDays = computed(() => {
-      return Math.ceil(generatedItinerary.value.length / 4);
+    return Math.ceil(generatedItinerary.value.length / 4);
     });
 
     // Fetch data from Firestore
     onMounted(async () => {
-      loading.value = true;
-      const auth = getAuth();
-      const user = auth.currentUser;
+    loading.value = true;
+    const auth = getAuth();
+    const user = auth.currentUser;
 
-      if (user) {
+    if (user) {
         const userId = user.uid;
         const userRef = doc(db, "users", userId);
 
         try {
-          const userDoc = await getDoc(userRef);
-          if (userDoc.exists()) {
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
             generatedItinerary.value = userDoc.data().generatedItinerary || [];
 
             // If there are places, update the map center to the first place in the itinerary
             if (generatedItinerary.value.length > 0) {
-              const firstPlace = generatedItinerary.value[0];
-              country.value = firstPlace.country || "Unknown Location";  // Ensure that you have a country field in your data
-              mapCenter.value = { lat: firstPlace.coordinates.latitude, lng: firstPlace.coordinates.longitude };
+            const firstPlace = generatedItinerary.value[0];
+            country.value = firstPlace.country || "Unknown Location";  // Ensure that you have a country field in your data
+            mapCenter.value = { lat: firstPlace.coordinates.latitude, lng: firstPlace.coordinates.longitude };
             }
 
             // Fetch userName
             userName.value = user.displayName || "Guest";
-          } else {
+        } else {
             await setDoc(userRef, { generatedItinerary: [] });
-          }
+        }
         } catch (error) {
-          console.error("Error getting generatedItinerary:", error);
+        console.error("Error getting generatedItinerary:", error);
         } finally {
-          loading.value = false;
+        loading.value = false;
         }
 
         // Load Google Maps API
         loadGoogleMaps();
-      } else {
+    } else {
         console.error("User is not authenticated");
         loading.value = false;
-      }
+    }
     });
 
     return {
-      generatedItinerary,
-      loading,
-      splitIntoDays,
-      generateTime,
-      getNumDays,
-      mapCenter,
-      userName,  // Return userName to template
-      country,   // Return country to template
+    generatedItinerary,
+    loading,
+    splitIntoDays,
+    generateTime,
+    getNumDays,
+    mapCenter,
+    userName,  // Return userName to template
+    country,   // Return country to template
     };
-  },
+},
 };
 
 
@@ -178,172 +181,169 @@ export default {
 
 <style scoped>
 h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: bolder;
+font-family: 'Cormorant Garamond', serif;
+font-weight: bolder;
 }
 
 /* For the main destination title (e.g., "Honolulu") */
 .generated-itinerary h2 {
-  font-family: 'Cormorant Garamond', serif; /* Update font style */
-  font-size: 3rem; /* Larger font size for the destination */
-  font-weight: bold; /* Ensure boldness */
+font-family: 'Cormorant Garamond', serif; /* Update font style */
+font-size: 3rem; /* Larger font size for the destination */
+font-weight: bold; /* Ensure boldness */
 }
 
-.save-button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  position: absolute; /* Make the button position absolute */
-  top: 0; /* Align it to the top */
-  right: 0; /* Align it to the right */
-  margin-top: 20px; /* Add some margin from the top */
-  margin-right: 50px; /* Adjust the space from the right to position the button */
-  z-index: 1000; /* Ensure it's above other content */
+.save-itinerary-btn-container {
+    text-align: right;
 }
 
-.save-button:hover {
-  background-color: #555; /* Darker background on hover */
+.save-itinerary-btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.save-itinerary-btn:hover {
+    background-color: #555;
 }
 
 .no-itinerary-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: grey;
-  margin-top: 20px;
+text-align: center;
+font-size: 1.2rem;
+color: grey;
+margin-top: 20px;
 }
 
 /* For the subtext under the main title (e.g., 'Going solo . October . 4 days') */
 .date-column p {
-  font-family: 'Roboto', sans-serif; /* Update font style */
-  font-size: 1.2rem; /* Adjust font size */
-  color: #333; /* Darker color for the date information */
+font-family: 'Roboto', sans-serif; /* Update font style */
+font-size: 1.2rem; /* Adjust font size */
+color: #333; /* Darker color for the date information */
 }
 
 /* Main Layout */
 .main-content {
-  display: flex;
-  height: 100vh;
+display: flex;
+height: 100vh;
 }
 
 .generated-itinerary {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  padding: 0;
+font-family: "Roboto", sans-serif;
+margin: 0;
+padding: 0;
 }
 
 .sticky-top {
-  top: 0;
-  position: sticky;
-  z-index: 1020; /* Higher z-index to ensure navbar stays above other elements */
-  background-color: black; /* Ensure the background remains black */
+top: 0;
+position: sticky;
+z-index: 1020; /* Higher z-index to ensure navbar stays above other elements */
+background-color: black; /* Ensure the background remains black */
 }
 
 .sticky-header {
-  position: sticky;
-  top: 0;
-  background-color: white;
-  z-index: 1000;
-  padding: 10px 5%;
-  border-bottom: 1px solid lightgrey;
+position: sticky;
+top: 0;
+background-color: white;
+z-index: 1000;
+padding: 10px 5%;
+border-bottom: 1px solid lightgrey;
 }
 
 .date-column {
-  text-align: left;
-  padding-left: 15px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
-  margin-top: 10px;
-  margin-bottom: 10px;
+text-align: left;
+padding-left: 15px;
+font-family: 'Roboto', sans-serif;
+font-size: 1.5rem;
+margin-top: 10px;
+margin-bottom: 10px;
 }
 
 .itinerary-details {
-  height: 100vh;
-  overflow-y: scroll;
-  padding: 20px;
+height: 100vh;
+overflow-y: scroll;
+padding: 20px;
 }
 
 /* Remove the inner scrollbar */
 .itinerary-details::-webkit-scrollbar {
-  display: none;
+display: none;
 }
 
 /* Day Section Styling */
 .day-section {
-  margin-bottom: 20px;
-  background-color: #fdfdfd;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+margin-bottom: 20px;
+background-color: #fdfdfd;
+border-radius: 10px;
+padding: 20px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .day-header {
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+font-weight: bold;
+font-size: 1.5rem;
+margin-bottom: 10px;
 }
 
 .day-description {
-  margin-bottom: 20px;
-  color: #666;
+margin-bottom: 20px;
+color: #666;
 }
 
 /* Table Styling */
 .itinerary-table {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 10px;
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 10px;
+display: grid;
+grid-template-columns: 1fr 3fr;
+gap: 10px;
+background-color: #f8f9fa;
+padding: 15px;
+border-radius: 10px;
 }
 
 .itinerary-row {
-  display: contents; /* Each row with time and place */
+display: contents; /* Each row with time and place */
 }
 
 .time-column {
-  text-align: left;
-  font-weight: bold;
-  padding: 10px 0;
+text-align: left;
+font-weight: bold;
+padding: 10px 0;
 }
 
 .place-column {
-  padding: 10px 0;
+padding: 10px 0;
 }
 
 .place-column h5 {
-  font-size: 1.2rem;
-  margin: 0;
+font-size: 1.2rem;
+margin: 0;
 }
 
 .place-column img {
-  max-width: 150px;
-  border-radius: 8px;
+max-width: 150px;
+border-radius: 8px;
 }
 
 /* Map Styling */
 .map-container {
-  background-color: #F8F9FA;
-  height: 100vh;
-  position: relative;
-  overflow: hidden; /* Prevent scrolling in the map */
+background-color: #F8F9FA;
+height: 100vh;
+position: relative;
+overflow: hidden; /* Prevent scrolling in the map */
 }
 
 .map {
-  width: 100%;
-  height: 100%;
+width: 100%;
+height: 100%;
 }
 
 @media (max-width: 768px) {
-  /* Hide Map at Smaller Screens */
-  .map-container {
+/* Hide Map at Smaller Screens */
+.map-container {
     display: none;
-  }
+}
 }
 </style>
 

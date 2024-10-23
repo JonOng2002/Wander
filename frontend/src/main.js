@@ -44,7 +44,7 @@ setPersistence(auth, browserLocalPersistence).catch((error) => {
     console.error("Error setting persistence:", error);
 });
 
-// Global state for saved places and itinerary (using Firebase)
+// Global state for saved places and generated itinerary (using Firebase)
 const savedPlacesState = reactive({
     savedPlaces: [],
 
@@ -108,6 +108,36 @@ const itineraryState = reactive({
     }
 });
 
+const savedItineraryState = reactive({
+    toSaveitinerary: [],
+
+    async loadSavedItinerary(userId) {
+        const userDoc = await getDoc(doc(db, "users", userId));
+        if (userDoc.exists()) {
+            this.toSaveitinerary = userDoc.data().savedItineraries || [];
+            console.log("Saved itineraries loaded successfully");
+        } else {
+            console.log("No itineraries found.");
+        }
+    },
+
+    async addToSavedItinerary(userId, place) {
+        this.toSaveitinerary.push(place);
+        await updateDoc(doc(db, "users", userId), {
+            savedItineraries: arrayUnion(place)
+        });
+        console.log("Place added to itinerary");
+    },
+
+    async removeFromSavedItinerary(userId, placeId) {
+        this.toSaveitinerary = this.toSaveitinerary.filter(place => place.place_id !== placeId);
+        await updateDoc(doc(db, "users", userId), {
+            savedItineraries: arrayRemove({ place_id: placeId })
+        });
+        console.log("Place removed from itinerary");
+    }
+});
+
 // Function to store user data (called when a new user is created or signs in)
 async function storeUserData(userId, email) {
     try {
@@ -115,7 +145,8 @@ async function storeUserData(userId, email) {
         await setDoc(userRef, {
             email: email,
             savedPlaces: [],
-            generatedItineraries: []
+            generatedItineraries: [],
+            savedItineraries: []
         }, { merge: true });
         console.log("User data stored successfully");
     } catch (error) {
@@ -142,6 +173,7 @@ const extractedLocationsState = reactive({
 // Provide global states to the app
 vueApp.provide('savedPlacesState', savedPlacesState);
 vueApp.provide('itineraryState', itineraryState);
+vueApp.provide('savedItineraryState', savedItineraryState);
 vueApp.provide('extractedLocationsState', extractedLocationsState);
 
 // Use router, BootstrapVue, and Google Login
