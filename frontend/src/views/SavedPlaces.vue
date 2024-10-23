@@ -18,8 +18,8 @@
         <div class="col-auto generateButton">
           <button @click="toggleModal" type="button" class="btn btn-secondary view-itinerary-btn">View
             Itinerary</button>
-          <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">Generate
-            Itinerary!</button>
+          <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">View Full
+            Itinerary</button>
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@ export default {
     const router = useRouter();
     const cardRefs = ref([]); // Create a ref for card references
 
-    //gettting data from firestore and stroing it in savedPlaces
+    // Fetching data from Firestore and storing it in savedPlaces
     onMounted(async () => {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -134,34 +134,26 @@ export default {
       }
     });
 
-    
-    // this will save the itinerary list to the firebase
+    // Save the itinerary list to Firebase
     const saveItinerary = async () => {
-      console.log('start saving itinerary');
-      console.log(itinerary.value);
       const auth = getAuth();
       const user = auth.currentUser;
       const userId = user.uid;
       const userRef = doc(db, "users", userId);
       try {
         await setDoc(
-          userRef, 
-          { generatedItinerary: [...itinerary.value] }, 
+          userRef,
+          { generatedItinerary: [...itinerary.value] },
           { merge: true }
         );
-        console.log('setdoc engaged');
       } catch (error) {
         console.error("Error saving itinerary:", error);
-      } finally {
-        console.log('end saving itinerary');
       }
     };
 
     const navigateToGeneratedItinerary = () => {
-      const itineraryPlaces = itinerary // your array of places
       router.push({
-        name: 'generateditinerary',
-        query: { places: JSON.stringify(itineraryPlaces.value) }
+        name: 'MyItineraries',
       });
     };
 
@@ -196,55 +188,54 @@ export default {
 
       if (index !== -1) {
         const user = getAuth().currentUser;
-        const userId = user.uid; // Fetch the current user's unique ID
-        const userDocRef = doc(db, 'users', userId); // Use UID as document ID
+
+        if (!user) {
+          console.error('User is not authenticated');
+          return;
+        }
+
+        const userId = user.uid;
+        const userDocRef = doc(db, 'users', userId);
 
         try {
-          if (isPlaceInItinerary(place)) {
-            // Remove from itinerary (local and Firebase)
-            itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
+          const placeData = {
+            place_id: place.place_id,
+            name: place.name,
+            image: place.image,
+            vicinity: place.vicinity,
+            country: place.country,
+            coordinates: {
+              latitude: place.coordinates.latitude,   // Include latitude
+              longitude: place.coordinates.longitude   // Include longitude
+            }
+          };
 
-            // Update Firebase: remove place from generatedItineraries
+          if (isPlaceInItinerary(place)) {
             await updateDoc(userDocRef, {
-              generatedItineraries: arrayRemove({
-                place_id: place.place_id,
-                name: place.name,
-                vicinity: place.vicinity,
-                country: place.country,
-                image: place.image
-              })
+              generatedItineraries: arrayRemove(placeData)
             });
 
+            itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
             togglePopup('remove');
           } else {
-            // Add to itinerary with pulse animation
             const button = event.currentTarget;
 
             gsap.fromTo(
               button,
-              { scale: 1 }, // Start at normal scale
+              { scale: 1 },
               {
-                scale: 1.1, // Pulse effect (slightly larger)
-                duration: 0.2, // Short duration
-                yoyo: true, // Revert to original size
-                repeat: 1 // One pulse
+                scale: 1.1,
+                duration: 0.2,
+                yoyo: true,
+                repeat: 1
               }
             );
 
-            // Add to itinerary (local and Firebase)
-            itinerary.value.push(place);
-
-            // Update Firebase: add place to generatedItineraries
             await updateDoc(userDocRef, {
-              generatedItineraries: arrayUnion({
-                place_id: place.place_id,
-                name: place.name,
-                vicinity: place.vicinity,
-                country: place.country,
-                image: place.image
-              })
+              generatedItineraries: arrayUnion(placeData)
             });
 
+            itinerary.value.push({ ...place });
             togglePopup('add');
           }
         } catch (error) {
@@ -253,9 +244,31 @@ export default {
       }
     };
 
-
-    const toggleModal = () => {
+    // Ensure modal remains open if the place is still in generatedItineraries
+    const toggleModal = async () => {
       showModal.value = !showModal.value;
+
+      if (showModal.value) {
+        try {
+          const user = getAuth().currentUser;
+          if (user) {
+            const userId = user.uid;
+            const userDocRef = doc(db, 'users', userId);
+
+            const userDoc = await getDoc(userDocRef);
+            if (userDoc.exists()) {
+              const data = userDoc.data().generatedItineraries;
+              itinerary.value = data || [];
+            } else {
+              console.log('No document found for the user.');
+            }
+          } else {
+            console.error('User is not authenticated.');
+          }
+        } catch (error) {
+          console.error('Error fetching generatedItineraries from Firebase:', error);
+        }
+      }
     };
 
     const removePlace = (place) => {
@@ -305,21 +318,17 @@ export default {
     };
 
     const confirmDeleteAllPlaces = async () => {
-      // Close the delete confirmation popup first
       toggleDeletePopup(); // Immediately hide the popup
 
-      // Select all card containers for animation
       const cardContainers = document.querySelectorAll(".card-container");
 
       if (cardContainers.length > 0) {
-        // Animate the cards to fade out and scale down
         gsap.to(cardContainers, {
           opacity: 0,
-          scale: 0.9, // Shrink the cards slightly as they fade out
+          scale: 0.9,
           duration: 0.5,
-          stagger: 0.1, // Delay between each card's animation
+          stagger: 0.1,
           onComplete: async () => {
-            // After animation, clear the places
             const user = getAuth().currentUser;
             if (user) {
               const userRef = doc(db, "users", user.uid);
@@ -341,33 +350,32 @@ export default {
       }
     };
 
-    // Function to add a place to the itinerary
     const addPlaceToItinerary = async (place) => {
       itinerary.value.push(place);
 
-      // Get the current user's email
       const user = getAuth().currentUser;
       const userEmail = user.email;
-
-      // Reference to the user's document in Firestore
       const userDocRef = doc(db, 'users', userEmail);
 
       try {
-        // Update the user's generatedItineraries array in Firestore
         await updateDoc(userDocRef, {
           generatedItineraries: arrayUnion({
             place_id: place.place_id,
             name: place.name,
+            image: place.image,
             vicinity: place.vicinity,
-            country: place.country
-            // Add any other place details you need
+            country: place.country,
+            coordinates: {
+              latitude: place.coordinates.latitude,   // Include latitude
+              longitude: place.coordinates.longitude   // Include longitude
+            }
           })
         });
-        console.log("Place added to itinerary and saved to Firebase!");
       } catch (error) {
         console.error("Error updating itinerary in Firebase:", error);
       }
     };
+
 
     return {
       savedPlaces,
@@ -388,11 +396,13 @@ export default {
       showModal,
       showDeletePopup,
       deleteAllPlaces,
+      saveItinerary,
       cardRefs, // Return cardRefs for use in the template
     };
   },
 };
 </script>
+
 
 
 <style scoped>

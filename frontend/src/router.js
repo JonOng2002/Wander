@@ -21,7 +21,7 @@ const routes = [
   { path: '/about', name: 'About', component: AboutPage },
   { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
-  { path: '/itinerary', name: 'itinerary', component: GeneratedItinerary },
+  { path: '/itinerary', name: 'MyItineraries', component: MyItineraries },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
   {
@@ -30,7 +30,7 @@ const routes = [
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
   },
-  { path: '/generateditinerary', name: 'GeneratedItinerary', component: MyItineraries }
+  { path: '/generateditinerary', name: 'GeneratedItinerary', component: GeneratedItinerary }
   
 ];
 

@@ -208,6 +208,10 @@ export default {
               name: attraction.name || 'Unknown',
               vicinity: attraction.vicinity || 'Unknown vicinity',
               image: attraction.image || '/default-image.jpg',
+              coordinates: {
+                latitude: attraction.latitude,
+                longitude: attraction.longitude
+              }
             };
 
             await setDoc(
