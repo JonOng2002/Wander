@@ -19,11 +19,22 @@
     <div v-else class="main-content row g-0">
       <!-- Left Side: Itinerary Details -->
       <div class="col-md-6 col-12 itinerary-details">
+<<<<<<< Updated upstream
         <div class="row justify-content-between align-items-center g-0" style="position: relative;">
         <div class="col-12 date-column">
           <p>Review our recommendations</p>
           <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2>
           <p>{{ country }} • {{ getNumDays }} days</p>
+=======
+        <div class="row justify-content-between align-items-center g-0">
+          <div class="col-12 date-column">
+            <p>Review our recommendations</p>
+            <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2> <!-- User's name -->
+            <p>{{ country }} • {{ getNumDays }} days</p> <!-- Country and number of days -->
+          </div>
+          <!-- Save Itinerary Button -->
+          <button class="save-button">Save Itinerary</button>
+>>>>>>> Stashed changes
         </div>
         
         <!-- Save Itinerary button -->
@@ -274,6 +285,27 @@ h2 {
   margin: 0;
   padding: 0;
 }
+
+.save-button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  position: absolute; /* Make the button position absolute */
+  top: 0; /* Align it to the top */
+  right: 0; /* Align it to the right */
+  margin-top: 20px; /* Add some margin from the top */
+  margin-right: 50px; /* Adjust the space from the right to position the button */
+}
+
+.save-button:hover {
+  background-color: #555; /* Darker background on hover */
+}
+
 
 .sticky-top {
   top: 0;
