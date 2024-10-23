@@ -85,7 +85,7 @@ export default {
     const loadGoogleMaps = async () => {
       const { Loader } = await import('@googlemaps/js-api-loader');
       const loader = new Loader({
-        apiKey: 'AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE',  // Replace with your actual Google Maps API key
+        apiKey: 'AIzaSyDEQN9ULsxP4GwlXzrw7APt0kEssS08qbU',  // Replace with your actual Google Maps API key
         version: 'weekly',
         libraries: ['places'],
       });
