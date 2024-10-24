@@ -21,3 +21,17 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Ignore Python virtual environments (for both Windows and macOS)
+venv-windows/
+venv-macos/
+
+# Python-specific files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Python virtual environment files
+*.env
+*.venv
