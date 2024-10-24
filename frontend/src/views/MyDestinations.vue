@@ -163,6 +163,7 @@ export default {
         {
           name: "Thailand",
           code: "TH",
+          place: "Bangkok",
           image: require("@/assets/countries/thailand.jpg"),
           description:
             "Thailand is a tropical paradise, renowned for its temples, beaches, and street food culture.",
@@ -170,6 +171,7 @@ export default {
         {
           name: "Turkey",
           code: "TR",
+          place: "Istanbul",
           image: require("@/assets/countries/turkey.jpg"),
           description:
             "Turkey bridges Europe and Asia, offering ancient ruins, vibrant bazaars, and stunning coastlines.",
@@ -177,6 +179,7 @@ export default {
         {
           name: "Australia",
           code: "AU",
+          palce: "Sydney",
           image: require("@/assets/countries/australia.jpg"),
           description:
             "Australia is famous for its outback adventures, Great Barrier Reef, and cosmopolitan cities like Sydney.",
@@ -184,6 +187,7 @@ export default {
         {
           name: "Brazil",
           code: "BR",
+          place: "Rio de Janeiro",
           image: require("@/assets/countries/brazil.jpg"),
           description:
             "Brazil is home to the Amazon rainforest, the vibrant Carnival festival, and iconic landmarks like Christ the Redeemer.",
@@ -191,6 +195,7 @@ export default {
         {
           name: "Canada",
           code: "CA",
+          place: "Ontario",
           image: require("@/assets/countries/canada.jpg"),
           description:
             "Canada offers breathtaking landscapes, from the Rocky Mountains to Niagara Falls, and diverse cities.",
@@ -198,6 +203,7 @@ export default {
         {
           name: "India",
           code: "IN",
+          place: "Jaipur",
           image: require("@/assets/countries/india.jpg"),
           description:
             "India is a land of contrasts, known for its ancient temples, bustling cities, and the majestic Taj Mahal.",
@@ -205,6 +211,7 @@ export default {
         {
           name: "South Africa",
           code: "ZA",
+          place: "Cape Town",
           image: require("@/assets/countries/south_africa.jpg"),
           description:
             "South Africa offers diverse wildlife, beautiful landscapes, and vibrant cities like Cape Town.",
@@ -212,6 +219,7 @@ export default {
         {
           name: "Russia",
           code: "RU",
+          place: "Moscow",
           image: require("@/assets/countries/russia.jpg"),
           description:
             "Russia, the largest country in the world, is known for its grand palaces, vast wilderness, and rich history.",
@@ -219,6 +227,7 @@ export default {
         {
           name: "Argentina",
           code: "AR",
+          place: "Buenos Aires",
           image: require("@/assets/countries/argentina.jpg"),
           description:
             "Argentina is famous for its tango, vast pampas, and breathtaking Patagonia region.",
@@ -226,6 +235,7 @@ export default {
         {
           name: "Netherlands",
           code: "NL",
+          place: "Amsterdam",
           image: require("@/assets/countries/netherlands.jpg"),
           description:
             "The Netherlands is known for its picturesque canals, tulip fields, and windmills.",
@@ -233,6 +243,7 @@ export default {
         {
           name: "Greece",
           code: "GR",
+          place: "Santorini",
           image: require("@/assets/countries/greece.jpg"),
           description:
             "Greece is the birthplace of democracy, known for its ancient ruins, crystal-clear waters, and islands.",
@@ -240,6 +251,7 @@ export default {
         {
           name: "Malaysia",
           code: "MY",
+          place: "Kuala Lumpur",
           image: require("@/assets/countries/malaysia.jpg"),
           description:
             "Malaysia offers a mix of modern cities, lush rainforests, and stunning beaches.",

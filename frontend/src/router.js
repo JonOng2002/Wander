@@ -14,7 +14,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
 
-  { path: '/', name: 'MainPage', component: MainPage },  
+  { path: '/', name: 'Home', component: MainPage },  
+  { path: '/mainpage', name: 'MainPage', component: MainPage },  
   { path: '/about', name: 'AboutPage', component: AboutPage },
   { path: '/location', name: 'ExtractedLocation', component: ExtractedLocation },
   { path: '/savedplaces', name: 'SavedPlaces', component: SavedPlaces },

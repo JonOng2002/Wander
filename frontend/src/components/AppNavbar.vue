@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg sticky-top w-100">
-    <div class="nav-contain container-fluid d-flex justify-content-between align-items-center">
+    <div
+      class="nav-contain container-fluid d-flex justify-content-between align-items-center"
+    >
       <!-- Title -->
       <a class="navbar-brand" href="#">
         <h1 id="title" class="h1">wander.</h1>
@@ -12,97 +14,150 @@
           <router-link to="/" class="nav-link" exact>Main Page</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/savedplaces" class="nav-link">Saved Places</router-link>
+          <router-link to="/savedplaces" class="nav-link"
+            >Saved Places</router-link
+          >
         </li>
         <li class="nav-item me-4">
-          <router-link to="/destinations" class="nav-link">Destinations</router-link>
+          <router-link to="/destinations" class="nav-link"
+            >Destinations</router-link
+          >
         </li>
         <li class="nav-item me-4">
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/itinerary" class="nav-link">My itineraries</router-link>
+          <router-link to="/itinerary" class="nav-link"
+            >My itineraries</router-link
+          >
         </li>
         <li class="nav-item me-4">
-          <router-link to="/generateditinerary" class="nav-link">Generated Itineraries</router-link>
+          <router-link to="/generateditinerary" class="nav-link"
+            >Generated Itineraries</router-link
+          >
         </li>
-        <!-- Profile Picture -->
-        <li class="nav-item me-4">
-          <router-link to="/profile" class="nav-link">
-            <img src="@/assets/profilepic.png" alt="Profile" class="profile-pic img-fluid">
-          </router-link>
-        </li>
-        <li>
-          <img src="@/assets/profilepic.png" class="user-pic" alt="user-pic" @click="toggleMenu">
 
-          <div class="sub-menu-wrap" :class="{ 'open-menu': isMenuOpen}"  id="subMenu">
+        <li>
+          <img
+            src="@/assets/profilepic.png"
+            class="user-pic"
+            alt="user-pic"
+            @click="toggleMenu"
+          />
+
+          <div
+            class="sub-menu-wrap"
+            :class="{ 'open-menu': isMenuOpen }"
+            id="subMenu"
+          >
             <div class="sub-menu">
               <div class="user-info">
-                <img src="@/assets/profilepic.png">
-                <h3>Ke Ping Fan</h3>
+                <img src="@/assets/profilepic.png" />
+                <h3>{{ displayName || "User" }}</h3>
 
                 <div class="user-email">
-                  <h4>kepingfan@gmail.com</h4>
+                  <h4>{{ email }}</h4>
                 </div>
-
               </div>
 
-              <hr>
+              <hr />
 
               <a href="#" class="sub-menu-link">
-                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="">
-                        <p>Edit Profile</p>
-                        <span>></span>
-                    </a>
+                <img
+                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
+                  alt=""
+                />
+                <p>Edit Profile</p>
+                <span>></span>
+              </a>
 
-                    
-                    <a href="#" class="sub-menu-link">
-                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="">
-                        <p>Settings</p>
-                        <span>></span>
-                    </a>
+              <a href="#" class="sub-menu-link">
+                <img
+                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
+                  alt=""
+                />
+                <p>Settings</p>
+                <span>></span>
+              </a>
 
-                    
-                    <a href="#" class="sub-menu-link">
-                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="">
-                        <p>Help</p>
-                        <span>></span>
-                    </a>
+              <a href="#" class="sub-menu-link">
+                <img
+                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
+                  alt=""
+                />
+                <p>Help</p>
+                <span>></span>
+              </a>
 
-                    
-                    <a href="#" class="sub-menu-link">
-                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="">
-                        <p>Logoout</p>
-                        <span>></span>
-                    </a>
-
+              <a href="#" class="sub-menu-link" @click="signOutUser">
+                <img
+                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
+                  alt=""
+                />
+                <p>Logout</p>
+                <span>></span>
+              </a>
             </div>
           </div>
         </li>
-        
       </ul>
     </div>
   </nav>
 </template>
 
 <script>
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
 export default {
-  name: 'AppNavbar',
+  name: "AppNavbar",
   data() {
     return {
-      isMenuOpen: false // Initialize the menu state
+      isMenuOpen: false, // Initialize the menu state
+      displayName: "", // Initialize the display name
+      email: "", // Initialize the email
     };
   },
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen; // Toggle the menu state
-    }
+    },
+
+    fetchUserData(user) {
+      if (user) {
+        this.displayName = user.displayName || "User"; // Set the display name or fallback to 'User'
+        this.email = user.email; // Set the email
+      }
+    },
+
+    async signOutUser() {
+      const auth = getAuth();
+      try {
+        await signOut(auth);
+        console.log("User signed out");
+        this.displayName = ""; // Clear the display name
+        this.email = ""; // Clear the email
+        this.$router.push("/login"); // Redirect to the main page
+      } catch (error) {
+        console.error("Error signing out:", error);
+      }
+    },
+  },
+
+  mounted() {
+    //Fetch user data on component mount
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, set the username and email
+        this.fetchUserData(user);
+      } else {
+        // User is signed out, handle accordingly
+        console.log("No user is signed in");
+      }
+    });
   },
 };
-
-
-
-
 </script>
 
 <style scoped>
@@ -116,7 +171,7 @@ export default {
 
 /* Navbar title styling */
 #title {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   font-size: 2.5vw;
   color: white;
   margin-left: 20px;
@@ -132,7 +187,7 @@ export default {
   font-weight: bold;
   font-size: 1.5vw;
   color: white !important; /* Ensure links stay white */
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   transition: color 0.3s ease;
 }
 
@@ -142,7 +197,10 @@ export default {
 }
 
 /* Main link when active or hovered */
-.router-link-active, .router-link-exact-active, .router-link:hover, .router-link-exact-active:hover {
+.router-link-active,
+.router-link-exact-active,
+.router-link:hover,
+.router-link-exact-active:hover {
   position: relative;
   color: black !important; /* Text remains black when active or hovered */
   font-weight: bolder;
@@ -153,9 +211,11 @@ export default {
 }
 
 /* Sliding background effect using the before pseudo-element */
-.router-link-active::before, .router-link-exact-active::before,
-.router-link:hover::before, .router-link-exact-active:hover::before {
-  content: '';
+.router-link-active::before,
+.router-link-exact-active::before,
+.router-link:hover::before,
+.router-link-exact-active:hover::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -170,23 +230,25 @@ export default {
 }
 
 /* Trigger the sliding effect on hover or active state */
-.router-link-active::before, .router-link-exact-active::before,
-.router-link:hover::before, .router-link-exact-active:hover::before {
+.router-link-active::before,
+.router-link-exact-active::before,
+.router-link:hover::before,
+.router-link-exact-active:hover::before {
   transform: scaleX(1); /* Expand background to full width */
   transition: transform 0.4s ease-in-out; /* Ensure the background fills smoothly */
 }
 
 /* Ensure the text remains on top of the sliding background */
-.router-link, .router-link-active {
+.router-link,
+.router-link-active {
   transition: color 0.2s ease-in-out; /* Instant text color change */
 }
 
 /* Ensure text color remains black while hovering inside the white background */
-.router-link:hover, .router-link-exact-active:hover {
+.router-link:hover,
+.router-link-exact-active:hover {
   color: black; /* Keep text black during hover */
 }
-
-
 
 /* Profile picture styling */
 .profile-pic {
@@ -214,103 +276,123 @@ export default {
   background-color: white;
 }
 
-.sub-menu-wrap{
-        position: absolute;
-        top: 100%;
-        right: 9%;
-        width: 320px;
-        max-height: 0px;
-        overflow: hidden;
-        transition: max-height 0.6s;
-    }
+.sub-menu-wrap {
+  position: absolute;
+  top: 100%;
+  right: 1%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.6s;
+}
 
-    .sub-menu-wrap.open-menu{
-        max-height: 400px;
-    }
+.sub-menu-wrap.open-menu {
+  max-height: 400px;
+}
 
-    .sub-menu{
-        background: #fff;
-        padding: 20px;
-        margin: 8px;
-        border-radius: 5%;
-        
+.sub-menu {
+  background: #fff;
+  padding: 0px;
+  margin: 8px;
+  border-radius: 5%;
+  overflow: hidden;
+}
 
-    }
+.user-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  background: aquamarine;
+  padding: 1rem;
+}
 
-    .user-info{
-        display: flex;
-        align-items: center;
+.user-info h3 {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  font-size: 1.2rem;
+  margin: 0;
+  display: block;
+}
 
-    }
+.user-email {
+  font-weight: 300;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
 
-    .user-info h3{
-        font-weight: 500;
+.user-email h4 {
+  font-weight: 300;
+  font-size: 0.9rem;
+  margin: 0;
+  display: block; /* Ensure block-level behavior */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowed text */
+  text-overflow: ellipsis; /* Add ellipsis (...) */
+  max-width: 100%; /* Ensure ellipsis works within available space */
+}
 
-    }
+.user-info img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
 
-    .user-email {
-        
-        position:   absolute;
-        margin-top: 15%;
-        margin-left: 23.9%;
-    }
+.sub-menu hr {
+  height: 1px;
+  border: 0;
+  width: 100%;
+  background: #ccc;
+  margin: 0;
+}
 
-    .user-email h4{
-        font-weight: 300;
-        font-size: 14px;
-    }
+.sub-menu-link {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 0px 1.5rem;
+  text-decoration: none;
+  color: #333;
+  background-color: white;
+}
 
-    .user-info img{
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        margin-right: 15px;
-    }
+.sub-menu-link:last-child {
+  margin-bottom: 1rem;
+}
 
-    .sub-menu hr{
-        height: 1px;
-        border: 0;
-        width: 100%;
-        background: #ccc;
-        margin: 15px 0 10px;
-    }
+.sub-menu-link p {
+  flex: 1;
+  margin: 0;
+}
 
-    .sub-menu-link{
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
-        text-decoration: none;
-        color: #333;
-    }
+.sub-menu-link img {
+  width: 40px;
+  height: 40px;
+  background: #e5e5e5;
+  margin-right: 15px;
+  border-radius: 50%;
+  padding: 8px;
+}
 
-    .sub-menu-link p{
-        
-        flex: 1;
-        margin: 0;
-    }
+.sub-menu-link span {
+  font-size: 22px;
+  transition: transform 0.3s;
+}
 
-    .sub-menu-link img{
-        width: 40px;
-        height: 40px;
-        background: #e5e5e5;
-        margin-right: 15px;
-        border-radius: 50%;
-        padding: 8px;
-    }
+.sub-menu-link:hover span {
+  transform: translateX(5px);
+}
 
-    .sub-menu-link span{
-        font-size: 22px;
-        transition: transform 0.3s;
-
-    }
-
-    .sub-menu-link:hover span{
-        transform: translateX(5px);
-    }
-
-    .sub-menu-link:hover p{
-        font-weight: 600;
-    }
-
-
+.sub-menu-link:hover p {
+  font-weight: 600;
+}
 </style>

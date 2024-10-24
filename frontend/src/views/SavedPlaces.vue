@@ -456,6 +456,8 @@ h2 {
   /* Fixed width for the cards, they won't grow */
   max-width: 265px;
   /* Ensures the cards stay at 265px */
+  min-width: 265px;
+  /* Ensures the cards stay at 265px */
   margin: 0px;
   /* Adds spacing between cards */
 }
