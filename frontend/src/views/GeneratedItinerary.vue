@@ -16,56 +16,48 @@
     </div>
 
     <!-- When Itinerary exists -->
-    <div v-else class="main-content row g-0">
-      <!-- Left Side: Itinerary Details -->
-      <div class="col-md-6 col-12 itinerary-details">
-<<<<<<< Updated upstream
-        <div class="row justify-content-between align-items-center g-0" style="position: relative;">
-        <div class="col-12 date-column">
-          <p>Review our recommendations</p>
-          <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2>
-          <p>{{ country }} • {{ getNumDays }} days</p>
-=======
-        <div class="row justify-content-between align-items-center g-0">
-          <div class="col-12 date-column">
-            <p>Review our recommendations</p>
-            <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2> <!-- User's name -->
-            <p>{{ country }} • {{ getNumDays }} days</p> <!-- Country and number of days -->
-          </div>
-          <!-- Save Itinerary Button -->
-          <button class="save-button">Save Itinerary</button>
->>>>>>> Stashed changes
-        </div>
-        
-        <!-- Save Itinerary button -->
-        <button @click="navigateToSavedItinerary" type="button" class="save-button">Save Itinerary</button>
-      </div>
-        <div v-for="(places, dayIndex) in splitIntoDays(generatedItinerary)" :key="dayIndex" class="day-section">
-          <div class="day-header">Day {{ dayIndex + 1 }}</div>
-          <p class="day-description">
-            Embark on a captivating journey through Japan’s diverse cultural and historical gems. Your adventure begins with a visit to the Cup Noodles Museum Yokohama, a fascinating tribute to the history of instant noodles and innovation in the world of food. Immerse yourself in interactive exhibits that showcase the humble beginnings of this global staple, while also crafting your personalized cup noodles as a souvenir.
+    <div v-else class="main-content">
+      <div class="row no-gutters">
+        <!-- Left Side: Itinerary Details -->
+        <div class="col-md-6 itinerary-details-container">
+          <div class="itinerary-details">
+            <div class="row justify-content-between align-items-center g-0">
+              <div class="col-12 date-column">
+                <p>Review our recommendations</p>
+                <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2>
+                <p>{{ country }} • {{ getNumDays }} days</p>
+              </div>
+              <!-- Save Itinerary Button -->
+              <button @click="navigateToSavedItinerary" type="button" class="save-button">Save Itinerary</button>
+            </div>
 
-            Following this, unwind at Shichifuku No Yu, a tranquil hot spring located in Toda. This peaceful retreat offers an authentic Japanese bathing experience where you can relax and rejuvenate in mineral-rich baths amidst serene surroundings. Next, you will step into history at Aoyama Cemetery, one of Tokyo’s most scenic and culturally significant cemeteries. Take a quiet walk along the cherry blossom-lined paths and reflect on the graves of prominent figures in Japanese history, nestled within beautifully landscaped grounds that blend the solemn with the scenic.
-          </p>
-          <div class="itinerary-table">
-            <div class="itinerary-row" v-for="(place, timeIndex) in places" :key="timeIndex">
-              <div class="time-column">{{ generateTime(timeIndex) }}</div>
-              <div class="place-column">
-                <h5>{{ place.name }}</h5>
-                <p>{{ place.vicinity }}</p>
-                <img :src="place.image" class="place-image" :alt="place.name" />
+            <div v-for="(places, dayIndex) in splitIntoDays(generatedItinerary)" :key="dayIndex" class="day-section">
+              <div class="day-header">Day {{ dayIndex + 1 }}</div>
+              <p class="day-description">
+                Embark on a captivating journey through Japan’s diverse cultural and historical gems. Your adventure begins with a visit to the Cup Noodles Museum Yokohama, a fascinating tribute to the history of instant noodles and innovation in the world of food. Immerse yourself in interactive exhibits that showcase the humble beginnings of this global staple, while also crafting your personalized cup noodles as a souvenir.
+                Following this, unwind at Shichifuku No Yu, a tranquil hot spring located in Toda. This peaceful retreat offers an authentic Japanese bathing experience where you can relax and rejuvenate in mineral-rich baths amidst serene surroundings.
+              </p>
+              <div class="itinerary-table">
+                <div class="itinerary-row" v-for="(place, timeIndex) in places" :key="timeIndex">
+                  <div class="time-column">{{ generateTime(timeIndex) }}</div>
+                  <div class="place-column">
+                    <h5>{{ place.name }}</h5>
+                    <p>{{ place.vicinity }}</p>
+                    <img :src="place.image" class="place-image" :alt="place.name" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Right Side: Google Maps -->
-      <div class="col-md-6 col-12 map-container">
-        <div id="location-map" class="map">
-          <GoogleMap :center="mapCenter" :zoom="15" style="width: 100%; height: 100%">
-            <Marker v-for="place in generatedItinerary" :key="place.place_id" :position="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" />
-          </GoogleMap>
+        <!-- Right Side: Google Maps -->
+        <div class="col-md-6 map-container">
+          <div id="location-map" class="map">
+            <GoogleMap :center="mapCenter" :zoom="15" style="width: 100%; height: 100%">
+              <Marker v-for="place in generatedItinerary" :key="place.place_id" :position="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" />
+            </GoogleMap>
+          </div>
         </div>
       </div>
     </div>
@@ -204,8 +196,6 @@ export default {
     router.push({ name: "SavedItinerary" });
   }
 
-
-
     return {
       generatedItinerary,
       loading,
@@ -214,78 +204,54 @@ export default {
       getNumDays,
       mapCenter,
       navigateToSavedItinerary,
-      userName,  // Return userName to template
-      country,   // Return country to template
+      userName,
+      country,
     };
   },
 };
-
-
 </script>
 
 <style scoped>
-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: bolder;
-}
-
-/* For the main destination title (e.g., "Honolulu") */
-.generated-itinerary h2 {
-  font-family: 'Cormorant Garamond', serif; /* Update font style */
-  font-size: 3rem; /* Larger font size for the destination */
-  font-weight: bold; /* Ensure boldness */
-}
-
-.save-button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  display: inline-block; /* Change to inline-block to avoid full-width */
-  margin-top: 20px; /* Adjust this value to align it vertically as you prefer */
-  margin-right: 20px; /* Adjust the space from the right to position the button */
-  float: right; /* This will push the button to the right */
-  z-index: 1000; /* Ensure it's above other content */
-  max-width: fit-content; /* Ensure the width fits the button content */
-}
-
-.save-button:hover {
-  background-color: #555; /* Darker background on hover */
-}
-
-
-
-
-.no-itinerary-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: grey;
-  margin-top: 20px;
-}
-
-/* For the subtext under the main title (e.g., 'Going solo . October . 4 days') */
-.date-column p {
-  font-family: 'Roboto', sans-serif; /* Update font style */
-  font-size: 1.2rem; /* Adjust font size */
-  color: #333; /* Darker color for the date information */
-}
-
-/* Main Layout */
+/* Main Content Layout */
 .main-content {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   height: 100vh;
+  overflow: hidden; /* Prevent the content from overflowing */
 }
 
-.generated-itinerary {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  padding: 0;
+/* Itinerary Container Styling */
+.itinerary-details-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Make only the itinerary section scrollable */
+  width: 50%;
+  max-height: 100vh; /* Keep the height fixed */
+  padding-right: 0; /* Ensure no padding interferes with scrollbar */
 }
 
+.itinerary-details {
+  padding: 20px;
+}
+
+.itinerary-details::-webkit-scrollbar {
+  width: 10px; /* Scrollbar width */
+}
+
+.itinerary-details::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Scrollbar track color */
+}
+
+.itinerary-details::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar color */
+}
+
+.itinerary-details::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Scrollbar color on hover */
+}
+
+/* Save Itinerary Button */
 .save-button {
   background-color: #333;
   color: white;
@@ -295,23 +261,20 @@ h2 {
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
-  position: absolute; /* Make the button position absolute */
-  top: 0; /* Align it to the top */
-  right: 0; /* Align it to the right */
-  margin-top: 20px; /* Add some margin from the top */
-  margin-right: 50px; /* Adjust the space from the right to position the button */
+  display: inline-block;
+  margin-top: 20px;
+  float: right;
 }
 
 .save-button:hover {
-  background-color: #555; /* Darker background on hover */
+  background-color: #555;
 }
-
 
 .sticky-top {
   top: 0;
   position: sticky;
-  z-index: 1020; /* Higher z-index to ensure navbar stays above other elements */
-  background-color: black; /* Ensure the background remains black */
+  z-index: 1020;
+  background-color: black;
 }
 
 .sticky-header {
@@ -326,21 +289,10 @@ h2 {
 .date-column {
   text-align: left;
   padding-left: 15px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-.itinerary-details {
-  height: 100vh;
-  overflow-y: scroll;
-  padding: 20px;
-}
-
-/* Remove the inner scrollbar */
-.itinerary-details::-webkit-scrollbar {
-  display: none;
 }
 
 /* Day Section Styling */
@@ -374,7 +326,7 @@ h2 {
 }
 
 .itinerary-row {
-  display: contents; /* Each row with time and place */
+  display: contents;
 }
 
 .time-column {
@@ -397,24 +349,31 @@ h2 {
   border-radius: 8px;
 }
 
-/* Map Styling */
+/* Map Container */
 .map-container {
   background-color: #F8F9FA;
   height: 100vh;
-  position: relative;
-  overflow: hidden; /* Prevent scrolling in the map */
+  width: 50%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  overflow: hidden; /* Prevent map scrolling */
 }
 
 .map {
   width: 100%;
   height: 100%;
+  pointer-events: none; /* Disable map interactions */
 }
 
+/* Media query for responsiveness */
 @media (max-width: 768px) {
-  /* Hide Map at Smaller Screens */
   .map-container {
-    display: none;
+    display: none; /* Hide map below sm breakpoint */
+  }
+
+  .itinerary-details-container {
+    width: 100%; /* Make itinerary take full width */
   }
 }
 </style>
-
