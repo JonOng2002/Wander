@@ -6,6 +6,7 @@ import MainPage from '@/views/MainPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
 import SavedItinerary from '@/views/SavedItinerary.vue';
+// import ItineraryDetails from '@/views/ItineraryDetails.vue';
 import LogIn from '@/views/LogIn.vue'; // Import LogIn component
 import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
@@ -23,6 +24,12 @@ const routes = [
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
   { path: '/myitinerary', name: 'GeneratedItinerary', component: GeneratedItinerary },
   { path: '/saveditinerary', name: 'SavedItinerary', component: SavedItinerary },
+  // {
+  //   path: '/itinerary/:id',
+  //   name: 'ItineraryDetails',
+  //   component: () => import('@/components/GeneratedItinerary.vue'),
+  //   props: true
+  // },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
   {
