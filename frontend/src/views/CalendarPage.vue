@@ -60,6 +60,7 @@
   <script setup>
   import router from '@/router';
   import { ref, computed } from 'vue';
+  import { countries } from '@/countries.js';
   
   // Date range and drag values
   const range = ref({
@@ -76,20 +77,6 @@
   
   // Country selection (name and code)
   const selectedCountry = ref('');
-  const countries = ref([
-    { name: 'United States', code: 'US' },
-    { name: 'United Kingdom', code: 'GB' },
-    { name: 'Canada', code: 'CA' },
-    { name: 'Australia', code: 'AU' },
-    { name: 'China', code: 'CN' },
-    { name: 'India', code: 'IN' },
-    { name: 'Germany', code: 'DE' },
-    { name: 'France', code: 'FR' },
-    { name: 'Japan', code: 'JP' },
-    { name: 'Singapore', code: 'SG' },
-    { name: 'South Korea', code: 'KR' },
-    { name: 'Spain', code: 'ES' },
-  ]);
   
   // Progress and step details
   const progress = ref(25);

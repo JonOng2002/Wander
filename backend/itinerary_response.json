@@ -1,271 +1,271 @@
 {
-  "itinerary_summary": "An exciting 4-day trip to Beijing with friends exploring its rich cultural heritage, delightful culinary experiences, and vibrant nightlife while visiting must-see attractions and natural wonders.",
+  "itinerary_summary": "This 4-day trip to Malaysia will take you through breathtaking attractions, exciting nightlife, and rich cultural experiences. From the iconic Batu Caves to the vibrant streets of Kuala Lumpur, enjoy nature\u2019s beauty in Cameron Highlands, all while exploring renowned casinos and entertainment venues.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-10-26",
-      "summary": "Arrival in Beijing and exploration of local culinary delights.",
+      "date": "2024-10-27",
+      "summary": "Arrive in Kuala Lumpur and visit Batu Caves, then explore local nightlife.",
       "activities": [
         {
-          "time": "17:00",
-          "activity_name": "Dinner at Peking Duck Restaurant",
+          "time": "09:00",
+          "activity_name": "Visit Batu Caves",
           "location": {
-            "name": "Quanjude Roast Duck",
-            "city": "Beijing",
+            "name": "Batu Caves",
+            "city": "Gombak",
             "coordinates": {
-              "latitude": 39.912235,
-              "longitude": 116.411924
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJ2_43wc5S8DURiAu9njSliGE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMAjmEopnq9gaftu916J9KfXcK-il2h7WV_yYOeOuSnt1FwCBUf43V4BZXt0ENFI1zTV7tTVD01SoPvoDmVyjN10HXrS9lmZTEHUb8QxpbppmHmsqQHMLqrJFWHz_QAHCmg7NWjZk82_9MK4vVFS5zRrX3Ng0qSh3dZzdodEPw6rg1Y&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJBahJiQxHzDER-Z5vs7Lrv_I",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMFuXj07f59FhBnOFanWJA7YmuM4D2zeSJ4FjRot5ZKAEuyNXr9nGRtNn5YuByN20aTwF_3tJW5HtTLOGiL-IfGDeV8K8GNM5qhQFA3y7msSX1TccXuneSuP9djokYZb5Gspx9wX4sMGLLSC1lEthfXtJvOIX-ZDRhlzCoCSD137PIw&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy a delicious Peking duck dinner, a must-try dish in Beijing."
+          "description": "Explore the stunning limestone caves and Hindu temples."
+        },
+        {
+          "time": "13:00",
+          "activity_name": "Lunch at a Local Restaurant",
+          "location": {
+            "name": "",
+            "city": "Gombak",
+            "coordinates": {
+              "latitude": 3.2535016,
+              "longitude": 101.6533256
+            },
+            "place_id": "ChIJF6oYyDVBzDERrIaaCbCzeuo",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNKi5yuCraWNdjmlEmn3-oz8tYb4aoNQqTNsOysgWsgjzVkS04Dxf4sYJF6Mq0X46dQ-traB_8QQtDm-tUHG_SwGGOZyjtnB2lQM2pMrgsZ5XKYJhPRbqiuP1wbCzqSjxqiw1kNl1IpGERPg85xMfoZN9EJo0bZm-dco89rpB9vsbcX&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Enjoy authentic Malaysian cuisine at a nearby restaurant."
+        },
+        {
+          "time": "16:00",
+          "activity_name": "Check-in at Swiss-Garden Hotel",
+          "location": {
+            "name": "Swiss-Garden Hotel Bukit Bintang Kuala Lumpur",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 3.1442414,
+              "longitude": 101.7056647
+            },
+            "place_id": "ChIJ45QwVSY2zDERclDylVRcVsQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOsSYJ6dBUycw5-b7sEyatoSvopLHiJYk1pHU2Fv9QFD5vK9SUeNufUHA_jBJpSG4YPIEQ9qmjdo3gXpHwoNPTUDvEqcWaDwM76K2SPIH9ETXUvg7Hhz1N4MfDt9fW7SAhz1TiAV2F9O1xRkamB7UduxLDD8EiNelJX2zDTyHSUFj25&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Settle in at your hotel in the heart of Kuala Lumpur."
         },
         {
           "time": "19:30",
-          "activity_name": "Stroll around Wangfujing Street",
+          "activity_name": "Explore Bukit Bintang Nightlife",
           "location": {
-            "name": "Wangfujing Street",
-            "city": "Beijing",
+            "name": "",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 39.91126999999999,
-              "longitude": 116.41138
+              "latitude": 3.1319197,
+              "longitude": 101.6840589
             },
-            "place_id": "ChIJuXNr1tFS8DUR1sSqLEPPEtI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOPJ7mIjFg1GNeAt3ii7np3pGOm84Wf78Lzk-LpRjAyde3zfDHaeA2u9XQECC8Oz6zSYgZbmvJvbTAOgP2e1E6BHaCgzH3TQfbv9c84zaqLQTIW_E60oWNLNgIWZtp_vxzKBxQE69xGC3tEdA3Lx8l9EuAwr9U83c_DSMEdlZdBp0Ju&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJ0-cIvSo2zDERmWzYQPUfLiM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNswnNKgsOL5YQVg-7qLRyM99yRPG6gacPlmMb7hE3Gw5apYF7NMO0CtWazZ_fxy75UZRbNijq0f3MXX5oezXQKf_RVMkyNg4gFM06HkAUBUe5UJPeSmoGzQVFLyTEnI3gzqhxQ5Y-fQHU-Ye_SOxeUBHEvxSdFC1qLmV-MGAeav_IP&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Experience the local nightlife and snack on street food."
-        },
-        {
-          "time": "21:00",
-          "activity_name": "Night market visit",
-          "location": {
-            "name": "Wangfujing Snack Street",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 39.9108703,
-              "longitude": 116.4104851
-            },
-            "place_id": "ChIJt6zWLslS8DURLlr4g_8nu4E",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMz89ejehCId89k1og83rVLnca03P1nifPwBSpmacZVwNOJKZ1L3TRAtA0PP9cwyqbP4Ka8Fn4z2y_JDdgPifEOhuRzitsDVBi-Z0hgGWb8-OtSuAhVItFl8DNq-kOL6ztfUugRKm-J5i-nX72H_N1B0UHr3g4JHchF66y84GezZ8or&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
-          },
-          "description": "Explore the vibrant night market filled with local delicacies."
-        },
-        {
-          "time": "22:30",
-          "activity_name": "Return to Hotel",
-          "location": {
-            "name": "Hotel",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 39.9151125,
-              "longitude": 116.4135513
-            },
-            "place_id": "ChIJxz_lWM9S8DUR3fZnRhUqvWg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNQyhN0K34EiB5TxrLgyWdJG4RE-pZmbagxNgVOy4fq60FcpiDSD2UyRt0uELgJJBUy1m5d6XiFw7x9J34FWnW0kXD-nAWJNox-qQwLIgFoI3tzGZQ9a7yCAmRXtp_BlQ5445_n84KCWdvUQtwhrtlsHXioDkmSBT3C5R5MeiqpiAGB&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
-          },
-          "description": "Rest for the night."
+          "description": "Enjoy the vibrant nightlife with bars, restaurants, and street performances."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-10-27",
-      "summary": "Cultural exploration and natural heritage sites.",
+      "date": "2024-10-28",
+      "summary": "Visit the KL Bird Park and enjoy Aquaria KLCC, followed by a night at Genting Highlands.",
       "activities": [
         {
           "time": "09:00",
-          "activity_name": "Visit Prince Chunqin Tomb",
+          "activity_name": "Visit KL Bird Park",
           "location": {
-            "name": "Prince Chunqin Tomb",
-            "city": "Beijing",
+            "name": "KL Bird Park",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 3.1431273,
+              "longitude": 101.6882629
             },
-            "place_id": "ChIJwVb_CEte8DURI33FBwcSUsI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP3GUFJSq3L0GweIOYM5SG-6kZjb1W_nY9W_w_RuoP1aXvhHiMxSQLLu4emGwV_RzyAEs2d_G9r6r6Q3gX0uHn3wt_lMjxD_9giuqiicEYLCdb8Nlo4thRO64_O9xFPmTGwwdv71lXS1eezyBUM52g04V9Lih8qKu6ex2pxbYESg3cg&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJu8zWwchJzDERhcsx4AhQ1oo",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP27tWl6xpO9FLKaXb5RoQcDGZFY5WZUNSfqSU1nGHi7BzkuhpMnLSZ0u0-1npcC06hvNXt26lrVP-5yFLt6ePxfuHBv_Pg8ExWKt-39PrAw7gATcH2SDd6Qip74EH5pg6CtTIXnYSpMv8IIpov9dEaGi_FkCA5MSYZMi95WpfSUVwD&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Explore this historic site surrounded by beautiful gardens."
+          "description": "Witness a variety of exotic birds in a lush, natural environment."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch nearby",
+          "time": "13:00",
+          "activity_name": "Lunch at a Local Spot",
           "location": {
-            "name": "Local Restaurant",
-            "city": "Beijing",
+            "name": "",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 39.925275,
-              "longitude": 116.403539
+              "latitude": 3.1319197,
+              "longitude": 101.6840589
             },
-            "place_id": "ChIJX7PV49hS8DURuT2QxQbm7KU",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPB_PAZ7HsdAmfzRsS8KWoE7Y4dGYxeSCWIrapf3eRVbdJeJ85pUQ2FlUjL_ZAL26Vx0nvjRQG36R-mi-rABYsf4Yj_6rV62gWe6i79UqmPMSAhM-Um3ij87909ORAFzgIF72-EkGB2Axpw7m6VNYD0rS-i-r1YRjiwEhSoJcuvVFuX&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJ0-cIvSo2zDERmWzYQPUfLiM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNTl4C4CkrljPM8DAr-z5_YG7LTx8gta4wzKC6RiTAo7-JcywcYg6tPi5utPNKUU-pCwpaYD1uds5YAz2l5IT1TbEBq0akXTMcKuhnL-6IECPWh-6IbBNBoE22mJBpWAi_ZYbLlo5yl_GACzBbDynQi1xKCiMUfN-joKGmdPlqeOu_w&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Try local delicacies at a restaurant near the tomb."
+          "description": "Savor local dishes at a popular eatery in the vicinity."
         },
         {
-          "time": "14:00",
-          "activity_name": "Beijing Mini-Yan'an",
+          "time": "16:00",
+          "activity_name": "Aquaria KLCC Visit",
           "location": {
-            "name": "Beijing Mini-Yan'an",
-            "city": "Beijing",
+            "name": "Aquaria KLCC",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 3.1535483,
+              "longitude": 101.713178
             },
-            "place_id": "ChIJby0b-sth8DURhbihAzFNSRQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOW_frkfHs-MdgixjYsbWcCtxJhv-geuBrGYDwnEQWW2P-Gu51qFqkG1YiaamackgKm2E78WA0Bp4VTslGDZij7iRiyOI62OlgAFr7nOSdbDMNl8kPoO9NFZQQH_UpYiJ9_hYL20yLWRGjS7E_Oo9V9RA1iLsbDzzM1bBI_wuH_iUPN&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJM5cxndM3zDER7WuP_cN-omg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM-rQBP3b6XttQIb4KFX9-Kv4gSGzh60qSzThiMzg4ARLan34usBzOa-VBAbWofpykkOq2JcGXr6JdvJDT7EhEeisENPCrFUh91FoE9mgWLyvw6F3ZWfyTi4tXIuO2pYuTD3Lk_ogZe3NqzYVeDyGgS0oCEfh8AANaM-uc_T9-a9Pld&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Experience a miniature version of a historical site."
+          "description": "Explore the underwater world with an immersive experience."
         },
         {
-          "time": "17:00",
-          "activity_name": "Visit Liangqichao Former Residence",
+          "time": "20:00",
+          "activity_name": "Genting Highlands Casino Night",
           "location": {
-            "name": "Liangqichao Former Residence",
-            "city": "Beijing",
+            "name": "Resorts World Genting",
+            "city": "Genting Highlands",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 3.4235071,
+              "longitude": 101.7939901
             },
-            "place_id": "ChIJqatyk8us8TUR9Kvb3X34UdU",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOnNNBAriquGHj4WfqBV98wuikptgj0NPL_2ajIdSjTdGon4beP19uKIVzPNTnB-q7I-lvx4nfNWb1pbzFUoZFndg8q2neeXiDZe7ZxfnjN9mp2EwhiDuTpkjw9_OvhTiCk3YpLDgDPMGcLjRqytqiMsXgzG7vQweInm27vEpDcfBQn&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJsdeCLgEUzDERi9ZZvaDZ2wk",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMVYFOoRcZMzyCJm4jZ32OQhepzVaSeMinpWWR1pnuY_v4klFYXTGKN1eqzUThlIdJ8UZIqyAOO96zHuXs8ZFqGFQmVhF0sPfsyb2hlqKN4pi8gu1nCSfZ1S6Cytd3y0NLxrl2nWfSReiw1nzczd5F7LqKu_9_UMNgNlBgnvdjrguTZ&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Learn about the life of the famed reformist in this historic residence."
+          "description": "Enjoy a thrilling evening at one of Malaysia's premier casino resorts."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-10-28",
-      "summary": "Enjoy natural scenery and cultural immersion.",
+      "date": "2024-10-29",
+      "summary": "Explore cultural sites in Kuala Lumpur including the National Art Gallery.",
       "activities": [
         {
           "time": "09:00",
-          "activity_name": "Visit Summer Palace",
+          "activity_name": "Visit National Art Gallery",
           "location": {
-            "name": "Summer Palace",
-            "city": "Beijing",
+            "name": "National Art Gallery",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 39.9999823,
-              "longitude": 116.2754606
+              "latitude": 3.1736636,
+              "longitude": 101.7052282
             },
-            "place_id": "ChIJP4_Ducf4AjQRMqEETHex2UU",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMMeKtW7ESnRqETWGQ7lR0Mj_b42m01Nr7pzc7CCB2X2t73-FqiTw62yvcEcTiyhQKamKDIrD4EVYgOnYjDWZPqu_LuzxPZJ7glcy5UK7s_WQYU4rMGrHXTceelSybJseV7IUKd_DEAWIBAYgmcPYcDdw0sukq3RzG8QYwuIIHMvgpF&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJn7ct6mxIzDERAfOvaaTX5DM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNG2GYG5bDJJeNM_hRpasEXWKT59XqWa_R4TcQtJ949hIW5si_YpcgTfNcqojpSRB_Rb67jGWP8BaEo8bAYgXVkjAp-a4rR7MH4rw09-jA_2u_i6r6aOFZbR0DLyzhcs6SiEjD2Rqs2D37jp7ZNKSPfgw6RpxqU6e4iLy_tq1thBswd&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Explore the beautiful gardens, lakes, and architecture."
+          "description": "Discover Malaysian art and culture in one of the country's premier galleries."
         },
         {
           "time": "12:30",
-          "activity_name": "Lunch at Restaurant in Summer Palace",
+          "activity_name": "Lunch at a Cultural Restaurant",
           "location": {
-            "name": "Summer Palace Restaurant",
-            "city": "Beijing",
+            "name": "",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 39.980288,
-              "longitude": 116.279955
+              "latitude": 3.1319197,
+              "longitude": 101.6840589
             },
-            "place_id": "ChIJITzg5yBR8DURRv1SFeFmfs8",
-            "photo_url": "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
+            "place_id": "ChIJ0-cIvSo2zDERmWzYQPUfLiM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMMi2xHhE41hyX8DvBWZ5mNrSX7rfHQbRTuk2wnxwDYeFeXFzelUmp5nxZVRXtTS2Hn2zqdPe1f_Heewma_sfBAMXGxznmFicaQoytXnRJyrgi38FeHtA95i2x9x8KxnDjl_KvDYOgWXqAN_ERh0j12adVO3D1U-GKFWXrXlWpUVOjB&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy a scenic lunch overlooking the gardens."
+          "description": "Indulge in traditional Malaysian dishes at a cultural-themed restaurant."
         },
         {
-          "time": "14:00",
-          "activity_name": "Nature Walk in Beihai Park",
+          "time": "14:30",
+          "activity_name": "Visit the Petronas Twin Towers",
           "location": {
-            "name": "Beihai Park",
-            "city": "Beijing",
+            "name": "Petronas Twin Towers",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 39.9254474,
-              "longitude": 116.3892639
+              "latitude": 3.1574693,
+              "longitude": 101.7115639
             },
-            "place_id": "ChIJWWErs-ZS8DURdcUOnciALOI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP6iczFBDMql41Rb8CZcOTaCGORjcrCc2M-xkdugnJx9KWA6XUyQjhEvU7iZv2tDtILWBKgEsPMfTv_EW2gdmt24xoCR75CIvS_qZ0U_x6mPH1h93_CfGQRjKWVb3x9kIELnIkKK6wRrohCVvHeMOfBw-SWXLqeJKZYpz9_fz0iwiBl&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJH5xmLdE3zDERVpCKfNH9Op4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMdw0KjA0Typ4J7fZoBEMc2sjCPaQZHhsBopddAwjauBOvzLHl5OieOc7ZhQNfJz6mqme6jTWKGAuWqTOHojmDza55zFYUgpPk7M2pjIR0kH6hxojAgFJEQhaN48e0ODPx99DXwgyzGRnRrK2otrF4d5FB-nA7pGIj2xj3pnbC0Y_yg&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy a leisurely walk through one of Beijing's oldest parks."
+          "description": "Photo opportunity and shopping at the base of these iconic towers."
         },
         {
-          "time": "17:00",
-          "activity_name": "Dinner and Cultural Show",
+          "time": "18:30",
+          "activity_name": "Dinner and Evening Stroll at KLCC Park",
           "location": {
-            "name": "Liyuan Theatre",
-            "city": "Beijing",
+            "name": "",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 39.887407,
-              "longitude": 116.3867618
+              "latitude": 3.1319197,
+              "longitude": 101.6840589
             },
-            "place_id": "ChIJZynL5mRN8DUR6qSH5MPPo5Y",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMCploL583Vvwq5HJytvyYaStrmSt1wxT4hlE5_cHu11fvyOj4iZ8oKoqgcq0r2RwmzGMlnELDbMrHcS6sXTzmv-8gohojHEo2OrB2B9mYFlDRp2Ou0WL0EddxcngbGKrgSc5NeigKNS0po0RxZRu_O47d1k8o2xKA3IGN9q4d8lgQ&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJ0-cIvSo2zDERmWzYQPUfLiM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOwElSHb5ltOFee5ouZyVvbtIs7cvkQzudc0rCuUwsmyhi_-QQCRPfbCdIzOTTDIU9OVRn03Nw1QdfTJNSmwxRB-oyJiN9BhqGBZyJ-ioCawXo6XcTxdxsGikDeOv7y6677oQxLG3bpvHomM1o9kIAzINiU6wU2i1d_HMkg1dZv44-J&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Dine on Beijing delicacies while watching a traditional opera performance."
+          "description": "Relax and dine with a view of the Twin Towers, followed by a scenic walk in the park."
         }
       ]
     },
     {
       "day": 4,
-      "date": "2024-10-29",
-      "summary": "Last day for souvenir shopping and relaxation before departure.",
+      "date": "2024-10-30",
+      "summary": "Day trip to Cameron Highlands to enjoy nature and return for nightlife in Kuala Lumpur.",
       "activities": [
         {
+          "time": "07:00",
+          "activity_name": "Travel to Cameron Highlands",
+          "location": {
+            "name": "",
+            "city": "Cameron Highlands",
+            "coordinates": {
+              "latitude": 4.467892099999999,
+              "longitude": 101.3847868
+            },
+            "place_id": "ChIJFyBki4hXyjERczunig6qZmU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO362Icwj7Nt8-Arw0ZchDcruYc1qgvU0zWcHLQuebKWQDbjFIhoBKYHaOzVVXCwZgnG4e-lOguxgcWFdSHADqIyrVnhGQzw2wVgMIpF0_zk3PbIu1_kCvpSxYzZBNe8BGeSQXXKuXey14AN_pUpWEAbqXjPRjNAYDOjxS5e0pQzqee&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Early morning journey through scenic landscapes to Cameron Highlands."
+        },
+        {
           "time": "09:00",
-          "activity_name": "Visit Forbidden City",
+          "activity_name": "Visit Tea Plantations",
           "location": {
-            "name": "Forbidden City",
-            "city": "Beijing",
+            "name": "",
+            "city": "Cameron Highlands",
             "coordinates": {
-              "latitude": 39.9168038,
-              "longitude": 116.3971621
+              "latitude": 4.467892099999999,
+              "longitude": 101.3847868
             },
-            "place_id": "ChIJPdQVRelS8DURnwfTTb3idAY",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPOmnxgdR5QA3nGN3NF6pwKTXxdw1QFJB-3w3MN5OZcCnE0_3r1oT7NkmUui3oiQKtGBrku6xnLKbkQzz6mw9Z-a8JG-1CLHki6tIVESSkuT24ZaQ2xvLNff4tFLUetirzspFtLWcpojfH3COMaiW-i-rj23v0IRnbBeNS4XvWeyL0e&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJFyBki4hXyjERczunig6qZmU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPdGcCh_sT_ZNcHUnkG49nd-bBHvzER9HhYnarx9Vnd2c9SMC9LkgywGdwSW1Wn4GIFO2m8Z3sauTD88fBG8qi7HfKa9Shc7xhszBsdDLJIVOl3cWVaas6Vli80VKLjOthPdvyxLFfOXcaNr34QblvQD7TEZltBDcbNfTudEMRl1rDC&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Explore the historical palace of the emperors."
+          "description": "Explore rolling tea fields and enjoy a tea tasting experience."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch in nearby restaurant",
+          "time": "13:00",
+          "activity_name": "Lunch at a Local Caf\u00e9",
           "location": {
-            "name": "Local Restaurant",
-            "city": "Beijing",
+            "name": "",
+            "city": "Cameron Highlands",
             "coordinates": {
-              "latitude": 39.925275,
-              "longitude": 116.403539
+              "latitude": 4.467892099999999,
+              "longitude": 101.3847868
             },
-            "place_id": "ChIJX7PV49hS8DURuT2QxQbm7KU",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO9TVfGVkvsaptUmlE9-BE9nv0SkepiQdJQSxRduH7Cox17k_O6rLas541MaZLvQ_o2LE26viwHLePlyN8HCRweqUZckcBgT01ogucaSvKPpJuWnO1y6Nqd2NfYHP3DMbbiXppu5y8fuXrcjvyid6nvymhX4d0PDsWd503flJBDTIUI&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJFyBki4hXyjERczunig6qZmU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP1wkeVX5rUtT36n9hR16j2q6qo3euVMEyzk41D_CVJWfgTe4ao_wq7XbYvqckINEAsJiek0HCwu6jx_pShdxw0Z-A6iTXAIo5qdkgA7OgcciC9BXnvFjuCUZBh9_sc_IvQ27LHKF3l5Au4t6kLi-YCQE3kSpckrAYRphOtjKf0Ol8z&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy local dishes close to the Forbidden City."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Shopping at Silk Market",
-          "location": {
-            "name": "Silk Market",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 39.9094338,
-              "longitude": 116.4495225
-            },
-            "place_id": "ChIJp4O4NRqt8TUREe0QXNrcQXY",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNX2oRXGdWqoNecXFdCnzeNjY27pwaaLdQKwsYVbZbLJMPeRJI48S4AenPxRNbDn9gOyvCI_iK3TIy3l3uz8Jf13szSgao6P-Rg60zRn6hhxPpbG1l5drG7p5q5JcHZJfmEuoUYq7_jr28oEYmN_nlsCqWXxuFwsnIRvLW9DgsHv_bk&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
-          },
-          "description": "Shop for souvenirs and local handicrafts."
+          "description": "Savor fresh produce and local dishes at a charming caf\u00e9."
         },
         {
           "time": "17:00",
-          "activity_name": "Departure Preparation",
+          "activity_name": "Return to Kuala Lumpur and Night Market Visit",
           "location": {
-            "name": "Hotel",
-            "city": "Beijing",
+            "name": "",
+            "city": "Kuala Lumpur",
             "coordinates": {
-              "latitude": 39.9151125,
-              "longitude": 116.4135513
+              "latitude": 3.1319197,
+              "longitude": 101.6840589
             },
-            "place_id": "ChIJxz_lWM9S8DUR3fZnRhUqvWg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP3RroQF1ocdwTqFn_hwIpgh-X_tm0ajsBJ4hkkJ3YJmQgWLU5-g48fCD-Cr_DYntD172_JZ5NWdB9w2I5KWnvXIO2z_XD8ECih6cZcOtdeknzGVCS5tQfjMFvTuaS27xy3ATIEEKpF95d3ESDh60GrzxWcFHh8Y1ntxfpFOA50km2X&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJ0-cIvSo2zDERmWzYQPUfLiM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNalbgkXHeUNQpPwL_80yuGyyKpidsdyckbLZ6Ep9wzV6bukEP0uF6RZTymgy5J1SR-1FqUZCJh0Aziivy1110yrVKB4b_rEU3v9pQhA8DrSiIpwRJLCop-EurdhMLTJE02h32dJaQnWzjWai8VcSzYP-HZbTl2h2pHicMjXSSX-FK-&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Prepare for your departure."
+          "description": "Experience local culture and cuisine at a vibrant night market before departure."
         }
       ]
     }
