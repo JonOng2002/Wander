@@ -1,0 +1,257 @@
+{
+  "itinerary_summary": "An exciting 4-day trip to Beijing with friends exploring its rich cultural heritage, delightful culinary experiences, and vibrant nightlife while visiting must-see attractions and natural wonders.",
+  "day_by_day_itineraries": [
+    {
+      "day": 1,
+      "date": "2024-10-26",
+      "summary": "Arrival in Beijing and exploration of local culinary delights.",
+      "activities": [
+        {
+          "time": "17:00",
+          "activity_name": "Dinner at Peking Duck Restaurant",
+          "location": {
+            "name": "Quanjude Roast Duck",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Enjoy a delicious Peking duck dinner, a must-try dish in Beijing."
+        },
+        {
+          "time": "19:30",
+          "activity_name": "Stroll around Wangfujing Street",
+          "location": {
+            "name": "Wangfujing Street",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Experience the local nightlife and snack on street food."
+        },
+        {
+          "time": "21:00",
+          "activity_name": "Night market visit",
+          "location": {
+            "name": "Wangfujing Snack Street",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Explore the vibrant night market filled with local delicacies."
+        },
+        {
+          "time": "22:30",
+          "activity_name": "Return to Hotel",
+          "location": {
+            "name": "Hotel",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Rest for the night."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-10-27",
+      "summary": "Cultural exploration and natural heritage sites.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Visit Prince Chunqin Tomb",
+          "location": {
+            "name": "Prince Chunqin Tomb",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJwVb_CEte8DURI33FBwcSUsI"
+          },
+          "description": "Explore this historic site surrounded by beautiful gardens."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch nearby",
+          "location": {
+            "name": "Local Restaurant",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Try local delicacies at a restaurant near the tomb."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Beijing Mini-Yan'an",
+          "location": {
+            "name": "Beijing Mini-Yan'an",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJby0b-sth8DURhbihAzFNSRQ"
+          },
+          "description": "Experience a miniature version of a historical site."
+        },
+        {
+          "time": "17:00",
+          "activity_name": "Visit Liangqichao Former Residence",
+          "location": {
+            "name": "Liangqichao Former Residence",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJqatyk8us8TUR9Kvb3X34UdU"
+          },
+          "description": "Learn about the life of the famed reformist in this historic residence."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-10-28",
+      "summary": "Enjoy natural scenery and cultural immersion.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Visit Summer Palace",
+          "location": {
+            "name": "Summer Palace",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Explore the beautiful gardens, lakes, and architecture."
+        },
+        {
+          "time": "12:30",
+          "activity_name": "Lunch at Restaurant in Summer Palace",
+          "location": {
+            "name": "Summer Palace Restaurant",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Enjoy a scenic lunch overlooking the gardens."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Nature Walk in Beihai Park",
+          "location": {
+            "name": "Beihai Park",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Enjoy a leisurely walk through one of Beijing's oldest parks."
+        },
+        {
+          "time": "17:00",
+          "activity_name": "Dinner and Cultural Show",
+          "location": {
+            "name": "Liyuan Theatre",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Dine on Beijing delicacies while watching a traditional opera performance."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-10-29",
+      "summary": "Last day for souvenir shopping and relaxation before departure.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Visit Forbidden City",
+          "location": {
+            "name": "Forbidden City",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Explore the historical palace of the emperors."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch in nearby restaurant",
+          "location": {
+            "name": "Local Restaurant",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Enjoy local dishes close to the Forbidden City."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Shopping at Silk Market",
+          "location": {
+            "name": "Silk Market",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Shop for souvenirs and local handicrafts."
+        },
+        {
+          "time": "17:00",
+          "activity_name": "Departure Preparation",
+          "location": {
+            "name": "Hotel",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": ""
+          },
+          "description": "Prepare for your departure."
+        }
+      ]
+    }
+  ]
+}

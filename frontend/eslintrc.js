@@ -17,5 +17,8 @@ module.exports = {
     ],
     rules: {
       // Add custom rules if necessary
-    }
+    },
+    globals: {
+      google: 'readonly', // Tells ESLint that 'google' is a global variable
+    },
   };
