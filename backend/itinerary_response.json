@@ -1,299 +1,271 @@
 {
-  "itinerary_summary": "This 5-day trip to Sydney is filled with must-see attractions, wildlife interactions, thrilling adventures, and the enchanting views of the Blue Mountains. Couples will enjoy a blend of natural beauty, exciting nightlife, and memorable cultural experiences.",
+  "itinerary_summary": "An exciting 4-day trip to Beijing with friends exploring its rich cultural heritage, delightful culinary experiences, and vibrant nightlife while visiting must-see attractions and natural wonders.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-01",
-      "summary": "Arrive in Sydney and explore Darling Harbour, enjoying waterfront views and entertainment options.",
+      "date": "2024-10-26",
+      "summary": "Arrival in Beijing and exploration of local culinary delights.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Visit Darling Harbour",
+          "time": "17:00",
+          "activity_name": "Dinner at Peking Duck Restaurant",
           "location": {
-            "name": "Darling Harbour",
-            "city": "Sydney",
+            "name": "Quanjude Roast Duck",
+            "city": "Beijing",
             "coordinates": {
-              "latitude": -33.8735,
-              "longitude": 151.201
+              "latitude": 39.912235,
+              "longitude": 116.411924
             },
-            "place_id": "ChIJt9trB0euEmsR8NbepO14j3M",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN0uDOq9t-TQ-h1WxKd_DZ0RU3mZeFKzMuGf7mp_qmRcvbL4XxFpUC2a2PqQE11T65l_lWO7rd3mFdhTaJMB-M5nAl5j7lQNl2_Z2DbJHEg0pN1kZz05LQGyhaYJIFZpP_fHky_9B192c9etVgKrHtIEY3cCOcC6qOeEGyy9sR2ivRc&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJ2_43wc5S8DURiAu9njSliGE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMAjmEopnq9gaftu916J9KfXcK-il2h7WV_yYOeOuSnt1FwCBUf43V4BZXt0ENFI1zTV7tTVD01SoPvoDmVyjN10HXrS9lmZTEHUb8QxpbppmHmsqQHMLqrJFWHz_QAHCmg7NWjZk82_9MK4vVFS5zRrX3Ng0qSh3dZzdodEPw6rg1Y&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy a relaxing time at Darling Harbour, exploring shops, cafes, and the beautiful waterfront."
+          "description": "Enjoy a delicious Peking duck dinner, a must-try dish in Beijing."
         },
         {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at a waterfront cafe",
+          "time": "19:30",
+          "activity_name": "Stroll around Wangfujing Street",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Wangfujing Street",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.91126999999999,
+              "longitude": 116.41138
+            },
+            "place_id": "ChIJuXNr1tFS8DUR1sSqLEPPEtI",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOPJ7mIjFg1GNeAt3ii7np3pGOm84Wf78Lzk-LpRjAyde3zfDHaeA2u9XQECC8Oz6zSYgZbmvJvbTAOgP2e1E6BHaCgzH3TQfbv9c84zaqLQTIW_E60oWNLNgIWZtp_vxzKBxQE69xGC3tEdA3Lx8l9EuAwr9U83c_DSMEdlZdBp0Ju&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Choose a cafe with a view for a pleasant lunch experience."
+          "description": "Experience the local nightlife and snack on street food."
         },
         {
-          "time": "3:00 PM",
-          "activity_name": "Stroll in the Chinese Garden",
+          "time": "21:00",
+          "activity_name": "Night market visit",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Wangfujing Snack Street",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.9108703,
+              "longitude": 116.4104851
+            },
+            "place_id": "ChIJt6zWLslS8DURLlr4g_8nu4E",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMz89ejehCId89k1og83rVLnca03P1nifPwBSpmacZVwNOJKZ1L3TRAtA0PP9cwyqbP4Ka8Fn4z2y_JDdgPifEOhuRzitsDVBi-Z0hgGWb8-OtSuAhVItFl8DNq-kOL6ztfUugRKm-J5i-nX72H_N1B0UHr3g4JHchF66y84GezZ8or&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "An oasis in the city, perfect for a romantic stroll."
+          "description": "Explore the vibrant night market filled with local delicacies."
         },
         {
-          "time": "7:00 PM",
-          "activity_name": "Dinner Cruise in Sydney Harbour",
+          "time": "22:30",
+          "activity_name": "Return to Hotel",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Hotel",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.9151125,
+              "longitude": 116.4135513
+            },
+            "place_id": "ChIJxz_lWM9S8DUR3fZnRhUqvWg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNQyhN0K34EiB5TxrLgyWdJG4RE-pZmbagxNgVOy4fq60FcpiDSD2UyRt0uELgJJBUy1m5d6XiFw7x9J34FWnW0kXD-nAWJNox-qQwLIgFoI3tzGZQ9a7yCAmRXtp_BlQ5445_n84KCWdvUQtwhrtlsHXioDkmSBT3C5R5MeiqpiAGB&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy a memorable dining experience on a cruise with beautiful views of the Sydney skyline."
+          "description": "Rest for the night."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-02",
-      "summary": "Experience iconic landmarks such as the Sydney Opera House and Sydney Harbour Bridge.",
+      "date": "2024-10-27",
+      "summary": "Cultural exploration and natural heritage sites.",
       "activities": [
         {
-          "time": "9:00 AM",
-          "activity_name": "Visit Sydney Opera House",
+          "time": "09:00",
+          "activity_name": "Visit Prince Chunqin Tomb",
           "location": {
-            "name": "Sydney Opera House",
-            "city": "Sydney",
+            "name": "Prince Chunqin Tomb",
+            "city": "Beijing",
             "coordinates": {
-              "latitude": -33.8572,
-              "longitude": 151.2152
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJ3S-JXmauEmsRUcIaWtf4MzE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO4osSLkdR7bXjY4mC9s-DGrKkXQ-9R7L7B3KUu9oOvgbvGERme9bWJMsShhrcva1qeXZBRv5h4obOltsXY3q2MUdqhss9ogpk87tQZcnvVEt6zQGZBoR13J18yF0NbNEFXkz1aUoU2nMY6CGi5SwMjExkS7PztUR6ZbKLkiYObOYhD&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJwVb_CEte8DURI33FBwcSUsI",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP3GUFJSq3L0GweIOYM5SG-6kZjb1W_nY9W_w_RuoP1aXvhHiMxSQLLu4emGwV_RzyAEs2d_G9r6r6Q3gX0uHn3wt_lMjxD_9giuqiicEYLCdb8Nlo4thRO64_O9xFPmTGwwdv71lXS1eezyBUM52g04V9Lih8qKu6ex2pxbYESg3cg&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Tour the iconic Sydney Opera House and learn about its history."
+          "description": "Explore this historic site surrounded by beautiful gardens."
         },
         {
-          "time": "11:00 AM",
-          "activity_name": "Walk across the Sydney Harbour Bridge",
+          "time": "12:00",
+          "activity_name": "Lunch nearby",
           "location": {
-            "name": "Sydney Harbour Bridge",
-            "city": "Sydney",
+            "name": "Local Restaurant",
+            "city": "Beijing",
             "coordinates": {
-              "latitude": -33.8486,
-              "longitude": 151.2108
+              "latitude": 39.925275,
+              "longitude": 116.403539
             },
-            "place_id": "ChIJ49XqJV2uEmsRPsTAF7eOlGg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNIPKpC8yBu9q0L_r0A-lqc8RcDBO-jpogA3tcDOS8b1XTN6ZXYYhu5rXyNzMe29oKdA0fFgGLjDgx2ullN8pA_hs4e0JXiePSXjEZ9GVMW2ghQYvLQWpgZlXHbH57QmAh-jKrK1edZVNDO_j-pAy41Cq6vkjTlQC5Wv8ldrSLytj0X&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJX7PV49hS8DURuT2QxQbm7KU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPB_PAZ7HsdAmfzRsS8KWoE7Y4dGYxeSCWIrapf3eRVbdJeJ85pUQ2FlUjL_ZAL26Vx0nvjRQG36R-mi-rABYsf4Yj_6rV62gWe6i79UqmPMSAhM-Um3ij87909ORAFzgIF72-EkGB2Axpw7m6VNYD0rS-i-r1YRjiwEhSoJcuvVFuX&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Capture breathtaking views of the skyline and the surrounding harbor."
+          "description": "Try local delicacies at a restaurant near the tomb."
         },
         {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Circular Quay",
+          "time": "14:00",
+          "activity_name": "Beijing Mini-Yan'an",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Beijing Mini-Yan'an",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJby0b-sth8DURhbihAzFNSRQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOW_frkfHs-MdgixjYsbWcCtxJhv-geuBrGYDwnEQWW2P-Gu51qFqkG1YiaamackgKm2E78WA0Bp4VTslGDZij7iRiyOI62OlgAFr7nOSdbDMNl8kPoO9NFZQQH_UpYiJ9_hYL20yLWRGjS7E_Oo9V9RA1iLsbDzzM1bBI_wuH_iUPN&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Savor lunch with views of the harbour and opera house."
+          "description": "Experience a miniature version of a historical site."
         },
         {
-          "time": "3:00 PM",
-          "activity_name": "Explore The Rocks District",
+          "time": "17:00",
+          "activity_name": "Visit Liangqichao Former Residence",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Liangqichao Former Residence",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJqatyk8us8TUR9Kvb3X34UdU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOnNNBAriquGHj4WfqBV98wuikptgj0NPL_2ajIdSjTdGon4beP19uKIVzPNTnB-q7I-lvx4nfNWb1pbzFUoZFndg8q2neeXiDZe7ZxfnjN9mp2EwhiDuTpkjw9_OvhTiCk3YpLDgDPMGcLjRqytqiMsXgzG7vQweInm27vEpDcfBQn&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Wander through this historic area with shops and galleries."
+          "description": "Learn about the life of the famed reformist in this historic residence."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-11-03",
-      "summary": "Visit Featherdale Sydney Wildlife Park and enjoy a day of wildlife experiences and adventure activities.",
+      "date": "2024-10-28",
+      "summary": "Enjoy natural scenery and cultural immersion.",
       "activities": [
         {
-          "time": "9:00 AM",
-          "activity_name": "Visit Featherdale Sydney Wildlife Park",
+          "time": "09:00",
+          "activity_name": "Visit Summer Palace",
           "location": {
-            "name": "Featherdale Sydney Wildlife Park",
-            "city": "Doonside",
+            "name": "Summer Palace",
+            "city": "Beijing",
             "coordinates": {
-              "latitude": -33.7954,
-              "longitude": 150.8925
+              "latitude": 39.9999823,
+              "longitude": 116.2754606
             },
-            "place_id": "ChIJi4HdHKCZEmsRYPPy-Wh9AQ8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPvRnke28ei-w9Z8UkIqogFkdyw0PHYocJh6pJ30HVD_tuENNlKxZPeHqzy-RL9Lp1XgMlcpA_YgPS1vgVQTZo1X-ycIJKNTbqNsehILIDJTvaN7kbyCJ4ScaTDaB7vd6KZINaXosSqmAs_3WZv-QqxQje4-LCSO4UXs-M0ZICNTBGt&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJP4_Ducf4AjQRMqEETHex2UU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMMeKtW7ESnRqETWGQ7lR0Mj_b42m01Nr7pzc7CCB2X2t73-FqiTw62yvcEcTiyhQKamKDIrD4EVYgOnYjDWZPqu_LuzxPZJ7glcy5UK7s_WQYU4rMGrHXTceelSybJseV7IUKd_DEAWIBAYgmcPYcDdw0sukq3RzG8QYwuIIHMvgpF&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Interact with native animals and enjoy feeding experiences."
+          "description": "Explore the beautiful gardens, lakes, and architecture."
         },
         {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Featherdale Cafe",
+          "time": "12:30",
+          "activity_name": "Lunch at Restaurant in Summer Palace",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Summer Palace Restaurant",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.980288,
+              "longitude": 116.279955
+            },
+            "place_id": "ChIJITzg5yBR8DURRv1SFeFmfs8",
+            "photo_url": "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
           },
-          "description": "Relax at the park's cafe after your wildlife adventures."
+          "description": "Enjoy a scenic lunch overlooking the gardens."
         },
         {
-          "time": "3:00 PM",
-          "activity_name": "Adventure Activity - Kayaking",
+          "time": "14:00",
+          "activity_name": "Nature Walk in Beihai Park",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Beihai Park",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.9254474,
+              "longitude": 116.3892639
+            },
+            "place_id": "ChIJWWErs-ZS8DURdcUOnciALOI",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP6iczFBDMql41Rb8CZcOTaCGORjcrCc2M-xkdugnJx9KWA6XUyQjhEvU7iZv2tDtILWBKgEsPMfTv_EW2gdmt24xoCR75CIvS_qZ0U_x6mPH1h93_CfGQRjKWVb3x9kIELnIkKK6wRrohCVvHeMOfBw-SWXLqeJKZYpz9_fz0iwiBl&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Join a guided kayaking tour around the harbor."
+          "description": "Enjoy a leisurely walk through one of Beijing's oldest parks."
         },
         {
-          "time": "6:00 PM",
-          "activity_name": "Dinner at a local restaurant",
+          "time": "17:00",
+          "activity_name": "Dinner and Cultural Show",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Liyuan Theatre",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.887407,
+              "longitude": 116.3867618
+            },
+            "place_id": "ChIJZynL5mRN8DUR6qSH5MPPo5Y",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMCploL583Vvwq5HJytvyYaStrmSt1wxT4hlE5_cHu11fvyOj4iZ8oKoqgcq0r2RwmzGMlnELDbMrHcS6sXTzmv-8gohojHEo2OrB2B9mYFlDRp2Ou0WL0EddxcngbGKrgSc5NeigKNS0po0RxZRu_O47d1k8o2xKA3IGN9q4d8lgQ&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy a delightful dinner at a nearby restaurant."
+          "description": "Dine on Beijing delicacies while watching a traditional opera performance."
         }
       ]
     },
     {
       "day": 4,
-      "date": "2024-11-04",
-      "summary": "Explore the Blue Mountains with a visit to Katoomba and stunning natural scenery.",
+      "date": "2024-10-29",
+      "summary": "Last day for souvenir shopping and relaxation before departure.",
       "activities": [
         {
-          "time": "8:00 AM",
-          "activity_name": "Depart for Blue Mountains",
+          "time": "09:00",
+          "activity_name": "Visit Forbidden City",
           "location": {
-            "name": "Blue Mountains",
-            "city": "Katoomba",
+            "name": "Forbidden City",
+            "city": "Beijing",
             "coordinates": {
-              "latitude": -33.7124469,
-              "longitude": 150.3117701
+              "latitude": 39.9168038,
+              "longitude": 116.3971621
             },
-            "place_id": "ChIJrf08OilsEmsR4NQyFmh9AQU",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOKEPxBSHYslMBDm0prp0mopaB8Y9X3b34hmqLVmzrQ6il5rexfiV18D747nhmLQvSRDSNgduWGkufWkGzEwHKdpoI7EvpBg0GgWPSIwpP9DJRvxzXV_zjPkNAWsuoLu9mdYyti3hMfQZWnQ9dnzDG4W4CxTsg_9SVBzRT_97sKtr5X&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJPdQVRelS8DURnwfTTb3idAY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPOmnxgdR5QA3nGN3NF6pwKTXxdw1QFJB-3w3MN5OZcCnE0_3r1oT7NkmUui3oiQKtGBrku6xnLKbkQzz6mw9Z-a8JG-1CLHki6tIVESSkuT24ZaQ2xvLNff4tFLUetirzspFtLWcpojfH3COMaiW-i-rj23v0IRnbBeNS4XvWeyL0e&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Start your journey to the breathtaking Blue Mountains."
+          "description": "Explore the historical palace of the emperors."
         },
         {
-          "time": "10:00 AM",
-          "activity_name": "Visit Scenic World",
+          "time": "12:00",
+          "activity_name": "Lunch in nearby restaurant",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Take a ride on the cableway and enjoy stunning views."
-        },
-        {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at a lookout",
-          "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Have lunch with magnificent views of the mountains."
-        },
-        {
-          "time": "3:00 PM",
-          "activity_name": "Explore Katoomba Falls",
-          "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Walk to the famous Katoomba Falls and enjoy nature."
-        }
-      ]
-    },
-    {
-      "day": 5,
-      "date": "2024-11-05",
-      "summary": "Relax and enjoy a leisurely morning before departure.",
-      "activities": [
-        {
-          "time": "10:00 AM",
-          "activity_name": "Brunch at Bondi Beach",
-          "location": {
-            "name": "",
-            "city": "Bondi Beach",
+            "name": "Local Restaurant",
+            "city": "Beijing",
             "coordinates": {
-              "latitude": -33.8914755,
-              "longitude": 151.2766845
+              "latitude": 39.925275,
+              "longitude": 116.403539
             },
-            "place_id": "ChIJx4FyRJytEmsReOktxgkYwyA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP-0bPLUNQceWjUXces4eks6N3XrY8J2tOAHgk4Kil8uczGvp_Dr4zUqbCSu4EjM3NpQzfGwfp4zPFsncP7U-yCHOHcd1AmAeBt46O2mE7DoI2q_z9qRXT8x9bXuB7xB9_vLydppJ-5Qbn-ZDtw67JYQwUgaYUsIUrA0Y3idVcYwYIQ&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJX7PV49hS8DURuT2QxQbm7KU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO9TVfGVkvsaptUmlE9-BE9nv0SkepiQdJQSxRduH7Cox17k_O6rLas541MaZLvQ_o2LE26viwHLePlyN8HCRweqUZckcBgT01ogucaSvKPpJuWnO1y6Nqd2NfYHP3DMbbiXppu5y8fuXrcjvyid6nvymhX4d0PDsWd503flJBDTIUI&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy a relaxed brunch at one of the popular beach cafes."
+          "description": "Enjoy local dishes close to the Forbidden City."
         },
         {
-          "time": "12:00 PM",
-          "activity_name": "Visit Macquarie Lighthouse",
+          "time": "14:00",
+          "activity_name": "Shopping at Silk Market",
           "location": {
-            "name": "Macquarie Lighthouse",
-            "city": "Vaucluse",
+            "name": "Silk Market",
+            "city": "Beijing",
             "coordinates": {
-              "latitude": -33.8431,
-              "longitude": 151.2781
+              "latitude": 39.9094338,
+              "longitude": 116.4495225
             },
-            "place_id": "ChIJPb-8xfasEmsRTDbDdhDPvX0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMRPRUYWFXR7K0PFRZ14Paf0Joy_1kr04YvUtBUT7qG8tH6kLyolxplt3uX3iQokE4rCPl4W1bVIr7ysMbx0ePVfzzb6ClLqzBUqeDqi8LJUd7PndIZb7Um8dcjjBZQaIZrFKMQFgMuWvCW5K_vnDdY5ENK82ONT4Nz4n2HhYq4Hrz3&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJp4O4NRqt8TUREe0QXNrcQXY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNX2oRXGdWqoNecXFdCnzeNjY27pwaaLdQKwsYVbZbLJMPeRJI48S4AenPxRNbDn9gOyvCI_iK3TIy3l3uz8Jf13szSgao6P-Rg60zRn6hhxPpbG1l5drG7p5q5JcHZJfmEuoUYq7_jr28oEYmN_nlsCqWXxuFwsnIRvLW9DgsHv_bk&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Visit the historic lighthouse and enjoy views of the coastline."
+          "description": "Shop for souvenirs and local handicrafts."
         },
         {
-          "time": "2:00 PM",
-          "activity_name": "Final stroll in the city",
+          "time": "17:00",
+          "activity_name": "Departure Preparation",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Hotel",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.9151125,
+              "longitude": 116.4135513
+            },
+            "place_id": "ChIJxz_lWM9S8DUR3fZnRhUqvWg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP3RroQF1ocdwTqFn_hwIpgh-X_tm0ajsBJ4hkkJ3YJmQgWLU5-g48fCD-Cr_DYntD172_JZ5NWdB9w2I5KWnvXIO2z_XD8ECih6cZcOtdeknzGVCS5tQfjMFvTuaS27xy3ATIEEKpF95d3ESDh60GrzxWcFHh8Y1ntxfpFOA50km2X&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
           },
-          "description": "Enjoy a final walk around Sydney before departure."
-        },
-        {
-          "time": "4:00 PM",
-          "activity_name": "Departure",
-          "location": {
-            "name": "",
-            "city": "",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Head to the airport for your departure."
+          "description": "Prepare for your departure."
         }
       ]
     }

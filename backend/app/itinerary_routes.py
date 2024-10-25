@@ -174,7 +174,7 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
                     - Locations: {json.dumps(itinerary, indent=2)}
                     - Interests/Tags: {', '.join(tags)}
 
-                    Please provide day-by-day itineraries from start to end date with a maximum of 4 activities per day with regards to the tags for context. Each activity should include location details such as specific name, city, coordinates, place ID, times, and summaries. Retain the image URL and place ID for user-input locations; for generated locations, only leave an empty string for place ID and image URL if they’re unavailable.
+                    Please provide day-by-day itineraries from start to end date with a maximum of 4 activities per day with regards to the tags for context. Each activity must include location details such as specific name, city, coordinates, place ID, times, and summaries. Retain the image URL and place ID for user-input locations; for generated locations, only leave an empty string for place ID and image URL.
                     """
                 }
             ],
@@ -312,7 +312,7 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
                             print(f"Fetched photo URL for {place_name}")
                         else:
                             # Fallback image URL if no photo is found
-                            activity["location"]["photo_url"] = "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27"
+                            activity["location"]["photo_url"] = "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
                             print(f"No photo available for {place_name}, using fallback.")
                     else:
                         print(f"Skipping {place_name} due to being outside country.")

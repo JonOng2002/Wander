@@ -11,7 +11,7 @@ import DestinationDetails from '@/views/DestinationDetails.vue';
 import CalendarPage from '@/views/CalendarPage.vue';
 import TagsPage from '@/views/TagsPage.vue';
 import TrvPartner from '@/views/TravellingWithWho.vue';
-import GenItiTest from '@/views/GenItiTest.vue';
+import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
 import MyItineraries from '@/views/MyItineraries.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
@@ -36,7 +36,7 @@ const routes = [
   { path: '/calendar', name: 'CalendarPage', component: CalendarPage },
   { path: '/tags', name: 'TagsPage', component: TagsPage },
   { path: '/trvpartner', name: 'TrvPartner', component: TrvPartner },
-  { path: '/geniti', name: 'GenIti', component: GenItiTest },
+  { path: '/generatedItinerary', name: 'GenIti', component: GeneratedItinerary, },
   { path: '/myitineraries', name: 'MyItineraries', component: MyItineraries,
     props: (route) => ({
       itineraryGenerated: route.query.itineraryGenerated === 'true',
