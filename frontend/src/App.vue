@@ -6,14 +6,12 @@
     </div>
 
     <div class="router-container">
-      <router-view></router-view> 
-    </div><!-- This is where the matched component will be rendered -->
+      <router-view></router-view> <!-- This is where the matched component will be rendered -->
+    </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 import AppNavbar from './components/AppNavbar.vue';
 
 export default {
@@ -21,18 +19,13 @@ export default {
   components: {
     AppNavbar, // Register the Navbar component
   },
-  setup() {
-    const route = useRoute();
-
-    // Check if the current route is sign-in or login
-    const isAuthPage = computed(() => {
-      return route.name === 'SignIn' || route.name === 'LogIn';
-    });
-
-    return {
-      isAuthPage,
-    };
-  },
+  computed: {
+    // Check if the current route is an auth page (e.g., SignUp or LogIn)
+    isAuthPage() {
+      const route = this.$route;
+      return route.name === 'SignUp' || route.name === 'LogIn';
+    },
+  }
 };
 </script>
 
@@ -53,7 +46,9 @@ body {
   top: 0;
   z-index: 1000;
   background-color: white; /* Ensure a solid background for the navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
+
 #app {
   display: flex;
   flex-direction: column;
@@ -62,11 +57,6 @@ body {
   margin: 0;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
 
 .router-container {
   width: 100%;

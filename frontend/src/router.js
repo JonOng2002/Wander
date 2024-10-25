@@ -8,12 +8,11 @@ import LogIn from '@/views/LogIn.vue'; // Import LogIn component
 import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
-import GeneratedItinerary from '@/views/TestItinerary.vue';
-import DropdownlistBefGenIti from '@/views/DropdownlistBefGenIti.vue';
 import CalendarPage from '@/views/CalendarPage.vue';
 import TagsPage from '@/views/TagsPage.vue';
 import TrvPartner from '@/views/TravellingWithWho.vue';
 import GenItiTest from '@/views/GenItiTest.vue';
+import MyItineraries from '@/views/MyItineraries.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 
@@ -24,18 +23,8 @@ const routes = [
   { path: '/about', name: 'AboutPage', component: AboutPage },
   { path: '/location', name: 'ExtractedLocation', component: ExtractedLocation },
   { path: '/savedplaces', name: 'SavedPlaces', component: SavedPlaces },
-  { path: '/about', name: 'About', component: AboutPage },
   { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
-  {
-    path: '/itinerary',
-    name: 'GeneratedItinerary',
-    component: GeneratedItinerary,
-    props: (route) => ({
-      itineraryGenerated: route.query.itineraryGenerated === 'true',
-      itinerary: route.query.itinerary ? JSON.parse(route.query.itinerary) : []
-    })
-  },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
   {
@@ -43,12 +32,17 @@ const routes = [
     name: 'DestinationDetails',
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
-  },
-  { path: '/dropdownlist', name: 'DropdownlistBefGenIti', component: DropdownlistBefGenIti }, 
+  }, 
   { path: '/calendar', name: 'CalendarPage', component: CalendarPage },
   { path: '/tags', name: 'TagsPage', component: TagsPage },
   { path: '/trvpartner', name: 'TrvPartner', component: TrvPartner },
-  { path: '/genititest', name: 'GenItiTest', component: GenItiTest },
+  { path: '/geniti', name: 'GenIti', component: GenItiTest },
+  { path: '/myitineraries', name: 'MyItineraries', component: MyItineraries,
+    props: (route) => ({
+      itineraryGenerated: route.query.itineraryGenerated === 'true',
+      itinerary: route.query.itinerary ? JSON.parse(route.query.itinerary) : []
+    })
+  },
 ];
 
 // Router instance with Firebase authentication logic

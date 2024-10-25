@@ -8,41 +8,32 @@
   <h3>Extracted locations</h3>
 
   <!-- Location Information -->
-  <div v-if="locationInfo" :id="locationInfo.place_name.replace(/\s+/g, '-').toLowerCase() || 'main-location'" class="card mx-auto mb-5" style="width: 40rem;">
+  <div v-if="locationInfo" :id="locationInfo.place_name.replace(/\s+/g, '-').toLowerCase()" class="card mx-auto mb-5" style="width: 40rem;">
     <img :src="locationInfo.place_png" @error="handleImageError" class="card-img-top" alt="Image of {{ locationInfo.place_name }}">
     <div class="card-body pb-0">
       <h5 class="card-title">{{ locationInfo.place_name }}</h5>
-      <p class="card-text">{{ locationInfo.location_summary }}</p> <!-- Updated: Display the location summary -->
+      <p class="card-text">{{ locationInfo.location_summary }}</p>
     </div>
     <hr>
 
-    <!-- Correct separation for Location and Activities -->
     <div class="card-body py-0">
       <h5 class="card-title">Location</h5>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
       </ul>
-    </div>
-    <hr>
-    <div class="card-body py-0">
-      <h5 class="card-title">Activities</h5>
-      <ul class="list-group list-group-flush">
-        <li v-for="(activity, index) in locationInfo.activities" :key="index" class="list-group-item">{{ activity }}</li>
-      </ul>
-    </div>
 
-    <!-- Google Map displaying the location -->
-    <div class="card-body py-0">
-      <div id="location-map" class="map">
-        <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
+      <!-- Google Map displaying the location -->
+      <div v-if="locationInfo && locationInfo.coordinates">
+        <GoogleMap style="width: 100%; height: 500px"
+          :api-promise="apiPromise"
           :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }" :zoom="15">
-          <Marker :options="{ position: center }" />
+          <Marker :options="{ position: { lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude } }" />
         </GoogleMap>
       </div>
     </div>
 
     <hr>
-    <div class="card-body pt-0">
+    <div class="card-body pt-0" v-if="userId">
       <save-place-button class='btn btn-dark' 
         @place-saved="handlePlaceSaved"
         :placeName="locationInfo.place_name" 
@@ -59,11 +50,6 @@
     </div>
   </div>
 
-  <!-- Popup for confirmation -->
-  <div v-if="showPopup" class="popup">
-    <p>Added to saved places!</p>
-  </div>
-
   <!-- Related Places Section -->
   <div v-if="relatedPlaces.length">
     <h2>Related Places</h2>
@@ -76,33 +62,24 @@
         </div>
         <hr>
 
-        <!-- Correct separation for Location and Activities -->
         <div class="card-body py-0">
           <h5 class="card-title">Location</h5>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
           </ul>
-        </div>
-        <hr>
-        <div class="card-body py-0">
-          <h5 class="card-title">Activities</h5>
-          <ul class="list-group list-group-flush">
-            <li v-for="(activity, index) in place.activities" :key="index" class="list-group-item">{{ activity }}</li>
-          </ul>
-        </div>
 
-        <!-- Google Map displaying the related place location -->
-        <div class="card-body py-0">
-          <div id="location-map" class="map">
-            <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
+          <!-- Google Map displaying the related place location -->
+          <div v-if="place.coordinates">
+            <GoogleMap style="width: 100%; height: 500px"
+            :api-promise="apiPromise"
               :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
-              <Marker :options="{ position: center }" />
+              <Marker :options="{ position: { lat: place.coordinates.latitude, lng: place.coordinates.longitude } }" />
             </GoogleMap>
           </div>
         </div>
 
         <hr>
-        <div class="card-body pt-0">
+        <div class="card-body pt-0" v-if="userId">
           <save-place-button class="btn btn-dark" 
             @place-saved="handlePlaceSaved"
             :placeName="place.place_name" 
@@ -122,103 +99,105 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+<script>
 import SavePlaceButton from '@/components/SavePlaceButton.vue';
-import { GoogleMap, Marker } from 'vue3-google-map';  
-import { Loader } from '@googlemaps/js-api-loader';
-import { defineProps } from 'vue';
+import { GoogleMap, Marker } from 'vue3-google-map';
 
-// Props coming from parent (MainPage.vue)
-const props = defineProps({
-  locationInfo: Object,
-  relatedPlaces: Array,
-  userId: {
-    type: String,
-    default: '',
+
+export default {
+  inject: ['apiPromise'],
+  components: {
+    SavePlaceButton,
+    GoogleMap,    // Register GoogleMap component
+    Marker        // Register Marker component
   },
-  savedPlaces: Array,
-});
+  props: {
+    locationInfo: Object,
+    relatedPlaces: Array,
+    userId: {
+      type: String,
+      default: '',
+    },
+    savedPlaces: Array,
+  },
 
-const navItems = ref([]);
-const showPopup = ref(false);  // Popup visibility
-const center = ref({ lat: 0, lng: 0 });
-
-// Handle place saved popup
-const handlePlaceSaved = () => {
-  showPopup.value = true;
-  setTimeout(() => showPopup.value = false, 2000);
-};
-
-// Load Google Maps API
-const loader = new Loader({
-  apiKey: 'AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k',
-  version: 'weekly',
-  libraries: ['places'],
-});
-
-const apiPromise = loader.load();
-
-const generateNavItems = () => {
-  const items = [];
-
-  // Add the main location to navItems
-  if (props.locationInfo) {
-    items.push({
-      id: props.locationInfo.place_name,
-      name: props.locationInfo.place_name,
-      active: true,
-    });
-  }
-
-  // Add each related place to the navItems
-  props.relatedPlaces.forEach((place) => {
-    items.push({
-      id: place.place_name,
-      name: place.place_name,
-      active: false,
-    });
-  });
-
-  navItems.value = items; // Assign the generated items to the navItems array
-};
-
-// Scroll handler to highlight active section
-const handleScroll = () => {
-  const sections = document.querySelectorAll('.card');
-  const links = document.querySelectorAll('.nav-link');
-
-  sections.forEach((section) => {
-    const rect = section.getBoundingClientRect();
-    const sectionId = section.getAttribute('id');
-
-    // Check if the section is in the viewport
-    if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-      links.forEach(link => link.classList.remove('active'));
-      const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-      if (activeLink) activeLink.classList.add('active');
-    }
-  });
-};
-
-onMounted(() => {
-  if (props.locationInfo?.coordinates) {
-    center.value = {
-      lat: props.locationInfo.coordinates.latitude,
-      lng: props.locationInfo.coordinates.longitude,
+  data() {
+    return {
+      navItems: [],
+      showPopup: false,
+      center: { lat: 0, lng: 0 },
     };
-  }
+  },
 
-  generateNavItems();
-  window.addEventListener('scroll', handleScroll);
-});
+  methods: {
+    handlePlaceSaved() {
+      this.showPopup = true;
+      setTimeout(() => {
+        this.showPopup = false;
+      }, 2000);
+    },
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
+    generateNavItems() {
+      const items = [];
 
-const handleImageError = (event) => {
-  event.target.src = 'https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg';
+      if (this.locationInfo) {
+        items.push({
+          id: this.locationInfo.place_name,
+          name: this.locationInfo.place_name,
+          active: true,
+        });
+      }
+
+      this.relatedPlaces.forEach((place) => {
+        items.push({
+          id: place.place_name,
+          name: place.place_name,
+          active: false,
+        });
+      });
+
+      this.navItems = items;
+    },
+
+    handleScroll() {
+      const sections = document.querySelectorAll('.card');
+      const links = document.querySelectorAll('.nav-link');
+
+      if (sections.length === 0 || links.length === 0) return;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionId = section.getAttribute('id');
+
+        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+          links.forEach(link => link.classList.remove('active'));
+          const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+          if (activeLink) activeLink.classList.add('active');
+        }
+      });
+    },
+
+    handleImageError(event) {
+      event.target.src = 'https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg';
+    },
+  },
+
+  mounted() {
+    this.generateNavItems();
+
+    if (this.locationInfo?.coordinates) {
+      this.center = {
+        lat: this.locationInfo.coordinates.latitude,
+        lng: this.locationInfo.coordinates.longitude,
+      };
+    }
+
+    window.addEventListener('scroll', this.handleScroll);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
 };
 </script>
 

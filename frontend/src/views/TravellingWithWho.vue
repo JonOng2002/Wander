@@ -58,15 +58,16 @@
 };
   // Proceed to the next step
   const goToNextStep = () => {
-  const { start, end, itinerary } = router.currentRoute.value.query; // Receive previous data
+  const { start, end, countryCode } = router.currentRoute.value.query; // Receive previous data
+  console.log('passing info to tags.vue:', start, end, countryCode );
   if (selectedTripType.value) {
     router.push({
       name: 'TagsPage',
       query: {
         start,
         end,
+        countryCode,
         tripType: selectedTripType.value,
-        itinerary // Pass itinerary along
       }
     });
   } else {

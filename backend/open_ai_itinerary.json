@@ -1,0 +1,301 @@
+{
+  "itinerary_summary": "This 5-day trip to Sydney is filled with must-see attractions, wildlife interactions, thrilling adventures, and the enchanting views of the Blue Mountains. Couples will enjoy a blend of natural beauty, exciting nightlife, and memorable cultural experiences.",
+  "day_by_day_itineraries": [
+    {
+      "day": 1,
+      "date": "2024-11-01",
+      "summary": "Arrive in Sydney and explore Darling Harbour, enjoying waterfront views and entertainment options.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit Darling Harbour",
+          "location": {
+            "name": "Darling Harbour",
+            "city": "Sydney",
+            "coordinates": {
+              "latitude": -33.8735,
+              "longitude": 151.201
+            },
+            "place_id": "ChIJt9trB0euEmsR8NbepO14j3M",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN0uDOq9t-TQ-h1WxKd_DZ0RU3mZeFKzMuGf7mp_qmRcvbL4XxFpUC2a2PqQE11T65l_lWO7rd3mFdhTaJMB-M5nAl5j7lQNl2_Z2DbJHEg0pN1kZz05LQGyhaYJIFZpP_fHky_9B192c9etVgKrHtIEY3cCOcC6qOeEGyy9sR2ivRc&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k},"
+          },
+          "description": "Enjoy a relaxing time at Darling Harbour, exploring shops, cafes, and the beautiful waterfront."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at a waterfront cafe",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Choose a cafe with a view for a pleasant lunch experience."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Stroll in the Chinese Garden",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "An oasis in the city, perfect for a romantic stroll."
+        },
+        {
+          "time": "7:00 PM",
+          "activity_name": "Dinner Cruise in Sydney Harbour",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a memorable dining experience on a cruise with beautiful views of the Sydney skyline."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-02",
+      "summary": "Experience iconic landmarks such as the Sydney Opera House and Sydney Harbour Bridge.",
+      "activities": [
+        {
+          "time": "9:00 AM",
+          "activity_name": "Visit Sydney Opera House",
+          "location": {
+            "name": "Sydney Opera House",
+            "city": "Sydney",
+            "coordinates": {
+              "latitude": -33.8572,
+              "longitude": 151.2152
+            },
+            "place_id": "ChIJ3S-JXmauEmsRUcIaWtf4MzE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO4osSLkdR7bXjY4mC9s-DGrKkXQ-9R7L7B3KUu9oOvgbvGERme9bWJMsShhrcva1qeXZBRv5h4obOltsXY3q2MUdqhss9ogpk87tQZcnvVEt6zQGZBoR13J18yF0NbNEFXkz1aUoU2nMY6CGi5SwMjExkS7PztUR6ZbKLkiYObOYhD&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k},"
+          },
+          "description": "Tour the iconic Sydney Opera House and learn about its history."
+        },
+        {
+          "time": "11:00 AM",
+          "activity_name": "Walk across the Sydney Harbour Bridge",
+          "location": {
+            "name": "Sydney Harbour Bridge",
+            "city": "Sydney",
+            "coordinates": {
+              "latitude": -33.8486,
+              "longitude": 151.2108
+            },
+            "place_id": "ChIJ49XqJV2uEmsRPsTAF7eOlGg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNIPKpC8yBu9q0L_r0A-lqc8RcDBO-jpogA3tcDOS8b1XTN6ZXYYhu5rXyNzMe29oKdA0fFgGLjDgx2ullN8pA_hs4e0JXiePSXjEZ9GVMW2ghQYvLQWpgZlXHbH57QmAh-jKrK1edZVNDO_j-pAy41Cq6vkjTlQC5Wv8ldrSLytj0X&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k},"
+          },
+          "description": "Capture breathtaking views of the skyline and the surrounding harbor."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Circular Quay",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Savor lunch with views of the harbour and opera house."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Explore The Rocks District",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Wander through this historic area with shops and galleries."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-03",
+      "summary": "Visit Featherdale Sydney Wildlife Park and enjoy a day of wildlife experiences and adventure activities.",
+      "activities": [
+        {
+          "time": "9:00 AM",
+          "activity_name": "Visit Featherdale Sydney Wildlife Park",
+          "location": {
+            "name": "Featherdale Sydney Wildlife Park",
+            "city": "Doonside",
+            "coordinates": {
+              "latitude": -33.7954,
+              "longitude": 150.8925
+            },
+            "place_id": "ChIJi4HdHKCZEmsRYPPy-Wh9AQ8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPvRnke28ei-w9Z8UkIqogFkdyw0PHYocJh6pJ30HVD_tuENNlKxZPeHqzy-RL9Lp1XgMlcpA_YgPS1vgVQTZo1X-ycIJKNTbqNsehILIDJTvaN7kbyCJ4ScaTDaB7vd6KZINaXosSqmAs_3WZv-QqxQje4-LCSO4UXs-M0ZICNTBGt&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k},"
+          },
+          "description": "Interact with native animals and enjoy feeding experiences."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Featherdale Cafe",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Relax at the park's cafe after your wildlife adventures."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Adventure Activity - Kayaking",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Join a guided kayaking tour around the harbor."
+        },
+        {
+          "time": "6:00 PM",
+          "activity_name": "Dinner at a local restaurant",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a delightful dinner at a nearby restaurant."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-04",
+      "summary": "Explore the Blue Mountains with a visit to Katoomba and stunning natural scenery.",
+      "activities": [
+        {
+          "time": "8:00 AM",
+          "activity_name": "Depart for Blue Mountains",
+          "location": {
+            "name": "Blue Mountains",
+            "city": "Katoomba",
+            "coordinates": {
+              "latitude": -33.7118,
+              "longitude": 150.3119
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Start your journey to the breathtaking Blue Mountains."
+        },
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit Scenic World",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Take a ride on the cableway and enjoy stunning views."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at a lookout",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Have lunch with magnificent views of the mountains."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Explore Katoomba Falls",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Walk to the famous Katoomba Falls and enjoy nature."
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2024-11-05",
+      "summary": "Relax and enjoy a leisurely morning before departure.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Brunch at Bondi Beach",
+          "location": {
+            "name": "",
+            "city": "Bondi Beach",
+            "coordinates": {
+              "latitude": -33.8948,
+              "longitude": 151.2767
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a relaxed brunch at one of the popular beach cafes."
+        },
+        {
+          "time": "12:00 PM",
+          "activity_name": "Visit Macquarie Lighthouse",
+          "location": {
+            "name": "Macquarie Lighthouse",
+            "city": "Vaucluse",
+            "coordinates": {
+              "latitude": -33.8431,
+              "longitude": 151.2781
+            },
+            "place_id": "ChIJPb-8xfasEmsRTDbDdhDPvX0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMRPRUYWFXR7K0PFRZ14Paf0Joy_1kr04YvUtBUT7qG8tH6kLyolxplt3uX3iQokE4rCPl4W1bVIr7ysMbx0ePVfzzb6ClLqzBUqeDqi8LJUd7PndIZb7Um8dcjjBZQaIZrFKMQFgMuWvCW5K_vnDdY5ENK82ONT4Nz4n2HhYq4Hrz3&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k},"
+          },
+          "description": "Visit the historic lighthouse and enjoy views of the coastline."
+        },
+        {
+          "time": "2:00 PM",
+          "activity_name": "Final stroll in the city",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a final walk around Sydney before departure."
+        },
+        {
+          "time": "4:00 PM",
+          "activity_name": "Departure",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Head to the airport for your departure."
+        }
+      ]
+    }
+  ]
+}

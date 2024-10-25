@@ -1,6 +1,7 @@
 import { createApp, reactive } from 'vue';
 import App from './App.vue';
 import router from './router';
+import { Loader } from '@googlemaps/js-api-loader'; // Import Google Maps API Loader
 
 // Bootstrap imports
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
@@ -16,29 +17,27 @@ import BootstrapVue3 from 'bootstrap-vue-3';
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'; // BootstrapVue3 CSS
 
 // VCalendar imports
-
 import VCalendar from 'v-calendar';
 import 'v-calendar/style.css';
 
-
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAAJFpBoEJzVfrj8Ix_YTZPc0QifkaMyKw",
-  authDomain: "wander-wad.firebaseapp.com",
-  projectId: "wander-wad",
-  storageBucket: "wander-wad.appspot.com",
-  messagingSenderId: "109364472671",
-  appId: "1:109364472671:web:ff4324430b45ba7b58a4ea",
-  measurementId: "G-TZHQN5ZWG4"
+    apiKey: "AIzaSyAAJFpBoEJzVfrj8Ix_YTZPc0QifkaMyKw",
+    authDomain: "wander-wad.firebaseapp.com",
+    projectId: "wander-wad",
+    storageBucket: "wander-wad.appspot.com",
+    messagingSenderId: "109364472671",
+    appId: "1:109364472671:web:ff4324430b45ba7b58a4ea",
+    measurementId: "G-TZHQN5ZWG4"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-console.log("Firebase app initialized:", app);
+const firebaseApp = initializeApp(firebaseConfig);
+console.log("Firebase app initialized:", firebaseApp);
 
 // Initialize Firestore and Auth
-const db = getFirestore(app);
-const auth = getAuth(app);
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 
@@ -47,22 +46,29 @@ setPersistence(auth, browserLocalPersistence).catch((error) => {
     console.error("Error setting persistence:", error);
 });
 
+// Initialize Google Maps API using Loader
+const loader = new Loader({
+    apiKey: 'AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k', // Replace with your actual API key
+    version: 'weekly',
+    libraries: ['places'],
+});
+
+// Load the Google Maps API and store the promise
+const apiPromise = loader.load();
+
 // Global state for saved places and itinerary (using Firebase)
 const savedPlacesState = reactive({
     savedPlaces: [],
-
     async loadSavedPlaces(userId) {
-      try {
-          console.log("Loading saved places for user:", userId);
-          const userDoc = await getDoc(doc(db, "users", userId));
-          console.log("Firebase document data:", userDoc.data());
-          // Process saved places...
-      } catch (error) {
-          console.error("Error loading saved places:", error);
-      }
-  },
-  
-
+        try {
+            console.log("Loading saved places for user:", userId);
+            const userDoc = await getDoc(doc(db, "users", userId));
+            console.log("Firebase document data:", userDoc.data());
+            // Process saved places...
+        } catch (error) {
+            console.error("Error loading saved places:", error);
+        }
+    },
     async addPlace(userId, place) {
         if (!this.savedPlaces.some(savedPlace => savedPlace.place_id === place.place_id)) {
             this.savedPlaces.push(place);
@@ -72,7 +78,6 @@ const savedPlacesState = reactive({
             console.log("Place added to saved places");
         }
     },
-
     async removePlace(userId, placeId) {
         this.savedPlaces = this.savedPlaces.filter(place => place.place_id !== placeId);
         await updateDoc(doc(db, "users", userId), {
@@ -84,77 +89,47 @@ const savedPlacesState = reactive({
 
 const itineraryState = reactive({
     itinerary: [],
-
-    async addToItinerary(userId, place) {
+    async loadItinerary(userId) {
+        console.log(`Loading itinerary for user: ${userId}`);
         try {
-          if (!this.itinerary.some(item => item.place_id === place.place_id)) {
+            const snapshot = await db.collection('itineraries').doc(userId).get();
+            if (snapshot.exists) {
+                this.itinerary = snapshot.data().places;
+                console.log('Itinerary loaded:', this.itinerary);
+            } else {
+                console.log('No itinerary found for this user.');
+                this.itinerary = [];
+            }
+        } catch (error) {
+            console.error('Error loading itinerary:', error);
+        }
+    },
+    async addToItinerary(userId, place) {
+        if (!this.itinerary.some(item => item.place_id === place.place_id)) {
             this.itinerary.push(place);
-      
-            // Update Firebase under "savedForItinerary"
             await updateDoc(doc(db, "users", userId), {
-              'savedForItinerary.itinerary': arrayUnion(place)  // Make sure 'place_id' exists in the place object
+                'savedForItinerary.itinerary': arrayUnion(place)
             });
             console.log("Place added to itinerary");
-          } else {
-            console.log("Place already exists in the itinerary.");
-          }
-        } catch (error) {
-          console.error("Error adding place to itinerary:", error);
         }
-      },
-  
-    // Add a place to the "savedForItinerary.itinerary" field
-    async loadItinerary(userId) {
-        try {
-          const userDoc = await getDoc(doc(db, "users", userId));
-          if (userDoc.exists()) {
-            console.log("Fetched data from Firebase:", userDoc.data()); // ADD THIS LINE
-            const savedForItinerary = userDoc.data().savedForItinerary;
-            this.itinerary = savedForItinerary ? savedForItinerary.itinerary || [] : [];
-          } else {
-            console.log("No itinerary found.");
-            this.itinerary = []; // Ensure it's reset if nothing is found
-          }
-        } catch (error) {
-          console.error("Error loading itinerary:", error);
-        }
-      },
-  
-    // Remove a place from the "savedForItinerary.itinerary" field
+    },
     async removeFromItinerary(userId, placeId) {
-        try {
-          this.itinerary = this.itinerary.filter(place => place.place_id !== placeId);
-      
-          // Update Firebase under "savedForItinerary"
-          await updateDoc(doc(db, "users", userId), {
-            'savedForItinerary.itinerary': arrayRemove({ place_id: placeId })  // Make sure this matches the exact object
-          });
-      
-          console.log("Place removed from itinerary");
-        } catch (error) {
-          console.error("Error removing place from itinerary:", error);
-        }
-      },
-  
-    // Clear the itinerary (resets both local state and Firebase)
-    async clearItinerary(userId) {
-      try {
-        this.itinerary = [];
-  
-        // Update Firebase to clear the itinerary
+        this.itinerary = this.itinerary.filter(place => place.place_id !== placeId);
         await updateDoc(doc(db, "users", userId), {
-          'savedForItinerary.itinerary': []
+            'savedForItinerary.itinerary': arrayRemove({ place_id: placeId })
         });
-  
+        console.log("Place removed from itinerary");
+    },
+    async clearItinerary(userId) {
+        this.itinerary = [];
+        await updateDoc(doc(db, "users", userId), {
+            'savedForItinerary.itinerary': []
+        });
         console.log("Itinerary cleared");
-      } catch (error) {
-        console.error("Error clearing itinerary:", error);
-      }
     }
-  });
-  
+});
 
-// Function to store user data (called when a new user is created or signs in)
+// Function to store user data
 async function storeUserData(userId, email) {
     try {
         const userRef = doc(db, "users", userId);
@@ -172,28 +147,28 @@ async function storeUserData(userId, email) {
 // Create Vue app
 const vueApp = createApp(App);
 
+// Global state for extracted locations
 const extractedLocationsState = reactive({
     locationInfo: null,
     relatedPlaces: [],
-    // Add any other shared state properties
     setLocationInfo(info) {
         this.locationInfo = info;
-      },
-    
-      setRelatedPlaces(places) {
+    },
+    setRelatedPlaces(places) {
         this.relatedPlaces = places;
-      }
-  });
+    }
+});
 
-// Provide global states to the app
+// Provide global states and Google Maps API promise to the app
 vueApp.provide('savedPlacesState', savedPlacesState);
 vueApp.provide('itineraryState', itineraryState);
 vueApp.provide('extractedLocationsState', extractedLocationsState);
+vueApp.provide('apiPromise', apiPromise); // Provide apiPromise globally
 
-// Use router, BootstrapVue, and Google Login
+// Use router, BootstrapVue3, and VCalendar
 vueApp.use(router);
 vueApp.use(BootstrapVue3);
-vueApp.use(VCalendar, {})
+vueApp.use(VCalendar);
 
 // Mount the app
 vueApp.mount('#app');

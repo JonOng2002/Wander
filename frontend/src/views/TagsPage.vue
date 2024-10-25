@@ -39,8 +39,14 @@
 </template>
 
 <script setup>
-import { ref, toRaw } from 'vue';
+import { ref, onMounted } from 'vue';
 import router from '@/router';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';  // Import Firebase Firestore
+import { getAuth } from 'firebase/auth';  // Import Firebase Auth
+
+// Firebase setup
+const db = getFirestore();
+const auth = getAuth();
 
 // General tags (use more general ones)
 const tags = ref([
@@ -48,72 +54,86 @@ const tags = ref([
     'Cultural Heritage', 'Nightlife and Entertainment', 'Shopping', 'Beach Activities', 'Water Sports'
 ]);
 
-// State for selected and custom tags
 const selectedTags = ref([]);  // Start empty
 const customTags = ref([]);  // Custom tags will be added here
 const newTag = ref('');  // For storing the new custom tag input
 
-// Combine built-in and custom tags for display
 const allTags = ref([...tags.value]);  // Initialize with default tags
-
-// Progress bar state
 const progress = ref(75);  // Assuming it's the 3rd step of 4
 const progressText = ref('Step 3 of 4: Select Tags');
 
-// Toggle tag selection (built-in and custom tags)
-const toggleTag = (tag) => {
-    if (selectedTags.value.includes(tag)) {
-        // If the tag is already selected, deselect it
-        selectedTags.value = selectedTags.value.filter(t => t !== tag);
-        console.log('Tag deselected:', tag);
-    } else if (selectedTags.value.length < 10) {
-        // Select the tag if not already selected and below the limit of 10
-        selectedTags.value.push(tag);
-        console.log('Tag selected:', tag);
+const savedItinerary = ref([]);
+
+// Fetch the saved itinerary from Firebase on component mount
+onMounted(async () => {
+    const user = auth.currentUser;
+    if (user) {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+            savedItinerary.value = userDoc.data().generatedItineraries || [];
+            console.log('Itinerary fetched from Firebase:', savedItinerary.value);
+        } else {
+            console.error("No itinerary found in Firebase.");
+        }
+    } else {
+        console.error("User not authenticated.");
     }
-    // Log the current selection
-    console.log('Current Selected Tags:', selectedTags.value);
+});
+
+// Toggle the selected state of a tag
+const toggleTag = (tag) => {
+    // Check if the tag is already selected
+    if (selectedTags.value.includes(tag)) {
+        // If selected, remove it
+        selectedTags.value = selectedTags.value.filter(t => t !== tag);
+    } else if (selectedTags.value.length < 10) {
+        // If not selected and the limit is not reached, add the tag
+        selectedTags.value.push(tag);
+    }
 };
 
-// Add custom tag with a maximum limit of 5 custom tags
 const addCustomTag = () => {
     if (newTag.value.trim() !== '' && !customTags.value.includes(newTag.value) && selectedTags.value.length < 10) {
-        // Add the new tag to both customTags and selectedTags
+        // Add the new custom tag to both customTags and selectedTags
         customTags.value.push(newTag.value);
         selectedTags.value.push(newTag.value);
         allTags.value.push(newTag.value);  // Add the new custom tag to allTags for display
 
-        // Log the action to check if tags are added
-        console.log('New Custom Tag Added:', newTag.value);
-        console.log('Updated Selected Tags:', selectedTags.value);
-
-        newTag.value = '';  // Clear input field after adding
+        newTag.value = '';  // Clear the input field
     }
 };
 
-// Go back to previous step
 const goBack = () => {
     router.back();
 };
 
-// Proceed to the next step (send selected tags and other data)
 const goToNextStep = () => {
-    const { start, end, tripType, itinerary } = router.currentRoute.value.query; // Receive previous data
-
-    // Convert itinerary to a plain JavaScript object to avoid circular references
-    const rawItinerary = toRaw(itinerary);
-
-    // Log to check if selected tags are sent correctly
-    console.log('Proceeding with Selected Tags:', selectedTags.value);
-
+    // Extract the start, end, and tripType from the query params
+    const { start, end, countryCode, tripType } = router.currentRoute.value.query;
+    
+    // Ensure start and end are Date objects before calling toISOString
+    const startDate = new Date(start); // Convert to Date object
+    const endDate = new Date(end);     // Convert to Date object   
+    
+    console.log('Passing information to generate itinerary page:');
+    console.log('Selected Tags:', selectedTags.value);
+    console.log('Itinerary:', savedItinerary.value);
+    console.log('Start Date:', startDate);
+    console.log('End Date:', endDate);
+    console.log('Country Code:', countryCode);
+    console.log('Trip Type:', tripType);
+    
+    // Navigate to the next step with the correct query parameters
     router.push({
-        name: 'GenItiTest',
+        name: 'GenIti',
         query: {
-            start: new Date(start).toISOString(),
-            end: new Date(end).toISOString(),
-            tripType,
-            itinerary: JSON.stringify(rawItinerary),  // Convert to raw JavaScript object
-            selectedTags: JSON.stringify(toRaw(selectedTags.value))  // Pass plain array, not reactive object
+            start: startDate.toISOString(),  // Convert Date object to ISO string
+            end: endDate.toISOString(),      // Convert Date object to ISO string
+            countryCode: countryCode,
+            tripType: tripType,
+            itinerary: JSON.stringify(savedItinerary.value),  // Pass itinerary from Firebase
+            selectedTags: JSON.stringify(selectedTags.value)
         }
     });
 };

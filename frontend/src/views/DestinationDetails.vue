@@ -1,9 +1,7 @@
 <template>
   <div class="destination-details">
     <div class="header-row">
-      <button @click="goBack" class="btn back-button">
-        Back to Destinations
-      </button>
+      <button @click="goBack" class="btn back-button">Back to Destinations</button>
       <h1 class="page-title">Top Tourist Attractions in {{ country }}</h1>
     </div>
 
@@ -12,9 +10,16 @@
     <div v-if="!loading" class="attractions-list">
       <div v-for="attraction in attractions" :key="attraction.place_id" class="attraction-card">
         <img :src="attraction.image" alt="attraction-image" class="attraction-image" />
-        <h2>{{ attraction.name }}</h2>
-        <p>{{ attraction.vicinity }}</p>
-        <button @click="addToSavedPlaces(attraction)" class="btn">Add to Saved Places</button>
+        <h2 class="attraction-name">{{ attraction.name }}</h2>
+        <p class="attraction-vicinity">{{ attraction.vicinity }}</p>
+        <save-place-button class="btn save-button" :placeId="attraction.place_id || `manual-${Date.now()}`
+          " :placeName="attraction.name" :vicinity="attraction.vicinity || 'Unknown vicinity'" :country="country"
+          :city="cityName || 'Unknown City'" :latitude="attraction.coordinates?.latitude || 0"
+          :longitude="attraction.coordinates?.longitude || 0" :placePng="attraction.image || '/default-image.jpg'"
+          :userId="userId" :activities="[]" :summary="'Google Places Summary'" :source="'google_places'"
+          @place-saved="handlePlaceSaved(attraction.place_id)">
+          Add to Saved Places
+        </save-place-button>
       </div>
     </div>
 
@@ -33,27 +38,40 @@
 </template>
 
 <script>
-import { getFirestore, doc, setDoc, arrayUnion } from "firebase/firestore";
+import SavePlaceButton from "@/components/SavePlaceButton.vue"; // Adjust the path as needed
+import { getFirestore, doc, setDoc, runTransaction, arrayUnion } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
 
 export default {
   name: "DestinationDetails",
+  components: {
+    SavePlaceButton,
+  },
   inject: ["savedPlacesState"],
   data() {
     return {
       attractions: [],
       loading: true,
       country: this.$route.params.country,
-      apiKey: "AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k", // Replace with your actual API key
+      apiKey: 'AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k',
+      cityName: this.$route.params.city || 'Unknown City',
+      userId: null,
       savedPlaces: [],
-      showPopup: false, // Popup state
+      showPopup: false,
     };
   },
   created() {
     this.fetchAttractions();
   },
   methods: {
+    handlePlaceSaved(placeId) {
+      this.currentAttractionId = placeId; // Set the current attraction ID
+      this.showSavedPopup(); // Show the popup
+
+      // Save the place to the user's saved places
+      this.savePlaceToFirebase(placeId);
+    },
     async fetchAttractions() {
       const location = this.getCountryCoordinates(this.country);
       if (!location) {
@@ -68,6 +86,7 @@ export default {
 
       try {
         const response = await axios.get(url);
+        console.log("Fetched attractions:", response.data.results);
         this.attractions = response.data.results.map((place) => ({
           name: place.name,
           place_id: place.place_id,
@@ -104,53 +123,149 @@ export default {
         'Argentina': '-34.6037,-58.3816',
         'Netherlands': '52.3676,4.9041',
         'Greece': '37.9838,23.7275',
+        'Malaysia': '3.1390,101.6869',
+        'Egypt': '30.0444,31.2357',
+        'Switzerland': '46.9481,7.4474',
+        'Indonesia': '-6.2088,106.8456',
+        'Portugal': '38.7223,-9.1393',
+        'Austria': '48.2082,16.3738',
+        'Sweden': '59.3293,18.0686',
+        'Vietnam': '21.0285,105.8542',
+        'Singapore': '1.3521,103.8198',
+        'New Zealand': '-36.8485,174.7633',
+        'Poland': '52.2297,21.0122',
+        'Morocco': '31.6295,-7.9811',
+        'Philippines': '14.5995,120.9842',
+        'Chile': '-33.4489,-70.6693',
+        'South Korea': '37.5665,126.9780',
+        'United Arab Emirates': '25.276987,55.296249',
+        'Czech Republic': '50.0755,14.4378',
+        'Saudi Arabia': '24.7136,46.6753',
+        'Belgium': '50.8503,4.3517',
+        'Israel': '31.7683,35.2137',
+        'Peru': '-12.0464,-77.0428',
+        'Norway': '59.9139,10.7522',
+        'Denmark': '55.6761,12.5683',
+        'Hungary': '47.4979,19.0402',
+        'Ireland': '53.3498,-6.2603',
+        'Finland': '60.1695,24.9354',
+        'Colombia': '4.7110,-74.0721',
+        'Ukraine': '50.4501,30.5234',
       };
       return coordinates[country] || null;
-    },
-    async addToSavedPlaces(attraction) {
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      if (user) {
-        const userId = user.uid;
-        const db = getFirestore();
-        const userRef = doc(db, "users", userId);
-
-        try {
-          // Use setDoc with merge: true to handle both new and existing users
-          await setDoc(
-            userRef,
-            {
-              savedPlaces: arrayUnion({
-                place_id: attraction.place_id,
-                name: attraction.name,
-                vicinity: attraction.vicinity,
-                image: attraction.image,
-              }),
-            },
-            { merge: true }
-          );
-          console.log("Place added to saved places:", attraction.name);
-
-          // Show the popup and hide it after 2 seconds
-          this.showPopup = true;
-          setTimeout(() => {
-            this.showPopup = false;
-          }, 2000);
-        } catch (error) {
-          console.error("Error saving place to Firebase:", error);
-        }
-      } else {
-        console.error("User is not authenticated");
-      }
     },
     goBack() {
       this.$router.go(-1);
     },
-    generateItinerary() {
-      console.log("Generating itinerary with these places:", this.savedPlaces);
+    showSavedPopup() {
+      this.showPopup = true; // Show the popup
+      setTimeout(() => {
+        this.showPopup = false; // Automatically hide after 3 seconds
+      }, 3000);
     },
+    async savePlaceToFirebase(placeId) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+        this.userId = user.uid; // Ensure this is set
+
+        const db = getFirestore();
+        const userRef = doc(db, "users", this.userId);
+        const attraction = this.attractions.find(attraction => attraction.place_id === placeId);
+
+        if (attraction) {
+            const placeData = {
+                place_id: attraction.place_id || null,
+                name: attraction.name || 'Unknown',
+                vicinity: attraction.vicinity || 'Unknown vicinity',
+                image: attraction.image || '/default-image.jpg',
+            };
+
+            try {
+                // Use a transaction to ensure atomic operation
+                await runTransaction(db, async (transaction) => {
+                    const userDoc = await transaction.get(userRef);
+
+                    if (userDoc.exists()) {
+                        const existingSavedPlaces = userDoc.data().savedPlaces || [];
+
+                        // Check if the place already exists
+                        const placeExists = existingSavedPlaces.some(savedPlace => savedPlace.place_id === placeData.place_id);
+
+                        if (placeExists) {
+                            console.log("Place already saved:", placeData.name);
+                            return; // Exit if already saved
+                        }
+                    }
+
+                    // If not already saved, save the new place
+                    transaction.set(userRef, {
+                        savedPlaces: arrayUnion(placeData),
+                    }, { merge: true });
+                    console.log("Place added to saved places:", placeData.name);
+                    this.showSavedPopup();
+                });
+            } catch (error) {
+                console.error("Error saving place to Firebase:", error);
+            }
+        } else {
+            console.error("Attraction not found for saving.");
+        }
+    } else {
+        console.error("User is not authenticated");
+    }
+},
   },
+  mounted() {
+  const auth = getAuth();
+  auth.onAuthStateChanged(async (user) => {
+    if (user) {
+      this.userId = user.uid; // Set userId on mount
+      const db = getFirestore();
+      const userRef = doc(db, "users", this.userId); // Use this.userId here
+
+      // Ensure this method is called after saving a place
+      if (this.currentAttractionId) {
+        const attraction = this.attractions.find(attraction => attraction.place_id === this.currentAttractionId);
+
+        if (attraction) {
+          try {
+            const placeData = {
+              place_id: attraction.place_id || null,
+              name: attraction.name || 'Unknown',
+              vicinity: attraction.vicinity || 'Unknown vicinity',
+              image: attraction.image || '/default-image.jpg',
+              coordinates: {
+                latitude: attraction.latitude,
+                longitude: attraction.longitude
+              }
+            };
+
+            await setDoc(
+              userRef,
+              {
+                savedPlaces: arrayUnion(placeData),
+              },
+              { merge: true }
+            );
+            console.log("Place added to saved places:", placeData.name);
+
+            // Show the popup and hide it after 2 seconds
+            this.showSavedPopup();
+          } catch (error) {
+            console.error("Error saving place to Firebase:", error);
+          }
+        } else {
+          console.error("Attraction not found for saving.");
+        }
+      }
+    } else {
+      console.error("User is not authenticated");
+    }
+  });
+}
+
 };
 </script>
 
@@ -173,25 +288,38 @@ export default {
 .back-button {
   position: absolute;
   left: 5%;
-  background-color: lightgray;
-  color: black;
+  background-color: black;
+  color: white;
   border: 1px solid black;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
-  text-transform: uppercase;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
+.back-button:hover {
+  transform: scale(1.05);
+  /* Keep the hover effect for scaling */
+  background-color: black;
+  /* Maintain the black background on hover */
+  color: white;
+  /* Keep the text color white on hover */
+}
+
+
 .page-title {
-  font-size: 2rem;
+  font-size: rem;
+  color: black;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: bolder;
 }
 
 .loading {
   font-size: 1.5rem;
   margin: 50px;
+  color: black;
 }
 
 .attractions-list {
@@ -201,73 +329,115 @@ export default {
 }
 
 .attraction-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Ensure space between elements to keep the button at the bottom */
   margin: 20px;
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  width: 200px;
+  width: 220px;
+  /* Fixed width */
+  height: 400px;
+  /* Fixed height */
   text-align: center;
-  transition: transform 0.3s ease;
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  /* Prevent overflow */
 }
 
 .attraction-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  /* Lift effect on hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  /* Enhanced shadow with darker effect */
 }
 
 .attraction-image {
   width: 100%;
-  height: 150px;
+  height: 180px;
+  /* Fixed height for the image */
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
-h2 {
-  font-size: 1.5rem;
+h2.attraction-name {
+  font-size: 1rem;
+  /* Maintain font size */
   margin: 10px 0;
+  color: black;
+  white-space: normal;
+  /* Allow text to wrap */
+  overflow: visible;
+  /* Ensure overflow is visible */
 }
 
-.btn {
-  background-color: lightgray;
-  color: black;
-  border: 1px solid black;
-  padding: 10px 20px;
-  font-size: 1rem;
+p.attraction-vicinity {
+  font-size: 0.8rem;
+  /* Maintain font size */
+  color: gray;
+  white-space: normal;
+  /* Allow text to wrap */
+  overflow: visible;
+  /* Ensure overflow is visible */
+}
+
+.save-button {
+  margin-top: auto;
+  /* Push button to the bottom */
+  background-color: black;
+  color: white;
+  padding: 8px;
+  /* Reduced padding */
+  font-size: 0.8rem;
+  /* Maintain button font size */
   font-weight: bold;
-  text-transform: uppercase;
   border-radius: 5px;
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: darkgray;
+.save-button:hover {
+  background-color: #333;
+  color: white;
 }
 
-button {
-  margin-top: 10px;
+/* Optional: Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .attraction-card {
+    width: 90%;
+    /* Make cards wider on smaller screens */
+    height: auto;
+    /* Allow auto height for better fitting */
+  }
 }
 
-.saved-places-list {
-  margin-top: 30px;
-}
 
-.generate-btn {
-  margin-top: 20px;
-}
-
-/* Popup notification styles */
 .popup {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #4caf50;
+  bottom: 20px;
+  /* Position from the bottom */
+  left: 50%;
+  /* Center it horizontally */
+  transform: translateX(-50%);
+  /* Adjust position to center */
+  background-color: green;
   color: white;
   padding: 10px 20px;
+  /* Add some horizontal padding */
   border-radius: 5px;
-  font-weight: bold;
-  z-index: 2000;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Optional: add a shadow */
+  z-index: 1000;
+  /* Ensure it appears above other elements */
   transition: opacity 0.3s ease;
+  /* Smooth transition for fading */
+  opacity: 1;
+  /* Start visible */
 }
 </style>

@@ -1,146 +1,127 @@
 <template>
-  <button @click="savePlace">Save Place</button>
+  <button class="save-button" @click="savePlace">
+    Save Place
+  </button>
 </template>
 
-<script setup>
-import { getFirestore, collection, addDoc, doc, updateDoc, arrayUnion } from 'firebase/firestore';
-import { defineProps, defineEmits } from 'vue';
+<script>
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getFirestore, Timestamp } from "firebase/firestore";
 
-// Props: these fields are passed from the parent
-const props = defineProps({
-  placeId: {
-    type: String,
-    default: () => `manual-${Date.now()}`,
+export default {
+  name: "SavePlaceButton",
+  props: {
+    placeId: {
+      type: String,
+      required: false,
+    },
+    placeName: {
+      type: String,
+      required: true,
+    },
+    vicinity: {
+      type: String,
+      required: false,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    latitude: {
+      type: Number,
+      required: true,
+    },
+    longitude: {
+      type: Number,
+      required: true,
+    },
+    placePng: {
+      type: String,
+      required: false,
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
+    activities: {
+      type: Array,
+      required: true,
+    },
+    summary: {
+      type: String,
+      required: false,
+    },
+    source: {
+      type: String,
+      required: false,
+    },
   },
-  placeName: {
-    type: String,
-    required: true,
-  },
-  vicinity: {
-    type: String,
-    default: '', // Use vicinity or city
-  },
-  country: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-  latitude: {
-    type: [String, Number], // allow both number and string
-    required: true,
-  },
-  longitude: {
-    type: [String, Number],
-    required: true,
-  },
-  placePng: {
-    type: String,
-    default: '', // fallback if no image is provided
-  },
-  userId: {
-    type: String,
-    required: true,
-  },
-  activities: {
-    type: Array,
-    default: () => [], // default to empty array
-  },
-  summary: {
-    type: String,
-    default: '', // default to empty string
-  },
-  source: {
-    type: String,
-    default: 'manual_entry', // Can be 'google_places' or 'manual_entry'
-  }
-});
+  methods: {
+    async savePlace() {
+      const db = getFirestore();
 
-const emit = defineEmits(['place-saved']);
-// Firestore initialization
-const db = getFirestore();
+      // Check if userId is valid
+      if (!this.userId) {
+        console.error("User ID is required to save a place.");
+        return;
+      }
 
-// Function to save the place to the user's savedPlaces collection
-const savePlace = async () => { // Inside `savePlace` in save-place-button.vue
-  // Check for undefined fields
-  if (!props.placeId || !props.placeName || !props.country || !props.city || !props.latitude || !props.longitude || !props.userId) {
-    console.error('Missing required data to save the place', {
-      placeId: props.placeId,
-      placeName: props.placeName,
-      country: props.country,
-      city: props.city,
-      latitude: props.latitude,
-      longitude: props.longitude,
-      userId: props.userId,
-    });
-    return;
-  }
+      const userRef = doc(db, "users", this.userId);
 
-  try {
-    // Create a new document in the 'savedPlaces' collection
-    const docRef = await addDoc(collection(db, 'savedPlaces'), {
-      place_id: props.placeId,
-      name: props.placeName,
-      vicinity: props.vicinity || props.city,
-      country: props.country,
-      city: props.city,
-      coordinates: {
-        latitude: props.latitude || 0,
-        longitude: props.longitude || 0,
-      },
-      image: props.placePng || '',  // optional field
-      activities: props.activities || [], // optional array
-      summary: props.summary || '', // optional summary
-      source: props.source, // distinguish between 'google_places' or 'manual_entry'
-      userId: props.userId,
-      timestamp: new Date(),
-    });
-
-    console.log('Place saved with ID: ', docRef.id);
-
-    // Add the place reference to the user's 'savedPlaces' field in 'users' collection
-    const userRef = doc(db, 'users', props.userId);
-    await updateDoc(userRef, {
-      savedPlaces: arrayUnion({
-        place_id: props.placeId,
-        name: props.placeName,
-        vicinity: props.vicinity || props.city,
-        country: props.country,
-        city: props.city,
+      const placeData = {
+        activities: this.activities || [],
+        city: this.city || "Unknown city",
         coordinates: {
-          latitude: props.latitude || 0,
-          longitude: props.longitude || 0,
+          latitude: this.latitude,
+          longitude: this.longitude,
         },
-        image: props.placePng || '',  // optional field
-        activities: props.activities || [], // optional array
-        summary: props.summary || '', // optional summary
-        source: props.source,
-        timestamp: new Date(),
-      })
-    });
+        country: this.country,
+        image: this.placePng,
+        name: this.placeName,
+        place_id: this.placeId || "saved_places",
+        source: this.source || "saved_places",
+        summary: this.summary || "No summary available.",
+        timestamp: Timestamp.now(),
+        vicinity: this.vicinity || "Unknown vicinity",
+      };
 
-    console.log('Place added to user\'s savedPlaces list.');
-    emit('place-saved');
+      console.log("Saving place data:", placeData);
 
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
+      if (!placeData.place_id || !placeData.name || !placeData.vicinity) {
+        console.error("Attraction not found for saving.", placeData);
+        return;
+      }
+
+      try {
+        console.log("Updating document at:", userRef);
+        await updateDoc(userRef, {
+          savedPlaces: arrayUnion(placeData),
+        });
+        this.$emit("place-saved");
+      } catch (error) {
+        console.error("Error saving place:", error.message || error);
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.btn {
-  background-color: lightgray;
-  color: black;
-  border: 1px solid black;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
+.save-button {
+  background-color: black;
+  color: white;
+  padding: 8px;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #333;
 }
 </style>
