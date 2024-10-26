@@ -601,7 +601,7 @@ h2 {
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 1000;
+  z-index: 100;
   padding: 10px 5%;
   border-bottom: 1px solid lightgrey;
 }
