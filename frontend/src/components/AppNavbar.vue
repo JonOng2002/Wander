@@ -159,6 +159,7 @@ export default {
 <style scoped>
 /* Sticky navbar */
 .navbar {
+  height: 5rem;
   background-color: black;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   padding: 15px 20px; /* Add padding for better spacing */
@@ -294,6 +295,7 @@ export default {
   border-radius: 5%;
   overflow: hidden;
   z-index: 1050;
+  font-family: "Poppins", serif;
 }
 
 .user-info {
@@ -304,7 +306,7 @@ export default {
   text-align: center;
   width: 100%;
   overflow: hidden;
-  background: aquamarine;
+  background-color: #f0f6ff;
   padding: 1rem;
   z-index: 1050;
 }

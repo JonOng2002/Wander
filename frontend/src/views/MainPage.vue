@@ -1,16 +1,60 @@
 <template>
   <div class="homepage">
-    <p class="searchBarTitle">Where would you like to wander?</p> 
+    <header class="header-container">
+      <!-- Fading Background Images -->
+      <div class="backgrounds-container">
+        <img
+          class="background showing"
+          src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+        />
+        <img
+          class="background"
+          src="https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+        />
+        <img
+          class="background"
+          src="https://images.pexels.com/photos/165505/pexels-photo-165505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+        />
+        <img
+          class="background"
+          src="https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+        />
+        <img
+          class="background"
+          src="https://images.pexels.com/photos/90945/pexels-photo-90945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+        />
+        <img
+          class="background"
+          src="https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+        />
+        <img
+          class="background"
+          src="https://images.pexels.com/photos/2104742/pexels-photo-2104742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+        />
+      </div>
 
-    <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
+      <!-- Overlay Content (Centered) -->
+      <div class="overlay-content">
+        <p class="searchBarTitle">Where would you like to wander?</p>
+        <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
+        <LoadingBar :isLoading="isLoading" v-if="isLoading" />
+        <div v-if="errorMessage">{{ errorMessage }}</div>
+      </div>
+    </header>
 
-    <LoadingBar :isLoading="isLoading" v-if="isLoading"/>
-
-    <!-- Error Message -->
-    <div v-if="errorMessage">{{ errorMessage }}</div>
-
-    <ExtractedLocations 
-      v-if="extractedLocationsState.locationInfo && extractedLocationsState.relatedPlaces"
+    <!-- Main content area for search results -->
+    <ExtractedLocations
+      v-if="
+        extractedLocationsState.locationInfo &&
+        extractedLocationsState.relatedPlaces
+      "
       :locationInfo="extractedLocationsState.locationInfo"
       :relatedPlaces="extractedLocationsState.relatedPlaces"
       :userId="userId"
@@ -20,77 +64,87 @@
 </template>
 
 <script>
-import SearchBar from '@/components/SearchBar.vue';
-import { doc, getDoc } from "firebase/firestore"; 
-import { db, auth } from "@/main";  
-import { onAuthStateChanged } from 'firebase/auth'; 
-import LoadingBar from '@/components/LoadingBar.vue'; 
-import axios from 'axios';
-import ExtractedLocations from './ExtractedLocations.vue';
-import { inject } from 'vue';
+import SearchBar from "@/components/SearchBar.vue";
+import { doc, getDoc } from "firebase/firestore";
+import { db, auth } from "@/main";
+import { onAuthStateChanged } from "firebase/auth";
+import LoadingBar from "@/components/LoadingBar.vue";
+import axios from "axios";
+import ExtractedLocations from "./ExtractedLocations.vue";
+import { inject } from "vue";
 
 export default {
-  name: 'MainPage',
+  name: "MainPage",
   components: {
-    SearchBar, 
+    SearchBar,
     LoadingBar,
     ExtractedLocations,
   },
   setup() {
-    const extractedLocationsState = inject('extractedLocationsState'); // Inject the global state
-
+    const extractedLocationsState = inject("extractedLocationsState");
     return { extractedLocationsState };
   },
   data() {
     return {
-      userId: null, 
+      userId: null,
       savedPlaces: [],
       generatedItineraries: [],
       errorMessage: "",
       isLoading: false,
-      tiktokLink: "", // Add tiktokLink to hold the link
+      tiktokLink: "",
     };
   },
   mounted() {
+    window.scrollTo(0, 0);
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         this.userId = user.uid;
         await this.fetchUserData();
       }
     });
+
+    // Initialize the fading effect
+    this.startBackgroundFade();
   },
   methods: {
+    startBackgroundFade() {
+      let headerBackgrounds = document.querySelectorAll(".background");
+      let imageIndex = 0;
+
+      function changeBackground() {
+        headerBackgrounds[imageIndex].classList.remove("showing");
+        imageIndex = (imageIndex + 1) % headerBackgrounds.length;
+        headerBackgrounds[imageIndex].classList.add("showing");
+      }
+
+      setInterval(changeBackground, 5000);
+    },
+
     handleLinkSubmit(link) {
-      this.tiktokLink = link; // Update the tiktokLink with the submitted link
-      this.analyse(); // Call the analyse function with the link
+      this.tiktokLink = link;
+      this.analyse();
     },
 
     async analyse() {
       if (this.isValidUrl(this.tiktokLink)) {
-        this.isLoading = true; // Start loading
-        this.errorMessage = ""; // Clear error messages
+        this.isLoading = true;
+        this.errorMessage = "";
         try {
-          const response = await axios.get(`http://127.0.0.1:5000/video-info-comments`, {
-            params: {
-              url: this.tiktokLink,
-              withCredentials: true,
-            },
-          });
-
+          const response = await axios.get(
+            `http://127.0.0.1:5000/video-info-comments`,
+            {
+              params: { url: this.tiktokLink, withCredentials: true },
+            }
+          );
           const data = response.data.openai_response;
-          console.log("Backend response:", data);
-
-          if (data.error) {
+          if (data.error)
             throw new Error("Error generating response from OpenAI.");
-          }
-        
-          // Set the location info and related places in the global state
           this.extractedLocationsState.setLocationInfo(data.location_info);
           this.extractedLocationsState.setRelatedPlaces(data.related_places);
         } catch (error) {
           this.errorMessage = "Error generating response from OpenAI.";
         } finally {
-          this.isLoading = false; // Stop loading
+          this.isLoading = false;
         }
       } else {
         this.errorMessage = "Invalid TikTok link. Please try again.";
@@ -98,7 +152,8 @@ export default {
     },
 
     isValidUrl(url) {
-      const regex = /^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[\w.-]+\/video\/\d+)|(vt\.tiktok\.com\/[\w\d]+)).*$/;
+      const regex =
+        /^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[\w.-]+\/video\/\d+)|(vt\.tiktok\.com\/[\w\d]+)).*$/;
       return regex.test(url);
     },
 
@@ -106,7 +161,6 @@ export default {
       try {
         const userRef = doc(db, "users", this.userId);
         const userDoc = await getDoc(userRef);
-        
         if (userDoc.exists()) {
           const userData = userDoc.data();
           this.savedPlaces = userData.savedPlaces || [];
@@ -115,35 +169,104 @@ export default {
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
+
+html, body {
+  padding: 0;
+  overflow-y: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+
 .homepage {
   text-align: center;
-  padding-top: 50px;
-  padding: 5%;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.searchBarTitle {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: bold;
+.header-container {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-.saved-places, .generated-itineraries {
-  margin-top: 40px;
+.backgrounds-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -5;
 }
 
-.saved-places ul, .generated-itineraries ul {
-  list-style-type: none;
+.backgrounds-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+  z-index: -4; /* Places the overlay above the images but below the content */
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.showing {
+  opacity: 1;
+  z-index: -1;
+  transition: none;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10rem;
+  width: 100%;           /* Ensures full-width overlay content */
+  max-width: 100vw;      /* Prevents any padding from restricting width */
+  text-align: center;
+  z-index: 1;
+}
+
+h1,
+p {
+  color: white;
+  margin: 0;
   padding: 0;
 }
 
-.saved-places li, .generated-itineraries li {
-  margin: 10px 0;
+.searchBarTitle {
+  display: block;         /* Ensures full-width for the title row */
+  font-size: 4rem;
+  margin: 20px 0;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: bold;
+  color: white;
+  width: 100%;            /* Expands to fill the width of the container */
+  text-align: center;     /* Centers text within the full-width row */
 }
+
 </style>
