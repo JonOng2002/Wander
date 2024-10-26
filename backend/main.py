@@ -1,15 +1,18 @@
-from app import create_app
-import logging
-import os
+from flask import Flask
 from flask_cors import CORS
+from app.tiktok_routes import tiktok_blueprint
+from app.itinerary_routes import itinerary_blueprint
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s",
-)
+def create_app():
+    app = Flask(__name__)
+    CORS(app)  # Enable CORS for all routes
+
+    # Register blueprints
+    app.register_blueprint(tiktok_blueprint)
+    app.register_blueprint(itinerary_blueprint)
+
+    return app
 
 if __name__ == "__main__":
     app = create_app()
-    CORS(app)
     app.run(port=5000, debug=True)
-

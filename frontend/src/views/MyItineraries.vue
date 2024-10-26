@@ -1,103 +1,137 @@
 <template>
     <div class="itinerary-page">
-        <div class="sticky-header">
-            <div class="back-button-container">
-                <button @click="goBack" class="back-button">← Back</button>
-            </div>
-            <h2 class="header-title">Your Itinerary</h2>
-            <div class="header-buttons">
-                <button @click="removeAllPlaces" class="remove-all-button">Remove All</button>
-                <button @click="generateItinerary" class="generate-button">Generate Itinerary</button>
-            </div>
+      <div class="sticky-header">
+        <div class="back-button-container">
+          <button @click="goBack" class="back-button">Back</button>
         </div>
-        <div v-if="itineraryPlaces.length === 0">
-            <p>No places in the itinerary.</p>
+        <h2 class="header-title">Your Itinerary</h2>
+        <div class="header-buttons">
+          <button @click="removeAllPlaces" class="remove-all-button">Remove All</button>
+          <button @click="generateItinerary" class="generate-button">Generate Itinerary</button>
         </div>
-        <div class="itinerary-grid">
-            <div v-for="place in itineraryPlaces" :key="place.place_id" class="place-card">
-                <img :src="place.image" alt="Image of {{ place.name }}" class="place-image" />
-                <div class="place-info">
-                    <h3 class="place-name">{{ place.name }}</h3>
-                    <p class="place-location">{{ place.vicinity }}, {{ place.country }}</p>
-                    <button @click="removePlace(place.place_id)" class="remove-button">✖</button>
-                </div>
-            </div>
+      </div>
+      <div v-if="loading">
+        <p>Loading itinerary...</p>
+      </div>
+      <div v-else-if="itineraryPlaces.length === 0">
+        <p>No places in the itinerary.</p>
+      </div>
+      <div v-else class="itinerary-grid">
+        <div v-for="place in itineraryPlaces" :key="place.place_id" class="place-card">
+          <img :src="place.image" alt="Image of {{ place.name }}" class="place-image" />
+          <div class="place-info">
+            <h3 class="place-name">{{ place.name }}</h3>
+            <p class="place-location">{{ place.vicinity }}, {{ place.country }}</p>
+            <button @click="removePlace(place.place_id)" class="remove-button">✖</button>
+          </div>
         </div>
+      </div>
     </div>
-</template>
-
-<script>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-
-export default {
-    name: 'MyItinerary',
+  </template>
+  
+  <script>
+  import { ref, onMounted, toRaw } from 'vue';
+  import { useRouter } from 'vue-router';
+  import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
+  import { getAuth } from 'firebase/auth';
+  
+  export default {
+    name: 'MyItineraries',
     setup() {
-        const itineraryPlaces = ref([]);
-        const db = getFirestore();
-        const auth = getAuth();
-        const router = useRouter();
-
-        onMounted(async () => {
-            const user = auth.currentUser;
-
-            if (user) {
-                const userDocRef = doc(db, 'users', user.uid);
-                const userDoc = await getDoc(userDocRef);
-
-                if (userDoc.exists()) {
-                    const data = userDoc.data();
-                    itineraryPlaces.value = data.generatedItineraries || [];
-                }
+      const itineraryPlaces = ref([]); // Itinerary places from Firebase
+      const loading = ref(true); // Loading state
+      const db = getFirestore(); // Firestore database reference
+      const auth = getAuth(); // Firebase Auth reference
+      const router = useRouter(); // Vue router reference
+  
+      // Fetch itinerary places from Firebase when component mounts
+      onMounted(async () => {
+        const user = auth.currentUser;
+        if (user) {
+          try {
+            const userDocRef = doc(db, 'users', user.uid); // Reference to the user's document
+            const userDoc = await getDoc(userDocRef); // Fetch the user document
+            if (userDoc.exists()) {
+              const data = userDoc.data();
+              itineraryPlaces.value = data.generatedItineraries || []; // Set itinerary places
+              console.log('Fetched Itinerary from Firebase:', toRaw(itineraryPlaces.value));
+            } else {
+              console.error('User document not found.');
             }
+          } catch (error) {
+            console.error('Error fetching itinerary:', error);
+          } finally {
+            loading.value = false; // Stop loading after fetch
+          }
+        } else {
+          console.error('User not authenticated.');
+          loading.value = false; // Stop loading if no user is logged in
+        }
+      });
+  
+      // Remove a place from the itinerary
+      const removePlace = async (placeId) => {
+        itineraryPlaces.value = itineraryPlaces.value.filter(place => place.place_id !== placeId); // Update local state
+        await updateItineraryInFirestore(); // Sync the change with Firebase
+      };
+  
+      // Remove all places from the itinerary
+      const removeAllPlaces = async () => {
+        itineraryPlaces.value = []; // Clear the itinerary locally
+        await updateItineraryInFirestore(); // Sync the change with Firebase
+      };
+  
+      // Push to the calendar page after generating itinerary
+      const generateItinerary = () => {
+        router.push({
+          name: 'CalendarPage',
         });
-
-        const removePlace = async (placeId) => {
-            itineraryPlaces.value = itineraryPlaces.value.filter(place => place.place_id !== placeId);
-            await updateItineraryInFirestore();
-        };
-
-        const removeAllPlaces = async () => {
-            itineraryPlaces.value = [];
-            await updateItineraryInFirestore();
-        };
-
-        const generateItinerary = () => {
-            router.push({
-                name: 'GeneratedItinerary',
-            });
-        };
-
-        const goBack = () => {
-            router.go(-1);
-        };
-
-        const updateItineraryInFirestore = async () => {
-            const user = auth.currentUser;
-            if (user) {
-                const userDocRef = doc(db, 'users', user.uid);
-                await updateDoc(userDocRef, { generatedItineraries: itineraryPlaces.value });
-            }
-        };
-
-        return { itineraryPlaces, removePlace, removeAllPlaces, generateItinerary, goBack };
+      };
+  
+      // Go back to the previous page
+      const goBack = () => {
+        router.go(-1);
+      };
+  
+      // Update the user's itinerary in Firebase
+      const updateItineraryInFirestore = async () => {
+        const user = auth.currentUser;
+        if (user) {
+          try {
+            const userDocRef = doc(db, 'users', user.uid); // Reference to the user's document
+            await updateDoc(userDocRef, { generatedItineraries: itineraryPlaces.value }); // Update the itinerary in Firestore
+            console.log('Itinerary updated in Firebase:', itineraryPlaces.value);
+          } catch (error) {
+            console.error('Error updating itinerary in Firebase:', error);
+          }
+        } else {
+          console.error('User is not authenticated.');
+        }
+      };
+  
+      return {
+        itineraryPlaces,
+        loading,
+        removePlace,
+        removeAllPlaces,
+        generateItinerary,
+        goBack,
+      };
     }
-};
-</script>
-
-<style scoped>
-h2 {
+  };
+  </script>
+  
+  <style scoped>
+  h2 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: bolder;
-}
-
-.itinerary-page {
+  }
+  
+  .itinerary-page {
     padding: 20px;
-}
-
-.sticky-header {
+  }
+  
+  .sticky-header {
     position: sticky;
     top: 0;
     background-color: #fff;
@@ -108,65 +142,65 @@ h2 {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
-}
-
-.back-button-container {
+  }
+  
+  .back-button-container {
     flex: 1;
-}
-
-.header-title {
+  }
+  
+  .header-title {
     flex: 1;
     text-align: center;
     margin: 0;
-}
-
-.header-buttons {
+  }
+  
+  .header-buttons {
     display: flex;
     gap: 10px;
     flex: 1;
     justify-content: flex-end;
-}
-
-.itinerary-grid {
+  }
+  
+  .itinerary-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-}
-
-.place-card {
+  }
+  
+  .place-card {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
     transition: transform 0.3s;
-}
-
-.place-card:hover {
+  }
+  
+  .place-card:hover {
     transform: translateY(-5px);
-}
-
-.place-image {
+  }
+  
+  .place-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
-}
-
-.place-info {
+  }
+  
+  .place-info {
     padding: 15px;
-}
-
-.place-name {
+  }
+  
+  .place-name {
     font-size: 1.2rem;
     margin: 0 0 5px;
-}
-
-.place-location {
+  }
+  
+  .place-location {
     color: #666;
     margin: 0;
-}
-
-.remove-button {
+  }
+  
+  .remove-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -175,23 +209,19 @@ h2 {
     font-size: 20px;
     color: #ff0000;
     cursor: pointer;
-}
-
-.remove-all-button,
-.generate-button {
+  }
+  
+  .remove-all-button,
+  .generate-button,
+  .back-button{
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.remove-all-button {
+  }
+  
+  .generate-button, .back-button, .remove-button {
     background-color: black;
     color: white;
-}
-
-.generate-button {
-    background-color: black;
-    color: white;
-}
-</style>
+  }
+  </style>

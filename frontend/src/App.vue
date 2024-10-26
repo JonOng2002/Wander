@@ -6,14 +6,12 @@
     </div>
 
     <div class="router-container">
-      <router-view></router-view> 
-    </div><!-- This is where the matched component will be rendered -->
+      <router-view></router-view> <!-- This is where the matched component will be rendered -->
+    </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 import AppNavbar from './components/AppNavbar.vue';
 
 export default {
@@ -21,18 +19,13 @@ export default {
   components: {
     AppNavbar, // Register the Navbar component
   },
-  setup() {
-    const route = useRoute();
-
-    // Check if the current route is sign-in or login
-    const isAuthPage = computed(() => {
+  computed: {
+    // Check if the current route is an auth page (e.g., SignUp or LogIn)
+    isAuthPage() {
+      const route = this.$route;
       return route.name === 'SignUp' || route.name === 'LogIn';
-    });
-
-    return {
-      isAuthPage,
-    };
-  },
+    },
+  }
 };
 </script>
 

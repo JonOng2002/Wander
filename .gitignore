@@ -35,3 +35,10 @@ __pycache__/
 # Python virtual environment files
 *.env
 *.venv
+
+#Backend json dump files
+**/out.json
+**/itinerary_response.json
+**/open_ai_itinerary.json
+backend/open_ai_itinerary.json
+backend/itinerary_response.json

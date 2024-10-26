@@ -54,7 +54,7 @@ export default {
       attractions: [],
       loading: true,
       country: this.$route.params.country,
-      apiKey: 'AIzaSyDfZeKaBiGNfAQ6iMZCncuv6PjEPHA66y8',
+      apiKey: 'AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k',
       cityName: this.$route.params.city || 'Unknown City',
       userId: null,
       savedPlaces: [],
