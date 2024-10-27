@@ -14,7 +14,6 @@ import DestinationDetails from '@/views/DestinationDetails.vue';
 import CalendarPage from '@/views/CalendarPage.vue';
 import TagsPage from '@/views/TagsPage.vue';
 import TrvPartner from '@/views/TravellingWithWho.vue';
-import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
 import MyItineraries from '@/views/MyItineraries.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
