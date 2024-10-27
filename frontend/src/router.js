@@ -11,15 +11,22 @@ import LogIn from '@/views/LogIn.vue'; // Import LogIn component
 import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
+import CalendarPage from '@/views/CalendarPage.vue';
+import TagsPage from '@/views/TagsPage.vue';
+import TrvPartner from '@/views/TravellingWithWho.vue';
+import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
+import MyItineraries from '@/views/MyItineraries.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
 
-  { path: '/', name: 'MainPage', component: MainPage },  
+  { path: '/', name: 'Home', component: MainPage },  
+  { path: '/mainpage', name: 'MainPage', component: MainPage },  
   { path: '/about', name: 'AboutPage', component: AboutPage },
   { path: '/location', name: 'ExtractedLocation', component: ExtractedLocation },
   { path: '/savedplaces', name: 'SavedPlaces', component: SavedPlaces },
-  { path: '/about', name: 'About', component: AboutPage },
   { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
   { path: '/myitinerary', name: 'GeneratedItinerary', component: GeneratedItinerary },
@@ -36,8 +43,17 @@ const routes = [
     name: 'DestinationDetails',
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
-  }
-  
+  }, 
+  { path: '/calendar', name: 'CalendarPage', component: CalendarPage },
+  { path: '/tags', name: 'TagsPage', component: TagsPage },
+  { path: '/trvpartner', name: 'TrvPartner', component: TrvPartner },
+  { path: '/generatedItinerary', name: 'GenIti', component: GeneratedItinerary, },
+  { path: '/myitineraries', name: 'MyItineraries', component: MyItineraries,
+    props: (route) => ({
+      itineraryGenerated: route.query.itineraryGenerated === 'true',
+      itinerary: route.query.itinerary ? JSON.parse(route.query.itinerary) : []
+    })
+  },
 ];
 
 // Router instance with Firebase authentication logic

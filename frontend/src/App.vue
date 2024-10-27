@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 import AppNavbar from './components/AppNavbar.vue';
 
 export default {
@@ -57,7 +55,8 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: white;
+  background-color: white; /* Ensure a solid background for the navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
 
 #app {

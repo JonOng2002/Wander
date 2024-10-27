@@ -1,0 +1,288 @@
+{
+  "itinerary_summary": "Explore the vibrant cities of Kuala Lumpur and Gombak, Malaysia, with a mix of cultural heritage, nature, nightlife, and thrilling entertainment across four exciting days. This itinerary includes visits to iconic attractions, experience local delicacies, and enjoy the lush landscapes.",
+  "day_by_day_itineraries": [
+    {
+      "day": 1,
+      "date": "2024-10-27",
+      "summary": "Arrival in Kuala Lumpur and evening exploration of local attractions.",
+      "activities": [
+        {
+          "time": "17:25",
+          "activity_name": "Check-in at Swiss-Garden Hotel Bukit Bintang Kuala Lumpur",
+          "location": {
+            "name": "Swiss-Garden Hotel Bukit Bintang Kuala Lumpur",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJ45QwVSY2zDERclDylVRcVsQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOsSYJ6dBUycw5-b7sEyatoSvopLHiJYk1pHU2Fv9QFD5vK9SUeNufUHA_jBJpSG4YPIEQ9qmjdo3gXpHwoNPTUDvEqcWaDwM76K2SPIH9ETXUvg7Hhz1N4MfDt9fW7SAhz1TiAV2F9O1xRkamB7UduxLDD8EiNelJX2zDTyHSUFj25&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Check into your hotel and relax after your journey."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Visit the Petronas Twin Towers",
+          "location": {
+            "name": "Petronas Twin Towers",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience stunning views of the city from the Skybridge and observation deck."
+        },
+        {
+          "time": "20:30",
+          "activity_name": "Dinner at a Local Malaysian Restaurant",
+          "location": {
+            "name": "Local Malaysian Cuisine",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Indulge in authentic Malaysian dishes to kick off your culinary adventure."
+        },
+        {
+          "time": "22:00",
+          "activity_name": "Explore Bukit Bintang Nightlife",
+          "location": {
+            "name": "Bukit Bintang",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience vibrant nightlife with bars, clubs, and entertainment options."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-10-28",
+      "summary": "A thrilling day at Batu Caves and exploring cultural attractions.",
+      "activities": [
+        {
+          "time": "08:00",
+          "activity_name": "Breakfast at Hotel",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a hearty breakfast at your hotel."
+        },
+        {
+          "time": "09:30",
+          "activity_name": "Visit Batu Caves",
+          "location": {
+            "name": "Batu Caves",
+            "city": "Gombak",
+            "coordinates": {
+              "latitude": 3.2384,
+              "longitude": 101.6825
+            },
+            "place_id": "ChIJBahJiQxHzDER-Z5vs7Lrv_I",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMFuXj07f59FhBnOFanWJA7YmuM4D2zeSJ4FjRot5ZKAEuyNXr9nGRtNn5YuByN20aTwF_3tJW5HtTLOGiL-IfGDeV8K8GNM5qhQFA3y7msSX1TccXuneSuP9djokYZb5Gspx9wX4sMGLLSC1lEthfXtJvOIX-ZDRhlzCoCSD137PIw&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Explore the iconic limestone caves and the stunning temple complex."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at a Local Eatery",
+          "location": {
+            "name": "Local Malaysian Cafe",
+            "city": "Gombak",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy lunch featuring traditional Malaysian flavors."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Visit KL Bird Park",
+          "location": {
+            "name": "KL Bird Park",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 3.1576,
+              "longitude": 101.6869
+            },
+            "place_id": "ChIJu8zWwchJzDERhcsx4AhQ1oo",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP27tWl6xpO9FLKaXb5RoQcDGZFY5WZUNSfqSU1nGHi7BzkuhpMnLSZ0u0-1npcC06hvNXt26lrVP-5yFLt6ePxfuHBv_Pg8ExWKt-39PrAw7gATcH2SDd6Qip74EH5pg6CtTIXnYSpMv8IIpov9dEaGi_FkCA5MSYZMi95WpfSUVwD&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Explore the world's largest free-flight walk-in aviary."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-10-29",
+      "summary": "Day trip to Genting Highlands with a blend of nature and entertainment.",
+      "activities": [
+        {
+          "time": "08:00",
+          "activity_name": "Breakfast at Hotel",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Start your day with a delicious breakfast."
+        },
+        {
+          "time": "09:00",
+          "activity_name": "Travel to Resorts World Genting",
+          "location": {
+            "name": "Resorts World Genting",
+            "city": "Genting Highlands",
+            "coordinates": {
+              "latitude": 3.0665,
+              "longitude": 101.7855
+            },
+            "place_id": "ChIJsdeCLgEUzDERi9ZZvaDZ2wk",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMVYFOoRcZMzyCJm4jZ32OQhepzVaSeMinpWWR1pnuY_v4klFYXTGKN1eqzUThlIdJ8UZIqyAOO96zHuXs8ZFqGFQmVhF0sPfsyb2hlqKN4pi8gu1nCSfZ1S6Cytd3y0NLxrl2nWfSReiw1nzczd5F7LqKu_9_UMNgNlBgnvdjrguTZ&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Travel to Genting Highlands for a day filled with excitement."
+        },
+        {
+          "time": "10:00",
+          "activity_name": "Visit Theme Park Rides",
+          "location": {
+            "name": "Genting Theme Park",
+            "city": "Genting Highlands",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a variety of thrilling rides and attractions."
+        },
+        {
+          "time": "13:00",
+          "activity_name": "Lunch at Genting",
+          "location": {
+            "name": "Mountain View Restaurant",
+            "city": "Genting Highlands",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy lunch with a view at a mountain-side restaurant."
+        },
+        {
+          "time": "14:30",
+          "activity_name": "Casino Visit",
+          "location": {
+            "name": "Genting Casino",
+            "city": "Genting Highlands",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Try your luck at one of the biggest casinos in Southeast Asia."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-10-30",
+      "summary": "Final day exploring cultural sites and departure.",
+      "activities": [
+        {
+          "time": "08:00",
+          "activity_name": "Breakfast at Hotel",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy breakfast, preparing for a cultural day ahead."
+        },
+        {
+          "time": "09:30",
+          "activity_name": "Visit National Art Gallery",
+          "location": {
+            "name": "National Art Gallery",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 3.1695,
+              "longitude": 101.7047
+            },
+            "place_id": "ChIJn7ct6mxIzDERAfOvaaTX5DM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNG2GYG5bDJJeNM_hRpasEXWKT59XqWa_R4TcQtJ949hIW5si_YpcgTfNcqojpSRB_Rb67jGWP8BaEo8bAYgXVkjAp-a4rR7MH4rw09-jA_2u_i6r6aOFZbR0DLyzhcs6SiEjD2Rqs2D37jp7ZNKSPfgw6RpxqU6e4iLy_tq1thBswd&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Explore local art and culture through unique exhibits."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch Near KLCC",
+          "location": {
+            "name": "Suria KLCC Food Court",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a variety of food options at this famous food court."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Visit Aquaria KLCC",
+          "location": {
+            "name": "Aquaria KLCC",
+            "city": "Kuala Lumpur",
+            "coordinates": {
+              "latitude": 3.155,
+              "longitude": 101.711
+            },
+            "place_id": "ChIJM5cxndM3zDER7WuP_cN-omg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM-rQBP3b6XttQIb4KFX9-Kv4gSGzh60qSzThiMzg4ARLan34usBzOa-VBAbWofpykkOq2JcGXr6JdvJDT7EhEeisENPCrFUh91FoE9mgWLyvw6F3ZWfyTi4tXIuO2pYuTD3Lk_ogZe3NqzYVeDyGgS0oCEfh8AANaM-uc_T9-a9Pld&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+          },
+          "description": "Explore the depths of the ocean at one of Malaysia's top aquariums."
+        }
+      ]
+    }
+  ]
+}
