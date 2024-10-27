@@ -49,8 +49,10 @@
       </div>
     </header>
 
-    <!-- Main content area for search results -->
-    <ExtractedLocations
+    
+  </div>
+  <!-- Main content area for search results -->
+  <ExtractedLocations
       v-if="
         extractedLocationsState.locationInfo &&
         extractedLocationsState.relatedPlaces
@@ -60,7 +62,6 @@
       :userId="userId"
       :savedPlaces="savedPlaces"
     />
-  </div>
 </template>
 
 <script>
