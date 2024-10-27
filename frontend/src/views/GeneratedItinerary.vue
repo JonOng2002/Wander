@@ -167,29 +167,33 @@ export default {
 
     // Function to save the itinerary to the Firestore database
     const saveItinerary = async () => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    if (user) {
-      const userId = user.uid;
-      const itineraryToSave = {
-        itinerary: generatedItinerary.value,  // Itinerary data
-        country: country.value,                // Country name
-        numDays: getNumDays.value,           // Number of days
-        savedAt: new Date().toISOString()    // Timestamp for when the itinerary was saved
-      };
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const itineraryToSave = {
+          itinerary: generatedItinerary.value,  // Ensure this contains image URLs
+          country: country.value,               // Country name
+          numDays: getNumDays.value,            // Number of days
+          savedAt: new Date().toISOString(),    // Timestamp for itinerary was saved
+          userName: user.displayName || "Guest"            // Include the user's name here as well
+        };
 
-      try {
-        await updateDoc(doc(db, "users", userId), {
-          savedItineraries: arrayUnion(itineraryToSave) // Add the itinerary to the saved itineraries
-        });
-        console.log("Itinerary saved to savedItineraries successfully");
-      } catch (error) {
-        console.error("Error saving itinerary:", error);
+        try {
+          await updateDoc(doc(db, "users", userId), {
+            savedItineraries: arrayUnion(itineraryToSave) // Add the itinerary to saved itineraries
+          });
+          console.log("Itinerary saved to savedItineraries successfully");
+          console.log(generatedItinerary.value); // Check if all places have the 'image' field
+
+        } catch (error) {
+          console.error("Error saving itinerary:", error);
+        }
+      } else {
+        console.error("User is not authenticated");
       }
-    } else {
-      console.error("User is not authenticated");
-    }
-  };
+    };
+
 
   const navigateToSavedItinerary = () => {
     saveItinerary();

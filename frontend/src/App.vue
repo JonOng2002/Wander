@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <div class="header" v-if="!isAuthPage">
-      <!-- Include the Navbar component conditionally -->
+    <!-- Navbar appears only when not in auth or itinerary details pages -->
+    <div class="header" v-if="!isAuthPage && !isItineraryDetailsPage">
       <AppNavbar />
     </div>
 
     <div class="router-container">
-      <router-view></router-view> 
-    </div><!-- This is where the matched component will be rendered -->
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ import AppNavbar from './components/AppNavbar.vue';
 export default {
   name: 'App',
   components: {
-    AppNavbar, // Register the Navbar component
+    AppNavbar,
   },
   setup() {
     const route = useRoute();
@@ -29,8 +29,14 @@ export default {
       return route.name === 'SignUp' || route.name === 'LogIn';
     });
 
+    // Check if the current route is ItineraryDetails
+    const isItineraryDetailsPage = computed(() => {
+      return route.name === 'ItineraryDetails';
+    });
+
     return {
       isAuthPage,
+      isItineraryDetailsPage,
     };
   },
 };
@@ -44,28 +50,22 @@ body {
 </style>
 
 <style scoped>
-
 .header {
   display: flex;
   align-items: center;
   width: 100%;
-  position: sticky; /* Ensures it sticks to the top */
+  position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: white; /* Ensure a solid background for the navbar */
+  background-color: white;
 }
+
 #app {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   margin: 0;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  width: 100%;
 }
 
 .router-container {

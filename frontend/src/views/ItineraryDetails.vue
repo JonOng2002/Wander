@@ -1,133 +1,173 @@
 <template>
-    <div class="saved-itineraries-container">
-        <h1 class="page-title">Saved Itineraries</h1>
+    <div class="generated-itinerary">
 
-        <div v-if="!filteredItineraries.length" class="no-itineraries-message">
-            <p>No saved itineraries yet. Start creating your itinerary!</p>
+        <AppNavbar class="sticky-top" v-if="false"></AppNavbar> <!-- Navbar hidden on this page -->
+
+        <div v-if="loading" class="empty-message">Loading itinerary...</div>
+        <div v-else-if="!itinerary || !itinerary.itinerary || !itinerary.itinerary.length" class="empty-message">
+            <p>No itinerary found.</p>
         </div>
 
-        <div v-else>
-            <!-- Filter Section -->
-            <div class="filter-container">
-                <p class="filter-title">Filter by:</p>
-                <div class="filter-options">
-                    <button :class="{ 'active': selectedFilter === 'addedDate' }" @click="applyFilter('addedDate')">Added
-                        Date</button>
-                    <button :class="{ 'active': selectedFilter === 'country' }"
-                        @click="applyFilter('country')">Country</button>
-                    <button :class="{ 'active': selectedFilter === 'duration' }"
-                        @click="applyFilter('duration')">Duration</button>
-                </div>
-            </div>
-
-            <!-- The most recent itinerary card -->
-            <div v-if="filteredItineraries.length" class="itinerary-card itinerary-card-large">
-                <div class="card shadow-sm">
-                    <img :src="filteredItineraries[0].image" class="card-img-top" alt="itinerary country image" />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ filteredItineraries[0].country }}</h5>
-                        <p class="card-text">
-                            {{ filteredItineraries[0].numDays }}d{{ filteredItineraries[0].numDays - 1 }}n trip in {{
-                                filteredItineraries[0].country }}.
-                        </p>
-                        <p class="card-subtext">
-                            Saved on {{ new Date(filteredItineraries[0].savedAt).toLocaleDateString() }}
-                        </p>
-                        <button @click="toggleDetails(0)" class="btn btn-outline-primary">
-                            {{ filteredItineraries[0].isExpanded ? "Hide Details" : "View Itinerary" }}
-                        </button>
-                    </div>
-                    <div v-if="filteredItineraries[0].isExpanded" class="itinerary-details">
-                        <div v-for="(day, dayIndex) in filteredItineraries[0].days" :key="dayIndex">
-                            <h6>Day {{ dayIndex + 1 }}</h6>
-                            <ul>
-                                <li v-for="(place, placeIndex) in day.places" :key="placeIndex">{{ place.name }}</li>
-                            </ul>
+        <div v-else class="main-content">
+            <!-- Left Side: Itinerary Details -->
+            <div class="itinerary-details-container">
+                <div class="itinerary-details">
+                    <!-- Close Button to exit the page -->
+                    <button class="close-button" @click="closeItinerary">✕</button>
+                    <div class="row justify-content-between align-items-center g-0">
+                        <div class="col-12 date-column">
+                            <p>Review our recommendations</p>
+                            <h2>Personalized itinerary for <strong>{{ itinerary.userName || 'Guest' }}</strong></h2>
+                            <p>{{ itinerary.country }} • {{ getNumDays() }} days</p>
                         </div>
+                        <button @click="deleteItinerary" class="delete-button">Delete Itinerary</button>
                     </div>
-                </div>
-            </div>
 
-            <!-- The rest of the saved itineraries -->
-            <div class="itinerary-cards">
-                <div v-for="(itinerary, index) in filteredItineraries.slice(1)" :key="index + 1" class="itinerary-card">
-                    <div class="card shadow-sm">
-                        <img :src="itinerary.image" class="card-img-top" alt="itinerary country image" />
-                        <div class="card-body">
-                            <h5 class="card-title">{{ itinerary.country }}</h5>
-                            <p class="card-text">
-                                {{ itinerary.numDays }}d{{ itinerary.numDays - 1 }}n trip in {{ itinerary.country }}.
-                            </p>
-                            <p class="card-subtext">
-                                Saved on {{ new Date(itinerary.savedAt).toLocaleDateString() }}
-                            </p>
-                            <button @click="toggleDetails(index + 1)" class="btn btn-outline-primary">
-                                {{ itinerary.isExpanded ? "Hide Details" : "View Itinerary" }}
-                            </button>
-                        </div>
-                        <div v-if="itinerary.isExpanded" class="itinerary-details">
-                            <div v-for="(day, dayIndex) in itinerary.days" :key="dayIndex">
-                                <h6>Day {{ dayIndex + 1 }}</h6>
-                                <ul>
-                                    <li v-for="(place, placeIndex) in day.places" :key="placeIndex">{{ place.name }}
-                                    </li>
-                                </ul>
+                    <div v-for="(places, dayIndex) in splitIntoDays(itinerary.itinerary)" :key="dayIndex"
+                        class="day-section">
+                        <div class="day-header">Day {{ dayIndex + 1 }}</div>
+                        <p class="day-description">
+                            Embark on a captivating journey through Japan’s diverse cultural and historical gems.
+                            Your adventure begins with a visit to the Cup Noodles Museum Yokohama.
+                        </p>
+                        <div class="itinerary-table">
+                            <div class="itinerary-item" v-for="(place, timeIndex) in places" :key="timeIndex">
+                                <div class="time-column">{{ generateTime(timeIndex) }}</div>
+                                <div class="place-column">
+                                    <img :src="place.image" class="place-image" :alt="place.name" />
+                                    <h5>{{ place.name }}</h5>
+                                    <p>{{ place.vicinity }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Google Maps -->
+            <div class="map-container">
+                <div id="location-map" class="map">
+                    <GoogleMap :center="mapCenter" :zoom="15" style="width: 100%; height: 100%">
+                        <Marker v-for="place in itinerary.itinerary" :key="place.place_id"
+                            :position="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" />
+                    </GoogleMap>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
+
 <script>
-import { ref, computed } from "vue";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { ref, onMounted } from "vue";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { GoogleMap, Marker } from 'vue3-google-map';
+import router from "@/router";
 
 export default {
-    name: "SavedItinerary",
+    name: "ItineraryDetails",
+    components: {
+        GoogleMap,
+        Marker,
+    },
     setup() {
-        const savedItineraries = ref([]);
-        const selectedFilter = ref("addedDate");
+        const itinerary = ref(null);
+        const loading = ref(true);
+        const db = getFirestore();
+        const route = useRoute();
+        const mapCenter = ref({ lat: 35.6762, lng: 139.6503 }); // Default center for Tokyo, Japan
+        const timeSlots = ['09:00 AM', '11:00 AM', '02:00 PM', '04:00 PM'];
 
+        // Fetch the itinerary based on the savedAt identifier passed through the route
         onMounted(async () => {
-            const auth = getAuth();
-            const user = auth.currentUser;
-            const db = getFirestore();
-            if (user) {
-                const userRef = doc(db, "users", user.uid);
-                const userDoc = await getDoc(userRef);
-                if (userDoc.exists()) {
-                    savedItineraries.value = userDoc.data().savedItineraries || [];
+            const savedAt = route.params.savedAt;  // Use the savedAt from the params
+            const userId = route.query.userId || getAuth().currentUser.uid;  // Ensure you're getting the correct user ID
+
+            console.log("SavedAt from route params:", savedAt);  // Debugging
+            console.log("User ID:", userId);  // Debugging
+
+            if (savedAt !== undefined && userId) {
+                const docRef = doc(db, "users", userId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const savedItineraries = docSnap.data().savedItineraries || [];
+
+                    console.log("Saved itineraries:", savedItineraries);  // Debugging
+
+                    // Retrieve the correct itinerary based on the savedAt identifier
+                    itinerary.value = savedItineraries.find(itin => itin.savedAt === savedAt);
+
+                    console.log("Selected itinerary:", itinerary.value);  // Debugging
+
+                    if (itinerary.value && itinerary.value.itinerary.length > 0) {
+                        const firstPlace = itinerary.value.itinerary[0];
+                        mapCenter.value = { lat: firstPlace.coordinates.latitude, lng: firstPlace.coordinates.longitude };
+                    } else {
+                        console.error("Itinerary not found for savedAt:", savedAt);  // Debugging
+                    }
                 }
             }
+            loading.value = false;
         });
 
-        // Sorting logic
-        const applyFilter = (filter) => {
-            selectedFilter.value = filter;
+        // Delete the itinerary from Firestore when delete button is clicked
+        const deleteItinerary = async () => {
+            const userId = getAuth().currentUser.uid;
+            const savedAt = route.params.savedAt;
+
+            if (userId && savedAt) {
+                const docRef = doc(db, "users", userId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    let savedItineraries = docSnap.data().savedItineraries || [];
+                    savedItineraries = savedItineraries.filter(itin => itin.savedAt !== savedAt);
+
+                    // Update Firestore with the new array
+                    await updateDoc(docRef, { savedItineraries });
+
+                    // Navigate back to the saved itineraries page
+                    router.push({ name: 'SavedItinerary' });
+                }
+            }
         };
 
-        // Computed property for filtered itineraries
-        const filteredItineraries = computed(() => {
-            let itineraries = [...savedItineraries.value];
-            if (selectedFilter.value === "country") {
-                return itineraries.sort((a, b) => a.country.localeCompare(b.country)); // Alphabetical by country
-            } else if (selectedFilter.value === "duration") {
-                return itineraries.sort((a, b) => b.numDays - a.numDays); // By trip duration (longest first)
-            } else {
-                return itineraries.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt)); // Default: by added date (most recent first)
+        const closeItinerary = () => {
+            router.push({ name: 'SavedItinerary' }); // Adjust this route if needed
+        };
+
+        const generateTime = (index) => {
+            return timeSlots[index % timeSlots.length];
+        };
+
+        const splitIntoDays = (itinerary) => {
+            if (!itinerary || itinerary.length === 0) {
+                return [];
             }
-        });
+            const days = [];
+            const daySize = 4;
+            for (let i = 0; i < itinerary.length; i += daySize) {
+                days.push(itinerary.slice(i, i + daySize));
+            }
+            return days;
+        };
+
+        const getNumDays = () => {
+            return Math.ceil(itinerary.value?.itinerary?.length / 4) || 0;
+        };
 
         return {
-            savedItineraries,
-            selectedFilter,
-            applyFilter,
-            filteredItineraries,
+            itinerary,
+            loading,
+            generateTime,
+            splitIntoDays,
+            getNumDays,
+            mapCenter,
+            deleteItinerary,
+            closeItinerary
         };
     },
 };
@@ -135,123 +175,144 @@ export default {
 
 
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-.saved-itineraries-container {
-    width: 100%;
+<style scoped>
+.delete-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.delete-button:hover {
+    background-color: #5a6268;
+}
+
+.main-content {
+    display: flex;
+    height: 100vh;
+    /* Full viewport height */
+}
+
+.itinerary-details-container {
+    width: 50%;
+    /* Take half the width */
+    overflow-y: auto;
+    /* Allow scrolling within this section */
+    max-height: 100vh;
+    /* Limit the height to viewport height */
+    padding-right: 10px;
+    /* Space for the scrollbar */
+}
+
+.itinerary-details {
     padding: 20px;
 }
 
-.page-title {
-    text-align: center;
-    font-family: 'Cormorant Garamond', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 40px;
-    font-weight: 700;
+.itinerary-details::-webkit-scrollbar {
+    width: 8px;
+    /* Narrower scrollbar */
 }
 
-/* Filter Section */
-.filter-container {
-    margin-bottom: 30px;
-    text-align: left;
-    font-family: 'Inter', sans-serif;
+.itinerary-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
-.filter-title {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    font-weight: 500;
+.itinerary-details::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Gray scrollbar */
 }
 
-.filter-options {
-    display: flex;
-    gap: 10px;
+.itinerary-details::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+    /* Darker on hover */
 }
 
-.filter-options button {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.filter-options button.active {
-    background-color: black;
-    color: white;
-}
-
-.filter-options button:hover {
-    background-color: #f0f0f0;
-}
-
-.itinerary-card {
-    background-color: white;
-    border: 1px solid #ddd;
+.day-section {
+    margin-bottom: 20px;
+    background-color: #fdfdfd;
     border-radius: 10px;
-    overflow: hidden;
+    padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
 }
 
-.itinerary-card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.day-header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-.itinerary-card-large {
-    display: block;
-    width: 100%;
-    max-height: 400px;
-    margin-bottom: 10px; /* This ensures the space between the top card and others */
-    padding-bottom: 10px; /* Padding for internal space */
-    border: none; /* Remove the border to avoid the double border effect */
-    box-shadow: none; /* Remove shadow if there is one causing extra appearance */
-}
-
-.card-body {
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-}
-
-.card-title {
-    font-size: 1.6rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-}
-
-.card-text {
-    font-size: 1rem;
-    font-family: 'Inter', sans-serif;
+.day-description {
+    margin-bottom: 20px;
     color: #666;
 }
 
-.card-subtext {
-    font-size: 0.9rem;
-    color: #888;
-    font-family: 'Inter', sans-serif;
-}
-
-.itinerary-cards {
+.itinerary-table {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px; /* Add some margin to the top of the card grid */
+    grid-template-columns: repeat(2, 1fr);
+    /* Two items per row */
+    gap: 15px;
 }
 
+.itinerary-item {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.time-column {
+    text-align: left;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.place-column {
+    padding: 10px 0;
+}
+
+.place-column h5 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.place-column img {
+    max-width: 150px;
+    border-radius: 8px;
+}
+
+.map-container {
+    background-color: #F8F9FA;
+    width: 50%;
+    /* Take the other half of the width */
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    /* Full viewport height */
+    overflow: hidden;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Disable interaction with the map */
+}
+
+/* Media query for responsiveness */
 @media (max-width: 768px) {
-    .page-title {
-        font-size: 2.5rem;
+    .map-container {
+        display: none;
+        /* Hide map on small screens */
     }
 
-    .itinerary-card-large {
+    .itinerary-details-container {
         width: 100%;
-    }
-
-    .itinerary-cards {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        /* Take full width on small screens */
     }
 }
 </style>
