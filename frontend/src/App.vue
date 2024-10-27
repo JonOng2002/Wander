@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <!-- Navbar appears only when not in auth or itinerary details pages -->
-    <div class="header" v-if="!isAuthPage && !isItineraryDetailsPage">
+    <!-- Navbar appears only when not in auth, itinerary details, or generated itinerary pages -->
+    <div class="header" v-if="!isExcludedPage">
       <AppNavbar />
     </div>
+
 
     <div class="router-container">
       <router-view></router-view>
@@ -24,19 +25,18 @@ export default {
   setup() {
     const route = useRoute();
 
-    // Check if the current route is sign-in or login
-    const isAuthPage = computed(() => {
-      return route.name === 'SignUp' || route.name === 'LogIn';
-    });
-
-    // Check if the current route is ItineraryDetails
-    const isItineraryDetailsPage = computed(() => {
-      return route.name === 'ItineraryDetails';
+    // Consolidated check to see if the current route is one of the pages where the navbar should be hidden
+    const isExcludedPage = computed(() => {
+      return (
+        route.name === 'SignUp' ||
+        route.name === 'LogIn' ||
+        route.name === 'ItineraryDetails' ||
+        route.name === 'GeneratedItinerary'
+      );
     });
 
     return {
-      isAuthPage,
-      isItineraryDetailsPage,
+      isExcludedPage,
     };
   },
 };

@@ -76,7 +76,11 @@ export default {
     setup() {
         const savedItineraries = ref([]);
         const selectedFilter = ref("addedDate");
+        // const currentIndex = ref(0); // Track the starting index for the visible itineraries
+        // const itemsPerPage = 5; // Number of items to show at a time
 
+
+        //loading saved itineraries from firestore
         onMounted(async () => {
             const auth = getAuth();
             const user = auth.currentUser;
@@ -90,6 +94,7 @@ export default {
             }
         });
 
+        //redirecting to the itinerary when clicked
         const viewItinerary = (savedAt) => {
             router.push({
                 name: 'ItineraryDetails',
@@ -102,11 +107,38 @@ export default {
             return itineraries.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
         });
 
+        // // Filtered and paginated itineraries
+        // const filteredItineraries = computed(() => {
+        //     return savedItineraries.value.slice(currentIndex.value, currentIndex.value + itemsPerPage);
+        // });
+
+        //scolling left
+        // const scrollLeft = () => {
+        //     // Decrement index, ensuring it doesn’t go below 0
+        //     if (currentIndex.value > 0) {
+        //         currentIndex.value -= itemsPerPage;
+        //     }
+        // };
+
+        // //scrolling right
+        // const scrollRight = () => {
+        //     // Increment index, ensuring it doesn’t go past the last item
+        //     if (currentIndex.value + itemsPerPage < savedItineraries.value.length) {
+        //         currentIndex.value += itemsPerPage;
+        //     }
+        // };  
+
         return {
             savedItineraries,
             filteredItineraries,
             viewItinerary,
             selectedFilter,
+            // scrollLeft,
+            // scrollRight,
+            // Computed to check button visibility
+            // showLeftButton: computed(() => currentIndex.value > 0),
+            // showRightButton: computed(() => currentIndex.value + itemsPerPage < savedItineraries.value.length),
+
         };
     },
 };
@@ -132,7 +164,8 @@ export default {
     text-align: left;
     font-size: 3rem;
     font-family: 'Cormorant Garamond', serif;
-    margin-bottom: 40px;
+    font-weight: bolder;
+    margin-bottom: 25px;
     width: 100%; /* Ensures it spans the full width */
     padding-left: 20px; /* Adds some space from the left edge */
     box-sizing: border-box;

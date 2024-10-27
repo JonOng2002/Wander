@@ -13,7 +13,6 @@
             <div class="itinerary-details-container">
                 <div class="itinerary-details">
                     <!-- Close Button to exit the page -->
-                    <button class="close-button" @click="closeItinerary">✕</button>
                     <div class="row justify-content-between align-items-center g-0">
                         <div class="col-12 date-column">
                             <p>Review our recommendations</p>
@@ -46,6 +45,8 @@
 
             <!-- Right Side: Google Maps -->
             <div class="map-container">
+                <!-- Overlay "X" button -->
+                <button class="close-button" @click="closeItinerary">×</button>
                 <div id="location-map" class="map">
                     <GoogleMap :center="mapCenter" :zoom="15" style="width: 100%; height: 100%">
                         <Marker v-for="place in itinerary.itinerary" :key="place.place_id"
@@ -199,7 +200,7 @@ export default {
 }
 
 .itinerary-details-container {
-    width: 50%;
+    width: 55%;
     /* Take half the width */
     overflow-y: auto;
     /* Allow scrolling within this section */
@@ -207,6 +208,7 @@ export default {
     /* Limit the height to viewport height */
     padding-right: 10px;
     /* Space for the scrollbar */
+    padding-top: 60px;
 }
 
 .itinerary-details {
@@ -278,16 +280,18 @@ export default {
 .place-column h5 {
     font-size: 1.2rem;
     margin: 0;
+    padding: 10px 0;
 }
 
 .place-column img {
     max-width: 150px;
     border-radius: 8px;
+    margin-bottom: 3px;
 }
 
 .map-container {
     background-color: #F8F9FA;
-    width: 50%;
+    width: 45%;
     /* Take the other half of the width */
     position: sticky;
     top: 0;
@@ -314,5 +318,31 @@ export default {
         width: 100%;
         /* Take full width on small screens */
     }
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #888;
+    padding-bottom: 6px;
+    /* Similar gray color as your reference */
+    background-color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.close-button:hover {
+    border-color: #666;
+    color: #666;
 }
 </style>
