@@ -1,8 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg sticky-top w-100">
-    <div
-      class="nav-contain container-fluid d-flex justify-content-between align-items-center"
-    >
+    <div class="nav-contain container-fluid d-flex justify-content-between align-items-center">
       <!-- Title -->
       <a class="navbar-brand" href="#">
         <h1 id="title" class="h1">wander.</h1>
@@ -14,14 +12,10 @@
           <router-link to="/" class="nav-link" exact>Main Page</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/savedplaces" class="nav-link"
-            >Saved Places</router-link
-          >
+          <router-link to="/savedplaces" class="nav-link">Saved Places</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/destinations" class="nav-link"
-            >Destinations</router-link
-          >
+          <router-link to="/destinations" class="nav-link">Destinations</router-link>
         </li>
         <li class="nav-item me-4">
           <router-link to="/about" class="nav-link">About</router-link>
@@ -37,18 +31,9 @@
         </li> -->
 
         <li>
-          <img
-            src="@/assets/profilepic.png"
-            class="user-pic"
-            alt="user-pic"
-            @click="toggleMenu"
-          />
+          <img src="@/assets/profilepic.png" class="user-pic" alt="user-pic" @click="toggleMenu" />
 
-          <div
-            class="sub-menu-wrap"
-            :class="{ 'open-menu': isMenuOpen }"
-            id="subMenu"
-          >
+          <div class="sub-menu-wrap" :class="{ 'open-menu': isMenuOpen }" id="subMenu">
             <div class="sub-menu">
               <div class="user-info">
                 <img src="@/assets/profilepic.png" />
@@ -64,8 +49,7 @@
               <a href="#" class="sub-menu-link">
                 <img
                   src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt=""
-                />
+                  alt="" />
                 <p>Edit Profile</p>
                 <span>></span>
               </a>
@@ -73,8 +57,7 @@
               <a href="#" class="sub-menu-link">
                 <img
                   src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt=""
-                />
+                  alt="" />
                 <p>Settings</p>
                 <span>></span>
               </a>
@@ -82,8 +65,7 @@
               <a href="#" class="sub-menu-link">
                 <img
                   src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt=""
-                />
+                  alt="" />
                 <p>Help</p>
                 <span>></span>
               </a>
@@ -91,8 +73,7 @@
               <a href="#" class="sub-menu-link" @click="signOutUser">
                 <img
                   src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt=""
-                />
+                  alt="" />
                 <p>Logout</p>
                 <span>></span>
               </a>
@@ -162,11 +143,13 @@ export default {
 <style scoped>
 /* Sticky navbar */
 .navbar {
-  height: 5rem;
-  background-color: black;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  padding: 15px 20px; /* Add padding for better spacing */
-  z-index: 1000; /* Ensure navbar stays on top of other elements */
+  background-color: #0057d9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  padding: 15px 20px;
+  /* Add padding for better spacing */
+  z-index: 1000;
+  /* Ensure navbar stays on top of other elements */
 }
 
 /* Navbar title styling */
@@ -179,75 +162,55 @@ export default {
 
 /* Container background */
 .nav-contain {
-  background-color: black;
+  background-color: #0057d9;
 }
 
 /* Navigation link styling */
 .nav-link {
   font-weight: bold;
   font-size: 1.5vw;
-  color: white !important; /* Ensure links stay white */
+  color: white !important;
+  /* Ensure links stay white */
   font-family: "Cormorant Garamond", serif;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-  color: #ffffff !important; /* Soft hover effect */
-}
-
-/* Main link when active or hovered */
-.router-link-active,
-.router-link-exact-active,
-.router-link:hover,
-.router-link-exact-active:hover {
   position: relative;
-  color: black !important; /* Text remains black when active or hovered */
-  font-weight: bolder;
-  text-decoration: underline; /* No underline */
-  padding: 5px 10px; /* Add padding to create space for the background */
-  transition: color 0.2s ease-in-out; /* Adjust text color transition timing */
-  z-index: 1; /* Text stays above the background */
+  /* Position for sliding background */
+  padding: 5px 10px;
+  /* Add padding for better click area */
+  border-radius: 100px;
+  /* Rounded corners for links */
+}
+
+/* Hover state for links */
+.nav-link:hover {
+  color: #ffffff !important;
+  /* Soft hover effect */
+  background-color: rgba(255, 255, 255, 0.4);
+  /* Semi-transparent background */
+  border: 1px solid white;
+  /* Add border on hover */
 }
 
 /* Sliding background effect using the before pseudo-element */
-.router-link-active::before,
-.router-link-exact-active::before,
-.router-link:hover::before,
-.router-link-exact-active:hover::before {
+.router-link::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: white; /* White background color */
-  transition: transform 0.4s ease-in-out, background-color 0s; /* Smooth sliding effect */
-  transform: scaleX(0); /* Initially hidden background */
-  transform-origin: left; /* Sliding starts from the left */
-  z-index: -1; /* Keep the background behind the text */
-  border-radius: 0; /* Apply the same border-radius to the background */
+  background-color: white;
+  z-index: -1;
+  /* Keep the background behind the text */
+  border-radius: 100px;
+  /* Match border radius with links */
 }
 
-/* Trigger the sliding effect on hover or active state */
-.router-link-active::before,
-.router-link-exact-active::before,
-.router-link:hover::before,
-.router-link-exact-active:hover::before {
-  transform: scaleX(1); /* Expand background to full width */
-  transition: transform 0.4s ease-in-out; /* Ensure the background fills smoothly */
-}
-
-/* Ensure the text remains on top of the sliding background */
-.router-link,
-.router-link-active {
-  transition: color 0.2s ease-in-out; /* Instant text color change */
-}
-
-/* Ensure text color remains black while hovering inside the white background */
-.router-link:hover,
-.router-link-exact-active:hover {
-  color: black; /* Keep text black during hover */
+.router-link:active, .router-link-exact-active {
+  color: #ffffff !important;
+  /* Soft hover effect */
+  background-color: rgba(255, 255, 255, 0.4);
+  /* Semi-transparent background */
+  border: 1px solid white;
 }
 
 /* Profile picture styling */
@@ -255,15 +218,18 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid white; /* Add a border to make it more visible */
+  border: 2px solid white;
+  /* Add a border to make it more visible */
 }
 
 /* Sticky positioning */
 .sticky-top {
   top: 0;
   position: sticky;
-  z-index: 1020; /* Higher z-index to ensure navbar stays above other elements */
-  background-color: black; /* Ensure the background remains black */
+  z-index: 1020;
+  /* Higher z-index to ensure navbar stays above other elements */
+  background-color: #0057d9;
+  /* Ensure the background remains black */
 }
 
 /*====== USER PROFILE MENU ======*/
@@ -339,11 +305,16 @@ export default {
   font-weight: 300;
   font-size: 0.9rem;
   margin: 0;
-  display: block; /* Ensure block-level behavior */
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflowed text */
-  text-overflow: ellipsis; /* Add ellipsis (...) */
-  max-width: 100%; /* Ensure ellipsis works within available space */
+  display: block;
+  /* Ensure block-level behavior */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+  overflow: hidden;
+  /* Hide overflowed text */
+  text-overflow: ellipsis;
+  /* Add ellipsis (...) */
+  max-width: 100%;
+  /* Ensure ellipsis works within available space */
 }
 
 .user-info img {
