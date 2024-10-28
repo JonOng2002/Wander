@@ -31,6 +31,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { gsap } from "gsap";
 
 export default {
     name: 'MyItinerary',
@@ -60,8 +61,19 @@ export default {
         };
 
         const removeAllPlaces = async () => {
-            itineraryPlaces.value = [];
-            await updateItineraryInFirestore();
+            const placeCards = document.querySelectorAll(".place-card");
+            // Add the GSAP animation to the place cards
+            gsap.to(placeCards, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.5,
+                stagger: 0.1,
+                onComplete: async () => {
+                    // Clear itinerary places after animation completes
+                    itineraryPlaces.value = []; // Use itineraryPlaces.value instead of this.itineraryPlaces
+                    await updateItineraryInFirestore(); // Call the update function
+                }
+            });
         };
 
         const generateItinerary = () => {
@@ -87,6 +99,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 h2 {
     font-family: 'Cormorant Garamond', serif;
@@ -101,7 +114,7 @@ h2 {
     position: sticky;
     top: 0;
     background-color: #fff;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 10;
     display: flex;
@@ -162,7 +175,6 @@ h2 {
 }
 
 .place-location {
-    color: #666;
     margin: 0;
 }
 
@@ -170,28 +182,34 @@ h2 {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: none;
+    background: transparent;
     border: none;
     font-size: 20px;
-    color: #ff0000;
     cursor: pointer;
-}
-
-.remove-all-button,
-.generate-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.remove-all-button {
-    background-color: black;
     color: white;
 }
 
-.generate-button {
-    background-color: black;
+.remove-button:hover {
+    color: red;
+}
+
+.remove-all-button,
+.generate-button,
+.back-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 100px;
+    transition: background-color 0.3s ease;
+    /* Apply smooth transition */
+}
+
+.remove-all-button:hover,
+.generate-button:hover,
+.back-button:hover {
+    background-color: #0057d9;
     color: white;
 }
 </style>

@@ -16,9 +16,9 @@
           </div>
         </div>
         <div class="col-auto generateButton">
-          <button @click="toggleModal" type="button" class="btn btn-secondary view-itinerary-btn">View
+          <button @click="toggleModal" type="button" class="btn view-itinerary-btn">View
             Itinerary</button>
-          <button @click="navigateToGeneratedItinerary" type="button" class="btn btn-primary">View Full
+          <button @click="navigateToGeneratedItinerary" type="button" class="btn view-full-itinerary-btn">View Full
             Itinerary</button>
         </div>
       </div>
@@ -33,7 +33,7 @@
       <transition-group name="list" tag="div" class="transition-wrapper">
         <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs">
           <div class="card destination-card">
-            <button @click="removePlace(place)" type="button" class="btn close-button">X</button>
+            <button @click="removePlace(place)" type="button" class="btn close-button">✖</button>
             <img :src="place.image" class="card-img-top" alt="Image of {{ place.name }}" />
             <div class="card-body">
               <h5 class="card-title">{{ place.name }}</h5>
@@ -58,7 +58,8 @@
             {{ item.name }} - {{ item.vicinity }}
           </li>
         </ol>
-        <button @click="navigateToGeneratedItinerary" class="btn mb-2">View Full Itinerary</button>
+        <button @click="navigateToGeneratedItinerary" class="btn mb-2 view-full-itinerary-btn">View Full
+          Itinerary</button>
         <button @click="toggleModal" type="button" class="btn close-modal-btn">Close</button>
       </div>
     </div>
@@ -108,6 +109,7 @@ export default {
     onMounted(async () => {
       const auth = getAuth();
       const user = auth.currentUser;
+      loadUserItinerary();
 
       if (user) {
         const userId = user.uid;
@@ -183,6 +185,27 @@ export default {
       showDeletePopup.value = !showDeletePopup.value; // Toggle delete confirmation popup
     };
 
+    const loadUserItinerary = async () => {
+      const user = getAuth().currentUser;
+
+      if (user) {
+        const userId = user.uid;
+        const userDocRef = doc(db, 'users', userId);
+
+        try {
+          const docSnap = await getDoc(userDocRef);
+          if (docSnap.exists()) {
+            itinerary.value = docSnap.data().generatedItineraries || [];
+            // Update the state for each place based on loaded itinerary
+          } else {
+            console.error('No such document!');
+          }
+        } catch (error) {
+          console.error('Error fetching user itinerary:', error);
+        }
+      }
+    };
+
     const toggleItinerary = async (place, event) => {
       const index = savedPlaces.value.findIndex(item => item.place_id === place.place_id);
 
@@ -210,16 +233,22 @@ export default {
             }
           };
 
-          if (isPlaceInItinerary(place)) {
+          const isInItinerary = isPlaceInItinerary(place);  // Check if the place is in the itinerary
+
+          // Immediate local state update for reactivity
+          if (isInItinerary) {
+            // Remove from itinerary locally first
+            itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
+            togglePopup('remove');  // Show remove popup
+
+            // Update Firebase after local state change
             await updateDoc(userDocRef, {
               generatedItineraries: arrayRemove(placeData)
             });
-
-            itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
-            togglePopup('remove');
           } else {
             const button = event.currentTarget;
 
+            // GSAP animation for button
             gsap.fromTo(
               button,
               { scale: 1 },
@@ -231,12 +260,14 @@ export default {
               }
             );
 
+            // Add to itinerary locally first
+            itinerary.value.push({ ...place });
+            togglePopup('add');  // Show add popup
+
+            // Update Firebase after local state change
             await updateDoc(userDocRef, {
               generatedItineraries: arrayUnion(placeData)
             });
-
-            itinerary.value.push({ ...place });
-            togglePopup('add');
           }
         } catch (error) {
           console.error('Error updating itinerary in Firebase:', error);
@@ -456,8 +487,6 @@ h2 {
   /* Fixed width for the cards, they won't grow */
   max-width: 265px;
   /* Ensures the cards stay at 265px */
-  min-width: 265px;
-  /* Ensures the cards stay at 265px */
   margin: 0px;
   /* Adds spacing between cards */
 }
@@ -510,6 +539,7 @@ h2 {
 }
 
 .itinerary-button {
+  background-color: #0057d9;
   width: 100%;
   /* Makes the button take the full width */
   padding: 10px;
@@ -535,7 +565,6 @@ h2 {
 }
 
 .btn {
-  background-color: black;
   /* Set button color to black */
   color: white;
   /* Keep the text color white for contrast */
@@ -544,22 +573,43 @@ h2 {
 }
 
 .btn:hover {
-  background-color: #333;
+  background-color: #0057d9;
   /* Darker color on hover for visual feedback */
   color: white;
   /* Keep the text color white on hover */
 }
 
 .close-modal-btn:hover {
-  background-color: #333;
-  /* Darker color on hover for the close button */
   color: white;
   /* Keep the text color white on hover */
 }
 
+.close-modal-btn {
+  background-color: #0057d9;
+}
+
 .view-itinerary-btn {
   margin-right: 10px;
+  background-color: #ffffff;
+  border-radius: 100px;
+  margin-top: 30px;
+  border: 1px solid black;
+  color: black;
   /* Adjust space as needed */
+  transition: background-color 0.3s ease;
+  /* Apply smooth transition */
+
+}
+
+.view-full-itinerary-btn {
+  background-color: #ffffff;
+  border-radius: 100px;
+  margin-top: 30px;
+  border: 1px solid black;
+  color: black;
+  transition: background-color 0.3s ease;
+  /* Apply smooth transition */
+
 }
 
 .popup-container {
@@ -654,20 +704,31 @@ h2 {
 }
 
 .close-button:hover {
-  color: white;
+  background: transparent;
+  color: red;
   /* Change color on hover */
 }
 
 .filter-dropdown {
   margin: 10px 0;
+
 }
 
 .filter-dropdown .form-select {
   width: 100%;
+  border-radius: 100px;
+  border:1px solid black;
 }
 
 .btn-delete-all {
-  width: 150px;
+  width: 200px;
+  border-radius: 30px;
+  border: 1px solid black;
+  color: black;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+  /* Apply smooth transition */
+
 }
 
 .list-enter-active,

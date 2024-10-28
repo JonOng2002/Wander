@@ -26,7 +26,7 @@ export default {
 
     // Check if the current route is sign-in or login
     const isAuthPage = computed(() => {
-      return route.name === 'SignUp' || route.name === 'LogIn';
+      return route.name === 'SignUp' || route.name === 'LogIn' || route.name === "AboutPage";
     });
 
     return {
