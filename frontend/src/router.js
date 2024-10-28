@@ -13,7 +13,7 @@ import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
 import CalendarPage from '@/views/CalendarPage.vue';
 import TagsPage from '@/views/TagsPage.vue';
-import TrvPartner from '@/views/TravellingWithWho.vue';
+// import TrvPartner from '@/views/TravellingWithWho.vue';
 import MyItineraries from '@/views/MyItineraries.vue';
 import LocationDate from '@/views/LocationDate.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';

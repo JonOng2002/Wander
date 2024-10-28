@@ -166,9 +166,23 @@ export default {
     font-family: 'Cormorant Garamond', serif;
     font-weight: bolder;
     margin-bottom: 25px;
-    width: 100%; /* Ensures it spans the full width */
-    padding-left: 20px; /* Adds some space from the left edge */
+    width: 100%;
+    /* Ensures it spans the full width */
+    padding-left: 20px;
+    /* Adds some space from the left edge */
     box-sizing: border-box;
+}
+
+/* CSS to ensure consistent image sizing within cards */
+.card-img-top {
+    width: 100%;
+    /* Ensures the image stretches across the card width */
+    height: 100%;
+    /* Ensures the image stretches across the card height */
+    object-fit: cover;
+    /* Crops the image to fill the container while preserving its aspect ratio */
+    aspect-ratio: 5 / 3;
+    /* Ensures all images have the same aspect ratio */
 }
 
 /* Centered large card when there's only one itinerary */
@@ -205,7 +219,8 @@ export default {
     width: 100%;
     height: 100%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 80%);
-    z-index: 1; /* Ensures the overlay sits above the image */
+    z-index: 1;
+    /* Ensures the overlay sits above the image */
 }
 
 .single-itinerary-card .card-body {
@@ -216,7 +231,8 @@ export default {
     color: white;
     padding: 20px;
     box-sizing: border-box;
-    z-index: 1; /* Ensures the overlay sits above the image */
+    z-index: 1;
+    /* Ensures the overlay sits above the image */
 
 }
 
@@ -232,8 +248,8 @@ export default {
     gap: 20px;
     width: 100%;
     max-width: 1600px;
-    justify-content: center; 
-    
+    justify-content: center;
+
 }
 
 /* Hero card styling */
@@ -266,7 +282,8 @@ export default {
     width: 100%;
     height: 100%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 80%);
-    z-index: 1; /* Ensures the overlay sits above the image */
+    z-index: 1;
+    /* Ensures the overlay sits above the image */
 }
 
 .hero-card .card-body {
@@ -277,7 +294,8 @@ export default {
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
-    z-index: 1; /* Ensures the overlay sits above the image */
+    z-index: 1;
+    /* Ensures the overlay sits above the image */
 }
 
 .hero-card .card-body .card-title {
@@ -323,17 +341,21 @@ export default {
 .scroll-buttons {
     display: flex;
     justify-content: right;
-    margin-top: 20px;   
+    margin-top: 20px;
 }
 
 .round-button {
-    width: 40px; /* Adjust size as needed */
+    width: 40px;
+    /* Adjust size as needed */
     height: 40px;
     border-radius: 50%;
-    border: 2px solid #b9b9b9; /* Light gray border */
+    border: 2px solid #b9b9b9;
+    /* Light gray border */
     background-color: transparent;
-    color: #888; /* Matching gray color */
-    font-size: 1.5rem; /* Size for the arrow */
+    color: #888;
+    /* Matching gray color */
+    font-size: 1.5rem;
+    /* Size for the arrow */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -344,13 +366,16 @@ export default {
 }
 
 .round-button:hover {
-    border-color: #666; /* Slightly darker gray on hover */
+    border-color: #666;
+    /* Slightly darker gray on hover */
     color: #666;
 }
 
 .round-button:focus {
-    outline: none; /* Removes default focus outline */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Optional shadow for focus */
+    outline: none;
+    /* Removes default focus outline */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    /* Optional shadow for focus */
 }
 
 </style>
