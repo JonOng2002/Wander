@@ -35,6 +35,7 @@ import { useRouter } from 'vue-router';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { gsap } from "gsap";
+import { toRaw } from 'vue';
 
 export default {
     name: 'MyItinerary',
@@ -59,7 +60,16 @@ export default {
             } else {
               console.error('User document not found.');
             }
-        });
+          } catch (error) {
+            console.error('Error fetching itinerary:', error);
+          } finally {
+            loading.value = false; // Stop loading after fetch
+          }
+        } else {
+          console.error('User not authenticated.');
+          loading.value = false; // Stop loading if no user is logged in
+        }
+      });
 
         const removePlace = async (placeId) => {
             itineraryPlaces.value = itineraryPlaces.value.filter(place => place.place_id !== placeId);
@@ -68,6 +78,8 @@ export default {
 
         const removeAllPlaces = async () => {
             const placeCards = document.querySelectorAll(".place-card");
+            itineraryPlaces.value = []; // Clear the itinerary locally
+            await updateItineraryInFirestore(); // Sync the change with Firebase
             // Add the GSAP animation to the place cards
             gsap.to(placeCards, {
                 opacity: 0,
@@ -84,7 +96,7 @@ export default {
 
         const generateItinerary = () => {
             router.push({
-                name: 'GeneratedItinerary',
+                name: 'LocationDate',
             });
         };
 
