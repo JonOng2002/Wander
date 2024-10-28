@@ -10,7 +10,7 @@
               <option value="alphabetical">Filter by Alphabet</option>
               <option value="recently-added">Filter by Recently Added</option>
             </select>
-            <button @click="confirmDeleteAllPlaces" :disabled="savedPlaces.length === 0" class="btn btn-delete-all">
+            <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
               Delete All
             </button>
           </div>
@@ -25,7 +25,7 @@
     </div>
 
     <div v-if="loading" class="empty-message">Loading saved places...</div>
-    <div v-else-if="filteredPlaces.length === 0" class="empty-message">
+    <div v-else-if="filteredPlaces && filteredPlaces.length === 0" class="empty-message">
       <p>No places saved yet.</p>
     </div>
 
@@ -49,7 +49,6 @@
       </transition-group>
     </div>
 
-    <!-- Modal for Viewing Itinerary -->
     <div v-if="showModal" class="modal-overlay" @click.self="toggleModal">
       <div class="modal-content">
         <h3>Your Itinerary</h3>
@@ -89,13 +88,14 @@ import { ref, onMounted } from 'vue';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'vue-router';
+import { gsap } from "gsap";
 
 export default {
   name: 'SavedPlaces',
   setup() {
     const savedPlaces = ref([]);
     const filteredPlaces = ref([]);
-    const itinerary = ref([]); // This stores the user's itinerary
+    const itinerary = ref([]);
     const loading = ref(true);
     const showPopup = ref(false);
     const showRemovePopup = ref(false);
@@ -103,8 +103,9 @@ export default {
     const showDeletePopup = ref(false);
     const db = getFirestore();
     const router = useRouter();
+    const cardRefs = ref([]); // Create a ref for card references
 
-    // Fetch saved places and itinerary from Firebase on mount
+    // Fetching data from Firestore and storing it in savedPlaces
     onMounted(async () => {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -118,10 +119,9 @@ export default {
           const userDoc = await getDoc(userRef);
           if (userDoc.exists()) {
             savedPlaces.value = userDoc.data().savedPlaces || [];
-            itinerary.value = userDoc.data().generatedItineraries || []; // Fetch the itinerary from Firebase
             filteredPlaces.value = [...savedPlaces.value];
           } else {
-            await setDoc(userRef, { savedPlaces: [], generatedItineraries: [] });
+            await setDoc(userRef, { savedPlaces: [] });
             savedPlaces.value = [];
             filteredPlaces.value = [];
           }
@@ -136,8 +136,8 @@ export default {
       }
     });
 
-    // Toggle place in the Firebase itinerary
-    const toggleItinerary = async (place) => {
+    // Save the itinerary list to Firebase
+    const saveItinerary = async () => {
       const auth = getAuth();
       const user = auth.currentUser;
       const userId = user.uid;
@@ -212,10 +212,10 @@ export default {
       if (index !== -1) {
         const user = getAuth().currentUser;
 
-      if (!user) {
-        console.error("User is not authenticated");
-        return;
-      }
+        if (!user) {
+          console.error('User is not authenticated');
+          return;
+        }
 
         const userId = user.uid;
         const userDocRef = doc(db, 'users', userId);
@@ -302,111 +302,137 @@ export default {
       }
     };
 
-    const isPlaceInItinerary = (place) => {
-      return itinerary.value.some(item => item.place_id === place.place_id);
-    };
+    const removePlace = (place) => {
+      const index = savedPlaces.value.findIndex(item => item.place_id === place.place_id);
+      if (index !== -1) {
+        savedPlaces.value.splice(index, 1);
+        filteredPlaces.value = [...savedPlaces.value];
 
-    const removePlace = async (place) => {
-      const auth = getAuth();
-      const user = auth.currentUser;
+        const auth = getAuth();
+        const user = auth.currentUser;
 
-      if (!user) {
-        console.error("User is not authenticated");
-        return;
+        if (user) {
+          const userId = user.uid;
+          const userRef = doc(db, "users", userId);
+
+          setDoc(userRef, { savedPlaces: savedPlaces.value }, { merge: true })
+            .then(() => {
+              console.log("Firestore updated successfully.");
+              togglePopup('remove');
+            })
+            .catch((error) => {
+              console.error("Error updating Firestore:", error);
+            });
+        }
+      } else {
+        console.log("Place not found in saved places.");
       }
-
-      savedPlaces.value = savedPlaces.value.filter(p => p.place_id !== place.place_id);
-      filteredPlaces.value = [...savedPlaces.value];
-
-      const userDocRef = doc(db, "users", user.uid);
-      await setDoc(userDocRef, { savedPlaces: savedPlaces.value }, { merge: true });
-      console.log("Place removed from saved places:", place);
-      togglePopup("remove");
     };
 
     const filterPlaces = (event) => {
       const value = event.target.value;
-      if (value === "alphabetical") {
-        filteredPlaces.value = [...savedPlaces.value].sort((a, b) => a.name.localeCompare(b.name));
-      } else if (value === "recently-added") {
-        filteredPlaces.value = [...savedPlaces.value].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+      if (value === 'alphabetical') {
+        filterAlphabetically();
+      } else if (value === 'recently-added') {
+        filterRecentlyAdded();
       } else {
         filteredPlaces.value = [...savedPlaces.value];
       }
     };
 
+    const filterAlphabetically = () => {
+      filteredPlaces.value = [...savedPlaces.value].sort((a, b) => a.name.localeCompare(b.name));
+    };
+
+    const filterRecentlyAdded = () => {
+      filteredPlaces.value = [...savedPlaces.value].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+    };
+
     const confirmDeleteAllPlaces = async () => {
-      if (savedPlaces.value.length > 0) {
-        const auth = getAuth();
-        const user = auth.currentUser;
+      toggleDeletePopup(); // Immediately hide the popup
 
-        if (!user) {
-          console.error("User is not authenticated");
-          return;
-        }
+      const cardContainers = document.querySelectorAll(".card-container");
 
-        savedPlaces.value = [];
-        filteredPlaces.value = [];
+      if (cardContainers.length > 0) {
+        gsap.to(cardContainers, {
+          opacity: 0,
+          scale: 0.9,
+          duration: 0.5,
+          stagger: 0.1,
+          onComplete: async () => {
+            const user = getAuth().currentUser;
+            if (user) {
+              const userRef = doc(db, "users", user.uid);
 
-        const userDocRef = doc(db, "users", user.uid);
-        await setDoc(userDocRef, { savedPlaces: [] }, { merge: true });
-        console.log("All saved places deleted");
-      }
-    };
+              savedPlaces.value = [];
+              filteredPlaces.value = [];
 
-    const togglePopup = (type) => {
-      if (type === "add") {
-        showPopup.value = true;
-        setTimeout(() => {
-          showPopup.value = false;
-        }, 2000);
-      } else if (type === "remove") {
-        showRemovePopup.value = true;
-        setTimeout(() => {
-          showRemovePopup.value = false;
-        }, 2000);
-      }
-    };
-
-    const toggleModal = () => {
-      showModal.value = !showModal.value;
-    };
-
-    const navigateToGeneratedItinerary = () => {
-      if (itinerary.value.length > 0) {
-        router.push({
-          name: "MyItineraries",
-          query: {
-            itinerary: JSON.stringify(itinerary.value),
-          },
+              try {
+                await setDoc(userRef, { savedPlaces: [] }, { merge: true });
+                console.log("All saved places deleted successfully.");
+              } catch (error) {
+                console.error("Error deleting saved places:", error);
+              }
+            }
+          }
         });
       } else {
-        console.log("No itinerary to generate.");
+        console.log("No cards to delete.");
       }
     };
+
+    const addPlaceToItinerary = async (place) => {
+      itinerary.value.push(place);
+
+      const user = getAuth().currentUser;
+      const userEmail = user.email;
+      const userDocRef = doc(db, 'users', userEmail);
+
+      try {
+        await updateDoc(userDocRef, {
+          generatedItineraries: arrayUnion({
+            place_id: place.place_id,
+            name: place.name,
+            image: place.image,
+            vicinity: place.vicinity,
+            country: place.country,
+            coordinates: {
+              latitude: place.coordinates.latitude,   // Include latitude
+              longitude: place.coordinates.longitude   // Include longitude
+            }
+          })
+        });
+      } catch (error) {
+        console.error("Error updating itinerary in Firebase:", error);
+      }
+    };
+
 
     return {
       savedPlaces,
+      addPlaceToItinerary,
       filteredPlaces,
-      itinerary,
       loading,
-      showPopup,
-      showRemovePopup,
-      showModal,
-      showDeletePopup,
       toggleItinerary,
       isPlaceInItinerary,
       toggleModal,
       removePlace,
       filterPlaces,
       confirmDeleteAllPlaces,
-      togglePopup,
+      toggleDeletePopup,
       navigateToGeneratedItinerary,
+      itinerary,
+      showPopup,
+      showRemovePopup,
+      showModal,
+      showDeletePopup,
+      deleteAllPlaces,
+      saveItinerary,
+      cardRefs, // Return cardRefs for use in the template
     };
   },
 };
 </script>
-
 
 
 
@@ -625,7 +651,7 @@ h2 {
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 100;
+  z-index: 1000;
   padding: 10px 5%;
   border-bottom: 1px solid lightgrey;
 }
@@ -680,6 +706,7 @@ h2 {
 .close-button:hover {
   background: transparent;
   color: red;
+
   /* Change color on hover */
 }
 
