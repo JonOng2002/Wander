@@ -181,6 +181,52 @@ export default {
     //   }
     // };
 
+    // Toggle place in the Firebase itinerary
+    const toggleItinerary = async (place) => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (!user) {
+        console.error("User is not authenticated");
+        return;
+      }
+
+      const userDocRef = doc(db, "users", user.uid);
+      const placeData = {
+        place_id: place.place_id,
+        name: place.name,
+        image: place.image,
+        vicinity: place.vicinity,
+        country: place.country,
+        coordinates: {
+          latitude: place.coordinates.latitude,
+          longitude: place.coordinates.longitude,
+        },
+      };
+
+      try {
+        if (isPlaceInItinerary(place)) {
+          // Remove place from itinerary in Firebase
+          await updateDoc(userDocRef, {
+            generatedItineraries: arrayRemove(placeData),
+          });
+          itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
+          console.log("Place removed from itinerary:", placeData);
+          togglePopup("remove");
+        } else {
+          // Add place to itinerary in Firebase
+          await updateDoc(userDocRef, {
+            generatedItineraries: arrayUnion(placeData),
+          });
+          itinerary.value.push(place);
+          console.log("Place added to itinerary:", placeData);
+          togglePopup("add");
+        }
+      } catch (error) {
+        console.error("Error updating itinerary in Firebase:", error);
+      }
+    };
+
     const isPlaceInItinerary = (place) => {
       return itinerary.value.some(item => item.place_id === place.place_id);
     };
@@ -273,6 +319,7 @@ export default {
       showRemovePopup,
       showModal,
       showDeletePopup,
+      // saveItinerary,
       toggleItinerary,
       isPlaceInItinerary,
       toggleModal,

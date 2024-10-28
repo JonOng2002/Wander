@@ -4,20 +4,6 @@
 
     <!-- If Loading / generatedItinerary is empty -->
     <div v-if="loading" class="empty-message">Loading itinerary...</div>
-    <div v-else-if="!itinerary" class="empty-message">
-      <div class="row justify-content-between align-items-center sticky-header g-0">
-        <div class="col-3 date-column">
-          <h2>My Itineraries</h2>
-        </div>
-      </div>
-      <div class="no-itinerary-message">
-        <p>No itinerary generated. Please <router-link to="/savedPlaces">add places</router-link> to generate an
-          itinerary.</p>
-      </div>
-    </div>
-
-    <!-- If Loading /generatedItinerary is empty -->
-    <div v-if="loading" class="empty-message">Loading itinerary...</div>
     <div v-else-if="!generatedItinerary.length" class="empty-message">
       <div class="row justify-content-between align-items-center sticky-header g-0">
         <div class="col-3 date-column">
@@ -85,8 +71,8 @@
         </div>
       </div>
 
-      <!-- Save to My Itineraries Button -->
-      <button @click="saveToItinerary" class="btn save-itinerary-button">Save to My Itineraries</button>
+      <!-- Save to My Itineraries Button
+      <button @click="saveToItinerary" class="btn save-itinerary-button">Save to My Itineraries</button>   -->
     </div>
   </div>
 </template>
@@ -116,20 +102,20 @@ export default {
     const mapCenter = ref({ lat: 35.6762, lng: 139.6503 });  // Default center for Tokyo, Japan
 
     // Google Maps API initialization (directly in the component)
-    const loadGoogleMaps = async () => {
-      const { Loader } = await import('@googlemaps/js-api-loader');
-      const loader = new Loader({
-        apiKey: 'AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE',  // Replace with your actual Google Maps API key
-        version: 'weekly',
-        libraries: ['places'],
-      });
+    // const loadGoogleMaps = async () => {
+    //   const { Loader } = await import('@googlemaps/js-api-loader');
+    //   const loader = new Loader({
+    //     apiKey: 'AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE',  // Replace with your actual Google Maps API key
+    //     version: 'weekly',
+    //     libraries: ['places'],
+    //   });
 
-      loader.load().then(() => {
-        console.log('Google Maps API loaded successfully!');
-      }).catch((error) => {
-        console.error('Error loading Google Maps API:', error);
-      });
-    };
+    //   loader.load().then(() => {
+    //     console.log('Google Maps API loaded successfully!');
+    //   }).catch((error) => {
+    //     console.error('Error loading Google Maps API:', error);
+    //   });
+    // };
 
     // Helper function to assign time slots to places
     const generateTime = (index) => {
@@ -161,10 +147,13 @@ export default {
         const userId = user.uid;
         const userRef = doc(db, "users", userId);
 
+        console.log("Current user:", auth.currentUser);
+
         try {
           const userDoc = await getDoc(userRef);
           if (userDoc.exists()) {
-            generatedItinerary.value = userDoc.data().generatedItinerary || [];
+            generatedItinerary.value = userDoc.data().generatedItineraries || [];
+            console.log("Itinerary from Firebase:", generatedItinerary.value);
 
             // If there are places, update the map center to the first place in the itinerary
             if (generatedItinerary.value.length > 0) {
@@ -184,8 +173,8 @@ export default {
           loading.value = false;
         }
 
-        // Load Google Maps API
-        loadGoogleMaps();
+        // // Load Google Maps API
+        // loadGoogleMaps();
       } else {
         console.error("User is not authenticated");
         loading.value = false;

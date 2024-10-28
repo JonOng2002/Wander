@@ -71,6 +71,7 @@ onMounted(async () => {
         const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
+            console.log("User data from Firebase:", userDoc.data());
             savedItinerary.value = userDoc.data().generatedItineraries || [];
             console.log('Itinerary fetched from Firebase:', savedItinerary.value);
         } else {
@@ -126,17 +127,17 @@ const goToNextStep = () => {
     
     // Navigate to the next step with the correct query parameters
     router.push({
-        name: 'GenIti',
-        query: {
-            start: startDate.toISOString(),  // Convert Date object to ISO string
-            end: endDate.toISOString(),      // Convert Date object to ISO string
-            countryCode: countryCode,
-            tripType: tripType,
-            itinerary: JSON.stringify(savedItinerary.value),  // Pass itinerary from Firebase
-            selectedTags: JSON.stringify(selectedTags.value)
-        }
+        name: 'GeneratedItinerary',
+        // query: {
+        //     start: startDate.toISOString(),  // Convert Date object to ISO string
+        //     end: endDate.toISOString(),      // Convert Date object to ISO string
+        //     countryCode: countryCode,
+        //     tripType: tripType,
+        //     itinerary: JSON.stringify(savedItinerary.value),  // Pass itinerary from Firebase
+        //     selectedTags: JSON.stringify(selectedTags.value)
+        // }
     });
-};
+};  
 </script>
 
 <style scoped>
