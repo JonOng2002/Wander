@@ -78,10 +78,10 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { ref, inject } from "vue";
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion,} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { setDoc } from "firebase/firestore";
+// import { setDoc } from "firebase/firestore";
 import { GoogleMap, Marker } from 'vue3-google-map';
 import { onMounted, computed } from "vue"; // Ensure computed is imported
 import router from "@/router";
@@ -116,6 +116,10 @@ export default {
     //     console.error('Error loading Google Maps API:', error);
     //   });
     // };
+
+
+    // Inject the globally provided apiPromise
+    const apiPromise = inject('apiPromise');
 
     // Helper function to assign time slots to places
     const generateTime = (index) => {
@@ -153,33 +157,31 @@ export default {
           const userDoc = await getDoc(userRef);
           if (userDoc.exists()) {
             generatedItinerary.value = userDoc.data().generatedItineraries || [];
-            console.log("Itinerary from Firebase:", generatedItinerary.value);
 
-            // If there are places, update the map center to the first place in the itinerary
             if (generatedItinerary.value.length > 0) {
               const firstPlace = generatedItinerary.value[0];
-              country.value = firstPlace.country || "Unknown Location";  // Ensure that you have a country field in your data
+              country.value = firstPlace.country || "Unknown Location";
               mapCenter.value = { lat: firstPlace.coordinates.latitude, lng: firstPlace.coordinates.longitude };
             }
 
-            // Fetch userName
             userName.value = user.displayName || "Guest";
-          } else {
-            await setDoc(userRef, { generatedItinerary: [] });
           }
+
+          // Wait for Google Maps API to be ready
+          await apiPromise;
+          console.log('Google Maps API loaded successfully via main.js');
+          
         } catch (error) {
           console.error("Error getting generatedItinerary:", error);
         } finally {
           loading.value = false;
         }
-
-        // // Load Google Maps API
-        // loadGoogleMaps();
       } else {
         console.error("User is not authenticated");
         loading.value = false;
       }
     });
+
 
     // Function to save the itinerary to the Firestore database
     const saveItinerary = async () => {
