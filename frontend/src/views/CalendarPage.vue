@@ -13,10 +13,9 @@
     <div class="content-wrapper">
       <!-- Left Image Card Section -->
       <div class="image-card">
-        <img src="@/assets/background_header.jpeg" alt="Travel Background" class="image-card-content" />
+        <img src="@/assets/calendarPage.jpg" alt="Travel Background" class="image-card-content" />
         <div class="image-card-overlay">
-          <h1>Your Journey Begins</h1>
-          <p>Plan your next adventure with us.</p>
+          <h1>Dream. Plan. Depart.</h1>
         </div>
       </div>
 
@@ -183,7 +182,7 @@ onMounted(async () => {
 
 .image-card-overlay {
   position: absolute;
-  top: 50px;
+  top: 43%;
   left: 20px;
   color: white;
   text-align: left;
@@ -194,6 +193,7 @@ onMounted(async () => {
   align-items: flex-start;
   justify-content: center;
   max-width: 50%;
+  backdrop-filter: blur(1px);
 }
 
 .image-card-overlay h1 {

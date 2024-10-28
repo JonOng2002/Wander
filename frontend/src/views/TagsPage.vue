@@ -13,10 +13,9 @@
     <div class="content-wrapper">
       <!-- Left Image Card Section -->
       <div class="image-card">
-        <img src="@/assets/background_header.jpeg" alt="Travel Background" class="image-card-content" />
+        <img src="@/assets/tagsPage.jpg" alt="Travel Background" class="image-card-content" />
         <div class="image-card-overlay">
-          <h1>Your Journey Begins</h1>
-          <p>Plan your next adventure with us.</p>
+          <h1>Customise Your Perfect Getaway.</h1>
         </div>
       </div>
 
@@ -222,20 +221,22 @@ const goToNextStep = () => {
 
 .image-card-overlay {
   position: absolute;
-  top: 50px;
-  left: 20px;
+  top: 20px;
+  left: 30px;
   color: white;
   padding: 1rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  max-width: 50%;
+  max-width: 100%;
+  
 }
 
 .image-card-overlay h1 {
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  backdrop-filter: blur(2px); /* Applies the blur effect */
 }
 
 /* Form Section */

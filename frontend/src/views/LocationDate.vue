@@ -15,7 +15,7 @@
             <div class="image-card">
                 <img src="@/assets/background_header.jpeg" alt="Travel Background" class="image-card-content" />
                 <div class="image-card-overlay">
-                    <h1>Your Journey Begins now.</h1>
+                    <h1>Your Journey Begins Now.</h1>
                 </div>
             </div>
 
