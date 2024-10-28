@@ -60,7 +60,7 @@
 
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, inject } from "vue";
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useRoute } from "vue-router";
@@ -80,6 +80,9 @@ export default {
         const route = useRoute();
         const mapCenter = ref({ lat: 35.6762, lng: 139.6503 }); // Default center for Tokyo, Japan
         const timeSlots = ['09:00 AM', '11:00 AM', '02:00 PM', '04:00 PM'];
+
+        // Inject the globally provided apiPromise
+        const apiPromise = inject('apiPromise');
 
         // Fetch the itinerary based on the savedAt identifier passed through the route
         onMounted(async () => {
@@ -109,6 +112,10 @@ export default {
                     } else {
                         console.error("Itinerary not found for savedAt:", savedAt);  // Debugging
                     }
+
+                    // Wait for Google Maps API to be ready
+                    await apiPromise;
+                    console.log('Google Maps API loaded successfully via main.js');
                 }
             }
             loading.value = false;

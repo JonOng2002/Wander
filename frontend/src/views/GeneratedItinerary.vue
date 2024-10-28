@@ -78,12 +78,11 @@
 </template>
 
 <script>
-import { ref, inject } from "vue";
+import { ref, inject, onMounted, computed } from "vue";
 import { getFirestore, doc, getDoc, updateDoc, arrayUnion,} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 // import { setDoc } from "firebase/firestore";
 import { GoogleMap, Marker } from 'vue3-google-map';
-import { onMounted, computed } from "vue"; // Ensure computed is imported
 import router from "@/router";
 
 export default {
@@ -100,22 +99,6 @@ export default {
     const loading = ref(true);
     const timeSlots = ['09:00 AM', '11:00 AM', '02:00 PM', '04:00 PM'];
     const mapCenter = ref({ lat: 35.6762, lng: 139.6503 });  // Default center for Tokyo, Japan
-
-    // Google Maps API initialization (directly in the component)
-    // const loadGoogleMaps = async () => {
-    //   const { Loader } = await import('@googlemaps/js-api-loader');
-    //   const loader = new Loader({
-    //     apiKey: 'AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE',  // Replace with your actual Google Maps API key
-    //     version: 'weekly',
-    //     libraries: ['places'],
-    //   });
-
-    //   loader.load().then(() => {
-    //     console.log('Google Maps API loaded successfully!');
-    //   }).catch((error) => {
-    //     console.error('Error loading Google Maps API:', error);
-    //   });
-    // };
 
 
     // Inject the globally provided apiPromise
