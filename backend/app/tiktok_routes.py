@@ -8,7 +8,9 @@ import json
 from dotenv import load_dotenv
 from .unsplashAPI import update_openai_response_with_images
 
-main = Blueprint("main", __name__)
+
+
+tiktok_blueprint = Blueprint('tiktok_blueprint', __name__)
 load_dotenv()
 
 client = AsyncOpenAI(
@@ -140,7 +142,7 @@ async def get_video_info_comments_related(url):
         return {"openai_response": response}
 
 # Adjusting for Flask's sync nature using asyncio event loop
-@main.route("/video-info-comments", methods=["GET"])
+@tiktok_blueprint.route("/video-info-comments", methods=["GET"])
 def fetch_video_info_comments_related():
     url = request.args.get('url')
     if not url:

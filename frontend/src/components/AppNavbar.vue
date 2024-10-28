@@ -247,6 +247,7 @@ export default {
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.6s;
+  z-index: 1050;
 }
 
 .sub-menu-wrap.open-menu {
@@ -259,6 +260,8 @@ export default {
   margin: 8px;
   border-radius: 5%;
   overflow: hidden;
+  z-index: 1050;
+  font-family: "Poppins", serif;
 }
 
 .user-info {
@@ -269,8 +272,9 @@ export default {
   text-align: center;
   width: 100%;
   overflow: hidden;
-  background: aquamarine;
+  background-color: #f0f6ff;
   padding: 1rem;
+  z-index: 1050;
 }
 
 .user-info h3 {
@@ -282,6 +286,7 @@ export default {
   font-size: 1.2rem;
   margin: 0;
   display: block;
+  z-index: 1050;
 }
 
 .user-email {
