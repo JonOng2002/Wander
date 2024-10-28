@@ -42,3 +42,5 @@ __pycache__/
 **/open_ai_itinerary.json
 backend/open_ai_itinerary.json
 backend/itinerary_response.json
+
+*.history
