@@ -84,7 +84,7 @@
       // Push to the calendar page after generating itinerary
       const generateItinerary = () => {
         router.push({
-          name: 'CalendarPage',
+          name: 'LocationDate',
         });
       };
   
@@ -122,9 +122,10 @@
   </script>
   
   <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
   h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: bolder;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
   }
   
   .itinerary-page {

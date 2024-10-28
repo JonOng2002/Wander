@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="header" v-if="!isAuthPage">
+    <div class="header" v-if="!isHiddenPage">
       <!-- Include the Navbar component conditionally -->
       <AppNavbar />
     </div>
@@ -21,9 +21,9 @@ export default {
   },
   computed: {
     // Check if the current route is an auth page (e.g., SignUp or LogIn)
-    isAuthPage() {
+    isHiddenPage() {
       const route = this.$route;
-      return route.name === 'SignUp' || route.name === 'LogIn';
+      return route.name === 'SignUp' || route.name === 'LogIn' || route.name === 'LocationDate' || route.name === 'CalendarPage' || route.name === 'TagsPage';
     },
   }
 };

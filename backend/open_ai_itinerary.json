@@ -1,286 +1,345 @@
 {
-  "itinerary_summary": "Explore the vibrant cities of Kuala Lumpur and Gombak, Malaysia, with a mix of cultural heritage, nature, nightlife, and thrilling entertainment across four exciting days. This itinerary includes visits to iconic attractions, experience local delicacies, and enjoy the lush landscapes.",
+  "itinerary_summary": "This six-day solo trip to Beijing and Chongqing blends cultural heritage, culinary delights, and vibrant nightlife, offering a rich immersion in local traditions and modern attractions.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-10-27",
-      "summary": "Arrival in Kuala Lumpur and evening exploration of local attractions.",
+      "date": "2024-10-31",
+      "summary": "Arrive in Beijing and immerse yourself in its cultural heritage and local flavors.",
       "activities": [
         {
-          "time": "17:25",
-          "activity_name": "Check-in at Swiss-Garden Hotel Bukit Bintang Kuala Lumpur",
+          "time": "09:00",
+          "activity_name": "Breakfast of Beijing Roast Duck at Quanjude Roast Duck Restaurant",
           "location": {
-            "name": "Swiss-Garden Hotel Bukit Bintang Kuala Lumpur",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "ChIJ45QwVSY2zDERclDylVRcVsQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOsSYJ6dBUycw5-b7sEyatoSvopLHiJYk1pHU2Fv9QFD5vK9SUeNufUHA_jBJpSG4YPIEQ9qmjdo3gXpHwoNPTUDvEqcWaDwM76K2SPIH9ETXUvg7Hhz1N4MfDt9fW7SAhz1TiAV2F9O1xRkamB7UduxLDD8EiNelJX2zDTyHSUFj25&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "name": "Quanjude Roast Duck Restaurant",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Check into your hotel and relax after your journey."
+          "description": "Indulge in one of the most famous traditional Chinese dishes, Beijing roast duck, at Quanjude, a renowned restaurant known for its authentic preparation."
+        },
+        {
+          "time": "11:00",
+          "activity_name": "Visit the Forbidden City",
+          "location": {
+            "name": "Forbidden City",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore the historical palace complex that served as the home of emperors for centuries, showcasing exquisite architecture and vast gardens."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Wander through Beihai Park",
+          "location": {
+            "name": "Beihai Park",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a leisurely stroll in this beautiful imperial garden, featuring a stunning lake and historical landmarks."
         },
         {
           "time": "19:00",
-          "activity_name": "Visit the Petronas Twin Towers",
+          "activity_name": "Evening Entertainment at the Beijing Opera",
           "location": {
-            "name": "Petronas Twin Towers",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Beijing Opera",
+            "city": "Beijing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience stunning views of the city from the Skybridge and observation deck."
-        },
-        {
-          "time": "20:30",
-          "activity_name": "Dinner at a Local Malaysian Restaurant",
-          "location": {
-            "name": "Local Malaysian Cuisine",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Indulge in authentic Malaysian dishes to kick off your culinary adventure."
-        },
-        {
-          "time": "22:00",
-          "activity_name": "Explore Bukit Bintang Nightlife",
-          "location": {
-            "name": "Bukit Bintang",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Experience vibrant nightlife with bars, clubs, and entertainment options."
+          "description": "Experience a vibrant cultural performance at one of China's most famous traditional theaters."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-10-28",
-      "summary": "A thrilling day at Batu Caves and exploring cultural attractions.",
+      "date": "2024-11-01",
+      "summary": "Delve into Beijing's rich culture, cuisine, and ancient architecture.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Breakfast at Hotel",
+          "time": "09:00",
+          "activity_name": "Breakfast at Jianbing Street Vendor",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Jianbing Street Vendor",
+            "city": "Beijing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a hearty breakfast at your hotel."
+          "description": "Savor a traditional Chinese street breakfast of Jianbing, a popular savory crepe."
         },
         {
-          "time": "09:30",
-          "activity_name": "Visit Batu Caves",
+          "time": "11:00",
+          "activity_name": "Visit the Temple of Heaven",
           "location": {
-            "name": "Batu Caves",
-            "city": "Gombak",
-            "coordinates": {
-              "latitude": 3.2384,
-              "longitude": 101.6825
-            },
-            "place_id": "ChIJBahJiQxHzDER-Z5vs7Lrv_I",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMFuXj07f59FhBnOFanWJA7YmuM4D2zeSJ4FjRot5ZKAEuyNXr9nGRtNn5YuByN20aTwF_3tJW5HtTLOGiL-IfGDeV8K8GNM5qhQFA3y7msSX1TccXuneSuP9djokYZb5Gspx9wX4sMGLLSC1lEthfXtJvOIX-ZDRhlzCoCSD137PIw&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
-          },
-          "description": "Explore the iconic limestone caves and the stunning temple complex."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch at a Local Eatery",
-          "location": {
-            "name": "Local Malaysian Cafe",
-            "city": "Gombak",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Temple of Heaven",
+            "city": "Beijing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy lunch featuring traditional Malaysian flavors."
+          "description": "Admire the stunning architecture of this UNESCO World Heritage site, where emperors prayed for good harvests."
         },
         {
           "time": "14:00",
-          "activity_name": "Visit KL Bird Park",
+          "activity_name": "Lunch at Wangfujing Snack Street",
           "location": {
-            "name": "KL Bird Park",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 3.1576,
-              "longitude": 101.6869
-            },
-            "place_id": "ChIJu8zWwchJzDERhcsx4AhQ1oo",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP27tWl6xpO9FLKaXb5RoQcDGZFY5WZUNSfqSU1nGHi7BzkuhpMnLSZ0u0-1npcC06hvNXt26lrVP-5yFLt6ePxfuHBv_Pg8ExWKt-39PrAw7gATcH2SDd6Qip74EH5pg6CtTIXnYSpMv8IIpov9dEaGi_FkCA5MSYZMi95WpfSUVwD&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "name": "Wangfujing Snack Street",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Explore the world's largest free-flight walk-in aviary."
+          "description": "Immerse yourself in local flavors by trying various traditional snacks, including Tang hulu (candied hawthorns) from street vendors."
+        },
+        {
+          "time": "18:00",
+          "activity_name": "Night Out at Sanlitun Bar Street",
+          "location": {
+            "name": "Sanlitun Bar Street",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy Beijing's vibrant nightlife, filled with bars, clubs, and live music."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-10-29",
-      "summary": "Day trip to Genting Highlands with a blend of nature and entertainment.",
+      "date": "2024-11-02",
+      "summary": "Travel to Chongqing to explore its distinct culture and renowned culinary scene.",
       "activities": [
         {
           "time": "08:00",
-          "activity_name": "Breakfast at Hotel",
+          "activity_name": "Flight from Beijing to Chongqing",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Chongqing Jiangbei International Airport",
+            "city": "Chongqing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Start your day with a delicious breakfast."
-        },
-        {
-          "time": "09:00",
-          "activity_name": "Travel to Resorts World Genting",
-          "location": {
-            "name": "Resorts World Genting",
-            "city": "Genting Highlands",
-            "coordinates": {
-              "latitude": 3.0665,
-              "longitude": 101.7855
-            },
-            "place_id": "ChIJsdeCLgEUzDERi9ZZvaDZ2wk",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMVYFOoRcZMzyCJm4jZ32OQhepzVaSeMinpWWR1pnuY_v4klFYXTGKN1eqzUThlIdJ8UZIqyAOO96zHuXs8ZFqGFQmVhF0sPfsyb2hlqKN4pi8gu1nCSfZ1S6Cytd3y0NLxrl2nWfSReiw1nzczd5F7LqKu_9_UMNgNlBgnvdjrguTZ&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
-          },
-          "description": "Travel to Genting Highlands for a day filled with excitement."
+          "description": "Take a morning flight to Chongqing."
         },
         {
           "time": "10:00",
-          "activity_name": "Visit Theme Park Rides",
+          "activity_name": "Check in at Local Hotel",
           "location": {
-            "name": "Genting Theme Park",
-            "city": "Genting Highlands",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Local Hotel in Chongqing",
+            "city": "Chongqing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a variety of thrilling rides and attractions."
+          "description": "Settle into your accommodation and refresh for the day."
         },
         {
-          "time": "13:00",
-          "activity_name": "Lunch at Genting",
+          "time": "12:00",
+          "activity_name": "Lunch at Chongqing Hotpot Restaurant",
           "location": {
-            "name": "Mountain View Restaurant",
-            "city": "Genting Highlands",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Chongqing Hotpot Restaurant",
+            "city": "Chongqing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy lunch with a view at a mountain-side restaurant."
+          "description": "Dive into Chongqing's famous hotpot experience, known for its spicy and flavorful broth."
         },
         {
-          "time": "14:30",
-          "activity_name": "Casino Visit",
+          "time": "15:00",
+          "activity_name": "Visit the People's Liberation Monument",
           "location": {
-            "name": "Genting Casino",
-            "city": "Genting Highlands",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "People's Liberation Monument",
+            "city": "Chongqing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Try your luck at one of the biggest casinos in Southeast Asia."
+          "description": "Explore this iconic landmark symbolizing the city's history and significance."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Yangtze River Night Cruise",
+          "location": {
+            "name": "Yangtze River",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Take an enchanting cruise along the Yangtze River, enjoying views of the illuminated skyline."
         }
       ]
     },
     {
       "day": 4,
-      "date": "2024-10-30",
-      "summary": "Final day exploring cultural sites and departure.",
+      "date": "2024-11-03",
+      "summary": "Explore more of Chongqing's unique attractions and culinary delights.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Breakfast at Hotel",
+          "time": "09:00",
+          "activity_name": "Visit the Ciqikou Ancient Town",
           "location": {
-            "name": "",
-            "city": "",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Ciqikou Ancient Town",
+            "city": "Chongqing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy breakfast, preparing for a cultural day ahead."
-        },
-        {
-          "time": "09:30",
-          "activity_name": "Visit National Art Gallery",
-          "location": {
-            "name": "National Art Gallery",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 3.1695,
-              "longitude": 101.7047
-            },
-            "place_id": "ChIJn7ct6mxIzDERAfOvaaTX5DM",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNG2GYG5bDJJeNM_hRpasEXWKT59XqWa_R4TcQtJ949hIW5si_YpcgTfNcqojpSRB_Rb67jGWP8BaEo8bAYgXVkjAp-a4rR7MH4rw09-jA_2u_i6r6aOFZbR0DLyzhcs6SiEjD2Rqs2D37jp7ZNKSPfgw6RpxqU6e4iLy_tq1thBswd&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
-          },
-          "description": "Explore local art and culture through unique exhibits."
+          "description": "Wander through this ancient town, with traditional architecture and numerous shops selling handicrafts."
         },
         {
           "time": "12:00",
-          "activity_name": "Lunch Near KLCC",
+          "activity_name": "Lunch at a Local Street Food Market",
           "location": {
-            "name": "Suria KLCC Food Court",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Local Street Food Market",
+            "city": "Chongqing",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a variety of food options at this famous food court."
+          "description": "Sample local delicacies, including Mala skewers and other street foods."
         },
         {
-          "time": "14:00",
-          "activity_name": "Visit Aquaria KLCC",
+          "time": "15:00",
+          "activity_name": "Explore the Chongqing Zoo",
           "location": {
-            "name": "Aquaria KLCC",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 3.155,
-              "longitude": 101.711
-            },
-            "place_id": "ChIJM5cxndM3zDER7WuP_cN-omg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM-rQBP3b6XttQIb4KFX9-Kv4gSGzh60qSzThiMzg4ARLan34usBzOa-VBAbWofpykkOq2JcGXr6JdvJDT7EhEeisENPCrFUh91FoE9mgWLyvw6F3ZWfyTi4tXIuO2pYuTD3Lk_ogZe3NqzYVeDyGgS0oCEfh8AANaM-uc_T9-a9Pld&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "name": "Chongqing Zoo",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Explore the depths of the ocean at one of Malaysia's top aquariums."
+          "description": "Visit this large zoo, home to the beloved giant pandas."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at Guanyin Bridge Food Street",
+          "location": {
+            "name": "Guanyin Bridge Food Street",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a flavorful dinner with various local dishes in a bustling environment."
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2024-11-04",
+      "summary": "Return to Beijing for a day of exploration and enjoyment before departure.",
+      "activities": [
+        {
+          "time": "08:00",
+          "activity_name": "Flight from Chongqing to Beijing",
+          "location": {
+            "name": "Beijing Capital International Airport",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Take a morning flight back to Beijing."
+        },
+        {
+          "time": "10:00",
+          "activity_name": "Visit the Summer Palace",
+          "location": {
+            "name": "Summer Palace",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Stroll through this vast imperial garden, appreciating the historic buildings and serene lake views."
+        },
+        {
+          "time": "13:00",
+          "activity_name": "Lunch at a Local Noodle Shop",
+          "location": {
+            "name": "Local Noodle Shop",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Savor delicious hand-pulled noodles, a favorite comfort food in China."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Explore the 798 Art District",
+          "location": {
+            "name": "798 Art District",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience contemporary Chinese art and culture in this vibrant art hub."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Final Dinner and Reflection at Peking Duck Restaurant",
+          "location": {
+            "name": "Peking Duck Restaurant",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a farewell dinner, relishing the exquisite flavors of traditional Peking duck."
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2024-11-05",
+      "summary": "Wrap up your Beijing adventure and prepare for departure.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Breakfast at Local Caf\u00e9",
+          "location": {
+            "name": "Local Caf\u00e9",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Have a light breakfast at a nearby caf\u00e9, enjoying local pastries and coffee."
+        },
+        {
+          "time": "11:00",
+          "activity_name": "Last-minute Shopping at Wangfujing Street",
+          "location": {
+            "name": "Wangfujing Street",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Grab souvenirs and enjoy the hustle and bustle of one of Beijing's most famous shopping streets."
+        },
+        {
+          "time": "13:00",
+          "activity_name": "Travel to the Airport",
+          "location": {
+            "name": "Beijing Capital International Airport",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Head to the airport for your departure."
         }
       ]
     }
