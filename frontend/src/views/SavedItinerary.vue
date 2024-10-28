@@ -514,9 +514,9 @@ export default {
         // const filteredItineraries = computed(() => {
         //     return savedItineraries.value.slice(currentIndex.value, currentIndex.value + itemsPerPage);
         // });
-        watch(savedItineraries, () => {
-            currentPage.value = 0; // Reset to the first page
-        });
+        // watch(savedItineraries, () => {
+        //     currentPage.value = 0; // Reset to the first page
+        // });
 
         // Scroll functions
         const scrollLeft = () => {
@@ -532,12 +532,12 @@ export default {
         };
 
         // Debugging logs
-        watch([paginatedItineraries, showLeftButton, showRightButton], () => {
-            console.log("Current page:", currentPage.value);
-            console.log("Paginated itineraries:", paginatedItineraries.value);
-            console.log("Show left button:", showLeftButton.value);
-            console.log("Show right button:", showRightButton.value);
-        });
+        // watch([paginatedItineraries, showLeftButton, showRightButton], () => {
+        //     console.log("Current page:", currentPage.value);
+        //     console.log("Paginated itineraries:", paginatedItineraries.value);
+        //     console.log("Show left button:", showLeftButton.value);
+        //     console.log("Show right button:", showRightButton.value);
+        // });
 
         // Button visibility based on currentPage and total items
         const showLeftButton = computed(() => currentPage.value > 0);
@@ -566,15 +566,9 @@ export default {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    /* max-width: 1600px; */
+    max-width: 1600px;
+    margin: 0 auto;
 }
-
-/* .multiple {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-} */
 
 .page-title {
     text-align: left;
@@ -583,104 +577,35 @@ export default {
     font-weight: bolder;
     margin-bottom: 25px;
     width: 100%;
-    /* Ensures it spans the full width */
     padding-left: 20px;
-    /* Adds some space from the left edge */
     box-sizing: border-box;
-}
-
-/* CSS to ensure consistent image sizing within cards */
-.card-img-top {
-    width: 100%;
-    /* Ensures the image stretches across the card width */
-    height: 100%;
-    /* Ensures the image stretches across the card height */
-    object-fit: cover;
-    /* Crops the image to fill the container while preserving its aspect ratio */
-    aspect-ratio: 5 / 3;
-    /* Ensures all images have the same aspect ratio */
-}
-
-/* Centered large card when there's only one itinerary */
-/* Single large card centered and filling the container */
-.single-itinerary-card {
-    width: 100vW;
-    max-width: 800px;
-    margin: 20px auto;
-    height: 65vh;
-    /* Adjust this value as needed for desired screen coverage */
-    display: flex;
-    align-items: center;
-}
-
-.single-itinerary-card .card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.single-itinerary-card .card-img-top {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-.single-itinerary-card .gradient-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 80%);
-    z-index: 1;
-    /* Ensures the overlay sits above the image */
-}
-
-.single-itinerary-card .card-body {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* background: rgba(0, 0, 0, 0.5); Dark overlay for readability */
-    color: white;
-    padding: 20px;
-    box-sizing: border-box;
-    z-index: 1;
-    /* Ensures the overlay sits above the image */
-
-}
-
-.single-itinerary-card .card-body .card-title {
-    font-size: 3rem;
-    margin-bottom: 10px;
 }
 
 .itineraries-grid {
     display: grid;
-    grid-template-columns: 65% 35%;
-    /* Large card on left, stacked small cards on right */
+    grid-template-columns: 2fr 1fr;
     gap: 20px;
     width: 100%;
     max-width: 1600px;
     justify-content: center;
-
+    align-items: stretch;
 }
 
-/* Hero card styling */
+/* Hero card styling to match the height with four small cards */
 .hero-card {
-    height: 550px;
+    height: 100%;
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
     border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .hero-card .card {
     position: relative;
     height: 100%;
+    width: 100%;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -699,19 +624,16 @@ export default {
     height: 100%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 80%);
     z-index: 1;
-    /* Ensures the overlay sits above the image */
 }
 
 .hero-card .card-body {
     position: absolute;
     bottom: 0;
-    /* background: rgba(0, 0, 0, 0.5); Dark overlay for readability */
     color: white;
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
-    z-index: 1;
-    /* Ensures the overlay sits above the image */
+    z-index: 2;
 }
 
 .hero-card .card-body .card-title {
@@ -719,11 +641,12 @@ export default {
     margin-bottom: 10px;
 }
 
-/* Stacked small cards styling */
+/* Styling for stacked small cards */
 .stacked-cards {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    height: 100%;
 }
 
 .small-card {
@@ -733,6 +656,7 @@ export default {
     background: rgb(234, 250, 255);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(25% - 15px); /* Ensures each small card takes up 1/4 of the height */
 }
 
 .small-card-img {
@@ -754,6 +678,7 @@ export default {
     margin: 2px 0;
 }
 
+/* Center and style scroll buttons */
 .scroll-buttons {
     display: flex;
     justify-content: right;
@@ -762,35 +687,27 @@ export default {
 
 .round-button {
     width: 40px;
-    /* Adjust size as needed */
     height: 40px;
     border-radius: 50%;
     border: 2px solid #b9b9b9;
-    /* Light gray border */
     background-color: transparent;
     color: #888;
-    /* Matching gray color */
     font-size: 1.5rem;
-    /* Size for the arrow */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    padding: 10px 10px 15px 10px;
     margin: 4px;
 }
 
 .round-button:hover {
     border-color: #666;
-    /* Slightly darker gray on hover */
     color: #666;
 }
 
 .round-button:focus {
     outline: none;
-    /* Removes default focus outline */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    /* Optional shadow for focus */
 }
 </style>
