@@ -566,8 +566,9 @@ export default {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    max-width: 1600px;
-    margin: 0 auto;
+    margin: 0 auto; 
+    width: 100%;
+    max-width: 1400px; /* Increased max width */
 }
 
 .page-title {
@@ -581,31 +582,38 @@ export default {
     box-sizing: border-box;
 }
 
-.itineraries-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
+.single {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    max-width: 1600px;
-    justify-content: center;
-    align-items: stretch;
+    max-width: 1200px; /* Controls the width of the entire card layout */
+    margin: 0 auto;
 }
 
-/* Hero card styling to match the height with four small cards */
+.itineraries-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Adjusted column width ratio */
+    gap: 20px;
+    width: 100%; /* Set to full width of container */
+    max-width: 1400px; /* Increased max width to match container */
+    justify-content: center;
+}
+
+/* Hero card styling */
 .hero-card {
-    height: 100%;
+    height: 550px;
+    width: 100%;
     display: flex;
     align-items: center;
     position: relative;
-    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .hero-card .card {
     position: relative;
-    height: 100%;
     width: 100%;
+    height: 100%;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -636,27 +644,43 @@ export default {
     z-index: 2;
 }
 
+
 .hero-card .card-body .card-title {
     font-size: 3rem;
     margin-bottom: 10px;
 }
 
-/* Styling for stacked small cards */
+.hero-card .card-text {
+    font-size: 1.2rem;
+    color: white;
+    margin-top: 5px;
+}
+
+.hero-card .card-subtext {
+    font-size: 1rem;
+    color: white;
+    margin-top: 2px;
+    opacity: 0.8;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Stacked small cards styling */
 .stacked-cards {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    height: 100%;
+    /* justify-content: flex-start; Ensures small cards stack at the top */
+    align-self: flex-start;
 }
 
 .small-card {
     display: flex;
     align-items: center;
+    width: 100%;
     padding: 10px;
     background: rgb(234, 250, 255);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(25% - 15px); /* Ensures each small card takes up 1/4 of the height */
 }
 
 .small-card-img {
@@ -678,7 +702,6 @@ export default {
     margin: 2px 0;
 }
 
-/* Center and style scroll buttons */
 .scroll-buttons {
     display: flex;
     justify-content: right;
@@ -710,4 +733,6 @@ export default {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
+
 </style>
