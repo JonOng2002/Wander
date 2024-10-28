@@ -94,7 +94,11 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
                     - Locations: {json.dumps(itinerary, indent=2)}
                     - Interests/Tags: {', '.join(tags)}
 
-                    Please provide day-by-day itineraries from start to end date with exactly 4 activities per day with regards to the tags for context. NOTE: Each activity must include location details such as specific name, city, coordinates, place ID, times, and summaries. Retain the photo_url and place_id for user-input locations; for generated locations by YOU, ONLY leave an empty string for ALL 3: coordinates, place_id and photo_url. The rest must be populated. 
+                    Please generate a day-by-day itinerary from the specified start to end dates, with exactly 4 unique, specific activities per day based on the provided tags. Each activity must reference a well-known, Google-searchable location, such as popular landmarks, renowned restaurants, or significant points of interest that can be found easily via Google Places API.
+
+                    Ensure each activity name is precise and detailed, including the full name of the place (e.g., “Louvre Museum, Paris” or “Tsukiji Outer Market, Tokyo”), rather than a generic description (e.g., avoid “local museum” or “breakfast at a cafe”). Each activity should ideally include specific, recognizable spots associated with the destination, such as famous landmarks, culturally significant sites, or popular eateries with unique offerings.
+
+                    For generated locations by YOU, leave coordinates, place_id, and photo_url fields empty. For any user-specified locations, retain their coordinates, place_id, and photo_url.
                     """
                 }
             ],

@@ -13,8 +13,9 @@ import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
 import CalendarPage from '@/views/CalendarPage.vue';
 import TagsPage from '@/views/TagsPage.vue';
-import TrvPartner from '@/views/TravellingWithWho.vue';
+// import TrvPartner from '@/views/TravellingWithWho.vue';
 import MyItineraries from '@/views/MyItineraries.vue';
+import LocationDate from '@/views/LocationDate.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 
@@ -43,9 +44,9 @@ const routes = [
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
   }, 
+  { path: '/locationdate', name: 'LocationDate', component: LocationDate },
   { path: '/calendar', name: 'CalendarPage', component: CalendarPage },
   { path: '/tags', name: 'TagsPage', component: TagsPage },
-  { path: '/trvpartner', name: 'TrvPartner', component: TrvPartner },
   { path: '/generatedItinerary', name: 'GenIti', component: GeneratedItinerary, },
   { path: '/myitineraries', name: 'MyItineraries', component: MyItineraries,
     props: (route) => ({
