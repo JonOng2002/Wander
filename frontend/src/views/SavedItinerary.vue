@@ -68,7 +68,7 @@
                     <!-- Scrollable container for additional itineraries -->
                     <div class="stacked-cards">
                         <div v-for="(itinerary, index) in paginatedSmallItineraries" :key="index" class="small-card"
-                            @click="viewItinerary(itinerary.savedAt)">
+                            @click="viewItinerary(itinerary.savedAt)" >
                             <img :src="getCountryImage(itinerary.country)" class="small-card-img"
                                 alt="itinerary country image" />
                             <div class="small-card-text">
@@ -643,12 +643,12 @@ export default {
 /* header sicky styling */
 .sticky-top {
     position: sticky;
-    top: -3px;
+    top: 0;
     background-color: white;
-    z-index: 1000;
+    z-index: 1100;
     padding: 10px 5%;
     border-bottom: 1px solid lightgrey;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
 .date-column {
@@ -846,7 +846,7 @@ export default {
 
 .card-img-top {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -903,7 +903,7 @@ export default {
     align-items: center;
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 20px;
 }
 
 .hero-card .card {
@@ -964,7 +964,7 @@ export default {
 .stacked-cards-wrapper {
     position: relative;
     /* Allow absolute positioning within */
-    padding-bottom: 60px; /* Extra padding to avoid clipping */
+    /* padding-bottom: 60px; */
 }
 
 /* Stacked small cards styling */
@@ -974,6 +974,8 @@ export default {
     gap: 15px;
     /* justify-content: flex-start; Ensures small cards stack at the top */
     align-self: flex-start;
+    scroll-behavior: smooth; /* Add smooth scroll behavior */
+    max-height: 400px; /* Adjust height to ensure scrolling */
 }
 
 .small-card {
@@ -1019,6 +1021,7 @@ export default {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    padding-bottom: 7px;
     border: 2px solid #b9b9b9;
     background-color: transparent;
     color: #888;
