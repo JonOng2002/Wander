@@ -1,5 +1,49 @@
 <template>
-    <div class="sticky-top">
+
+    <div class="container-fluid p-0">
+        <div class="header_container">
+            <div class="content">
+                <h1>Travel the world</h1>
+                <h4>Start Exploring | Plan your trips</h4>
+            </div>
+        </div>
+        <!-- Section 1 -->
+        <div class="d-flex flex-column flex-lg-row position-relative headerbox" >
+            <div class="col-lg-4 col-md-12 col-sm-12 p-0 one"
+            @click="viewDestinations">
+                <a href="#" class="section-link">
+                    <img src="@/assets/countries/singapore.jpg" alt="Image 1" class="img-fluid w-100" />
+                    <div class="overlay-text">Discover New Locations</div>
+                    <div class="gradientoverlay"></div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 p-0 one d-none d-md-block"
+            @click="viewSavedPlaces">
+                <div class="gradientoverlay"></div>
+                <a href="#" class="section-link">
+                    <img src="@/assets/countries/united_arab_emirates.jpg" alt="Image 2" class="img-fluid w-100" />
+                    <div class="overlay-text">Browse Your Saved Locations</div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 p-0 one d-none d-md-block" @click="viewMainPage">
+                <div class="gradientoverlay"></div>
+                <a href="#" class="section-link">
+                    <img src="@/assets/countries/austria.jpg" alt="Image 3" class="img-fluid w-100" />
+                    <div class="overlay-text">Enter a TikTok Link!</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- <header id="headercard">
+        <div class="header_image"></div>
+
+    </header> -->
+
+    <!-- <div class="sticky-top">
         <div class="row justify-content-between align-items-center sticky-header g-0">
             <div class="col-3 date-column">
                 <h2 class="page-title">My Itineraries</h2>
@@ -9,9 +53,9 @@
                         <option value="alphabetical">Filter by Alphabet</option>
                         <option value="recently-added">Filter by Recently Added</option>
                     </select>
-                    <!-- <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
+                    <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
                         Delete All
-                    </button> -->
+                    </button>
                 </div>
             </div>
             <div class="col-auto generateButton">
@@ -22,7 +66,7 @@
                     Itinerary</button>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="saved-itineraries-container">
         <div v-if="!filteredItineraries.length" class="no-itineraries-message">
@@ -68,7 +112,7 @@
                     <!-- Scrollable container for additional itineraries -->
                     <div class="stacked-cards">
                         <div v-for="(itinerary, index) in paginatedSmallItineraries" :key="index" class="small-card"
-                            @click="viewItinerary(itinerary.savedAt)" >
+                            @click="viewItinerary(itinerary.savedAt)">
                             <img :src="getCountryImage(itinerary.country)" class="small-card-img"
                                 alt="itinerary country image" />
                             <div class="small-card-text">
@@ -535,6 +579,27 @@ export default {
             });
         };
 
+        //redirecting to the itinerary when clicked
+        const viewDestinations = () => {
+            router.push({
+                name: 'MyDestinations',
+            });
+        };
+
+        //redirecting to the itinerary when clicked
+        const viewSavedPlaces = () => {
+            router.push({
+                name: 'SavedPlaces',
+            });
+        };
+
+        //redirecting to the itinerary when clicked
+        const viewMainPage = () => {
+            router.push({
+                name: 'MainPage',
+            });
+        };
+
         const filteredItineraries = computed(() => {
             if (!savedItineraries.value || savedItineraries.value.length === 0) {
                 console.log("No saved itineraries to filter.");
@@ -626,6 +691,9 @@ export default {
             filteredItineraries,
             paginatedSmallItineraries,
             viewItinerary,
+            viewDestinations,
+            viewSavedPlaces,
+            viewMainPage,
             selectedFilter,
             filterPlaces,
             getCountryImage,
@@ -640,6 +708,177 @@ export default {
 </script>
 
 <style scoped>
+/* General styling for grid items */
+.container-fluid {
+    position: relative;
+    max-width: 100vw;
+    overflow: hidden;
+    margin-bottom: 90px;
+}
+
+.header_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    z-index: 3;
+}
+
+.content h1 {
+    font-size: 6rem;
+    font-weight: 700;
+}
+
+.content h4 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+}
+
+.headerbox {
+    height: 60vh;
+    /* Fixed height to ensure images have a base to fill */
+    display: flex;
+}
+
+.col-lg-4,
+.col-md-12,
+.col-sm-12 {
+    height: 100%;
+    /* Make columns fill headerbox height */
+}
+
+.section-link {
+    position: relative;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    height: 100%;
+    width: 100%; /* Full width */
+}
+
+.img-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures the image fills the container without distortion */
+    object-position: center;
+    /* Center image within container */
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    z-index: 2;
+}
+
+.gradientoverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Replace gradient with a solid black with opacity */
+    transition: background-color 0.3s ease; /* Smooth transition for brightness on hover */
+    z-index: 1;
+}
+
+.one:hover .gradientoverlay {
+    background-color: rgba(0, 0, 0, 0.0); /* Make overlay lighter on hover */
+}
+
+.one {
+    transition: transform 0.3s ease,background-color 0.3s ease;
+    /* Smooth transition */
+}
+
+.one:hover {
+    transform: scale(1.05);
+    /* Slightly scale up the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Add a stronger shadow */
+}
+
+
+@media (max-width: 1200px) {
+    .overlay-text {
+        font-size: 1.2rem;
+    }
+
+    .content h1 {
+        font-size: 6rem;
+    }
+
+    .content h4 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .overlay-text {
+        font-size: 1rem;
+    }
+
+    .content h1 {
+        font-size: 3rem;
+    }
+
+    .content h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .overlay-text {
+        font-size: 1rem;
+    }
+
+    .content h1 {
+        font-size: 2rem;
+    }
+
+    .content h4 {
+        font-size: 1rem;
+    }
+}
+
+/* ****************************************************** */
+header {
+    position: relative;
+    overflow: hidden;
+    height: 60vh;
+}
+
+.header_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("@/assets/background_header.jpeg");
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+
+
+/* ************************************* */
 /* header sicky styling */
 .sticky-top {
     position: sticky;
@@ -904,13 +1143,23 @@ export default {
     position: relative;
     overflow: hidden;
     border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition */
+}
+
+.hero-card:hover {
+    transform: scale(1.05);
+    /* Slightly scale up the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Add a stronger shadow */
 }
 
 .hero-card .card {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 30px;
     overflow: hidden;
 }
 
@@ -974,8 +1223,14 @@ export default {
     gap: 15px;
     /* justify-content: flex-start; Ensures small cards stack at the top */
     align-self: flex-start;
-    scroll-behavior: smooth; /* Add smooth scroll behavior */
-    max-height: 400px; /* Adjust height to ensure scrolling */
+    -webkit-scroll-snap-type: x mandatory;
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-padding-right: 32px;
 }
 
 .small-card {
@@ -984,15 +1239,24 @@ export default {
     width: 100%;
     padding: 10px;
     background: rgb(234, 250, 255);
-    border-radius: 8px;
+    border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition */
+}
+
+.small-card:hover {
+    transform: scale(1.05);
+    /* Slightly scale up the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Add a stronger shadow */
 }
 
 .small-card-img {
     width: 100px;
     height: 106px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 20px;
     margin-right: 15px;
 }
 
@@ -1005,6 +1269,11 @@ export default {
     font-size: 0.875rem;
     color: #555;
     margin: 2px 0;
+}
+
+.small-card:hover {
+    border-color: #666;
+    color: #666;
 }
 
 .scroll-buttons {
