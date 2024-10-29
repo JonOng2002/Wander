@@ -12,12 +12,22 @@
         <img :src="attraction.image" alt="attraction-image" class="attraction-image" />
         <h2 class="attraction-name">{{ attraction.name }}</h2>
         <p class="attraction-vicinity">{{ attraction.vicinity }}</p>
-        <save-place-button class="btn save-button" :placeId="attraction.place_id || `manual-${Date.now()}`
-          " :placeName="attraction.name" :vicinity="attraction.vicinity || 'Unknown vicinity'" :country="country"
-          :city="cityName || 'Unknown City'" :latitude="attraction.coordinates?.latitude || 0"
-          :longitude="attraction.coordinates?.longitude || 0" :placePng="attraction.image || '/default-image.jpg'"
-          :userId="userId" :activities="[]" :summary="'Google Places Summary'" :source="'google_places'"
-          @place-saved="handlePlaceSaved(attraction.place_id)">
+        <save-place-button
+          class="btn save-button"
+          :placeId="attraction.place_id || `manual-${Date.now()}`"
+          :placeName="attraction.name"
+          :vicinity="attraction.vicinity || 'Unknown vicinity'"
+          :country="country"
+          :city="cityName || 'Unknown City'"
+          :latitude="attraction.coordinates?.lat || 0"
+          :longitude="attraction.coordinates?.lng || 0"
+          :placePng="attraction.image || '/default-image.jpg'"
+          :userId="userId"
+          :summary="'Google Places Summary'"
+          :source="'google_places'"
+          :activities="[]"
+          @place-saved="handlePlaceSaved(attraction.place_id)"
+        >
           Add to Saved Places
         </save-place-button>
       </div>
@@ -39,7 +49,7 @@
 
 <script>
 import SavePlaceButton from "@/components/SavePlaceButton.vue"; // Adjust the path as needed
-import { getFirestore, doc, setDoc, runTransaction, arrayUnion } from "firebase/firestore";
+import { getFirestore, doc, runTransaction, arrayUnion } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
 
@@ -94,7 +104,9 @@ export default {
           image: place.photos
             ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
             : "/default-image.jpg",
+          coordinates: place.geometry?.location || { latitude: 0, longitude: 0 },
         }));
+        console.log("Attractions:", this.attractions);
         this.loading = false;
       } catch (error) {
         console.error("Error fetching attractions:", error);
@@ -180,6 +192,7 @@ export default {
                 name: attraction.name || 'Unknown',
                 vicinity: attraction.vicinity || 'Unknown vicinity',
                 image: attraction.image || '/default-image.jpg',
+                coordinates: attraction.coordinates
             };
 
             try {
@@ -218,54 +231,15 @@ export default {
 },
   },
   mounted() {
-  const auth = getAuth();
-  auth.onAuthStateChanged(async (user) => {
-    if (user) {
-      this.userId = user.uid; // Set userId on mount
-      const db = getFirestore();
-      const userRef = doc(db, "users", this.userId); // Use this.userId here
-
-      // Ensure this method is called after saving a place
-      if (this.currentAttractionId) {
-        const attraction = this.attractions.find(attraction => attraction.place_id === this.currentAttractionId);
-
-        if (attraction) {
-          try {
-            const placeData = {
-              place_id: attraction.place_id || null,
-              name: attraction.name || 'Unknown',
-              vicinity: attraction.vicinity || 'Unknown vicinity',
-              image: attraction.image || '/default-image.jpg',
-              coordinates: {
-                latitude: attraction.latitude,
-                longitude: attraction.longitude
-              }
-            };
-
-            await setDoc(
-              userRef,
-              {
-                savedPlaces: arrayUnion(placeData),
-              },
-              { merge: true }
-            );
-            console.log("Place added to saved places:", placeData.name);
-
-            // Show the popup and hide it after 2 seconds
-            this.showSavedPopup();
-          } catch (error) {
-            console.error("Error saving place to Firebase:", error);
-          }
-        } else {
-          console.error("Attraction not found for saving.");
-        }
+    const auth = getAuth();
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.userId = user.uid;
+      } else {
+        console.error("User is not authenticated");
       }
-    } else {
-      console.error("User is not authenticated");
-    }
-  });
-}
-
+    });
+  },
 };
 </script>
 

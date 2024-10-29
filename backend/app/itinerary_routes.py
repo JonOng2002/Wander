@@ -205,66 +205,52 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
         with open("open_ai_itinerary.json", "w") as f:
             json.dump(itinerary_data, f, indent=2)
 
-        # After processing OpenAI response, fetch coordinates and enrich each activity
-        # After processing OpenAI response, fetch coordinates and enrich each activity
-        # After processing OpenAI response, fetch coordinates and enrich each activity
+        # Iterate through each day in the itinerary and each activity for fetching/updating location data
+        # Iterate through each day in the itinerary and each activity for fetching/updating location data
         for day in itinerary_data["day_by_day_itineraries"]:
             for activity in day["activities"]:
-                place_name = activity["location"]["name"]
-                city = activity["location"].get("city", "San Francisco")  # default city if none is found
+                location = activity.get("location", {})
+                if not location or not isinstance(location, dict):
+                    print(f"Warning: 'location' is missing or invalid for activity: {activity.get('activity_name', 'Unnamed Activity')}")
+                    continue 
+                place_name = location.get("name", "")
+                city = location.get("city")  # default to Bangkok if city is missing
                 
-                # Case 1: Place already has a place_id, only update coordinates to reduce API calls
-                if activity["location"].get("place_id"):
-                    print(f"Updating coordinates for {place_name} with existing place_id.")
+                # Check if any essential details are missing
+                details_needed = not all([location.get("place_id"), location.get("coordinates"),location.get("photo_url")])
+                
+                if details_needed:
+                    print(f"Fetching data for {place_name} due to missing details.")
+                    
+                    # Fetch complete location data if any essential detail is missing
                     location_data = fetch_coordinates_and_place_id(place_name, city, country_code)
                     
                     if location_data:
-                        # Update only the coordinates
-                        activity["location"]["coordinates"] = {
+                        # Assign coordinates individually to avoid missing structure
+                        location["coordinates"] = {
                             'latitude': location_data['latitude'],
                             'longitude': location_data['longitude']
                         }
-                        print(f"Updated Coordinates for {place_name}: {activity['location']['coordinates']}")
-                    else:
-                        print(f"Could not update coordinates for {place_name}. Skipping.")
-                
-                # Case 2: Place does not have a place_id, fetch everything (coordinates, place_id, photo_url)
-                else:
-                    print(f"Fetching all data for {place_name} without place_id.")
-                    location_data = fetch_coordinates_and_place_id(place_name, city, country_code)
-                    
-                    if location_data:
-                        # Update all the attributes
-                        activity["location"]["coordinates"] = {
-                            'latitude': location_data['latitude'],
-                            'longitude': location_data['longitude']
-                        }
-                        activity["location"]["place_id"] = location_data['place_id']
+                        # Assign place_id if missing
+                        location["place_id"] = location_data.get("place_id", "")
                         
-                        # Fetch the photo URL using the place ID
-                        photo_url = fetch_place_photo_url(location_data['place_id'])
-                        if photo_url:
-                            activity["location"]["photo_url"] = photo_url
-                            print(f"Fetched photo URL for {place_name}")
-                        else:
-                            # If no photo URL is available, provide a fallback image
-                            activity["location"]["photo_url"] = "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
-                            print(f"No photo available for {place_name}, using fallback image.")
+                        # Fetch and assign photo URL only if missing
+                        if not location.get("photo_url"):
+                            location["photo_url"] = fetch_place_photo_url(location["place_id"]) or "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
+                            print(f"Photo URL fetched or fallback used for {place_name}")
                     else:
                         print(f"Could not retrieve data for {place_name}. Skipping.")
-                
-                # Additional safeguard: Retain existing photo URL and place_id if already provided in original itinerary
+
+                # Additional safeguard: Retain existing photo URL and place_id if already provided in the original itinerary
                 matching_place = next((place for place in itinerary if place["name"] == place_name), None)
                 if matching_place:
-                    if "image" in matching_place and not activity["location"].get("photo_url"):
-                        activity["location"]["photo_url"] = matching_place["image"]  # Retain original photo if API didn't return one
-                    if "place_id" in matching_place and not activity["location"].get("place_id"):
-                        activity["location"]["place_id"] = matching_place["place_id"]  # Retain original place_id if API didn't return one
-                    print(f"Retained original place_id and photo URL for {place_name} where applicable.")
+                    location["photo_url"] = location.get("photo_url") or matching_place.get("image")
+                    location["place_id"] = location.get("place_id") or matching_place.get("place_id")
+                    print(f"Retained original place_id and photo URL for {place_name} if present.") 
 
-        # Debugging: Print the updated activity to verify it
-        print(f"Updated activity for {place_name}: {json.dumps(activity, indent=2)}")
-        
+                # Debugging: Print the updated activity to verify it
+                print(f"Updated activity for {place_name}: {json.dumps(activity, indent=2)}")
+
         # Log the final enriched itinerary
         with open("itinerary_response.json", "w") as f:
             json.dump(itinerary_data, f, indent=2)

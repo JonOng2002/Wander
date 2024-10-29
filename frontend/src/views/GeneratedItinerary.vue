@@ -3,7 +3,7 @@
     <AppNavbar class="sticky-top"></AppNavbar>
 
     <!-- If Loading / generatedItinerary is empty -->
-    <div v-if="loading" class="empty-message">Loading itinerary...</div>
+    <div v-if="loading"><GlobeLoader /></div>
     <div v-else-if="!itinerary" class="empty-message">
       <div class="row justify-content-between align-items-center sticky-header g-0">
         <div class="col-3 date-column">
@@ -12,6 +12,7 @@
       </div>
       <div class="no-itinerary-message">
         <p>No itinerary generated. Please <router-link to="/savedPlaces">add places</router-link> to generate an itinerary.</p>
+        <GlobeLoader size="5rem" :message="currentMessage"/>
       </div>
     </div>
 
@@ -28,13 +29,13 @@
         </div>
 
         <!-- Loop through itinerary days -->
-        <div v-for="(day, index) in itinerary.day_by_day_itineraries" :key="index" class="day-section">
+        <div v-for="(day, index) in itinerary.day_by_day_itineraries || []" :key="index" class="day-section">
           <div class="day-header">Day {{ day.day }} : {{ day.date }}</div>
           <div class="day-description">{{ day.summary }}</div>
 
           <div class="itinerary-table">
             <!-- Loop through activities -->
-            <div class="itinerary-row" v-for="(activity, actIndex) in day.activities" :key="actIndex">
+            <div class="itinerary-row" v-for="(activity, actIndex) in day.activities || []" :key="actIndex" >
               <div class="time-column">{{ activity.time }}</div>
               <div class="place-column">
                 <h5>{{ activity.activity_name }}</h5>
@@ -81,7 +82,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, onBeforeUnmount} from 'vue';
 import axios from 'axios';
 import router from '@/router';
 import { inject } from 'vue';
@@ -89,6 +90,7 @@ import { GoogleMap, CustomMarker } from 'vue3-google-map';
 import { getAuth } from 'firebase/auth';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '@/main';
+import GlobeLoader from '@/components/GlobeLoader.vue';
 
 // Inject the globally provided apiPromise
 const apiPromise = inject('apiPromise');
@@ -104,6 +106,38 @@ const allActivities = ref([]); // Hold all activities for markers on the map
 const { start, end, tripType, countryCode, itinerary: itineraryData, selectedTags } = router.currentRoute.value.query;
 const country = ref('');  // Country name
 const showPopup = ref(false);  // To display confirmation
+const currentMessage = ref("Sending your details over..."); // Message to display
+let messageIndex = 0; // Track the current index of the phrase
+let messageInterval = null; // Store interval ID
+
+const loadingMessages = [
+  "Generating your itinerary...",
+  "Fetching data from OpenAI...",
+  "Fetching from PlacesAPI...",
+  "Finalising your itinerary details...",
+  "Almost done! Just a moment..."
+];
+
+const startMessageRotation = () => {
+  const displayDuration = 2500; // 2.5 seconds per message
+
+  messageInterval = setInterval(() => {
+    console.log("Current message:", loadingMessages[messageIndex]);
+    currentMessage.value = loadingMessages[messageIndex];
+    messageIndex = (messageIndex + 1) % loadingMessages.length;
+  }, displayDuration); // Change message every 2.5 seconds
+};
+const startLoadingProcess = async () => {
+  loading.value = true;
+  startMessageRotation(); // Begin rotating messages
+
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 14000)); // Simulate a 14-second loading process
+  } finally {
+    loading.value = false; // End loading
+    clearInterval(messageInterval); // Stop message rotation
+  }
+};
 
 // Fetch user name from Firebase
 const fetchUserName = () => {
@@ -120,7 +154,7 @@ const fetchUserName = () => {
 
 // Calculate the number of days in the itinerary
 const getNumDays = computed(() => {
-  const numDays = itinerary.value ? itinerary.value.day_by_day_itineraries.length : 0;
+  const numDays = itinerary.value ? itinerary.value.day_by_day_itineraries.length : 0 ;
   console.log('Number of days in itinerary:', numDays);
   return numDays;
 });
@@ -212,8 +246,12 @@ const saveToItinerary = async () => {
 };
 
 onMounted(() => {
+  startLoadingProcess();
   fetchUserName();
   submitData();
+});
+onBeforeUnmount(() => {
+  clearInterval(messageInterval);
 });
 </script>
 
@@ -391,10 +429,24 @@ h2 {
   transition: opacity 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  /* Hide Map at Smaller Screens */
-  .map-container {
-    display: none;
-  }
+#title {
+  font-family: "Lobster Two", cursive;
+  font-size: 2.5vw;
+  color: #2a5ead;
+  display: flex;
+  letter-spacing: -0.06em;
+  gap: 0.1em;
+}
+
+.letter {
+  display: inline-block;
+  animation: pulse 1.2s infinite;
+}
+
+
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); color: #2a5ead; }
+  50% { transform: scale(1.2); color: #1b3a6e; }
 }
 </style>
