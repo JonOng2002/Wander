@@ -3,6 +3,9 @@ import App from './App.vue';
 import router from './router';
 import { Loader } from '@googlemaps/js-api-loader'; // Import Google Maps API Loader
 
+// FormKit imports
+import { plugin, defaultConfig } from '@formkit/vue';
+
 // Bootstrap imports
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.js'; // Bootstrap JS (includes Popper.js)
@@ -201,6 +204,7 @@ vueApp.provide('apiPromise', apiPromise); // Provide apiPromise globally
 vueApp.use(router);
 vueApp.use(BootstrapVue3);
 vueApp.use(VCalendar);
+vueApp.use(plugin, defaultConfig); // FormKit integration
 
 // Mount the app
 vueApp.mount('#app');

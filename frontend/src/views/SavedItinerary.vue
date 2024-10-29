@@ -1,7 +1,30 @@
 <template>
-    <div class="saved-itineraries-container">
-        <h1 class="page-title">My Itineraries</h1>
+    <div class="sticky-top">
+        <div class="row justify-content-between align-items-center sticky-header g-0">
+            <div class="col-3 date-column">
+                <h2 class="page-title">My Itineraries</h2>
+                <div class="filter-dropdown d-flex align-items-center">
+                    <select v-model="selectedFilter" @change="filterPlaces" class="form-select me-2">
+                        <option value="">Select Filter</option>
+                        <option value="alphabetical">Filter by Alphabet</option>
+                        <option value="recently-added">Filter by Recently Added</option>
+                    </select>
+                    <!-- <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
+                        Delete All
+                    </button> -->
+                </div>
+            </div>
+            <div class="col-auto generateButton">
+                <button @click="toggleModal" type="button" class="btn view-itinerary-btn">View
+                    Itinerary</button>
+                <button @click="navigateToGeneratedItinerary" type="button" class="btn view-full-itinerary-btn">View
+                    Full
+                    Itinerary</button>
+            </div>
+        </div>
+    </div>
 
+    <div class="saved-itineraries-container">
         <div v-if="!filteredItineraries.length" class="no-itineraries-message">
             <p>No saved itineraries yet. Start creating your itinerary!</p>
         </div>
@@ -26,41 +49,44 @@
 
             <div v-else class="itineraries-grid multiple">
                 <!-- Hero card for the first itinerary -->
-                <div v-if="paginatedItineraries.length >= 1" class="hero-card"
-                    @click="viewItinerary(paginatedItineraries[0].savedAt)">
+                <div class="hero-card" @click="viewItinerary(filteredItineraries[0].savedAt)">
                     <div class="card shadow-lg">
-                        <img :src="getCountryImage(paginatedItineraries[0].country)" class="card-img-top"
+                        <img :src="getCountryImage(filteredItineraries[0].country)" class="card-img-top"
                             alt="itinerary country image" />
                         <div class="gradient-overlay"></div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ paginatedItineraries[0].country }}</h5>
-                            <p class="card-text">{{ paginatedItineraries[0].numDays }}d trip in {{
-                                paginatedItineraries[0].country }}.</p>
+                            <h5 class="card-title">{{ filteredItineraries[0].country }}</h5>
+                            <p class="card-text">{{ filteredItineraries[0].numDays }}d trip in {{
+                                filteredItineraries[0].country }}</p>
                             <p class="card-subtext">Saved on {{ new
-                                Date(paginatedItineraries[0].savedAt).toLocaleDateString() }}</p>
+                                Date(filteredItineraries[0].savedAt).toLocaleDateString() }}</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stacked smaller cards for additional itineraries -->
-                <div class="stacked-cards">
-                    <div v-for="(itinerary, index) in paginatedItineraries.slice(1)" :key="index" class="small-card"
-                        @click="viewItinerary(itinerary.savedAt)">
-                        <img :src="getCountryImage(itinerary.country)" class="small-card-img"
-                            alt="itinerary country image" />
-                        <div class="small-card-text">
-                            <h5>{{ itinerary.country }}</h5>
-                            <p>{{ itinerary.numDays }}d trip in {{ itinerary.country }}.</p>
-                            <p>Saved on {{ new Date(itinerary.savedAt).toLocaleDateString() }}</p>
+                <div class="stacked-cards-wrapper">
+                    <!-- Scrollable container for additional itineraries -->
+                    <div class="stacked-cards">
+                        <div v-for="(itinerary, index) in paginatedSmallItineraries" :key="index" class="small-card"
+                            @click="viewItinerary(itinerary.savedAt)">
+                            <img :src="getCountryImage(itinerary.country)" class="small-card-img"
+                                alt="itinerary country image" />
+                            <div class="small-card-text">
+                                <h5>{{ itinerary.country }}</h5>
+                                <p>{{ itinerary.numDays }}d trip in {{ itinerary.country }}.</p>
+                                <p>Saved on {{ new Date(itinerary.savedAt).toLocaleDateString() }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Pagination buttons if more than 5 itineraries exist -->
-            <div v-if="filteredItineraries.length > itemsPerPage" class="scroll-buttons">
-                <button class="round-button" @click="scrollLeft" v-if="showLeftButton">&lt;</button>
-                <button class="round-button" @click="scrollRight" v-if="showRightButton">&gt;</button>
+                    <!-- Pagination buttons if more than 5 itineraries exist -->
+                    <div v-if="true" class="scroll-buttons">
+                        <button class="round-button" @click="scrollLeft">&lt;</button>
+                        <button class="round-button" @click="scrollRight">&gt;</button>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -68,11 +94,12 @@
 
 
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { onMounted } from "vue";
 import router from "@/router";
+
 
 export default {
     name: "SavedItinerary",
@@ -472,6 +499,7 @@ export default {
 
         //loading saved itineraries from firestore
         onMounted(async () => {
+            console.log("Initial filteredItineraries:", filteredItineraries.value);
             const auth = getAuth();
             const user = auth.currentUser;
             const db = getFirestore();
@@ -480,8 +508,17 @@ export default {
                 const userDoc = await getDoc(userRef);
                 if (userDoc.exists()) {
                     savedItineraries.value = userDoc.data().savedItineraries || [];
+                    console.log("Loaded Itineraries:", savedItineraries.value); // Check if data is loaded correctly
+                } else {
+                    console.log("User document does not exist");
                 }
+            } else {
+                console.log("User is not logged in");
             }
+        });
+
+        watch(savedItineraries, (newVal) => {
+            console.log("savedItineraries updated:", newVal);
         });
 
         // find country image based on the itinerary's country
@@ -499,37 +536,68 @@ export default {
         };
 
         const filteredItineraries = computed(() => {
+            if (!savedItineraries.value || savedItineraries.value.length === 0) {
+                console.log("No saved itineraries to filter.");
+                return [];
+            }
+
             let itineraries = [...savedItineraries.value];
-            return itineraries.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+            const sortedItineraries = itineraries.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+            console.log("Sorted itineraries:", sortedItineraries);
+            return sortedItineraries;
         });
+
+
+        // Watch to see if filteredItineraries updates as expected
+        watch(filteredItineraries, (newVal, oldVal) => {
+            console.log("filteredItineraries updated:");
+            console.log("New value:", newVal);
+            console.log("Old value:", oldVal);
+        });
+
+        watch(savedItineraries, (newVal, oldVal) => {
+            console.log("savedItineraries updated:", newVal);
+            console.log("Previous savedItineraries:", oldVal);
+        });
+
+        watch(selectedFilter, (newFilter) => {
+            console.log("Selected filter changed:", newFilter);
+        });
+
+        const filterPlaces = (event) => {
+            selectedFilter.value = event.target.value;
+            console.log("Filter applied:", selectedFilter.value);
+        };
 
         // Paginated itineraries based on current page
-        const paginatedItineraries = computed(() => {
-            const start = currentPage.value * itemsPerPage;
-            const end = start + itemsPerPage;
-            return filteredItineraries.value.slice(start, end);
+        const paginatedSmallItineraries = computed(() => {
+            const start = currentPage.value * (itemsPerPage - 1) + 1;
+            const end = start + (itemsPerPage - 1);
+            const pageData = filteredItineraries.value.slice(start, end);
+            console.log("Paginated Itineraries for Page:", currentPage.value, pageData); // Check paginated data
+            return pageData;
         });
 
-        // // Filtered and paginated itineraries
-        // const filteredItineraries = computed(() => {
-        //     return savedItineraries.value.slice(currentIndex.value, currentIndex.value + itemsPerPage);
-        // });
-        // watch(savedItineraries, () => {
-        //     currentPage.value = 0; // Reset to the first page
-        // });
 
         // Scroll functions
         const scrollLeft = () => {
             if (currentPage.value > 0) {
                 currentPage.value--;
+                console.log("Scrolled left:", currentPage.value);
+            } else {
+                console.log("Cannot scroll left, already at first page");
             }
         };
 
         const scrollRight = () => {
             if ((currentPage.value + 1) * itemsPerPage < filteredItineraries.value.length) {
                 currentPage.value++;
+                console.log("Scrolled right:", currentPage.value);
+            } else {
+                console.log("Cannot scroll right, reached last page");
             }
         };
+
 
         // Debugging logs
         // watch([paginatedItineraries, showLeftButton, showRightButton], () => {
@@ -540,15 +608,26 @@ export default {
         // });
 
         // Button visibility based on currentPage and total items
-        const showLeftButton = computed(() => currentPage.value > 0);
-        const showRightButton = computed(() => (currentPage.value + 1) * itemsPerPage < filteredItineraries.value.length);
+        const showLeftButton = computed(() => {
+            const canScrollLeft = currentPage.value > 0;
+            console.log("Show Left Button:", canScrollLeft, "Current Page:", currentPage.value);
+            return canScrollLeft;
+        });
+
+        const showRightButton = computed(() => {
+            const remainingItems = filteredItineraries.value.length - 1 - (currentPage.value + 1) * (itemsPerPage - 1);
+            return remainingItems > 0;
+        });
+
+
 
         return {
             savedItineraries,
             filteredItineraries,
-            paginatedItineraries,
+            paginatedSmallItineraries,
             viewItinerary,
             selectedFilter,
+            filterPlaces,
             getCountryImage,
             countries,
             scrollLeft,
@@ -561,24 +640,161 @@ export default {
 </script>
 
 <style scoped>
+/* header sicky styling */
+.sticky-top {
+    position: sticky;
+    top: -3px;
+    background-color: white;
+    z-index: 1000;
+    padding: 10px 5%;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 60px;
+}
+
+.date-column {
+    text-align: left;
+    padding-left: 15px;
+    /* Increase padding to move it left */
+    font-family: 'Roboto', sans-serif;
+    /* Change to your desired font */
+    font-size: 1.5rem;
+    /* Adjust font size if necessary */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.generateButton {
+    text-align: right;
+    padding-right: 5%;
+    font-size: 1.5rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.empty-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: grey;
+    margin-top: 20px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    /* Adjust as needed */
+    right: 10px;
+    /* Adjust as needed */
+    background: transparent;
+    /* No background */
+    border: none;
+    /* No border */
+    color: white;
+    /* Color of the 'X' */
+    font-size: 1.2rem;
+    /* Adjust size */
+    cursor: pointer;
+    /* Pointer cursor */
+    z-index: 1;
+    /* Ensure it is on top */
+}
+
+.close-button:hover {
+    background: transparent;
+    color: red;
+
+    /* Change color on hover */
+}
+
+.filter-dropdown {
+    margin: 10px 0;
+
+}
+
+.filter-dropdown .form-select {
+    width: 100%;
+    border-radius: 100px;
+    border: 1px solid black;
+}
+
+.btn-delete-all {
+    width: 200px;
+    border-radius: 30px;
+    border: 1px solid black;
+    color: black;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+    /* Apply smooth transition */
+}
+
+.btn {
+    /* Set button color to black */
+    color: white;
+    /* Keep the text color white for contrast */
+    border: none;
+    /* Remove default border */
+}
+
+.btn:hover {
+    background-color: #0057d9;
+    /* Darker color on hover for visual feedback */
+    color: white;
+    /* Keep the text color white on hover */
+}
+
+.close-modal-btn:hover {
+    color: white;
+    /* Keep the text color white on hover */
+}
+
+.close-modal-btn {
+    background-color: #0057d9;
+}
+
+.view-itinerary-btn {
+    margin-right: 10px;
+    background-color: #ffffff;
+    border-radius: 100px;
+    margin-top: 30px;
+    border: 1px solid black;
+    color: black;
+    /* Adjust space as needed */
+    transition: background-color 0.3s ease;
+    /* Apply smooth transition */
+
+}
+
+.view-full-itinerary-btn {
+    background-color: #ffffff;
+    border-radius: 100px;
+    margin-top: 30px;
+    border: 1px solid black;
+    color: black;
+    transition: background-color 0.3s ease;
+    /* Apply smooth transition */
+
+}
+
+/* ************************************************ */
+/* Page layout styling */
 .saved-itineraries-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    margin: 0 auto; 
+    margin: 0 auto;
     width: 100%;
-    max-width: 1400px; /* Increased max width */
+    max-width: 1400px;
+    /* Increased max width */
 }
 
 .page-title {
     text-align: left;
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: 'Cormorant Garamond', serif;
     font-weight: bolder;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     width: 100%;
-    padding-left: 20px;
+    padding-left: 2px;
     box-sizing: border-box;
 }
 
@@ -588,16 +804,20 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 1200px; /* Controls the width of the entire card layout */
+    max-width: 1200px;
+    /* Controls the width of the entire card layout */
     margin: 0 auto;
 }
 
 .itineraries-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Adjusted column width ratio */
+    grid-template-columns: 2fr 1fr;
+    /* Adjusted column width ratio */
     gap: 20px;
-    width: 100%; /* Set to full width of container */
-    max-width: 1400px; /* Increased max width to match container */
+    width: 100%;
+    /* Set to full width of container */
+    max-width: 1400px;
+    /* Increased max width to match container */
     justify-content: center;
 }
 
@@ -605,11 +825,16 @@ export default {
 /* single card styling */
 
 .single-itinerary-card {
-    width: 100%;              /* Adjust width to take a larger space */
-    max-width: 900px;       /* Limit the maximum width */
-    margin: 20px 0;          /* Add spacing above and below */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional styling for shadow */
-    border-radius: 8px;      /* Optional rounded corners */
+    width: 100%;
+    /* Adjust width to take a larger space */
+    max-width: 900px;
+    /* Limit the maximum width */
+    margin: 20px 0;
+    /* Add spacing above and below */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Optional styling for shadow */
+    border-radius: 8px;
+    /* Optional rounded corners */
 }
 
 .card {
@@ -652,7 +877,7 @@ export default {
     margin: 0;
 }
 
-.single-itinerary-card .card-text{
+.single-itinerary-card .card-text {
     font-size: 1rem;
     color: white;
     margin-top: 5px;
@@ -735,6 +960,13 @@ export default {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
+/* Wrapper to position buttons at bottom right */
+.stacked-cards-wrapper {
+    position: relative;
+    /* Allow absolute positioning within */
+    padding-bottom: 60px; /* Extra padding to avoid clipping */
+}
+
 /* Stacked small cards styling */
 .stacked-cards {
     display: flex;
@@ -774,10 +1006,14 @@ export default {
 }
 
 .scroll-buttons {
+    position: absolute;
+    bottom: -80px;
+    right: 5px;
     display: flex;
-    justify-content: right;
-    margin-top: 20px;
+    gap: 10px;
+    padding-bottom: 20px;
 }
+
 
 .round-button {
     width: 40px;
@@ -792,7 +1028,6 @@ export default {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin: 4px;
 }
 
 .round-button:hover {
@@ -804,6 +1039,4 @@ export default {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
-
-
 </style>
