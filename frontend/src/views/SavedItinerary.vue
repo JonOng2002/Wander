@@ -585,6 +585,8 @@ export default {
 .single {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     max-width: 1200px; /* Controls the width of the entire card layout */
     margin: 0 auto;
@@ -599,6 +601,75 @@ export default {
     justify-content: center;
 }
 
+/* ************************************************ */
+/* single card styling */
+
+.single-itinerary-card {
+    width: 100%;              /* Adjust width to take a larger space */
+    max-width: 900px;       /* Limit the maximum width */
+    margin: 20px 0;          /* Add spacing above and below */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional styling for shadow */
+    border-radius: 8px;      /* Optional rounded corners */
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.single-itinerary-card .gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70%);
+    z-index: 1;
+}
+
+
+.single-itinerary-card .card-body {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.single-itinerary-card .card-title {
+    font-size: 3rem;
+    padding-left: 6px;
+    margin: 0;
+}
+
+.single-itinerary-card .card-text{
+    font-size: 1rem;
+    color: white;
+    margin-top: 5px;
+}
+
+.single-itinerary-card .card-subtext {
+    font-size: 1rem;
+    color: white;
+    margin-top: 5px;
+    padding-left: 3px;
+}
+
+
+
+
+/* ************************************************ */
+/*more than one itinerary styling*/
 /* Hero card styling */
 .hero-card {
     height: 550px;
