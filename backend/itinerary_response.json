@@ -1,13 +1,13 @@
 {
-  "itinerary_summary": "A 5-day solo adventure exploring the vibrant cities of Yokohama and Tokyo, Japan, featuring must-see attractions and thrilling activities related to Japanese culture, art, and urban experiences.",
+  "itinerary_summary": "This 5-day romantic trip to Japan includes a mix of cultural exploration and adventure activities, with a focus on must-see attractions. From the bustling streets of Tokyo to unique experiences in Yokohama, this itinerary features famous landmarks and delightful dining.",
   "day_by_day_itineraries": [
     {
       "day": 1,
       "date": "2024-10-29",
-      "summary": "Arrival in Yokohama and introduction to Japanese culture through fun and interactive experiences.",
+      "summary": "Arrival in Japan and exploration of Yokohama's Cup Noodles Museum.",
       "activities": [
         {
-          "time": "09:00",
+          "time": "15:30",
           "activity_name": "Cup Noodles Museum Yokohama",
           "location": {
             "name": "Cup Noodles Museum Yokohama",
@@ -19,26 +19,11 @@
             "place_id": "ChIJ3ZNhe1dcGGARvjq5QHdmaHM",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMrwax75Rb_a3Hmulbql183i4R1xL7v0c6k9JGsbnvN7mx2KmA_4R3GxUSYurSofs75J0aZ2NOg5pvSPSGd2_LbNzf6SuBhCNiN7ETuuaQrgLI9410U9RvxpTgMHrlE2W12YOitFcaGtTx-DADwwvUiEjnyL04RdGtLhc5SNRHE1OSG&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Explore the interactive exhibits and learn about the history of instant ramen while creating your very own unique cup noodles."
+          "description": "Explore the history of instant ramen and create your own unique cup noodle."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch at Nankinmachi (Yokohama Chinatown)",
-          "location": {
-            "name": "Nankinmachi",
-            "city": "Yokohama",
-            "coordinates": {
-              "latitude": 34.6882042,
-              "longitude": 135.1880887
-            },
-            "place_id": "ChIJkaqwvf2OAGARARl_1gEYbx0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPEotq64FuGlVRvIDWv7Q0do0e7ZiGZVF-DnnDdL41L0H0ZEokAlLe9pTYzw3_8bfFOL0pf2t5Bc8N27GyGaB-ordP4ngurkjubZntxBRf9-cJczNPin_IJQcnCI6ue1UWQTV-GqSpUYTwO_5QNyKwakkoIN3R76jCAV0MpkBrUZOoS&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Enjoy authentic Chinese cuisine in one of the largest Chinatowns in the world, featuring diverse street food and restaurants."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Yokohama Red Brick Warehouse",
+          "time": "17:00",
+          "activity_name": "Dinner at Yokohama Red Brick Warehouse",
           "location": {
             "name": "Yokohama Red Brick Warehouse",
             "city": "Yokohama",
@@ -47,34 +32,64 @@
               "longitude": 139.6428944
             },
             "place_id": "ChIJSXGAhfhcGGARcz3MKth9lJQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPI7gg7TmAOo2TiisAFhm8OHmzqtquOp7CkUrMs3UCBLNZVGGBdrNlqrQHk4LKYdTSw0I03D1UJr-fjNY0yOmUd8hftw1mgxhCI88LPofh5JKNbH73-g9Zh1tJH6chAjk-Yu_iZIyayk-nS5kIHjjUUy3bTU3QhqeG6QNQWxYrqImV2&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN83ec9FotETGzn4_gAlw1GsrxQInf3Ur0NltILmkbRHJ0eXdbh_4tye8R5Z2bmZYgghMvOJQQpWbShZ0PGjErkNFAFIiaqyKy3vNtLS9oOQB_vw4eR9xDkKhMyPoC6_9U9oVGke4R3um3FEatTvEbT2XdssJ8bGP9AdVuZcpjjrJks&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Visit this historical site, now a shopping and cultural complex with unique boutiques, cafes, and art exhibits overlooking the harbor."
+          "description": "Enjoy a romantic dinner with a waterfront view at one of the trendy restaurants in this historic building."
         },
         {
-          "time": "18:00",
-          "activity_name": "Yokohama Landmark Tower Sky Garden",
+          "time": "19:00",
+          "activity_name": "Walk at Yokohama Bay Waterfront",
           "location": {
-            "name": "Yokohama Landmark Tower",
+            "name": "Yokohama Bay Waterfront",
             "city": "Yokohama",
             "coordinates": {
-              "latitude": 35.45495400000001,
-              "longitude": 139.6313859
+              "latitude": 35.4666247,
+              "longitude": 139.6266006
             },
-            "place_id": "ChIJEaFmc11cGGARx8g0NQrvYTY",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNhLEgvPHd2KWL1exf5Fdog2pAjJfhai8evxskjsKbyC0js5iUK4t4RrY4_8YCwT-lyRhmsWcF5pP9jdNfsM-LZOsPSzMcpEu-D34UxrEg0ETsoEoqjtWbn8z36cCeuV_91qJKfjRpSHzkvwbkgIbiszy9xgHWKMu9sJU8r_VcpRzO4&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJyzzcGz9cGGAR7anmbF14KmQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM5Dk22YExiIAmmMY6GIAq5otZE32Gdn_nIsNedE9ccGR0wfkjlmX4GpEY4DTMXWw--b89rvU2mdbdIdtXcrSLLFHoNp-1CEv2YqoCDg_Ar-JLQscGzlAjkaqMM8I6WHzDz4h5SZ_nmxu3zatJICDTDaanUAqZal12eZb2aJzehzlwI&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Conclude your day with breathtaking panoramic views of Yokohama from the Sky Garden observatory."
+          "description": "Stroll along the harbor at twilight, taking in city views and the soothing sounds of the water."
+        },
+        {
+          "time": "20:30",
+          "activity_name": "Sky Garden Observation Deck",
+          "location": {
+            "name": "Sky Garden Observation Deck",
+            "city": "Yokohama",
+            "coordinates": {
+              "latitude": 35.4545776,
+              "longitude": 139.6314788
+            },
+            "place_id": "ChIJEaFmc11cGGARfdCTliSvsls",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO08ED2llTHX30OleuCkFa8vfLcSxlXKk6P3wubY13JE0trZe5QpnXS-3M0lkeom-OudgL66Yk01pX8EOwNjfOuxvVXzueoXZSPeQzz_3UAdi1ohjDWfaHy3rz7i-_TH-DSwB8vg1HHC25BALxqf6DL33Q6ZVoaJHFjXO39bzQZ07I6&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "End the evening with a stunning view of Yokohama's skyline from the Sky Garden."
         }
       ]
     },
     {
       "day": 2,
       "date": "2024-10-30",
-      "summary": "Travel to Tokyo and immerse yourself in its artistic and pop culture highlights.",
+      "summary": "Travel to Tokyo and explore modern and traditional attractions.",
       "activities": [
         {
           "time": "09:00",
+          "activity_name": "Breakfast at Tsukiji Outer Market",
+          "location": {
+            "name": "Tsukiji Outer Market",
+            "city": "Tokyo",
+            "coordinates": {
+              "latitude": 35.6649185,
+              "longitude": 139.7702195
+            },
+            "place_id": "ChIJW2cLzSGLGGARXAKXv6EkbqI",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOmPQzgHGpSf0F0fr-EuKNyF1NTGSdg2aHdrqkTjEAioqXlEzw66J_Y6UYge6XO4aLRW1kzzcY-qgaOlCs4GE7kt0nEou7KYcwtZlRmNe4sl5o3e8AyJ4REK6uHBjk_xZeZ937Qyq7DYlDel8cRGRmASUFWsCzrNNN9-MKEUfouD1eC&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Start your day with fresh seafood and local delicacies at this iconic market."
+        },
+        {
+          "time": "11:00",
           "activity_name": "Tokyo Metropolitan Art Museum",
           "location": {
             "name": "Tokyo Metropolitan Art Museum",
@@ -86,130 +101,11 @@
             "place_id": "ChIJb_o7HiiMGGARUKu8uO7fGIQ",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOQpd0WuLg2uGSrFLbVVh2aQsc5or9C27B4nOGt-BBs1iwrY4myCC4TZVHfjgFbBUoJkuo8dt6FwXYJLVR3n8tDJU6uYv4Iok2X98JzLl4RH1k7uCVw1HQA3QIccNJels4HXcx2GDT0YpEzTV6o7Ra98235tJjB3L2mptojKiljikhm&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Discover an impressive collection of Japanese and Asian art, including contemporary exhibitions."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch at Ameyoko Market, Ueno",
-          "location": {
-            "name": "Ameyoko Market",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.708978,
-              "longitude": 139.7747155
-            },
-            "place_id": "ChIJh7eDrwCPGGARCs9fpCkKS2U",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMplbmry2jYwJmOuFf9TpLchL6Hn7BSGK2irSKi4MF08lXF2APj6DqHiY5H7HC5XXpp8-QVZcHJZUUEIQynffyADocYdRkJ5583V4XEhWcnH8ls__k6wr_MTmhR0bFVQ4O2ujmFGhu0x76AIV7YFQIZHm13Q4hTGaFgCuY5TVkoXfYo&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Savor a variety of street foods and traditional Japanese snacks in this bustling market atmosphere."
+          "description": "Visit this beautiful museum showcasing modern and contemporary art."
         },
         {
           "time": "14:00",
-          "activity_name": "TeamLab Borderless Museum",
-          "location": {
-            "name": "TeamLab Borderless Museum",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.649074,
-              "longitude": 139.7898213
-            },
-            "place_id": "ChIJSeco5wiJGGARItbTS8lQ5G0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNzOV3BzCOWL2EDNxHzktfQyC0B9g2tYrrbPvFu-Ft_vGIlsKPjYwDUMa-nAG9wQXWPaOGJ7jDkJ878udFmN422z-7cTYzEWfrl-TctFbZArkBu4h0yjXLFg4QMsRgQ374J-gWOdBVrkeScm2xX56pj2Gig56aXu0ekIm4Z0CbG-j1A&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Experience interactive digital art installations that immerse you in a world of creativity."
-        },
-        {
-          "time": "18:00",
-          "activity_name": "Dinner at Tsukiji Outer Market",
-          "location": {
-            "name": "Tsukiji Outer Market",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.6649185,
-              "longitude": 139.7702195
-            },
-            "place_id": "ChIJW2cLzSGLGGARXAKXv6EkbqI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM8TM6EwSz9KgZ9vQFy-AYhaOqqD3kUyIkKEZVVSVavkSIlQeUAATqhW-mHWB-4YtI7dfeoIUvlxbsncHYxVH6LOl_qgZlRNNsNgOmvnGqT5G-3Eu6D65IBIMloJnqG00T81ROEMZ3QEZp1mnj_pK-tUE-3EfFp4POguajKMib9Kdik&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Enjoy fresh sushi and seafood delicacies at one of the most famous markets in Japan."
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "date": "2024-10-31",
-      "summary": "Continue exploring Tokyo, focusing on cultural landmarks and urban adventures.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Meiji Shrine",
-          "location": {
-            "name": "Meiji Shrine",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.6763976,
-              "longitude": 139.6993259
-            },
-            "place_id": "ChIJ5SZMmreMGGARcz8QSTiJyo8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMFvIYaLpYxVSc6j_yP9oDsyJ8cLW83j_dLLgP6SxbYpAw9pPs-2m2FF50UxZkyJhSwRidwQ33tDykUxTA5xR61J9F_QNdDHRiYwt4KV1LfbatjeMRFT6usO7pEuxu1bFGfdn-yoR1eH5hfLwoGRfWoynJH7O9HMe7e1GQ1MgbkPqV2&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Visit this serene shrine surrounded by a lush forest, dedicated to Emperor Meiji and Empress Shoken."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch at Harajuku Crepes",
-          "location": {
-            "name": "Harajuku Crepes",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.6712605,
-              "longitude": 139.7048981
-            },
-            "place_id": "ChIJPft3N7uMGGAReOEjLwqJIm0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO9Em9w3U6acrEKPuIQrftCy-g6yPoNdCVxNkvbm0pVosyTtXo4ZW7ziSqt6DCKxnTi9Oc2dD3rhb8XM61VTH0jcYFj7dj9Kj6kLTvYG_BpL-HsGEaM_EN84AJZMUp_b83eBaORG6YSswJ1cdtJbUsbj0Hd5CtLDNx1_sSbbkxYeA5b&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Indulge in delicious, sweet, and savory crepes from the trendy shops of Harajuku."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Shibuya Crossing Experience",
-          "location": {
-            "name": "Shibuya Crossing",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.659482,
-              "longitude": 139.7005596
-            },
-            "place_id": "ChIJK9EM68qLGGARacmu4KJj5SA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOFn_vfWJlSu4NyKtRrZ-xv8zhh74FJlBa-350E-1VhucL-riRYywckt-7QRiOEpBgnGVmKzQfQJqVSuXkpp2hwbs66JBqF7i6EcGeX9AssmRtj6XuIfGrF361DPtYfc99fjVuFAcLUoij7ik9TqhK3mfdMQNwCpAp8yPMnhvYHZ7a0&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Experience the hustle and bustle of one of the world\u2019s busiest pedestrian crossings."
-        },
-        {
-          "time": "18:00",
-          "activity_name": "Tokyo Skytree Observation Deck",
-          "location": {
-            "name": "Tokyo Skytree",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.7100627,
-              "longitude": 139.8107004
-            },
-            "place_id": "ChIJ35ov0dCOGGARKvdDH7NPHX0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOTFM4UU-E-S9krgzF1_WgsH2v0zMgmB0x4vrQFBrQLoDOkoxvfQO2aGZZvpZoCd8Ga-c6y4eJMpiMxE99nsbrQ-cE8nLznxs7yPWVb9ui6bduHWiX9zp5lAFx25j7Ifg6Xd_Tdaj7wVyMxBYNI28a2riwwEVfvTzjVCn-xBoDkWpQ&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "End your day with stunning views of the Tokyo skyline and Mount Fuji on clear days."
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "date": "2024-11-01",
-      "summary": "Explore more of Tokyo, focusing on entertainment and historical insights.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Asakusa and Senso-ji Temple",
+          "activity_name": "Senso-ji Temple",
           "location": {
             "name": "Senso-ji Temple",
             "city": "Tokyo",
@@ -218,27 +114,64 @@
               "longitude": 139.7966553
             },
             "place_id": "ChIJ8T1GpMGOGGARDYGSgpooDWw",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMrh0_FKmaASbK-VWrVe48SvyHo0mu5JSl_x-In-KIH_8xEL89kOEW6joT7jEVPvn0YEeQ0gLqJWRO38BcL5Q8bV78iru8zg9MeDoXSoMZkOgwpEKw6AnsZBlTj5MHJ_eHNAfiSqzB-u2cb4UN3vpne8fzrTI2Z2AvIr6UCm9dgICWq&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOX34A9BKm14TnNer6zgJ1WCwefm25HfA46Q7-DCrsBokWmaD-cRa3pI0TDDPTtvi3Wy3YaxddVsUeBdJ8eH565mPbdscwvnRHpMFrNpa6sb_0Y12bxgFlhKp6OtnKtR7zZi9LXAXiuoL2twHAyLjwJ9cS_l1DsvZrY19hgIE_Sq0zB&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Visit Tokyo's oldest temple and explore the traditional shopping street of Nakamise."
+          "description": "Explore Tokyo's oldest temple and the lively streets of Asakusa leading to it."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch at Kaminarimon\u2014Asakusa",
+          "time": "16:00",
+          "activity_name": "Dinner at a Sushi Restaurant in Asakusa",
           "location": {
-            "name": "Kaminarimon",
+            "name": "Sushi Restaurant Asakusa",
             "city": "Tokyo",
             "coordinates": {
-              "latitude": 35.7098807,
-              "longitude": 139.794926
+              "latitude": 35.7116162,
+              "longitude": 139.7974232
             },
-            "place_id": "ChIJbYJfEMeOGGARf6dDGNgN9M8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNvU0ixzizQAYo3YdMYNXvMg5NRUKzi535czfRaaTpmvDM7XxsR-umrajCOsI5r5h4JKqkKYHJjCwdM1xwkwbdxqm_BFcMH7u_QGiM-GX730k3ZU7HHLQBiO3luu7yzs4-cGu7bVafRCrjd3FM-vz69mTO4hB16Xet_UJetriMooOa5&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJ47OOoJiPGGAR29oDSo5Df1c",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP4lnu1Tn_WxFCUOrM903K-gsPdOiZLBZ61fSx7SJ7KPHqteWDfYdUZRomJ8Wue2YqJRIRc_8TlZOpc3w73du3C5u5wntCBvo-C-3FaVhbKw50MqqS-j5vnf14t1I5QVzENkbFtWynPz3kXTEp7VPjP5bko51K10V7DN5WiuESJ-hjX&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Enjoy traditional Japanese dishes near the iconic Thunder Gate of Senso-ji."
+          "description": "Delight in some of the freshest sushi at a renowned restaurant in Asakusa."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-10-31",
+      "summary": "Explore Odaiba and visit Fuji Television Network.",
+      "activities": [
+        {
+          "time": "10:00",
+          "activity_name": "Fuji Television Network, Inc.",
+          "location": {
+            "name": "Fuji Television Network, Inc.",
+            "city": "Tokyo",
+            "coordinates": {
+              "latitude": 35.626605,
+              "longitude": 139.774056
+            },
+            "place_id": "ChIJQQ6UsPeJGGAR3LFE4U43_NQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN61kiRUmiNb2jhh4e2p1nv_mdFremcNXv0s_ag1NEDc-7MuKNX2nmvkf1qbuQOkYlT_oU3fziuTR2kdgdNcP2Ba8Mafo2-T-3dIa_3Snrc27nSjzweKXVKLWhcRTa2EvWWJBF5TNQfa-l5kC-Js06X8uqQ7M1CgXOQSqRj9PqD3DlT&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Take a tour of this famous media company and enjoy the stunning views from its observation decks."
         },
         {
-          "time": "14:00",
+          "time": "13:00",
+          "activity_name": "Lunch at DiverCity Tokyo Plaza",
+          "location": {
+            "name": "DiverCity Tokyo Plaza",
+            "city": "Tokyo",
+            "coordinates": {
+              "latitude": 35.6251856,
+              "longitude": 139.7756314
+            },
+            "place_id": "ChIJpbpu0_mJGGARd9sJ-psh9Gc",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP5ESkLOCujRR86cajNLxVMNIsj6mAg2kcFYpbvyZrVBjBJRy785BSh-1dJsYgjOIJ5_kbGAvV69yL8LljccggUNTrrtFmlNH2804a2almaZ4AP35b642tIYNBtaeizuKTMF1ZLGlKH7J1GYH1aSpOc23xU8o-4KiBU4PjZk0AVgO17&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Enjoy a diverse selection of eateries and don\u2019t forget to watch the Gundam robot show!"
+        },
+        {
+          "time": "15:00",
           "activity_name": "Odaiba Seaside Park",
           "location": {
             "name": "Odaiba Seaside Park",
@@ -248,91 +181,158 @@
               "longitude": 139.7756912
             },
             "place_id": "ChIJ18IK6x2KGGARKTc2yLS-030",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPHsSsRKLWwWikbDrGdeHcGccWTsA-Y_E751M1zSRX2j6lo8YHfPGtAJwq0SDI4zyOpHVk7QbYYAxmHgkUs0rA4WO8oyPLNIT5WqBhwihdtwTM_HEtkDwZmazbZZTnfN9pnYx4LLMIKkfcCFJkYS_Wo3pBNGy_o4SOwkmneh16Paq7E&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNVU8xHPdnbf8BUxCGOHtFkaGbF2IUETAofmOVNIyi5QqTclCEhf7hWP9NLrnnFeaWQlQssNaGFjGZol9t-3hjs5v6QIB1O7O6EPkSoQ7zmurdvbDcxayEKYn6T0-x4_UG9D7Zi1JTIgt2MzyHZN5XTYM79yx79wF2ZGs6pdIBqRdwp&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Relax at this waterfront park with stunning views of the Rainbow Bridge and Tokyo Bay."
+          "description": "Relax by the beach and take in views of the Rainbow Bridge and Tokyo Bay."
         },
         {
           "time": "18:00",
-          "activity_name": "Fuji Television Network, Inc.",
+          "activity_name": "Dinner cruise on Tokyo Bay",
           "location": {
-            "name": "Fuji Television Network, Inc.",
+            "name": "Dinner cruise on Tokyo Bay",
             "city": "Tokyo",
             "coordinates": {
-              "latitude": 35.6271,
-              "longitude": 139.7741
+              "latitude": 35.6506084,
+              "longitude": 139.7604131
             },
-            "place_id": "ChIJQQ6UsPeJGGAR3LFE4U43_NQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN61kiRUmiNb2jhh4e2p1nv_mdFremcNXv0s_ag1NEDc-7MuKNX2nmvkf1qbuQOkYlT_oU3fziuTR2kdgdNcP2Ba8Mafo2-T-3dIa_3Snrc27nSjzweKXVKLWhcRTa2EvWWJBF5TNQfa-l5kC-Js06X8uqQ7M1CgXOQSqRj9PqD3DlT&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJIWcNyc2LGGARDFKpT06FJCM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMDGk2ujS7q2rv1sQgbqWwV6NktyjloWvxOwTAlBe64RT08TOULVcVck6rAtNxqUJWgZjkjgsjD2ZE7CKzWAraS3iYYC-M0q36hfxXjj_FQu-95yx3ZvpU5yTbYuvRXuTAahsunlq34MtnYlIU27u4HxkJtPU4EYaNwTI3T3gM62zMO&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Explore the iconic broadcasting building and enjoy exhibitions about Japanese media culture."
+          "description": "Enjoy a romantic dinner cruise with stunning nighttime views of the Tokyo skyline."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-01",
+      "summary": "Return to Yokohama and explore local attractions.",
+      "activities": [
+        {
+          "time": "09:30",
+          "activity_name": "Breakfast at RYOKAN KAMOGAWA",
+          "location": {
+            "name": "RYOKAN KAMOGAWA",
+            "city": "Tokyo",
+            "coordinates": {
+              "latitude": 35.7121877,
+              "longitude": 139.7957151
+            },
+            "place_id": "ChIJu3PU18COGGARhGkyiUJKEW8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNmK2Wui_5XJU_nwGE0G1wphb_uq5lwnfpArGaTKeVVqAf-N1ClNVRW-BRT2dPsqUgNGd0Klulva5utxcjeZTZQbcMD40xTBAMpL_xzL9xnqNoTzXr1_zd4rEQTyP-7eQPBiONe6hF2xTeyG2SMHoddet4ybEiTEy4YJ3oPjyXVEGAU&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Enjoy a traditional Japanese breakfast in this ryokan."
+        },
+        {
+          "time": "11:00",
+          "activity_name": "Yokohama Chinatown",
+          "location": {
+            "name": "Yokohama Chinatown",
+            "city": "Yokohama",
+            "coordinates": {
+              "latitude": 35.4434459,
+              "longitude": 139.6460909
+            },
+            "place_id": "ChIJ__-Le-9cGGARNY-CTSHwq5A",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPumvWz0pbbFv64nn69JOnc02aR7fphOoKvdqG7qM6ftar-6s2gGFLfeEAqptFkw6VweqoD5Hk7znp2a0S6i0X6GnMpkWC_xsNh-_8gi1tvt4OUKeUMNVp094RqVcWj1dJS-xBjfvXSktayoeP_z8YScVlQVn1tBaPbLA0XvGUNN7Vh&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Wander through one of the largest Chinatowns in the world, sampling street food and shopping for souvenirs."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Yokohama Landmark Tower",
+          "location": {
+            "name": "Yokohama Landmark Tower",
+            "city": "Yokohama",
+            "coordinates": {
+              "latitude": 35.45495400000001,
+              "longitude": 139.6313859
+            },
+            "place_id": "ChIJEaFmc11cGGARx8g0NQrvYTY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN9nzycqYnd4MPqInMgRUvZzOyb4jPoGi8Ov3Jy0gd-rQJRdu6l_-55FF-ZwIqPEDJaOZV3ece2LznMn313nrn4N6rqh1J6jqi7NC_kfKGHWzYwS8nbU62CFtndtOu1M94axUbMwPfT88igN1iXNx4LX2Amh7_5Reo_s20Cob6fALC4&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Visit this iconic skyscraper and enjoy panoramic views of the city from the observation deck."
+        },
+        {
+          "time": "17:00",
+          "activity_name": "Dinner at Chinese Restaurant in Chinatown",
+          "location": {
+            "name": "Chinese Restaurant in Chinatown",
+            "city": "Yokohama",
+            "coordinates": {
+              "latitude": 35.44327,
+              "longitude": 139.6454085
+            },
+            "place_id": "ChIJZ0wM8kVdGGAR8dQvdeP03Yk",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNX0R_IlxSjfc0RKykakaOmBPNMoBZRfp5KGm-9_AFIHs17nYbTKKJMb2QF-uL0F5bfwRbUk-YSQpPIs-HTL0PoNmMFwS3UwjNNbzpo4fUVWbL4bFPZCkgqtD_tL8XLaXh_BH52RoAJBTcc237hNX-_knCHezfCfhIJQ63lW-E6lOBL&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Dine at a famous restaurant in Chinatown to experience authentic Chinese cuisine."
         }
       ]
     },
     {
       "day": 5,
       "date": "2024-11-02",
-      "summary": "Departure from Tokyo, concluding your Japanese adventure with last-minute shopping and sightseeing.",
+      "summary": "Final day of the trip with departure.",
       "activities": [
         {
           "time": "09:00",
-          "activity_name": "Shopping at Akihabara Electric Town",
+          "activity_name": "Visit Yamashita Park",
           "location": {
-            "name": "Akihabara Electric Town",
-            "city": "Tokyo",
+            "name": "Yamashita Park",
+            "city": "Yokohama",
             "coordinates": {
-              "latitude": 35.6996473,
-              "longitude": 139.7713703
+              "latitude": 35.4457655,
+              "longitude": 139.6497793
             },
-            "place_id": "ChIJzdWdgh2MGGARh4kg2pVZL3c",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNxWTCUIx6fUTzrGPuknKBNUJh5kCdXXtZTTr8nstm6mMBN4pnp15Y_WzZoP-6V_I2sFrlfJ2SeayCM5OjMeQsHQMsNVrLoVfw6zN8mwmzkrfeYToYYOhvmVZ4s_cLV8HsrC6QMJ3ejL0wOX-1cDIyoMQNZ06qnhIGi8pIP2HjJ4cCK&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJt1e7seJcGGARbDdyYvFJuuM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN4dkS-IXObxo00xGDJ8Qtnm5Ou74OK0uN2m6m33QybLfAhRyYValHf7WpC3McE_stvjNlAj5sb8Lp3n77-qdTpnJa4oQdstymc-F72CeIFafzb-rljkPOcFTaN_nboqBxsgVgLV0acYU0GGEtWNEAbT71woH6ogiy5h84zxr5VwDHm&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Shop for electronics, anime merchandise, and souvenirs in this vibrant district."
+          "description": "Take a morning stroll in this beautiful waterfront park with lovely views."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch at a local izakaya in Akihabara",
+          "time": "11:00",
+          "activity_name": "Shopping at Minato Mirai 21",
           "location": {
-            "name": "Local Izakaya",
-            "city": "Tokyo",
+            "name": "Minato Mirai 21",
+            "city": "Yokohama",
             "coordinates": {
-              "latitude": 35.6833812,
-              "longitude": 139.7673171
+              "latitude": 35.4600798,
+              "longitude": 139.6324577
             },
-            "place_id": "ChIJgel7qFaLGGARoqTf13sT-Y8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMjs9b_X0UaSkv4BfrqQQH2aooizwOyq4c0v5MJEkpUrVmCWNbhGnoL__Xvf_HoA2s45c9yAKl30QGGQD5cspeUs1l_gqMQkdHxWqZKutt4d6Lu3vginmZyG5jhajviEMzbdqWYJEC61ERWGf6lg48nvcz5u-AF9JB1wg2KyJXVoXIR&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJ_-Fx-UJcGGARRLCtp76VLnA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNF8bi0b9VKmztktUglW8TAZYJE4KKiR7Awy1g4W2waseoqyvlDjz9wN4CvrOH2Z3jzW55gZraYemhzAdblVojIIw_qJDK7TU8sXQ6DO6KKGbxMIt-fZofSNaiDweqrFVJVwoNDpLZj2zOVhFPKP5hIoSkTVbS8bvRdu4HUHOEaaFje&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Enjoy a traditional Japanese meal in a casual setting at a local pub."
+          "description": "Explore this popular shopping district filled with boutiques and cafes."
+        },
+        {
+          "time": "12:30",
+          "activity_name": "Lunch at a Local Cafe",
+          "location": {
+            "name": "Local Cafe in Minato Mirai",
+            "city": "Yokohama",
+            "coordinates": {
+              "latitude": 35.4583578,
+              "longitude": 139.630913
+            },
+            "place_id": "ChIJa9SVMG5dGGARP0P5I9pq_FA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPkLlt8uzvuBWMzyeO2mFJBYCkIyQhOtFp_jNlaKzbW4u9g0qkNmAH6qrPK8H4HU3IAaQOp-UY0_wJmJP49hkoOquc5KoeETfwAXcCOKv41zoA4dmsGD3XuWQl1Gdnc6yHmDt3gFbnKbCKPQr4phJntcBkkaWU3Ko6g8QKHGItcld8D&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Grab a bite at a charming local cafe before heading to the airport."
         },
         {
           "time": "14:00",
-          "activity_name": "Final sightseeing at the Imperial Palace East Gardens",
+          "activity_name": "Departure from Yokohama",
           "location": {
-            "name": "Imperial Palace East Gardens",
-            "city": "Tokyo",
+            "name": "Yokohama",
+            "city": "Yokohama",
             "coordinates": {
-              "latitude": 35.6867824,
-              "longitude": 139.7571445
+              "latitude": 35.4436739,
+              "longitude": 139.6379639
             },
-            "place_id": "ChIJPfFaQhOMGGAR-QPbNQoAG6M",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMlUgE2VpCYknRivihJLPopqJ6Wp51R5OWY5T8YuXp-Jg_5JoUdEvgbFEyl0OFW9hN6wx_OZm2hze4Gv-zDK844ojkorTaYPe-cD0CLSzKEieAKq8iycMoSeLVmny8noYcqlc7ujlemi1OdZMx0A_pZ0UGmxYrmcZiRvOTdjlKT1yOy&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJCWW2u-xbGGARAFQoYPaDlgY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNo5vKQYwmK8YE3GdSuYUG9WysuJEkQ3kEVQLjcEt9Z4KJqz052OKz_Zdn8VnzwIGqTQTCDssVZJkBONcBDdsZQJTi_i0gYx61n_y5tTZfcnTlT0i75OJYq2TYVl-VQbdhcF4yY2zT1pj7UltL_m7dvsxFRitP4JNYewn7k0sRCbNFR&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Stroll through the beautiful gardens and learn about Japan's history and culture."
-        },
-        {
-          "time": "18:00",
-          "activity_name": "Departure from Tokyo",
-          "location": {
-            "name": "Tokyo",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.6812,
-              "longitude": 139.7671
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Wrap up your adventure and head to the airport for your departure."
+          "description": "Transfer to the airport for your departure."
         }
       ]
     }
