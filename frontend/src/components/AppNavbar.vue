@@ -20,12 +20,15 @@
         <li class="nav-item me-4">
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
+        <!-- <li class="nav-item me-4">
+          <router-link to="/myitinerary" class="nav-link">middle itinerary</router-link>
+        </li> -->
         <li class="nav-item me-4">
-          <router-link to="/myitineraries" class="nav-link">My itineraries</router-link>
+          <router-link to="/saveditinerary" class="nav-link">My itineraries</router-link>
         </li>
-        <li class="nav-item me-4">
-          <router-link to="/generateditinerary" class="nav-link">Generated Itineraries</router-link>
-        </li>
+        <!-- <li class="nav-item me-4">
+          <router-link to="/GenIti" class="nav-link">Generated Itineraries</router-link>
+        </li> -->
 
         <li>
           <img src="@/assets/profilepic.png" class="user-pic" alt="user-pic" @click="toggleMenu" />
