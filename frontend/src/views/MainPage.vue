@@ -40,9 +40,12 @@
         />
       </div>
 
+
+
       <!-- Overlay Content (Centered) -->
       <div class="overlay-content">
-        <p class="searchBarTitle">Where would you like to wander?</p>
+        <p class="searchBarTitle">Where Would You Like To Wander?</p>
+        <p class="searchBarSubtext">Discover new destinations and explore the world from your favourite Tiktok videos.</p>
         <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
         <LoadingBar :isLoading="isLoading" v-if="isLoading" />
         <div v-if="errorMessage">{{ errorMessage }}</div>
@@ -73,6 +76,7 @@ import LoadingBar from "@/components/LoadingBar.vue";
 import axios from "axios";
 import ExtractedLocations from "./ExtractedLocations.vue";
 import { inject } from "vue";
+
 
 export default {
   name: "MainPage",
@@ -219,8 +223,8 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-  z-index: -4; /* Places the overlay above the images but below the content */
+  background-color: rgba(0, 0, 0, 0.2); /* Black with 50% opacity */
+  z-index: 0; /* Places the overlay above the images but below the content */
 }
 
 .background {
@@ -231,6 +235,7 @@ html, body {
   height: 100vh;
   object-fit: cover;
   opacity: 0;
+  z-index: -1;
   transition: opacity 2s ease-in-out;
 }
 
@@ -255,19 +260,29 @@ html, body {
 h1,
 p {
   color: white;
-  margin: 0;
+  
   padding: 0;
 }
 
 .searchBarTitle {
-  display: block;         /* Ensures full-width for the title row */
-  font-size: 4rem;
-  margin: 20px 0;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: bold;
+  display: block;
+  font-size: 4.5rem;
+  margin: 0 0 5px 0; /* Reduce bottom margin to bring subtext closer */
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: bolder;
   color: white;
-  width: 100%;            /* Expands to fill the width of the container */
-  text-align: center;     /* Centers text within the full-width row */
+  text-align: center;
 }
+
+.searchBarSubtext {
+  display: block;
+  font-size: 1.5rem;
+  margin: 0 0 60px 0; /* Increase bottom margin to push search bar down */
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
 
 </style>
