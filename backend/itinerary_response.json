@@ -1,15 +1,15 @@
 {
   "country": "Japan",
-  "itinerary_summary": "A thrilling solo trip to Tokyo and Yokohama, immersing in culture, art, and delectable cuisine, with excursions to must-see attractions and unique experiences.",
+  "itinerary_summary": "This solo trip to Japan focuses on a blend of adventure activities and vibrant nightlife, exploring Tokyo's art and culture while indulging in unique culinary experiences.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-01",
-      "summary": "Arriving in Tokyo, explore the unique Fuji Television Network and savor Japanese cuisine nearby, followed by an artistic evening at the Tokyo Metropolitan Art Museum.",
+      "date": "2024-10-31",
+      "summary": "Arrival in Tokyo, exploring the Daiba area with an evening nightlife experience.",
       "activities": [
         {
-          "time": "09:00",
-          "activity_name": "Visit Fuji Television Network, Inc.",
+          "time": "10:00 AM",
+          "activity_name": "Fuji Television Network, Inc.",
           "location": {
             "name": "Fuji Television Network, Inc.",
             "city": "Minato City",
@@ -20,25 +20,62 @@
             "place_id": "ChIJQQ6UsPeJGGAR3LFE4U43_NQ",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN61kiRUmiNb2jhh4e2p1nv_mdFremcNXv0s_ag1NEDc-7MuKNX2nmvkf1qbuQOkYlT_oU3fziuTR2kdgdNcP2Ba8Mafo2-T-3dIa_3Snrc27nSjzweKXVKLWhcRTa2EvWWJBF5TNQfa-l5kC-Js06X8uqQ7M1CgXOQSqRj9PqD3DlT&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "A guided tour of the famous Fuji Television building, with exhibits on Japanese television and entertainment."
+          "description": "Visit the iconic Fuji Television headquarters and enjoy panoramic views from the 25th floor."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch at Uobei Shibuya Dogenzaka",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Yakiniku Jumbo",
           "location": {
-            "name": "Uobei Shibuya Dogenzaka",
-            "city": "Shibuya",
+            "name": "Yakiniku Jumbo",
+            "city": "Shinjuku",
             "coordinates": {
-              "latitude": 35.6594349,
-              "longitude": 139.6979207
+              "latitude": 35.6586,
+              "longitude": 139.7454
             },
-            "place_id": "ChIJaTXpw6mMGGARP-d-_tbssVE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN-9ow-dQa2vBwYDb6S_CcRbeLfVEYC7LDaB4tIm8zBMc3abTFdVwhm4QT5Yom4P35ilS3rsn0Ws2iqgq5cOUkOOb6V1OtIpZT9ROUOgr2nKS7UHl9p0H2K9l4OSdJve99nuRjB0adEGmPcV6qwyuijgwOa2p913K-8BW9QjejDq-7r&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "saved_places",
+            "photo_url": "https://images.unsplash.com/photo-1728839470502-59edad620f96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzAzMDk0ODN8&ixlib=rb-4.0.3&q=80&w=1080"
           },
-          "description": "Enjoy an innovative sushi experience at this revolving sushi train restaurant, where you can order via tablets."
+          "description": "Indulge in premium yakiniku (grilled meat) at this popular restaurant."
         },
         {
-          "time": "15:00",
+          "time": "4:00 PM",
+          "activity_name": "Explore Odaiba Seaside Park",
+          "location": {
+            "name": "Odaiba Seaside Park",
+            "city": "Tokyo",
+            "coordinates": {
+              "latitude": 35.6300488,
+              "longitude": 139.7756912
+            },
+            "place_id": "ChIJ18IK6x2KGGARKTc2yLS-030",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN3KeWpvbFcQpDw3NH8z-GWozYq9w1fG9A3TymPzk1_m_MqBTeiNRk_5m0gbV07KUvY01mq73cFdbgu5T_RCWSyve7oOBBtpbz_bgQG4O3eAunTq_xNx6Dk557uWUGlda2fc65ebDG3ttKsre2k70kistmt3euDXFRaobJ-oubSiP9s&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Stroll through this beautiful seaside park with stunning views of the Rainbow Bridge and Tokyo Bay."
+        },
+        {
+          "time": "9:00 PM",
+          "activity_name": "Nightlife at Tokyo Tower",
+          "location": {
+            "name": "Tokyo Tower",
+            "city": "Minato City",
+            "coordinates": {
+              "latitude": 35.6585805,
+              "longitude": 139.7454329
+            },
+            "place_id": "ChIJCewJkL2LGGAR3Qmk0vCTGkg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO59JDrIZsKcqYy6zsbuWlkkT4_DLHeqflnTr-bZYtjllaqEmENw2uJNFo9XriYnQTm_FwRqFhdi8v_bh7xEKS3-LS_Hzfn7L-T4yoUnMH4Zl5B0vbyEFckhOVwC-spPLUWXc6eImGmG5POpUxEtTLw8RkOLR704TzMJiYASraZ7N92&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Experience the nightlife and enjoy breathtaking views of Tokyo from the observation deck."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-01",
+      "summary": "A blend of culture and adventure in Tokyo, with a day focused on art and gourmet experiences.",
+      "activities": [
+        {
+          "time": "10:00 AM",
           "activity_name": "Tokyo Metropolitan Art Museum",
           "location": {
             "name": "Tokyo Metropolitan Art Museum",
@@ -50,33 +87,11 @@
             "place_id": "ChIJb_o7HiiMGGARUKu8uO7fGIQ",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOQpd0WuLg2uGSrFLbVVh2aQsc5or9C27B4nOGt-BBs1iwrY4myCC4TZVHfjgFbBUoJkuo8dt6FwXYJLVR3n8tDJU6uYv4Iok2X98JzLl4RH1k7uCVw1HQA3QIccNJels4HXcx2GDT0YpEzTV6o7Ra98235tJjB3L2mptojKiljikhm&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Discover both traditional and contemporary Japanese art at this impressive museum."
+          "description": "Explore the diverse art exhibitions and collections in this renowned museum."
         },
         {
-          "time": "18:00",
-          "activity_name": "Dinner at Tempura Kondo",
-          "location": {
-            "name": "Tempura Kondo",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.6711696,
-              "longitude": 139.7631786
-            },
-            "place_id": "ChIJX2Mb_eWLGGARvhx7F4hr3FA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMELyIMaIt4PkUomIBon2pUS0RtR4i0n0XVUJXm43vERHNXwuWL3-X1tgXuwy_sGM787wrSbkxOhaoTGIxy_AjdHC43QQh3N0ZihxUet1OD_2yBylFVNy7LGdztyKRmeHhRXxGYyEzO2zLNjEncxuPuzNN046lloxN50GaZRD18YYo&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Savor exquisite tempura dishes made with seasonal ingredients at this renowned tempura restaurant."
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "date": "2024-11-02",
-      "summary": "A day dedicated to Tokyo's traditional vibe and culinary experiences, supplemented with a visit to Yokohama's famous Cup Noodles Museum.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Stay at Ryokan Kamogawa",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Asakusa's RYOKAN KAMOGAWA",
           "location": {
             "name": "RYOKAN KAMOGAWA",
             "city": "Taito City",
@@ -87,10 +102,10 @@
             "place_id": "ChIJu3PU18COGGARhGkyiUJKEW8",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNmK2Wui_5XJU_nwGE0G1wphb_uq5lwnfpArGaTKeVVqAf-N1ClNVRW-BRT2dPsqUgNGd0Klulva5utxcjeZTZQbcMD40xTBAMpL_xzL9xnqNoTzXr1_zd4rEQTyP-7eQPBiONe6hF2xTeyG2SMHoddet4ybEiTEy4YJ3oPjyXVEGAU&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Experience a traditional ryokan stay, complete with tatami mats and futons."
+          "description": "Enjoy a traditional Japanese meal at this ryokan, experiencing authentic flavors."
         },
         {
-          "time": "11:00",
+          "time": "4:00 PM",
           "activity_name": "Visit Cup Noodles Museum Yokohama",
           "location": {
             "name": "Cup Noodles Museum Yokohama",
@@ -102,37 +117,89 @@
             "place_id": "ChIJ3ZNhe1dcGGARvjq5QHdmaHM",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMrwax75Rb_a3Hmulbql183i4R1xL7v0c6k9JGsbnvN7mx2KmA_4R3GxUSYurSofs75J0aZ2NOg5pvSPSGd2_LbNzf6SuBhCNiN7ETuuaQrgLI9410U9RvxpTgMHrlE2W12YOitFcaGtTx-DADwwvUiEjnyL04RdGtLhc5SNRHE1OSG&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Learn about the history of instant ramen and create your own unique cup noodles."
+          "description": "Learn about the history of instant noodles and create your own Cup Noodle."
         },
         {
-          "time": "15:00",
-          "activity_name": "Explore Shibuya Scramble Crossing",
+          "time": "8:00 PM",
+          "activity_name": "Tokyo Nightlife at Shibuya City",
           "location": {
-            "name": "Shibuya Scramble Crossing",
-            "city": "Shibuya",
+            "name": "Shibuya City",
+            "city": "Tokyo",
             "coordinates": {
-              "latitude": 35.659482,
-              "longitude": 139.7005596
+              "latitude": 35.6619707,
+              "longitude": 139.703795
             },
-            "place_id": "ChIJK9EM68qLGGARacmu4KJj5SA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMzapXqZxKH6JhWofA7kjCsrWz_g0IyRXnRRPf1ZgF8la9DCiu6Bt8T6_oBwuRGMSh-OuGpF_Mkj7f9OuHkJcFXGg3mCF2Xj1qSEBV7rySEj-Rj-amHGpVEN9TVMhUV_e2lbQY3I51khrkzDisZ0-6BffzoXrhYkSEhf7Mqe5yxDaQo&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJ0Qgx67KMGGARd2ZbObLZHPE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DORuM_Tz6q_kSWLS_N3FtviZxcAif_r5icCX2jsejIlfD7re6-UQutITetajgV68BKc37XYhnpNP7vbTsaqBzawsnB3vhYLvctBJSoxqW9QEZKGNEGamCFWYvGoQGDa2egvScTAom44HqZdjdmr6f1UbrVPAZMmXbdJmGGbM6QQXNPu&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Experience the bustling atmosphere at one of the most famous pedestrian crossings in the world."
+          "description": "Immerse yourself in the energetic nightlife of Tokyo, exploring bars and clubs in Shibuya."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-02",
+      "summary": "Leisurely morning and return trip, ensuring a last taste of Tokyo's culture.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Breakfast at a local cafe",
+          "location": {
+            "name": "Cafe de Paris",
+            "city": "Tokyo",
+            "coordinates": {
+              "latitude": 35.7318742,
+              "longitude": 139.7101442
+            },
+            "place_id": "ChIJPxG63F2NGGARqA1MlnZ1HU0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNOh1Dg9Aw4_kA5RBo_Pqn4PIh6JWFAacH__Cq6JQTlcXwuAxmOsV1jVHJc-i4Rfqfl9ey7iYvhYWm0Lbs9LmdhvMvVqj7Zh3acFXuzAWBN7Xz8roBx565XxDVMLiBPzUj_ZsWbjWsgefN6wXcTF7nCnSX-RVwh9ZTydoH_07e-B7_s&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Enjoy a hearty breakfast at a charming cafe in Tokyo."
         },
         {
-          "time": "18:00",
-          "activity_name": "Dinner at Ichiran Shibuya",
+          "time": "12:00 PM",
+          "activity_name": "Last-minute shopping in Ginza",
           "location": {
-            "name": "Ichiran Shibuya",
-            "city": "Shibuya",
+            "name": "Ginza",
+            "city": "Tokyo",
             "coordinates": {
-              "latitude": 35.6611185,
-              "longitude": 139.7009846
+              "latitude": 35.6712228,
+              "longitude": 139.7664859
             },
-            "place_id": "ChIJOWucdKiMGGARbppa4b4CKA8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMep4VBHarW6183TuBDlUDOlGkTlQTl2fCw6UJBpwus3aedAvVqqDb5yh5I0hdJEKG0QGCX9kxbyV1vcoBCf1p2Dqbf165JovFIZOpxfRSwYvrATqHWlWOVXr56Hm6WJmDnuI1UWjR33-QfZGSNL-ovWOHEYvpAU8Q8EddXXiBM6TM&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJu2-DAeeLGGARUZipC7OFRmA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPBz1txzDietVMtrzmNlOWgA_gRKjcoYCOrKIUpWX8zNJocwWMCD3K5FBssQvo-XZiqGIQvAVlOIMpVFv2x2WWrnP-ZQnrqZTJm79Jyx025L4gHtM9lnmEd5-WZ711EJY3LGsANZrggiohYIBIRcEY-zu2T-wmNiPxgK1TYxV3jR_6H&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Indulge in authentic tonkotsu ramen at the popular, individually-focused dining experience."
+          "description": "Wander through Ginza's upscale shops, boutiques, and department stores."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Visit Senso-ji Temple",
+          "location": {
+            "name": "Senso-ji Temple",
+            "city": "Tokyo",
+            "coordinates": {
+              "latitude": 35.7147651,
+              "longitude": 139.7966553
+            },
+            "place_id": "ChIJ8T1GpMGOGGARDYGSgpooDWw",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DORoxL2BCcBPhMoX5Ai9I_1jQ8VOFLzVcA3DKVRthKmnRbbTmpHdmUAflKUT5G_JQ_mp7dygK2aVPE6oBfFOIaxiY6HL6_FZa_2Ndq16PI4tdJ0to8NkXJ8fIpTKlYpITZp91lRDQeN8WE9yNXqqiNa2gAukBVLOtHVwsdluiHB1YRj&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Explore Tokyo's oldest temple and the beautiful Nakamise street leading up to it."
+        },
+        {
+          "time": "6:00 PM",
+          "activity_name": "Departure from Tokyo",
+          "location": {
+            "name": "Tokyo International Airport",
+            "city": "Tokyo",
+            "coordinates": {
+              "latitude": 35.5482964,
+              "longitude": 139.7779951
+            },
+            "place_id": "ChIJ45IxpAtkGGAR3_hG0anDMg0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP5RySoN4lp08BSyRS86meKORKM23MdCw_K4-4hCQbLJL-hjeAPLSOqHBCvpu3dJ_Q0iti6VaQdeLBDspAay5inIKSDETDflhcf19MXwVaQnHYg--tyriUphFVJ-IZCuecNhYUMCgItEaB2TM2g92g_zCWSXEv5nl6aGT3WsloZxoSA&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Head to the airport for your departure, reflecting on your Tokyo adventure."
         }
       ]
     }

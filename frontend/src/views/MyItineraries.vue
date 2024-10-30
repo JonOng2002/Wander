@@ -6,8 +6,12 @@
       </div>
       <h2 class="header-title">Your Itinerary</h2>
       <div class="header-buttons">
-        <button @click="removeAllPlaces" class="remove-all-button">Remove All</button>
-        <button @click="generateItinerary" class="generate-button">Generate Itinerary</button>
+        <button @click="removeAllPlaces" class="remove-all-button">
+          Remove All
+        </button>
+        <button @click="generateItinerary" class="generate-button">
+          Generate Itinerary
+        </button>
       </div>
     </div>
     <div v-if="loading">
@@ -17,12 +21,20 @@
       <p>No places in the itinerary.</p>
     </div>
     <div v-else class="itinerary-grid">
-      <div v-for="place in itineraryPlaces" :key="place.place_id" class="place-card">
-        <img :src="place.image" alt="Image of {{ place.name }}" class="place-image" />
+      <div
+        v-for="place in itineraryPlaces"
+        :key="place.place_id"
+        class="place-card" :style="{ backgroundImage: `url(${place.image})` }"
+      >
+        <div class="overlay"></div>
         <div class="place-info">
           <h3 class="place-name">{{ place.name }}</h3>
-          <p class="place-location">{{ place.vicinity }}, {{ place.country }}</p>
-          <button @click="removePlace(place.place_id)" class="remove-button">✖</button>
+          <p class="place-location">
+            {{ place.vicinity }}, {{ place.country }}
+          </p>
+          <button @click="removePlace(place.place_id)" class="remove-button">
+            ✖
+          </button>
         </div>
       </div>
     </div>
@@ -30,14 +42,14 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { gsap } from "gsap";
 
 export default {
-  name: 'MyItinerary',
+  name: "MyItinerary",
   setup() {
     const itineraryPlaces = ref([]); // Itinerary places from Firebase
     const loading = ref(true); // Loading state
@@ -50,29 +62,30 @@ export default {
       const user = auth.currentUser;
       if (user) {
         try {
-          const userDocRef = doc(db, 'users', user.uid); // Reference to the user's document
+          const userDocRef = doc(db, "users", user.uid); // Reference to the user's document
           const userDoc = await getDoc(userDocRef); // Fetch the user document
           if (userDoc.exists()) {
             const data = userDoc.data();
             itineraryPlaces.value = data.generatedItineraries || []; // Set itinerary places
-            console.log('Fetched Itinerary from Firebase:', itineraryPlaces.value);
+            console.log(
+              "Fetched Itinerary from Firebase:",
+              itineraryPlaces.value
+            );
           } else {
-            console.error('User document not found.');
+            console.error("User document not found.");
           }
         } catch (error) {
-          console.error('Error fetching itinerary:', error);
+          console.error("Error fetching user document:", error);
         } finally {
-          loading.value = false; // Stop loading after fetch
+          loading.value = false; // Set loading to false once data is fetched
         }
-      } else {
-        console.error('User not authenticated.');
-        loading.value = false; // Stop loading if no user is logged in
       }
     });
 
-
     const removePlace = async (placeId) => {
-      itineraryPlaces.value = itineraryPlaces.value.filter(place => place.place_id !== placeId);
+      itineraryPlaces.value = itineraryPlaces.value.filter(
+        (place) => place.place_id !== placeId
+      );
       await updateItineraryInFirestore();
     };
 
@@ -88,7 +101,7 @@ export default {
           // Clear itinerary places after animation completes
           itineraryPlaces.value = []; // Use itineraryPlaces.value instead of this.itineraryPlaces
           await updateItineraryInFirestore(); // Call the update function
-        }
+        },
       });
     };
 
@@ -105,20 +118,27 @@ export default {
     const updateItineraryInFirestore = async () => {
       const user = auth.currentUser;
       if (user) {
-        const userDocRef = doc(db, 'users', user.uid);
-        await updateDoc(userDocRef, { generatedItineraries: itineraryPlaces.value });
+        const userDocRef = doc(db, "users", user.uid);
+        await updateDoc(userDocRef, {
+          generatedItineraries: itineraryPlaces.value,
+        });
       }
     };
 
-    return { itineraryPlaces, removePlace, removeAllPlaces, generateItinerary, goBack };
-  }
+    return {
+      itineraryPlaces,
+      removePlace,
+      removeAllPlaces,
+      generateItinerary,
+      goBack,
+    };
+  },
 };
 </script>
 
-
 <style scoped>
 h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-weight: bolder;
 }
 
@@ -158,21 +178,42 @@ h2 {
 
 .itinerary-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  padding: 2rem;
 }
 
 .place-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   position: relative;
-  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  color: #ffffff;
 }
 
 .place-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay styling */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Slightly opaque background */
+  z-index: 1;
+  border-radius: inherit;
 }
 
 .place-image {
@@ -182,17 +223,27 @@ h2 {
 }
 
 .place-info {
-  padding: 15px;
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
 }
 
 .place-name {
-  font-size: 1.2rem;
-  margin: 0 0 5px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
 }
 
 .place-location {
-  margin: 0;
+  font-size: 0.9rem;
+  color: #e1e1e1;
+  margin-top: 0.3rem;
 }
+
 
 .remove-button {
   position: absolute;
@@ -227,5 +278,18 @@ h2 {
 .back-button:hover {
   background-color: #0057d9;
   color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .itinerary-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .itinerary-grid {
+    grid-template-columns: 1fr; /* 1 item per row on small screens */
+  }
 }
 </style>

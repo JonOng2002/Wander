@@ -48,7 +48,7 @@ setPersistence(auth, browserLocalPersistence).catch((error) => {
 
 // Initialize Google Maps API using Loader
 const loader = new Loader({
-    apiKey: '', // Replace with your actual API key
+    apiKey: 'AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk', // Replace with your actual API key
     version: 'weekly',
     libraries: ['places'],
 });
