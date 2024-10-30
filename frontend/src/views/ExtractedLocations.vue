@@ -293,96 +293,8 @@ html {
   scroll-behavior: smooth;
 }
 
-.contentbar {
-  position: fixed;
-  top: 40%;
-  left: 65px;
-  width: 200px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: white;
-  border-radius: 5px;
-  z-index: 1019;
-  overflow-y: auto;
-  transition: transform 0.3s ease;
-  /* Smooth transition */
-  transform: translateX(-100%);
-  /* Initially hidden off-screen */
-}
-
-.contentbar.slide-in {
-  transform: translateX(-33%);
-  /* Slide in */
-}
-
-.contentbar.slide-out {
-  transform: translateX(-200%);
-  /* Slide out */
-}
-
-.arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-right: 5px;
-  /* Space between arrow and text */
-  border-top: 5px solid transparent;
-  /* Create the top point */
-  border-bottom: 5px solid transparent;
-  /* Create the bottom point */
-  border-left: 10px solid white;
-  /* Create the arrow color */
-  transition: transform 0.3s ease;
-  /* Transition effect for rotation */
-}
 
 
-
-.arrow-rotated {
-  transform: rotate(180deg);
-  /* Rotate the arrow */
-}
-
-.arrow-toggle {
-  position: fixed;
-  top: 37%;
-  /* Position it in the middle of the screen */
-  left: 0;
-  /* Keep some space from the left edge */
-  transform: translateY(-50%);
-  /* Center it vertically */
-  cursor: pointer;
-  z-index: 2020;
-  /* Ensure it's above other elements */
-  transition: transform 0.3s ease;
-  /* Smooth transition */
-}
-
-
-
-.nav-item {
-  margin-bottom: 10px;
-}
-
-.nav-link {
-  color: black;
-  font-size: 1.1rem;
-  text-decoration: none;
-
-}
-
-.nav-link:hover {
-  /*text-decoration: underline;*/
-  color: white;
-  background-color: black;
-}
-
-.nav-link.active {
-  font-weight: bold;
-  color: white;
-  background-color: black;
-
-}
 
 /* .btn {
   background-color: lightgray;
@@ -578,7 +490,10 @@ li {
   /* Changes cursor to hand on hover */
 }
 
-
+.card-text{
+  font-weight: normal;
+  font-size: large;
+}
 
 /* Adjust other related styles if necessary */
 </style>
