@@ -53,8 +53,7 @@
             <h5 class="card-title">Location</h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
-              <li class="list-group-item"><b>Latitude:</b> {{ locationInfo.coordinates.latitude }} <b>Longitude:</b> {{
-                locationInfo.coordinates.longitude }}</li>
+              
             </ul>
 
             <!-- Map Toggle Button and Map -->
@@ -122,7 +121,7 @@
             <h5 class="card-title">Location</h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
-              <li class="list-group-item"><b>Latitude:</b> {{ place.coordinates.latitude }} <b>Longitude:</b> {{ place.coordinates.longitude }}</li>
+              
             </ul>
             <!-- Related Places Map Section -->
             <button @click="place.mapVisible = !place.mapVisible" class="btn btn-dark mb-3">
@@ -369,7 +368,7 @@ html {
 }
 
 .related-places-header {
-  font-family: 'Garamond', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: x-large;
@@ -377,7 +376,7 @@ html {
 }
 
 .related-header, .extracted-header, .video-header{
-  font-family: 'Garamond', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: smaller;
@@ -399,7 +398,7 @@ html {
   overflow: auto;
   text-align: center;
   background-color: #f0f6ff;
-  font-family: 'Garamond', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
 }
 
 .card-title {
