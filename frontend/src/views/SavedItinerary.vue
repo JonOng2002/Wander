@@ -8,17 +8,15 @@
             </div>
         </div>
         <!-- Section 1 -->
-        <div class="d-flex flex-column flex-lg-row position-relative headerbox" >
-            <div class="col-lg-4 col-md-12 col-sm-12 p-0 one"
-            @click="viewDestinations">
+        <div class="d-flex flex-column flex-lg-row position-relative headerbox">
+            <div class="col-lg-4 col-md-12 col-sm-12 p-0 one" @click="viewDestinations">
                 <a href="#" class="section-link">
                     <img src="@/assets/countries/singapore.jpg" alt="Image 1" class="img-fluid w-100" />
                     <div class="overlay-text">Discover New Locations</div>
                     <div class="gradientoverlay"></div>
                 </a>
             </div>
-            <div class="col-lg-4 col-md-12 col-sm-12 p-0 one d-none d-md-block"
-            @click="viewSavedPlaces">
+            <div class="col-lg-4 col-md-12 col-sm-12 p-0 one d-none d-md-block" @click="viewSavedPlaces">
                 <div class="gradientoverlay"></div>
                 <a href="#" class="section-link">
                     <img src="@/assets/countries/united_arab_emirates.jpg" alt="Image 2" class="img-fluid w-100" />
@@ -35,13 +33,10 @@
         </div>
     </div>
 
+    
 
 
 
-    <!-- <header id="headercard">
-        <div class="header_image"></div>
-
-    </header> -->
 
     <!-- <div class="sticky-top">
         <div class="row justify-content-between align-items-center sticky-header g-0">
@@ -708,6 +703,7 @@ export default {
 </script>
 
 <style scoped>
+/* ******************** header  container ******************* */
 /* General styling for grid items */
 .container-fluid {
     position: relative;
@@ -762,7 +758,8 @@ export default {
     color: white;
     text-decoration: none;
     height: 100%;
-    width: 100%; /* Full width */
+    width: 100%;
+    /* Full width */
 }
 
 .img-fluid {
@@ -794,16 +791,18 @@ export default {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     /* Replace gradient with a solid black with opacity */
-    transition: background-color 0.3s ease; /* Smooth transition for brightness on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for brightness on hover */
     z-index: 1;
 }
 
 .one:hover .gradientoverlay {
-    background-color: rgba(0, 0, 0, 0.0); /* Make overlay lighter on hover */
+    background-color: rgba(0, 0, 0, 0.0);
+    /* Make overlay lighter on hover */
 }
 
 .one {
-    transition: transform 0.3s ease,background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
     /* Smooth transition */
 }
 
@@ -857,28 +856,8 @@ export default {
     }
 }
 
-/* ****************************************************** */
-header {
-    position: relative;
-    overflow: hidden;
-    height: 60vh;
-}
 
-.header_image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("@/assets/background_header.jpeg");
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-}
-
-
-
-/* ************************************* */
+/* ******************** stickbar container ******************* */
 /* header sicky styling */
 .sticky-top {
     position: sticky;
@@ -1013,6 +992,8 @@ header {
 
 }
 
+
+/* ***************** saved itinerary container *************** */
 /* ************************************************ */
 /* Page layout styling */
 .saved-itineraries-container {
@@ -1099,6 +1080,11 @@ header {
     z-index: 1;
 }
 
+.single-itinerary-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 
 .single-itinerary-card .card-body {
     position: absolute;
@@ -1108,6 +1094,7 @@ header {
     color: white;
     padding: 10px;
     box-sizing: border-box;
+
 }
 
 .single-itinerary-card .card-title {
@@ -1127,6 +1114,13 @@ header {
     color: white;
     margin-top: 5px;
     padding-left: 3px;
+}
+
+.single-itinerary-card:hover {
+    transform: scale(1.05);
+    /* Slightly scale up the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Add a stronger shadow */
 }
 
 
@@ -1269,11 +1263,6 @@ header {
     font-size: 0.875rem;
     color: #555;
     margin: 2px 0;
-}
-
-.small-card:hover {
-    border-color: #666;
-    color: #666;
 }
 
 .scroll-buttons {
