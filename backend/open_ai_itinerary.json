@@ -1,323 +1,184 @@
 {
-  "itinerary_summary": "This itinerary takes you on a cultural and culinary adventure through Beijing and Chongqing, highlighting must-see attractions, famous dishes like Peking Duck, and thrilling experiences along the Yangtze River.",
+  "country": "Japan",
+  "itinerary_summary": "This solo trip to Japan focuses on a blend of adventure activities and vibrant nightlife, exploring Tokyo's art and culture while indulging in unique culinary experiences.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-10-29",
-      "summary": "Arrive in Beijing and immerse yourself in local culture and culinary delights.",
+      "date": "2024-10-31",
+      "summary": "Arrival in Tokyo, exploring the Daiba area with an evening nightlife experience.",
       "activities": [
         {
           "time": "10:00 AM",
-          "activity_name": "Forbidden City, Beijing",
+          "activity_name": "Fuji Television Network, Inc.",
           "location": {
-            "name": "Forbidden City",
-            "city": "Beijing",
+            "name": "Fuji Television Network, Inc.",
+            "city": "Minato City",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 35.626605,
+              "longitude": 139.774056
             },
-            "place_id": "ChIJi2pZuupS8DURuhedj1w4lcA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPhm4w3Qs1iyPJb-SHgFC9nj2CNbH8eYpOf4ywLhidvHAZCbrAzK1j3qgeSeztFKuQY0QRXOlXcM2R61Nj-4VDI8XbPn7AlF5vQil_j8fUZ_4ce4BTndsxnckKQrec9LaWwLrPofOTLbxp7dwKRefVRrJssFourWI3Bu23B6ALJHxc"
+            "place_id": "ChIJQQ6UsPeJGGAR3LFE4U43_NQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN61kiRUmiNb2jhh4e2p1nv_mdFremcNXv0s_ag1NEDc-7MuKNX2nmvkf1qbuQOkYlT_oU3fziuTR2kdgdNcP2Ba8Mafo2-T-3dIa_3Snrc27nSjzweKXVKLWhcRTa2EvWWJBF5TNQfa-l5kC-Js06X8uqQ7M1CgXOQSqRj9PqD3DlT&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
           },
-          "description": "Explore the vast palace complex that was the imperial palace for the Ming and Qing dynasties."
+          "description": "Visit the iconic Fuji Television headquarters and enjoy panoramic views from the 25th floor."
         },
         {
           "time": "1:00 PM",
-          "activity_name": "Lunch at Quanjude Roast Duck Restaurant, Beijing",
+          "activity_name": "Lunch at Yakiniku Jumbo",
           "location": {
-            "name": "Quanjude Roast Duck Restaurant",
-            "city": "Beijing",
+            "name": "Yakiniku Jumbo",
+            "city": "Shinjuku",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 35.6586,
+              "longitude": 139.7454
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "saved_places",
+            "photo_url": "https://images.unsplash.com/photo-1728839470502-59edad620f96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzAzMDk0ODN8&ixlib=rb-4.0.3&q=80&w=1080"
           },
-          "description": "Enjoy the famous Peking Duck at this iconic restaurant known for its traditional cuisine."
+          "description": "Indulge in premium yakiniku (grilled meat) at this popular restaurant."
         },
         {
-          "time": "3:00 PM",
-          "activity_name": "Tiananmen Square, Beijing",
+          "time": "4:00 PM",
+          "activity_name": "Explore Odaiba Seaside Park",
           "location": {
-            "name": "Tiananmen Square",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Odaiba Seaside Park",
+            "city": "Tokyo",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit one of the largest public squares in the world and learn about its historical significance."
+          "description": "Stroll through this beautiful seaside park with stunning views of the Rainbow Bridge and Tokyo Bay."
         },
         {
-          "time": "6:00 PM",
-          "activity_name": "Dinner at Da Dong Roast Duck, Beijing",
+          "time": "9:00 PM",
+          "activity_name": "Nightlife at Tokyo Tower",
           "location": {
-            "name": "Da Dong Roast Duck",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Tokyo Tower",
+            "city": "Minato City",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience another take on Beijing Duck at this acclaimed restaurant praised for its innovative cuisine."
+          "description": "Experience the nightlife and enjoy breathtaking views of Tokyo from the observation deck."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-10-30",
-      "summary": "Discover the historical and cultural offerings of Beijing along with local delicacies.",
+      "date": "2024-11-01",
+      "summary": "A blend of culture and adventure in Tokyo, with a day focused on art and gourmet experiences.",
       "activities": [
         {
-          "time": "9:00 AM",
-          "activity_name": "Summer Palace, Beijing",
+          "time": "10:00 AM",
+          "activity_name": "Tokyo Metropolitan Art Museum",
           "location": {
-            "name": "Summer Palace",
-            "city": "Beijing",
+            "name": "Tokyo Metropolitan Art Museum",
+            "city": "Taito City",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 35.7172113,
+              "longitude": 139.7729387
             },
+            "place_id": "ChIJb_o7HiiMGGARUKu8uO7fGIQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOQpd0WuLg2uGSrFLbVVh2aQsc5or9C27B4nOGt-BBs1iwrY4myCC4TZVHfjgFbBUoJkuo8dt6FwXYJLVR3n8tDJU6uYv4Iok2X98JzLl4RH1k7uCVw1HQA3QIccNJels4HXcx2GDT0YpEzTV6o7Ra98235tJjB3L2mptojKiljikhm&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Explore the diverse art exhibitions and collections in this renowned museum."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Asakusa's RYOKAN KAMOGAWA",
+          "location": {
+            "name": "RYOKAN KAMOGAWA",
+            "city": "Taito City",
+            "coordinates": {
+              "latitude": 35.7121877,
+              "longitude": 139.7957151
+            },
+            "place_id": "ChIJu3PU18COGGARhGkyiUJKEW8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNmK2Wui_5XJU_nwGE0G1wphb_uq5lwnfpArGaTKeVVqAf-N1ClNVRW-BRT2dPsqUgNGd0Klulva5utxcjeZTZQbcMD40xTBAMpL_xzL9xnqNoTzXr1_zd4rEQTyP-7eQPBiONe6hF2xTeyG2SMHoddet4ybEiTEy4YJ3oPjyXVEGAU&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Enjoy a traditional Japanese meal at this ryokan, experiencing authentic flavors."
+        },
+        {
+          "time": "4:00 PM",
+          "activity_name": "Visit Cup Noodles Museum Yokohama",
+          "location": {
+            "name": "Cup Noodles Museum Yokohama",
+            "city": "Yokohama",
+            "coordinates": {
+              "latitude": 35.4554755,
+              "longitude": 139.6388669
+            },
+            "place_id": "ChIJ3ZNhe1dcGGARvjq5QHdmaHM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMrwax75Rb_a3Hmulbql183i4R1xL7v0c6k9JGsbnvN7mx2KmA_4R3GxUSYurSofs75J0aZ2NOg5pvSPSGd2_LbNzf6SuBhCNiN7ETuuaQrgLI9410U9RvxpTgMHrlE2W12YOitFcaGtTx-DADwwvUiEjnyL04RdGtLhc5SNRHE1OSG&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+          },
+          "description": "Learn about the history of instant noodles and create your own Cup Noodle."
+        },
+        {
+          "time": "8:00 PM",
+          "activity_name": "Tokyo Nightlife at Shibuya City",
+          "location": {
+            "name": "Shibuya City",
+            "city": "Tokyo",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Take a scenic stroll through this beautiful imperial garden, a UNESCO World Heritage site."
-        },
-        {
-          "time": "12:00 PM",
-          "activity_name": "Lunch at Wangfujing Street Food Market, Beijing",
-          "location": {
-            "name": "Wangfujing Street Food Market",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy tasting a variety of local street food, including skewers and dumplings."
-        },
-        {
-          "time": "3:00 PM",
-          "activity_name": "Beijing Shejitan, Dongcheng",
-          "location": {
-            "name": "Beijing Shejitan",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "ChIJi2pZuupS8DURuhedj1w4lcA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPhm4w3Qs1iyPJb-SHgFC9nj2CNbH8eYpOf4ywLhidvHAZCbrAzK1j3qgeSeztFKuQY0QRXOlXcM2R61Nj-4VDI8XbPn7AlF5vQil_j8fUZ_4ce4BTndsxnckKQrec9LaWwLrPofOTLbxp7dwKRefVRrJssFourWI3Bu23B6ALJHxc"
-          },
-          "description": "Visit the historical site known for its cultural significance and intricate architecture."
-        },
-        {
-          "time": "6:00 PM",
-          "activity_name": "Dinner at Siji Minfu Roast Duck Restaurant, Beijing",
-          "location": {
-            "name": "Siji Minfu Roast Duck Restaurant",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Savor another famous Peking Duck in a cozy restaurant atmosphere."
+          "description": "Immerse yourself in the energetic nightlife of Tokyo, exploring bars and clubs in Shibuya."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-10-31",
-      "summary": "Travel to Chongqing for a day of exploration and adventure.",
+      "date": "2024-11-02",
+      "summary": "Leisurely morning and return trip, ensuring a last taste of Tokyo's culture.",
       "activities": [
-        {
-          "time": "8:00 AM",
-          "activity_name": "Flight to Chongqing from Beijing",
-          "location": {
-            "name": "Chongqing Jiangbei International Airport",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Take an early morning flight to Chongqing."
-        },
         {
           "time": "10:00 AM",
-          "activity_name": "Ci Qi Kou Ancient Town, Chongqing",
+          "activity_name": "Breakfast at a local cafe",
           "location": {
-            "name": "Ci Qi Kou Ancient Town",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Cafe de Paris",
+            "city": "Tokyo",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore this well-preserved historical town with shops and local snacks."
-        },
-        {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Chongqing Hot Pot Restaurant, Chongqing",
-          "location": {
-            "name": "Chongqing Hot Pot Restaurant",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Indulge in authentic Chongqing Hot Pot, known for its spicy broth."
-        },
-        {
-          "time": "3:00 PM",
-          "activity_name": "Yangtze River Cruise, Chongqing",
-          "location": {
-            "name": "Yangtze River",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy a scenic cruise along the majestic Yangtze River."
-        },
-        {
-          "time": "6:00 PM",
-          "activity_name": "Dinner at Jiefangbei Square, Chongqing",
-          "location": {
-            "name": "Jiefangbei Square",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Dine at a local restaurant in this bustling commercial area, famous for local specialties."
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "date": "2024-11-01",
-      "summary": "Finish your visit with thrilling adventures and culinary experiences in Chongqing.",
-      "activities": [
-        {
-          "time": "9:00 AM",
-          "activity_name": "Three Gorges Museum, Chongqing",
-          "location": {
-            "name": "Three Gorges Museum",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Learn about the history and culture of the Yangtze River and its gorges."
+          "description": "Enjoy a hearty breakfast at a charming cafe in Tokyo."
         },
         {
           "time": "12:00 PM",
-          "activity_name": "Lunch at Mala Tang Restaurant, Chongqing",
+          "activity_name": "Last-minute shopping in Ginza",
           "location": {
-            "name": "Mala Tang Restaurant",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Ginza",
+            "city": "Tokyo",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience the unique and spicy flavors of Mala Tang, a popular Chongqing dish."
+          "description": "Wander through Ginza's upscale shops, boutiques, and department stores."
         },
         {
           "time": "3:00 PM",
-          "activity_name": "Explore Hongya Cave, Chongqing",
+          "activity_name": "Visit Senso-ji Temple",
           "location": {
-            "name": "Hongya Cave",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Senso-ji Temple",
+            "city": "Tokyo",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit this famous cliffside attraction that showcases traditional architecture and shopping."
+          "description": "Explore Tokyo's oldest temple and the beautiful Nakamise street leading up to it."
         },
         {
-          "time": "7:00 PM",
-          "activity_name": "Final Dinner at Chongqing Yangtze River Grill, Chongqing",
+          "time": "6:00 PM",
+          "activity_name": "Departure from Tokyo",
           "location": {
-            "name": "Chongqing Yangtze River Grill",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Tokyo International Airport",
+            "city": "Tokyo",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a wonderful final meal with scenic views of the Yangtze River."
-        }
-      ]
-    },
-    {
-      "day": 5,
-      "date": "2024-11-02",
-      "summary": "Depart from Chongqing and return home with unforgettable memories.",
-      "activities": [
-        {
-          "time": "10:00 AM",
-          "activity_name": "Last-minute shopping at Jiefangbei Shopping District, Chongqing",
-          "location": {
-            "name": "Jiefangbei Shopping District",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Pick up souvenirs and enjoy the vibrant atmosphere."
-        },
-        {
-          "time": "1:00 PM",
-          "activity_name": "Departure from Chongqing Jiangbei International Airport",
-          "location": {
-            "name": "Chongqing Jiangbei International Airport",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Catch your flight back home, reflecting on a wonderful trip."
+          "description": "Head to the airport for your departure, reflecting on your Tokyo adventure."
         }
       ]
     }

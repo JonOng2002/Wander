@@ -1,265 +1,313 @@
 <template>
   <div class="generated-itinerary">
-    <AppNavbar class="sticky-top" v-if="false"></AppNavbar> <!-- Navbar hidden on this page -->
+    <AppNavbar class="sticky-top"></AppNavbar>
 
-    <!-- If Loading / generatedItinerary is empty -->
-    <div v-if="loading" class="empty-message">Loading itinerary...</div>
-    <div v-else-if="!generatedItinerary.length" class="empty-message">
-      <div class="row justify-content-between align-items-center sticky-header g-0">
-        <div class="col-3 date-column">
-          <h2>My Itineraries</h2>
-        </div>
-      </div>
-      <div class="no-itinerary-message">
-        <p>No itinerary generated. Please <router-link to="/savedPlaces">add places</router-link> to generate an
-          itinerary.</p>
-      </div>
-    </div>
+    <!-- Show Overlay.vue when loading -->
+    <Overlay v-if="loading" />
 
-    <!-- When Itinerary exists -->
-    <div v-else class="main-content">
-      <div class="row no-gutters">
+    <!-- Main Content (only displayed when loading is false) -->
+    <div v-else class="content">
+
+      <div class="main-content row g-0">
         <!-- Left Side: Itinerary Details -->
-        <div class="col-md-6 itinerary-details-container">
+        <div class="itinerary-details-container">
+          <div class="user-info">
+        <h4>Review our recommendations for your trip</h4>
+        <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2>
+        <h4>{{ country }} • {{ getNumDays }} days</h4>
+      
+          <button @click="saveToItinerary" class="save-itinerary-button">
+              Save Itinerary
+            </button>
+          </div>
           <div class="itinerary-details">
-            <div class="row justify-content-between align-items-center g-0">
-              <div class="col-12 date-column">
-                <p>Review our recommendations</p>
-                <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2>
-                <p>{{ country }} • {{ getNumDays }} days</p>
+            <div
+              v-for="(day, index) in itinerary?.day_by_day_itineraries || []"
+              :key="index"
+              class="day-section"
+            >
+              <div class="day-header">
+                Day {{ day.day }} : {{ day.date }}
               </div>
-              <!-- Save Itinerary Button -->
-              <button @click="navigateToSavedItinerary" type="button" class="save-button">Save Itinerary</button>
-            </div>
+              <div class="day-description">{{ day.summary }}</div>
 
-            <div v-for="(places, dayIndex) in splitIntoDays(generatedItinerary)" :key="dayIndex" class="day-section">
-              <div class="day-header">Day {{ dayIndex + 1 }}</div>
-              <p class="day-description">
-                Embark on a captivating journey through Japan’s diverse cultural and historical gems. Your adventure
-                begins with a visit to the Cup Noodles Museum Yokohama, a fascinating tribute to the history of
-                instant noodles and innovation in the world of food. Immerse yourself in interactive exhibits that
-                showcase the humble beginnings of this global staple, while also crafting your personalized cup
-                noodles as a souvenir.
-                Following this, unwind at Shichifuku No Yu, a tranquil hot spring located in Toda. This peaceful
-                retreat offers an authentic Japanese bathing experience where you can relax and rejuvenate in
-                mineral-rich baths amidst serene surroundings.
-              </p>
-              <div class="itinerary-table">
-                <div class="itinerary-row" v-for="(place, timeIndex) in places" :key="timeIndex">
-                  <div class="time-column">{{ generateTime(timeIndex) }}</div>
+              <!-- Activity Grid with Two Items Per Row -->
+              <div
+                class="activity-grid"
+                v-if="day.activities && day.activities.length"
+              >
+                <div
+                  class="itinerary-item"
+                  v-for="(activity, actIndex) in day.activities"
+                  :key="actIndex"
+                  @click="focusOnActivity(activity)"
+                >
+                  <div class="time-column">{{ activity.time }}</div>
                   <div class="place-column">
-                    <img :src="place.image" class="place-image" :alt="place.name" />
-                    <h5>{{ place.name }}</h5>
-                    <p>{{ place.vicinity }}</p>
+                    <h5>{{ activity.activity_name }}</h5>
+                    <p>
+                      <em>Location:</em>
+                      {{ activity.location?.name || 'Unknown location' }}
+                    </p>
+                    <img
+                      v-if="activity.location.photo_url"
+                      :src="activity.location.photo_url"
+                      class="place-image"
+                      :alt="activity.activity_name"
+                    />
                   </div>
                 </div>
               </div>
+              <p v-else>No activities available for this day.</p>
             </div>
           </div>
         </div>
 
-        <!-- Right Side: Google Maps -->
-        <div class="col-md-6 map-container">
-          <!-- Overlay "X" button -->
-          <button class="close-button" @click="closeItinerary">×</button>
-          <div id="location-map" class="map">
-            <GoogleMap :center="mapCenter" :zoom="15" style="width: 100%; height: 100%">
-              <Marker v-for="place in generatedItinerary" :key="place.place_id"
-                :position="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" />
+        <!-- Right Side: Google Map -->
+        <div class="map-container">
+          <div v-if="isMapReady" id="location-map" class="map">
+            <GoogleMap
+              :api-promise="apiPromise"
+              :center="mapCenter"
+              :zoom="15"
+              style="width: 100%; height: 100%"
+            >
+              <CustomMarker
+                v-for="(activity, index) in allActivities"
+                :key="index"
+                :options="{
+                  position: {
+                    lat: activity.location?.coordinates?.latitude || 0,
+                    lng: activity.location?.coordinates?.longitude || 0,
+                  },
+                  anchorPoint: 'BOTTOM_CENTER',
+                }"
+                @click="focusOnActivity(activity) "
+              >
+              <div
+    :class="{
+      'marker-selected': selectedActivity === activity,
+    }"
+    style="text-align: center"
+  >
+    <div>{{ activity.location?.name }}</div>
+    <img
+      src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
+      width="50"
+      height="50"
+      style="margin-top: 8px"
+      :class="{ 'selected-marker-image': selectedActivity === activity }"
+    />
+  </div>
+              </CustomMarker>
             </GoogleMap>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Save to My Itineraries Button
-      <button @click="saveToItinerary" class="btn save-itinerary-button">Save to My Itineraries</button>   -->
+    <div v-if="showPopup" class="popup">
+      <p>Itinerary saved successfully!</p>
     </div>
   </div>
 </template>
 
-<script>
-import { ref, inject, onMounted, computed } from "vue";
-import { getFirestore, doc, getDoc, updateDoc, arrayUnion,} from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-// import { setDoc } from "firebase/firestore";
-import { GoogleMap, Marker } from 'vue3-google-map';
-import router from "@/router";
+<script setup>
+import { ref, onMounted, computed } from 'vue';
+import axios from 'axios';
+import router from '@/router';
+import { inject, watch } from 'vue';
+import { GoogleMap, CustomMarker } from 'vue3-google-map';
+import { getAuth } from 'firebase/auth';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { db } from '@/main';
+import Overlay from '@/views/overlayPage.vue'; // Ensure this is the correct path
 
-export default {
-  name: "GeneratedItinerary",
-  components: {
-    GoogleMap,
-    Marker,
-  },
-  setup() {
-    const generatedItinerary = ref([]);
-    const db = getFirestore();
-    const userName = ref(""); // Define userName as a ref
-    const country = ref("");  // Define country as a ref
-    const loading = ref(true);
-    const timeSlots = ['09:00 AM', '11:00 AM', '02:00 PM', '04:00 PM'];
-    const mapCenter = ref({ lat: 35.6762, lng: 139.6503 });  // Default center for Tokyo, Japan
+const apiPromise = inject('apiPromise');
 
+const userName = ref('');
+const itinerary = ref(null);
+const loading = ref(true);
+const errorMessage = ref(null);
+const isMapReady = ref(false);
+const mapCenter = ref({ lat: 0, lng: 0 });
+const allActivities = ref([]);
+const country = ref('');
+const showPopup = ref(false);
+const selectedActivity = ref(null);
+const getNumDays = computed(() => itinerary.value?.day_by_day_itineraries?.length || 0);
 
-    // Inject the globally provided apiPromise
-    const apiPromise = inject('apiPromise');
+// Construct data to send
+const {
+  start,
+  end,
+  tripType,
+  countryCode,
+  itinerary: itineraryData,
+  selectedTags,
+} = router.currentRoute.value.query;
+const parsedItinerary = itineraryData ? JSON.parse(itineraryData) : [];
+const parsedTags = selectedTags ? JSON.parse(selectedTags) : [];
 
-    // Helper function to assign time slots to places
-    const generateTime = (index) => {
-      return timeSlots[index % timeSlots.length];
-    };
-
-    // Mock function to split itinerary into days, say each day has 4 places
-    const splitIntoDays = (itinerary) => {
-      const days = [];
-      const daySize = 4;  // Number of places per day
-      for (let i = 0; i < itinerary.length; i += daySize) {
-        days.push(itinerary.slice(i, i + daySize));
-      }
-      return days;
-    };
-
-    // Dynamically compute the number of days
-    const getNumDays = computed(() => {
-      return Math.ceil(generatedItinerary.value.length / 4);
-    });
-
-    // Fetch data from Firestore
-    onMounted(async () => {
-      loading.value = true;
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      if (user) {
-        const userId = user.uid;
-        const userRef = doc(db, "users", userId);
-
-        console.log("Current user:", auth.currentUser);
-
-        try {
-          const userDoc = await getDoc(userRef);
-          if (userDoc.exists()) {
-            generatedItinerary.value = userDoc.data().generatedItineraries || [];
-
-            if (generatedItinerary.value.length > 0) {
-              const firstPlace = generatedItinerary.value[0];
-              country.value = firstPlace.country || "Unknown Location";
-              mapCenter.value = { lat: firstPlace.coordinates.latitude, lng: firstPlace.coordinates.longitude };
-            }
-
-            userName.value = user.displayName || "Guest";
-          }
-
-          // Wait for Google Maps API to be ready
-          await apiPromise;
-          console.log('Google Maps API loaded successfully via main.js');
-          
-        } catch (error) {
-          console.error("Error getting generatedItinerary:", error);
-        } finally {
-          loading.value = false;
-        }
-      } else {
-        console.error("User is not authenticated");
-        loading.value = false;
-      }
-    });
-
-
-    // Function to save the itinerary to the Firestore database
-    const saveItinerary = async () => {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      if (user) {
-        const userId = user.uid;
-        const itineraryToSave = {
-          itinerary: generatedItinerary.value,  // Ensure this contains image URLs
-          country: country.value,               // Country name
-          numDays: getNumDays.value,            // Number of days
-          savedAt: new Date().toISOString(),    // Timestamp for itinerary was saved
-          userName: user.displayName || "Guest"            // Include the user's name here as well
-        };
-
-        try {
-          await updateDoc(doc(db, "users", userId), {
-            savedItineraries: arrayUnion(itineraryToSave) // Add the itinerary to saved itineraries
-          });
-          console.log("Itinerary saved to savedItineraries successfully");
-          console.log(generatedItinerary.value); // Check if all places have the 'image' field
-
-        } catch (error) {
-          console.error("Error saving itinerary:", error);
-        }
-      } else {
-        console.error("User is not authenticated");
-      }
-    };
-
-    const closeItinerary = () => {
-      router.push({ name: 'SavedItinerary' }); // Adjust this route if needed
-    };
-
-    const navigateToSavedItinerary = () => {
-      saveItinerary();
-      router.push({ name: "SavedItinerary" });
-    }
-
-    return {
-      generatedItinerary,
-      loading,
-      splitIntoDays,
-      generateTime,
-      getNumDays,
-      mapCenter,
-      closeItinerary,
-      navigateToSavedItinerary,
-      userName,
-      country,
-    };
-  },
+const dataToSend = {
+  startDate: start || 'Missing start date',
+  endDate: end || 'Missing end date',
+  tripType: tripType || 'Missing trip type',
+  countryCode: countryCode || 'Missing country code',
+  itinerary: parsedItinerary,
+  tags: parsedTags,
 };
+
+// Fetch user name
+const fetchUserName = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user) {
+    userName.value = user.displayName || 'Guest';
+  }
+};
+
+// Function to save itinerary to Firestore
+const saveToItinerary = async () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  if (user && itinerary.value) {
+    const userRef = doc(db, 'users', user.uid);
+    const itineraryToSave = {
+      itinerary: itinerary.value,
+      country: country.value,
+      createdAt: new Date(),
+    };
+    try {
+      await updateDoc(userRef, {
+        savedItineraries: arrayUnion(itineraryToSave),
+      });
+      showPopup.value = true;
+      setTimeout(() => (showPopup.value = false), 3000);
+    } catch (error) {
+      console.error('Error saving itinerary:', error);
+    }
+  } else {
+    console.warn(
+      'Cannot save itinerary: missing itinerary data or user not authenticated'
+    );
+  }
+};
+
+// Submit data to backend and log response
+const submitData = async () => {
+  errorMessage.value = null;
+
+  try {
+    const response = await axios.post(
+      'http://127.0.0.1:5000/generate-itinerary',
+      dataToSend,
+      {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+    console.log('Backend Response:', response.data);
+    itinerary.value = response.data;
+    allActivities.value = itinerary.value.day_by_day_itineraries.flatMap(
+      (day) => day.activities
+    );
+    if (allActivities.value.length > 0) {
+  const firstActivity = allActivities.value[0];
+  if (firstActivity.location && firstActivity.location.coordinates) {
+    mapCenter.value = {
+      lat: firstActivity.location.coordinates.latitude,
+      lng: firstActivity.location.coordinates.longitude,
+    };
+  }
+  country.value = response.data.country || 'Unknown Country';
+}
+  } catch (error) {
+    errorMessage.value = 'Failed to generate itinerary.';
+    console.error(
+      'Error during itinerary generation:',
+      error.response ? error.response.data : error
+    );
+  } finally {
+    loading.value = false;
+  }
+};
+
+const focusOnActivity = (activity) => {
+  if (activity.location && activity.location.coordinates) {
+    mapCenter.value = {
+      lat: activity.location.coordinates.latitude,
+      lng: activity.location.coordinates.longitude,
+    };
+    selectedActivity.value = activity; // Optional: for highlighting or info windows
+  } else {
+    console.warn('Activity does not have valid location coordinates.');
+  }
+};
+
+watch(mapCenter, (newCenter) => {
+  console.log('Map center updated to:', newCenter);
+  // Add any additional logic here, such as animating the map
+});
+
+
+onMounted(async () => {
+  fetchUserName();
+  await submitData();
+
+  try {
+    await apiPromise;
+    isMapReady.value = true;
+    console.log('Google Maps API loaded successfully');
+  } catch (error) {
+    console.error('Error loading Google Maps API:', error);
+  }
+});
 </script>
 
 <style scoped>
-/* Save Itinerary Button */
-.save-button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  display: inline-block;
-  margin-top: 20px;
-  float: right;
+/* Styles from your second code block */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+/* General styling */
+.generated-itinerary {
+  font-family: 'Source Sans 3', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.save-button:hover {
-  background-color: #555;
+.sticky-top {
+  top: 0;
+  position: sticky;
+  z-index: 1020;
+  background-color: black;
 }
 
-/* Main Content Layout */
+.user-info {
+  padding: 20px;
+}
+
+.user-info h2 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 3rem;
+}
+
 .main-content {
   display: flex;
   height: 100vh;
-  overflow: hidden;
-  /* Prevent page-level scrolling */
 }
 
-/* Itinerary Container Styling */
+/* Itinerary Details */
 .itinerary-details-container {
+  position: relative; /* Added */
   width: 55%;
   overflow-y: auto;
-  /* Only scroll the itinerary content */
   max-height: 100vh;
   padding-right: 10px;
-  padding-top: 60px;
+  padding-top: 0px;
 }
 
 .itinerary-details {
-  padding: 20px;
+  padding: 0 20px 20px 20px;
 }
 
 .itinerary-details::-webkit-scrollbar {
@@ -267,7 +315,7 @@ export default {
 }
 
 .itinerary-details::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background: #f1f1f1;
 }
 
 .itinerary-details::-webkit-scrollbar-thumb {
@@ -278,7 +326,6 @@ export default {
   background-color: #555;
 }
 
-/* Consistent Section Styling */
 .day-section {
   margin-bottom: 20px;
   background-color: #fdfdfd;
@@ -298,10 +345,9 @@ export default {
   color: #666;
 }
 
-.itinerary-table {
+.activity-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  /* Two items per row */
   gap: 15px;
 }
 
@@ -336,30 +382,64 @@ export default {
 
 /* Map Container */
 .map-container {
+  background-color: #f8f9fa;
   width: 45%;
   position: sticky;
   top: 0;
   height: 100vh;
-  background-color: #F8F9FA;
   overflow: hidden;
 }
 
 .map {
   width: 100%;
   height: 100%;
-  pointer-events: none;
 }
 
-/* Consistent Close Button Styling */
+/* Save Itinerary Button */
+.save-itinerary-button {
+  background-color: #007bff; /* Blue background for visibility */
+  border: none;
+  color: white; /* White text for contrast */
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Source Sans 3', sans-serif;
+  padding: 10px 20px; /* Adequate padding */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 20px; /* Space above the button */
+}
+
+.save-itinerary-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  color: #ffffff;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Close Button (if needed) */
 .close-button {
   position: absolute;
   top: 10px;
-  right: 22px;
+  right: 10px;
   width: 40px;
   height: 40px;
   border: 2px solid #888;
-  background-color: white;
   padding-bottom: 6px;
+  background-color: white;
   border-radius: 50%;
   font-size: 1.5rem;
   display: flex;
@@ -376,41 +456,28 @@ export default {
   color: #666;
 }
 
-.save-itinerary-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.itinerary-item {
+  cursor: pointer; /* Indicates clickable */
 }
 
-.save-itinerary-button:hover {
-  background-color: #0056b3;
+.itinerary-item:hover {
+  background-color: #e9ecef; /* Light hover effect */
 }
 
-.popup {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: green;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  opacity: 1;
-  transition: opacity 0.3s ease;
+.marker-selected {
+  border: 2px solid #007bff;
+  border-radius: 50%;
 }
 
+.selected-marker-image {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+/* Media query for responsiveness */
 @media (max-width: 768px) {
   .map-container {
     display: none;
-    /* Hide map on smaller screens */
   }
 
   .itinerary-details-container {

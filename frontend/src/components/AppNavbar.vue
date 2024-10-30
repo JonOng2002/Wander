@@ -26,9 +26,6 @@
         <li class="nav-item me-4">
           <router-link to="/saveditinerary" class="nav-link">My itineraries</router-link>
         </li>
-        <!-- <li class="nav-item me-4">
-          <router-link to="/GenIti" class="nav-link">Generated Itineraries</router-link>
-        </li> -->
 
         <li>
           <img src="@/assets/profilepic.png" class="user-pic" alt="user-pic" @click="toggleMenu" />

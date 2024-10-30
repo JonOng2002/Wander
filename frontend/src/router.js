@@ -17,6 +17,7 @@ import TagsPage from '@/views/TagsPage.vue';
 import MyItineraries from '@/views/MyItineraries.vue';
 import LocationDate from '@/views/LocationDate.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import OverlayPage from '@/views/overlayPage.vue';
 
 
 // Combined routes from both HEAD and Dominic's branch
@@ -54,6 +55,7 @@ const routes = [
       itinerary: route.query.itinerary ? JSON.parse(route.query.itinerary) : []
     })
   },
+  { path: '/overlay', name: 'OverlayPage', component: OverlayPage },
 ];
 
 // Router instance with Firebase authentication logic

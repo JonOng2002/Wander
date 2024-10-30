@@ -24,8 +24,8 @@
           <span class="arrow-down">&#9662;</span>
         </button>
         <ul :style="{ display: showDropdowns.sort ? 'block' : 'none' }" class="dropdown-menu">
-          <li @click="selectSort('default')">Top Destinations</li>
-          <li @click="selectSort('alphabetical')">Alphabetical Order</li>
+          <li @click.stop="selectSort('default')">Top Destinations</li>
+          <li @click.stop="selectSort('alphabetical')">Alphabetical Order</li>
           
         </ul>
       </div>
@@ -37,13 +37,13 @@
           <span class="arrow-down">&#9662;</span>
         </button>
         <ul :style="{ display: showDropdowns.filter ? 'block' : 'none' }" class="dropdown-menu">
-          <li @click="selectContinent('')">All Continents</li>
-          <li @click="selectContinent('Europe')">Europe</li>
-          <li @click="selectContinent('Asia')">Asia</li>
-          <li @click="selectContinent('North America')">North America</li>
-          <li @click="selectContinent('South America')">South America</li>
-          <li @click="selectContinent('Oceania')">Oceania</li>
-          <li @click="selectContinent('Africa')">Africa</li>
+          <li @click.stop="selectContinent('')">All Continents</li>
+          <li @click.stop="selectContinent('Europe')">Europe</li>
+          <li @click.stop="selectContinent('Asia')">Asia</li>
+          <li @click.stop="selectContinent('North America')">North America</li>
+          <li @click.stop="selectContinent('South America')">South America</li>
+          <li @click.stop="selectContinent('Oceania')">Oceania</li>
+          <li @click.stop="selectContinent('Africa')">Africa</li>
         </ul>
       </div>
     </div>
@@ -572,7 +572,9 @@ export default {
 
     toggleDropdown(type) {
       // Toggle the dropdown visibility
-      this.showDropdowns[type] = !this.showDropdowns[type];
+      Object.keys(this.showDropdowns).forEach(key => {
+    this.showDropdowns[key] = (key === type) ? !this.showDropdowns[key] : false;
+  });
     },
 
     selectSort(order) {
@@ -620,10 +622,14 @@ html, body {
 
 /*====== HEADER ======*/
 
+
 header {
   position: relative;
   overflow: hidden;
-  height: 60vh;
+  min-height: 60vh; /* Minimum height to prevent cutoffs */
+  display: flex;
+  align-items: center; /* Center contents vertically */
+  justify-content: center;
 }
 
 .header_image {
@@ -633,28 +639,28 @@ header {
   width: 100%;
   height: 100%;
   background-image: url("@/assets/background_header.jpeg");
-  background-size: cover;
+  background-size: cover; /* Prevents cropping */
   background-position: center;
+  background-repeat: no-repeat;
   z-index: -1;
 }
 
 .header_container {
-  position: absolute;
-  bottom: 20px;
-  left: 50px;
-  z-index: 1;
-  text-align: left;
+  text-align: center;
   color: white;
+  max-width: 90%;
+  margin: 0 auto;
+  z-index: 1;
 }
 
 header .content h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
+  margin-bottom: 0.5rem;
 }
-
 header content h4 {
   color: hsl(0, 0%, 70%);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
@@ -925,7 +931,7 @@ header content h4 {
   }
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 576px) {
   .container {
     margin-inline: 1rem;
   }
@@ -934,6 +940,56 @@ header content h4 {
     width: 250px;
     padding: 1rem;
   }
+
+  header {
+    height: 40vh; /* Reduced height for small screens */
+  }
+
+  header .content h1 {
+    font-size: 1.5rem;
+  }
+
+  header .content h4 {
+    font-size: 0.8rem;
+  }
+
+  .header_container {
+    padding: 5px;
+  }
+
+  .secondary_header {
+    text-align: left;
+    padding-left: 1rem; /* Add padding to give some spacing from the edge */
+  }
+
+  .secondary_content h2 {
+    font-size: 1.2rem; /* Adjust to a smaller size */
+    margin-bottom: 0.5rem;
+  }
+
+  .secondary_content h5 {
+    font-size: 1rem; /* Smaller size for supporting text */
+    color: rgb(166, 163, 163);
+  }
+
+    /* Arrange filter buttons side-by-side */
+    .filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .dropdown-btn {
+    width: 60%; /* Full width on small screens */
+    margin-bottom: 0.5rem;
+  }
+
+
+  .dropdown-btn {
+    width: 60%;
+    padding: 0.8rem;
+  }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -941,6 +997,24 @@ header content h4 {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 1.5rem;
   }
+
+  header {
+    height: 50vh; /* Slightly reduced height for medium screens */
+  }
+
+  header .content h1 {
+    font-size: 2.5rem;
+  }
+
+  header .content h4 {
+    font-size: 1.1rem;
+  }
+
+  .header_container {
+    padding: 15px;
+  }
+
+  
 }
 
 @media screen and (min-width: 1024px) {
@@ -959,6 +1033,22 @@ header content h4 {
   .card_data {
     width: 316px;
     padding-inline: 2.5rem;
+  }
+
+  header {
+    height: 60vh; /* Maintain default height for large screens */
+  }
+
+  header .content h1 {
+    font-size: 3rem;
+  }
+
+  header .content h4 {
+    font-size: 1.25rem;
+  }
+
+  .header_container {
+    padding: 20px;
   }
 }
 </style>

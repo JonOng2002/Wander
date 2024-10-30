@@ -1079,6 +1079,7 @@ export default {
     box-sizing: border-box;
 }
 
+
 .single {
     display: flex;
     flex-direction: column;
@@ -1087,6 +1088,21 @@ export default {
     width: 100%;
     max-width: 1200px;
     /* Controls the width of the entire card layout */
+    margin: 0 auto;
+}
+
+/* Centered large card when there's only one itinerary */
+/* Single large card centered and filling the container */
+.single-itinerary-card {
+    width: 100vW;
+    max-width: 800px;
+    margin: 20px auto;      
+    height: 65vh;
+    /* Adjust this value as needed for desired screen coverage */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px; /* Controls the width of the entire card layout */
     margin: 0 auto;
 }
 

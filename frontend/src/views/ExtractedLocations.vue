@@ -1,128 +1,185 @@
 <template>
   <hr>
   <div class="page-fade-in">
-    
-    <button @click="toggleNavbar" class="btn btn-dark toggle-button arrow-toggle">
-  <span class="arrow" :class="{ 'arrow-rotated': arrowRotated }"></span>
 
-</button>
 
-    <!-- Sidebar Navigation -->
-    <div :class="['contentbar', { 'slide-in': navbarVisible, 'slide-out': !navbarVisible }]">
-      <ul class="nav flex-column">
-        <li v-for="(place, index) in navItems" :key="index" class="nav-item">
-          <a :class="['nav-link', place.active ? 'active' : '']" :href="`#${place.name.replace(/\s+/g, '-').toLowerCase()}`">{{ place.name }}</a>
-          <hr v-if="index === 0 && relatedPlaces.length > 0" class="related-divider">
-        </li>
-      </ul>
+
+    <!-- Row of Location Images -->
+    <div class="row mb-4 mx-4">
+      <div v-for="(place, index) in allImages" :key="index" class="col-3">
+        <!-- Add cursor-pointer class to make cursor appear as a hand -->
+        <div class="card h-100 position-relative cursor-pointer" @click="scrollToCard(place.place_name)">
+          <img :src="place.place_png" @error="handleImageError" class="card-img-top w-100 h-100 card-href"
+            :alt="`Image of ${place.place_name}`" style="object-fit: cover;">
+          <div class="overlay text-center">
+            <h5 class="card-title">{{ place.place_name }}</h5>
+          </div>
+        </div>
+      </div>
     </div>
 
-  <h3 class="page-header">Extracted locations</h3>
+
+    <p class="header-interested mb-5 mt-2">Interested? Scroll down for more info</p>
+    <br><br>
+
+    <p class="video-header">From your video</p>
+    <p class="header-main">Main location</p>
 
 
-  <!-- Location Information -->
-  <div v-if="locationInfo" :id="locationInfo.place_name.replace(/\s+/g, '-').toLowerCase() || 'main-location'" class="card mx-auto mb-5" style="width: 40rem;">
-    <img :src="locationInfo.place_png" @error="handleImageError" class="card-img-top" alt="Image of {{ locationInfo.place_name }}">
-    <div class="card-body pb-0">
-      <h5 class="card-title">{{ locationInfo.place_name }}</h5>
-      <p class="card-text">{{ locationInfo.location_summary }}</p>
+    <!-- Horizontal Location Information Card -->
+    <div v-if="locationInfo" :id="locationInfo.place_name.replace(/\s+/g, '-').toLowerCase() || 'main-location'"
+      class="card mb-5 mx-auto" style="max-width: 1000px;">
+      <div class="row g-0">
+
+        <!-- Image Section -->
+        <div class="col-md-6">
+          <img :src="locationInfo.place_png" @error="handleImageError" class="img-fluid rounded-start"
+            alt="Image of {{ locationInfo.place_name }}" style="height: 100%; object-fit: cover;">
+        </div>
+
+        <!-- Content Section -->
+        <div class="col-md-6">
+          <div class="card-body pb-0">
+            <h5 class="card-title">{{ locationInfo.place_name }}</h5>
+            <p class="card-text">{{ locationInfo.location_summary }}</p>
+          </div>
+
+          <hr>
+
+          
+
+          <!-- Location Details -->
+          <div class="card-body py-0">
+            <h5 class="card-title">Location</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
+              
+            </ul>
+
+            <!-- Map Toggle Button and Map -->
+            <button @click="mainMapVisible = !mainMapVisible" class="btn btn-dark mb-3">
+              {{ mainMapVisible ? 'Hide Map' : 'Show Map' }}
+            </button>
+
+            <transition name="map">
+              <div v-if="mainMapVisible" id="location-map" class="map">
+                <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
+                  :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }"
+                  :zoom="15">
+                  <CustomMarker
+                :key="index"
+                :options="{
+                  position: {
+                    lat: locationInfo?.coordinates?.latitude || 0,
+                    lng: locationInfo?.coordinates?.longitude || 0,
+                  },
+                  anchorPoint: 'BOTTOM_CENTER',
+                  
+                }">
+                 <div style="text-align: center">
+        <div style="font-size: 1.125rem">{{ locationInfo.place_name }}</div>
+        <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="1px" height="1px" style="margin-top: 8px" />
+        </div>
+              </CustomMarker>
+                </GoogleMap>
+              </div>
+            </transition>
+          </div>
+
+          <hr>
+
+          <!-- Save Place Button -->
+          <div class="card-body pt-0">
+            <save-place-button class='btn btn-dark' @place-saved="handlePlaceSaved" :placeName="locationInfo.place_name"
+              :country="locationInfo.country" :city="locationInfo.city" :latitude="locationInfo.coordinates.latitude"
+              :longitude="locationInfo.coordinates.longitude" :placePng="locationInfo.place_png" :userId="userId"
+              :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces">
+            </save-place-button>
+          </div>
+
+        </div>
+      </div>
     </div>
-    <hr>
-    <div class="card-body py-0">
-      <h5 class="card-title">Location</h5>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
-        <li class="list-group-item"><b>Latitude:</b> {{ locationInfo.coordinates.latitude }} <b>Longitude:</b> {{ locationInfo.coordinates.longitude }}</li>
+
+
+    <!-- Popup for confirmation -->
+    <div v-if="showPopup" class="popup">
+      <p>Added to saved places!</p>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- Related Places Section -->
+    <div v-if="relatedPlaces.length" >
+      <p class="related-header">Related Places</p>
+  <p class="related-places-header">You might also be interested in...</p>
+  <ul style="list-style-type: none; padding: 0; margin: 0;">
+    <li v-for="place in relatedPlaces" :key="place.place_name"
+      :id="place.place_name.replace(/\s+/g, '-').toLowerCase()" class="card mx-auto mb-5" style="max-width: 1000px;">
+      
+      <div class="row g-0"> <!-- Use Bootstrap's row class for horizontal alignment -->
+        <!-- Image Section -->
+        <div class="col-md-6"> <!-- Adjust column size as needed -->
+          <img :src="place.place_png" class="img-fluid rounded-start" alt="Image of {{ place.place_name }}"
+            @error="handleImageError" style="height: 100%;  object-fit: cover;"> <!-- Ensure image fits well -->
+        </div>
         
-      </ul>
-      <!-- Extracted Location Map Section -->
-      <button @click="mainMapVisible = !mainMapVisible" class="btn btn-dark mb-3">
-  {{ mainMapVisible ? 'Hide Map' : 'Show Map' }}
-</button>
-
-<transition name="map">
-  <div v-if="mainMapVisible" id="location-map" class="map">
-    <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
-      :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }" :zoom="15">
-      <Marker :options="{ position: { lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude } }" />
-    </GoogleMap>
-  </div>
-</transition>
-
-    </div>
-    
-    <hr>
-    <div class="card-body pt-0">
-      <save-place-button class='btn btn-dark' @place-saved="handlePlaceSaved"
-        :placeName="locationInfo.place_name" :country="locationInfo.country"
-        :city="locationInfo.city" :latitude="locationInfo.coordinates.latitude"
-        :longitude="locationInfo.coordinates.longitude" :placePng="locationInfo.place_png" :userId="userId"
-        :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces">
-      </save-place-button>
-    </div>
-  </div>
-
-  <!-- Popup for confirmation -->
-  <div v-if="showPopup" class="popup">
-    <p>Added to saved places!</p>
-  </div>
-
-  
-  <!-- Related Places Section -->
-  <div v-if="relatedPlaces.length">
-    <h2 class="related-places-header">Related Places</h2>
-    <ul style="list-style-type: none; /* Remove default list styling */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */">
-      <li v-for="place in relatedPlaces" :key="place.place_name" :id="place.place_name.replace(/\s+/g, '-').toLowerCase()" class="card mx-auto mb-5" style="width: 40rem;">
-        <img :src="place.place_png" class="card-img-top" alt="Image of {{ place.place_name }}" @error="handleImageError">
-        <div class="card-body pb-0">
-          <h5 class="card-title">{{ place.place_name }}</h5>
-          <p class="card-text">{{ place.location_summary }}</p>
+        <!-- Content Section -->
+        <div class="col-md-6"> <!-- Adjust column size as needed -->
+          <div class="card-body">
+            <h5 class="card-title">{{ place.place_name }}</h5>
+            <p class="card-text">{{ place.location_summary }}</p>
+            <hr>
+            <h5 class="card-title">Location</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
+              
+            </ul>
+            <!-- Related Places Map Section -->
+            <button @click="place.mapVisible = !place.mapVisible" class="btn btn-dark mb-3">
+              {{ place.mapVisible ? 'Hide Map' : 'Show Map' }}
+            </button>
+            <transition name="map">
+              <div v-if="place.mapVisible" id="location-map" class="map">
+                <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
+                  :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
+                  <CustomMarker
+                :key="index"
+                :options="{
+                  position: {
+                    lat: place.coordinates?.latitude || 0,
+                    lng: place.coordinates?.longitude || 0,
+                  },
+                  anchorPoint: 'BOTTOM_CENTER',
+                }">
+                <div style="text-align: center">
+        <div style="font-size: 1.125rem">{{ place.place_name }}</div>
+        <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="10" height="10" style="margin-top: 8px" />
         </div>
-        <hr>
-        <div class="card-body py-0">
-          <h5 class="card-title">Location</h5>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
-            <li class="list-group-item"><b>Latitude:</b> {{ place.coordinates.latitude }} <b>Longitude:</b> {{ place.coordinates.longitude }}</li>
-            
-          </ul>
-          <!-- Related Places Map Section -->
-<button @click="place.mapVisible = !place.mapVisible" class="btn btn-dark mb-3">
-  {{ place.mapVisible ? 'Hide Map' : 'Show Map' }}
-</button>
-
-<!-- Transition element for the sliding effect -->
-<transition name="map">
-  <div v-if="place.mapVisible" id="location-map" class="map">
-    <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
-      :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
-      <Marker :options="{ position: { lat: place.coordinates.latitude, lng: place.coordinates.longitude } }" />
-    </GoogleMap>
-  </div>
-</transition>
-
-
+              </CustomMarker>
+                </GoogleMap>
+              </div>
+            </transition>
+            <hr>
+            <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved" :placeName="place.place_name"
+              :country="place.country" :city="place.city" :latitude="place.coordinates.latitude"
+              :longitude="place.coordinates.longitude" :placePng="place.place_png" :userId="userId"
+              :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces">
+            </save-place-button>
+          </div>
         </div>
-        <hr>
-        <div class="card-body pt-0">
-          <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved"
-            :placeName="place.place_name" :country="place.country"
-            :city="place.city" :latitude="place.coordinates.latitude"
-            :longitude="place.coordinates.longitude" :placePng="place.place_png" :userId="userId"
-            :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces">
-          </save-place-button>
-        </div>
-      </li>
-    </ul>
-  </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
   </div>
 </template>
 
 <script>
 import SavePlaceButton from '@/components/SavePlaceButton.vue';
-import { GoogleMap, Marker } from 'vue3-google-map';
+import { GoogleMap, CustomMarker} from 'vue3-google-map';
 
 
 
@@ -132,7 +189,7 @@ export default {
   components: {
     SavePlaceButton,
     GoogleMap,    // Register GoogleMap component
-    Marker        // Register Marker component
+    CustomMarker       // Register Marker component
   },
   props: {
     locationInfo: Object,
@@ -154,6 +211,15 @@ export default {
       arrowRotated: false, // New property to track arrow rotation
     };
   },
+  computed: {
+    allImages() {
+      const images = [];
+      if (this.locationInfo) images.push(this.locationInfo); // Add main location image
+      if (this.relatedPlaces.length) images.push(...this.relatedPlaces); // Add related places images
+      return images;
+    }
+  },
+
 
   methods: {
     handlePlaceSaved() {
@@ -162,11 +228,24 @@ export default {
         this.showPopup = false;
       }, 2000);
     },
+    scrollToCard(placeName) {
+      const sectionId = placeName.replace(/\s+/g, '-').toLowerCase(); // Transform the name to match the ID
+      const targetSection = document.getElementById(sectionId); // Find the target section
+
+      if (targetSection) {
+        const offsetTop = targetSection.getBoundingClientRect().top + window.scrollY - 100; // Adjust -100 as needed
+
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth',
+    });
+      }
+    },
 
     toggleNavbar() {
-    this.navbarVisible = !this.navbarVisible;
-    this.arrowRotated = !this.arrowRotated; // Toggle the rotation state on button click
-  },
+      this.navbarVisible = !this.navbarVisible;
+      this.arrowRotated = !this.arrowRotated; // Toggle the rotation state on button click
+    },
 
     generateNavItems() {
       const items = [];
@@ -176,7 +255,7 @@ export default {
           id: this.locationInfo.place_name,
           name: this.locationInfo.place_name,
           active: true,
-          
+
         });
       }
 
@@ -239,81 +318,8 @@ html {
   scroll-behavior: smooth;
 }
 
-.contentbar {
-  position: fixed;
-  top: 40%;
-  left: 65px;
-  width: 200px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: white;
-  border-radius: 5px;
-  z-index: 1019;
-  overflow-y: auto;
-  transition: transform 0.3s ease; /* Smooth transition */
-  transform: translateX(-100%); /* Initially hidden off-screen */
-}
-
-.contentbar.slide-in {
-  transform: translateX(-33%); /* Slide in */
-}
-
-.contentbar.slide-out {
-  transform: translateX(-200%); /* Slide out */
-}
-
-.arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-right: 5px; /* Space between arrow and text */
-  border-top: 5px solid transparent; /* Create the top point */
-  border-bottom: 5px solid transparent; /* Create the bottom point */
-  border-left: 10px solid white; /* Create the arrow color */
-  transition: transform 0.3s ease; /* Transition effect for rotation */
-}
 
 
-
-.arrow-rotated {
-  transform: rotate(180deg); /* Rotate the arrow */
-}
-
-.arrow-toggle {
-  position: fixed;
-  top: 37%; /* Position it in the middle of the screen */
-  left: 0; /* Keep some space from the left edge */
-  transform: translateY(-50%); /* Center it vertically */
-  cursor: pointer;
-  z-index: 2020; /* Ensure it's above other elements */
-  transition: transform 0.3s ease; /* Smooth transition */
-}
-
-
-
-.nav-item {
-  margin-bottom: 10px;
-}
-
-.nav-link {
-  color: black;
-  font-size: 1.1rem;
-  text-decoration: none;
-  
-}
-
-.nav-link:hover {
-  /*text-decoration: underline;*/
-  color: white;
-  background-color: black;
-}
-
-.nav-link.active {
-  font-weight: bold;
-  color: white;
-  background-color: black;
-
-}
 
 /* .btn {
   background-color: lightgray;
@@ -351,35 +357,24 @@ html {
   object-fit: cover;
 }
 
-h3,
-h2 {
-  text-align: center;
-  font-family: "Roboto", sans-serif;
-  margin: 10px 0px;
-  font-size: 40px;
-}
 
 .location-map {
   height: 300px;
   width: 100%;
 }
 
-.page-header {
-  font-family: 'Roboto', sans-serif;
-  font-size: 3rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #fff;
-  background-color: black;
-  padding: 20px 40px;
+.header-interested {
+  font-family: 'Garamond', sans-serif;
+
   text-align: center;
-  letter-spacing: 0.05em;
-  border-bottom: 3px solid #fff;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
-  width: 100%;
-  box-sizing: border-box; /* Ensures padding doesn't affect width */
-  
+
+}
+
+.header-main {
+  font-family: 'Garamond', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: x-large;
 }
 
 
@@ -388,6 +383,7 @@ h2 {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -398,20 +394,22 @@ h2 {
 }
 
 .related-places-header {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
+  font-family: 'Source Sans 3', sans-serif;
   font-weight: bold;
-  text-transform: uppercase;
-  color: #fff;
-  background-color: black;
-  padding: 20px 40px;
   text-align: center;
-  letter-spacing: 0.05em;
-  border-bottom: 3px solid #fff;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  font-size: x-large;
 
-  margin: 0 20vw;
 }
+
+.related-header, .extracted-header, .video-header{
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: smaller;
+  opacity: 0.5;
+}
+
+
 
 .related-divider {
   color: black;
@@ -419,47 +417,108 @@ h2 {
 
 /* Card Hover Effect */
 .card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transition */
   border: 1px solid #ccc;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: auto;
   text-align: center;
+  background-color: #f0f6ff;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+.card-title {
+  font-weight: bold;
 }
 
 /* Pop-out effect on hover */
 .card:hover {
-  transform: scale(1.03); /* Slightly increase the size of the card */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a shadow to make it look lifted */
+  transform: scale(1.03);
+  /* Slightly increase the size of the card */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  /* Add a shadow to make it look lifted */
 }
 
 /* Ensure the card content fits within the scaled card */
 .card-body {
   overflow: hidden;
+
 }
 
 .card {
-  width: 100%; /* Take full width */
-  max-width: 500px; /* Maintain a maximum width for larger screens */
-  margin: 10px auto; /* Center cards */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better aesthetics */
+  width: 100%;
+  /* Take full width */
+  max-width: 500px;
+  /* Maintain a maximum width for larger screens */
+  margin: 10px auto;
+  /* Center cards */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Optional shadow for better aesthetics */
 }
 
 /* Transition styles for map */
-.map-enter-active, .map-leave-active {
+.map-enter-active,
+.map-leave-active {
   transition: all 0.5s ease-in-out;
   overflow: hidden;
 }
 
-.map-enter-from, .map-leave-to {
+.map-enter-from,
+.map-leave-to {
   height: 0;
   opacity: 0;
 }
 
-.map-enter-to, .map-leave-from {
-  height: 500px; /* Full height of the map */
+.map-enter-to,
+.map-leave-from {
+  height: 500px;
+  /* Full height of the map */
   opacity: 1;
 }
 
+li {
+  background-color: #f0f6ff;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 10px;
+  /* Position the text 10px from the bottom */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* Align the text to the bottom */
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px 0;
+  /* Add black outline to text */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+  border-radius: 0 0 10px 10px;
+  /* Optional rounded corners */
+}
 
 
+.card-href {
+  aspect-ratio: 1 / 1.5;
+  /* Sets the aspect ratio to be 1:2 (width : height) */
+  width: 100%;
+  object-fit: cover;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  /* Changes cursor to hand on hover */
+}
+
+.card-text{
+  font-weight: normal;
+  font-size: large;
+}
+
+/* Adjust other related styles if necessary */
 </style>

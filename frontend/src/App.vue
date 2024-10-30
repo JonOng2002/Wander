@@ -32,7 +32,7 @@ export default {
         route.name === 'SignUp' ||
         route.name === 'LogIn' ||
         route.name === 'ItineraryDetails' ||
-        route.name === 'GeneratedItinerary' ||
+        // route.name === 'GeneratedItinerary' ||
         route.name === 'LocationDate' || 
         route.name === 'CalendarPage' || 
         route.name === 'TagsPage'
