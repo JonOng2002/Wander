@@ -108,6 +108,10 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
                 "schema": {
                     "type": "object",
                     "properties": {
+                        "country": {
+                            "type": "string",
+                            "description": "The country of the trip."
+                        },
                         "itinerary_summary": {
                             "type": "string",
                             "description": "A high-level summary of the trip as a whole."
@@ -193,7 +197,7 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
                             }
                         }
                     },
-                    "required": ["itinerary_summary", "day_by_day_itineraries"]
+                    "required": ["country", "itinerary_summary", "day_by_day_itineraries"]
                 }
             }
         }

@@ -138,7 +138,7 @@ const goToNextStep = () => {
   console.log("Trip Type:", tripType);
 
   router.push({
-    name: 'GenIti',
+    name: 'GeneratedItinerary',
     query: {
       start,
       end,

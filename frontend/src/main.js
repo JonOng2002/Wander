@@ -129,14 +129,45 @@ const itineraryState = reactive({
     }
 });
 
-// Function to store user data
+const savedItineraryState = reactive({
+    toSaveitinerary: [],
+
+    async loadSavedItinerary(userId) {
+        const userDoc = await getDoc(doc(db, "users", userId));
+        if (userDoc.exists()) {
+            this.toSaveitinerary = userDoc.data().savedItineraries || [];
+            console.log("Saved itineraries loaded successfully");
+        } else {
+            console.log("No itineraries found.");
+        }
+    },
+
+    async addToSavedItinerary(userId, place) {
+        this.toSaveitinerary.push(place);
+        await updateDoc(doc(db, "users", userId), {
+            savedItineraries: arrayUnion(place)
+        });
+        console.log("Place added to itinerary");
+    },
+
+    async removeFromSavedItinerary(userId, placeId) {
+        this.toSaveitinerary = this.toSaveitinerary.filter(place => place.place_id !== placeId);
+        await updateDoc(doc(db, "users", userId), {
+            savedItineraries: arrayRemove({ place_id: placeId })
+        });
+        console.log("Place removed from itinerary");
+    }
+});
+
+// Function to store user data (called when a new user is created or signs in)
 async function storeUserData(userId, email) {
     try {
         const userRef = doc(db, "users", userId);
         await setDoc(userRef, {
             email: email,
             savedPlaces: [],
-            generatedItineraries: []
+            generatedItineraries: [],
+            savedItineraries: []
         }, { merge: true });
         console.log("User data stored successfully");
     } catch (error) {
@@ -162,6 +193,7 @@ const extractedLocationsState = reactive({
 // Provide global states and Google Maps API promise to the app
 vueApp.provide('savedPlacesState', savedPlacesState);
 vueApp.provide('itineraryState', itineraryState);
+vueApp.provide('savedItineraryState', savedItineraryState);
 vueApp.provide('extractedLocationsState', extractedLocationsState);
 vueApp.provide('apiPromise', apiPromise); // Provide apiPromise globally
 

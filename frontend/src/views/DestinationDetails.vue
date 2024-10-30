@@ -5,7 +5,7 @@
       <h1 class="page-title">Top Tourist Attractions in {{ country }}</h1>
     </div>
 
-    <div v-if="loading" class="loading">Loading...</div>
+    <div v-if="loading" class="loading"></div>
 
     <div v-if="!loading" class="attractions-list">
       <div v-for="attraction in attractions" :key="attraction.place_id" class="attraction-card">
