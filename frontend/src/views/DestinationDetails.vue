@@ -154,6 +154,60 @@ export default {
       };
       return coordinates[country] || null;
     },
+    getContinent(country) {
+      const continentMapping = {
+        France: "Europe",
+        Italy: "Europe",
+        Japan: "Asia",
+        "United States": "North America",
+        Spain: "Europe",
+        China: "Asia",
+        Mexico: "North America",
+        "United Kingdom": "Europe",
+        Germany: "Europe",
+        Thailand: "Asia",
+        Turkey: "Asia/Europe",
+        Australia: "Oceania",
+        Brazil: "South America",
+        Canada: "North America",
+        India: "Asia",
+        "South Africa": "Africa",
+        Russia: "Europe/Asia",
+        Argentina: "South America",
+        Netherlands: "Europe",
+        Greece: "Europe",
+        Malaysia: "Asia",
+        Egypt: "Africa",
+        Switzerland: "Europe",
+        Indonesia: "Asia",
+        Portugal: "Europe",
+        Austria: "Europe",
+        Sweden: "Europe",
+        Vietnam: "Asia",
+        Singapore: "Asia",
+        "New Zealand": "Oceania",
+        Poland: "Europe",
+        Morocco: "Africa",
+        Philippines: "Asia",
+        Chile: "South America",
+        "South Korea": "Asia",
+        "United Arab Emirates": "Asia",
+        "Czech Republic": "Europe",
+        "Saudi Arabia": "Asia",
+        Belgium: "Europe",
+        Israel: "Asia",
+        Peru: "South America",
+        Norway: "Europe",
+        Denmark: "Europe",
+        Hungary: "Europe",
+        Ireland: "Europe",
+        Finland: "Europe",
+        Colombia: "South America",
+        Ukraine: "Europe",
+      };
+      return continentMapping[country] || 'Unknown';
+    },
+    
     goBack() {
       this.$router.go(-1);
     },
@@ -164,10 +218,10 @@ export default {
       }, 3000);
     },
     async savePlaceToFirebase(placeId) {
-    const auth = getAuth();
-    const user = auth.currentUser;
+      const auth = getAuth();
+      const user = auth.currentUser;
 
-    if (user) {
+      if (user) {
         this.userId = user.uid; // Ensure this is set
 
         const db = getFirestore();
@@ -175,96 +229,98 @@ export default {
         const attraction = this.attractions.find(attraction => attraction.place_id === placeId);
 
         if (attraction) {
-            const placeData = {
-                place_id: attraction.place_id || null,
-                name: attraction.name || 'Unknown',
-                vicinity: attraction.vicinity || 'Unknown vicinity',
-                image: attraction.image || '/default-image.jpg',
-            };
 
-            try {
-                // Use a transaction to ensure atomic operation
-                await runTransaction(db, async (transaction) => {
-                    const userDoc = await transaction.get(userRef);
-
-                    if (userDoc.exists()) {
-                        const existingSavedPlaces = userDoc.data().savedPlaces || [];
-
-                        // Check if the place already exists
-                        const placeExists = existingSavedPlaces.some(savedPlace => savedPlace.place_id === placeData.place_id);
-
-                        if (placeExists) {
-                            console.log("Place already saved:", placeData.name);
-                            return; // Exit if already saved
-                        }
-                    }
-
-                    // If not already saved, save the new place
-                    transaction.set(userRef, {
-                        savedPlaces: arrayUnion(placeData),
-                    }, { merge: true });
-                    console.log("Place added to saved places:", placeData.name);
-                    this.showSavedPopup();
-                });
-            } catch (error) {
-                console.error("Error saving place to Firebase:", error);
-            }
-        } else {
-            console.error("Attraction not found for saving.");
-        }
-    } else {
-        console.error("User is not authenticated");
-    }
-},
-  },
-  mounted() {
-  const auth = getAuth();
-  auth.onAuthStateChanged(async (user) => {
-    if (user) {
-      this.userId = user.uid; // Set userId on mount
-      const db = getFirestore();
-      const userRef = doc(db, "users", this.userId); // Use this.userId here
-
-      // Ensure this method is called after saving a place
-      if (this.currentAttractionId) {
-        const attraction = this.attractions.find(attraction => attraction.place_id === this.currentAttractionId);
-
-        if (attraction) {
-          try {
-            const placeData = {
+          const placeData = {
               place_id: attraction.place_id || null,
               name: attraction.name || 'Unknown',
               vicinity: attraction.vicinity || 'Unknown vicinity',
               image: attraction.image || '/default-image.jpg',
-              coordinates: {
-                latitude: attraction.latitude,
-                longitude: attraction.longitude
+          };
+
+          try {
+            // Use a transaction to ensure atomic operation
+            await runTransaction(db, async (transaction) => {
+              const userDoc = await transaction.get(userRef);
+
+              if (userDoc.exists()) {
+                const existingSavedPlaces = userDoc.data().savedPlaces || [];
+
+                // Check if the place already exists
+                const placeExists = existingSavedPlaces.some(savedPlace => savedPlace.place_id === placeData.place_id);
+
+                if (placeExists) {
+                  console.log("Place already saved:", placeData.name);
+                  console.log(placeData);
+                  return; // Exit if already saved
+                }
               }
-            };
 
-            await setDoc(
-              userRef,
-              {
+              // If not already saved, save the new place
+              transaction.set(userRef, {
                 savedPlaces: arrayUnion(placeData),
-              },
-              { merge: true }
-            );
-            console.log("Place added to saved places:", placeData.name);
-
-            // Show the popup and hide it after 2 seconds
-            this.showSavedPopup();
+              }, { merge: true });
+              console.log("Place added to saved places:", placeData.name);
+              this.showSavedPopup();
+            });
           } catch (error) {
             console.error("Error saving place to Firebase:", error);
           }
         } else {
           console.error("Attraction not found for saving.");
         }
+      } else {
+        console.error("User is not authenticated");
       }
-    } else {
-      console.error("User is not authenticated");
-    }
-  });
-}
+    },
+  },
+  mounted() {
+    const auth = getAuth();
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        this.userId = user.uid; // Set userId on mount
+        const db = getFirestore();
+        const userRef = doc(db, "users", this.userId); // Use this.userId here
+
+        // Ensure this method is called after saving a place
+        if (this.currentAttractionId) {
+          const attraction = this.attractions.find(attraction => attraction.place_id === this.currentAttractionId);
+
+          if (attraction) {
+            try {
+              const placeData = {
+                place_id: attraction.place_id || null,
+                name: attraction.name || 'Unknown',
+                vicinity: attraction.vicinity || 'Unknown vicinity',
+                image: attraction.image || '/default-image.jpg',
+                coordinates: {
+                  latitude: attraction.latitude,
+                  longitude: attraction.longitude
+                }
+              };
+
+              await setDoc(
+                userRef,
+                {
+                  savedPlaces: arrayUnion(placeData),
+                },
+                { merge: true }
+              );
+              console.log("Place added to saved places:", placeData.name);
+
+              // Show the popup and hide it after 2 seconds
+              this.showSavedPopup();
+            } catch (error) {
+              console.error("Error saving place to Firebase:", error);
+            }
+          } else {
+            console.error("Attraction not found for saving.");
+          }
+        }
+      } else {
+        console.error("User is not authenticated");
+      }
+    });
+  }
 
 };
 </script>

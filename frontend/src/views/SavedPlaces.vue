@@ -136,7 +136,9 @@ export default {
       }
     });
 
-    
+    console.log(savedPlaces);
+
+
     //save itinerary to firestore
     const saveItinerary = async (place) => {
       console.log('start saving itinerary');
@@ -184,23 +186,6 @@ export default {
         console.error("Error updating itinerary in Firebase:", error);
       }
     };
-
-    // Toggle place in the Firebase itinerary
-    // const toggleItinerary = async (place) => {
-    //   const auth = getAuth();
-    //   const user = auth.currentUser;
-    //   const userId = user.uid;
-    //   const userRef = doc(db, "users", userId);
-    //   try {
-    //     await setDoc(
-    //       userRef,
-    //       { generatedItinerary: [...itinerary.value] },
-    //       { merge: true }
-    //     );
-    //   } catch (error) {
-    //     console.error("Error saving itinerary:", error);
-    //   }
-    // };
 
     const navigateToGeneratedItinerary = () => {
       router.push({
@@ -767,7 +752,7 @@ h2 {
 .filter-dropdown .form-select {
   width: 100%;
   border-radius: 100px;
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 .btn-delete-all {

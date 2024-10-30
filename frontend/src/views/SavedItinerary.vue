@@ -33,7 +33,8 @@
         </div>
     </div>
 
-    
+
+
 
 
 
@@ -560,6 +561,65 @@ export default {
             console.log("savedItineraries updated:", newVal);
         });
 
+        //map country to continent
+        const getContinent = (country) => {
+            const continentMapping = {
+                France: "Europe",
+                Italy: "Europe",
+                Japan: "Asia",
+                "United States": "North America",
+                Spain: "Europe",
+                China: "Asia",
+                Mexico: "North America",
+                "United Kingdom": "Europe",
+                Germany: "Europe",
+                Thailand: "Asia",
+                Turkey: "Asia/Europe",
+                Australia: "Oceania",
+                Brazil: "South America",
+                Canada: "North America",
+                India: "Asia",
+                "South Africa": "Africa",
+                Russia: "Europe/Asia",
+                Argentina: "South America",
+                Netherlands: "Europe",
+                Greece: "Europe",
+                Malaysia: "Asia",
+                Egypt: "Africa",
+                Switzerland: "Europe",
+                Indonesia: "Asia",
+                Portugal: "Europe",
+                Austria: "Europe",
+                Sweden: "Europe",
+                Vietnam: "Asia",
+                Singapore: "Asia",
+                "New Zealand": "Oceania",
+                Poland: "Europe",
+                Morocco: "Africa",
+                Philippines: "Asia",
+                Chile: "South America",
+                "South Korea": "Asia",
+                "United Arab Emirates": "Asia",
+                "Czech Republic": "Europe",
+                "Saudi Arabia": "Asia",
+                Belgium: "Europe",
+                Israel: "Asia",
+                Peru: "South America",
+                Norway: "Europe",
+                Denmark: "Europe",
+                Hungary: "Europe",
+                Ireland: "Europe",
+                Finland: "Europe",
+                Colombia: "South America",
+                Ukraine: "Europe",
+            };
+            // Standardize the country name format
+            const formattedCountry = country?.trim().replace(/\s+/g, " ");
+            const continent = continentMapping[formattedCountry] || "Unknown";
+            console.log(`Mapping for country: ${formattedCountry}, Continent: ${continent}`);
+            return continent
+        };
+
         // find country image based on the itinerary's country
         const getCountryImage = (countryName) => {
             const country = countries.value.find((c) => c.name === countryName);
@@ -682,6 +742,7 @@ export default {
 
 
         return {
+            getContinent,
             savedItineraries,
             filteredItineraries,
             paginatedSmallItineraries,
