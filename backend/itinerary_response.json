@@ -1,205 +1,673 @@
 {
-  "country": "Japan",
-  "itinerary_summary": "This solo trip to Japan focuses on a blend of adventure activities and vibrant nightlife, exploring Tokyo's art and culture while indulging in unique culinary experiences.",
+  "country": "United States",
+  "itinerary_summary": "An exciting 10-day trip through San Francisco, CA featuring nightlife, entertainment, local attractions, and historical landmarks with friends.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-10-31",
-      "summary": "Arrival in Tokyo, exploring the Daiba area with an evening nightlife experience.",
+      "date": "2024-11-13",
+      "summary": "Arrival in San Francisco, settle in and enjoy a local nightlife experience.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Fuji Television Network, Inc.",
+          "time": "7:00 PM",
+          "activity_name": "Dinner at The Stinking Rose",
           "location": {
-            "name": "Fuji Television Network, Inc.",
-            "city": "Minato City",
+            "name": "The Stinking Rose",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.626605,
-              "longitude": 139.774056
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJQQ6UsPeJGGAR3LFE4U43_NQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN61kiRUmiNb2jhh4e2p1nv_mdFremcNXv0s_ag1NEDc-7MuKNX2nmvkf1qbuQOkYlT_oU3fziuTR2kdgdNcP2Ba8Mafo2-T-3dIa_3Snrc27nSjzweKXVKLWhcRTa2EvWWJBF5TNQfa-l5kC-Js06X8uqQ7M1CgXOQSqRj9PqD3DlT&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Visit the iconic Fuji Television headquarters and enjoy panoramic views from the 25th floor."
-        },
-        {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Yakiniku Jumbo",
-          "location": {
-            "name": "Yakiniku Jumbo",
-            "city": "Shinjuku",
-            "coordinates": {
-              "latitude": 35.6586,
-              "longitude": 139.7454
-            },
-            "place_id": "saved_places",
-            "photo_url": "https://images.unsplash.com/photo-1728839470502-59edad620f96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzAzMDk0ODN8&ixlib=rb-4.0.3&q=80&w=1080"
-          },
-          "description": "Indulge in premium yakiniku (grilled meat) at this popular restaurant."
-        },
-        {
-          "time": "4:00 PM",
-          "activity_name": "Explore Odaiba Seaside Park",
-          "location": {
-            "name": "Odaiba Seaside Park",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.6300488,
-              "longitude": 139.7756912
-            },
-            "place_id": "ChIJ18IK6x2KGGARKTc2yLS-030",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN3KeWpvbFcQpDw3NH8z-GWozYq9w1fG9A3TymPzk1_m_MqBTeiNRk_5m0gbV07KUvY01mq73cFdbgu5T_RCWSyve7oOBBtpbz_bgQG4O3eAunTq_xNx6Dk557uWUGlda2fc65ebDG3ttKsre2k70kistmt3euDXFRaobJ-oubSiP9s&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Stroll through this beautiful seaside park with stunning views of the Rainbow Bridge and Tokyo Bay."
+          "description": "A unique garlic-themed restaurant famous for its garlic-infused dishes."
         },
         {
           "time": "9:00 PM",
-          "activity_name": "Nightlife at Tokyo Tower",
+          "activity_name": "Bar Hopping in North Beach",
           "location": {
-            "name": "Tokyo Tower",
-            "city": "Minato City",
+            "name": "North Beach",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.6585805,
-              "longitude": 139.7454329
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJCewJkL2LGGAR3Qmk0vCTGkg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO59JDrIZsKcqYy6zsbuWlkkT4_DLHeqflnTr-bZYtjllaqEmENw2uJNFo9XriYnQTm_FwRqFhdi8v_bh7xEKS3-LS_Hzfn7L-T4yoUnMH4Zl5B0vbyEFckhOVwC-spPLUWXc6eImGmG5POpUxEtTLw8RkOLR704TzMJiYASraZ7N92&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Experience the nightlife and enjoy breathtaking views of Tokyo from the observation deck."
+          "description": "Explore vibrant nightlife with stops at various renowned bars like Vesuvio Cafe."
+        },
+        {
+          "time": "11:00 PM",
+          "activity_name": "Live Jazz at The SF Jazz Center",
+          "location": {
+            "name": "SF Jazz Center",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy an evening filled with live jazz music in a famous venue."
+        },
+        {
+          "time": "1:00 AM",
+          "activity_name": "Late Night Pizza at Tony's Pizza Napoletana",
+          "location": {
+            "name": "Tony's Pizza Napoletana",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Savor award-winning pizzas in a casual late-night setting."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-01",
-      "summary": "A blend of culture and adventure in Tokyo, with a day focused on art and gourmet experiences.",
+      "date": "2024-11-14",
+      "summary": "Explore iconic landmarks and continue to enjoy the nightlife.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Tokyo Metropolitan Art Museum",
+          "time": "9:00 AM",
+          "activity_name": "Visit the Golden Gate Bridge",
           "location": {
-            "name": "Tokyo Metropolitan Art Museum",
-            "city": "Taito City",
+            "name": "Golden Gate Bridge",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.7172113,
-              "longitude": 139.7729387
+              "latitude": 37.8199109,
+              "longitude": -122.4785598
             },
-            "place_id": "ChIJb_o7HiiMGGARUKu8uO7fGIQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOQpd0WuLg2uGSrFLbVVh2aQsc5or9C27B4nOGt-BBs1iwrY4myCC4TZVHfjgFbBUoJkuo8dt6FwXYJLVR3n8tDJU6uYv4Iok2X98JzLl4RH1k7uCVw1HQA3QIccNJels4HXcx2GDT0YpEzTV6o7Ra98235tJjB3L2mptojKiljikhm&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Explore the diverse art exhibitions and collections in this renowned museum."
+            "place_id": "ChIJw____96GhYARCVVwg5cT7c0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPK4gqnL8tHQgb3mLD6Wfvc6vHmb_nr9X7fL7oOnF5-arFkHHz0ODItgI7vbE93u3K6JcZ2V3Fxagt8XH4aHFUuFP7httIMco66ypY1c4gfY2wpSflorX-y6tbbGM5FBeeQjMSyNTPobMAI0W-5zHJ-ZpUbiCWApvjMCpCT41mMBGp_&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+          }
         },
         {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Asakusa's RYOKAN KAMOGAWA",
+          "time": "12:00 PM",
+          "activity_name": "Lunch at Boudin Bakery",
           "location": {
-            "name": "RYOKAN KAMOGAWA",
-            "city": "Taito City",
+            "name": "Boudin Bakery",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.7121877,
-              "longitude": 139.7957151
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJu3PU18COGGARhGkyiUJKEW8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNmK2Wui_5XJU_nwGE0G1wphb_uq5lwnfpArGaTKeVVqAf-N1ClNVRW-BRT2dPsqUgNGd0Klulva5utxcjeZTZQbcMD40xTBAMpL_xzL9xnqNoTzXr1_zd4rEQTyP-7eQPBiONe6hF2xTeyG2SMHoddet4ybEiTEy4YJ3oPjyXVEGAU&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Enjoy a traditional Japanese meal at this ryokan, experiencing authentic flavors."
+          "description": "Enjoy clam chowder in a sourdough bread bowl at this famous bakery."
         },
         {
-          "time": "4:00 PM",
-          "activity_name": "Visit Cup Noodles Museum Yokohama",
+          "time": "3:00 PM",
+          "activity_name": "Explore the Exploratorium",
           "location": {
-            "name": "Cup Noodles Museum Yokohama",
-            "city": "Yokohama",
+            "name": "Exploratorium",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.4554755,
-              "longitude": 139.6388669
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJ3ZNhe1dcGGARvjq5QHdmaHM",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMrwax75Rb_a3Hmulbql183i4R1xL7v0c6k9JGsbnvN7mx2KmA_4R3GxUSYurSofs75J0aZ2NOg5pvSPSGd2_LbNzf6SuBhCNiN7ETuuaQrgLI9410U9RvxpTgMHrlE2W12YOitFcaGtTx-DADwwvUiEjnyL04RdGtLhc5SNRHE1OSG&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Learn about the history of instant noodles and create your own Cup Noodle."
+          "description": "Engage with hundreds of hands-on exhibits at this interactive science museum."
         },
         {
           "time": "8:00 PM",
-          "activity_name": "Tokyo Nightlife at Shibuya City",
+          "activity_name": "Dinner and Drinks at The Moby Dick Bar",
           "location": {
-            "name": "Shibuya City",
-            "city": "Tokyo",
+            "name": "The Moby Dick Bar",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.6619707,
-              "longitude": 139.703795
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJ0Qgx67KMGGARd2ZbObLZHPE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DORuM_Tz6q_kSWLS_N3FtviZxcAif_r5icCX2jsejIlfD7re6-UQutITetajgV68BKc37XYhnpNP7vbTsaqBzawsnB3vhYLvctBJSoxqW9QEZKGNEGamCFWYvGoQGDa2egvScTAom44HqZdjdmr6f1UbrVPAZMmXbdJmGGbM6QQXNPu&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Immerse yourself in the energetic nightlife of Tokyo, exploring bars and clubs in Shibuya."
+          "description": "Enjoy dinner followed by lively entertainment and drinks."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-11-02",
-      "summary": "Leisurely morning and return trip, ensuring a last taste of Tokyo's culture.",
+      "date": "2024-11-15",
+      "summary": "Experience the cultural side of San Francisco and party the night away.",
       "activities": [
         {
           "time": "10:00 AM",
-          "activity_name": "Breakfast at a local cafe",
+          "activity_name": "Visit the San Francisco Museum of Modern Art",
           "location": {
-            "name": "Cafe de Paris",
-            "city": "Tokyo",
+            "name": "San Francisco Museum of Modern Art",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.7318742,
-              "longitude": 139.7101442
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJPxG63F2NGGARqA1MlnZ1HU0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNOh1Dg9Aw4_kA5RBo_Pqn4PIh6JWFAacH__Cq6JQTlcXwuAxmOsV1jVHJc-i4Rfqfl9ey7iYvhYWm0Lbs9LmdhvMvVqj7Zh3acFXuzAWBN7Xz8roBx565XxDVMLiBPzUj_ZsWbjWsgefN6wXcTF7nCnSX-RVwh9ZTydoH_07e-B7_s&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Enjoy a hearty breakfast at a charming cafe in Tokyo."
+          "description": "Explore diverse modern and contemporary artwork."
         },
         {
-          "time": "12:00 PM",
-          "activity_name": "Last-minute shopping in Ginza",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Farmerbrown",
           "location": {
-            "name": "Ginza",
-            "city": "Tokyo",
+            "name": "Farmerbrown",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.6712228,
-              "longitude": 139.7664859
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJu2-DAeeLGGARUZipC7OFRmA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPBz1txzDietVMtrzmNlOWgA_gRKjcoYCOrKIUpWX8zNJocwWMCD3K5FBssQvo-XZiqGIQvAVlOIMpVFv2x2WWrnP-ZQnrqZTJm79Jyx025L4gHtM9lnmEd5-WZ711EJY3LGsANZrggiohYIBIRcEY-zu2T-wmNiPxgK1TYxV3jR_6H&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Wander through Ginza's upscale shops, boutiques, and department stores."
+          "description": "Rustic Southern comfort food in an upbeat atmosphere."
+        },
+        {
+          "time": "4:00 PM",
+          "activity_name": "Walk around Haight-Ashbury",
+          "location": {
+            "name": "Haight-Ashbury",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Stroll through the historic counterculture district filled with unique shops."
+        },
+        {
+          "time": "8:00 PM",
+          "activity_name": "Night out at The Great Northern",
+          "location": {
+            "name": "The Great Northern",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a night of dancing and live music at one of SF's hottest clubs."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-16",
+      "summary": "Day trip to nearby attractions and return for nightlife.",
+      "activities": [
+        {
+          "time": "9:00 AM",
+          "activity_name": "Visit Muir Woods National Monument",
+          "location": {
+            "name": "Muir Woods National Monument",
+            "city": "Mill Valley",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience towering redwoods and peaceful nature trails."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Mill Valley Beer Works",
+          "location": {
+            "name": "Mill Valley Beer Works",
+            "city": "Mill Valley",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy local beers and delicious pub food."
+        },
+        {
+          "time": "4:00 PM",
+          "activity_name": "Return to San Francisco",
+          "location": {
+            "name": "San Francisco",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Rest and freshen up before an exciting evening."
+        },
+        {
+          "time": "7:00 PM",
+          "activity_name": "Dinner at Pisco Latin Lounge",
+          "location": {
+            "name": "Pisco Latin Lounge",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a unique Peruvian dining experience with vibrant nightlife."
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2024-11-17",
+      "summary": "Explore more of San Francisco\u2019s iconic locations and nightlife.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit Alcatraz Island",
+          "location": {
+            "name": "Alcatraz Island",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Take a ferry and explore the infamous former prison."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Fog Harbor Fish House",
+          "location": {
+            "name": "Fog Harbor Fish House",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Dine on sustainable seafood with stunning bay views."
         },
         {
           "time": "3:00 PM",
-          "activity_name": "Visit Senso-ji Temple",
+          "activity_name": "Explore Pier 39",
           "location": {
-            "name": "Senso-ji Temple",
-            "city": "Tokyo",
+            "name": "Pier 39",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.7147651,
-              "longitude": 139.7966553
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJ8T1GpMGOGGARDYGSgpooDWw",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DORoxL2BCcBPhMoX5Ai9I_1jQ8VOFLzVcA3DKVRthKmnRbbTmpHdmUAflKUT5G_JQ_mp7dygK2aVPE6oBfFOIaxiY6HL6_FZa_2Ndq16PI4tdJ0to8NkXJ8fIpTKlYpITZp91lRDQeN8WE9yNXqqiNa2gAukBVLOtHVwsdluiHB1YRj&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Explore Tokyo's oldest temple and the beautiful Nakamise street leading up to it."
+          "description": "Visit sea lions and shop at local boutiques."
         },
         {
-          "time": "6:00 PM",
-          "activity_name": "Departure from Tokyo",
+          "time": "8:00 PM",
+          "activity_name": "Night out at Temple Nightclub",
           "location": {
-            "name": "Tokyo International Airport",
-            "city": "Tokyo",
+            "name": "Temple Nightclub",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 35.5482964,
-              "longitude": 139.7779951
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJ45IxpAtkGGAR3_hG0anDMg0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP5RySoN4lp08BSyRS86meKORKM23MdCw_K4-4hCQbLJL-hjeAPLSOqHBCvpu3dJ_Q0iti6VaQdeLBDspAay5inIKSDETDflhcf19MXwVaQnHYg--tyriUphFVJ-IZCuecNhYUMCgItEaB2TM2g92g_zCWSXEv5nl6aGT3WsloZxoSA&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Head to the airport for your departure, reflecting on your Tokyo adventure."
+          "description": "Dance the night away at this upscale club featuring top DJs."
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2024-11-18",
+      "summary": "Travel to Rome, Italy to experience its nightlife and culture.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Fly from San Francisco to Rome",
+          "location": {
+            "name": "Rome",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Travel to Rome, Italy."
+        },
+        {
+          "time": "8:00 PM",
+          "activity_name": "Dinner at Hostaria da Cecco",
+          "location": {
+            "name": "Hostaria da Cecco",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Traditional Roman cuisine in a cozy atmosphere."
+        },
+        {
+          "time": "9:30 PM",
+          "activity_name": "Visit a Local Wine Bar",
+          "location": {
+            "name": "Local Wine Bar",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience local wines and snacks in an authentic Roman setting."
+        },
+        {
+          "time": "11:00 PM",
+          "activity_name": "Bar Hopping in Trastevere",
+          "location": {
+            "name": "Trastevere",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore the lively nightlife of Trastevere with its many charming bars."
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2024-11-19",
+      "summary": "Discover Rome\u2019s historic sites and enjoy its vibrant nightlife.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit the Colosseum, Rome",
+          "location": {
+            "name": "Colosseum",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore the iconic ancient amphitheater and its history."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at La Pergola",
+          "location": {
+            "name": "La Pergola",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Dine in a three Michelin-star restaurant offering stunning views."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Visit the Vatican Museums",
+          "location": {
+            "name": "Vatican Museums",
+            "city": "Vatican City",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore the vast collection of the Vatican's art and historical pieces."
+        },
+        {
+          "time": "8:00 PM",
+          "activity_name": "Dinner at Osteria Bonelli",
+          "location": {
+            "name": "Osteria Bonelli",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Authentic Italian dishes in a warm family-run atmosphere."
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2024-11-20",
+      "summary": "Enrich your experience with more of Rome's attractions and nightlife.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit the Pantheon",
+          "location": {
+            "name": "Pantheon",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Marvel at the beautifully preserved ancient temple."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Trattoria Da Enzo al 29",
+          "location": {
+            "name": "Trattoria Da Enzo al 29",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy classic Roman dishes in a historic wine cellar."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Explore the Trevi Fountain",
+          "location": {
+            "name": "Trevi Fountain",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Throw a coin and make a wish at this iconic fountain."
+        },
+        {
+          "time": "8:00 PM",
+          "activity_name": "Night Out at Shari Vari Playhouse",
+          "location": {
+            "name": "Shari Vari Playhouse",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Dance the night away at one of Rome's coolest nightclubs."
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "date": "2024-11-21",
+      "summary": "Culminate your trip with the last Italy activities and nightlife.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit the Roman Forum",
+          "location": {
+            "name": "Roman Forum",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore the heart of ancient Rome with its ruins and history."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Pizzarium",
+          "location": {
+            "name": "Pizzarium",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Grab delicious pizza al taglio from a famous local spot."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Explore the Spanish Steps",
+          "location": {
+            "name": "Spanish Steps",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Relax and take in the stunning architecture of a famous landmark."
+        },
+        {
+          "time": "8:00 PM",
+          "activity_name": "Last Dinner at Ristorante Aroma",
+          "location": {
+            "name": "Ristorante Aroma",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a farewell dinner with breathtaking views of the Colosseum."
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "date": "2024-11-22",
+      "summary": "Departure day.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Last Minute Shopping near Via del Corso, Rome",
+          "location": {
+            "name": "Via del Corso",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Shop for souvenirs and enjoy a coffee before departure."
+        },
+        {
+          "time": "12:00 PM",
+          "activity_name": "Check out of hotel",
+          "location": {
+            "name": "Hotel in Rome",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Prepare for departure."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Fly from Rome back to San Francisco",
+          "location": {
+            "name": "Airport",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Return home after an unforgettable adventure."
+        },
+        {
+          "time": "8:00 PM",
+          "activity_name": "Arrive back in San Francisco",
+          "location": {
+            "name": "San Francisco",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Hope you had a great trip!"
         }
       ]
     }

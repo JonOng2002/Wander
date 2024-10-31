@@ -9,7 +9,7 @@
       </div>
   
       <!-- Message if no itinerary generated -->
-      <div v-if="!loading && generatedItinerary.length === 0" class="empty-message">
+      <div v-if="!loading && itinerary && itinerary.day_by_day_itineraries?.length > 0" class="empty-message">
         <div class="row justify-content-between align-items-center sticky-header g-0">
           <div class="col-3 date-column">
             <h2>My Itineraries</h2>
@@ -216,7 +216,7 @@ const saveToItinerary = async () => {
     const itineraryToSave = {
       itinerary: itinerary.value,
       country: country.value,
-      createdAt: new Date(),
+      createdAt: new Date().toISOString(),
     };
     try {
       await updateDoc(userRef, { savedItineraries: arrayUnion(itineraryToSave) });
