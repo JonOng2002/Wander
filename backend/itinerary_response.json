@@ -1,239 +1,71 @@
 {
-  "country": "South Korea",
-  "itinerary_summary": "Explore the vibrant districts of Gangnam and Itaewon along with cultural landmarks and thrilling attractions in Seoul over a long weekend getaway.",
+  "country": "Indonesia",
+  "itinerary_summary": "Explore the stunning sights and rich culture of Uluwatu, Indonesia, with a focus on renowned attractions and must-see landmarks in a day-long solo adventure.",
   "day_by_day_itineraries": [
     {
       "day": 1,
       "date": "2024-11-01",
-      "summary": "Arrive in Seoul, explore Eunpyeong Hanok Village, enjoy the nightlife in Itaewon.",
+      "summary": "Immerse yourself in the breathtaking scenery and cultural richness of Uluwatu with a day packed with sightseeing and local experiences.",
       "activities": [
         {
-          "time": "14:00",
-          "activity_name": "Eunpyeong Hanok Village",
+          "time": "08:00",
+          "activity_name": "Breakfast at Single Fin",
           "location": {
-            "name": "Eunpyeong Hanok Village",
-            "city": "Seoul",
+            "name": "Single Fin",
+            "city": "Uluwatu",
             "coordinates": {
-              "latitude": 37.6109,
-              "longitude": 126.9287
+              "latitude": -8.8149719,
+              "longitude": 115.0888956
             },
-            "place_id": "saved_places",
-            "photo_url": "https://images.unsplash.com/photo-1711377789458-01138d7728a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzA0MjcxOTJ8"
+            "place_id": "ChIJ0aNPQ_lP0i0RtPlHW6trMHM",
+            "photo_url": "https://images.unsplash.com/photo-1582551145495-ae6ba5c11013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzA0MzIyMTR8&ixlib=rb-4.0.3&q=80&w=1080"
           },
-          "description": "A charming traditional Korean village with beautiful hanok architecture."
+          "description": "Enjoy a delightful breakfast with stunning ocean views at Single Fin, a popular spot among surfers and tourists alike."
         },
         {
-          "time": "17:00",
-          "activity_name": "Dinner at Maple Tree House, Itaewon",
+          "time": "10:00",
+          "activity_name": "Visit Uluwatu Temple",
           "location": {
-            "name": "Maple Tree House",
-            "city": "Itaewon",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy a delicious Korean barbecue with a cozy ambiance."
-        },
-        {
-          "time": "19:30",
-          "activity_name": "Itaewon Nightlife",
-          "location": {
-            "name": "Itaewon",
-            "city": "Seoul",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Experience the vibrant nightlife with numerous bars and clubs."
-        },
-        {
-          "time": "22:00",
-          "activity_name": "Club Octagon, Gangnam",
-          "location": {
-            "name": "Club Octagon",
-            "city": "Gangnam",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "One of Seoul's hottest clubs known for its top-notch DJs and ambiance."
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "date": "2024-11-02",
-      "summary": "Visit Paldang Bridge, Cheonho Bridge, and spend the evening at Lotte World.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Visit Paldang Bridge",
-          "location": {
-            "name": "Paldang Bridge",
-            "city": "Hanam-si",
+            "name": "Uluwatu Temple",
+            "city": "Uluwatu",
             "coordinates": {
-              "latitude": 37.5458674,
-              "longitude": 127.2375651
+              "latitude": -8.829143199999999,
+              "longitude": 115.0849069
             },
-            "place_id": "ChIJn7-NX7ezfDURFjdt5llVal8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN6FZtbh5CEi1ZSVN1oo7aT9thIEKtw-2tz7DbYJcjvSr1S7X9Op3qP1q1OhIQ59iSBWzRVEsXNcUXrxQF5i76mL7PlRUYrwd6sKaKLsEXAUBRx148jBSJfcxCnr8NdpxfCDsfjZoyfWq4lMY8EOheA9uZYpWKiWlq_ltt2knGffUDJ&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk},"
+            "place_id": "ChIJkYHLIPxP0i0RlQTbpxuNuQw",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM1Kqy6rhg_a_gdF8zicbYViWS-C_t0ZUhBzhag_4-mDaWFlcjCkePYgZL7b1jTBmBm-g14CeYl4cBpzaAabJyNZZKdA1-g8xoqav0svcIbqIsXFUEROyCLmiw9VbsMZz6PQQVXNjyxvPomavZrB6lFRcP07Pn1QeveZb464bgOsMZT&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Enjoy panoramic views of the river and surrounding landscapes."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch at Hanam Iga, Local Eatery",
-          "location": {
-            "name": "Hanam Iga",
-            "city": "Hanam",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Savor traditional Korean dishes in a lively local setting."
-        },
-        {
-          "time": "15:00",
-          "activity_name": "Explore Cheonho Bridge",
-          "location": {
-            "name": "Cheonho Bridge",
-            "city": "Seoul",
-            "coordinates": {
-              "latitude": 37.542929,
-              "longitude": 127.1117905
-            },
-            "place_id": "ChIJcxWKV0ylfDURBLsiZ84SRb4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNelNp86PMkRdOp-2fMSbtlvuwtxjpiSU3Q1EUsC_m7vvWstknUX-Z4AVdMDaL3N4jbDsNGIBoMu3r4Z4_Ur91fnyJjttikPluUTAbuHk_EWleqUo2NFT3nJ1tLvQ--d39phWqjdArXga0ZJZIl_TgYM_-cw5BaeaeIx2lymH_PYVEc&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk},"
-          },
-          "description": "Walk across the bridge and enjoy beautiful city views."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Lotte World, Theme Park",
-          "location": {
-            "name": "Lotte World",
-            "city": "Songpa District",
-            "coordinates": {
-              "latitude": 37.51111579999999,
-              "longitude": 127.098167
-            },
-            "place_id": "ChIJgf4OJaelfDURmDvA_sHyPUM",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP7Ipn1qWqgricVtNce71aoYvhzACebmqZ3GOgdDsnteTI-r-q1B7dRpA2KdqFoJxUr4Hpq2KwzocLflRTQVzHBioE4aj61ogbHb0JR8aRB7Zpr4MBDa5nhxiLdcI7MV_X-JZCnC4rOdQyjsLQ0PG0jb6-IbsvXBdduQx6zCRjGSiEN&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk},"
-          },
-          "description": "Enjoy thrilling rides and entertainment at one of Asia's largest theme parks."
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "date": "2024-11-03",
-      "summary": "Visit Incheon Bridge, explore local cuisine, and enjoy a comfortable evening in Seoul.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Visit Incheon Bridge",
-          "location": {
-            "name": "Incheon Bridge",
-            "city": "Incheon",
-            "coordinates": {
-              "latitude": 37.4136893,
-              "longitude": 126.5665206
-            },
-            "place_id": "ChIJV4JlmwGdezURwqyQbenQbNI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPbY0XdR4HFr84T0mDAwHcamDhIMLiu2-Xyp814px3N4-zW1OQ9_ZV5j6uTSWGTLTNBPV78KgxtKKmSeMWG3ghBcv2TWN_eJF6nlJColMhOCvfLe49ZDy1MeMlKYpFAgrwx5PEUDzDvuGC7fzaRYTvFuoQVPViJ6-g0hXTAreBRGFMP&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk},"
-          },
-          "description": "Experience the impressive architecture and engineering of this modern bridge."
-        },
-        {
-          "time": "12:30",
-          "activity_name": "Lunch at Myeongdong Kyoja, Myeongdong",
-          "location": {
-            "name": "Myeongdong Kyoja",
-            "city": "Myeongdong",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Taste famous handmade noodle dishes and dumplings."
-        },
-        {
-          "time": "16:00",
-          "activity_name": "Shopping at COEX Mall, Gangnam",
-          "location": {
-            "name": "COEX Mall",
-            "city": "Gangnam",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Explore Asia's largest underground shopping mall with diverse shops and entertainment."
-        },
-        {
-          "time": "20:00",
-          "activity_name": "Dinner at Samgyeopsal, Gangnam",
-          "location": {
-            "name": "Samgyeopsal",
-            "city": "Gangnam",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy a lively dining experience with grilled pork belly."
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "date": "2024-11-04",
-      "summary": "Relaxing morning, check-out, and departure.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Brunch at Caf\u00e9 de Flore, Gangnam",
-          "location": {
-            "name": "Caf\u00e9 de Flore",
-            "city": "Gangnam",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Indulge in a relaxing brunch with delicious pastries and coffee."
-        },
-        {
-          "time": "11:00",
-          "activity_name": "Explore nearby stores in Gangnam",
-          "location": {
-            "name": "Gangnam District",
-            "city": "Seoul",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Spend your last moments shopping or exploring the local area."
+          "description": "Explore the majestic Uluwatu Temple, perched atop a cliff with breathtaking views of the Indian Ocean, a must-see cultural landmark."
         },
         {
           "time": "13:00",
-          "activity_name": "Check-out from hotel",
+          "activity_name": "Lunch at The Cashew Tree",
           "location": {
-            "name": "Your Hotel",
-            "city": "Seoul",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "The Cashew Tree",
+            "city": "Uluwatu",
+            "coordinates": {
+              "latitude": -8.8068677,
+              "longitude": 115.117054
+            },
+            "place_id": "ChIJUxiPm0dF0i0RagUyxqyib8c",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNexXLYWb8eCIOeHU2kqPqvousHwLdkfrFMZIGVXcISt5JZTXMKUt_QBEahqBjD3lLtPST6E3njSIBOVD_29Mt2TuFNrYVlnTVGHCzfLO9gOBcwKmNYg4Te76sPlQdJs5AQH_YwNqVNnSy0H4QgvWLxLPDgA9cjju11HEy34LNj_Xu3&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Finalize your stay in Seoul and prepare for departure."
+          "description": "Savor fresh and healthy dishes at The Cashew Tree, known for its vibrant atmosphere and tasty organic meals."
         },
         {
           "time": "15:00",
-          "activity_name": "Departure from Incheon International Airport",
+          "activity_name": "Relax at Padang Padang Beach",
           "location": {
-            "name": "Incheon International Airport",
-            "city": "Incheon",
-            "coordinates": "",
-            "place_id": "",
-            "photo_url": ""
+            "name": "Padang Padang Beach",
+            "city": "Uluwatu",
+            "coordinates": {
+              "latitude": -8.8111377,
+              "longitude": 115.1037658
+            },
+            "place_id": "ChIJV-JMXVBF0i0RFUBMWOw7eGQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMlDPGTqDDEWYX3kUaz3x9WXE1pMQzp_70JU8az4aIxb13yuDeSmdTwodD_qobAK5Ud2N_y7tmTTU6YhFULWww11Uudlg_GCI1mIZMQSzKstKG8zbreUieZp9IzqsBnO0i3FBjmF_yYq1KKNfjPCBvSSa8JTIVUBREB3vCKb9_dIQpm&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Depart from the airport with memories of an amazing trip!"
+          "description": "Visit Padang Padang Beach, renowned for its stunning cliffs and turquoise waters, perfect for sunbathing and swimming."
         }
       ]
     }
