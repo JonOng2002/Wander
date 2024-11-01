@@ -1,42 +1,27 @@
 {
   "country": "United States",
-  "itinerary_summary": "Explore the iconic attractions of San Francisco and near Rome, embracing unique experiences in nature and wildlife, while enjoying rich cultural history over an eight-day journey with friends.",
+  "itinerary_summary": "Explore the vibrant nightlife and cultural landmarks of San Francisco, combining romance and entertainment over six days.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-12-19",
-      "summary": "Arrival and first exploration of San Francisco, focusing on famous waterfront attractions.",
+      "date": "2024-11-08",
+      "summary": "Arrival in San Francisco and relaxing evening by the waterfront.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Visit Fisherman's Wharf, San Francisco",
+          "time": "15:00",
+          "activity_name": "Check-in at Hotel Nikko San Francisco",
           "location": {
-            "name": "Fisherman's Wharf",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 37.8084354,
-              "longitude": -122.4157509
-            },
-            "place_id": "ChIJIbjkBuOAhYAR3OzY8Djb7Kc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN86wOiyUOHLMUGu-VqmM9vd-316YK66uUbQ9xhA1IYfofaRphLY6fpfFdoGyuwvyzJSxhPSEnQqdVBe8hBb3AAqksnhH5hiu8CvT7y46Z9rvZoqQl8DN8fwz8SMRWGlvkmQUKf5W_IA7g8G7PhrfKIJpsLP0PG0ksPoCGImVVcinMC"
-          },
-          "description": "Explore the lively waterfront area with shops, restaurants, and sea lions."
-        },
-        {
-          "time": "12:00 PM",
-          "activity_name": "Lunch at Boudin Bakery, San Francisco",
-          "location": {
-            "name": "Boudin Bakery",
+            "name": "Hotel Nikko San Francisco",
             "city": "San Francisco",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a famous clam chowder in a sourdough bread bowl at this historic bakery."
+          "description": "A luxury hotel located in the heart of Union Square."
         },
         {
-          "time": "02:00 PM",
-          "activity_name": "Walk across Golden Gate Bridge, San Francisco",
+          "time": "17:00",
+          "activity_name": "Walk across the Golden Gate Bridge",
           "location": {
             "name": "Golden Gate Bridge",
             "city": "San Francisco",
@@ -47,407 +32,295 @@
             "place_id": "ChIJw____96GhYARCVVwg5cT7c0",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPK4gqnL8tHQgb3mLD6Wfvc6vHmb_nr9X7fL7oOnF5-arFkHHz0ODItgI7vbE93u3K6JcZ2V3Fxagt8XH4aHFUuFP7httIMco66ypY1c4gfY2wpSflorX-y6tbbGM5FBeeQjMSyNTPobMAI0W-5zHJ-ZpUbiCWApvjMCpCT41mMBGp_&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Experience breathtaking views of the bay and the city while walking along this iconic bridge."
+          "description": "Experience breathtaking views as you walk this iconic bridge at sunset."
         },
         {
-          "time": "05:00 PM",
-          "activity_name": "Sunset at Crissy Field, San Francisco",
+          "time": "19:00",
+          "activity_name": "Dinner at The Cheesecake Factory",
           "location": {
-            "name": "Crissy Field",
+            "name": "The Cheesecake Factory",
             "city": "San Francisco",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Relax and enjoy a beautiful sunset with a beach view of the Golden Gate Bridge."
+          "description": "Enjoy a variety of delicious cheesecakes along with a diverse menu."
+        },
+        {
+          "time": "21:00",
+          "activity_name": "Visit Club Pisco",
+          "location": {
+            "name": "Club Pisco",
+            "city": "San Francisco",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Dance the night away at a lively nightclub featuring Latin music."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-12-20",
-      "summary": "Explore the stunning natural beauty of San Francisco and its wildlife parks.",
+      "date": "2024-11-09",
+      "summary": "Explore Fisherman's Wharf and indulge in local cuisine.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Visit Golden Gate Park, San Francisco",
+          "time": "10:00",
+          "activity_name": "Breakfast at Boudin Bakery",
           "location": {
-            "name": "Golden Gate Park",
+            "name": "Boudin Bakery",
             "city": "San Francisco",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Discover the expansive park featuring gardens, lakes, and numerous trails."
+          "description": "Famous for its sourdough bread, enjoy breakfast by the bay."
         },
         {
-          "time": "12:00 PM",
-          "activity_name": "Lunch at Park Chalet, San Francisco",
+          "time": "12:00",
+          "activity_name": "Visit Fisherman's Wharf",
           "location": {
-            "name": "Park Chalet",
+            "name": "Fisherman's Wharf",
             "city": "San Francisco",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "coordinates": {
+              "latitude": 37.8084354,
+              "longitude": -122.4157509
+            },
+            "place_id": "ChIJIbjkBuOAhYAR3OzY8Djb7Kc",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN86wOiyUOHLMUGu-VqmM9vd-316YK66uUbQ9xhA1IYfofaRphLY6fpfFdoGyuwvyzJSxhPSEnQqdVBe8hBb3AAqksnhH5hiu8CvT7y46Z9rvZoqQl8DN8fwz8SMRWGlvkmQUKf5W_IA7g8G7PhrfKIJpsLP0PG0ksPoCGImVVcinMC&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Enjoy local cuisine with views of Golden Gate Park."
+          "description": "Explore shops, enjoy street performances, and view sea lions."
         },
         {
-          "time": "02:00 PM",
-          "activity_name": "Explore the California Academy of Sciences, San Francisco",
+          "time": "15:00",
+          "activity_name": "Lunch at Fog Harbor Fish House",
           "location": {
-            "name": "California Academy of Sciences",
+            "name": "Fog Harbor Fish House",
             "city": "San Francisco",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience the aquarium, planetarium, and natural history museum all in one."
+          "description": "Seafood dining with stunning views of the bay."
         },
         {
-          "time": "05:00 PM",
-          "activity_name": "Visit the Japanese Tea Garden, San Francisco",
+          "time": "20:00",
+          "activity_name": "Dinner Show at Beach Blanket Babylon",
           "location": {
-            "name": "Japanese Tea Garden",
+            "name": "Beach Blanket Babylon",
             "city": "San Francisco",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Wander through this serene garden and enjoy a traditional Japanese tea."
+          "description": "Enjoy a fun-filled musical revue that spoofs pop culture."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-12-21",
-      "summary": "Explore the wildlife of San Francisco, promoting awareness for conservation.",
+      "date": "2024-11-10",
+      "summary": "Cruise and cultural exploration of the city.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Visit the San Francisco Zoo, San Francisco",
+          "time": "09:00",
+          "activity_name": "Brunch at The Mill",
           "location": {
-            "name": "San Francisco Zoo",
+            "name": "The Mill",
             "city": "San Francisco",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "See an array of animals and learn about wildlife conservation."
+          "description": "Treat yourself to artisanal toast and locally brewed coffee."
         },
         {
-          "time": "12:00 PM",
-          "activity_name": "Lunch at Beach Chalet Restaurant, San Francisco",
+          "time": "11:30",
+          "activity_name": "Take a Bay Cruise",
           "location": {
-            "name": "Beach Chalet Restaurant",
+            "name": "San Francisco Bay Cruises",
             "city": "San Francisco",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a meal with a view overlooking the Pacific Ocean."
+          "description": "Sightsee from the water with views of the Golden Gate and Alcatraz."
         },
         {
-          "time": "02:00 PM",
-          "activity_name": "Explore Ocean Beach, San Francisco",
+          "time": "14:00",
+          "activity_name": "Visit Alcatraz Island",
           "location": {
-            "name": "Ocean Beach",
+            "name": "Alcatraz Island",
             "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Take a scenic stroll along the beach, keeping an eye out for local wildlife."
+          "description": "Explore the historic prison with an audio tour of its famous inmates."
         },
         {
-          "time": "05:00 PM",
-          "activity_name": "Enjoy a bonfire at Ocean Beach, San Francisco",
+          "time": "19:00",
+          "activity_name": "Dinner at Sotto Mare",
           "location": {
-            "name": "Ocean Beach",
+            "name": "Sotto Mare",
             "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Gather around a bonfire at sunset, enjoying the warm ambiance."
+          "description": "Enjoy the freshest seafood in a cozy Italian restaurant."
         }
       ]
     },
     {
       "day": 4,
-      "date": "2024-12-22",
-      "summary": "Travel day to Italy, arriving in Rome to enjoy the local culture.",
+      "date": "2024-11-11",
+      "summary": "Cultural immersion with art and local dining.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Flight to Rome, Italy",
+          "time": "10:00",
+          "activity_name": "Breakfast at Mama's on Washington Square",
           "location": {
-            "name": "",
-            "city": "",
+            "name": "Mama's on Washington Square",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Depart from San Francisco to Rome."
+          "description": "Enjoy a famous breakfast haven known for its French toast."
         },
         {
-          "time": "09:00 PM",
-          "activity_name": "Dinner at Trattoria Da Carloni, Rome",
+          "time": "12:00",
+          "activity_name": "Explore the San Francisco Museum of Modern Art (SFMOMA)",
           "location": {
-            "name": "Trattoria Da Carloni",
-            "city": "Rome",
+            "name": "SFMOMA",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Savor traditional Roman cuisine."
+          "description": "Discover contemporary artworks by renowned artists."
         },
         {
-          "time": "11:00 PM",
-          "activity_name": "Night walk at Villa Borghese Gardens, Rome",
+          "time": "16:00",
+          "activity_name": "Coffee Break at Blue Bottle Coffee",
           "location": {
-            "name": "Villa Borghese Gardens",
-            "city": "Rome",
+            "name": "Blue Bottle Coffee",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Stroll through one of Rome's most beautiful parks."
+          "description": "Indulge in freshly brewed coffee at a local favorite stop."
         },
         {
-          "time": "07:00 PM",
-          "activity_name": "Check into Hotel in Rome",
+          "time": "19:30",
+          "activity_name": "Dinner at The Stinking Rose",
           "location": {
-            "name": "",
-            "city": "",
+            "name": "The Stinking Rose",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Settle in and prepare for the days of exploration."
+          "description": "Enjoy garlic-infused dishes at this whimsical eatery."
         }
       ]
     },
     {
       "day": 5,
-      "date": "2024-12-23",
-      "summary": "Discover historical landmarks and cultural sites in Rome.",
+      "date": "2024-11-12",
+      "summary": "Relaxation and exploration in tranquil surroundings.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Visit Colosseum, Rome",
+          "time": "10:00",
+          "activity_name": "Brunch at Foreign Cinema",
           "location": {
-            "name": "Colosseum",
-            "city": "Rome",
+            "name": "Foreign Cinema",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Explore the iconic amphitheater and learn about its history."
+          "description": "Experience delicious brunch paired with screenings of classic films."
         },
         {
-          "time": "12:00 PM",
-          "activity_name": "Lunch at Ristorante Aroma, Rome",
+          "time": "13:00",
+          "activity_name": "Stroll through Golden Gate Park",
           "location": {
-            "name": "Ristorante Aroma",
-            "city": "Rome",
+            "name": "Golden Gate Park",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Enjoy Italian cuisine with spectacular views of the Colosseum."
+          "description": "Enjoy the serene landscapes and visit the parks\u2019 attractions."
         },
         {
-          "time": "02:00 PM",
-          "activity_name": "Visit Roman Forum, Rome",
+          "time": "18:00",
+          "activity_name": "Picnic at Stow Lake",
           "location": {
-            "name": "Roman Forum",
-            "city": "Rome",
+            "name": "Stow Lake",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Wander through the ruins of ancient Rome, soaking in the history."
+          "description": "Relax by the lake with a picnic dinner from a local deli."
         },
         {
-          "time": "05:00 PM",
-          "activity_name": "Visit Chiesa di Ges\u00f9 e Maria, Rome",
+          "time": "21:00",
+          "activity_name": "Live Jazz at Yoshi's",
           "location": {
-            "name": "Chiesa di Ges\u00f9 e Maria",
-            "city": "Rome",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "ChIJWVoZSU1gLxMR15cWr5vaDQQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN4Wb5gRpvaExt1hZqIlaqKGTxRe3hK8CoSvkUv9Sd4NeWaBioSz-vWvAqTEuiB6ZOhRllTNdTTnWe0RgS5lzo69RNZg2k8nY-gjwsjP1OYZ_CI0280URJ20JA4M-x38M_nHQ4baEaYE1pEBlVaPetl11OW170fSCmxddP_hQ4cUeff&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+            "name": "Yoshi's",
+            "city": "San Francisco",
+            "coordinates": {},
+            "place_id": ""
           },
-          "description": "Explore this beautiful church known for its stunning architecture."
+          "description": "End the night enjoying live jazz performances."
         }
       ]
     },
     {
       "day": 6,
-      "date": "2024-12-24",
-      "summary": "Visit Vatican City and enjoy the festive spirit of Rome during Christmas Eve.",
+      "date": "2024-11-13",
+      "summary": "Last day in San Francisco, enjoy a leisurely morning.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Visit St. Peter's Basilica, Vatican City",
+          "time": "09:00",
+          "activity_name": "Breakfast at Sweet Maple",
           "location": {
-            "name": "St. Peter's Basilica",
-            "city": "Vatican City",
+            "name": "Sweet Maple",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Marvel at the breathtaking architecture and interior of this magnificent basilica."
+          "description": "Savor a delightful breakfast at this iconic brunch spot."
         },
         {
-          "time": "11:00 AM",
-          "activity_name": "Explore Vatican Museums, Vatican City",
+          "time": "11:00",
+          "activity_name": "Visit Chinatown",
           "location": {
-            "name": "Vatican Museums",
-            "city": "Vatican City",
+            "name": "Chinatown",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Discover masterpieces and artifacts spanning centuries."
+          "description": "Explore the vibrant cultural hub filled with shops and eateries."
         },
         {
-          "time": "02:00 PM",
-          "activity_name": "Lunch at Ristorante dei Musei, Vatican City",
+          "time": "13:00",
+          "activity_name": "Lunch at R&G Lounge",
           "location": {
-            "name": "Ristorante dei Musei",
-            "city": "Vatican City",
+            "name": "R&G Lounge",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Delight in Italian dishes near the Vatican."
+          "description": "Enjoy authentic Chinese cuisine at this popular restaurant."
         },
         {
-          "time": "05:00 PM",
-          "activity_name": "Attend Christmas Eve Mass, Vatican City",
+          "time": "15:00",
+          "activity_name": "Visit to the Painted Ladies",
           "location": {
-            "name": "St. Peter's Basilica",
-            "city": "Vatican City",
+            "name": "Painted Ladies",
+            "city": "San Francisco",
             "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "place_id": ""
           },
-          "description": "Experience the joyous Christmas service in one of the world's most iconic churches."
-        }
-      ]
-    },
-    {
-      "day": 7,
-      "date": "2024-12-25",
-      "summary": "Enjoy a leisurely Christmas Day exploring Rome's beautiful sites.",
-      "activities": [
-        {
-          "time": "10:00 AM",
-          "activity_name": "Visit Piazza Navona, Rome",
-          "location": {
-            "name": "Piazza Navona",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Admire the festive decorations and beautiful fountains."
-        },
-        {
-          "time": "12:00 PM",
-          "activity_name": "Christmas Lunch at Ristorante Da Francesco, Rome",
-          "location": {
-            "name": "Ristorante Da Francesco",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy a festive meal in the heart of Rome."
-        },
-        {
-          "time": "04:00 PM",
-          "activity_name": "Visit the Trevi Fountain, Rome",
-          "location": {
-            "name": "Trevi Fountain",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Throw a coin in the fountain and make a wish!"
-        },
-        {
-          "time": "06:00 PM",
-          "activity_name": "Evening stroll through Trastevere, Rome",
-          "location": {
-            "name": "Trastevere",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Wander the charming, cobblestone streets and experience local Christmas joy."
-        }
-      ]
-    },
-    {
-      "day": 8,
-      "date": "2024-12-26",
-      "summary": "Departure day with memories made exploring historic sites and nature.",
-      "activities": [
-        {
-          "time": "09:00 AM",
-          "activity_name": "Visit Spanish Steps, Rome",
-          "location": {
-            "name": "Spanish Steps",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Climb the famous steps and enjoy the view."
-        },
-        {
-          "time": "11:00 AM",
-          "activity_name": "Last-minute shopping at Via del Corso, Rome",
-          "location": {
-            "name": "Via del Corso",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Shop for souvenirs and mementos."
-        },
-        {
-          "time": "02:00 PM",
-          "activity_name": "Lunch at L'Arcangelo, Rome",
-          "location": {
-            "name": "L'Arcangelo",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy authentic Italian cuisine one last time."
-        },
-        {
-          "time": "05:00 PM",
-          "activity_name": "Departure for Home",
-          "location": {
-            "name": "",
-            "city": "",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Check out and head to the airport for your flight back home."
+          "description": "Enjoy iconic views of the Victorian houses and the city skyline."
         }
       ]
     }
