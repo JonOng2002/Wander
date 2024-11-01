@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div v-else class="itineraries-grid multiple">
+            <div v-else class="itineraries-grid multiple responsive-container">
                 <!-- Hero card for the first itinerary -->
                 <div class="hero-card" @click="viewItinerary(filteredItineraries[0].savedAt)">
                     <div class="card shadow-lg">
@@ -125,8 +125,6 @@
                         <button class="round-button" @click="scrollRight">&gt;</button>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -875,49 +873,6 @@ export default {
 }
 
 
-@media (max-width: 1200px) {
-    .overlay-text {
-        font-size: 1.2rem;
-    }
-
-    .content h1 {
-        font-size: 6rem;
-    }
-
-    .content h4 {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 992px) {
-    .overlay-text {
-        font-size: 1rem;
-    }
-
-    .content h1 {
-        font-size: 3rem;
-    }
-
-    .content h4 {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .overlay-text {
-        font-size: 1rem;
-    }
-
-    .content h1 {
-        font-size: 2rem;
-    }
-
-    .content h4 {
-        font-size: 1rem;
-    }
-}
-
-
 /* ******************** stickbar container ******************* */
 /* header sicky styling */
 .sticky-top {
@@ -1096,13 +1051,14 @@ export default {
 .single-itinerary-card {
     width: 100vW;
     max-width: 800px;
-    margin: 20px auto;      
+    margin: 20px auto;
     height: 65vh;
     /* Adjust this value as needed for desired screen coverage */
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1200px; /* Controls the width of the entire card layout */
+    max-width: 1200px;
+    /* Controls the width of the entire card layout */
     margin: 0 auto;
 }
 
@@ -1204,6 +1160,10 @@ export default {
 
 
 /* ************************************************ */
+
+
+
+
 /*more than one itinerary styling*/
 /* Hero card styling */
 .hero-card {
@@ -1376,5 +1336,75 @@ export default {
 .round-button:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ******************************************* */
+/* viewport sizes */
+@media (max-width: 1200px) {
+    .overlay-text {
+        font-size: 1.2rem;
+    }
+
+    .content h1 {
+        font-size: 6rem;
+    }
+
+    .content h4 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .overlay-text {
+        font-size: 1rem;
+    }
+
+    .content h1 {
+        font-size: 3rem;
+    }
+
+    .content h4 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .overlay-text {
+        font-size: 1rem;
+    }
+
+    .content h1 {
+        font-size: 2rem;
+    }
+
+    .content h4 {
+        font-size: 1rem;
+    }
+
+    .itineraries-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stacked-cards-wrapper {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .small-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .scroll-buttons {
+        position: static;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
 }
 </style>

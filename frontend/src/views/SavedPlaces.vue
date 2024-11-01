@@ -1,25 +1,70 @@
 <template>
+  <div class="container-fluid p-0">
+    <div class="header_container">
+      <div class="content">
+        <h1>Travel the world</h1>
+        <h4>Start Exploring | Plan your trips</h4>
+      </div>
+    </div>
+    <!-- Section 1 -->
+    <div class="d-flex flex-column flex-lg-row position-relative headerbox">
+      <div class="col-lg-4 col-md-12 col-sm-12 p-0 one" @click="viewDestinations">
+        <a href="#" class="section-link">
+          <img src="@/assets/countries/singapore.jpg" alt="Image 1" class="img-fluid w-100" />
+          <div class="overlay-text">Discover New Locations</div>
+          <div class="gradientoverlay"></div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 p-0 one d-none d-md-block" @click="viewSavedPlaces">
+        <div class="gradientoverlay"></div>
+        <a href="#" class="section-link">
+          <img src="@/assets/countries/united_arab_emirates.jpg" alt="Image 2" class="img-fluid w-100" />
+          <div class="overlay-text">Browse Your Saved Locations</div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 p-0 one d-none d-md-block" @click="viewMainPage">
+        <div class="gradientoverlay"></div>
+        <a href="#" class="section-link">
+          <img src="@/assets/countries/austria.jpg" alt="Image 3" class="img-fluid w-100" />
+          <div class="overlay-text">Enter a TikTok Link!</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <div class="itinerary-page">
     <div class="sticky-top">
       <div class="row justify-content-between align-items-center sticky-header g-0">
-        <div class="col-3 date-column">
-          <h2>My Saved Places</h2>
+        <div class="col-12 date-column">
+          <div class="secondary_content">
+            <h2>Top Destinations for your next holiday</h2>
+            <h5>Here's where your fellow wanderers are headed:</h5>
+          </div>
+
+          <!-- buttons container -->
           <div class="filter-dropdown d-flex align-items-center">
+            <!-- dropdown for filtering -->
             <select @change="filterPlaces" class="form-select me-2">
               <option value="">Select Filter</option>
               <option value="alphabetical">Filter by Alphabet</option>
               <option value="recently-added">Filter by Recently Added</option>
             </select>
+
+
             <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
               Delete All
             </button>
+
+            <button @click="toggleModal" type="button" class="btn view-itinerary-btn">View
+              Itinerary</button>
+
+            <button @click="navigateToGeneratedItinerary" type="button" class="btn view-full-itinerary-btn">View Full
+              Itinerary</button>
           </div>
-        </div>
-        <div class="col-auto generateButton">
-          <button @click="toggleModal" type="button" class="btn view-itinerary-btn">View
-            Itinerary</button>
-          <button @click="navigateToGeneratedItinerary" type="button" class="btn view-full-itinerary-btn">View Full
-            Itinerary</button>
+
+          <div class="col-auto generateButton">
+
+          </div>
         </div>
       </div>
     </div>
@@ -471,6 +516,158 @@ export default {
 
 
 <style scoped>
+.container-fluid {
+  position: relative;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.header_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  z-index: 3;
+}
+
+.content h1 {
+  font-size: 6rem;
+  font-weight: 700;
+}
+
+.content h4 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+
+}
+
+.headerbox {
+  height: 60vh;
+  /* Fixed height to ensure images have a base to fill */
+  display: flex;
+}
+
+.col-lg-4,
+.col-md-12,
+.col-sm-12 {
+  height: 100%;
+  /* Make columns fill headerbox height */
+}
+
+.section-link {
+  position: relative;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  /* Full width */
+}
+
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ensures the image fills the container without distortion */
+  object-position: center;
+  /* Center image within container */
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+}
+
+.gradientoverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Replace gradient with a solid black with opacity */
+  transition: background-color 0.3s ease;
+  /* Smooth transition for brightness on hover */
+  z-index: 1;
+}
+
+.one:hover .gradientoverlay {
+  background-color: rgba(0, 0, 0, 0.0);
+  /* Make overlay lighter on hover */
+}
+
+.one {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  /* Smooth transition */
+}
+
+.one:hover {
+  transform: scale(1.05);
+  /* Slightly scale up the card */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  /* Add a stronger shadow */
+}
+
+
+@media (max-width: 1200px) {
+  .overlay-text {
+    font-size: 1.2rem;
+  }
+
+  .content h1 {
+    font-size: 6rem;
+  }
+
+  .content h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .overlay-text {
+    font-size: 1rem;
+  }
+
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content h4 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay-text {
+    font-size: 1rem;
+  }
+
+  .content h1 {
+    font-size: 2rem;
+  }
+
+  .content h4 {
+    font-size: 1rem;
+  }
+}
+
+
+/* ****************************************** */
 h2 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: bolder;
@@ -521,10 +718,13 @@ h2 {
 /* Card Grid Layout */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default to 3 items per row on large screens */
-  gap: 1.5rem; /* Space between cards */
+  grid-template-columns: repeat(3, 1fr);
+  /* Default to 3 items per row on large screens */
+  gap: 1.5rem;
+  /* Space between cards */
   row-gap: 4rem;
-  padding: 2rem; /* Padding around the grid */
+  padding: 2rem;
+  /* Padding around the grid */
 }
 
 .card-container {
@@ -542,8 +742,10 @@ h2 {
 
 /* Hover effect for cards */
 .card-container:hover {
-  transform: translateY(-4px); /* Moves the entire card upwards slightly */
-  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2); /* Enhances shadow for lift effect */
+  transform: translateY(-4px);
+  /* Moves the entire card upwards slightly */
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2);
+  /* Enhances shadow for lift effect */
 }
 
 .destination-card {
@@ -558,7 +760,8 @@ h2 {
   border: none;
   padding: 1.5rem;
   box-sizing: border-box;
-  color: #ffffff; /* Text color for readability on image */
+  color: #ffffff;
+  /* Text color for readability on image */
 }
 
 .overlay {
@@ -567,8 +770,10 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2); /* Slightly opaque black background */
-  z-index: 1; /* Place between background image and text */
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Slightly opaque black background */
+  z-index: 1;
+  /* Place between background image and text */
   border-radius: inherit;
 }
 
@@ -590,7 +795,8 @@ h2 {
   left: 0.4;
   width: 100;
   flex-direction: column;
-  align-items: flex-start; /* Align text to the left */
+  align-items: flex-start;
+  /* Align text to the left */
   border-bottom-left-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
   z-index: 2;
@@ -600,15 +806,18 @@ h2 {
   font-size: 1.25rem;
   font-weight: 700;
   color: white;
-  margin: 0; /* Remove any extra margins */
+  margin: 0;
+  /* Remove any extra margins */
   text-align: left;
 }
 
 .card-text {
   font-size: 0.9rem;
   color: #eaeaea;
-  margin-top: 0.3rem; /* Adjust spacing if needed */
-  margin-left: 0; /* Adjust spacing if needed */
+  margin-top: 0.3rem;
+  /* Adjust spacing if needed */
+  margin-left: 0;
+  /* Adjust spacing if needed */
   margin-bottom: 0.3rem;
   text-align: left;
 }
@@ -621,18 +830,23 @@ h2 {
 .itinerary-button {
   background-color: #000000;
   color: white;
-  width: 40%; /* Make the button full width */
+  width: 40%;
+  /* Make the button full width */
   padding: 0.5rem 7rem;
   border-radius: 0.5rem;
   border: none;
   font-size: small;
   text-align: center;
-  white-space: nowrap; /* Ensure text doesn’t wrap */
+  white-space: nowrap;
+  /* Ensure text doesn’t wrap */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  display: flex; /* Use flex to center the text */
-  justify-content: center; /* Center text horizontally */
-  align-items: center; /* Center text vertically */
+  display: flex;
+  /* Use flex to center the text */
+  justify-content: center;
+  /* Center text horizontally */
+  align-items: center;
+  /* Center text vertically */
   cursor: pointer;
 }
 
@@ -643,13 +857,15 @@ h2 {
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 items per row on medium screens */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
   }
 }
 
 @media (max-width: 768px) {
   .card-grid {
-    grid-template-columns: 1fr; /* 1 item per row on small screens */
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
   }
 }
 
@@ -718,24 +934,66 @@ h2 {
   transform: translateY(-5px);
 }
 
+.secondary_content h2 {
+  font-size: 1.2rem; /* Adjust to a smaller size */
+  margin-bottom: 0.5rem;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+
 .filter-dropdown {
-  margin: 10px 0;
+  display: flex;
+  align-items: center;
 }
 
 .filter-dropdown .form-select {
-  width: 100%;
-  border-radius: 100px;
-  border-radius: 1.5rem;
-  border: 1px solid black;
+  appearance: none;
+  /* Removes the default dropdown arrow */
+  width: 200px;
+  background-color: #222;
+  /* Dark background */
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.form-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #0057d9;
+  /* Adds a blue outline when focused */
+}
+
+/* Arrow icon for select dropdown */
+.form-select::after {
+  content: '▼';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  /* Makes sure the arrow is not clickable */
+  color: white;
 }
 
 .btn-delete-all {
-  width: 200px;
-  border-radius: 1.5rem;
-  border: 1px solid black;
-  color: black;
-  background-color: #ffffff;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-right: 10px;
 }
 
 .btn-delete-all:hover {
@@ -745,12 +1003,15 @@ h2 {
 
 .view-itinerary-btn,
 .view-full-itinerary-btn {
-  background-color: #ffffff;
-  border-radius: 100px;
-  border: 1px solid black;
-  color: black;
-  margin-top: 30px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-right: 10px;
 }
 
 .view-itinerary-btn:hover,
@@ -779,7 +1040,8 @@ h2 {
 }
 
 .transition-wrapper {
-  display:  contents; /* Keep the child elements visible */
+  display: contents;
+  /* Keep the child elements visible */
   flex-wrap: wrap;
   /* Allow items to wrap */
   justify-content: flex-start;
