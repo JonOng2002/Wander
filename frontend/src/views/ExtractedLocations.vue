@@ -93,7 +93,7 @@
             <save-place-button class='btn btn-dark' @place-saved="handlePlaceSaved" :placeName="locationInfo.place_name"
               :country="locationInfo.country" :city="locationInfo.city" :latitude="locationInfo.coordinates.latitude"
               :longitude="locationInfo.coordinates.longitude" :placePng="locationInfo.place_png" :userId="userId"
-              :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces">
+              :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces" :vicinity="locationInfo.vicinity">
             </save-place-button>
           </div>
 
@@ -165,7 +165,7 @@
             <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved" :placeName="place.place_name"
               :country="place.country" :city="place.city" :latitude="place.coordinates.latitude"
               :longitude="place.coordinates.longitude" :placePng="place.place_png" :userId="userId"
-              :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces">
+              :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces" :vicinity="place.vicinity">
             </save-place-button>
           </div>
         </div>
@@ -199,6 +199,7 @@ export default {
       default: '',
     },
     savedPlaces: Array,
+    
   },
 
   data() {

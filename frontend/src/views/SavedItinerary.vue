@@ -1,5 +1,6 @@
-<template>
+<!-- itinerary.vue -->
 
+<template>
     <div class="container-fluid p-0">
         <div class="header_container">
             <div class="content">
@@ -68,7 +69,6 @@
         <div v-if="!filteredItineraries.length" class="no-itineraries-message">
             <p>No saved itineraries yet. Start creating your itinerary!</p>
         </div>
-
         <div v-else class="single">
             <!-- Single centered large card for one itinerary -->
             <div v-if="filteredItineraries.length === 1" class="single-itinerary-card"
@@ -129,7 +129,6 @@
         </div>
     </div>
 </template>
-
 
 <script>
 import { ref, computed, watch } from "vue";
@@ -235,11 +234,12 @@ export default {
                 image: require("@/assets/countries/turkey.jpg"),
                 description:
                     "Turkey bridges Europe and Asia, offering ancient ruins, vibrant bazaars, and stunning coastlines.",
+
             },
             {
                 name: "Australia",
                 code: "AU",
-                palce: "Sydney",
+                place: "Sydney", // Corrected typo from 'palce' to 'place'
                 image: require("@/assets/countries/australia.jpg"),
                 description:
                     "Australia is famous for its outback adventures, Great Barrier Reef, and cosmopolitan cities like Sydney.",
@@ -331,6 +331,7 @@ export default {
                 image: require("@/assets/countries/switzerland.jpg"),
                 description:
                     "Switzerland is renowned for its alpine scenery, luxury watches, and delicious chocolates.",
+
             },
             {
                 name: "Indonesia",
@@ -426,7 +427,8 @@ export default {
                 place: "Seoul",
                 image: require("@/assets/countries/south_korea.jpg"),
                 description:
-                    "South Korea is a fascinating blend of ancient temples, bustling cities, and cutting-edge technology.",
+
+"South Korea is a fascinating blend of ancient temples, bustling cities, and cutting-edge technology.",
             },
             {
                 name: "United Arab Emirates",
@@ -522,7 +524,7 @@ export default {
                 place: "Bogota",
                 image: require("@/assets/countries/colombia.jpg"),
                 description:
-                    "Colombia offers a diverse range of attractions, from coffee plantations to vibrant cities like Bogotá.",
+"Colombia offers a diverse range of attractions, from coffee plantations to vibrant cities like Bogotá.",
             },
             {
                 name: "Ukraine",
@@ -534,8 +536,7 @@ export default {
             },
         ]);
 
-
-        //loading saved itineraries from firestore
+        // Loading saved itineraries from Firestore
         onMounted(async () => {
             console.log("Initial filteredItineraries:", filteredItineraries.value);
             const auth = getAuth();
@@ -624,7 +625,7 @@ export default {
             return country ? country.image : "@/assets/placeholder.jpg"; // Use placeholder if country not found
         };
 
-        //redirecting to the itinerary when clicked
+        // Redirecting to the itinerary when clicked
         const viewItinerary = (savedAt) => {
             router.push({
                 name: 'ItineraryDetails',
@@ -665,7 +666,6 @@ export default {
             return sortedItineraries;
         });
 
-
         // Watch to see if filteredItineraries updates as expected
         watch(filteredItineraries, (newVal, oldVal) => {
             console.log("filteredItineraries updated:");
@@ -696,7 +696,6 @@ export default {
             return pageData;
         });
 
-
         // Scroll functions
         const scrollLeft = () => {
             if (currentPage.value > 0) {
@@ -708,7 +707,7 @@ export default {
         };
 
         const scrollRight = () => {
-            if ((currentPage.value + 1) * itemsPerPage < filteredItineraries.value.length) {
+            if ((currentPage.value + 1) * itemsPerPage < filteredItineraries.value.length - 1) {
                 currentPage.value++;
                 console.log("Scrolled right:", currentPage.value);
             } else {
@@ -756,6 +755,7 @@ export default {
             scrollRight,
             showLeftButton,
             showRightButton,
+            itemsPerPage,
         };
     },
 };
@@ -795,7 +795,6 @@ export default {
     color: white;
     font-size: 1.5rem;
     font-weight: 500;
-
 }
 
 .headerbox {
@@ -1034,7 +1033,6 @@ export default {
     box-sizing: border-box;
 }
 
-
 .single {
     display: flex;
     flex-direction: column;
@@ -1064,14 +1062,18 @@ export default {
 
 .itineraries-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    /* Adjusted column width ratio */
-    gap: 20px;
+    grid-template-columns: 2fr 1fr; /* Two columns: 2 parts for hero, 1 part for stacked cards */
+    gap: 20px; /* Space between the columns */
     width: 100%;
-    /* Set to full width of container */
     max-width: 1400px;
-    /* Increased max width to match container */
-    justify-content: center;
+    align-items: start; /* Align items at the top */
+    margin: 0 auto; /* Center the grid container */
+}
+
+@media (max-width: 1200px) {
+    .itineraries-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
 }
 
 /* ************************************************ */
@@ -1088,6 +1090,8 @@ export default {
     /* Optional styling for shadow */
     border-radius: 8px;
     /* Optional rounded corners */
+    flex: 1; /* Allow the single card to take more space */
+    max-width: 100%; /* Ensure it does not overflow */
 }
 
 .card {
@@ -1118,7 +1122,6 @@ export default {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
 .single-itinerary-card .card-body {
     position: absolute;
     bottom: 20px;
@@ -1127,7 +1130,6 @@ export default {
     color: white;
     padding: 10px;
     box-sizing: border-box;
-
 }
 
 .single-itinerary-card .card-title {
@@ -1220,7 +1222,6 @@ export default {
     z-index: 2;
 }
 
-
 .hero-card .card-body .card-title {
     font-size: 3rem;
     margin-bottom: 10px;
@@ -1240,11 +1241,12 @@ export default {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-/* Wrapper to position buttons at bottom right */
 .stacked-cards-wrapper {
-    position: relative;
-    /* Allow absolute positioning within */
-    /* padding-bottom: 60px; */
+    display: flex;
+    flex-direction: column; /* Stack small cards vertically */
+    gap: 15px; /* Space between small cards */
+    width: 100%; /* Fill the grid column */
+    height: auto; /* Adjust height to content */
 }
 
 /* Stacked small cards styling */
@@ -1262,6 +1264,7 @@ export default {
     -ms-overflow-style: none;
     scrollbar-width: none;
     scroll-padding-right: 32px;
+    gap: 15px; /* Space between each small card */
 }
 
 .small-card {

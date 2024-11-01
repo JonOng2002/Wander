@@ -1,326 +1,71 @@
 {
-  "country": "United States",
-  "itinerary_summary": "Explore the vibrant nightlife and cultural landmarks of San Francisco, combining romance and entertainment over six days.",
+  "country": "Indonesia",
+  "itinerary_summary": "Explore the stunning sights and rich culture of Uluwatu, Indonesia, with a focus on renowned attractions and must-see landmarks in a day-long solo adventure.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-08",
-      "summary": "Arrival in San Francisco and relaxing evening by the waterfront.",
+      "date": "2024-11-01",
+      "summary": "Immerse yourself in the breathtaking scenery and cultural richness of Uluwatu with a day packed with sightseeing and local experiences.",
       "activities": [
         {
-          "time": "15:00",
-          "activity_name": "Check-in at Hotel Nikko San Francisco",
+          "time": "08:00",
+          "activity_name": "Breakfast at Single Fin",
           "location": {
-            "name": "Hotel Nikko San Francisco",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "A luxury hotel located in the heart of Union Square."
-        },
-        {
-          "time": "17:00",
-          "activity_name": "Walk across the Golden Gate Bridge",
-          "location": {
-            "name": "Golden Gate Bridge",
-            "city": "San Francisco",
+            "name": "Single Fin",
+            "city": "Uluwatu",
             "coordinates": {
-              "latitude": 37.8199109,
-              "longitude": -122.4785598
+              "latitude": -8.8021,
+              "longitude": 115.1276
             },
-            "place_id": "ChIJw____96GhYARCVVwg5cT7c0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPK4gqnL8tHQgb3mLD6Wfvc6vHmb_nr9X7fL7oOnF5-arFkHHz0ODItgI7vbE93u3K6JcZ2V3Fxagt8XH4aHFUuFP7httIMco66ypY1c4gfY2wpSflorX-y6tbbGM5FBeeQjMSyNTPobMAI0W-5zHJ-ZpUbiCWApvjMCpCT41mMBGp_&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
-          },
-          "description": "Experience breathtaking views as you walk this iconic bridge at sunset."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Dinner at The Cheesecake Factory",
-          "location": {
-            "name": "The Cheesecake Factory",
-            "city": "San Francisco",
-            "coordinates": {},
             "place_id": "",
-            "photo_url": ""
+            "photo_url": "https://images.unsplash.com/photo-1582551145495-ae6ba5c11013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzA0MzIyMTR8&ixlib=rb-4.0.3&q=80&w=1080"
           },
-          "description": "Enjoy a variety of delicious cheesecakes along with a diverse menu."
+          "description": "Enjoy a delightful breakfast with stunning ocean views at Single Fin, a popular spot among surfers and tourists alike."
         },
-        {
-          "time": "21:00",
-          "activity_name": "Visit Club Pisco",
-          "location": {
-            "name": "Club Pisco",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Dance the night away at a lively nightclub featuring Latin music."
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "date": "2024-11-09",
-      "summary": "Explore Fisherman's Wharf and indulge in local cuisine.",
-      "activities": [
         {
           "time": "10:00",
-          "activity_name": "Breakfast at Boudin Bakery",
+          "activity_name": "Visit Uluwatu Temple",
           "location": {
-            "name": "Boudin Bakery",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Famous for its sourdough bread, enjoy breakfast by the bay."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Visit Fisherman's Wharf",
-          "location": {
-            "name": "Fisherman's Wharf",
-            "city": "San Francisco",
+            "name": "Uluwatu Temple",
+            "city": "Uluwatu",
             "coordinates": {
-              "latitude": 37.8084354,
-              "longitude": -122.4157509
+              "latitude": -8.8305,
+              "longitude": 115.0862
             },
-            "place_id": "ChIJIbjkBuOAhYAR3OzY8Djb7Kc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN86wOiyUOHLMUGu-VqmM9vd-316YK66uUbQ9xhA1IYfofaRphLY6fpfFdoGyuwvyzJSxhPSEnQqdVBe8hBb3AAqksnhH5hiu8CvT7y46Z9rvZoqQl8DN8fwz8SMRWGlvkmQUKf5W_IA7g8G7PhrfKIJpsLP0PG0ksPoCGImVVcinMC&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
-          },
-          "description": "Explore shops, enjoy street performances, and view sea lions."
-        },
-        {
-          "time": "15:00",
-          "activity_name": "Lunch at Fog Harbor Fish House",
-          "location": {
-            "name": "Fog Harbor Fish House",
-            "city": "San Francisco",
-            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Seafood dining with stunning views of the bay."
-        },
-        {
-          "time": "20:00",
-          "activity_name": "Dinner Show at Beach Blanket Babylon",
-          "location": {
-            "name": "Beach Blanket Babylon",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy a fun-filled musical revue that spoofs pop culture."
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "date": "2024-11-10",
-      "summary": "Cruise and cultural exploration of the city.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Brunch at The Mill",
-          "location": {
-            "name": "The Mill",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Treat yourself to artisanal toast and locally brewed coffee."
-        },
-        {
-          "time": "11:30",
-          "activity_name": "Take a Bay Cruise",
-          "location": {
-            "name": "San Francisco Bay Cruises",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Sightsee from the water with views of the Golden Gate and Alcatraz."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Visit Alcatraz Island",
-          "location": {
-            "name": "Alcatraz Island",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Explore the historic prison with an audio tour of its famous inmates."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Dinner at Sotto Mare",
-          "location": {
-            "name": "Sotto Mare",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Enjoy the freshest seafood in a cozy Italian restaurant."
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "date": "2024-11-11",
-      "summary": "Cultural immersion with art and local dining.",
-      "activities": [
-        {
-          "time": "10:00",
-          "activity_name": "Breakfast at Mama's on Washington Square",
-          "location": {
-            "name": "Mama's on Washington Square",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Enjoy a famous breakfast haven known for its French toast."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Explore the San Francisco Museum of Modern Art (SFMOMA)",
-          "location": {
-            "name": "SFMOMA",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Discover contemporary artworks by renowned artists."
-        },
-        {
-          "time": "16:00",
-          "activity_name": "Coffee Break at Blue Bottle Coffee",
-          "location": {
-            "name": "Blue Bottle Coffee",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Indulge in freshly brewed coffee at a local favorite stop."
-        },
-        {
-          "time": "19:30",
-          "activity_name": "Dinner at The Stinking Rose",
-          "location": {
-            "name": "The Stinking Rose",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Enjoy garlic-infused dishes at this whimsical eatery."
-        }
-      ]
-    },
-    {
-      "day": 5,
-      "date": "2024-11-12",
-      "summary": "Relaxation and exploration in tranquil surroundings.",
-      "activities": [
-        {
-          "time": "10:00",
-          "activity_name": "Brunch at Foreign Cinema",
-          "location": {
-            "name": "Foreign Cinema",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Experience delicious brunch paired with screenings of classic films."
+          "description": "Explore the majestic Uluwatu Temple, perched atop a cliff with breathtaking views of the Indian Ocean, a must-see cultural landmark."
         },
         {
           "time": "13:00",
-          "activity_name": "Stroll through Golden Gate Park",
+          "activity_name": "Lunch at The Cashew Tree",
           "location": {
-            "name": "Golden Gate Park",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
+            "name": "The Cashew Tree",
+            "city": "Uluwatu",
+            "coordinates": {
+              "latitude": -8.802,
+              "longitude": 115.121
+            },
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Enjoy the serene landscapes and visit the parks\u2019 attractions."
-        },
-        {
-          "time": "18:00",
-          "activity_name": "Picnic at Stow Lake",
-          "location": {
-            "name": "Stow Lake",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Relax by the lake with a picnic dinner from a local deli."
-        },
-        {
-          "time": "21:00",
-          "activity_name": "Live Jazz at Yoshi's",
-          "location": {
-            "name": "Yoshi's",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "End the night enjoying live jazz performances."
-        }
-      ]
-    },
-    {
-      "day": 6,
-      "date": "2024-11-13",
-      "summary": "Last day in San Francisco, enjoy a leisurely morning.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Breakfast at Sweet Maple",
-          "location": {
-            "name": "Sweet Maple",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Savor a delightful breakfast at this iconic brunch spot."
-        },
-        {
-          "time": "11:00",
-          "activity_name": "Visit Chinatown",
-          "location": {
-            "name": "Chinatown",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Explore the vibrant cultural hub filled with shops and eateries."
-        },
-        {
-          "time": "13:00",
-          "activity_name": "Lunch at R&G Lounge",
-          "location": {
-            "name": "R&G Lounge",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
-          },
-          "description": "Enjoy authentic Chinese cuisine at this popular restaurant."
+          "description": "Savor fresh and healthy dishes at The Cashew Tree, known for its vibrant atmosphere and tasty organic meals."
         },
         {
           "time": "15:00",
-          "activity_name": "Visit to the Painted Ladies",
+          "activity_name": "Relax at Padang Padang Beach",
           "location": {
-            "name": "Painted Ladies",
-            "city": "San Francisco",
-            "coordinates": {},
-            "place_id": ""
+            "name": "Padang Padang Beach",
+            "city": "Uluwatu",
+            "coordinates": {
+              "latitude": -8.8424,
+              "longitude": 115.0858
+            },
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Enjoy iconic views of the Victorian houses and the city skyline."
+          "description": "Visit Padang Padang Beach, renowned for its stunning cliffs and turquoise waters, perfect for sunbathing and swimming."
         }
       ]
     }

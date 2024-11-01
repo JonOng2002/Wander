@@ -2,6 +2,7 @@ import { createApp, reactive } from 'vue';
 import App from './App.vue';
 import router from './router';
 import { Loader } from '@googlemaps/js-api-loader'; // Import Google Maps API Loader
+import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 
 // FormKit imports
 import { plugin, defaultConfig } from '@formkit/vue';
@@ -51,7 +52,7 @@ setPersistence(auth, browserLocalPersistence).catch((error) => {
 
 // Initialize Google Maps API using Loader
 const loader = new Loader({
-    apiKey: 'AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk', // Replace with your actual API key
+    apiKey: 'AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM', // Replace with your actual API key
     version: 'weekly',
     libraries: ['places'],
 });
@@ -206,6 +207,7 @@ vueApp.use(BootstrapVue3);
 vueApp.use(VCalendar);
 vueApp.use(plugin, defaultConfig); // FormKit integration
 
+vueApp.use(autoAnimatePlugin);
 // Mount the app
 vueApp.mount('#app');
 

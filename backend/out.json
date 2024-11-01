@@ -1,1 +1,72 @@
-{"location_info": {"place_name": "Yi Peng Lantern Festival", "country": "Thailand", "city": "Chiang Mai", "place_png": "https://images.unsplash.com/photo-1518616410016-14fbdf486848?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzAzMTE3OTl8&ixlib=rb-4.0.3&q=80&w=1080", "coordinates": {"latitude": 18.7883, "longitude": 98.9853}, "activities": ["Release lanterns into the night sky", "Participate in traditional Thai performances", "Enjoy local food and crafts at the festival"], "location_summary": "The Yi Peng Lantern Festival in Chiang Mai is a breathtaking spectacle that attracts people from around the world. Participants release lanterns into the sky, symbolizing new beginnings and the letting go of misfortunes."}, "related_places": [{"place_name": "Loy Krathong Festival", "country": "Thailand", "city": "Bangkok", "place_png": "https://images.unsplash.com/photo-1622632344658-8bf8b89a11d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzAzMTE3OTl8&ixlib=rb-4.0.3&q=80&w=1080", "coordinates": {"latitude": 13.7563, "longitude": 100.5018}, "activities": ["Float krathongs on water", "Watch fireworks displays", "Enjoy street food and traditional music"], "location_summary": "Loy Krathong is celebrated across Thailand, especially in Bangkok, where people release krathongs (decorative floats) on waterways, creating beautiful nighttime displays."}, {"place_name": "Diwali Festival", "country": "India", "city": "Varanasi", "place_png": "https://images.unsplash.com/photo-1641296834249-92df2652c237?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzAzMTE4MDB8&ixlib=rb-4.0.3&q=80&w=1080", "coordinates": {"latitude": 25.3176, "longitude": 82.9739}, "activities": ["Light lamps and candles", "Participate in fireworks shows", "Enjoy cultural performances"], "location_summary": "Diwali is the festival of lights marked by festivities in Varanasi, where streets are illuminated with lamps, and people engage in various celebrations symbolizing the victory of light over darkness."}, {"place_name": "Festival of Lights (Fête des Lumières)", "country": "France", "city": "Lyon", "place_png": "https://images.unsplash.com/photo-1505224628533-c4fc42c389e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzAzMTE4MDB8&ixlib=rb-4.0.3&q=80&w=1080", "coordinates": {"latitude": 45.764, "longitude": 4.8357}, "activities": ["Enjoy various light installations", "Attend music and cultural events", "Taste French cuisine and local specialties"], "location_summary": "Lyon hosts the Festival of Lights annually, where the entire city is adorned with light art installations, celebrating the unique luminescence of the city."}]}
+{
+  "location_info": {
+    "place_name": "Hohhot",
+    "country": "China",
+    "city": "Hohhot",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGigwloy4JI_729e4HKYUe1bcYUyegW5gaf01MEfIlzga-SdK6FXvpOPXsTFDO9untIOHWR5fiT1kqMslOgzVyCZmKhuPF9yhg=s1600-w800",
+    "coordinates": {
+      "latitude": 40.8414899,
+      "longitude": 111.75199
+    },
+    "activities": [
+      "Exploring ancient temples",
+      "Sampling traditional Mongolian cuisine",
+      "Shopping at local markets"
+    ],
+    "location_summary": "Hohhot, the capital of Inner Mongolia, blends rich Mongolian traditions with modern development. It's known for its colorful culture and beautiful natural landscapes.",
+    "vicinity": "Hohhot"
+  },
+  "related_places": [
+    {
+      "place_name": "Beijing",
+      "country": "China",
+      "city": "Beijing",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqG9_a64yCuUb7RbHGUGuRF_I7JznC6BzNaaXL0SVLxnYoQBVMs4fsVMIxzOlTUuaoA_OPqcy_9JxwHtFmhuQeq6UJBLUdaL9UY=s1600-w800",
+      "coordinates": {
+        "latitude": 39.904211,
+        "longitude": 116.407395
+      },
+      "activities": [
+        "Visiting the Great Wall",
+        "Exploring the Forbidden City",
+        "Enjoying local Peking duck"
+      ],
+      "location_summary": "Beijing, the capital city of China, is a city of deep historical significance adorned with ancient architecture and a modern skyline.",
+      "vicinity": "Beijing"
+    },
+    {
+      "place_name": "Datong",
+      "country": "China",
+      "city": "Datong",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHKi6ylr8C-Mv5dkpvxm6EV0jGDhlCKxwq6m9xZpCrI7KtRV6WXAesheRwwbT3Y5Zj0rSW5RT5cz0RyMANOsuCc6rJ9m8dDxlg=s1600-w800",
+      "coordinates": {
+        "latitude": 40.0763699,
+        "longitude": 113.30001
+      },
+      "activities": [
+        "Visiting the Yungang Grottoes",
+        "Exploring the Nine Dragon Screen",
+        "Strolling around the old town"
+      ],
+      "location_summary": "Datong is known for its ancient Buddhist cave art and rich cultural heritage, making it a captivating destination for history enthusiasts.",
+      "vicinity": "Datong"
+    },
+    {
+      "place_name": "Ordos",
+      "country": "China",
+      "city": "Ordos",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFfR-QAkxfi3sJldIf9Qsg4Tt5wHiL-3M6NO1iFBh8W9aAVgifwL0LA0wEepONlW1RSImS8s6QCMrWFq303S6PoMdsAiXcPfh8=s1600-w800",
+      "coordinates": {
+        "latitude": 39.6084499,
+        "longitude": 109.78087
+      },
+      "activities": [
+        "Exploring the Kangbashi New Area",
+        "Visiting the Ordos Museum",
+        "Experiencing local nomadic culture"
+      ],
+      "location_summary": "Ordos, a modern city rapidly developing in China, offers a glimpse into both contemporary life and traditional nomadic customs.",
+      "vicinity": "Ordos City"
+    }
+  ]
+}
