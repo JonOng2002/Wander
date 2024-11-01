@@ -20,6 +20,10 @@
               Save Itinerary
             </button>
           </div>
+          <div class="itinerary-summary" v-if="itinerarySummary">
+            <h3>Summary</h3>
+            <p>{{ itinerarySummary }}</p>
+          </div>
           <div class="itinerary-details">
             <div
               v-for="(day, index) in itinerary?.day_by_day_itineraries || []"
@@ -175,10 +179,11 @@ const saveToItinerary = async () => {
   if (user && itinerary.value) {
     const userRef = doc(db, 'users', user.uid);
     const itineraryToSave = {
-      itinerary: itinerary.value,
-      country: country.value,
-      createdAt: new Date(),
-    };
+  itinerary: itinerary.value,
+  country: country.value,
+  numDays: getNumDays.value,
+  savedAt: new Date().toISOString(), // Use ISO string for consistency
+};
     try {
       await updateDoc(userRef, {
         savedItineraries: arrayUnion(itineraryToSave),
@@ -295,6 +300,16 @@ onMounted(async () => {
   display: flex;
   height: 100vh;
 }
+
+.itinerary-summary {
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 20px 20px 20px;
+}
+
 
 /* Itinerary Details */
 .itinerary-details-container {

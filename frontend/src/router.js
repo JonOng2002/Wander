@@ -14,7 +14,7 @@ import DestinationDetails from '@/views/DestinationDetails.vue';
 import CalendarPage from '@/views/CalendarPage.vue';
 import TagsPage from '@/views/TagsPage.vue';
 // import TrvPartner from '@/views/TravellingWithWho.vue';
-import MyItineraries from '@/views/MyItineraries.vue';
+import ItineraryBuilder from '@/views/ItineraryBuilder.vue';
 import LocationDate from '@/views/LocationDate.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import OverlayPage from '@/views/overlayPage.vue';
@@ -35,7 +35,8 @@ const routes = [
   {
     path: '/itinerary-details/:savedAt',  // ':id' is the dynamic parameter for the itinerary ID
     name: 'ItineraryDetails',
-    component: ItineraryDetails  // Lazy loading of the component
+    component: ItineraryDetails,
+  props: true,
   },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
@@ -48,8 +49,7 @@ const routes = [
   { path: '/locationdate', name: 'LocationDate', component: LocationDate },
   { path: '/calendar', name: 'CalendarPage', component: CalendarPage },
   { path: '/tags', name: 'TagsPage', component: TagsPage },
-  { path: '/generatedItinerary', name: 'GenIti', component: GeneratedItinerary, },
-  { path: '/myitineraries', name: 'MyItineraries', component: MyItineraries,
+  { path: '/itineraryBuilder', name: 'ItineraryBuilder', component: ItineraryBuilder,
     props: (route) => ({
       itineraryGenerated: route.query.itineraryGenerated === 'true',
       itinerary: route.query.itinerary ? JSON.parse(route.query.itinerary) : []

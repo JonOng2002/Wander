@@ -1,205 +1,239 @@
 {
-  "country": "Japan",
-  "itinerary_summary": "This solo trip to Japan focuses on a blend of adventure activities and vibrant nightlife, exploring Tokyo's art and culture while indulging in unique culinary experiences.",
+  "country": "South Korea",
+  "itinerary_summary": "Explore the vibrant districts of Gangnam and Itaewon along with cultural landmarks and thrilling attractions in Seoul over a long weekend getaway.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-10-31",
-      "summary": "Arrival in Tokyo, exploring the Daiba area with an evening nightlife experience.",
+      "date": "2024-11-01",
+      "summary": "Arrive in Seoul, explore Eunpyeong Hanok Village, enjoy the nightlife in Itaewon.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Fuji Television Network, Inc.",
+          "time": "14:00",
+          "activity_name": "Eunpyeong Hanok Village",
           "location": {
-            "name": "Fuji Television Network, Inc.",
-            "city": "Minato City",
+            "name": "Eunpyeong Hanok Village",
+            "city": "Seoul",
             "coordinates": {
-              "latitude": 35.626605,
-              "longitude": 139.774056
-            },
-            "place_id": "ChIJQQ6UsPeJGGAR3LFE4U43_NQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN61kiRUmiNb2jhh4e2p1nv_mdFremcNXv0s_ag1NEDc-7MuKNX2nmvkf1qbuQOkYlT_oU3fziuTR2kdgdNcP2Ba8Mafo2-T-3dIa_3Snrc27nSjzweKXVKLWhcRTa2EvWWJBF5TNQfa-l5kC-Js06X8uqQ7M1CgXOQSqRj9PqD3DlT&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
-          },
-          "description": "Visit the iconic Fuji Television headquarters and enjoy panoramic views from the 25th floor."
-        },
-        {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Yakiniku Jumbo",
-          "location": {
-            "name": "Yakiniku Jumbo",
-            "city": "Shinjuku",
-            "coordinates": {
-              "latitude": 35.6586,
-              "longitude": 139.7454
+              "latitude": 37.6109,
+              "longitude": 126.9287
             },
             "place_id": "saved_places",
-            "photo_url": "https://images.unsplash.com/photo-1728839470502-59edad620f96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzAzMDk0ODN8&ixlib=rb-4.0.3&q=80&w=1080"
+            "photo_url": "https://images.unsplash.com/photo-1711377789458-01138d7728a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzA0MjcxOTJ8"
           },
-          "description": "Indulge in premium yakiniku (grilled meat) at this popular restaurant."
+          "description": "A charming traditional Korean village with beautiful hanok architecture."
         },
         {
-          "time": "4:00 PM",
-          "activity_name": "Explore Odaiba Seaside Park",
+          "time": "17:00",
+          "activity_name": "Dinner at Maple Tree House, Itaewon",
           "location": {
-            "name": "Odaiba Seaside Park",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.6300488,
-              "longitude": 139.7756912
-            },
-            "place_id": "ChIJ18IK6x2KGGARKTc2yLS-030",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN3KeWpvbFcQpDw3NH8z-GWozYq9w1fG9A3TymPzk1_m_MqBTeiNRk_5m0gbV07KUvY01mq73cFdbgu5T_RCWSyve7oOBBtpbz_bgQG4O3eAunTq_xNx6Dk557uWUGlda2fc65ebDG3ttKsre2k70kistmt3euDXFRaobJ-oubSiP9s&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "name": "Maple Tree House",
+            "city": "Itaewon",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Stroll through this beautiful seaside park with stunning views of the Rainbow Bridge and Tokyo Bay."
+          "description": "Enjoy a delicious Korean barbecue with a cozy ambiance."
         },
         {
-          "time": "9:00 PM",
-          "activity_name": "Nightlife at Tokyo Tower",
+          "time": "19:30",
+          "activity_name": "Itaewon Nightlife",
           "location": {
-            "name": "Tokyo Tower",
-            "city": "Minato City",
-            "coordinates": {
-              "latitude": 35.6585805,
-              "longitude": 139.7454329
-            },
-            "place_id": "ChIJCewJkL2LGGAR3Qmk0vCTGkg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO59JDrIZsKcqYy6zsbuWlkkT4_DLHeqflnTr-bZYtjllaqEmENw2uJNFo9XriYnQTm_FwRqFhdi8v_bh7xEKS3-LS_Hzfn7L-T4yoUnMH4Zl5B0vbyEFckhOVwC-spPLUWXc6eImGmG5POpUxEtTLw8RkOLR704TzMJiYASraZ7N92&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "name": "Itaewon",
+            "city": "Seoul",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Experience the nightlife and enjoy breathtaking views of Tokyo from the observation deck."
+          "description": "Experience the vibrant nightlife with numerous bars and clubs."
+        },
+        {
+          "time": "22:00",
+          "activity_name": "Club Octagon, Gangnam",
+          "location": {
+            "name": "Club Octagon",
+            "city": "Gangnam",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "One of Seoul's hottest clubs known for its top-notch DJs and ambiance."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-01",
-      "summary": "A blend of culture and adventure in Tokyo, with a day focused on art and gourmet experiences.",
+      "date": "2024-11-02",
+      "summary": "Visit Paldang Bridge, Cheonho Bridge, and spend the evening at Lotte World.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Tokyo Metropolitan Art Museum",
+          "time": "09:00",
+          "activity_name": "Visit Paldang Bridge",
           "location": {
-            "name": "Tokyo Metropolitan Art Museum",
-            "city": "Taito City",
+            "name": "Paldang Bridge",
+            "city": "Hanam-si",
             "coordinates": {
-              "latitude": 35.7172113,
-              "longitude": 139.7729387
+              "latitude": 37.5458674,
+              "longitude": 127.2375651
             },
-            "place_id": "ChIJb_o7HiiMGGARUKu8uO7fGIQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOQpd0WuLg2uGSrFLbVVh2aQsc5or9C27B4nOGt-BBs1iwrY4myCC4TZVHfjgFbBUoJkuo8dt6FwXYJLVR3n8tDJU6uYv4Iok2X98JzLl4RH1k7uCVw1HQA3QIccNJels4HXcx2GDT0YpEzTV6o7Ra98235tJjB3L2mptojKiljikhm&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJn7-NX7ezfDURFjdt5llVal8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN6FZtbh5CEi1ZSVN1oo7aT9thIEKtw-2tz7DbYJcjvSr1S7X9Op3qP1q1OhIQ59iSBWzRVEsXNcUXrxQF5i76mL7PlRUYrwd6sKaKLsEXAUBRx148jBSJfcxCnr8NdpxfCDsfjZoyfWq4lMY8EOheA9uZYpWKiWlq_ltt2knGffUDJ&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk},"
           },
-          "description": "Explore the diverse art exhibitions and collections in this renowned museum."
+          "description": "Enjoy panoramic views of the river and surrounding landscapes."
         },
         {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Asakusa's RYOKAN KAMOGAWA",
+          "time": "12:00",
+          "activity_name": "Lunch at Hanam Iga, Local Eatery",
           "location": {
-            "name": "RYOKAN KAMOGAWA",
-            "city": "Taito City",
-            "coordinates": {
-              "latitude": 35.7121877,
-              "longitude": 139.7957151
-            },
-            "place_id": "ChIJu3PU18COGGARhGkyiUJKEW8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNmK2Wui_5XJU_nwGE0G1wphb_uq5lwnfpArGaTKeVVqAf-N1ClNVRW-BRT2dPsqUgNGd0Klulva5utxcjeZTZQbcMD40xTBAMpL_xzL9xnqNoTzXr1_zd4rEQTyP-7eQPBiONe6hF2xTeyG2SMHoddet4ybEiTEy4YJ3oPjyXVEGAU&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "name": "Hanam Iga",
+            "city": "Hanam",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Enjoy a traditional Japanese meal at this ryokan, experiencing authentic flavors."
+          "description": "Savor traditional Korean dishes in a lively local setting."
         },
         {
-          "time": "4:00 PM",
-          "activity_name": "Visit Cup Noodles Museum Yokohama",
+          "time": "15:00",
+          "activity_name": "Explore Cheonho Bridge",
           "location": {
-            "name": "Cup Noodles Museum Yokohama",
-            "city": "Yokohama",
+            "name": "Cheonho Bridge",
+            "city": "Seoul",
             "coordinates": {
-              "latitude": 35.4554755,
-              "longitude": 139.6388669
+              "latitude": 37.542929,
+              "longitude": 127.1117905
             },
-            "place_id": "ChIJ3ZNhe1dcGGARvjq5QHdmaHM",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMrwax75Rb_a3Hmulbql183i4R1xL7v0c6k9JGsbnvN7mx2KmA_4R3GxUSYurSofs75J0aZ2NOg5pvSPSGd2_LbNzf6SuBhCNiN7ETuuaQrgLI9410U9RvxpTgMHrlE2W12YOitFcaGtTx-DADwwvUiEjnyL04RdGtLhc5SNRHE1OSG&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJcxWKV0ylfDURBLsiZ84SRb4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNelNp86PMkRdOp-2fMSbtlvuwtxjpiSU3Q1EUsC_m7vvWstknUX-Z4AVdMDaL3N4jbDsNGIBoMu3r4Z4_Ur91fnyJjttikPluUTAbuHk_EWleqUo2NFT3nJ1tLvQ--d39phWqjdArXga0ZJZIl_TgYM_-cw5BaeaeIx2lymH_PYVEc&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk},"
           },
-          "description": "Learn about the history of instant noodles and create your own Cup Noodle."
+          "description": "Walk across the bridge and enjoy beautiful city views."
         },
         {
-          "time": "8:00 PM",
-          "activity_name": "Tokyo Nightlife at Shibuya City",
+          "time": "19:00",
+          "activity_name": "Lotte World, Theme Park",
           "location": {
-            "name": "Shibuya City",
-            "city": "Tokyo",
+            "name": "Lotte World",
+            "city": "Songpa District",
             "coordinates": {
-              "latitude": 35.6619707,
-              "longitude": 139.703795
+              "latitude": 37.51111579999999,
+              "longitude": 127.098167
             },
-            "place_id": "ChIJ0Qgx67KMGGARd2ZbObLZHPE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DORuM_Tz6q_kSWLS_N3FtviZxcAif_r5icCX2jsejIlfD7re6-UQutITetajgV68BKc37XYhnpNP7vbTsaqBzawsnB3vhYLvctBJSoxqW9QEZKGNEGamCFWYvGoQGDa2egvScTAom44HqZdjdmr6f1UbrVPAZMmXbdJmGGbM6QQXNPu&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJgf4OJaelfDURmDvA_sHyPUM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP7Ipn1qWqgricVtNce71aoYvhzACebmqZ3GOgdDsnteTI-r-q1B7dRpA2KdqFoJxUr4Hpq2KwzocLflRTQVzHBioE4aj61ogbHb0JR8aRB7Zpr4MBDa5nhxiLdcI7MV_X-JZCnC4rOdQyjsLQ0PG0jb6-IbsvXBdduQx6zCRjGSiEN&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk},"
           },
-          "description": "Immerse yourself in the energetic nightlife of Tokyo, exploring bars and clubs in Shibuya."
+          "description": "Enjoy thrilling rides and entertainment at one of Asia's largest theme parks."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-11-02",
-      "summary": "Leisurely morning and return trip, ensuring a last taste of Tokyo's culture.",
+      "date": "2024-11-03",
+      "summary": "Visit Incheon Bridge, explore local cuisine, and enjoy a comfortable evening in Seoul.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Breakfast at a local cafe",
+          "time": "09:00",
+          "activity_name": "Visit Incheon Bridge",
           "location": {
-            "name": "Cafe de Paris",
-            "city": "Tokyo",
+            "name": "Incheon Bridge",
+            "city": "Incheon",
             "coordinates": {
-              "latitude": 35.7318742,
-              "longitude": 139.7101442
+              "latitude": 37.4136893,
+              "longitude": 126.5665206
             },
-            "place_id": "ChIJPxG63F2NGGARqA1MlnZ1HU0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNOh1Dg9Aw4_kA5RBo_Pqn4PIh6JWFAacH__Cq6JQTlcXwuAxmOsV1jVHJc-i4Rfqfl9ey7iYvhYWm0Lbs9LmdhvMvVqj7Zh3acFXuzAWBN7Xz8roBx565XxDVMLiBPzUj_ZsWbjWsgefN6wXcTF7nCnSX-RVwh9ZTydoH_07e-B7_s&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "place_id": "ChIJV4JlmwGdezURwqyQbenQbNI",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPbY0XdR4HFr84T0mDAwHcamDhIMLiu2-Xyp814px3N4-zW1OQ9_ZV5j6uTSWGTLTNBPV78KgxtKKmSeMWG3ghBcv2TWN_eJF6nlJColMhOCvfLe49ZDy1MeMlKYpFAgrwx5PEUDzDvuGC7fzaRYTvFuoQVPViJ6-g0hXTAreBRGFMP&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk},"
           },
-          "description": "Enjoy a hearty breakfast at a charming cafe in Tokyo."
+          "description": "Experience the impressive architecture and engineering of this modern bridge."
         },
         {
-          "time": "12:00 PM",
-          "activity_name": "Last-minute shopping in Ginza",
+          "time": "12:30",
+          "activity_name": "Lunch at Myeongdong Kyoja, Myeongdong",
           "location": {
-            "name": "Ginza",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.6712228,
-              "longitude": 139.7664859
-            },
-            "place_id": "ChIJu2-DAeeLGGARUZipC7OFRmA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPBz1txzDietVMtrzmNlOWgA_gRKjcoYCOrKIUpWX8zNJocwWMCD3K5FBssQvo-XZiqGIQvAVlOIMpVFv2x2WWrnP-ZQnrqZTJm79Jyx025L4gHtM9lnmEd5-WZ711EJY3LGsANZrggiohYIBIRcEY-zu2T-wmNiPxgK1TYxV3jR_6H&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "name": "Myeongdong Kyoja",
+            "city": "Myeongdong",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Wander through Ginza's upscale shops, boutiques, and department stores."
+          "description": "Taste famous handmade noodle dishes and dumplings."
         },
         {
-          "time": "3:00 PM",
-          "activity_name": "Visit Senso-ji Temple",
+          "time": "16:00",
+          "activity_name": "Shopping at COEX Mall, Gangnam",
           "location": {
-            "name": "Senso-ji Temple",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.7147651,
-              "longitude": 139.7966553
-            },
-            "place_id": "ChIJ8T1GpMGOGGARDYGSgpooDWw",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DORoxL2BCcBPhMoX5Ai9I_1jQ8VOFLzVcA3DKVRthKmnRbbTmpHdmUAflKUT5G_JQ_mp7dygK2aVPE6oBfFOIaxiY6HL6_FZa_2Ndq16PI4tdJ0to8NkXJ8fIpTKlYpITZp91lRDQeN8WE9yNXqqiNa2gAukBVLOtHVwsdluiHB1YRj&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "name": "COEX Mall",
+            "city": "Gangnam",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Explore Tokyo's oldest temple and the beautiful Nakamise street leading up to it."
+          "description": "Explore Asia's largest underground shopping mall with diverse shops and entertainment."
         },
         {
-          "time": "6:00 PM",
-          "activity_name": "Departure from Tokyo",
+          "time": "20:00",
+          "activity_name": "Dinner at Samgyeopsal, Gangnam",
           "location": {
-            "name": "Tokyo International Airport",
-            "city": "Tokyo",
-            "coordinates": {
-              "latitude": 35.5482964,
-              "longitude": 139.7779951
-            },
-            "place_id": "ChIJ45IxpAtkGGAR3_hG0anDMg0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP5RySoN4lp08BSyRS86meKORKM23MdCw_K4-4hCQbLJL-hjeAPLSOqHBCvpu3dJ_Q0iti6VaQdeLBDspAay5inIKSDETDflhcf19MXwVaQnHYg--tyriUphFVJ-IZCuecNhYUMCgItEaB2TM2g92g_zCWSXEv5nl6aGT3WsloZxoSA&key=AIzaSyD9dvodGbXjyGCVTBdbW9rPsrbOjOUkVUk"
+            "name": "Samgyeopsal",
+            "city": "Gangnam",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Head to the airport for your departure, reflecting on your Tokyo adventure."
+          "description": "Enjoy a lively dining experience with grilled pork belly."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-04",
+      "summary": "Relaxing morning, check-out, and departure.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Brunch at Caf\u00e9 de Flore, Gangnam",
+          "location": {
+            "name": "Caf\u00e9 de Flore",
+            "city": "Gangnam",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Indulge in a relaxing brunch with delicious pastries and coffee."
+        },
+        {
+          "time": "11:00",
+          "activity_name": "Explore nearby stores in Gangnam",
+          "location": {
+            "name": "Gangnam District",
+            "city": "Seoul",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Spend your last moments shopping or exploring the local area."
+        },
+        {
+          "time": "13:00",
+          "activity_name": "Check-out from hotel",
+          "location": {
+            "name": "Your Hotel",
+            "city": "Seoul",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Finalize your stay in Seoul and prepare for departure."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Departure from Incheon International Airport",
+          "location": {
+            "name": "Incheon International Airport",
+            "city": "Incheon",
+            "coordinates": "",
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Depart from the airport with memories of an amazing trip!"
         }
       ]
     }

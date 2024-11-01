@@ -57,6 +57,7 @@
         extractedLocationsState.locationInfo &&
         extractedLocationsState.relatedPlaces
       "
+      ref="extractedLocations"
       :locationInfo="extractedLocationsState.locationInfo"
       :relatedPlaces="extractedLocationsState.relatedPlaces"
       :userId="userId"

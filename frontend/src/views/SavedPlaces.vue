@@ -204,7 +204,7 @@ export default {
 
     const navigateToGeneratedItinerary = () => {
       router.push({
-        name: 'MyItineraries',
+        name: 'ItineraryBuilder',
       });
     };
 
