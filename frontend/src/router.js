@@ -36,7 +36,7 @@ const routes = [
     path: '/itinerary-details/:savedAt',  // ':id' is the dynamic parameter for the itinerary ID
     name: 'ItineraryDetails',
     component: ItineraryDetails,
-  props: true,
+    props: true,
   },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },

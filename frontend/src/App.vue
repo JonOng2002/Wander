@@ -9,11 +9,16 @@
     <div class="router-container">
       <router-view></router-view>
     </div>
+
+    <!-- Footer Component -->
+    <AppFooter />
+    
   </div>
 </template>
 
 <script>
 import AppNavbar from './components/AppNavbar.vue';
+import AppFooter from './components/AppFooter.vue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -22,6 +27,7 @@ export default {
   name: 'App',
   components: {
     AppNavbar,
+    AppFooter,
   },
   setup() {
     const route = useRoute();
@@ -32,7 +38,7 @@ export default {
         route.name === 'SignUp' ||
         route.name === 'LogIn' ||
         route.name === 'ItineraryDetails' ||
-        // route.name === 'GeneratedItinerary' ||
+        route.name === 'GeneratedItinerary' ||
         route.name === 'LocationDate' || 
         route.name === 'CalendarPage' || 
         route.name === 'TagsPage'

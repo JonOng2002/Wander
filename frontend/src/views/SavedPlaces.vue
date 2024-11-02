@@ -1,129 +1,118 @@
 <template>
-  <div class="container-fluid p-0">
-    <div class="header_container">
-      <div class="content">
-        <h1>Travel the world</h1>
-        <h4>Start Exploring | Plan your trips</h4>
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="@/assets/countries/thailand.jpg" alt="Image 1" class="d-block w-100" />
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="@/assets/countries/denmark.jpg" alt="Image 1" class="d-block w-100" />
+      </div>
+      <div class="carousel-item">
+        <img src="@/assets/countries/germany.jpg" alt="Image 1" class="d-block w-100" />
       </div>
     </div>
-    <!-- Section 1 -->
-    <div class="d-flex flex-column flex-lg-row position-relative headerbox">
-      <div class="col-lg-4 col-md-12 col-sm-12 p-0 one" @click="viewDestinations">
-        <a href="#" class="section-link">
-          <img src="@/assets/countries/singapore.jpg" alt="Image 1" class="img-fluid w-100" />
-          <div class="overlay-text">Discover New Locations</div>
-          <div class="gradientoverlay"></div>
-        </a>
+
+    <!-- Gradient Overlay -->
+    <div class="gradientoverlay"></div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    <div class="carousel-content">
+      <h1>Archive Your Journey</h1>
+      <h4>Detail Your Trips | Make Lasting Memories</h4>
+    </div>
+  </div>
+
+
+
+  <div class="itinerary-page">
+    <div class="secondary_header sticky-header">
+      <div class="secondary_content">
+        <h2>Access your saved locations</h2>
+        <h5>Locations saved, at your fingertips:</h5>
       </div>
-      <div class="col-lg-4 col-md-12 col-sm-12 p-0 one d-none d-md-block" @click="viewSavedPlaces">
-        <div class="gradientoverlay"></div>
-        <a href="#" class="section-link">
-          <img src="@/assets/countries/united_arab_emirates.jpg" alt="Image 2" class="img-fluid w-100" />
-          <div class="overlay-text">Browse Your Saved Locations</div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-12 col-sm-12 p-0 one d-none d-md-block" @click="viewMainPage">
-        <div class="gradientoverlay"></div>
-        <a href="#" class="section-link">
-          <img src="@/assets/countries/austria.jpg" alt="Image 3" class="img-fluid w-100" />
-          <div class="overlay-text">Enter a TikTok Link!</div>
-        </a>
+
+      <div class="filter-container">
+        <!-- Filter by Dropdown -->
+        <select @change="filterPlaces" class="dropdown-btn form-select me-2">
+          <option value="">Select Filter</option>
+          <option value="alphabetical">Filter by Alphabet</option>
+          <option value="recently-added">Filter by Recently Added</option>
+        </select>
+
+        <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
+          Delete All
+        </button>
+
+        <button @click="toggleModal" type="button" class="btn view-itinerary-btn">View
+          Itinerary</button>
+
+        <button @click="navigateToGeneratedItinerary" type="button" class="btn view-full-itinerary-btn">View Full
+          Itinerary</button>
       </div>
     </div>
   </div>
 
-  <div class="itinerary-page">
-    <div class="sticky-top">
-      <div class="row justify-content-between align-items-center sticky-header g-0">
-        <div class="col-12 date-column">
-          <div class="secondary_content">
-            <h2>Top Destinations for your next holiday</h2>
-            <h5>Here's where your fellow wanderers are headed:</h5>
-          </div>
+  <div v-if="loading" class="empty-message">Loading saved places...</div>
+  <div v-else-if="filteredPlaces && filteredPlaces.length === 0" class="empty-message">
+    <p>No places saved yet.</p>
+  </div>
 
-          <!-- buttons container -->
-          <div class="filter-dropdown d-flex align-items-center">
-            <!-- dropdown for filtering -->
-            <select @change="filterPlaces" class="form-select me-2">
-              <option value="">Select Filter</option>
-              <option value="alphabetical">Filter by Alphabet</option>
-              <option value="recently-added">Filter by Recently Added</option>
-            </select>
-
-
-            <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
-              Delete All
-            </button>
-
-            <button @click="toggleModal" type="button" class="btn view-itinerary-btn">View
-              Itinerary</button>
-
-            <button @click="navigateToGeneratedItinerary" type="button" class="btn view-full-itinerary-btn">View Full
-              Itinerary</button>
-          </div>
-
-          <div class="col-auto generateButton">
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div v-if="loading" class="empty-message">Loading saved places...</div>
-    <div v-else-if="filteredPlaces && filteredPlaces.length === 0" class="empty-message">
-      <p>No places saved yet.</p>
-    </div>
-
-    <div v-else class="card-grid">
-      <transition-group name="list" tag="div" class="transition-wrapper">
-        <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs">
-          <div class="card destination-card" :style="{ backgroundImage: `url(${place.image})` }">
-            <div class="overlay"></div>
-            <button @click="removePlace(place)" type="button" class="btn close-button">✖</button>
-            <div class="card-body">
-              <h5 class="card-title">{{ place.name }}</h5>
-              <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
-              <div class="button-container">
-                <button @click="toggleItinerary(place, $event)" type="button" class="btn itinerary-button">
-                  {{ isPlaceInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
-                </button>
-              </div>
+  <div v-else class="card-grid">
+    <transition-group name="list" tag="div" class="transition-wrapper">
+      <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs">
+        <div class="card destination-card" :style="{ backgroundImage: `url(${place.image})` }">
+          <div class="overlay"></div>
+          <button @click="removePlace(place)" type="button" class="btn close-button">✖</button>
+          <div class="card-body">
+            <h5 class="card-title">{{ place.name }}</h5>
+            <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
+            <div class="button-container">
+              <button @click="toggleItinerary(place, $event)" type="button" class="btn itinerary-button">
+                {{ isPlaceInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
+              </button>
             </div>
           </div>
         </div>
-      </transition-group>
-    </div>
+      </div>
+    </transition-group>
+  </div>
 
-    <div v-if="showModal" class="modal-overlay" @click.self="toggleModal">
-      <div class="modal-content">
-        <h3>Your Itinerary</h3>
-        <ol class="list-group list-group-numbered">
-          <li class="list-group-item" v-for="(item, index) in itinerary" :key="index">
-            <img :src="item.image" class="modal-image" alt="Image of {{ item.name }}" />
-            {{ item.name }} - {{ item.vicinity }}
-          </li>
-        </ol>
-        <button @click="navigateToGeneratedItinerary" class="btn mb-2 view-full-itinerary-btn">View Full
-          Itinerary</button>
-        <button @click="toggleModal" type="button" class="btn close-modal-btn">Close</button>
-      </div>
+  <div v-if="showModal" class="modal-overlay" @click.self="toggleModal">
+    <div class="modal-content">
+      <h3>Your Itinerary</h3>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item" v-for="(item, index) in itinerary" :key="index">
+          <img :src="item.image" class="modal-image" alt="Image of {{ item.name }}" />
+          {{ item.name }} - {{ item.vicinity }}
+        </li>
+      </ol>
+      <button @click="navigateToGeneratedItinerary" class="btn mb-2 view-full-itinerary-btn">View Full
+        Itinerary</button>
+      <button @click="toggleModal" type="button" class="btn close-modal-btn">Close</button>
     </div>
+  </div>
 
-    <div v-if="showDeletePopup" class="modal-overlay" @click.self="toggleDeletePopup">
-      <div class="modal-content">
-        <h3>Are you sure you want to delete all saved places?</h3>
-        <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">Yes, Delete All</button>
-        <button @click="toggleDeletePopup" type="button" class="btn close-modal-btn">Cancel</button>
-      </div>
+  <div v-if="showDeletePopup" class="modal-overlay" @click.self="toggleDeletePopup">
+    <div class="modal-content">
+      <h3>Are you sure you want to delete all saved places?</h3>
+      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">Yes, Delete All</button>
+      <button @click="toggleDeletePopup" type="button" class="btn close-modal-btn">Cancel</button>
     </div>
+  </div>
 
-    <div class="popup-container">
-      <div v-if="showPopup" class="popup">
-        <p>Added to itinerary!</p>
-      </div>
-      <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
-        <p>Removed from itinerary!</p>
-      </div>
+  <div class="popup-container">
+    <div v-if="showPopup" class="popup">
+      <p>Added to itinerary!</p>
+    </div>
+    <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
+      <p>Removed from itinerary!</p>
     </div>
   </div>
 </template>
@@ -516,13 +505,64 @@ export default {
 
 
 <style scoped>
-.container-fluid {
-  position: relative;
-  max-width: 100vw;
+#carouselExampleInterval {
+  position: relative; 
+  height: 550px; /* Fixed height */
+  /* Set your desired height here */
   overflow: hidden;
 }
 
-.header_container {
+.carousel-inner, .gradientoverlay {
+  height: 100%; /* Ensures inner elements match carousel height */
+}
+
+.gradientoverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  /* Adjust gradient colors and opacity as desired */
+  z-index: 1; /* Place it above the images but below the text */
+}
+
+.carousel-item {
+  height: 100%; /* Ensures each item takes full height */
+}
+
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+  /* object-fit: cover; */
+  /* Ensures the image covers the container without distorting */
+}
+
+.carousel-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2; /* Ensure it sits above the carousel images */
+    width: 90%; /* Ensures text stays within bound at smaller screens */
+}
+
+.carousel-content h1 {
+    font-size: 4.5rem; /* Adjust size as needed */
+    font-weight: 700;
+    margin: 0;
+}
+
+.carousel-content h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0.5rem 0 0;
+}
+
+/* <=================== header carousell =================>*/
+/* .header_container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -535,7 +575,7 @@ export default {
   text-align: center;
   color: white;
   z-index: 3;
-}
+} */
 
 .content h1 {
   font-size: 6rem;
@@ -623,71 +663,29 @@ export default {
   /* Add a stronger shadow */
 }
 
-
-@media (max-width: 1200px) {
-  .overlay-text {
-    font-size: 1.2rem;
-  }
-
-  .content h1 {
-    font-size: 6rem;
-  }
-
-  .content h4 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .overlay-text {
-    font-size: 1rem;
-  }
-
-  .content h1 {
-    font-size: 3rem;
-  }
-
-  .content h4 {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .overlay-text {
-    font-size: 1rem;
-  }
-
-  .content h1 {
-    font-size: 2rem;
-  }
-
-  .content h4 {
-    font-size: 1rem;
-  }
-}
-
-
 /* ****************************************** */
-h2 {
+/* h2 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: bolder;
-}
+} */
+
+/* <=================== sticky header & buttons =================> */
 
 /* Main Itinerary Page */
 .itinerary-page {
   font-family: "Roboto", sans-serif;
   margin: 0;
-  padding: 0;
+  padding-top: 60px;
   background-color: #f0f6ff;
 }
 
-/* Sticky header */
-.sticky-top {
+/* Sticky Header */
+.sticky-header {
   position: sticky;
   top: 0;
-  background-color: #f0f6ff;
   z-index: 1000;
-  padding: 10px 5%;
+  background-color: #f0f6ff;
+  padding: 1rem 4vw;
   border-bottom: 1px solid lightgrey;
 }
 
@@ -715,6 +713,109 @@ h2 {
   margin-top: 20px;
 }
 
+/* <================== buttons in stickyheader =================> */
+.secondary_header {
+  padding: 1rem 4vw;
+  background-color: #f0f6ff;
+  border-bottom: 1px solid lightgrey;
+}
+
+.secondary_content h2 {
+  font-size: 1.7rem;
+  font-weight: 550;
+  margin-bottom: 0.5rem;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+
+/* Filter container and button styling */
+.filter-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.form-select,
+.btn-delete-all,
+.view-itinerary-btn,
+.view-full-itinerary-btn {
+  background-color: #222;
+  color: white;
+  border: none;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.form-select {
+  appearance: none;
+  width: 220px;
+}
+
+.form-select:hover,
+.btn-delete-all:hover,
+.view-itinerary-btn:hover,
+.view-full-itinerary-btn:hover {
+  background-color: #555;
+}
+
+/* .btn-delete-all {
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+} */
+
+/* .btn-delete-all:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+.view-itinerary-btn,
+.view-full-itinerary-btn {
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.view-itinerary-btn:hover,
+.view-full-itinerary-btn:hover {
+  background-color: #0057d9;
+  color: white;
+} */
+
+
+.transition-wrapper {
+  display: contents;
+  /* Keep the child elements visible */
+  flex-wrap: wrap;
+  /* Allow items to wrap */
+  justify-content: flex-start;
+  /* Align items to the start */
+  gap: 15px;
+  /* Optional: space between items */
+  padding: 20px;
+  /* Optional: padding around the grid */
+}
+
+/* <======================= savedplaces layout ==============>
 /* Card Grid Layout */
 .card-grid {
   display: grid;
@@ -854,20 +955,6 @@ h2 {
   background-color: #004bb7;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 items per row on medium screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-    /* 1 item per row on small screens */
-  }
-}
 
 /* Modal styles */
 .modal-overlay {
@@ -934,121 +1021,91 @@ h2 {
   transform: translateY(-5px);
 }
 
-.secondary_content h2 {
-  font-size: 1.2rem; /* Adjust to a smaller size */
-  margin-bottom: 0.5rem;
+
+
+
+/* <=============== breakpoints ===================> */
+
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
+  }
+
+  .sticky-top {
+    padding: 0 3vw;
+  }
+
+  .overlay-text {
+    font-size: 1.2rem;
+  }
+
+  .content h1 {
+    font-size: 6rem;
+  }
+
+  .content h4 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 4rem ;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.5rem;
+  }
 }
 
-.secondary_content h5 {
-  color: rgb(166, 163, 163);
-  margin-bottom: 1rem;
+@media (max-width: 992px) {
+  .carousel-content h1 {
+    font-size: 3rem ;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.2rem;
+  }
 }
 
+@media (max-width: 768px) {
 
-.filter-dropdown {
-  display: flex;
-  align-items: center;
+  .card-grid {
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
+  }
+
+  .sticky-top {
+    padding: 0 2vw;
+  }
+
+  .overlay-text {
+    font-size: 1rem;
+  }
+
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content h4 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 2rem ;
+  }
+
+  .carousel-content h4 {
+    font-size: 1rem;
+  }
 }
 
-.filter-dropdown .form-select {
-  appearance: none;
-  /* Removes the default dropdown arrow */
-  width: 200px;
-  background-color: #222;
-  /* Dark background */
-  color: white;
-  border: none;
-  border-radius: 0.2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  position: relative;
-  cursor: pointer;
-  margin-right: 10px;
-}
+@media (max-width: 576px) {
 
-.form-select:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #0057d9;
-  /* Adds a blue outline when focused */
-}
-
-/* Arrow icon for select dropdown */
-.form-select::after {
-  content: '▼';
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  /* Makes sure the arrow is not clickable */
-  color: white;
-}
-
-.btn-delete-all {
-  background-color: #222;
-  color: white;
-  border: none;
-  border-radius: 0.2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 10px;
-}
-
-.btn-delete-all:hover {
-  background-color: #f44336;
-  color: white;
-}
-
-.view-itinerary-btn,
-.view-full-itinerary-btn {
-  background-color: #222;
-  color: white;
-  border: none;
-  border-radius: 0.2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 10px;
-}
-
-.view-itinerary-btn:hover,
-.view-full-itinerary-btn:hover {
-  background-color: #0057d9;
-  color: white;
-}
-
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter,
-.list-leave-to
-
-/* .list-leave-active in <2.1.8 */
-  {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.list-move {
-  transition: transform 0.5s ease;
-}
-
-.transition-wrapper {
-  display: contents;
-  /* Keep the child elements visible */
-  flex-wrap: wrap;
-  /* Allow items to wrap */
-  justify-content: flex-start;
-  /* Align items to the start */
-  gap: 15px;
-  /* Optional: space between items */
-  padding: 20px;
-  /* Optional: padding around the grid */
+  .sticky-top {
+    padding: 0 1.5vw;
+  }
 }
 </style>

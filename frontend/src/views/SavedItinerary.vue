@@ -661,7 +661,7 @@ export default {
             }
 
             let itineraries = [...savedItineraries.value];
-            const sortedItineraries = itineraries.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+            const sortedItineraries = itineraries.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt))
             console.log("Sorted itineraries:", sortedItineraries);
             return sortedItineraries;
         });
@@ -787,7 +787,7 @@ export default {
 }
 
 .content h1 {
-    font-size: 6rem;
+    font-size: 4.5rem;
     font-weight: 700;
 }
 
@@ -841,34 +841,32 @@ export default {
     z-index: 2;
 }
 
+/* Adjusted overlay for smoother hover transition */
 .gradientoverlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    /* Replace gradient with a solid black with opacity */
-    transition: background-color 0.3s ease;
-    /* Smooth transition for brightness on hover */
+    background-color: rgba(0, 0, 0, 0.5); /* Set a slightly darker default */
+    transition: background-color 0.4s ease, transform 0.4s ease; /* Smooth color and scale transition */
     z-index: 1;
 }
 
 .one:hover .gradientoverlay {
-    background-color: rgba(0, 0, 0, 0.0);
-    /* Make overlay lighter on hover */
+    background-color: rgba(0, 0, 0, 0.2); /* Lighten overlay on hover */
+    transform: scale(1.05); /* Ensure overlay scales with the card smoothly */
 }
 
 .one {
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    /* Smooth transition */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
 }
 
 .one:hover {
-    transform: scale(1.05);
-    /* Slightly scale up the card */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* Add a stronger shadow */
+    transform: scale(1.05); /* Slightly scale up the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
 }
 
 
@@ -1018,7 +1016,7 @@ export default {
     padding: 20px;
     margin: 0 auto;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1600px;
     /* Increased max width */
 }
 
@@ -1070,11 +1068,7 @@ export default {
     margin: 0 auto; /* Center the grid container */
 }
 
-@media (max-width: 1200px) {
-    .itineraries-grid {
-        grid-template-columns: 1fr; /* Single column on smaller screens */
-    }
-}
+
 
 /* ************************************************ */
 /* single card styling */
@@ -1104,7 +1098,7 @@ export default {
 .card-img-top {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .single-itinerary-card .gradient-overlay {
@@ -1241,12 +1235,14 @@ export default {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
+/* Wrapper for stacked cards and scroll buttons */
 .stacked-cards-wrapper {
     display: flex;
-    flex-direction: column; /* Stack small cards vertically */
-    gap: 15px; /* Space between small cards */
-    width: 100%; /* Fill the grid column */
-    height: auto; /* Adjust height to content */
+    flex-direction: column;
+    justify-content: space-between; /* Space out items vertically */
+    height: 100%; /* Ensure it fills the height of the container */
+    position: relative;
+    padding-bottom: 20px; /* Optional padding for spacing */
 }
 
 /* Stacked small cards styling */
@@ -1254,6 +1250,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
     /* justify-content: flex-start; Ensures small cards stack at the top */
     align-self: flex-start;
     -webkit-scroll-snap-type: x mandatory;
@@ -1270,6 +1267,7 @@ export default {
 .small-card {
     display: flex;
     align-items: center;
+    flex-grow: 1; /* Allows it to take full width in flex layout */
     width: 100%;
     padding: 10px;
     background: rgb(234, 250, 255);
@@ -1307,11 +1305,13 @@ export default {
 
 .scroll-buttons {
     position: absolute;
-    bottom: -80px;
-    right: 5px;
+    bottom: -80px; /* Positions the buttons at the bottom for larger screens */
+    right: 10px; /* Positions the buttons to the right */
     display: flex;
+    justify-content: center;
     gap: 10px;
     padding-bottom: 20px;
+    z-index: 1; /* Ensures it appears above other content */
 }
 
 
@@ -1342,7 +1342,7 @@ export default {
 }
 
 
-/* ******************************************* */
+/* <========================== breakpoints =========================> */
 /* viewport sizes */
 @media (max-width: 1200px) {
     .overlay-text {
@@ -1350,7 +1350,7 @@ export default {
     }
 
     .content h1 {
-        font-size: 6rem;
+        font-size: 4rem ;
     }
 
     .content h4 {
@@ -1404,10 +1404,12 @@ export default {
     }
 
     .scroll-buttons {
-        position: static;
-        margin-top: 10px;
-        display: flex;
-        justify-content: center;
+        position: relative; /* Change to relative for smaller screens */
+        bottom: 0;
+        right: 0;
+        margin-top: 10px; /* Add some space above */
+        justify-content: right; /* Center buttons on smaller screens */
+        padding: 10px 0; /* Add some padding for spacing */
     }
 }
 </style>
