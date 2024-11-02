@@ -42,7 +42,10 @@ export default {
       isExcludedPage,
     };
   },
+
 };
+
+
 </script>
 
 <style>

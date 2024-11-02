@@ -43,33 +43,10 @@
 
               <hr />
 
-              <a href="#" class="sub-menu-link">
-                <img
-                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt="" />
-                <p>Edit Profile</p>
-                <span>></span>
-              </a>
-
-              <a href="#" class="sub-menu-link">
-                <img
-                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt="" />
-                <p>Settings</p>
-                <span>></span>
-              </a>
-
-              <a href="#" class="sub-menu-link">
-                <img
-                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt="" />
-                <p>Help</p>
-                <span>></span>
-              </a>
 
               <a href="#" class="sub-menu-link" @click="signOutUser">
                 <img
-                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
+                  src= "@\assets\logout_icon.png"
                   alt="" />
                 <p>Logout</p>
                 <span>></span>
