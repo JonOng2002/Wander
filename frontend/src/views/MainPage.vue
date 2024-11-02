@@ -58,6 +58,7 @@
         extractedLocationsState.relatedPlaces
       "
       ref="extractedLocations"
+      @component-mounted="scrollToExtractedLocations"
       :locationInfo="extractedLocationsState.locationInfo"
       :relatedPlaces="extractedLocationsState.relatedPlaces"
       :userId="userId"
@@ -80,7 +81,7 @@ export default {
   components: {
     SearchBar,
     LoadingBar,
-    ExtractedLocations,
+    ExtractedLocations
   },
   setup() {
     const extractedLocationsState = inject("extractedLocationsState");
@@ -127,31 +128,60 @@ export default {
       this.analyse();
     },
 
-    async analyse() {
-      if (this.isValidUrl(this.tiktokLink)) {
-        this.isLoading = true;
-        this.errorMessage = "";
-        try {
-          const response = await axios.get(
-            `http://127.0.0.1:5000/video-info-comments`,
-            {
-              params: { url: this.tiktokLink, withCredentials: true },
-            }
+    scrollToExtractedLocations() {
+    this.$nextTick(() => {
+      const extractedLocationsComponent = this.$refs.extractedLocations;
+      if (
+        extractedLocationsComponent &&
+        extractedLocationsComponent.$refs.extractedLocationsRoot
+      ) {
+        const extractedLocationsElement =
+          extractedLocationsComponent.$refs.extractedLocationsRoot;
+
+        if (extractedLocationsElement instanceof HTMLElement) {
+          extractedLocationsElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        } else {
+          console.warn(
+            'extractedLocationsElement is not an HTMLElement. Actual value:',
+            extractedLocationsElement
           );
-          const data = response.data.openai_response;
-          if (data.error)
-            throw new Error("Error generating response from OpenAI.");
-          this.extractedLocationsState.setLocationInfo(data.location_info);
-          this.extractedLocationsState.setRelatedPlaces(data.related_places);
-        } catch (error) {
-          this.errorMessage = "Error generating response from OpenAI.";
-        } finally {
-          this.isLoading = false;
         }
       } else {
-        this.errorMessage = "Invalid TikTok link. Please try again.";
+        console.warn(
+          'extractedLocationsComponent or its root element is not available'
+        );
       }
-    },
+    });
+  },
+
+  async analyse() {
+    if (this.isValidUrl(this.tiktokLink)) {
+      this.isLoading = true;
+      this.errorMessage = "";
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:5000/video-info-comments`,
+          {
+            params: { url: this.tiktokLink, withCredentials: true },
+          }
+        );
+        const data = response.data.openai_response;
+        if (data.error)
+          throw new Error("Error generating response from OpenAI.");
+        this.extractedLocationsState.setLocationInfo(data.location_info);
+        this.extractedLocationsState.setRelatedPlaces(data.related_places);
+      } catch (error) {
+        this.errorMessage = "Error generating response from OpenAI.";
+      } finally {
+        this.isLoading = false;
+      }
+    } else {
+      this.errorMessage = "Invalid TikTok link. Please try again.";
+    }
+  },
 
     isValidUrl(url) {
       const regex =
