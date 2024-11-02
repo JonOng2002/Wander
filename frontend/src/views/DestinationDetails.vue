@@ -248,7 +248,6 @@ export default {
 
 .destination-details {
   text-align: center;
-  font-family: "Roboto", sans-serif;
 }
 
 .header-row {
@@ -286,7 +285,6 @@ export default {
 .page-title {
   font-size: rem;
   color: black;
-  font-family: 'Cormorant Garamond', serif;
   font-weight: bolder;
 }
 

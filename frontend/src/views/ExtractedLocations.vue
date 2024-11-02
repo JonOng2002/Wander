@@ -53,8 +53,7 @@
             <h5 class="card-title">Location</h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
-              <li class="list-group-item"><b>Latitude:</b> {{ locationInfo.coordinates.latitude }} <b>Longitude:</b> {{
-                locationInfo.coordinates.longitude }}</li>
+              
             </ul>
 
             <!-- Map Toggle Button and Map -->
@@ -67,8 +66,21 @@
                 <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
                   :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }"
                   :zoom="15">
-                  <Marker
-                    :options="{ position: { lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude } }" />
+                  <CustomMarker
+                :key="index"
+                :options="{
+                  position: {
+                    lat: locationInfo?.coordinates?.latitude || 0,
+                    lng: locationInfo?.coordinates?.longitude || 0,
+                  },
+                  anchorPoint: 'BOTTOM_CENTER',
+                  
+                }">
+                 <div style="text-align: center">
+        <div style="font-size: 1.125rem">{{ locationInfo.place_name }}</div>
+        <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="1px" height="1px" style="margin-top: 8px" />
+        </div>
+              </CustomMarker>
                 </GoogleMap>
               </div>
             </transition>
@@ -81,7 +93,7 @@
             <save-place-button class='btn btn-dark' @place-saved="handlePlaceSaved" :placeName="locationInfo.place_name"
               :country="locationInfo.country" :city="locationInfo.city" :latitude="locationInfo.coordinates.latitude"
               :longitude="locationInfo.coordinates.longitude" :placePng="locationInfo.place_png" :userId="userId"
-              :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces">
+              :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces" :vicinity="locationInfo.vicinity">
             </save-place-button>
           </div>
 
@@ -122,7 +134,7 @@
             <h5 class="card-title">Location</h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
-              <li class="list-group-item"><b>Latitude:</b> {{ place.coordinates.latitude }} <b>Longitude:</b> {{ place.coordinates.longitude }}</li>
+              
             </ul>
             <!-- Related Places Map Section -->
             <button @click="place.mapVisible = !place.mapVisible" class="btn btn-dark mb-3">
@@ -132,7 +144,20 @@
               <div v-if="place.mapVisible" id="location-map" class="map">
                 <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
                   :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
-                  <Marker :options="{ position: { lat: place.coordinates.latitude, lng: place.coordinates.longitude } }" />
+                  <CustomMarker
+                :key="index"
+                :options="{
+                  position: {
+                    lat: place.coordinates?.latitude || 0,
+                    lng: place.coordinates?.longitude || 0,
+                  },
+                  anchorPoint: 'BOTTOM_CENTER',
+                }">
+                <div style="text-align: center">
+        <div style="font-size: 1.125rem">{{ place.place_name }}</div>
+        <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="10" height="10" style="margin-top: 8px" />
+        </div>
+              </CustomMarker>
                 </GoogleMap>
               </div>
             </transition>
@@ -140,7 +165,7 @@
             <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved" :placeName="place.place_name"
               :country="place.country" :city="place.city" :latitude="place.coordinates.latitude"
               :longitude="place.coordinates.longitude" :placePng="place.place_png" :userId="userId"
-              :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces">
+              :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces" :vicinity="place.vicinity">
             </save-place-button>
           </div>
         </div>
@@ -154,7 +179,7 @@
 
 <script>
 import SavePlaceButton from '@/components/SavePlaceButton.vue';
-import { GoogleMap, Marker } from 'vue3-google-map';
+import { GoogleMap, CustomMarker} from 'vue3-google-map';
 
 
 
@@ -164,7 +189,7 @@ export default {
   components: {
     SavePlaceButton,
     GoogleMap,    // Register GoogleMap component
-    Marker        // Register Marker component
+    CustomMarker       // Register Marker component
   },
   props: {
     locationInfo: Object,
@@ -174,6 +199,7 @@ export default {
       default: '',
     },
     savedPlaces: Array,
+    
   },
 
   data() {
@@ -293,96 +319,8 @@ html {
   scroll-behavior: smooth;
 }
 
-.contentbar {
-  position: fixed;
-  top: 40%;
-  left: 65px;
-  width: 200px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: white;
-  border-radius: 5px;
-  z-index: 1019;
-  overflow-y: auto;
-  transition: transform 0.3s ease;
-  /* Smooth transition */
-  transform: translateX(-100%);
-  /* Initially hidden off-screen */
-}
-
-.contentbar.slide-in {
-  transform: translateX(-33%);
-  /* Slide in */
-}
-
-.contentbar.slide-out {
-  transform: translateX(-200%);
-  /* Slide out */
-}
-
-.arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-right: 5px;
-  /* Space between arrow and text */
-  border-top: 5px solid transparent;
-  /* Create the top point */
-  border-bottom: 5px solid transparent;
-  /* Create the bottom point */
-  border-left: 10px solid white;
-  /* Create the arrow color */
-  transition: transform 0.3s ease;
-  /* Transition effect for rotation */
-}
 
 
-
-.arrow-rotated {
-  transform: rotate(180deg);
-  /* Rotate the arrow */
-}
-
-.arrow-toggle {
-  position: fixed;
-  top: 37%;
-  /* Position it in the middle of the screen */
-  left: 0;
-  /* Keep some space from the left edge */
-  transform: translateY(-50%);
-  /* Center it vertically */
-  cursor: pointer;
-  z-index: 2020;
-  /* Ensure it's above other elements */
-  transition: transform 0.3s ease;
-  /* Smooth transition */
-}
-
-
-
-.nav-item {
-  margin-bottom: 10px;
-}
-
-.nav-link {
-  color: black;
-  font-size: 1.1rem;
-  text-decoration: none;
-
-}
-
-.nav-link:hover {
-  /*text-decoration: underline;*/
-  color: white;
-  background-color: black;
-}
-
-.nav-link.active {
-  font-weight: bold;
-  color: white;
-  background-color: black;
-
-}
 
 /* .btn {
   background-color: lightgray;
@@ -427,14 +365,12 @@ html {
 }
 
 .header-interested {
-  font-family: 'Garamond', sans-serif;
 
   text-align: center;
 
 }
 
 .header-main {
-  font-family: 'Garamond', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: x-large;
@@ -457,7 +393,7 @@ html {
 }
 
 .related-places-header {
-  font-family: 'Garamond', sans-serif;
+
   font-weight: bold;
   text-align: center;
   font-size: x-large;
@@ -465,7 +401,6 @@ html {
 }
 
 .related-header, .extracted-header, .video-header{
-  font-family: 'Garamond', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: smaller;
@@ -487,7 +422,6 @@ html {
   overflow: auto;
   text-align: center;
   background-color: #f0f6ff;
-  font-family: 'Garamond', sans-serif;
 }
 
 .card-title {
@@ -578,7 +512,10 @@ li {
   /* Changes cursor to hand on hover */
 }
 
-
+.card-text{
+  font-weight: normal;
+  font-size: large;
+}
 
 /* Adjust other related styles if necessary */
 </style>

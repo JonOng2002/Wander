@@ -26,9 +26,6 @@
         <li class="nav-item me-4">
           <router-link to="/saveditinerary" class="nav-link">My Itineraries</router-link>
         </li>
-        <!-- <li class="nav-item me-4">
-          <router-link to="/GenIti" class="nav-link">Generated Itineraries</router-link>
-        </li> -->
 
         <li>
           <img src="@/assets/profilepic.png" class="user-pic" alt="user-pic" @click="toggleMenu" />
@@ -171,8 +168,8 @@ export default {
   font-size: 1.5vw;
   color: white !important;
   /* Ensure links stay white */
-  font-family: "Source Sans 3", sans-serif;
   position: relative;
+  font-family: "Source Sans 3", sans-serif;
   /* Position for sliding background */
   padding: 5px 10px;
   /* Add padding for better click area */
@@ -264,7 +261,6 @@ export default {
   border-radius: 5%;
   overflow: hidden;
   z-index: 1050;
-  font-family: "Poppins", serif;
 }
 
 .user-info {

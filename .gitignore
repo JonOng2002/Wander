@@ -25,6 +25,7 @@ pnpm-debug.log*
 # Ignore Python virtual environments (for both Windows and macOS)
 venv-windows/
 venv-macos/
+venv/
 
 # Python-specific files
 __pycache__/
@@ -44,3 +45,4 @@ backend/open_ai_itinerary.json
 backend/itinerary_response.json
 
 *.history
+backend/.env

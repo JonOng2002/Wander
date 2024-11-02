@@ -139,14 +139,14 @@ const goToNextStep = () => {
 
   router.push({
     name: 'GeneratedItinerary',
-    // query: {
-    //   start,
-    //   end,
-    //   countryCode,
-    //   tripType,
-    //   itinerary: JSON.stringify(savedItinerary.value),
-    //   selectedTags: JSON.stringify(selectedTags.value),
-    // },
+    query: {
+      start,
+      end,
+      countryCode,
+      tripType,
+      itinerary: JSON.stringify(savedItinerary.value),
+      selectedTags: JSON.stringify(selectedTags.value),
+    },
   });
 };
 </script>

@@ -60,6 +60,7 @@
         extractedLocationsState.locationInfo &&
         extractedLocationsState.relatedPlaces
       "
+      ref="extractedLocations"
       :locationInfo="extractedLocationsState.locationInfo"
       :relatedPlaces="extractedLocationsState.relatedPlaces"
       :userId="userId"
@@ -265,11 +266,11 @@ p {
 }
 
 .searchBarTitle {
-  display: block;
-  font-size: 4.5rem;
-  margin: 0 0 5px 0; /* Reduce bottom margin to bring subtext closer */
+  display: block;         /* Ensures full-width for the title row */
+  font-size: 4rem;
+  margin: 20px 0;
+  font-weight: bold;
   font-family: "Source Sans 3", sans-serif;
-  font-weight: bolder;
   color: white;
   text-align: center;
 }
