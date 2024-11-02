@@ -824,7 +824,6 @@ export default {
     text-align: left;
     padding-left: 15px;
     /* Increase padding to move it left */
-    font-family: 'Roboto', sans-serif;
     /* Change to your desired font */
     font-size: 1.5rem;
     /* Adjust font size if necessary */
@@ -959,7 +958,6 @@ export default {
 .page-title {
     text-align: left;
     font-size: 2rem;
-    font-family: 'Cormorant Garamond', serif;
     font-weight: bolder;
     margin-bottom: 15px;
     width: 100%;

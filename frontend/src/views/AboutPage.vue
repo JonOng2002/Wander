@@ -454,7 +454,6 @@ export default {
 .carousel-header h2 {
     font-size: 2.5rem;
     margin: 0;
-    font-family: "Cormorant Garamond", serif;
     font-weight: bolder;
 }
 
@@ -597,7 +596,6 @@ export default {
 .video-section>p {
     font-size: 2.5rem;
     padding-bottom: 50px;
-    font-family: "Cormorant Garamond", serif;
     font-weight: bolder;
 }
 

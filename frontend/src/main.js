@@ -49,7 +49,7 @@ setPersistence(auth, browserLocalPersistence).catch((error) => {
 
 // Initialize Google Maps API using Loader
 const loader = new Loader({
-    apiKey: 'GOOGLE_API_KEY', // Replace with your actual API key
+    apiKey: process.env.VUE_APP_GOOGLE_API_KEY, // Replace with your actual API key
     version: 'weekly',
     libraries: ['places'],
 });
