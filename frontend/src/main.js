@@ -23,14 +23,14 @@ import 'v-calendar/style.css';
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAAJFpBoEJzVfrj8Ix_YTZPc0QifkaMyKw",
-    authDomain: "wander-wad.firebaseapp.com",
-    projectId: "wander-wad",
-    storageBucket: "wander-wad.appspot.com",
-    messagingSenderId: "109364472671",
-    appId: "1:109364472671:web:ff4324430b45ba7b58a4ea",
-    measurementId: "G-TZHQN5ZWG4"
-};
+    apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+    authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.VUE_APP_FIREBASE_APP_ID,
+    measurementId: process.env.VUE_APP_MEASUREMENT_ID
+  };
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
@@ -49,7 +49,7 @@ setPersistence(auth, browserLocalPersistence).catch((error) => {
 
 // Initialize Google Maps API using Loader
 const loader = new Loader({
-    apiKey: 'API_KEY', // Replace with your actual API key
+    apiKey: 'GOOGLE_API_KEY', // Replace with your actual API key
     version: 'weekly',
     libraries: ['places'],
 });

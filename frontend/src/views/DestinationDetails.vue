@@ -64,7 +64,7 @@ export default {
       attractions: [],
       loading: true,
       country: this.$route.params.country,
-      apiKey: 'API_KEY',
+      apiKey: process.env.GOOGLE_API_KEY,
       cityName: this.$route.params.city || 'Unknown City',
       userId: null,
       savedPlaces: [],
