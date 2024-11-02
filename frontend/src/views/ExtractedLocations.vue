@@ -365,14 +365,12 @@ html {
 }
 
 .header-interested {
-  font-family: 'Garamond', sans-serif;
 
   text-align: center;
 
 }
 
 .header-main {
-  font-family: 'Garamond', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: x-large;
@@ -395,7 +393,7 @@ html {
 }
 
 .related-places-header {
-  font-family: 'Source Sans 3', sans-serif;
+
   font-weight: bold;
   text-align: center;
   font-size: x-large;
@@ -403,7 +401,6 @@ html {
 }
 
 .related-header, .extracted-header, .video-header{
-  font-family: 'Source Sans 3', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: smaller;
@@ -425,7 +422,6 @@ html {
   overflow: auto;
   text-align: center;
   background-color: #f0f6ff;
-  font-family: 'Source Sans 3', sans-serif;
 }
 
 .card-title {

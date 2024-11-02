@@ -309,7 +309,6 @@ onMounted(async () => {
 
 /* General styling */
 .generated-itinerary {
-  font-family: 'Source Sans 3', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -326,7 +325,6 @@ onMounted(async () => {
 }
 
 .user-info h2 {
-  font-family: 'Source Sans 3', sans-serif;
   font-size: 3rem;
 }
 
@@ -455,7 +453,6 @@ onMounted(async () => {
   color: white; /* White text for contrast */
   cursor: pointer;
   font-size: 16px;
-  font-family: 'Source Sans 3', sans-serif;
   padding: 10px 20px; /* Adequate padding */
   border-radius: 5px; /* Rounded corners */
   transition: background-color 0.3s ease, color 0.3s ease;

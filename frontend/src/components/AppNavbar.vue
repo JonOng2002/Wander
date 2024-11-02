@@ -159,17 +159,17 @@ export default {
 
 /* Container background */
 .nav-contain {
-  background-color: #0057d9;
+  background-color: #3f94a7;
 }
 
 /* Navigation link styling */
 .nav-link {
-  font-weight: bold;
+  font-weight: 400;
   font-size: 1.5vw;
   color: white !important;
   /* Ensure links stay white */
-  font-family: "Cormorant Garamond", serif;
   position: relative;
+  font-family: "Source Sans 3", sans-serif;
   /* Position for sliding background */
   padding: 5px 10px;
   /* Add padding for better click area */
@@ -225,7 +225,7 @@ export default {
   position: sticky;
   z-index: 1020;
   /* Higher z-index to ensure navbar stays above other elements */
-  background-color: #0057d9;
+  background-color: #3f94a7;
   /* Ensure the background remains black */
 }
 
@@ -261,7 +261,6 @@ export default {
   border-radius: 5%;
   overflow: hidden;
   z-index: 1050;
-  font-family: "Poppins", serif;
 }
 
 .user-info {

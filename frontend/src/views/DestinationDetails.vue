@@ -64,7 +64,7 @@ export default {
       attractions: [],
       loading: true,
       country: this.$route.params.country,
-      apiKey: 'AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM',
+      apiKey: 'API_KEY',
       cityName: this.$route.params.city || 'Unknown City',
       userId: null,
       savedPlaces: [],
@@ -248,7 +248,6 @@ export default {
 
 .destination-details {
   text-align: center;
-  font-family: "Roboto", sans-serif;
 }
 
 .header-row {
@@ -286,7 +285,6 @@ export default {
 .page-title {
   font-size: rem;
   color: black;
-  font-family: 'Cormorant Garamond', serif;
   font-weight: bolder;
 }
 

@@ -264,7 +264,6 @@ p {
   display: block;         /* Ensures full-width for the title row */
   font-size: 4rem;
   margin: 20px 0;
-  font-family: "Cormorant Garamond", serif;
   font-weight: bold;
   color: white;
   width: 100%;            /* Expands to fill the width of the container */

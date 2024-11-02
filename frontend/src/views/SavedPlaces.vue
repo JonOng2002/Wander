@@ -487,13 +487,11 @@ export default {
 
 <style scoped>
 h2 {
-  font-family: 'Cormorant Garamond', serif;
   font-weight: bolder;
 }
 
 /* Main Itinerary Page */
 .itinerary-page {
-  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f0f6ff;
@@ -512,7 +510,6 @@ h2 {
 .date-column {
   text-align: left;
   padding-left: 15px;
-  font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
   margin-top: 10px;
   margin-bottom: 10px;
