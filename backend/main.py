@@ -10,7 +10,7 @@ def create_app():
     # Configure CORS
     CORS(app, origins=[
         "http://localhost:8080",
-        "https://wanderwad-6v2s2gj1a-wanderwads-projects.vercel.app"
+        "https://wander-g8t9.vercel.app"
     ], supports_credentials=True)
     
     # Register blueprints
