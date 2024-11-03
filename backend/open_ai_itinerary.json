@@ -1,71 +1,272 @@
 {
-  "country": "Indonesia",
-  "itinerary_summary": "Explore the stunning sights and rich culture of Uluwatu, Indonesia, with a focus on renowned attractions and must-see landmarks in a day-long solo adventure.",
+  "country": "United States",
+  "itinerary_summary": "A solo adventure in San Francisco, exploring iconic attractions, cultural institutions, and natural beauty over the span of four days.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-01",
-      "summary": "Immerse yourself in the breathtaking scenery and cultural richness of Uluwatu with a day packed with sightseeing and local experiences.",
+      "date": "2024-11-05",
+      "summary": "Arrival in San Francisco. Settle in and visit the Exploratorium for an interactive experience.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Breakfast at Single Fin",
+          "time": "10:00 AM",
+          "activity_name": "Exploratorium",
           "location": {
-            "name": "Single Fin",
-            "city": "Uluwatu",
+            "name": "Exploratorium",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": -8.8021,
-              "longitude": 115.1276
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "",
-            "photo_url": "https://images.unsplash.com/photo-1582551145495-ae6ba5c11013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzA0MzIyMTR8&ixlib=rb-4.0.3&q=80&w=1080"
+            "place_id": "ChIJk2vl5NSGhYARwPGvs_ubIws",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNlgFUyCr_zr59zrLs_-r1E82LMaz7Ne3QoLiWJMVFJ0UPlbxvYQR6KT2ObZf6ExRJlz7x6YSkiU1gfdghLIj8htuyexXtoBpEzWeNHdYCtnUtMun9fik7c1bPSozEuAhnl0GLSBf22BxrhFpnTjPrfrfBG_K9GySuDpCkaiBdc2OMu"
           },
-          "description": "Enjoy a delightful breakfast with stunning ocean views at Single Fin, a popular spot among surfers and tourists alike."
+          "description": "Experience science and art through hands-on exhibits."
         },
         {
-          "time": "10:00",
-          "activity_name": "Visit Uluwatu Temple",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Fog Harbor Fish House",
           "location": {
-            "name": "Uluwatu Temple",
-            "city": "Uluwatu",
+            "name": "Fog Harbor Fish House",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": -8.8305,
-              "longitude": 115.0862
+              "latitude": 0,
+              "longitude": 0
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore the majestic Uluwatu Temple, perched atop a cliff with breathtaking views of the Indian Ocean, a must-see cultural landmark."
+          "description": "Enjoy fresh seafood with a view of the bay."
         },
         {
-          "time": "13:00",
-          "activity_name": "Lunch at The Cashew Tree",
+          "time": "3:00 PM",
+          "activity_name": "The Walt Disney Family Museum",
           "location": {
-            "name": "The Cashew Tree",
-            "city": "Uluwatu",
+            "name": "The Walt Disney Family Museum",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": -8.802,
-              "longitude": 115.121
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJ5f7ZKtiGhYAR9WaYFS6bH1U",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMHx7tbhAQ_EFWsXRJZ2IDxlhnGVK_9FfBpl9d4xbT5-LJUfZ_oXOdkvZLF9KpgXH60IyfB8F-r5H46ZKS6Z8tvPTNEA3-DzZxIMPNmosvTkPvWw3rXwke8DsGExmfKc84dmiH-ugPtcbQNJNTreuMAo0rECGPjW2iiEyjQ6mnvqGbv"
+          },
+          "description": "Explore the life and legacy of Walt Disney through exhibits."
+        },
+        {
+          "time": "6:00 PM",
+          "activity_name": "Dinner at The Stinking Rose",
+          "location": {
+            "name": "The Stinking Rose",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Savor fresh and healthy dishes at The Cashew Tree, known for its vibrant atmosphere and tasty organic meals."
+          "description": "Dine at a famous garlic-themed restaurant."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-06",
+      "summary": "Explore one of the city's most iconic landmarks followed by a visit to the local art scene.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Golden Gate Bridge",
+          "location": {
+            "name": "Golden Gate Bridge",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJw____96GhYARCVVwg5cT7c0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM-zf0JCps7S-CqgSynrwAwaTI8MMNc59Cyi5wrmISROZpSZXGYt5DdiSSCi3xxsoPHCGnoPHhzO8RXe1kYSoeMFpnSBlawCxhFqHAEsumF3Mgs50dzH3B6Q9i1leZFeNikFnqtk6HiLRFicJkAsZre2XWpzyIWTeHAPVUPRD9j7Stn"
+          },
+          "description": "Walk across the iconic bridge and enjoy stunning views of the city."
         },
         {
-          "time": "15:00",
-          "activity_name": "Relax at Padang Padang Beach",
+          "time": "12:00 PM",
+          "activity_name": "Lunch at The Cliff House",
           "location": {
-            "name": "Padang Padang Beach",
-            "city": "Uluwatu",
+            "name": "The Cliff House",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": -8.8424,
-              "longitude": 115.0858
+              "latitude": 0,
+              "longitude": 0
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit Padang Padang Beach, renowned for its stunning cliffs and turquoise waters, perfect for sunbathing and swimming."
+          "description": "Enjoy a meal with panoramic ocean views."
+        },
+        {
+          "time": "2:00 PM",
+          "activity_name": "Exploring the Art at San Francisco Museum of Modern Art",
+          "location": {
+            "name": "San Francisco Museum of Modern Art",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Immerse yourself in modern art collections."
+        },
+        {
+          "time": "6:30 PM",
+          "activity_name": "Dinner at Acquerello",
+          "location": {
+            "name": "Acquerello",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Savor Italian fine dining in an elegant setting."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-07",
+      "summary": "Day trip to explore the natural beauty of Muir Woods and experience local vineyards.",
+      "activities": [
+        {
+          "time": "9:00 AM",
+          "activity_name": "Visit Muir Woods National Monument",
+          "location": {
+            "name": "Muir Woods National Monument",
+            "city": "Mill Valley",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "ChIJrWJnvbSRhYAR-a__aHZY_3o",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNvZ5jkwD_2TROp9se5bBmoU-GCHM1crxvm3hJJN1Rh1Va_q8xlmn4FxIuf8iAmy5bCew4d6_sc-kWf1NPQYkGRzkQ7nd8XNe8NDaBcGK4qE0WaNDgOJjB_I8aBF9ADHHatef81cEwEUirKG5Q08AZZh7ukPB-PXBTcbinXDGhnpkT4"
+          },
+          "description": "Experience the serene beauty of ancient redwood trees."
+        },
+        {
+          "time": "12:30 PM",
+          "activity_name": "Lunch at Mountain Home Inn",
+          "location": {
+            "name": "Mountain Home Inn",
+            "city": "Mill Valley",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Delight in a cozy atmosphere with local cuisine."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Wine Tasting at Marinwood Plaza",
+          "location": {
+            "name": "Marinwood Plaza",
+            "city": "San Rafael",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Visit local wineries and sample regional wines."
+        },
+        {
+          "time": "6:00 PM",
+          "activity_name": "Dinner at Farmshop",
+          "location": {
+            "name": "Farmshop",
+            "city": "Marin",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy farm-to-table dining at its best."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-08",
+      "summary": "Last exploration day in the city with shopping and local culture before departure.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit Ferry Building Marketplace",
+          "location": {
+            "name": "Ferry Building Marketplace",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Shop for local goods and gourmet food."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Boulettes Larder",
+          "location": {
+            "name": "Boulettes Larder",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience delicious contemporary dishes."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Explore Chinatown",
+          "location": {
+            "name": "Chinatown",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Stroll through vibrant streets filled with unique shops and restaurants."
+        },
+        {
+          "time": "5:00 PM",
+          "activity_name": "Dinner at House of Prime Rib",
+          "location": {
+            "name": "House of Prime Rib",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "End your trip with a classic prime rib dinner."
         }
       ]
     }

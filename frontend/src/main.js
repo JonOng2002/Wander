@@ -22,8 +22,8 @@ import {
 import { 
   getFirestore, 
   doc, 
-  setDoc, 
   getDoc, 
+  setDoc, 
   updateDoc, 
   arrayUnion, 
   arrayRemove 
@@ -65,7 +65,7 @@ setPersistence(auth, browserLocalPersistence).catch((error) => {
 
 // Initialize Google Maps API using Loader
 const loader = new Loader({
-  apiKey: 'API_KEY_HERE', // Replace with your actual API key
+  apiKey: 'AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM', // Replace with your actual API key
   version: 'weekly',
   libraries: ['places'],
 });
@@ -82,29 +82,69 @@ const savedPlacesState = reactive({
       const userDoc = await getDoc(doc(db, "users", userId));
       console.log("Firebase document data:", userDoc.data());
       if (userDoc.exists()) {
-        this.savedPlaces = userDoc.data().savedPlaces || [];
+        const loadedPlaces = userDoc.data().savedPlaces || [];
+
+        // Remove duplicates by creating a Set for unique place IDs
+        const uniquePlaces = Array.from(
+          new Map(
+            loadedPlaces.map((place) => [place.place_id.toLowerCase(), place])
+          ).values()
+        );
+
+        this.savedPlaces = uniquePlaces;
       } else {
         console.log("No saved places found for this user.");
+        this.savedPlaces = [];
       }
     } catch (error) {
       console.error("Error loading saved places:", error);
+      this.savedPlaces = [];
     }
   },
   async addPlace(userId, place) {
-    if (!this.savedPlaces.some(savedPlace => savedPlace.place_id === place.place_id)) {
-      this.savedPlaces.push(place);
-      try {
-        await updateDoc(doc(db, "users", userId), {
-          savedPlaces: arrayUnion(place)
-        });
-        console.log("Place added to saved places");
-      } catch (error) {
-        console.error("Error adding place to saved places:", error);
+    // Case-insensitive duplicate check
+    const placeExists = this.savedPlaces.some(
+      (savedPlace) => savedPlace.place_id.toLowerCase() === place.place_id.toLowerCase()
+    );
+
+    if (placeExists) {
+      console.log("Place already saved:", place.name);
+      return false; // Indicate that the place was not added because it already exists
+    }
+
+    this.savedPlaces.push(place); // Add the new place locally
+
+    try {
+      // Fetch the current user's saved places
+      const userRef = doc(db, "users", userId);
+      const userDoc = await getDoc(userRef);
+      let updatedSavedPlaces = [];
+
+      if (userDoc.exists()) {
+        updatedSavedPlaces = userDoc.data().savedPlaces || [];
       }
+
+      // Add the new place
+      updatedSavedPlaces.push(place);
+
+      // Update Firestore with the new list of saved places
+      await setDoc(userRef, { savedPlaces: updatedSavedPlaces }, { merge: true });
+
+      console.log("Place added to saved places");
+      return true; // Indicate successful addition
+    } catch (error) {
+      console.error("Error adding place to saved places:", error);
+      // Optionally, remove the place from the local state if Firestore update fails
+      this.savedPlaces = this.savedPlaces.filter(
+        (savedPlace) => savedPlace.place_id.toLowerCase() !== place.place_id.toLowerCase()
+      );
+      return false; // Indicate failure
     }
   },
   async removePlace(userId, placeId) {
-    this.savedPlaces = this.savedPlaces.filter(place => place.place_id !== placeId);
+    this.savedPlaces = this.savedPlaces.filter(
+      (place) => place.place_id.toLowerCase() !== placeId.toLowerCase()
+    );
     try {
       await updateDoc(doc(db, "users", userId), {
         savedPlaces: arrayRemove({ place_id: placeId })
@@ -113,6 +153,9 @@ const savedPlacesState = reactive({
     } catch (error) {
       console.error("Error removing place from saved places:", error);
     }
+  },
+  async clearSavedPlaces() {
+    this.savedPlaces = [];
   }
 });
 
