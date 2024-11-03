@@ -34,42 +34,41 @@
         </div>
     </div>
 
+    <div class="secondary_header">
+        <div class="secondary_content">
+            <h2>Explore your saved itineraries</h2>
+            <h5>Curated for you</h5>
+        </div>
 
-
-
-
-
-
-    <!-- <div class="sticky-top">
-        <div class="row justify-content-between align-items-center sticky-header g-0">
-            <div class="col-3 date-column">
-                <h2 class="page-title">My Itineraries</h2>
-                <div class="filter-dropdown d-flex align-items-center">
-                    <select v-model="selectedFilter" @change="filterPlaces" class="form-select me-2">
-                        <option value="">Select Filter</option>
-                        <option value="alphabetical">Filter by Alphabet</option>
-                        <option value="recently-added">Filter by Recently Added</option>
-                    </select>
-                    <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
-                        Delete All
-                    </button>
+        <div class="dropdown-container" v-motion-slide-visible-once-top>
+            <div class="dropdown">
+                <button class="dropdown-btn">Filter by: Top Destinations</button>
+                <div class="dropdown-content">
+                    <a href="#">Popular Destinations</a>
+                    <a href="#">Recent Additions</a>
+                    <a href="#">Highly Rated</a>
                 </div>
             </div>
-            <div class="col-auto generateButton">
-                <button @click="toggleModal" type="button" class="btn view-itinerary-btn">View
-                    Itinerary</button>
-                <button @click="navigateToGeneratedItinerary" type="button" class="btn view-full-itinerary-btn">View
-                    Full
-                    Itinerary</button>
+            <div class="dropdown">
+                <button class="dropdown-btn">Filter by Continent: All Continents</button>
+                <div class="dropdown-content">
+                    <a href="#">Africa</a>
+                    <a href="#">Asia</a>
+                    <a href="#">Europe</a>
+                    <a href="#">North America</a>
+                    <a href="#">South America</a>
+                    <a href="#">Oceania</a>
+                </div>
             </div>
         </div>
-    </div> -->
+    </div>
+
 
     <div class="saved-itineraries-container">
         <div v-if="!filteredItineraries.length" class="no-itineraries-message">
             <p>No saved itineraries yet. Start creating your itinerary!</p>
         </div>
-        <div v-else class="single">
+        <div v-else class="single" v-motion-slide-visible-once-top>
             <!-- Single centered large card for one itinerary -->
             <div v-if="filteredItineraries.length === 1" class="single-itinerary-card"
                 @click="viewItinerary(filteredItineraries[0].savedAt)">
@@ -87,7 +86,7 @@
                 </div>
             </div>
 
-            <div v-else class="itineraries-grid multiple responsive-container">
+            <div v-else class="itineraries-grid multiple responsive-container" v-motion-slide-visible-once-top>
                 <!-- Hero card for the first itinerary -->
                 <div class="hero-card" @click="viewItinerary(filteredItineraries[0].savedAt)">
                     <div class="card shadow-lg">
@@ -106,7 +105,7 @@
 
                 <div class="stacked-cards-wrapper">
                     <!-- Scrollable container for additional itineraries -->
-                    <div class="stacked-cards">
+                    <div class="stacked-cards" v-auto-animate>
                         <div v-for="(itinerary, index) in paginatedSmallItineraries" :key="index" class="small-card"
                             @click="viewItinerary(itinerary.savedAt)">
                             <img :src="getCountryImage(itinerary.country)" class="small-card-img"
@@ -119,15 +118,20 @@
                         </div>
                     </div>
 
-                    <!-- Pagination buttons if more than 5 itineraries exist -->
-                    <div v-if="true" class="scroll-buttons">
-                        <button class="round-button" @click="scrollLeft">&lt;</button>
-                        <button class="round-button" @click="scrollRight">&gt;</button>
+                    <div class="button-container">
+                        <!-- Pagination buttons if more than 5 itineraries exist -->
+                        <div v-if="true" class="scroll-buttons">
+                            <button class="round-button" @click="scrollLeft">&lt;</button>
+                            <button class="round-button" @click="scrollRight">&gt;</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
+
 </template>
 
 <script>
@@ -136,10 +140,17 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { onMounted } from "vue";
 import router from "@/router";
+import autoAnimate from '@formkit/auto-animate/vue';
+import { vMotion } from '@vueuse/motion';
+
 
 
 export default {
     name: "SavedItinerary",
+    directives: {
+        autoAnimate,
+        motion: vMotion,
+    },
     setup() {
         const savedItineraries = ref([]);
         const selectedFilter = ref("addedDate");
@@ -428,7 +439,7 @@ export default {
                 image: require("@/assets/countries/south_korea.jpg"),
                 description:
 
-"South Korea is a fascinating blend of ancient temples, bustling cities, and cutting-edge technology.",
+                    "South Korea is a fascinating blend of ancient temples, bustling cities, and cutting-edge technology.",
             },
             {
                 name: "United Arab Emirates",
@@ -524,7 +535,7 @@ export default {
                 place: "Bogota",
                 image: require("@/assets/countries/colombia.jpg"),
                 description:
-"Colombia offers a diverse range of attractions, from coffee plantations to vibrant cities like Bogotá.",
+                    "Colombia offers a diverse range of attractions, from coffee plantations to vibrant cities like Bogotá.",
             },
             {
                 name: "Ukraine",
@@ -535,6 +546,13 @@ export default {
                     "Ukraine is a country of rich history and beautiful landscapes, with Kyiv's stunning cathedrals and ancient sites.",
             },
         ]);
+
+        // Motion configuration
+        // const motionConfig = {
+        //     initial: { opacity: 0, y: -200 },
+        //     enter: { opacity: 1, y: 0 }
+        // };
+
 
         // Loading saved itineraries from Firestore
         onMounted(async () => {
@@ -696,11 +714,27 @@ export default {
             return pageData;
         });
 
+        // Smooth scrolling function
+        const scrollToElement = (index) => {
+            const container = document.querySelector(".stacked-cards");
+            const elements = container ? container.querySelectorAll(".small-card") : [];
+
+            if (elements[index]) {
+                const targetPosition = elements[index].offsetLeft - container.offsetLeft;
+                container.scrollTo({
+                    left: targetPosition,
+                    behavior: "smooth",
+                });
+            }
+        };
+
+
         // Scroll functions
         const scrollLeft = () => {
             if (currentPage.value > 0) {
                 currentPage.value--;
                 console.log("Scrolled left:", currentPage.value);
+                scrollToElement(currentPage.value * itemsPerPage);
             } else {
                 console.log("Cannot scroll left, already at first page");
             }
@@ -710,6 +744,7 @@ export default {
             if ((currentPage.value + 1) * itemsPerPage < filteredItineraries.value.length - 1) {
                 currentPage.value++;
                 console.log("Scrolled right:", currentPage.value);
+                scrollToElement(currentPage.value * itemsPerPage);
             } else {
                 console.log("Cannot scroll right, reached last page");
             }
@@ -736,9 +771,8 @@ export default {
             return remainingItems > 0;
         });
 
-
-
         return {
+            // motionConfig,
             getContinent,
             savedItineraries,
             filteredItineraries,
@@ -751,6 +785,7 @@ export default {
             filterPlaces,
             getCountryImage,
             countries,
+            scrollToElement,
             scrollLeft,
             scrollRight,
             showLeftButton,
@@ -768,7 +803,7 @@ export default {
     position: relative;
     max-width: 100vw;
     overflow: hidden;
-    margin-bottom: 90px;
+    margin-bottom: 10px;
 }
 
 .header_container {
@@ -848,166 +883,124 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Set a slightly darker default */
-    transition: background-color 0.4s ease, transform 0.4s ease; /* Smooth color and scale transition */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Set a slightly darker default */
+    transition: background-color 0.4s ease, transform 0.4s ease;
+    /* Smooth color and scale transition */
     z-index: 1;
 }
 
 .one:hover .gradientoverlay {
-    background-color: rgba(0, 0, 0, 0.2); /* Lighten overlay on hover */
-    transform: scale(1.05); /* Ensure overlay scales with the card smoothly */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Lighten overlay on hover */
+    transform: scale(1.05);
+    /* Ensure overlay scales with the card smoothly */
 }
 
 .one {
     position: relative;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* Smooth transition */
 }
 
 .one:hover {
-    transform: scale(1.05); /* Slightly scale up the card */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    transform: scale(1.05);
+    /* Slightly scale up the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Stronger shadow */
 }
 
-
-/* ******************** stickbar container ******************* */
-/* header sicky styling */
-.sticky-top {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 1100;
-    padding: 10px 5%;
-    border-bottom: 1px solid lightgrey;
-    margin-bottom: 80px;
-}
-
-.date-column {
+/* <====================== secondary header ===================> */
+.secondary_header {
+    position: relative;
+    padding: 1rem 0;
+    margin-top: 2.4rem;
+    /* Add spacing above the header */
+    margin-bottom: 4rem;
+    /* Add spacing below the header */
     text-align: left;
-    padding-left: 15px;
-    /* Increase padding to move it left */
-    font-family: 'Roboto', sans-serif;
-    /* Change to your desired font */
-    font-size: 1.5rem;
-    /* Adjust font size if necessary */
-    margin-top: 10px;
-    margin-bottom: 10px;
+    /* Center align the text */
 }
 
-.generateButton {
-    text-align: right;
-    padding-right: 5%;
-    font-size: 1.5rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.secondary_content {
+    padding: 0 60px;
 }
 
-.empty-message {
-    text-align: center;
-    font-size: 1.2rem;
-    color: grey;
-    margin-top: 20px;
+.secondary_content h5 {
+    color: rgb(166, 163, 163);
+    margin-bottom: 1rem;
 }
 
-.close-button {
-    position: absolute;
-    top: 10px;
-    /* Adjust as needed */
-    right: 10px;
-    /* Adjust as needed */
-    background: transparent;
-    /* No background */
+/* Container to align dropdowns side by side */
+.dropdown-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-left: 60px;
+    /* Adjust this value to align the dropdowns with the text */
+}
+
+/* Style the dropdown button */
+.dropdown-btn {
+    background-color: #222;
+    /* Dark background color */
+    color: #fff;
+    /* White text */
+    padding: 10px 20px;
     border: none;
-    /* No border */
-    color: white;
-    /* Color of the 'X' */
-    font-size: 1.2rem;
-    /* Adjust size */
+    border-radius: 5px;
     cursor: pointer;
-    /* Pointer cursor */
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    transition: background-color 0.3s ease;
+    padding: 16px;
+}
+
+/* Change button color on hover */
+.dropdown-btn:hover {
+    background-color: #555;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    background-color: #222;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
     z-index: 1;
-    /* Ensure it is on top */
+    top: 100%;
+    /* Position below the button */
+    left: 0;
+    padding: 10px 0;
 }
 
-.close-button:hover {
-    background: transparent;
-    color: red;
-
-    /* Change color on hover */
-}
-
-.filter-dropdown {
-    margin: 10px 0;
-
-}
-
-.filter-dropdown .form-select {
-    width: 100%;
-    border-radius: 100px;
-    border: 1px solid black;
-}
-
-.btn-delete-all {
-    width: 200px;
-    border-radius: 30px;
-    border: 1px solid black;
-    color: black;
-    background-color: #ffffff;
-    transition: background-color 0.3s ease;
-    /* Apply smooth transition */
-}
-
-.btn {
-    /* Set button color to black */
+/* Dropdown content links */
+.dropdown-content a {
     color: white;
-    /* Keep the text color white for contrast */
-    border: none;
-    /* Remove default border */
-}
-
-.btn:hover {
-    background-color: #0057d9;
-    /* Darker color on hover for visual feedback */
-    color: white;
-    /* Keep the text color white on hover */
-}
-
-.close-modal-btn:hover {
-    color: white;
-    /* Keep the text color white on hover */
-}
-
-.close-modal-btn {
-    background-color: #0057d9;
-}
-
-.view-itinerary-btn {
-    margin-right: 10px;
-    background-color: #ffffff;
-    border-radius: 100px;
-    margin-top: 30px;
-    border: 1px solid black;
-    color: black;
-    /* Adjust space as needed */
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
     transition: background-color 0.3s ease;
-    /* Apply smooth transition */
-
 }
 
-.view-full-itinerary-btn {
-    background-color: #ffffff;
-    border-radius: 100px;
-    margin-top: 30px;
-    border: 1px solid black;
-    color: black;
-    transition: background-color 0.3s ease;
-    /* Apply smooth transition */
-
+/* Change background color on hover */
+.dropdown-content a:hover {
+    background-color: #333;
 }
 
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 /* ***************** saved itinerary container *************** */
-/* ************************************************ */
 /* Page layout styling */
 .saved-itineraries-container {
     display: flex;
@@ -1015,6 +1008,7 @@ export default {
     align-items: center;
     padding: 20px;
     margin: 0 auto;
+
     width: 100%;
     max-width: 1600px;
     /* Increased max width */
@@ -1060,15 +1054,17 @@ export default {
 
 .itineraries-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Two columns: 2 parts for hero, 1 part for stacked cards */
-    gap: 20px; /* Space between the columns */
+    grid-template-columns: 2fr 1fr;
+    /* Two columns: 2 parts for hero, 1 part for stacked cards */
+    gap: 20px;
+    /* Space between the columns */
     width: 100%;
     max-width: 1400px;
-    align-items: start; /* Align items at the top */
-    margin: 0 auto; /* Center the grid container */
+    align-items: start;
+    /* Align items at the top */
+    margin: 0 auto;
+    /* Center the grid container */
 }
-
-
 
 /* ************************************************ */
 /* single card styling */
@@ -1084,8 +1080,10 @@ export default {
     /* Optional styling for shadow */
     border-radius: 8px;
     /* Optional rounded corners */
-    flex: 1; /* Allow the single card to take more space */
-    max-width: 100%; /* Ensure it does not overflow */
+    flex: 1;
+    /* Allow the single card to take more space */
+    max-width: 100%;
+    /* Ensure it does not overflow */
 }
 
 .card {
@@ -1153,12 +1151,7 @@ export default {
 }
 
 
-
-
 /* ************************************************ */
-
-
-
 
 /*more than one itinerary styling*/
 /* Hero card styling */
@@ -1239,10 +1232,14 @@ export default {
 .stacked-cards-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Space out items vertically */
-    height: 100%; /* Ensure it fills the height of the container */
+    justify-content: space-between;
+    /* Space out items vertically */
+    height: 100%;
+    /* Ensure it fills the height of the container */
     position: relative;
-    padding-bottom: 20px; /* Optional padding for spacing */
+    padding-bottom: 20px;
+    height: auto;
+    /* Ensures it adjusts based on content */
 }
 
 /* Stacked small cards styling */
@@ -1261,13 +1258,16 @@ export default {
     -ms-overflow-style: none;
     scrollbar-width: none;
     scroll-padding-right: 32px;
-    gap: 15px; /* Space between each small card */
+    scroll-behavior: smooth;
+    gap: 15px;
+    /* Space between each small card */
 }
 
 .small-card {
     display: flex;
     align-items: center;
-    flex-grow: 1; /* Allows it to take full width in flex layout */
+    flex-grow: 1;
+    /* Allows it to take full width in flex layout */
     width: 100%;
     padding: 10px;
     background: rgb(234, 250, 255);
@@ -1303,17 +1303,20 @@ export default {
     margin: 2px 0;
 }
 
-.scroll-buttons {
-    position: absolute;
-    bottom: -80px; /* Positions the buttons at the bottom for larger screens */
-    right: 10px; /* Positions the buttons to the right */
+.button-container {
+    margin-top: auto;
+    /* Push the button container to the bottom */
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding-bottom: 20px;
-    z-index: 1; /* Ensures it appears above other content */
+    justify-content: right;
+    margin-top: 40px;
+    /* Space between saved itineraries and buttons */
 }
 
+
+.scroll-buttons {
+    display: flex;
+    gap: 15px;
+}
 
 .round-button {
     width: 40px;
@@ -1350,7 +1353,7 @@ export default {
     }
 
     .content h1 {
-        font-size: 4rem ;
+        font-size: 4rem;
     }
 
     .content h4 {
@@ -1373,6 +1376,15 @@ export default {
 }
 
 @media (max-width: 768px) {
+    .dropdown-container {
+        flex-direction: column;
+        /* Stack buttons vertically */
+        align-items: flex-start;
+        /* Align them to the start */
+        gap: 0.5rem;
+        /* Adjust gap for vertical spacing */
+    }
+
     .overlay-text {
         font-size: 1rem;
     }
@@ -1404,12 +1416,16 @@ export default {
     }
 
     .scroll-buttons {
-        position: relative; /* Change to relative for smaller screens */
+        position: relative;
+        /* Change to relative for smaller screens */
         bottom: 0;
         right: 0;
-        margin-top: 10px; /* Add some space above */
-        justify-content: right; /* Center buttons on smaller screens */
-        padding: 10px 0; /* Add some padding for spacing */
+        margin-top: 10px;
+        /* Add some space above */
+        justify-content: right;
+        /* Center buttons on smaller screens */
+        padding: 10px 0;
+        /* Add some padding for spacing */
     }
 }
 </style>

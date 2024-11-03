@@ -36,7 +36,7 @@
               <div class="day-description">{{ day.summary }}</div>
 
               <!-- Activity Grid with Two Items Per Row -->
-              <div class="activity-grid" v-if="day.activities && day.activities.length">
+              <div class="activity-grid" v-if="day.activities && day.activities.length" v-motion-slide-visible-once-top>
                 <div class="itinerary-item" v-for="(activity, actIndex) in day.activities" :key="actIndex"
                   @click="focusOnActivity(activity)" :style="{
                     backgroundImage: activity.location.photo_url
@@ -423,6 +423,12 @@ onMounted(async () => {
   height: 200px;
   /* Adjust height as necessary */
   display: flex;
+  transition: transform 0.3s ease;
+}
+
+.itinerary-item:hover {
+  transform: scale(1.05);
+  /* Slightly scale up the card */
 }
 
 .overlay-text {
@@ -477,7 +483,6 @@ onMounted(async () => {
   margin: 0 0 5px 0;
   /* Margin below the activity name */
 }
-
 
 .place-column img {
   max-width: 150px;

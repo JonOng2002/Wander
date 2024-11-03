@@ -30,31 +30,37 @@
   </div>
 
 
-
-  <div class="itinerary-page">
-    <div class="secondary_header sticky-header">
-      <div class="secondary_content">
+  <div class="secondary_header">
+    <div class="secondary_content">
         <h2>Access your saved locations</h2>
         <h5>Locations saved, at your fingertips:</h5>
-      </div>
+    </div>
 
-      <div class="filter-container">
-        <!-- Filter by Dropdown -->
+    <div class="dropdown-container" v-motion-slide-visible-once-top>
+      <div class="dropdown">
         <select @change="filterPlaces" class="dropdown-btn form-select me-2">
           <option value="">Select Filter</option>
           <option value="alphabetical">Filter by Alphabet</option>
           <option value="recently-added">Filter by Recently Added</option>
         </select>
+      </div>
 
-        <button @click="deleteAllPlaces" :disabled="isDeleteAllDisabled" class="btn btn-delete-all">
+      <div class="dropdown">
+        <button @click="deleteAllPlaces" class="dropdown-btn">
           Delete All
         </button>
+      </div>
 
-        <button @click="toggleModal" type="button" class="btn view-itinerary-btn">View
-          Itinerary</button>
+      <div class="dropdown">
+        <button @click="toggleModal" class="dropdown-btn">
+          View Itinerary
+        </button>
+      </div>
 
-        <button @click="navigateToGeneratedItinerary" type="button" class="btn view-full-itinerary-btn">View Full
-          Itinerary</button>
+      <div class="dropdown">
+        <button @click="navigateToGeneratedItinerary" class="dropdown-btn">
+          View Full Itinerary
+        </button>
       </div>
     </div>
   </div>
@@ -66,7 +72,7 @@
 
   <div v-else class="card-grid">
     <transition-group name="list" tag="div" class="transition-wrapper">
-      <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs">
+      <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs" v-motion-slide-visible-once-top>
         <div class="card destination-card" :style="{ backgroundImage: `url(${place.image})` }">
           <div class="overlay"></div>
           <button @click="removePlace(place)" type="button" class="btn close-button">✖</button>
@@ -505,15 +511,21 @@ export default {
 
 
 <style scoped>
+
+/* <================ HEADER CAROUSELL =================>*/
+
 #carouselExampleInterval {
-  position: relative; 
-  height: 550px; /* Fixed height */
+  position: relative;
+  height: 550px;
+  /* Fixed height */
   /* Set your desired height here */
   overflow: hidden;
 }
 
-.carousel-inner, .gradientoverlay {
-  height: 100%; /* Ensures inner elements match carousel height */
+.carousel-inner,
+.gradientoverlay {
+  height: 100%;
+  /* Ensures inner elements match carousel height */
 }
 
 .gradientoverlay {
@@ -524,11 +536,13 @@ export default {
   height: 100%;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
   /* Adjust gradient colors and opacity as desired */
-  z-index: 1; /* Place it above the images but below the text */
+  z-index: 1;
+  /* Place it above the images but below the text */
 }
 
 .carousel-item {
-  height: 100%; /* Ensures each item takes full height */
+  height: 100%;
+  /* Ensures each item takes full height */
 }
 
 .carousel-item img {
@@ -539,211 +553,55 @@ export default {
 }
 
 .carousel-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    z-index: 2; /* Ensure it sits above the carousel images */
-    width: 90%; /* Ensures text stays within bound at smaller screens */
-}
-
-.carousel-content h1 {
-    font-size: 4.5rem; /* Adjust size as needed */
-    font-weight: 700;
-    margin: 0;
-}
-
-.carousel-content h4 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: 0.5rem 0 0;
-}
-
-/* <=================== header carousell =================>*/
-/* .header_container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 1;
-  text-align: center;
   color: white;
-  z-index: 3;
-} */
-
-.content h1 {
-  font-size: 6rem;
-  font-weight: 700;
-}
-
-.content h4 {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 500;
-
-}
-
-.headerbox {
-  height: 60vh;
-  /* Fixed height to ensure images have a base to fill */
-  display: flex;
-}
-
-.col-lg-4,
-.col-md-12,
-.col-sm-12 {
-  height: 100%;
-  /* Make columns fill headerbox height */
-}
-
-.section-link {
-  position: relative;
-  display: inline-block;
-  color: white;
-  text-decoration: none;
-  height: 100%;
-  width: 100%;
-  /* Full width */
-}
-
-.img-fluid {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Ensures the image fills the container without distortion */
-  object-position: center;
-  /* Center image within container */
-}
-
-.overlay-text {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  color: white;
-  font-weight: bold;
   text-align: center;
   z-index: 2;
+  /* Ensure it sits above the carousel images */
+  width: 90%;
+  /* Ensures text stays within bound at smaller screens */
 }
 
-.gradientoverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  /* Replace gradient with a solid black with opacity */
-  transition: background-color 0.3s ease;
-  /* Smooth transition for brightness on hover */
-  z-index: 1;
-}
-
-.one:hover .gradientoverlay {
-  background-color: rgba(0, 0, 0, 0.0);
-  /* Make overlay lighter on hover */
-}
-
-.one {
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  /* Smooth transition */
-}
-
-.one:hover {
-  transform: scale(1.05);
-  /* Slightly scale up the card */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  /* Add a stronger shadow */
-}
-
-/* ****************************************** */
-/* h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: bolder;
-} */
-
-/* <=================== sticky header & buttons =================> */
-
-/* Main Itinerary Page */
-.itinerary-page {
-  font-family: "Roboto", sans-serif;
+.carousel-content h1 {
+  font-size: 4.5rem;
+  /* Adjust size as needed */
+  font-weight: 700;
   margin: 0;
-  padding-top: 60px;
-  background-color: #f0f6ff;
 }
 
-/* Sticky Header */
-.sticky-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: #f0f6ff;
-  padding: 1rem 4vw;
-  border-bottom: 1px solid lightgrey;
-}
-
-.date-column {
-  text-align: left;
-  padding-left: 15px;
-  font-family: 'Roboto', sans-serif;
+.carousel-content h4 {
   font-size: 1.5rem;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  font-weight: 500;
+  margin: 0.5rem 0 0;
 }
 
-.generateButton {
-  text-align: right;
-  padding-right: 5%;
-  font-size: 1.5rem;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
-.empty-message {
-  text-align: center;
-  font-size: 1.2rem;
-  color: grey;
-  margin-top: 20px;
-}
+/* <=========== SECONDARY HEADER =============> */
 
-/* <================== buttons in stickyheader =================> */
 .secondary_header {
-  padding: 1rem 4vw;
-  background-color: #f0f6ff;
-  border-bottom: 1px solid lightgrey;
+    position: relative;
+    padding: 1rem 0;
+    margin-top: 2.4rem;
+    /* Add spacing above the header */
+    margin-bottom: 4rem;
+    /* Add spacing below the header */
+    text-align: left;
+    /* Center align the text */
 }
 
-.secondary_content h2 {
-  font-size: 1.7rem;
-  font-weight: 550;
-  margin-bottom: 0.5rem;
+.secondary_content {
+    padding: 0 60px;
 }
 
 .secondary_content h5 {
-  color: rgb(166, 163, 163);
-  margin-bottom: 1rem;
+    color: rgb(166, 163, 163);
+    margin-bottom: 1rem;
 }
 
-
-/* Filter container and button styling */
-.filter-container {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.form-select,
-.btn-delete-all,
-.view-itinerary-btn,
-.view-full-itinerary-btn {
+.form-select {
   background-color: #222;
   color: white;
   border: none;
@@ -753,54 +611,76 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-.form-select {
-  appearance: none;
-  width: 220px;
+/* Container to align dropdowns side by side */
+.dropdown-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-left: 60px;
+    /* Adjust this value to align the dropdowns with the text */
 }
 
-.form-select:hover,
-.btn-delete-all:hover,
-.view-itinerary-btn:hover,
-.view-full-itinerary-btn:hover {
-  background-color: #555;
+/* Style the dropdown button */
+.dropdown-btn {
+    background-color: #222;
+    /* Dark background color */
+    color: #fff;
+    /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    transition: background-color 0.3s ease;
+    padding: 16px;
 }
 
-/* .btn-delete-all {
-  background-color: #222;
-  color: white;
-  border: none;
-  border-radius: 0.2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 10px;
-} */
-
-/* .btn-delete-all:hover {
-  background-color: #f44336;
-  color: white;
+/* Change button color on hover */
+.dropdown-btn:hover {
+    background-color: #555;
 }
 
-.view-itinerary-btn,
-.view-full-itinerary-btn {
-  background-color: #222;
-  color: white;
-  border: none;
-  border-radius: 0.2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 10px;
+/* Dropdown content styling */
+.dropdown-content {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    background-color: #222;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+    top: 100%;
+    /* Position below the button */
+    left: 0;
+    padding: 10px 0;
 }
 
-.view-itinerary-btn:hover,
-.view-full-itinerary-btn:hover {
-  background-color: #0057d9;
-  color: white;
-} */
+/* Dropdown content links */
+.dropdown-content a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
 
+/* Change background color on hover */
+.dropdown-content a:hover {
+    background-color: #333;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* <=========== CARD GRID LAYOUT =============> */
 
 .transition-wrapper {
   display: contents;
@@ -815,8 +695,6 @@ export default {
   /* Optional: padding around the grid */
 }
 
-/* <======================= savedplaces layout ==============>
-/* Card Grid Layout */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -955,7 +833,6 @@ export default {
   background-color: #004bb7;
 }
 
-
 /* Modal styles */
 .modal-overlay {
   position: fixed;
@@ -1022,10 +899,7 @@ export default {
 }
 
 
-
-
-/* <=============== breakpoints ===================> */
-
+/* <=========== BREAKPOINTS =============> */
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
@@ -1052,7 +926,7 @@ export default {
   }
 
   .carousel-content h1 {
-    font-size: 4rem ;
+    font-size: 4rem;
   }
 
   .carousel-content h4 {
@@ -1062,7 +936,7 @@ export default {
 
 @media (max-width: 992px) {
   .carousel-content h1 {
-    font-size: 3rem ;
+    font-size: 3rem;
   }
 
   .carousel-content h4 {
@@ -1071,6 +945,11 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+    gap: 1rem; /* Consistent gap between buttons */
+  }
 
   .card-grid {
     grid-template-columns: 1fr;
@@ -1094,7 +973,7 @@ export default {
   }
 
   .carousel-content h1 {
-    font-size: 2rem ;
+    font-size: 2rem;
   }
 
   .carousel-content h4 {
@@ -1103,6 +982,11 @@ export default {
 }
 
 @media (max-width: 576px) {
+  .dropdown-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Consistent gap between buttons */
+  }
 
   .sticky-top {
     padding: 0 1.5vw;

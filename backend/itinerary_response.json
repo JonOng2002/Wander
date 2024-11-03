@@ -1,285 +1,65 @@
 {
-  "country": "Mexico",
-  "itinerary_summary": "A romantic five-day getaway in Mexico City, exploring great culinary spots, vibrant markets, and cultural landmarks.",
+  "country": "Italy",
+  "itinerary_summary": "A romantic day exploring the stunning historic sites of Rome while enjoying beach activities and local cuisine with your partner.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-15",
-      "summary": "Arrive in Mexico City and explore local cuisine and attractions.",
+      "date": "2024-11-03",
+      "summary": "Experience the rich history and breathtaking beauty of Vatican City and nearby Roman landmarks.",
       "activities": [
         {
-          "time": "17:00",
-          "activity_name": "Dinner at Pujol, Mexico City",
+          "time": "09:00 AM",
+          "activity_name": "The Last Judgment",
           "location": {
-            "name": "Pujol",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Experience Mexican fine dining created by acclaimed chef Enrique Olvera."
-        },
-        {
-          "time": "19:30",
-          "activity_name": "Visit Museo Soumaya, Mexico City",
-          "location": {
-            "name": "Museo Soumaya",
-            "city": "Mexico City",
+            "name": "The Last Judgment",
+            "city": "Citt\u00e0 del Vaticano",
             "coordinates": {
-              "latitude": 19.4406926,
-              "longitude": -99.2047001
+              "latitude": 41.902953,
+              "longitude": 12.454456
             },
-            "place_id": "ChIJCT06bhoC0oURszwDTCLicpM",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOcczvwaZ6cMIipbHSG9DMq_BIwc69sCqVVyf0Cah7hj5iQu7ngNTZS7BtxMEeZ2NkNe5_P61f9PYgybrtQtn1FiudU7Qcslj7Njx5N1PndOtS6d6e9rl4l81YzmJB9j0IovSh5Wp0-Tp1GspH2y4LOucZ3-Hl3EKMiZa5wJqVMWYWi&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+            "place_id": "ChIJeb0jxWVgLxMR66bI7_F7PQA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN_kAbseLtN-BPvlH3AYLPd7cqoGlR1e7k7uaXNfGuYS-afKQKH-qYR0WxKyipD_Z-mdxXULGjDr7Jk3YJ6ifLila3vfVVP_CS44y664AinsDgtKwWAEicajG3dHMfOHp4RAXMOo8TG5LWQEsslEIMc5QqiQ3lf40cCEGX2NEtYvlnm&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE},"
           },
-          "description": "Explore a vast collection of art, including works by Rodin and Mexican artists."
+          "description": "Witness Michelangelo's magnificent fresco, 'The Last Judgment,' in the Sistine Chapel."
         },
         {
-          "time": "21:00",
-          "activity_name": "Drinks at Licorer\u00eda Limantour, Mexico City",
+          "time": "11:00 AM",
+          "activity_name": "St. Peter's Basilica Tour",
           "location": {
-            "name": "Licorer\u00eda Limantour",
-            "city": "Mexico City",
+            "name": "St. Peter's Basilica",
+            "city": "Citt\u00e0 del Vaticano",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy expertly crafted cocktails at one of the best bars in the world."
+          "description": "Explore one of the largest churches in the world, featuring remarkable art and architecture."
         },
         {
-          "time": "22:30",
-          "activity_name": "Stroll through Plaza de Garibaldi, Mexico City",
+          "time": "01:00 PM",
+          "activity_name": "Lunch at Ristorante Pizzeria Da Baffetto",
           "location": {
-            "name": "Plaza de Garibaldi",
-            "city": "Mexico City",
+            "name": "Ristorante Pizzeria Da Baffetto",
+            "city": "Rome",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience live mariachi music in the heart of the city."
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "date": "2024-11-16",
-      "summary": "A day dedicated to exploring Mexico City\u2019s history and flavors.",
-      "activities": [
-        {
-          "time": "08:00",
-          "activity_name": "Breakfast at Lalo!, Mexico City",
-          "location": {
-            "name": "Lalo!",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Savor a hearty breakfast at this popular local eatery."
+          "description": "Enjoy classic Roman pizza at one of the city's most famous pizzerias."
         },
         {
-          "time": "10:00",
-          "activity_name": "Visit the Frida Kahlo Museum, Mexico City",
+          "time": "03:00 PM",
+          "activity_name": "Il Tempio dei Dioscuri",
           "location": {
-            "name": "Frida Kahlo Museum",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Explore the former home of the famous artist, showcasing her life and work."
-        },
-        {
-          "time": "13:00",
-          "activity_name": "Lunch at Mercado Sonora, Mexico City",
-          "location": {
-            "name": "Mercado Sonora",
-            "city": "Mexico City",
+            "name": "Il Tempio dei Dioscuri",
+            "city": "Rome",
             "coordinates": {
-              "latitude": 19.4224291,
-              "longitude": -99.1245091
+              "latitude": 41.8917031,
+              "longitude": 12.4856645
             },
-            "place_id": "ChIJZ2lB4Mf-0YUR1xUYsitgvN8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMl1l9EFHpjWsGVU04sxDg47zOg8yPsG8vRugtJ5tyYZ95vQGs4nKohvwOIaWpOCPOs2pYpA0c9hm34wWlzTPAwZbMAEFJmFS3zP4AP-AhyhB3X7QLhGvpEqRKzBLCFifSrid6FD7Lt12EzZyuVOp0FO00uRdi46grasT4gS1R4x4M6&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+            "place_id": "ChIJ6RRKjbRhLxMRKHHdS4QvkK4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPD8-ATSt134fUsl3RYUaeKqqEDJKpmu-3ZIElmdq1VgS5SxF3A6Bv8wIPIBdrr6BspAoA-EqABUcJSw3gAym_Oz0pQj9bm4CJO9UJ-mZvgjznd2DGbj_YROiJn6KlHkaRH38jZYVUCyGE8wnuq6GcZtsTArOFeQkfF-gnVbkRWqlK8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE},"
           },
-          "description": "Taste a variety of local snacks and dishes at this vibrant market."
-        },
-        {
-          "time": "16:00",
-          "activity_name": "Relax at Chapultepec Park, Mexico City",
-          "location": {
-            "name": "Chapultepec Park",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Take a leisurely walk and relax in one of the largest city parks in the world."
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "date": "2024-11-17",
-      "summary": "Discover the vibrant neighborhoods and street foods of Mexico City.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Breakfast at Panader\u00eda Rosetta, Mexico City",
-          "location": {
-            "name": "Panader\u00eda Rosetta",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy freshly baked pastries at this renowned bakery."
-        },
-        {
-          "time": "11:00",
-          "activity_name": "Explore Coyoac\u00e1n, Mexico City",
-          "location": {
-            "name": "Coyoac\u00e1n",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Wander the charming streets and enjoy local street food."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Lunch at El Hidalguense, Mexico City",
-          "location": {
-            "name": "El Hidalguense",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy traditional Mexican barbecue at this famous eatery."
-        },
-        {
-          "time": "17:00",
-          "activity_name": "Visit the Z\u00f3calo, Mexico City",
-          "location": {
-            "name": "Z\u00f3calo",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Experience the grandeur of the main plaza and its historical significance."
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "date": "2024-11-18",
-      "summary": "Embark on a culinary journey with a focus on local ingredients and specialties.",
-      "activities": [
-        {
-          "time": "08:30",
-          "activity_name": "Breakfast at Casa de To\u00f1o, Mexico City",
-          "location": {
-            "name": "Casa de To\u00f1o",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Delight in the delicious pozole and other traditional breakfast items."
-        },
-        {
-          "time": "11:00",
-          "activity_name": "Cooking Class at Casa Jacaranda, Mexico City",
-          "location": {
-            "name": "Casa Jacaranda",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Learn to prepare authentic Mexican dishes using local ingredients."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Lunch at El Moro, Mexico City",
-          "location": {
-            "name": "El Moro",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Indulge in the exquisite churros and hot chocolate at this beloved spot."
-        },
-        {
-          "time": "16:00",
-          "activity_name": "Explore Roma Norte, Mexico City",
-          "location": {
-            "name": "Roma Norte",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Stroll through the trendy neighborhood, famous for its food and art."
-        }
-      ]
-    },
-    {
-      "day": 5,
-      "date": "2024-11-19",
-      "summary": "Last-minute shopping and a relaxing afternoon before departure.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Breakfast at Maison Bel\u00e9n, Mexico City",
-          "location": {
-            "name": "Maison Bel\u00e9n",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy a cozy breakfast featuring French-Mexican fusion dishes."
-        },
-        {
-          "time": "11:00",
-          "activity_name": "Shopping at La Ciudadela Market, Mexico City",
-          "location": {
-            "name": "La Ciudadela Market",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Browse handmade crafts and souvenirs from local artisans."
-        },
-        {
-          "time": "13:00",
-          "activity_name": "Lunch at Taquer\u00eda El Califa, Mexico City",
-          "location": {
-            "name": "Taquer\u00eda El Califa",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Savor delicious modern tacos at this popular taquer\u00eda."
-        },
-        {
-          "time": "14:30",
-          "activity_name": "Relax at Parque M\u00e9xico, Mexico City",
-          "location": {
-            "name": "Parque M\u00e9xico",
-            "city": "Mexico City",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Spend your last moments relaxing in this lovely park before departure."
+          "description": "Visit the ruins of the Temple of the Dioscuri in the Roman Forum area, steeped in ancient history."
         }
       ]
     }

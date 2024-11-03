@@ -342,6 +342,7 @@ export default {
   color: #333;
   text-decoration: none;
   border-bottom: 1px solid #e0e0e0;
+  transition: transform 0.3s ease;
 }
 
 .dropdown-item:last-child {
@@ -356,6 +357,8 @@ export default {
 
 .dropdown-item:hover {
   background-color: #0057d9;
+  transform: scale(1.05);
+  /* Slightly scale up the card */
 }
 
 /*====== USER PROFILE MENU ======*/

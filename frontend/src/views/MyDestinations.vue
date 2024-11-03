@@ -1,5 +1,6 @@
 <template>
   <header id="headercard">
+    <div class="gradientoverlay"></div>
     <div class="header_image"></div>
     <div class="header_container">
       <div class="content">
@@ -16,7 +17,7 @@
     </div>
 
     <!-- Custom Dropdowns for sorting and filtering -->
-    <div class="filter-container">
+    <div class="filter-container" v-motion-slide-visible-once-top>
       <!-- Sort by Dropdown -->
       <div class="dropdown" @click="toggleDropdown('sort')">
         <button class="dropdown-btn">
@@ -51,7 +52,7 @@
 
   <div class="container">
     <div class="card_container">
-      <article v-for="country in filteredCountries" :key="country.code" class="card_article">
+      <article v-for="country in filteredCountries" :key="country.code" class="card_article" v-motion-slide-visible-once-top>
         <div class="text_overlay">{{ country.name }}</div>
 
         <img :src="country.image" alt="country-image" class="card_img" loading="lazy" />
@@ -71,8 +72,13 @@
 
 
 <script>
+import { vMotion } from '@vueuse/motion';
+
 export default {
   name: "MyDestinations",
+  directives: {
+        motion: vMotion,
+    },
   data() {
     return {
       countries: [
@@ -666,12 +672,25 @@ header content h4 {
   position: relative;
   left: 50px;
   top: 60px;
-  padding-bottom: 1rem;
+  padding-bottom: 4rem;
 }
 
 .secondary_content h5 {
   color: rgb(166, 163, 163);
   margin-bottom: 1rem;
+}
+
+.gradientoverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Set a slightly darker default */
+    transition: background-color 0.4s ease, transform 0.4s ease;
+    /* Smooth color and scale transition */
+    z-index: 1;
 }
 
 /* Dropdown button styling */
@@ -1056,7 +1075,7 @@ header content h4 {
 
 @media screen and (min-width: 1024px) {
   .container {
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .card_container {

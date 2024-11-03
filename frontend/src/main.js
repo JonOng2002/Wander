@@ -7,6 +7,9 @@ import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 // FormKit imports
 import { plugin, defaultConfig } from '@formkit/vue';
 
+//motion pluggin imports
+import { MotionPlugin } from '@vueuse/motion'
+
 // Bootstrap imports
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.js'; // Bootstrap JS (includes Popper.js)
@@ -206,6 +209,9 @@ vueApp.use(router);
 vueApp.use(BootstrapVue3);
 vueApp.use(VCalendar);
 vueApp.use(plugin, defaultConfig); // FormKit integration
+vueApp.use(MotionPlugin);
+console.log("MotionPlugin registered");
+
 
 vueApp.use(autoAnimatePlugin);
 // Mount the app

@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <footer class="footer-section">
+        <footer class=" ">
             <div class="footer-container">
                 <!-- Main footer content -->
                 <div class="footer-grid">
