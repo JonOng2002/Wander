@@ -46,3 +46,5 @@ backend/itinerary_response.json
 
 *.history
 **/.env
+
+backend/app.yaml

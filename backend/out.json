@@ -1,72 +1,72 @@
 {
   "location_info": {
-    "place_name": "Yakibuta Ramen Sanjyo",
-    "country": "Japan",
-    "city": "Kasamatsu",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF3-pzZ8boxHWLUcr81cwaUCpBpR9nnYbZEftdSOQwpxBIRV7IvIB9Z_2NG-vdHaydbrvcXBfP0oNM_9XhbULPUNrwxvldiT6s=s1600-w510",
+    "place_name": "Cafe Pokpo",
+    "country": "South Korea",
+    "city": "Seoul",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGQgWjWP9ZGy-lMxvsqENjSQUW8fRXKRS9pGDdvBOZTTr53lyGrngQiyORWH_QP1QXLalZ6T4OO5ergoyRi6dtSshQ3VejtGZU=s1600-w800",
     "coordinates": {
-      "latitude": 35.3495432,
-      "longitude": 136.7488693
+      "latitude": 37.5813283,
+      "longitude": 126.9370339
     },
     "activities": [
-      "Enjoy authentic Japanese ramen",
-      "Watch the ramen master at work",
-      "Experience local dining culture"
+      "Enjoy waterfall views",
+      "Relax with a cup of coffee",
+      "Socialize in a cozy setting"
     ],
-    "location_summary": "Yakibuta Ramen Sanjyo is known for its delicious BBQ pork ramen, prepared by a skilled ramen master.",
-    "vicinity": "メゾンＧ5 1F, ６５８ Kitaoyobi, Kasamatsu"
+    "location_summary": "Cafe Pokpo is a charming cafe located in Seoul, near Hongdae, offering serene waterfall views and a cozy atmosphere perfect for relaxation.",
+    "vicinity": "262-29 Yeonhui-ro, Seodaemun-gu"
   },
   "related_places": [
     {
-      "place_name": "Ichiran Ramen",
-      "country": "Japan",
-      "city": "Fukuoka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaa44QbOAaTyC7CESE5iXtNabMhz_kRzZmuJrD11wH0QeMmvotRP6GjfuTlKgAMgCtepCwRvP1qI3S-gXMwsc9PGf41hSCph4=s1600-w800",
+      "place_name": "Cafe de Lulu",
+      "country": "South Korea",
+      "city": "Seoul",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaKsEbZcaADWTA1YHVTuau6uLfFOspd_4ZYK4RzJEFOPTspJz9-KB5g5Ot8rkU9kqOsbhZFA6jn1tYMM20wrUm3bqew30vy_E=s1600-w800",
       "coordinates": {
-        "latitude": 1.5009666,
-        "longitude": 103.777432
+        "latitude": 32.0414866,
+        "longitude": 34.7704038
       },
       "activities": [
-        "Taste the famous tonkotsu ramen",
-        "Dine in a private booth",
-        "Customize your ramen flavor"
+        "Enjoy desserts and drinks",
+        "Casual meeting spot",
+        "Photogenic interior"
       ],
-      "location_summary": "Ichiran Ramen is renowned for its rich tonkotsu broth and unique dining experience designed for ramen lovers.",
-      "vicinity": "TM-003, Third Floor (Mezzanine), The Mall, Mid Valley Southkey, No. 1, Persiaran Southkey 1, Kota Southkey, Johor Bahru"
+      "location_summary": "Cafe de Lulu is a cute cafe known for its vibrant desserts and trendy interior, popular among locals and tourists alike.",
+      "vicinity": "Tel Giborim Street 5, Tel Aviv-Yafo"
     },
     {
-      "place_name": "Ramen Nagi",
-      "country": "Japan",
-      "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHn618RAKfr9W-9VSMy_2VXKhpjjylW9enpAqBcGMOwpBMnZ8Hv134PECiPCIBe1jTettYymFpItIb3x0_FbOIZtS9FUVf0Rbg=s1600-w800",
+      "place_name": "The Booth",
+      "country": "South Korea",
+      "city": "Seoul",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHBJAI5Ne4Jzou7cNBZw8Bv9Cz7iZ8TZJ12UFfaWTMnAlj4FwPo1Rg9gHOrrJiMhwdvLuORAZR1aRE_f5qLis27dOXHJaI6zL8=s1600-w800",
       "coordinates": {
-        "latitude": 1.3039387,
-        "longitude": 103.8318267
+        "latitude": 1.4378735,
+        "longitude": 103.8067738
       },
       "activities": [
-        "Explore different ramen styles",
-        "Enjoy a vibrant dining environment",
-        "Participate in seasonal specials"
+        "Craft beer tasting",
+        "Casual dining",
+        "Social hub"
       ],
-      "location_summary": "Ramen Nagi offers a variety of ramen flavors and styles, making it a favorite spot for locals and tourists alike.",
-      "vicinity": "2 Orchard Turn, #B4-54"
+      "location_summary": "The Booth is a casual dining spot that specializes in craft beers and has a laid-back vibe, perfect for unwinding after a day of exploring Seoul.",
+      "vicinity": "39 Woodlands Close, #06-64A MEGA@Woodlands"
     },
     {
-      "place_name": "Tonkotsu Ramen Shogun",
-      "country": "Japan",
-      "city": "Osaka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE1XO9y7F8rrJ4wHq2FYf7_itBVuWW_ty7T2NhV4EuQdo_QAxntIyKqwQxOUP4GFEd1zLBHnr2J_t_LDNmiO9lRq7mBjXevJ1g=s1600-w800",
+      "place_name": "Thanks Nature Cafe",
+      "country": "South Korea",
+      "city": "Seoul",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHqZb5TSFLdhKL8ZnrPL40BVvZ0sGoO0VGHIfn5HrXO8iBSumNbcNvIwa2akc8tw6ZCGKo1lnlo8UlVVnIX2hOlLXpQJcYPgfA=s1600-w800",
       "coordinates": {
-        "latitude": 3.035682899999999,
-        "longitude": 101.7640742
+        "latitude": 37.5533849,
+        "longitude": 126.9237895
       },
       "activities": [
-        "Delight in tonkotsu ramen",
-        "Pair ramen with local beers",
-        "Take part in tasting events"
+        "Cuddle with sheep",
+        "Enjoy coffee and pastries",
+        "Photo opportunities"
       ],
-      "location_summary": "Tonkotsu Ramen Shogun is famous for its creamy butter-infused broth and tender noodles, attracting ramen enthusiasts.",
-      "vicinity": "No. 80, Jalan Dataran Cheras 4, Dataran Perniagaan Cheras, Balakong Cheras, Balakong"
+      "location_summary": "Thanks Nature Cafe is a unique cafe that features live sheep, offering a delightful atmosphere alongside delicious coffee and pastries.",
+      "vicinity": "10 Hongik-ro, Mapo-gu"
     }
   ]
 }
