@@ -11,8 +11,8 @@
         <div class="itinerary-details-container">
           <div class="user-info">
             <button @click="goBack" class="back-button">
-            <i class="fas fa-arrow-left"></i> Back
-          </button>
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
             <h4>Review our recommendations for your trip</h4>
             <h2>Personalized itinerary for <strong>{{ userName }}</strong></h2>
             <h4>{{ country }} • {{ numDays }} days</h4>
@@ -28,27 +28,16 @@
           </div>
 
           <div class="itinerary-details">
-            <div
-              v-for="(day, index) in dayByDayItineraries || []"
-              :key="index"
-              class="day-section"
-            >
+            <div v-for="(day, index) in dayByDayItineraries || []" :key="index" class="day-section">
               <div class="day-header">
                 Day {{ day.day }} : {{ day.date }}
               </div>
               <div class="day-description">{{ day.summary }}</div>
 
               <!-- Activity Grid with Two Items Per Row -->
-              <div
-                class="activity-grid"
-                v-if="day.activities && day.activities.length"
-              >
-                <div
-                  class="itinerary-item"
-                  v-for="(activity, actIndex) in day.activities"
-                  :key="actIndex"
-                  @click="focusOnActivity(activity)"
-                >
+              <div class="activity-grid" v-if="day.activities && day.activities.length">
+                <div class="itinerary-item" v-for="(activity, actIndex) in day.activities" :key="actIndex"
+                  @click="focusOnActivity(activity)">
                   <div class="time-column">{{ activity.time }}</div>
                   <div class="place-column">
                     <h5>{{ activity.activity_name }}</h5>
@@ -56,12 +45,8 @@
                       <em>Location:</em>
                       {{ activity.location?.name || 'Unknown location' }}
                     </p>
-                    <img
-                      v-if="activity.location.photo_url"
-                      :src="activity.location.photo_url"
-                      class="place-image"
-                      :alt="activity.activity_name"
-                    />
+                    <img v-if="activity.location.photo_url" :src="activity.location.photo_url" class="place-image"
+                      :alt="activity.activity_name" />
                   </div>
                 </div>
               </div>
@@ -73,38 +58,20 @@
         <!-- Right Side: Google Map -->
         <div class="map-container">
           <div v-if="isMapReady" id="location-map" class="map">
-            <GoogleMap
-              :api-promise="apiPromise"
-              :center="mapCenter"
-              :zoom="15"
-              style="width: 100%; height: 100%"
-            >
-              <CustomMarker
-                v-for="(activity, index) in allActivities"
-                :key="index"
-                :options="{
-                  position: {
-                    lat: activity.location?.coordinates?.latitude || 0,
-                    lng: activity.location?.coordinates?.longitude || 0,
-                  },
-                  anchorPoint: 'BOTTOM_CENTER',
-                }"
-                @click="focusOnActivity(activity)"
-              >
-                <div
-                  :class="{
-                    'marker-selected': selectedActivity === activity,
-                  }"
-                  style="text-align: center"
-                >
+            <GoogleMap :api-promise="apiPromise" :center="mapCenter" :zoom="15" style="width: 100%; height: 100%">
+              <CustomMarker v-for="(activity, index) in allActivities" :key="index" :options="{
+                position: {
+                  lat: activity.location?.coordinates?.latitude || 0,
+                  lng: activity.location?.coordinates?.longitude || 0,
+                },
+                anchorPoint: 'BOTTOM_CENTER',
+              }" @click="focusOnActivity(activity)">
+                <div :class="{
+                  'marker-selected': selectedActivity === activity,
+                }" style="text-align: center">
                   <div>{{ activity.location?.name }}</div>
-                  <img
-                    src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
-                    width="50"
-                    height="50"
-                    style="margin-top: 8px"
-                    :class="{ 'selected-marker-image': selectedActivity === activity }"
-                  />
+                  <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="50" height="50"
+                    style="margin-top: 8px" :class="{ 'selected-marker-image': selectedActivity === activity }" />
                 </div>
               </CustomMarker>
             </GoogleMap>
@@ -117,8 +84,8 @@
       <p>Itinerary deleted successfully!</p>
     </div>
     <Modal v-if="showConfirmDelete" @confirm="confirmDelete" @cancel="cancelDelete">
-    <p>Are you sure you want to delete this itinerary?</p>
-  </Modal>
+      <p>Are you sure you want to delete this itinerary?</p>
+    </Modal>
   </div>
 
 </template>
@@ -177,7 +144,7 @@ const confirmDelete = async () => {
       await updateDoc(userRef, {
         savedItineraries: arrayRemove(itinerary.value),
       });
-     console.log('Itinerary deleted successfully.');
+      console.log('Itinerary deleted successfully.');
       showPopup.value = true;
       setTimeout(() => (showPopup.value = false), 3000);
       router.push({ name: 'SavedItineraries' });
@@ -187,7 +154,7 @@ const confirmDelete = async () => {
   } else {
     console.warn('Cannot delete itinerary: missing itinerary data or user not authenticated');
   }
-  
+
 };
 
 // Function to fetch saved itinerary from Firebase
@@ -402,11 +369,13 @@ onMounted(async () => {
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer; /* Indicates clickable */
+  cursor: pointer;
+  /* Indicates clickable */
 }
 
 .itinerary-item:hover {
-  background-color: #e9ecef; /* Light hover effect */
+  background-color: #e9ecef;
+  /* Light hover effect */
 }
 
 .time-column {
@@ -448,19 +417,25 @@ onMounted(async () => {
 
 /* Delete Itinerary Button */
 .delete-itinerary-button {
-  background-color: #dc3545; /* Red background for delete */
+  background-color: #dc3545;
+  /* Red background for delete */
   border: none;
-  color: white; /* White text for contrast */
+  color: white;
+  /* White text for contrast */
   cursor: pointer;
   font-size: 16px;
-  padding: 10px 20px; /* Adequate padding */
-  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px;
+  /* Adequate padding */
+  border-radius: 5px;
+  /* Rounded corners */
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-top: 20px; /* Space above the button */
+  margin-top: 20px;
+  /* Space above the button */
 }
 
 .delete-itinerary-button:hover {
-  background-color: #c82333; /* Darker red on hover */
+  background-color: #c82333;
+  /* Darker red on hover */
   color: #ffffff;
 }
 
@@ -494,16 +469,19 @@ onMounted(async () => {
 .back-button {
   background: none;
   border: none;
-  color: #000; /* Black color */
+  color: #000;
+  /* Black color */
   font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-bottom: 10px; /* Add space below the button */
+  margin-bottom: 10px;
+  /* Add space below the button */
 }
 
 .back-button:hover {
-  color: #333; /* Darker color on hover */
+  color: #333;
+  /* Darker color on hover */
 }
 
 .back-button i {

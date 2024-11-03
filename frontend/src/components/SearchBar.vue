@@ -21,7 +21,11 @@ export default {
     tiktokLink: {
       type: String,
       default: ''
-    }
+    },
+    isLoading: {
+    type: Boolean,
+    default: false
+  }
   },
   data() {
     return {

@@ -187,7 +187,6 @@ export default {
 
 <style scoped>
 h2 {
-  font-family: 'Cormorant Garamond', serif;
   font-weight: bolder;
 }
 

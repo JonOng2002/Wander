@@ -1,72 +1,72 @@
 {
   "location_info": {
-    "place_name": "Osaka",
+    "place_name": "Yakibuta Ramen Sanjyo",
     "country": "Japan",
-    "city": "Osaka",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqG_OA7RzCh0dKVNuw9BRSbZt8QABQn07tkCi_ufZcgrQ4KAN8xVod5p1xJ6L4L25gXZA-YtlNOh15-LkP9-hDsV7ZbkJDD9ot0=s1600-w711",
+    "city": "Kasamatsu",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF3-pzZ8boxHWLUcr81cwaUCpBpR9nnYbZEftdSOQwpxBIRV7IvIB9Z_2NG-vdHaydbrvcXBfP0oNM_9XhbULPUNrwxvldiT6s=s1600-w510",
     "coordinates": {
-      "latitude": 34.6937249,
-      "longitude": 135.5022535
+      "latitude": 35.3495432,
+      "longitude": 136.7488693
     },
     "activities": [
-      "Visiting Osaka Castle",
-      "Exploring Universal Studios Japan",
-      "Strolling through Dotonbori"
+      "Enjoy authentic Japanese ramen",
+      "Watch the ramen master at work",
+      "Experience local dining culture"
     ],
-    "location_summary": "Osaka is a vibrant city known for its modern architecture, nightlife, and hearty street food. It blends traditional culture with a bustling urban environment, making it a unique travel destination.",
-    "vicinity": "Osaka"
+    "location_summary": "Yakibuta Ramen Sanjyo is known for its delicious BBQ pork ramen, prepared by a skilled ramen master.",
+    "vicinity": "メゾンＧ5 1F, ６５８ Kitaoyobi, Kasamatsu"
   },
   "related_places": [
     {
-      "place_name": "Kyoto",
+      "place_name": "Ichiran Ramen",
       "country": "Japan",
-      "city": "Kyoto",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFhUb_YENj1ybGqMVzejr6hQGN-s8Yp8uAwevQBmgJupIkKz1KQXwkeXTdnLEVJvIQ_OK84H8Y_N0WrOx3Lq8uwKRaZBVeVkHg=s1600-w800",
+      "city": "Fukuoka",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaa44QbOAaTyC7CESE5iXtNabMhz_kRzZmuJrD11wH0QeMmvotRP6GjfuTlKgAMgCtepCwRvP1qI3S-gXMwsc9PGf41hSCph4=s1600-w800",
       "coordinates": {
-        "latitude": 35.011564,
-        "longitude": 135.7681489
+        "latitude": 1.5009666,
+        "longitude": 103.777432
       },
       "activities": [
-        "Visiting Kinkaku-ji (Golden Pavilion)",
-        "Exploring Fushimi Inari Taisha",
-        "Enjoying the Arashiyama Bamboo Grove"
+        "Taste the famous tonkotsu ramen",
+        "Dine in a private booth",
+        "Customize your ramen flavor"
       ],
-      "location_summary": "Kyoto, once the capital of Japan, is famous for its classical Buddhist temples, as well as gardens, Imperial palaces, Shinto shrines, and traditional wooden houses.",
-      "vicinity": "Kyoto"
+      "location_summary": "Ichiran Ramen is renowned for its rich tonkotsu broth and unique dining experience designed for ramen lovers.",
+      "vicinity": "TM-003, Third Floor (Mezzanine), The Mall, Mid Valley Southkey, No. 1, Persiaran Southkey 1, Kota Southkey, Johor Bahru"
     },
     {
-      "place_name": "Tokyo",
+      "place_name": "Ramen Nagi",
       "country": "Japan",
       "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF1CuCtTFxqFDoOfUnj-P11Bm_ifmDw1s1Nlt-hRGO4I8MbFJb_ykDmHkcLWAf9Ey-HE1efeoHpP6oZzKDOywEktfMvopE3Msk=s1600-w800",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHn618RAKfr9W-9VSMy_2VXKhpjjylW9enpAqBcGMOwpBMnZ8Hv134PECiPCIBe1jTettYymFpItIb3x0_FbOIZtS9FUVf0Rbg=s1600-w800",
       "coordinates": {
-        "latitude": 35.6764225,
-        "longitude": 139.650027
+        "latitude": 1.3039387,
+        "longitude": 103.8318267
       },
       "activities": [
-        "Visiting the Tokyo Skytree",
-        "Exploring Shibuya Crossing",
-        "Enjoying the cherry blossoms at Ueno Park"
+        "Explore different ramen styles",
+        "Enjoy a vibrant dining environment",
+        "Participate in seasonal specials"
       ],
-      "location_summary": "Tokyo, the capital of Japan, is a bustling metropolis that blends traditional culture with the latest trends. It's well-known for its skyscrapers, shopping, and vibrant nightlife.",
-      "vicinity": "Tokyo, Japan"
+      "location_summary": "Ramen Nagi offers a variety of ramen flavors and styles, making it a favorite spot for locals and tourists alike.",
+      "vicinity": "2 Orchard Turn, #B4-54"
     },
     {
-      "place_name": "Nara",
+      "place_name": "Tonkotsu Ramen Shogun",
       "country": "Japan",
-      "city": "Nara",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE7CGTelnYgPqBafHNng4ywu1G4q8HoUVY9KaZV57gtuvY3mDezBDER7BCo9Yn4XWBbrZ8UK0k1bA6_izoznVg4CZn2-ctF2lE=s1600-w800",
+      "city": "Osaka",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE1XO9y7F8rrJ4wHq2FYf7_itBVuWW_ty7T2NhV4EuQdo_QAxntIyKqwQxOUP4GFEd1zLBHnr2J_t_LDNmiO9lRq7mBjXevJ1g=s1600-w800",
       "coordinates": {
-        "latitude": 34.685109,
-        "longitude": 135.8048019
+        "latitude": 3.035682899999999,
+        "longitude": 101.7640742
       },
       "activities": [
-        "Visiting Todai-ji Temple",
-        "Exploring Nara Park with friendly deer",
-        "Admiring the Great Buddha statue"
+        "Delight in tonkotsu ramen",
+        "Pair ramen with local beers",
+        "Take part in tasting events"
       ],
-      "location_summary": "Nara is famous for its historic sites, including temples and shrines, as well as the free-roaming deer in Nara Park, making it a peaceful yet culturally rich destination.",
-      "vicinity": "Nara"
+      "location_summary": "Tonkotsu Ramen Shogun is famous for its creamy butter-infused broth and tender noodles, attracting ramen enthusiasts.",
+      "vicinity": "No. 80, Jalan Dataran Cheras 4, Dataran Perniagaan Cheras, Balakong Cheras, Balakong"
     }
   ]
 }

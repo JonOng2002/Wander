@@ -1,7 +1,6 @@
 <template>
-  <hr>
-  <div class="page-fade-in">
-
+  <div ref="extractedLocationsRoot" class="page-fade-in">
+    <hr>
 
 
     <!-- Row of Location Images -->
@@ -195,12 +194,14 @@ export default {
     locationInfo: Object,
     relatedPlaces: Array,
     userId: {
-      type: String,
+      type: [String, null],
       default: '',
     },
     savedPlaces: Array,
     
   },
+
+  emits: ['component-mounted'],
 
   data() {
     return {
@@ -304,6 +305,7 @@ export default {
         lng: this.locationInfo.coordinates.longitude,
       };
     }
+    this.$emit('component-mounted');
 
     window.addEventListener('scroll', this.handleScroll);
   },
