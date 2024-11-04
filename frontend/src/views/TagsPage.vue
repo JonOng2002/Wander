@@ -1,214 +1,333 @@
 <template>
-    <div class="tags-page">
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-bar" :style="{ width: progress + '%' }"></div>
-            <p>{{ progressText }}</p>
-        </div>
+  <div class="progress-container">
+    <div class="progress-bar" :style="{ width: progress + '%' }"></div>
+  </div>
+  <div class="tags-page-layout">
+    <!-- Centered Title -->
+    <div class="title-wrapper">
+      <a class="navbar-brand" href="#">
+        <h1 id="title" class="h1">wander.</h1>
+      </a>
+    </div>
 
-        <!-- Title and Subtitle -->
-        <h2>Tell us what you're interested in</h2>
-        <p>Select up to 10 tags. You can add up to 5 custom tags.</p>
+    <div class="content-wrapper">
+      <!-- Left Image Card Section -->
+      <div class="image-card">
+        <img src="@/assets/tagsPage.jpg" alt="Travel Background" class="image-card-content" />
+        <div class="image-card-overlay">
+          <h1>Customise Your Perfect Getaway.</h1>
+        </div>
+      </div>
+
+      <!-- Right Form Section -->
+      <div class="form-section">
+        <!-- Header Text -->
+        <h2 class="form-header">Tell us what you're interested in</h2>
+        <p class="form-subtext">Select up to 10 tags. You can add up to 5 custom tags.</p>
 
         <!-- Tags List -->
         <div class="tags-container">
-            <button v-for="tag in allTags" :key="tag" :class="{ 'selected': selectedTags.includes(tag) }"
-                @click="toggleTag(tag)">
-                {{ tag }}
-            </button>
+          <button v-for="tag in allTags" :key="tag" :class="{ 'selected': selectedTags.includes(tag) }"
+            @click="toggleTag(tag)">
+            {{ tag }}
+          </button>
         </div>
 
         <!-- Add Custom Tag -->
         <div class="add-custom-tag">
-            <input v-model="newTag" type="text" placeholder="Add custom tag"
-                :disabled="customTags.length >= 5 || selectedTags.length >= 10" @keyup.enter="addCustomTag" />
-            <button @click="addCustomTag"
-                :disabled="newTag.length === 0 || customTags.length >= 5 || selectedTags.length >= 10">Add Tag</button>
+          <input v-model="newTag" type="text" placeholder="Add custom tag"
+            :disabled="customTags.length >= 5 || selectedTags.length >= 10" @keyup.enter="addCustomTag" />
+          <button @click="addCustomTag"
+            :disabled="newTag.length === 0 || customTags.length >= 5 || selectedTags.length >= 10">
+            Add Tag
+          </button>
         </div>
 
-        <!-- Action Button -->
-        <div class="actions">
-            <button class="btn-secondary" @click="goBack">Back</button>
-            <button class="btn-primary" @click="goToNextStep"
-                :disabled="selectedTags.length === 0 || selectedTags.length > 10">Next Step</button>
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn-back" @click="goBack">←</button>
+          <button class="btn-primary" @click="goToNextStep"
+            :disabled="selectedTags.length === 0 || selectedTags.length > 10">
+            Generate Itinerary
+          </button>
         </div>
 
-        <!-- Error message when tag limit is reached -->
+        <!-- Error Message -->
         <p v-if="selectedTags.length >= 10" class="error">You can only select a maximum of 10 tags.</p>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import router from '@/router';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';  // Import Firebase Firestore
-import { getAuth } from 'firebase/auth';  // Import Firebase Auth
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
-// Firebase setup
 const db = getFirestore();
 const auth = getAuth();
 
-// General tags (use more general ones)
 const tags = ref([
-    'Must-see Attractions', 'Great Food', 'Hidden Gems', 'Adventure Activities', 'Nature and Wildlife',
-    'Cultural Heritage', 'Nightlife and Entertainment', 'Shopping', 'Beach Activities', 'Water Sports'
+  'Must-see Attractions', 'Great Food', 'Hidden Gems', 'Adventure Activities', 'Nature and Wildlife',
+  'Cultural Heritage', 'Nightlife and Entertainment', 'Shopping', 'Beach Activities', 'Water Sports'
 ]);
 
-const selectedTags = ref([]);  // Start empty
-const customTags = ref([]);  // Custom tags will be added here
-const newTag = ref('');  // For storing the new custom tag input
+const selectedTags = ref([]);
+const customTags = ref([]);
+const newTag = ref('');
 
-const allTags = ref([...tags.value]);  // Initialize with default tags
-const progress = ref(75);  // Assuming it's the 3rd step of 4
-const progressText = ref('Step 3 of 4: Select Tags');
+const allTags = ref([...tags.value]);
+const progress = ref(75);
 
 const savedItinerary = ref([]);
 
-// Fetch the saved itinerary from Firebase on component mount
 onMounted(async () => {
-    const user = auth.currentUser;
-    if (user) {
-        const userDocRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-            savedItinerary.value = userDoc.data().generatedItineraries || [];
-            console.log('Itinerary fetched from Firebase:', savedItinerary.value);
-        } else {
-            console.error("No itinerary found in Firebase.");
-        }
+  const { start, end, countryCode, tripType } = router.currentRoute.value.query;
+  console.log("Received data in TagsPage:");
+  console.log("Start Date:", start);
+  console.log("End Date:", end);
+  console.log("Country Code:", countryCode);
+  console.log("Trip Type:", tripType);
+
+  const user = auth.currentUser;
+  if (user) {
+    const userDocRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+      savedItinerary.value = userDoc.data().generatedItineraries || [];
+      console.log('Itinerary fetched from Firebase:', savedItinerary.value);
     } else {
-        console.error("User not authenticated.");
+      console.error("No itinerary found in Firebase.");
     }
+  } else {
+    console.error("User not authenticated.");
+  }
 });
 
-// Toggle the selected state of a tag
 const toggleTag = (tag) => {
-    // Check if the tag is already selected
-    if (selectedTags.value.includes(tag)) {
-        // If selected, remove it
-        selectedTags.value = selectedTags.value.filter(t => t !== tag);
-    } else if (selectedTags.value.length < 10) {
-        // If not selected and the limit is not reached, add the tag
-        selectedTags.value.push(tag);
-    }
+  if (selectedTags.value.includes(tag)) {
+    selectedTags.value = selectedTags.value.filter(t => t !== tag);
+  } else if (selectedTags.value.length < 10) {
+    selectedTags.value.push(tag);
+  }
 };
 
 const addCustomTag = () => {
-    if (newTag.value.trim() !== '' && !customTags.value.includes(newTag.value) && selectedTags.value.length < 10) {
-        // Add the new custom tag to both customTags and selectedTags
-        customTags.value.push(newTag.value);
-        selectedTags.value.push(newTag.value);
-        allTags.value.push(newTag.value);  // Add the new custom tag to allTags for display
-
-        newTag.value = '';  // Clear the input field
-    }
+  if (newTag.value.trim() !== '' && !customTags.value.includes(newTag.value) && selectedTags.value.length < 10) {
+    customTags.value.push(newTag.value);
+    selectedTags.value.push(newTag.value);
+    allTags.value.push(newTag.value);
+    newTag.value = '';
+  }
 };
 
 const goBack = () => {
-    router.back();
+  router.back();
 };
 
 const goToNextStep = () => {
-    // Extract the start, end, and tripType from the query params
-    const { start, end, countryCode, tripType } = router.currentRoute.value.query;
-    
-    // Ensure start and end are Date objects before calling toISOString
-    const startDate = new Date(start); // Convert to Date object
-    const endDate = new Date(end);     // Convert to Date object   
-    
-    console.log('Passing information to generate itinerary page:');
-    console.log('Selected Tags:', selectedTags.value);
-    console.log('Itinerary:', savedItinerary.value);
-    console.log('Start Date:', startDate);
-    console.log('End Date:', endDate);
-    console.log('Country Code:', countryCode);
-    console.log('Trip Type:', tripType);
-    
-    // Navigate to the next step with the correct query parameters
-    router.push({
-        name: 'GenIti',
-        query: {
-            start: startDate.toISOString(),  // Convert Date object to ISO string
-            end: endDate.toISOString(),      // Convert Date object to ISO string
-            countryCode: countryCode,
-            tripType: tripType,
-            itinerary: JSON.stringify(savedItinerary.value),  // Pass itinerary from Firebase
-            selectedTags: JSON.stringify(selectedTags.value)
-        }
-    });
+  const { start, end, countryCode, tripType } = router.currentRoute.value.query;
+
+  console.log("Sending data to GeneratedItinerary:");
+  console.log("Selected Tags:", selectedTags.value);
+  console.log("Itinerary:", savedItinerary.value);
+  console.log("Start Date:", start);
+  console.log("End Date:", end);
+  console.log("Country Code:", countryCode);
+  console.log("Trip Type:", tripType);
+
+  router.push({
+    name: 'GeneratedItinerary',
+    query: {
+      start,
+      end,
+      countryCode,
+      tripType,
+      itinerary: JSON.stringify(savedItinerary.value),
+      selectedTags: JSON.stringify(selectedTags.value),
+    },
+  });
 };
 </script>
 
 <style scoped>
-/* Progress bar styling */
+/* Progress Bar */
 .progress-container {
-    margin: 20px 0;
-    height: 25px;
-    background-color: #f3f3f3;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    align-self: center;
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  margin-top: 10px;
 }
 
 .progress-bar {
-    background-color: #4caf50;
-    height: 100%;
-    transition: width 0.4s;
+  background-color: #2a5ead;
+  height: 100%;
+  transition: width 0.4s ease;
 }
 
-/* Tags container */
+/* Page Layout */
+.tags-page-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Centered Title */
+.title-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+#title {
+  font-family: "Lobster Two", cursive;
+  font-size: 2.5vw;
+  color: #2a5ead;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1600px;
+  gap: 2rem;
+  height: 100%;
+  align-items: stretch;
+}
+
+/* Left Image Card */
+.image-card {
+  flex: 1 1 50%;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.image-card-content {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-card-overlay {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  
+}
+
+.image-card-overlay h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  backdrop-filter: blur(2px); /* Applies the blur effect */
+}
+
+/* Form Section */
+.form-section {
+  flex: 1 1 50%;
+  padding: 1rem 2rem 1rem 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+}
+
+.form-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-subtext {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+/* Tags Container */
 .tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #ddd;
-    /* Default gray */
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background-color 0.3s;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button.selected {
-    background-color: #4caf50;
-    /* Green when selected */
-    color: white;
+  background: linear-gradient(90deg, #44c7f4, #3dd598);;
+  color: white;
 }
 
-/* Custom tag section */
+/* Custom Tag Section */
 .add-custom-tag {
-    margin: 20px 0;
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+  background-color: transparent;
 }
 
 .add-custom-tag input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex-grow: 1;
 }
 
-/* Action buttons */
-.actions {
-    margin-top: 20px;
-    text-align: center;
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 2rem;
 }
 
-button:hover {
-    background-color: #ccc;
+.btn-back {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+  font-size: 1.2rem;
+  background-color: transparent;
 }
 
-/* Error message styling */
-.error {
-    color: red;
-    font-weight: bold;
+.btn-primary {
+  background: linear-gradient(90deg, #4a90e2, #8e44ad);
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>

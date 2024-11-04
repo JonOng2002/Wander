@@ -4,16 +4,20 @@ import ExtractedLocation from '@/views/ExtractedLocations.vue';
 import SavedPlaces from '@/views/SavedPlaces.vue';
 import MainPage from '@/views/MainPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
+import SavedItinerary from '@/views/SavedItinerary.vue';
+import ItineraryDetails from '@/views/ItineraryDetails.vue';
 import LogIn from '@/views/LogIn.vue'; // Import LogIn component
 import SignUp from '@/views/SignUp.vue';
 import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
 import CalendarPage from '@/views/CalendarPage.vue';
 import TagsPage from '@/views/TagsPage.vue';
-import TrvPartner from '@/views/TravellingWithWho.vue';
-import GeneratedItinerary from '@/views/GeneratedItinerary.vue';
-import MyItineraries from '@/views/MyItineraries.vue';
+// import TrvPartner from '@/views/TravellingWithWho.vue';
+import ItineraryBuilder from '@/views/ItineraryBuilder.vue';
+import LocationDate from '@/views/LocationDate.vue';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import OverlayPage from '@/views/overlayPage.vue';
 
 
 // Combined routes from both HEAD and Dominic's branch
@@ -26,6 +30,14 @@ const routes = [
   { path: '/savedplaces', name: 'SavedPlaces', component: SavedPlaces },
   { path: '/log-in', name:'LogIn', component: LogIn }, // Updated to use LogIn
   { path: '/profile', name: 'ProfilePage', component: ProfilePage },
+  { path: '/myitinerary', name: 'GeneratedItinerary', component: GeneratedItinerary },
+  { path: '/saveditinerary', name: 'SavedItinerary', component: SavedItinerary },
+  {
+    path: '/itinerary-details/:savedAt',  // ':id' is the dynamic parameter for the itinerary ID
+    name: 'ItineraryDetails',
+    component: ItineraryDetails,
+  props: true,
+  },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
   {
@@ -34,16 +46,16 @@ const routes = [
     component: DestinationDetails,
     props: true, // Pass route params as props to the component
   }, 
+  { path: '/locationdate', name: 'LocationDate', component: LocationDate },
   { path: '/calendar', name: 'CalendarPage', component: CalendarPage },
   { path: '/tags', name: 'TagsPage', component: TagsPage },
-  { path: '/trvpartner', name: 'TrvPartner', component: TrvPartner },
-  { path: '/generatedItinerary', name: 'GenIti', component: GeneratedItinerary, },
-  { path: '/myitineraries', name: 'MyItineraries', component: MyItineraries,
+  { path: '/itineraryBuilder', name: 'ItineraryBuilder', component: ItineraryBuilder,
     props: (route) => ({
       itineraryGenerated: route.query.itineraryGenerated === 'true',
       itinerary: route.query.itinerary ? JSON.parse(route.query.itinerary) : []
     })
   },
+  { path: '/overlay', name: 'OverlayPage', component: OverlayPage },
 ];
 
 // Router instance with Firebase authentication logic

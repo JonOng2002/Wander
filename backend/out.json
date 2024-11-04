@@ -1,1 +1,72 @@
-{"location_info": {"place_name": "Chester", "country": "United Kingdom", "city": "Chester", "place_png": "https://images.unsplash.com/photo-1666474854783-44b00e299c51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Mjk4NzQwMTR8&ixlib=rb-4.0.3&q=80&w=1080", "coordinates": {"latitude": 53.1915, "longitude": -2.8959}, "activities": ["Explore the Roman city wall", "Visit Chester Cathedral", "Stroll through the historic streets", "Shop in the city center", "Enjoy local food and drinks"], "location_summary": "Chester is a historical city located near Liverpool, renowned for its well-preserved Tudor-style buildings and remarkable Roman history. With a charming shopping district and lively food scene, it offers visitors a delightful blend of culture and relaxation."}, "related_places": [{"place_name": "York", "country": "United Kingdom", "city": "York", "place_png": "https://images.unsplash.com/photo-1506111583091-becfd4bfa05d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Mjk4NzQwMTR8&ixlib=rb-4.0.3&q=80&w=1080", "coordinates": {"latitude": 53.959, "longitude": -1.0815}, "activities": ["Walk the medieval walls", "Visit York Minster", "Explore the Shambles", "Discover the railway museum"], "location_summary": "York is another historic city, famous for its medieval architecture, including the stunning York Minster and the picturesque streets of The Shambles."}, {"place_name": "Bath", "country": "United Kingdom", "city": "Bath", "place_png": "https://images.unsplash.com/photo-1624270025515-d14cf56ca6af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Mjk4NzQwMTV8&ixlib=rb-4.0.3&q=80&w=1080", "coordinates": {"latitude": 51.3813, "longitude": -2.3594}, "activities": ["Relax at the Roman Baths", "Enjoy the Georgian architecture", "Visit the Royal Crescent", "Stroll along the River Avon"], "location_summary": "Bath is known for its Roman-era baths and Georgian architecture, making it a UNESCO World Heritage site that offers a rich historical experience."}, {"place_name": "Liverpool", "country": "United Kingdom", "city": "Liverpool", "place_png": "https://images.unsplash.com/photo-1557925179-42258a11e44a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3Mjk4NzQwMTV8&ixlib=rb-4.0.3&q=80&w=1080", "coordinates": {"latitude": 53.4084, "longitude": -2.9916}, "activities": ["Visit the Beatles Museum", "Explore Albert Dock", "Enjoy the vibrant nightlife", "Take a ferry across the Mersey"], "location_summary": "Liverpool, a major city in northwest England, is famous for its maritime history, cultural heritage, and as the birthplace of The Beatles."}]}
+{
+  "location_info": {
+    "place_name": "Yakibuta Ramen Sanjyo",
+    "country": "Japan",
+    "city": "Kasamatsu",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF3-pzZ8boxHWLUcr81cwaUCpBpR9nnYbZEftdSOQwpxBIRV7IvIB9Z_2NG-vdHaydbrvcXBfP0oNM_9XhbULPUNrwxvldiT6s=s1600-w510",
+    "coordinates": {
+      "latitude": 35.3495432,
+      "longitude": 136.7488693
+    },
+    "activities": [
+      "Enjoy authentic Japanese ramen",
+      "Watch the ramen master at work",
+      "Experience local dining culture"
+    ],
+    "location_summary": "Yakibuta Ramen Sanjyo is known for its delicious BBQ pork ramen, prepared by a skilled ramen master.",
+    "vicinity": "メゾンＧ5 1F, ６５８ Kitaoyobi, Kasamatsu"
+  },
+  "related_places": [
+    {
+      "place_name": "Ichiran Ramen",
+      "country": "Japan",
+      "city": "Fukuoka",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaa44QbOAaTyC7CESE5iXtNabMhz_kRzZmuJrD11wH0QeMmvotRP6GjfuTlKgAMgCtepCwRvP1qI3S-gXMwsc9PGf41hSCph4=s1600-w800",
+      "coordinates": {
+        "latitude": 1.5009666,
+        "longitude": 103.777432
+      },
+      "activities": [
+        "Taste the famous tonkotsu ramen",
+        "Dine in a private booth",
+        "Customize your ramen flavor"
+      ],
+      "location_summary": "Ichiran Ramen is renowned for its rich tonkotsu broth and unique dining experience designed for ramen lovers.",
+      "vicinity": "TM-003, Third Floor (Mezzanine), The Mall, Mid Valley Southkey, No. 1, Persiaran Southkey 1, Kota Southkey, Johor Bahru"
+    },
+    {
+      "place_name": "Ramen Nagi",
+      "country": "Japan",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHn618RAKfr9W-9VSMy_2VXKhpjjylW9enpAqBcGMOwpBMnZ8Hv134PECiPCIBe1jTettYymFpItIb3x0_FbOIZtS9FUVf0Rbg=s1600-w800",
+      "coordinates": {
+        "latitude": 1.3039387,
+        "longitude": 103.8318267
+      },
+      "activities": [
+        "Explore different ramen styles",
+        "Enjoy a vibrant dining environment",
+        "Participate in seasonal specials"
+      ],
+      "location_summary": "Ramen Nagi offers a variety of ramen flavors and styles, making it a favorite spot for locals and tourists alike.",
+      "vicinity": "2 Orchard Turn, #B4-54"
+    },
+    {
+      "place_name": "Tonkotsu Ramen Shogun",
+      "country": "Japan",
+      "city": "Osaka",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE1XO9y7F8rrJ4wHq2FYf7_itBVuWW_ty7T2NhV4EuQdo_QAxntIyKqwQxOUP4GFEd1zLBHnr2J_t_LDNmiO9lRq7mBjXevJ1g=s1600-w800",
+      "coordinates": {
+        "latitude": 3.035682899999999,
+        "longitude": 101.7640742
+      },
+      "activities": [
+        "Delight in tonkotsu ramen",
+        "Pair ramen with local beers",
+        "Take part in tasting events"
+      ],
+      "location_summary": "Tonkotsu Ramen Shogun is famous for its creamy butter-infused broth and tender noodles, attracting ramen enthusiasts.",
+      "vicinity": "No. 80, Jalan Dataran Cheras 4, Dataran Perniagaan Cheras, Balakong Cheras, Balakong"
+    }
+  ]
+}

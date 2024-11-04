@@ -1,32 +1,51 @@
 <template>
   <div id="app">
-    <div class="header" v-if="!isAuthPage">
-      <!-- Include the Navbar component conditionally -->
+    <!-- Navbar appears only when not in auth, itinerary details, or generated itinerary pages -->
+    <div class="header" v-if="!isExcludedPage">
       <AppNavbar />
     </div>
 
+
     <div class="router-container">
-      <router-view></router-view> <!-- This is where the matched component will be rendered -->
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
 import AppNavbar from './components/AppNavbar.vue';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
   name: 'App',
   components: {
-    AppNavbar, // Register the Navbar component
+    AppNavbar,
   },
-  computed: {
-    // Check if the current route is an auth page (e.g., SignUp or LogIn)
-    isAuthPage() {
-      const route = this.$route;
-      return route.name === 'SignUp' || route.name === 'LogIn';
-    },
-  }
+  setup() {
+    const route = useRoute();
+
+    // Consolidated check to see if the current route is one of the pages where the navbar should be hidden
+    const isExcludedPage = computed(() => {
+      return (
+        route.name === 'SignUp' ||
+        route.name === 'LogIn' ||
+        route.name === 'ItineraryDetails' ||
+        // route.name === 'GeneratedItinerary' ||
+        route.name === 'LocationDate' || 
+        route.name === 'CalendarPage' || 
+        route.name === 'TagsPage'
+      );
+    });
+
+    return {
+      isExcludedPage,
+    };
+  },
+
 };
+
+
 </script>
 
 <style>
@@ -37,12 +56,11 @@ body {
 </style>
 
 <style scoped>
-
 .header {
   display: flex;
   align-items: center;
   width: 100%;
-  position: sticky; /* Ensures it sticks to the top */
+  position: sticky;
   top: 0;
   z-index: 1000;
   background-color: white; /* Ensure a solid background for the navbar */
@@ -56,7 +74,6 @@ body {
   padding: 0px;
   margin: 0;
 }
-
 
 .router-container {
   width: 100%;

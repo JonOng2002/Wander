@@ -20,11 +20,11 @@
         <li class="nav-item me-4">
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
+        <!-- <li class="nav-item me-4">
+          <router-link to="/myitinerary" class="nav-link">middle itinerary</router-link>
+        </li> -->
         <li class="nav-item me-4">
-          <router-link to="/myitineraries" class="nav-link">My itineraries</router-link>
-        </li>
-        <li class="nav-item me-4">
-          <router-link to="/generateditinerary" class="nav-link">Generated Itineraries</router-link>
+          <router-link to="/saveditinerary" class="nav-link">My Itineraries</router-link>
         </li>
 
         <li>
@@ -43,33 +43,10 @@
 
               <hr />
 
-              <a href="#" class="sub-menu-link">
-                <img
-                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt="" />
-                <p>Edit Profile</p>
-                <span>></span>
-              </a>
-
-              <a href="#" class="sub-menu-link">
-                <img
-                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt="" />
-                <p>Settings</p>
-                <span>></span>
-              </a>
-
-              <a href="#" class="sub-menu-link">
-                <img
-                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                  alt="" />
-                <p>Help</p>
-                <span>></span>
-              </a>
 
               <a href="#" class="sub-menu-link" @click="signOutUser">
                 <img
-                  src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
+                  src= "@\assets\logout_icon.png"
                   alt="" />
                 <p>Logout</p>
                 <span>></span>
@@ -140,7 +117,7 @@ export default {
 <style scoped>
 /* Sticky navbar */
 .navbar {
-  background-color: #0057d9;
+  background-color: #3f94a7;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   /* Subtle shadow for depth */
   padding: 15px 20px;
@@ -159,17 +136,17 @@ export default {
 
 /* Container background */
 .nav-contain {
-  background-color: #0057d9;
+  background-color: #3f94a7;
 }
 
 /* Navigation link styling */
 .nav-link {
-  font-weight: bold;
+  font-weight: 400;
   font-size: 1.5vw;
   color: white !important;
   /* Ensure links stay white */
-  font-family: "Cormorant Garamond", serif;
   position: relative;
+  font-family: "Source Sans 3", sans-serif;
   /* Position for sliding background */
   padding: 5px 10px;
   /* Add padding for better click area */
@@ -225,7 +202,7 @@ export default {
   position: sticky;
   z-index: 1020;
   /* Higher z-index to ensure navbar stays above other elements */
-  background-color: #0057d9;
+  background-color: #3f94a7;
   /* Ensure the background remains black */
 }
 
@@ -261,7 +238,6 @@ export default {
   border-radius: 5%;
   overflow: hidden;
   z-index: 1050;
-  font-family: "Poppins", serif;
 }
 
 .user-info {

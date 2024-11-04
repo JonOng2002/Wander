@@ -8,7 +8,7 @@ module.exports = defineConfig({
         target: 'https://maps.googleapis.com',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '', // Remove the '/api' prefix from the request path
+          '^/api': '/maps/api', // Correctly map '/api' to '/maps/api'
         },
       },
     },

@@ -1,5 +1,22 @@
 <template>
   <div class="itinerary-page">
+    <!-- Toast Notification -->
+    <div :class="['custom-toast', {active: toastActive}, toastType]">
+      <div class="toast-content">
+        <i :class="['fas', toastType === 'add' ? 'fa-check' : 'fa-times', 'action-icon']"></i>
+
+        <div class="message">
+          <span class="text text-2">{{ toastMessage }}</span>
+        </div>
+
+        <i class="fas fa-times close" @click="closeToast"></i>
+
+        <div class="custom-progress">
+          <div class="progress-bar" ref="progressBar"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="sticky-top">
       <div class="row justify-content-between align-items-center sticky-header g-0">
         <div class="col-3 date-column">
@@ -22,6 +39,9 @@
             Itinerary</button>
         </div>
       </div>
+
+
+
     </div>
 
     <div v-if="loading" class="empty-message">Loading saved places...</div>
@@ -32,9 +52,9 @@
     <div v-else class="card-grid">
       <transition-group name="list" tag="div" class="transition-wrapper">
         <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs">
-          <div class="card destination-card">
+          <div class="card destination-card" :style="{ backgroundImage: `url(${place.image})` }">
+            <div class="overlay"></div>
             <button @click="removePlace(place)" type="button" class="btn close-button">✖</button>
-            <img :src="place.image" class="card-img-top" alt="Image of {{ place.name }}" />
             <div class="card-body">
               <h5 class="card-title">{{ place.name }}</h5>
               <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
@@ -72,14 +92,6 @@
       </div>
     </div>
 
-    <div class="popup-container">
-      <div v-if="showPopup" class="popup">
-        <p>Added to itinerary!</p>
-      </div>
-      <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
-        <p>Removed from itinerary!</p>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -97,13 +109,21 @@ export default {
     const filteredPlaces = ref([]);
     const itinerary = ref([]);
     const loading = ref(true);
-    const showPopup = ref(false);
-    const showRemovePopup = ref(false);
     const showModal = ref(false);
     const showDeletePopup = ref(false);
     const db = getFirestore();
     const router = useRouter();
-    const cardRefs = ref([]); // Create a ref for card references
+    const cardRefs = ref([]);
+
+    // Reactive variables for toast notification
+    const toastActive = ref(false);
+    const progressBar = ref(null);
+    const toastTitle = ref('');
+    const toastMessage = ref('');
+    const toastType = ref(''); // Type of toast notification (add or remove)
+
+    let toastTimeout = null; // Keep track of the toast timeout
+    let progressBarAnimation = null; // Keep track of the progress bar animation
 
     // Fetching data from Firestore and storing it in savedPlaces
     onMounted(async () => {
@@ -136,26 +156,120 @@ export default {
       }
     });
 
-    // Save the itinerary list to Firebase
-    const saveItinerary = async () => {
+    // Show toast notification
+    const showToast = (title, message, type) => {
+      console.log('showToast called with title:', title, 'message:', message);
+
+      // Clear any existing timeout
+      if (toastTimeout) {
+        clearTimeout(toastTimeout);
+        toastTimeout = null;
+      }
+
+      // Kill any existing progress bar animation
+      if (progressBarAnimation) {
+        progressBarAnimation.kill();
+        progressBarAnimation = null;
+      }
+
+      // Reset progress bar immediately
+      if (progressBar.value) {
+        gsap.set(progressBar.value, { scaleX: 0 });
+      }
+
+      // Set toast content and show it
+      toastTitle.value = title;
+      toastMessage.value = message;
+      toastType.value = type; // Set the action type ('add' or 'remove')
+      toastActive.value = true;
+
+      // Animate progress bar using GSAP
+      if (progressBar.value) {
+        progressBarAnimation = gsap.to(progressBar.value, {
+          scaleX: 1,
+          transformOrigin: 'left',
+          duration: 3,
+          ease: 'linear',
+        });
+      }
+
+      // Set timeout to hide toast after 5 seconds
+      toastTimeout = setTimeout(() => {
+        toastActive.value = false;
+        toastTimeout = null;
+
+        // Kill progress bar animation when toast is hidden
+        if (progressBarAnimation) {
+          progressBarAnimation.kill();
+          progressBarAnimation = null;
+        }
+      }, 3000);
+    };
+
+    // Close toast manually
+    const closeToast = () => {
+      if (toastTimeout) {
+        clearTimeout(toastTimeout);
+        toastTimeout = null;
+      }
+      if (progressBarAnimation) {
+        progressBarAnimation.kill();
+        progressBarAnimation = null;
+      }
+      toastActive.value = false;
+    };
+
+    // Save itinerary to Firestore
+    const saveItinerary = async (place) => {
+      console.log('start saving itinerary');
+      console.log(itinerary.value);
       const auth = getAuth();
       const user = auth.currentUser;
-      const userId = user.uid;
-      const userRef = doc(db, "users", userId);
+
+      if (!user) {
+        console.error("User is not authenticated");
+        return;
+      }
+
+      const userDocRef = doc(db, "users", user.uid);
+      const placeData = {
+        place_id: place.place_id,
+        name: place.name,
+        image: place.image,
+        vicinity: place.vicinity,
+        country: place.country,
+        coordinates: {
+          latitude: place.coordinates.latitude,
+          longitude: place.coordinates.longitude,
+        },
+      };
+
       try {
-        await setDoc(
-          userRef,
-          { generatedItinerary: [...itinerary.value] },
-          { merge: true }
-        );
+        if (isPlaceInItinerary(place)) {
+          // Remove place from itinerary in Firebase
+          await updateDoc(userDocRef, {
+            generatedItineraries: arrayRemove(placeData),
+          });
+          itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
+          console.log("Place removed from itinerary:", placeData);
+          togglePopup("remove");
+        } else {
+          // Add place to itinerary in Firebase
+          await updateDoc(userDocRef, {
+            generatedItineraries: arrayUnion(placeData),
+          });
+          itinerary.value.push(place);
+          console.log("Place added to itinerary:", placeData);
+          togglePopup("add");
+        }
       } catch (error) {
-        console.error("Error saving itinerary:", error);
+        console.error("Error updating itinerary in Firebase:", error);
       }
     };
 
     const navigateToGeneratedItinerary = () => {
       router.push({
-        name: 'MyItineraries',
+        name: 'ItineraryBuilder',
       });
     };
 
@@ -169,15 +283,9 @@ export default {
 
     const togglePopup = (type) => {
       if (type === 'add') {
-        showPopup.value = true;
-        setTimeout(() => {
-          showPopup.value = false;
-        }, 2000);
+        showToast('Success', 'Added to Itinerary!', 'add');
       } else if (type === 'remove') {
-        showRemovePopup.value = true;
-        setTimeout(() => {
-          showRemovePopup.value = false;
-        }, 2000);
+        showToast('Success', 'Removed from Itinerary!', 'remove');
       }
     };
 
@@ -228,8 +336,8 @@ export default {
             vicinity: place.vicinity,
             country: place.country,
             coordinates: {
-              latitude: place.coordinates.latitude,   // Include latitude
-              longitude: place.coordinates.longitude   // Include longitude
+              latitude: place.coordinates.latitude,
+              longitude: place.coordinates.longitude
             }
           };
 
@@ -239,7 +347,7 @@ export default {
           if (isInItinerary) {
             // Remove from itinerary locally first
             itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
-            togglePopup('remove');  // Show remove popup
+            togglePopup('remove');  // Show remove toast
 
             // Update Firebase after local state change
             await updateDoc(userDocRef, {
@@ -262,7 +370,7 @@ export default {
 
             // Add to itinerary locally first
             itinerary.value.push({ ...place });
-            togglePopup('add');  // Show add popup
+            togglePopup('add');  // Show add toast
 
             // Update Firebase after local state change
             await updateDoc(userDocRef, {
@@ -318,7 +426,7 @@ export default {
           setDoc(userRef, { savedPlaces: savedPlaces.value }, { merge: true })
             .then(() => {
               console.log("Firestore updated successfully.");
-              togglePopup('remove');
+              showToast('Success', 'Place Removed!');
             })
             .catch((error) => {
               console.error("Error updating Firestore:", error);
@@ -370,6 +478,7 @@ export default {
               try {
                 await setDoc(userRef, { savedPlaces: [] }, { merge: true });
                 console.log("All saved places deleted successfully.");
+                showToast('Success', 'All Places Deleted!');
               } catch (error) {
                 console.error("Error deleting saved places:", error);
               }
@@ -397,8 +506,8 @@ export default {
             vicinity: place.vicinity,
             country: place.country,
             coordinates: {
-              latitude: place.coordinates.latitude,   // Include latitude
-              longitude: place.coordinates.longitude   // Include longitude
+              latitude: place.coordinates.latitude,
+              longitude: place.coordinates.longitude
             }
           })
         });
@@ -407,12 +516,13 @@ export default {
       }
     };
 
-
     return {
       savedPlaces,
       addPlaceToItinerary,
       filteredPlaces,
       loading,
+      showModal,
+      showDeletePopup,
       toggleItinerary,
       isPlaceInItinerary,
       toggleModal,
@@ -422,235 +532,39 @@ export default {
       toggleDeletePopup,
       navigateToGeneratedItinerary,
       itinerary,
-      showPopup,
-      showRemovePopup,
-      showModal,
-      showDeletePopup,
       deleteAllPlaces,
       saveItinerary,
-      cardRefs, // Return cardRefs for use in the template
+      cardRefs,
+      // Toast variables and functions
+      progressBar,
+      toastActive,
+      toastTitle,
+      toastMessage,
+      toastType,
+      showToast,
+      closeToast,
     };
   },
 };
 </script>
 
-
-
 <style scoped>
 h2 {
-  font-family: 'Cormorant Garamond', serif;
   font-weight: bolder;
 }
 
-/* Modal styles */
-.modal-overlay {
-  position: fixed;
-  /* Keep the modal overlay fixed */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  /* Dark background for the overlay */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  /* High enough to overlap the navbar */
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 500px;
-  width: 100%;
-  max-height: 80vh;
-  /* Set a maximum height */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.modal-image {
-  width: 100%;
-  height: auto;
-  max-height: 150px;
-  /* Keep the height consistent */
-  object-fit: cover;
-}
-
-/* Other styles remain unchanged */
-
-.card-container {
-  flex: 0 0 auto;
-  /* Fixed width for the cards, they won't grow */
-  max-width: 265px;
-  /* Ensures the cards stay at 265px */
-  margin: 0px;
-  /* Adds spacing between cards */
-}
-
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  /* Allows cards to wrap onto the next row */
-  justify-content: center;
-  /* Align the cards to the left */
-  gap: 17px;
-  /* Space between cards */
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.destination-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* Ensures the button is at the bottom */
-  height: 450px;
-  /* Set the fixed height for all cards */
-  padding: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card-body {
-  flex-grow: 1;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  /* Center the button horizontally */
-  margin-top: auto;
-  /* Pushes the button to the bottom */
-}
-
-.itinerary-button {
-  background-color: #0057d9;
-  width: 100%;
-  /* Makes the button take the full width */
-  padding: 10px;
-  /* Add some padding for a larger clickable area */
-}
-
-.destination-card:hover {
-  transform: translateY(-5px);
-  /* Lift effect on hover */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  /* Enhanced shadow with darker effect */
-}
-
-.card-img-top {
-  width: 100%;
-  height: 200px;
-  /* Fixed height for consistency */
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 10px;
-}
-
-.btn {
-  /* Set button color to black */
-  color: white;
-  /* Keep the text color white for contrast */
-  border: none;
-  /* Remove default border */
-}
-
-.btn:hover {
-  background-color: #0057d9;
-  /* Darker color on hover for visual feedback */
-  color: white;
-  /* Keep the text color white on hover */
-}
-
-.close-modal-btn:hover {
-  color: white;
-  /* Keep the text color white on hover */
-}
-
-.close-modal-btn {
-  background-color: #0057d9;
-}
-
-.view-itinerary-btn {
-  margin-right: 10px;
-  background-color: #ffffff;
-  border-radius: 100px;
-  margin-top: 30px;
-  border: 1px solid black;
-  color: black;
-  /* Adjust space as needed */
-  transition: background-color 0.3s ease;
-  /* Apply smooth transition */
-
-}
-
-.view-full-itinerary-btn {
-  background-color: #ffffff;
-  border-radius: 100px;
-  margin-top: 30px;
-  border: 1px solid black;
-  color: black;
-  transition: background-color 0.3s ease;
-  /* Apply smooth transition */
-
-}
-
-.popup-container {
-  position: fixed;
-  /* Fixed position to stay at the bottom */
-  left: 50%;
-  /* Center horizontally */
-  bottom: 20px;
-  /* Space from the bottom */
-  transform: translateX(-50%);
-  /* Adjust centering */
-  z-index: 2000;
-  /* Ensure it appears above other elements */
-}
-
-.popup {
-  background-color: #4caf50;
-  /* Green for added */
-  color: white;
-  /* Text color */
-  padding: 10px 20px;
-  /* Padding */
-  border-radius: 5px;
-  /* Rounded corners */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  /* Enhanced shadow with darker effect */
-  transform: translateY(-5px);
-  /* Lift effect on hover */
-}
-
+/* Main Itinerary Page */
 .itinerary-page {
-  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f0f6ff;
 }
 
-
+/* Sticky header */
 .sticky-top {
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: #f0f6ff;
   z-index: 1000;
   padding: 10px 5%;
   border-bottom: 1px solid lightgrey;
@@ -659,11 +573,7 @@ h2 {
 .date-column {
   text-align: left;
   padding-left: 15px;
-  /* Increase padding to move it left */
-  font-family: 'Roboto', sans-serif;
-  /* Change to your desired font */
   font-size: 1.5rem;
-  /* Adjust font size if necessary */
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -683,53 +593,229 @@ h2 {
   margin-top: 20px;
 }
 
+/* Card Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default to 3 items per row on large screens */
+  gap: 1.5rem; /* Space between cards */
+  row-gap: 4rem;
+  padding: 2rem; /* Padding around the grid */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  background: rgba(0, 0, 0, 0.0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for cards */
+.card-container:hover {
+  transform: translateY(-4px); /* Moves the entire card upwards slightly */
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2); /* Enhances shadow for lift effect */
+}
+
+.destination-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  border-radius: inherit;
+  border: none;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  color: #ffffff; /* Text color for readability on image */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* Slightly opaque black background */
+  z-index: 1; /* Place between background image and text */
+  border-radius: inherit;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  margin: 0;
+}
+
+.card-body {
+  padding: 1rem;
+  display: flex;
+  font-family: "Source Sans 3", sans-serif;
+  position: absolute;
+  bottom: 0;
+  left: 0.4;
+  width: 100;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  z-index: 2;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin: 0; /* Remove any extra margins */
+  text-align: left;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #eaeaea;
+  margin-top: 0.3rem; /* Adjust spacing if needed */
+  margin-left: 0; /* Adjust spacing if needed */
+  margin-bottom: 0.3rem;
+  text-align: left;
+}
+
+.button-container {
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.itinerary-button {
+  background-color: #000000;
+  color: white;
+  
+  padding: 0.5rem 0.5rem; /* Adjusted padding */
+  border-radius: 0.5rem;
+  border: none;
+  font-size: small;
+  text-align: center;
+  white-space: nowrap; /* Ensure text doesn’t wrap */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex; /* Use flex to center the text */
+  justify-content: center; /* Center text horizontally */
+  align-items: center; /* Center text vertically */
+}
+
+.itinerary-button:hover {
+  background-color: #004bb7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr; /* 1 item per row on small screens */
+  }
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: cover;
+}
+
 .close-button {
   position: absolute;
   top: 10px;
-  /* Adjust as needed */
   right: 10px;
-  /* Adjust as needed */
   background: transparent;
-  /* No background */
   border: none;
-  /* No border */
   color: white;
-  /* Color of the 'X' */
   font-size: 1.2rem;
-  /* Adjust size */
   cursor: pointer;
-  /* Pointer cursor */
   z-index: 1;
-  /* Ensure it is on top */
 }
 
 .close-button:hover {
-  background: transparent;
   color: red;
-
-  /* Change color on hover */
 }
 
 .filter-dropdown {
   margin: 10px 0;
-
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .filter-dropdown .form-select {
   width: 100%;
-  border-radius: 100px;
-  border:1px solid black;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .btn-delete-all {
   width: 200px;
-  border-radius: 30px;
+  border-radius: 0.5rem;
   border: 1px solid black;
   color: black;
   background-color: #ffffff;
   transition: background-color 0.3s ease;
-  /* Apply smooth transition */
+}
 
+.btn-delete-all:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+.view-itinerary-btn,
+.view-full-itinerary-btn {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  color: black;
+  margin-top: 30px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.view-itinerary-btn:hover,
+.view-full-itinerary-btn:hover {
+  background-color: #0057d9;
+  color: white;
 }
 
 .list-enter-active,
@@ -739,9 +825,7 @@ h2 {
 
 .list-enter,
 .list-leave-to
-
-/* .list-leave-active in <2.1.8 */
-  {
+  /* .list-leave-active in <2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -751,8 +835,7 @@ h2 {
 }
 
 .transition-wrapper {
-  display: flex;
-  /* Ensure that transition group behaves like flexbox */
+  display: contents; /* Keep the child elements visible */
   flex-wrap: wrap;
   /* Allow items to wrap */
   justify-content: flex-start;
@@ -762,4 +845,127 @@ h2 {
   padding: 20px;
   /* Optional: padding around the grid */
 }
+
+/* Toast Notification Styles */
+.custom-toast {
+  position: fixed;
+  top: 25px;
+  right: 35px;
+  border-radius: 12px;
+  background: #fff; /* Default background */
+  padding: 20px 35px 20px 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid #007bff; /* Default border color */
+  overflow: hidden;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  z-index: 9999;
+}
+
+.custom-toast.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Add Type Toast */
+.custom-toast.add {
+  background: #e6f4ea; /* Light green background */
+  border-left-color: #28a745; /* Green border */
+}
+
+.custom-toast.add .action-icon {
+  background-color: #28a745; /* Green icon background */
+}
+
+/* Remove Type Toast */
+.custom-toast.remove {
+  background: #f8e6e6; /* Light red background */
+  border-left-color: #dc3545; /* Red border */
+}
+
+.custom-toast.remove .action-icon {
+  background-color: #dc3545; /* Red icon background */
+}
+
+.custom-toast .toast-content {
+  display: flex;
+  align-items: center;
+}
+
+.toast-content .action-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.toast-content .message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.message .text {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Source Sans 3', sans-serif;
+  color: #666666;
+}
+
+.message .text.text-1 {
+  font-weight: 600;
+  color: #666;
+}
+
+.custom-toast .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+  background: transparent;
+  border: none;
+  color: #666;
+}
+
+.custom-toast .close:hover {
+  opacity: 1;
+}
+
+.custom-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #ddd;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background-color: #0057d9;
+  transform-origin: left;
+  transform: scaleX(0); /* Start with scaleX(0) */
+}
+
+
+@keyframes progressBarAnimation {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+
+
 </style>

@@ -1,233 +1,249 @@
 {
-  "itinerary_summary": "Explore the vibrant cities of Kuala Lumpur and Gombak, Malaysia, with a mix of cultural heritage, nature, nightlife, and thrilling entertainment across four exciting days. This itinerary includes visits to iconic attractions, experience local delicacies, and enjoy the lush landscapes.",
+  "country": "United States",
+  "itinerary_summary": "A solo adventure in San Francisco, exploring iconic attractions, cultural institutions, and natural beauty over the span of four days.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-10-27",
-      "summary": "Arrival in Kuala Lumpur and evening exploration of local attractions.",
+      "date": "2024-11-05",
+      "summary": "Arrival in San Francisco. Settle in and visit the Exploratorium for an interactive experience.",
       "activities": [
         {
-          "time": "17:25",
-          "activity_name": "Check-in at Swiss-Garden Hotel Bukit Bintang Kuala Lumpur",
+          "time": "10:00 AM",
+          "activity_name": "Exploratorium",
           "location": {
-            "name": "Swiss-Garden Hotel Bukit Bintang Kuala Lumpur",
-            "city": "Kuala Lumpur",
+            "name": "Exploratorium",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 3.1442414,
-              "longitude": 101.7056647
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJ45QwVSY2zDERclDylVRcVsQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOsSYJ6dBUycw5-b7sEyatoSvopLHiJYk1pHU2Fv9QFD5vK9SUeNufUHA_jBJpSG4YPIEQ9qmjdo3gXpHwoNPTUDvEqcWaDwM76K2SPIH9ETXUvg7Hhz1N4MfDt9fW7SAhz1TiAV2F9O1xRkamB7UduxLDD8EiNelJX2zDTyHSUFj25&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJk2vl5NSGhYARwPGvs_ubIws",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNlgFUyCr_zr59zrLs_-r1E82LMaz7Ne3QoLiWJMVFJ0UPlbxvYQR6KT2ObZf6ExRJlz7x6YSkiU1gfdghLIj8htuyexXtoBpEzWeNHdYCtnUtMun9fik7c1bPSozEuAhnl0GLSBf22BxrhFpnTjPrfrfBG_K9GySuDpCkaiBdc2OMu"
           },
-          "description": "Check into your hotel and relax after your journey."
+          "description": "Experience science and art through hands-on exhibits."
         },
         {
-          "time": "19:00",
-          "activity_name": "Visit the Petronas Twin Towers",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Fog Harbor Fish House",
           "location": {
-            "name": "Petronas Twin Towers",
-            "city": "Kuala Lumpur",
+            "name": "Fog Harbor Fish House",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 3.1574693,
-              "longitude": 101.7115639
+              "latitude": 37.8089886,
+              "longitude": -122.4102974
             },
-            "place_id": "ChIJH5xmLdE3zDERVpCKfNH9Op4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPjXMOesG4o1dNMsWMd1rcneFDqiZqLocwhl49wNIS8AQG6ALQWla92WXSIZYfGW1JtRpw6FRfT_oGZv0KQEtYrNYPsgcq24pdw8HPw3rkvYHCBV6LoNh6GJzNVwGS6JLhmuy_pSjlcB1jpCApLnaqbBedm7UuEIDt-ilzx7tXaDLWE&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJHSGzi_yAhYARptfivXk-Qlo",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO-poelJN52zKLDYgIyhtfHMU1TTeYnu5i5efC9RNs01fC-sK3RYdmn3O08enYLYkRPgEeeE8T6zehuwakU3tL6fC6G09HqWZ6zZ_zqe3DNL2m_3IinmhB5s1ItfgnfPzXrBbRme360UNe3sexBboKfo8jRrYxpoqT8GWA1yFg1gmhF&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Experience stunning views of the city from the Skybridge and observation deck."
+          "description": "Enjoy fresh seafood with a view of the bay."
         },
         {
-          "time": "20:30",
-          "activity_name": "Dinner at a Local Malaysian Restaurant",
+          "time": "3:00 PM",
+          "activity_name": "The Walt Disney Family Museum",
           "location": {
-            "name": "Local Malaysian Cuisine",
-            "city": "Kuala Lumpur",
+            "name": "The Walt Disney Family Museum",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 3.1484473,
-              "longitude": 101.7059356
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJhUW7pNVJzDERrVLuwiGu_N4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMXHPV9NHGWngpUrly1cXACUd0XLzeAPCw3GRe1fFvBNhQC8WnWCslS70IoD3uzFXi9qkrFiaSRqt1Ul0Z5pwll-erX1dsCTghwxfzYtTnTImOuc5UBHXKepWUlcjLTgONtWIrM9F6X1ipjMyIjjNffduWtTucQYSPTLd1w3vSAa3oS&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJ5f7ZKtiGhYAR9WaYFS6bH1U",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMHx7tbhAQ_EFWsXRJZ2IDxlhnGVK_9FfBpl9d4xbT5-LJUfZ_oXOdkvZLF9KpgXH60IyfB8F-r5H46ZKS6Z8tvPTNEA3-DzZxIMPNmosvTkPvWw3rXwke8DsGExmfKc84dmiH-ugPtcbQNJNTreuMAo0rECGPjW2iiEyjQ6mnvqGbv"
           },
-          "description": "Indulge in authentic Malaysian dishes to kick off your culinary adventure."
+          "description": "Explore the life and legacy of Walt Disney through exhibits."
         },
         {
-          "time": "22:00",
-          "activity_name": "Explore Bukit Bintang Nightlife",
+          "time": "6:00 PM",
+          "activity_name": "Dinner at The Stinking Rose",
           "location": {
-            "name": "Bukit Bintang",
-            "city": "Kuala Lumpur",
+            "name": "The Stinking Rose",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 3.1467855,
-              "longitude": 101.7113043
+              "latitude": 37.7990779,
+              "longitude": -122.408185
             },
-            "place_id": "ChIJ2S0HAyo2zDERg94Jy1u7n78",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNQ_SCfSLgA_45hxQqBM98E7bMUd3q6Wn0FxLqV8ArUlzg4woqbgQwHRf7mtkOZEsCX0MhszHt7FMf7qGw0XX-I2u7w5PCkY4q8na0ds7KaTC-Pwfn4Z44Rn70cAIfvp-wbGf-xxFH2BHgIVgpGn3nHdST8ObLF3HFGOR-ABEcBp1UA&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJW52Si_OAhYAR-jAC1-iQh_c",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMBQpKrwdMsXBYyYqyALh6YP5DdWv-BVBw71R_6QuGGDXBBewnsA68Oq9MOeT409ihMYBUFxukFLoGV0JRtgo92W1MpXB-ZgP_4c4ifgwkkG9iNqiYvfRpRK3v9hIrPcy2QnaOmLJ83n1-h6V2wKwSdJJq0u5GBWb4ANoE0o0wJyBxU&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Experience vibrant nightlife with bars, clubs, and entertainment options."
+          "description": "Dine at a famous garlic-themed restaurant."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-10-28",
-      "summary": "A thrilling day at Batu Caves and exploring cultural attractions.",
+      "date": "2024-11-06",
+      "summary": "Explore one of the city's most iconic landmarks followed by a visit to the local art scene.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Breakfast at Hotel",
+          "time": "10:00 AM",
+          "activity_name": "Golden Gate Bridge",
           "location": {
-            "name": "",
-            "city": "",
+            "name": "Golden Gate Bridge",
+            "city": "San Francisco",
             "coordinates": {
               "latitude": 0,
               "longitude": 0
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJw____96GhYARCVVwg5cT7c0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM-zf0JCps7S-CqgSynrwAwaTI8MMNc59Cyi5wrmISROZpSZXGYt5DdiSSCi3xxsoPHCGnoPHhzO8RXe1kYSoeMFpnSBlawCxhFqHAEsumF3Mgs50dzH3B6Q9i1leZFeNikFnqtk6HiLRFicJkAsZre2XWpzyIWTeHAPVUPRD9j7Stn"
           },
-          "description": "Enjoy a hearty breakfast at your hotel."
+          "description": "Walk across the iconic bridge and enjoy stunning views of the city."
         },
         {
-          "time": "09:30",
-          "activity_name": "Visit Batu Caves",
+          "time": "12:00 PM",
+          "activity_name": "Lunch at The Cliff House",
           "location": {
-            "name": "Batu Caves",
-            "city": "Gombak",
+            "name": "The Cliff House",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 3.236516,
-              "longitude": 101.6816512
+              "latitude": 37.7784494,
+              "longitude": -122.513926
             },
-            "place_id": "ChIJBahJiQxHzDER-Z5vs7Lrv_I",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMFuXj07f59FhBnOFanWJA7YmuM4D2zeSJ4FjRot5ZKAEuyNXr9nGRtNn5YuByN20aTwF_3tJW5HtTLOGiL-IfGDeV8K8GNM5qhQFA3y7msSX1TccXuneSuP9djokYZb5Gspx9wX4sMGLLSC1lEthfXtJvOIX-ZDRhlzCoCSD137PIw&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJr4X4bjKHhYAR424FLrCQwPw",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMW9aG9_KpNLVkyUBtXGAHrwc_o_4jUfsbOjc-6aA_6lDmZvdi1Ug5ZXoneHUneMYTqPgUMqHz8sw2z_KX_H1KBD4HwsjkbYcNiUut4O0WnTuBlrhVfDbedZFa1TN0X6sn4u6ovJhmVm9CrDwzAQHc3AX73dXiY2VIAvAhU0VTg5cUq&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Explore the iconic limestone caves and the stunning temple complex."
+          "description": "Enjoy a meal with panoramic ocean views."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch at a Local Eatery",
+          "time": "2:00 PM",
+          "activity_name": "Exploring the Art at San Francisco Museum of Modern Art",
           "location": {
-            "name": "Local Malaysian Cafe",
-            "city": "Gombak",
+            "name": "San Francisco Museum of Modern Art",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 3.2327613,
-              "longitude": 101.6889297
+              "latitude": 37.7857182,
+              "longitude": -122.4010508
             },
-            "place_id": "ChIJfQLEYyVHzDERKhZzkh0iMf4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNKg98oTLay1zDJjMD4-n3AqMUkSLYxQ41ClTSRUEVj5yc0fkfwd4SrklOGS2QvhxW83jw19SPEI7xEAnIVXPsM1B4lrG2uJWukZipGBG5ClUds6Zj6NJjkZTj12pf_Yzj1QV9WHqokZgKRWm-GGaIsV1-spHzI1VpAFpi0lnySRgZ8&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJ53I1Yn2AhYAR_Vl1vNygfMg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMvHljx_ASE3_gO-NZX1RSwcjVpehWFYr-06csteaRBlV_dBIdHi6jrn8Vy5p3-G50j0sQTiaR3NR-YY2sS2fjMDdZ-YMrVk5zMPyiNpUZGFBu-v8oPDSpJF1m83G1B6MuRLUwYVboc9NjX88QVVsTZfbOG4dEinJd_KzM1DR3jKciK&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Enjoy lunch featuring traditional Malaysian flavors."
+          "description": "Immerse yourself in modern art collections."
         },
         {
-          "time": "14:00",
-          "activity_name": "Visit KL Bird Park",
+          "time": "6:30 PM",
+          "activity_name": "Dinner at Acquerello",
           "location": {
-            "name": "KL Bird Park",
-            "city": "Kuala Lumpur",
+            "name": "Acquerello",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 3.1431273,
-              "longitude": 101.6882629
+              "latitude": 37.7915479,
+              "longitude": -122.421457
             },
-            "place_id": "ChIJu8zWwchJzDERhcsx4AhQ1oo",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP27tWl6xpO9FLKaXb5RoQcDGZFY5WZUNSfqSU1nGHi7BzkuhpMnLSZ0u0-1npcC06hvNXt26lrVP-5yFLt6ePxfuHBv_Pg8ExWKt-39PrAw7gATcH2SDd6Qip74EH5pg6CtTIXnYSpMv8IIpov9dEaGi_FkCA5MSYZMi95WpfSUVwD&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJwYdY3uqAhYARXUJUOIELoqU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM-x0O0LIDY2llkyba0QyCJccwIYEyxkpq-vHqD_wHnLFK-fS9CGj6C2H9AmaPeJWkIpna-keum4GSJ64wf73jJemil6JCdpVGtuWXXMFw3gRgcSADP9nGsYduWrB6V_x_X1mPQ2JUvI61ksf0Mpxv9uailcPQAx2fU2J3VgmrPyp7I&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Explore the world's largest free-flight walk-in aviary."
+          "description": "Savor Italian fine dining in an elegant setting."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-10-29",
-      "summary": "Day trip to Genting Highlands with a blend of nature and entertainment.",
+      "date": "2024-11-07",
+      "summary": "Day trip to explore the natural beauty of Muir Woods and experience local vineyards.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Breakfast at Hotel",
+          "time": "9:00 AM",
+          "activity_name": "Visit Muir Woods National Monument",
           "location": {
-            "name": "",
-            "city": "",
+            "name": "Muir Woods National Monument",
+            "city": "Mill Valley",
             "coordinates": {
               "latitude": 0,
               "longitude": 0
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJrWJnvbSRhYAR-a__aHZY_3o",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNvZ5jkwD_2TROp9se5bBmoU-GCHM1crxvm3hJJN1Rh1Va_q8xlmn4FxIuf8iAmy5bCew4d6_sc-kWf1NPQYkGRzkQ7nd8XNe8NDaBcGK4qE0WaNDgOJjB_I8aBF9ADHHatef81cEwEUirKG5Q08AZZh7ukPB-PXBTcbinXDGhnpkT4"
           },
-          "description": "Start your day with a delicious breakfast."
+          "description": "Experience the serene beauty of ancient redwood trees."
         },
         {
-          "time": "09:00",
-          "activity_name": "Travel to Resorts World Genting",
+          "time": "12:30 PM",
+          "activity_name": "Lunch at Mountain Home Inn",
           "location": {
-            "name": "Resorts World Genting",
-            "city": "Genting Highlands",
+            "name": "Mountain Home Inn",
+            "city": "Mill Valley",
             "coordinates": {
-              "latitude": 3.4235071,
-              "longitude": 101.7939901
+              "latitude": 37.9100615,
+              "longitude": -122.5768699
             },
-            "place_id": "ChIJsdeCLgEUzDERi9ZZvaDZ2wk",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMVYFOoRcZMzyCJm4jZ32OQhepzVaSeMinpWWR1pnuY_v4klFYXTGKN1eqzUThlIdJ8UZIqyAOO96zHuXs8ZFqGFQmVhF0sPfsyb2hlqKN4pi8gu1nCSfZ1S6Cytd3y0NLxrl2nWfSReiw1nzczd5F7LqKu_9_UMNgNlBgnvdjrguTZ&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJ_XPVHlSQhYARNHpbfLGuLVs",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN9dAa9bk4Y8-sN1l3ywKYYkRnOb7mdQKy_2hllf9CiAI1pIm-Ht7aY80hc0pRNCb0FMDMHBu6A-ytZ5jn6sTqLZau-aM6ZGwS6ObybSYDmIbkJ31LZ4OqGq20upJl-BMK8EpZyoU5p4C5p7TFUvQTi3y1rIXeslLIi6AoG4C_xLsj1&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Travel to Genting Highlands for a day filled with excitement."
+          "description": "Delight in a cozy atmosphere with local cuisine."
         },
         {
-          "time": "10:00",
-          "activity_name": "Visit Theme Park Rides",
+          "time": "3:00 PM",
+          "activity_name": "Wine Tasting at Marinwood Plaza",
           "location": {
-            "name": "Genting Theme Park",
-            "city": "Genting Highlands",
+            "name": "Marinwood Plaza",
+            "city": "San Rafael",
             "coordinates": {
-              "latitude": 3.4224826,
-              "longitude": 101.7946871
+              "latitude": 38.0325665,
+              "longitude": -122.5390217
             },
-            "place_id": "ChIJdT5P3AAUzDERy1xSx2I8xB4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOtsXcpPi3L1GjGTM5Dc4FsmQ5Rh_dlH50ciW3GImo6FrCPF9uO30APYlkjGgUtfqXf9h4PzmG5A6YdkYPgAfhCNpAjRSWuz_70sqsRuThmO6du9qyDi3VAaEgGZKxTjN7i4GJoWytjMMJNmw76h2jTaEcn8G0YqAbRF6MJrS7Z_did&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJOy2C3fiXhYAR7jksZegTv2A",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOdvLgfwaTxE99ipZXifrLRoCXDFFbUHwytRr_PbsiuV6RmPrQhEU7Bm3qkwsCyWzLPF4NKX5SHTtvLF6C2-2eDqvO2SEv1KCOc6tXlRPT8DS6gSKYToHwKI2Z22zxneNmXe0TRM7E3EhBdGiyI3eSujguAv-G3IdN_h0phGfzdu0tj&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Enjoy a variety of thrilling rides and attractions."
+          "description": "Visit local wineries and sample regional wines."
         },
         {
-          "time": "13:00",
-          "activity_name": "Lunch at Genting",
+          "time": "6:00 PM",
+          "activity_name": "Dinner at Farmshop",
           "location": {
-            "name": "Mountain View Restaurant",
-            "city": "Genting Highlands",
+            "name": "Farmshop",
+            "city": "Marin",
             "coordinates": {
-              "latitude": 3.4242939,
-              "longitude": 101.7922463
+              "latitude": 37.9473194,
+              "longitude": -122.5088889
             },
-            "place_id": "ChIJVcFqQmAVzDER3XkO43UNyy0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMh7Fn1LYqdYZ9fYIk-3n3pGeLyqw2gXiMTsoFmBxoLc0xrkex2kh1SnZ3O3kgx3MwqLgW0zBMNZAJxVIPFl5KJscn7w_HKY8E3IiGp1RPCVO7HPDLuPfogSjl37oIvqlK779GS2Q9BaEPeZOWAFbnElZB4B2wiOW4MEudIhBqN2FAS&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJCac7b0SahYARqy8KMlgUQL4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNVN-8Y3Unl3VVFJaEN31otyLBPfg6Fn4RveQcBQV4HciYEYiiOVE9wlNlhOJ7M7Op6iEcoHo1RlPum5RHK0sGVxez_eMD9QTPCOwWkapGpy5oMFfxWVWHY0hF5rOTyQt0hQzruPHRcexdVWtjc1yNlArdiiyJW-y4ebOELcViy6606&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Enjoy lunch with a view at a mountain-side restaurant."
-        },
-        {
-          "time": "14:30",
-          "activity_name": "Casino Visit",
-          "location": {
-            "name": "Genting Casino",
-            "city": "Genting Highlands",
-            "coordinates": {
-              "latitude": 3.4232758,
-              "longitude": 101.792403
-            },
-            "place_id": "ChIJB9ROJgEUzDER527txVqj4uQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOLTcm6XC-LlhgCYWTQf4p1bcEvua6d8B39CAVhcngYmet87_D1p8cxY3CKenA0USg5t37IOwykLXcJTThsWIHNEvSQdbPENqqkzGk9WZqmXtj18i-qIcvC7im7fHeyHDxZL8FS8U3sx2J_KueKnkQtGX7Yo-oBSTt03HQ9khFm4Y5P&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
-          },
-          "description": "Try your luck at one of the biggest casinos in Southeast Asia."
+          "description": "Enjoy farm-to-table dining at its best."
         }
       ]
     },
     {
       "day": 4,
-      "date": "2024-10-30",
-      "summary": "Final day exploring cultural sites and departure.",
+      "date": "2024-11-08",
+      "summary": "Last exploration day in the city with shopping and local culture before departure.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Breakfast at Hotel",
+          "time": "10:00 AM",
+          "activity_name": "Visit Ferry Building Marketplace",
           "location": {
-            "name": "",
-            "city": "",
+            "name": "Ferry Building Marketplace",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 37.7953186,
+              "longitude": -122.3936029
+            },
+            "place_id": "ChIJgT8Lk2aAhYARoNqiP9oBzbw",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNWGwfpR7bHc55zZZHqbEsVQxjlu39iapckzfGWlMfk5F92O4Csv48ez2K2sS4uRSIlbKgIndyZeyn2enzRbFP_GkPlsOE2VQxWVz94ixejYZL1c4ceO_gHW8quaHfquq52N6dkw2DZLtRHtgYRey5vuPtMIetFwyUYCKeLmGwJgiQ8&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Shop for local goods and gourmet food."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Boulettes Larder",
+          "location": {
+            "name": "Boulettes Larder",
+            "city": "San Francisco",
+            "coordinates": {
+              "latitude": 37.7951083,
+              "longitude": -122.392838
+            },
+            "place_id": "ChIJWTGPjmaAhYAR7hzVqcbzD64",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP3uYAtQtXz08cuys5RusFt9hicMXF1Azn1uz4I0WZylH7ZEk3w_522CQSZ_t5l92v8nuQzhyZLwmjw4G7bNRs5fL1Or_p7eaQvQ-1KE-5otPYPxxjhbw4Zp2d1sLB9y87AN8evPWpE2Dnl8Blwjni1PtB2GNj8jTrzdnnh3M1P6nKD&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Experience delicious contemporary dishes."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Explore Chinatown",
+          "location": {
+            "name": "Chinatown",
+            "city": "San Francisco",
             "coordinates": {
               "latitude": 0,
               "longitude": 0
@@ -235,52 +251,22 @@
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy breakfast, preparing for a cultural day ahead."
+          "description": "Stroll through vibrant streets filled with unique shops and restaurants."
         },
         {
-          "time": "09:30",
-          "activity_name": "Visit National Art Gallery",
+          "time": "5:00 PM",
+          "activity_name": "Dinner at House of Prime Rib",
           "location": {
-            "name": "National Art Gallery",
-            "city": "Kuala Lumpur",
+            "name": "House of Prime Rib",
+            "city": "San Francisco",
             "coordinates": {
-              "latitude": 3.1736636,
-              "longitude": 101.7052282
+              "latitude": 37.7934328,
+              "longitude": -122.4227327
             },
-            "place_id": "ChIJn7ct6mxIzDERAfOvaaTX5DM",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNG2GYG5bDJJeNM_hRpasEXWKT59XqWa_R4TcQtJ949hIW5si_YpcgTfNcqojpSRB_Rb67jGWP8BaEo8bAYgXVkjAp-a4rR7MH4rw09-jA_2u_i6r6aOFZbR0DLyzhcs6SiEjD2Rqs2D37jp7ZNKSPfgw6RpxqU6e4iLy_tq1thBswd&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
+            "place_id": "ChIJg67caeqAhYAR2UQjKb1a8j4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMV7yz5L0kx0QHpB4EadFusgK6pUQWLvKkHA4aLWGfogUO4nkRFuYDvaVmgHSpFycnexsQaUwx6uh4nzj3YKzm062tyRwL3j5vaVVy-rcHC5ShNch1RMBxgMSkQ2r0IOuEFhDZ96WhuHAuxtm1yuz1KfUVTDB062O7a5DQRT9zoMXuz&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Explore local art and culture through unique exhibits."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch Near KLCC",
-          "location": {
-            "name": "Suria KLCC Food Court",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 3.158154,
-              "longitude": 101.7120899
-            },
-            "place_id": "ChIJ4w-9zNY3zDERH1slGAd9U3U",
-            "photo_url": "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
-          },
-          "description": "Enjoy a variety of food options at this famous food court."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Visit Aquaria KLCC",
-          "location": {
-            "name": "Aquaria KLCC",
-            "city": "Kuala Lumpur",
-            "coordinates": {
-              "latitude": 3.1535483,
-              "longitude": 101.713178
-            },
-            "place_id": "ChIJM5cxndM3zDER7WuP_cN-omg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM-rQBP3b6XttQIb4KFX9-Kv4gSGzh60qSzThiMzg4ARLan34usBzOa-VBAbWofpykkOq2JcGXr6JdvJDT7EhEeisENPCrFUh91FoE9mgWLyvw6F3ZWfyTi4tXIuO2pYuTD3Lk_ogZe3NqzYVeDyGgS0oCEfh8AANaM-uc_T9-a9Pld&key=AIzaSyDd5eMLnn0oB1z4JqV3QWgRhFWYJ1PFI0k"
-          },
-          "description": "Explore the depths of the ocean at one of Malaysia's top aquariums."
+          "description": "End your trip with a classic prime rib dinner."
         }
       ]
     }
