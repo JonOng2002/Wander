@@ -8,10 +8,14 @@ def create_app():
     app = Flask(__name__)
     
     # Configure CORS
-    CORS(app, origins=[
-        "http://localhost:8080",
-        "https://wander-g8t9.vercel.app"
-    ], supports_credentials=True)
+    CORS(app, resources={
+        r"/*": {
+            "origins": ["https://wander-g8t9.vercel.app"],
+            "methods": ["GET", "POST", "OPTIONS"],
+            "allow_headers": ["Content-Type", "Authorization"],
+            "supports_credentials": True
+        }
+    })
     
     # Register blueprints
     app.register_blueprint(tiktok_blueprint)
