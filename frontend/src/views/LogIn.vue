@@ -72,7 +72,7 @@
       try {
           await signInWithEmailAndPassword(auth, email.value, password.value); // Firebase sign-in logic
           console.log('Successfully logged in!');
-          router.push('/mainpage'); // redirect to the about page
+          router.push('/'); // redirect to the about page
       } catch (error) {
           switch (error.code) {
               case 'auth/invalid-email':
@@ -104,7 +104,7 @@
           sessionStorage.setItem('username', user.displayName || 'User');
           sessionStorage.setItem('email', user.email);
           
-          router.push('/mainpage'); // Redirect to about after successful sign-in
+          router.push('/'); // Redirect to about after successful sign-in
       } catch (error) {
           console.error('Error signing in with Google:', error.code, error.message);
       }
