@@ -143,10 +143,14 @@ export default {
           extractedLocationsComponent.$refs.extractedLocationsRoot;
 
         if (extractedLocationsElement instanceof HTMLElement) {
-          extractedLocationsElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
+          const offsetTop = extractedLocationsElement.getBoundingClientRect().top + window.scrollY - 100;
+
+        // Smooth scroll to the calculated position
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth',
+        });
+          
         } else {
           console.warn(
             'extractedLocationsElement is not an HTMLElement. Actual value:',

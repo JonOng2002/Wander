@@ -1,6 +1,6 @@
 <template>
-  <div class="search-bar d-flex justify-content-center">
-    <form @submit.prevent="submitLink" class="d-flex w-100 w-lg-50 w-md-75">
+  <div class="search-bar-container d-flex justify-content-center">
+    <form @submit.prevent="submitLink" class="search-form">
       <input
         type="text"
         v-model="link"
@@ -47,6 +47,12 @@ export default {
   },
   mounted() {
     this.animatePlaceholder(); // Start animating the placeholder
+    this.$nextTick(() => {
+    setTimeout(() => {
+      const searchInput = this.$el.querySelector('.searchInput');
+      searchInput.classList.add('animated');
+    }, 100); // Delay to ensure the element is visible before animation
+  });
   },
   beforeUnmount() {
     clearInterval(this.placeholderInterval); // Clear any running intervals on component unmount
@@ -97,3 +103,28 @@ export default {
   }
 };
 </script>
+<style scoped>
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-form {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.searchInput {
+  width: 20px; /* Start with a small width to visualize expansion */
+  opacity: 0;
+  transform-origin: center;
+  transition: width 0.6s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+/* Expand on load */
+.searchInput.animated {
+  width: 100%; /* Full width on animation */
+  opacity: 1;
+}
+</style>
