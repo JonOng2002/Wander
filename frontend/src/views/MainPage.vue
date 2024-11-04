@@ -314,6 +314,16 @@ p {
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
 }
+/* Media query for medium screens */
+@media (min-width: 768px) and (max-width: 991px) {
+  .searchBarTitle {
+    font-size: 4vw; /* Smaller font size for medium screens */
+  }
 
+  .search-bar {
+    width: 100%; /* Adjust width of the search bar */
+    margin: 0 auto; /* Center search bar */
+  }
+}
 
 </style>

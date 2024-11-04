@@ -659,4 +659,20 @@ onMounted(async () => {
     padding: 0px 10px 10px 10px;
   }
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .back-button {
+    font-size: 2.8vw; /* Adjust font size for readability */
+  }
+
+  .back-button i {
+    font-size: 2vw; /* Adjust icon size */
+  }
+  .user-info h4{
+    font-size: 2vw;
+  }
+  .user-info h2{
+    font-size: 3.5vw;
+  }
+
+}
 </style>
