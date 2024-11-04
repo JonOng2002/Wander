@@ -630,6 +630,7 @@ header {
   align-items: center;
   /* Center contents vertically */
   justify-content: center;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .header_image {
@@ -655,9 +656,10 @@ header {
 }
 
 header .content h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+
 }
 
 header content h4 {
@@ -673,6 +675,7 @@ header content h4 {
   left: 50px;
   top: 60px;
   padding-bottom: 4rem;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .secondary_content h5 {
@@ -780,6 +783,7 @@ header content h4 {
 .card_container {
   display: grid;
   row-gap: 3.5rem;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .card_article {

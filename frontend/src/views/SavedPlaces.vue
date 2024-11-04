@@ -12,6 +12,22 @@
       </div>
     </div>
 
+    <div class="itinerary-page">
+      <!-- Toast Notification -->
+      <div :class="['custom-toast', { active: toastActive }, toastType]">
+        <div class="toast-content">
+          <i :class="['fas', toastType === 'add' ? 'fa-check' : 'fa-times', 'action-icon']"></i>
+          <div class="message">
+            <span class="text text-2">{{ toastMessage }}</span>
+          </div>
+          <i class="fas fa-times close" @click="closeToast"></i>
+          <div class="custom-progress">
+            <div class="progress-bar" ref="progressBar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Gradient Overlay -->
     <div class="gradientoverlay"></div>
 
@@ -23,17 +39,17 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+
     <div class="carousel-content">
       <h1>Archive Your Journey</h1>
       <h4>Detail Your Trips | Make Lasting Memories</h4>
     </div>
   </div>
 
-
   <div class="secondary_header">
     <div class="secondary_content">
-        <h2>Access your saved locations</h2>
-        <h5>Locations saved, at your fingertips:</h5>
+      <h2>Access your saved locations</h2>
+      <h5>Locations saved, at your fingertips:</h5>
     </div>
 
     <div class="dropdown-container" v-motion-slide-visible-once-top>
@@ -72,7 +88,8 @@
 
   <div v-else class="card-grid">
     <transition-group name="list" tag="div" class="transition-wrapper">
-      <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs" v-motion-slide-visible-once-top>
+      <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs"
+        v-motion-slide-visible-once-top>
         <div class="card destination-card" :style="{ backgroundImage: `url(${place.image})` }">
           <div class="overlay"></div>
           <button @click="removePlace(place)" type="button" class="btn close-button">✖</button>
@@ -123,6 +140,7 @@
   </div>
 </template>
 
+
 <script>
 import { ref, onMounted } from 'vue';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
@@ -137,13 +155,21 @@ export default {
     const filteredPlaces = ref([]);
     const itinerary = ref([]);
     const loading = ref(true);
-    const showPopup = ref(false);
-    const showRemovePopup = ref(false);
     const showModal = ref(false);
     const showDeletePopup = ref(false);
     const db = getFirestore();
     const router = useRouter();
-    const cardRefs = ref([]); // Create a ref for card references
+    const cardRefs = ref([]);
+
+    // Reactive variables for toast notification
+    const toastActive = ref(false);
+    const progressBar = ref(null);
+    const toastTitle = ref('');
+    const toastMessage = ref('');
+    const toastType = ref(''); // Type of toast notification (add or remove)
+
+    let toastTimeout = null; // Keep track of the toast timeout
+    let progressBarAnimation = null; // Keep track of the progress bar animation
 
     // Fetching data from Firestore and storing it in savedPlaces
     onMounted(async () => {
@@ -176,10 +202,70 @@ export default {
       }
     });
 
-    console.log(savedPlaces);
+    // Show toast notification
+    const showToast = (title, message, type) => {
+      console.log('showToast called with title:', title, 'message:', message);
 
+      // Clear any existing timeout
+      if (toastTimeout) {
+        clearTimeout(toastTimeout);
+        toastTimeout = null;
+      }
 
-    //save itinerary to firestore
+      // Kill any existing progress bar animation
+      if (progressBarAnimation) {
+        progressBarAnimation.kill();
+        progressBarAnimation = null;
+      }
+
+      // Reset progress bar immediately
+      if (progressBar.value) {
+        gsap.set(progressBar.value, { scaleX: 0 });
+      }
+
+      // Set toast content and show it
+      toastTitle.value = title;
+      toastMessage.value = message;
+      toastType.value = type; // Set the action type ('add' or 'remove')
+      toastActive.value = true;
+
+      // Animate progress bar using GSAP
+      if (progressBar.value) {
+        progressBarAnimation = gsap.to(progressBar.value, {
+          scaleX: 1,
+          transformOrigin: 'left',
+          duration: 3,
+          ease: 'linear',
+        });
+      }
+
+      // Set timeout to hide toast after 5 seconds
+      toastTimeout = setTimeout(() => {
+        toastActive.value = false;
+        toastTimeout = null;
+
+        // Kill progress bar animation when toast is hidden
+        if (progressBarAnimation) {
+          progressBarAnimation.kill();
+          progressBarAnimation = null;
+        }
+      }, 3000);
+    };
+
+    // Close toast manually
+    const closeToast = () => {
+      if (toastTimeout) {
+        clearTimeout(toastTimeout);
+        toastTimeout = null;
+      }
+      if (progressBarAnimation) {
+        progressBarAnimation.kill();
+        progressBarAnimation = null;
+      }
+      toastActive.value = false;
+    };
+
+    // Save itinerary to Firestore
     const saveItinerary = async (place) => {
       console.log('start saving itinerary');
       console.log(itinerary.value);
@@ -243,15 +329,9 @@ export default {
 
     const togglePopup = (type) => {
       if (type === 'add') {
-        showPopup.value = true;
-        setTimeout(() => {
-          showPopup.value = false;
-        }, 2000);
+        showToast('Success', 'Added to Itinerary!', 'add');
       } else if (type === 'remove') {
-        showRemovePopup.value = true;
-        setTimeout(() => {
-          showRemovePopup.value = false;
-        }, 2000);
+        showToast('Success', 'Removed from Itinerary!', 'remove');
       }
     };
 
@@ -302,8 +382,8 @@ export default {
             vicinity: place.vicinity,
             country: place.country,
             coordinates: {
-              latitude: place.coordinates.latitude,   // Include latitude
-              longitude: place.coordinates.longitude   // Include longitude
+              latitude: place.coordinates.latitude,
+              longitude: place.coordinates.longitude
             }
           };
 
@@ -313,7 +393,7 @@ export default {
           if (isInItinerary) {
             // Remove from itinerary locally first
             itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
-            togglePopup('remove');  // Show remove popup
+            togglePopup('remove');  // Show remove toast
 
             // Update Firebase after local state change
             await updateDoc(userDocRef, {
@@ -336,7 +416,7 @@ export default {
 
             // Add to itinerary locally first
             itinerary.value.push({ ...place });
-            togglePopup('add');  // Show add popup
+            togglePopup('add');  // Show add toast
 
             // Update Firebase after local state change
             await updateDoc(userDocRef, {
@@ -392,7 +472,7 @@ export default {
           setDoc(userRef, { savedPlaces: savedPlaces.value }, { merge: true })
             .then(() => {
               console.log("Firestore updated successfully.");
-              togglePopup('remove');
+              showToast('Success', 'Place Removed!');
             })
             .catch((error) => {
               console.error("Error updating Firestore:", error);
@@ -444,6 +524,7 @@ export default {
               try {
                 await setDoc(userRef, { savedPlaces: [] }, { merge: true });
                 console.log("All saved places deleted successfully.");
+                showToast('Success', 'All Places Deleted!');
               } catch (error) {
                 console.error("Error deleting saved places:", error);
               }
@@ -471,8 +552,8 @@ export default {
             vicinity: place.vicinity,
             country: place.country,
             coordinates: {
-              latitude: place.coordinates.latitude,   // Include latitude
-              longitude: place.coordinates.longitude   // Include longitude
+              latitude: place.coordinates.latitude,
+              longitude: place.coordinates.longitude
             }
           })
         });
@@ -481,14 +562,11 @@ export default {
       }
     };
 
-
     return {
       savedPlaces,
       addPlaceToItinerary,
       filteredPlaces,
       loading,
-      showPopup,
-      showRemovePopup,
       showModal,
       showDeletePopup,
       toggleItinerary,
@@ -502,16 +580,21 @@ export default {
       itinerary,
       deleteAllPlaces,
       saveItinerary,
-      cardRefs, // Return cardRefs for use in the template
+      cardRefs,
+      // Toast variables and functions
+      progressBar,
+      toastActive,
+      toastTitle,
+      toastMessage,
+      toastType,
+      showToast,
+      closeToast,
     };
   },
 };
 </script>
 
-
-
 <style scoped>
-
 /* <================ HEADER CAROUSELL =================>*/
 
 #carouselExampleInterval {
@@ -526,6 +609,13 @@ export default {
 .gradientoverlay {
   height: 100%;
   /* Ensures inner elements match carousel height */
+}
+
+/* Main Itinerary Page */
+.itinerary-page {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f6ff;
 }
 
 .gradientoverlay {
@@ -582,23 +672,23 @@ export default {
 /* <=========== SECONDARY HEADER =============> */
 
 .secondary_header {
-    position: relative;
-    padding: 1rem 0;
-    margin-top: 2.4rem;
-    /* Add spacing above the header */
-    margin-bottom: 4rem;
-    /* Add spacing below the header */
-    text-align: left;
-    /* Center align the text */
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  /* Add spacing below the header */
+  text-align: left;
+  /* Center align the text */
 }
 
 .secondary_content {
-    padding: 0 60px;
+  padding: 0 60px;
 }
 
 .secondary_content h5 {
-    color: rgb(166, 163, 163);
-    margin-bottom: 1rem;
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
 }
 
 .form-select {
@@ -613,70 +703,70 @@ export default {
 
 /* Container to align dropdowns side by side */
 .dropdown-container {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    margin-left: 60px;
-    /* Adjust this value to align the dropdowns with the text */
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 60px;
+  /* Adjust this value to align the dropdowns with the text */
 }
 
 /* Style the dropdown button */
 .dropdown-btn {
-    background-color: #222;
-    /* Dark background color */
-    color: #fff;
-    /* White text */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    transition: background-color 0.3s ease;
-    padding: 16px;
+  background-color: #222;
+  /* Dark background color */
+  color: #fff;
+  /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 16px;
 }
 
 /* Change button color on hover */
 .dropdown-btn:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
 /* Dropdown content styling */
 .dropdown-content {
-    display: none;
-    /* Hidden by default */
-    position: absolute;
-    background-color: #222;
-    min-width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    z-index: 1;
-    top: 100%;
-    /* Position below the button */
-    left: 0;
-    padding: 10px 0;
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  background-color: #222;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+  top: 100%;
+  /* Position below the button */
+  left: 0;
+  padding: 10px 0;
 }
 
 /* Dropdown content links */
 .dropdown-content a {
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
 }
 
 /* Change background color on hover */
 .dropdown-content a:hover {
-    background-color: #333;
+  background-color: #333;
 }
 
 /* Show dropdown on hover */
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 
@@ -756,7 +846,6 @@ export default {
   border-radius: inherit;
 }
 
-
 .card-img-top {
   width: 100%;
   height: 200px;
@@ -769,6 +858,7 @@ export default {
 .card-body {
   padding: 1rem;
   display: flex;
+  font-family: "Source Sans 3", sans-serif;
   position: absolute;
   bottom: 0;
   left: 0.4;
@@ -840,7 +930,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -947,8 +1037,10 @@ export default {
 @media (max-width: 768px) {
   .dropdown-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
-    gap: 1rem; /* Consistent gap between buttons */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
   }
 
   .card-grid {
@@ -985,11 +1077,142 @@ export default {
   .dropdown-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Consistent gap between buttons */
+    gap: 1rem;
+    /* Consistent gap between buttons */
   }
 
   .sticky-top {
     padding: 0 1.5vw;
+  }
+}
+
+/* Toast Notification Styles */
+.custom-toast {
+  position: fixed;
+  top: 25px;
+  right: 35px;
+  border-radius: 12px;
+  background: #fff;
+  /* Default background */
+  padding: 20px 35px 20px 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid #007bff;
+  /* Default border color */
+  overflow: hidden;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  z-index: 9999;
+}
+
+.custom-toast.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Add Type Toast */
+.custom-toast.add {
+  background: #e6f4ea;
+  /* Light green background */
+  border-left-color: #28a745;
+  /* Green border */
+}
+
+.custom-toast.add .action-icon {
+  background-color: #28a745;
+  /* Green icon background */
+}
+
+/* Remove Type Toast */
+.custom-toast.remove {
+  background: #f8e6e6;
+  /* Light red background */
+  border-left-color: #dc3545;
+  /* Red border */
+}
+
+.custom-toast.remove .action-icon {
+  background-color: #dc3545;
+  /* Red icon background */
+}
+
+.custom-toast .toast-content {
+  display: flex;
+  align-items: center;
+}
+
+.toast-content .action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.toast-content .message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.message .text {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Source Sans 3', sans-serif;
+  color: #666666;
+}
+
+.message .text.text-1 {
+  font-weight: 600;
+  color: #666;
+}
+
+.custom-toast .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+  background: transparent;
+  border: none;
+  color: #666;
+}
+
+.custom-toast .close:hover {
+  opacity: 1;
+}
+
+.custom-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: #ddd;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background-color: #0057d9;
+  transform-origin: left;
+  transform: scaleX(0);
+  /* Start with scaleX(0) */
+}
+
+
+@keyframes progressBarAnimation {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
   }
 }
 </style>

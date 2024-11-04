@@ -1,72 +1,72 @@
 {
   "location_info": {
-    "place_name": "Hohhot",
-    "country": "China",
-    "city": "Hohhot",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGigwloy4JI_729e4HKYUe1bcYUyegW5gaf01MEfIlzga-SdK6FXvpOPXsTFDO9untIOHWR5fiT1kqMslOgzVyCZmKhuPF9yhg=s1600-w800",
+    "place_name": "Yakibuta Ramen Sanjyo",
+    "country": "Japan",
+    "city": "Kasamatsu",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF3-pzZ8boxHWLUcr81cwaUCpBpR9nnYbZEftdSOQwpxBIRV7IvIB9Z_2NG-vdHaydbrvcXBfP0oNM_9XhbULPUNrwxvldiT6s=s1600-w510",
     "coordinates": {
-      "latitude": 40.8414899,
-      "longitude": 111.75199
+      "latitude": 35.3495432,
+      "longitude": 136.7488693
     },
     "activities": [
-      "Exploring ancient temples",
-      "Sampling traditional Mongolian cuisine",
-      "Shopping at local markets"
+      "Enjoy authentic Japanese ramen",
+      "Watch the ramen master at work",
+      "Experience local dining culture"
     ],
-    "location_summary": "Hohhot, the capital of Inner Mongolia, blends rich Mongolian traditions with modern development. It's known for its colorful culture and beautiful natural landscapes.",
-    "vicinity": "Hohhot"
+    "location_summary": "Yakibuta Ramen Sanjyo is known for its delicious BBQ pork ramen, prepared by a skilled ramen master.",
+    "vicinity": "メゾンＧ5 1F, ６５８ Kitaoyobi, Kasamatsu"
   },
   "related_places": [
     {
-      "place_name": "Beijing",
-      "country": "China",
-      "city": "Beijing",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqG9_a64yCuUb7RbHGUGuRF_I7JznC6BzNaaXL0SVLxnYoQBVMs4fsVMIxzOlTUuaoA_OPqcy_9JxwHtFmhuQeq6UJBLUdaL9UY=s1600-w800",
+      "place_name": "Ichiran Ramen",
+      "country": "Japan",
+      "city": "Fukuoka",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaa44QbOAaTyC7CESE5iXtNabMhz_kRzZmuJrD11wH0QeMmvotRP6GjfuTlKgAMgCtepCwRvP1qI3S-gXMwsc9PGf41hSCph4=s1600-w800",
       "coordinates": {
-        "latitude": 39.904211,
-        "longitude": 116.407395
+        "latitude": 1.5009666,
+        "longitude": 103.777432
       },
       "activities": [
-        "Visiting the Great Wall",
-        "Exploring the Forbidden City",
-        "Enjoying local Peking duck"
+        "Taste the famous tonkotsu ramen",
+        "Dine in a private booth",
+        "Customize your ramen flavor"
       ],
-      "location_summary": "Beijing, the capital city of China, is a city of deep historical significance adorned with ancient architecture and a modern skyline.",
-      "vicinity": "Beijing"
+      "location_summary": "Ichiran Ramen is renowned for its rich tonkotsu broth and unique dining experience designed for ramen lovers.",
+      "vicinity": "TM-003, Third Floor (Mezzanine), The Mall, Mid Valley Southkey, No. 1, Persiaran Southkey 1, Kota Southkey, Johor Bahru"
     },
     {
-      "place_name": "Datong",
-      "country": "China",
-      "city": "Datong",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHKi6ylr8C-Mv5dkpvxm6EV0jGDhlCKxwq6m9xZpCrI7KtRV6WXAesheRwwbT3Y5Zj0rSW5RT5cz0RyMANOsuCc6rJ9m8dDxlg=s1600-w800",
+      "place_name": "Ramen Nagi",
+      "country": "Japan",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHn618RAKfr9W-9VSMy_2VXKhpjjylW9enpAqBcGMOwpBMnZ8Hv134PECiPCIBe1jTettYymFpItIb3x0_FbOIZtS9FUVf0Rbg=s1600-w800",
       "coordinates": {
-        "latitude": 40.0763699,
-        "longitude": 113.30001
+        "latitude": 1.3039387,
+        "longitude": 103.8318267
       },
       "activities": [
-        "Visiting the Yungang Grottoes",
-        "Exploring the Nine Dragon Screen",
-        "Strolling around the old town"
+        "Explore different ramen styles",
+        "Enjoy a vibrant dining environment",
+        "Participate in seasonal specials"
       ],
-      "location_summary": "Datong is known for its ancient Buddhist cave art and rich cultural heritage, making it a captivating destination for history enthusiasts.",
-      "vicinity": "Datong"
+      "location_summary": "Ramen Nagi offers a variety of ramen flavors and styles, making it a favorite spot for locals and tourists alike.",
+      "vicinity": "2 Orchard Turn, #B4-54"
     },
     {
-      "place_name": "Ordos",
-      "country": "China",
-      "city": "Ordos",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFfR-QAkxfi3sJldIf9Qsg4Tt5wHiL-3M6NO1iFBh8W9aAVgifwL0LA0wEepONlW1RSImS8s6QCMrWFq303S6PoMdsAiXcPfh8=s1600-w800",
+      "place_name": "Tonkotsu Ramen Shogun",
+      "country": "Japan",
+      "city": "Osaka",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE1XO9y7F8rrJ4wHq2FYf7_itBVuWW_ty7T2NhV4EuQdo_QAxntIyKqwQxOUP4GFEd1zLBHnr2J_t_LDNmiO9lRq7mBjXevJ1g=s1600-w800",
       "coordinates": {
-        "latitude": 39.6084499,
-        "longitude": 109.78087
+        "latitude": 3.035682899999999,
+        "longitude": 101.7640742
       },
       "activities": [
-        "Exploring the Kangbashi New Area",
-        "Visiting the Ordos Museum",
-        "Experiencing local nomadic culture"
+        "Delight in tonkotsu ramen",
+        "Pair ramen with local beers",
+        "Take part in tasting events"
       ],
-      "location_summary": "Ordos, a modern city rapidly developing in China, offers a glimpse into both contemporary life and traditional nomadic customs.",
-      "vicinity": "Ordos City"
+      "location_summary": "Tonkotsu Ramen Shogun is famous for its creamy butter-infused broth and tender noodles, attracting ramen enthusiasts.",
+      "vicinity": "No. 80, Jalan Dataran Cheras 4, Dataran Perniagaan Cheras, Balakong Cheras, Balakong"
     }
   ]
 }

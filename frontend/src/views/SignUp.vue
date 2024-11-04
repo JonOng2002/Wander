@@ -128,7 +128,6 @@ const signInWithFacebook = async () => {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
 body {
     font-family: 'Lobster Two', cursive;
@@ -141,7 +140,6 @@ h1 {
 }
 
 h2 {
-    font-family: 'Cormorant Garamond';
     font-weight: bolder;
 }
 

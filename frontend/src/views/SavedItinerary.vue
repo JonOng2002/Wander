@@ -1017,7 +1017,6 @@ export default {
 .page-title {
     text-align: left;
     font-size: 2rem;
-    font-family: 'Cormorant Garamond', serif;
     font-weight: bolder;
     margin-bottom: 15px;
     width: 100%;

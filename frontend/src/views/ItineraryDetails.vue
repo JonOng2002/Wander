@@ -284,7 +284,6 @@ onMounted(async () => {
 /* General styling */
 /* <================= layout and heading title ================>*/
 .generated-itinerary {
-  font-family: 'Source Sans 3', sans-serif;
   margin: 0;
   padding: 0;
 }

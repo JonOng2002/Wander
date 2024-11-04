@@ -1,110 +1,38 @@
+<!-- src/components/SavePlaceButton.vue -->
 <template>
-  <button class="save-button" @click="savePlace">
-    Save Place
+  <button
+    :disabled="isAlreadySaved || isSaving"
+    class="save-button"
+    @click="handleSave"
+  >
+    <span v-if="isSaving">Saving...</span>
+    <span v-else-if="isAlreadySaved">Saved</span>
+    <span v-else>Add to Saved Places</span>
   </button>
 </template>
 
 <script>
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-import { getFirestore, Timestamp } from "firebase/firestore";
-
 export default {
   name: "SavePlaceButton",
   props: {
-    placeId: {
-      type: String,
-      required: false,
-    },
-    placeName: {
-      type: String,
-      required: true,
-    },
-    vicinity: {
-      type: String,
-      required: false,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    latitude: {
-      type: Number,
-      required: true,
-    },
-    longitude: {
-      type: Number,
-      required: true,
-    },
-    placePng: {
-      type: String,
-      required: false,
-    },
-    userId: {
-      type: String,
-      required: true,
-    },
-    activities: {
-      type: Array,
-      required: true,
-    },
-    summary: {
-      type: String,
-      required: false,
-    },
-    source: {
-      type: String,
-      required: false,
-    },
+    placeId: { type: String, required: true },
+    isAlreadySaved: { type: Boolean, required: true },
+  },
+  data() {
+    return {
+      isSaving: false,
+    };
   },
   methods: {
-    async savePlace() {
-      const db = getFirestore();
-
-      // Check if userId is valid
-      if (!this.userId) {
-        console.error("User ID is required to save a place.");
-        return;
-      }
-
-      const userRef = doc(db, "users", this.userId);
-
-      const placeData = {
-        activities: this.activities || [],
-        city: this.city || "Unknown city",
-        coordinates: {
-          latitude: this.latitude,
-          longitude: this.longitude,
-        },
-        country: this.country,
-        image: this.placePng,
-        name: this.placeName,
-        place_id: this.placeId || "saved_places",
-        source: this.source || "saved_places",
-        summary: this.summary || "No summary available.",
-        timestamp: Timestamp.now(),
-        vicinity: this.vicinity || "Unknown vicinity",
-      };
-
-      console.log("Saving place data:", placeData);
-
-      if (!placeData.place_id || !placeData.name || !placeData.vicinity) {
-        console.error("Attraction not found for saving.", placeData);
-        return;
-      }
-
-      try {
-        console.log("Updating document at:", userRef);
-        await updateDoc(userRef, {
-          savedPlaces: arrayUnion(placeData),
-        });
-        this.$emit("place-saved");
-      } catch (error) {
-        console.error("Error saving place:", error.message || error);
-      }
+    handleSave() {
+      if (this.isAlreadySaved || this.isSaving) return;
+      this.isSaving = true;
+      // Emit the 'save-place' event with the placeId
+      this.$emit("save-place", this.placeId);
+      // Reset the saving state after a short delay
+      setTimeout(() => {
+        this.isSaving = false;
+      }, 1000); // Adjust the delay as needed
     },
   },
 };
@@ -112,16 +40,25 @@ export default {
 
 <style scoped>
 .save-button {
+  margin-top: auto;
   background-color: black;
   color: white;
   padding: 8px;
-  border: none;
+  font-size: 0.8rem;
+  font-weight: bold;
   border-radius: 5px;
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .save-button:hover {
   background-color: #333;
+  color: white;
+}
+
+.save-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
 </style>

@@ -267,7 +267,6 @@ app-navbar {
 }
 
 .generated-itinerary {
-  font-family: 'Source Sans 3', sans-serif;
   margin: 0;
   padding: 0;
 }

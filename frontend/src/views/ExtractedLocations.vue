@@ -1,7 +1,6 @@
 <template>
-  <hr>
-  <div class="page-fade-in">
-
+  <div ref="extractedLocationsRoot" class="page-fade-in">
+    <hr>
 
 
     <!-- Row of Location Images -->
@@ -195,12 +194,14 @@ export default {
     locationInfo: Object,
     relatedPlaces: Array,
     userId: {
-      type: String,
+      type: [String, null],
       default: '',
     },
     savedPlaces: Array,
     
   },
+
+  emits: ['component-mounted'],
 
   data() {
     return {
@@ -304,6 +305,7 @@ export default {
         lng: this.locationInfo.coordinates.longitude,
       };
     }
+    this.$emit('component-mounted');
 
     window.addEventListener('scroll', this.handleScroll);
   },
@@ -365,14 +367,12 @@ html {
 }
 
 .header-interested {
-  font-family: 'Garamond', sans-serif;
 
   text-align: center;
 
 }
 
 .header-main {
-  font-family: 'Garamond', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: x-large;
@@ -395,7 +395,7 @@ html {
 }
 
 .related-places-header {
-  font-family: 'Source Sans 3', sans-serif;
+
   font-weight: bold;
   text-align: center;
   font-size: x-large;
@@ -403,7 +403,6 @@ html {
 }
 
 .related-header, .extracted-header, .video-header{
-  font-family: 'Source Sans 3', sans-serif;
   font-weight: bold;
   text-align: center;
   font-size: smaller;
@@ -425,7 +424,6 @@ html {
   overflow: auto;
   text-align: center;
   background-color: #f0f6ff;
-  font-family: 'Source Sans 3', sans-serif;
 }
 
 .card-title {
