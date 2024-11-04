@@ -13,7 +13,7 @@ import MyDestinations from "@/views/MyDestinations.vue";
 import DestinationDetails from "@/views/DestinationDetails.vue";
 import CalendarPage from "@/views/CalendarPage.vue";
 import TagsPage from "@/views/TagsPage.vue";
-import ToastTest from "@/views/ToastTest.vue";
+
 // import TrvPartner from '@/views/TravellingWithWho.vue';
 import ItineraryBuilder from "@/views/ItineraryBuilder.vue";
 import LocationDate from "@/views/LocationDate.vue";
@@ -22,7 +22,6 @@ import OverlayPage from "@/views/overlayPage.vue";
 
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
-  { path: "/toast", name: "ToastTest", component: ToastTest },
   { path: "/", name: "Home", component: MainPage },
   { path: "/mainpage", name: "MainPage", component: MainPage },
   { path: "/about", name: "AboutPage", component: AboutPage },
