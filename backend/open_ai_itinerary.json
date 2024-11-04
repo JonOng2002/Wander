@@ -1,272 +1,150 @@
 {
-  "country": "United States",
-  "itinerary_summary": "A solo adventure in San Francisco, exploring iconic attractions, cultural institutions, and natural beauty over the span of four days.",
+  "country": "Italy",
+  "itinerary_summary": "A vibrant two-day adventure in Rome focusing on nightlife and entertainment, featuring iconic landmarks, delicious food, and lively atmospheres perfect for enjoying with friends.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-05",
-      "summary": "Arrival in San Francisco. Settle in and visit the Exploratorium for an interactive experience.",
+      "date": "2024-11-20",
+      "summary": "Exploring ancient Rome in the day and enjoying the nightlife in the evening, starting with iconic historical sites and wrapping up with energetic social scenes.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Exploratorium",
+          "time": "09:00",
+          "activity_name": "Il Tempio dei Dioscuri",
           "location": {
-            "name": "Exploratorium",
-            "city": "San Francisco",
+            "name": "Il Tempio dei Dioscuri",
+            "city": "Rome",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 41.89170310000001,
+              "longitude": 12.4856645
             },
-            "place_id": "ChIJk2vl5NSGhYARwPGvs_ubIws",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNlgFUyCr_zr59zrLs_-r1E82LMaz7Ne3QoLiWJMVFJ0UPlbxvYQR6KT2ObZf6ExRJlz7x6YSkiU1gfdghLIj8htuyexXtoBpEzWeNHdYCtnUtMun9fik7c1bPSozEuAhnl0GLSBf22BxrhFpnTjPrfrfBG_K9GySuDpCkaiBdc2OMu"
+            "place_id": "ChIJ6RRKjbRhLxMRKHHdS4QvkK4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPD8-ATSt134fUsl3RYUaeKqqEDJKpmu-3ZIElmdq1VgS5SxF3A6Bv8wIPIBdrr6BspAoA-EqABUcJSw3gAym_Oz0pQj9bm4CJO9UJ-mZvgjznd2DGbj_YROiJn6KlHkaRH38jZYVUCyGE8wnuq6GcZtsTArOFeQkfF-gnVbkRWqlK8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Experience science and art through hands-on exhibits."
+          "description": "Visit the historic Temple of the Dioscuri, an impressive ancient structure and a landmark in central Rome."
         },
         {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Fog Harbor Fish House",
+          "time": "11:30",
+          "activity_name": "Basilica Julia",
           "location": {
-            "name": "Fog Harbor Fish House",
-            "city": "San Francisco",
+            "name": "Basilica Julia",
+            "city": "Rome",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 41.89199659999999,
+              "longitude": 12.4847898
             },
+            "place_id": "ChIJM2qBt7RhLxMRBvo4dDqpXpw",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOLPjskswrWYoUnzZrtgm6Up_72DF-u_Zym3aL7vHhTSVdktNhCc3hkyJjj6yakbc0lHZ_mDooe9rsh5vgFXMMYVz1HBP0srDNyFO3qbKShTpA7houZmEeFW8xqXkWx5vYhhr9QFhqnbmVbyvN3jb4SO2cGV1ld6Aj71xGB9471nyb8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+          },
+          "description": "Explore the ruins of Basilica Julia, a significant historical site located in the Roman Forum."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Temple of Apollo Palatinus",
+          "location": {
+            "name": "Temple of Apollo Palatinus",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 41.8888723,
+              "longitude": 12.4857443
+            },
+            "place_id": "ChIJl5cSjsphLxMRv85ELFf8Dk4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNypUW-aDTYcCIPNpAALHcslA_ZlcrKxpzuV7Vwu_urAids_HRioUqnJp5CbNE77kVGHb9U0jfu1xKNrt5U62TIVNhBubf0KbnCFvgs9RkwNNq1Y7FttXvtWv2QRvCq5ok1TGp0wRf7xJkTO7y3dmPZ2N361TJiscaTgyq7tR8gvqi9&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+          },
+          "description": "Visit the Temple of Apollo Palatinus, the ancient shrine located on the Palatine Hill, offering stunning views."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at La Pergola",
+          "location": {
+            "name": "La Pergola",
+            "city": "Rome",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy fresh seafood with a view of the bay."
+          "description": "Enjoy a fine dining experience at La Pergola, the only three Michelin-starred restaurant in Rome, offering exquisite Italian cuisine."
         },
         {
-          "time": "3:00 PM",
-          "activity_name": "The Walt Disney Family Museum",
+          "time": "21:30",
+          "activity_name": "Cocktails at Shari Vari Playhouse",
           "location": {
-            "name": "The Walt Disney Family Museum",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "ChIJ5f7ZKtiGhYAR9WaYFS6bH1U",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMHx7tbhAQ_EFWsXRJZ2IDxlhnGVK_9FfBpl9d4xbT5-LJUfZ_oXOdkvZLF9KpgXH60IyfB8F-r5H46ZKS6Z8tvPTNEA3-DzZxIMPNmosvTkPvWw3rXwke8DsGExmfKc84dmiH-ugPtcbQNJNTreuMAo0rECGPjW2iiEyjQ6mnvqGbv"
-          },
-          "description": "Explore the life and legacy of Walt Disney through exhibits."
-        },
-        {
-          "time": "6:00 PM",
-          "activity_name": "Dinner at The Stinking Rose",
-          "location": {
-            "name": "The Stinking Rose",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Shari Vari Playhouse",
+            "city": "Rome",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Dine at a famous garlic-themed restaurant."
+          "description": "Experience the vibrant nightlife at Shari Vari Playhouse, a trendy venue known for its cocktails and lively atmosphere."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-06",
-      "summary": "Explore one of the city's most iconic landmarks followed by a visit to the local art scene.",
+      "date": "2024-11-21",
+      "summary": "Continue the exploration of Rome's cultural delights during the day followed by an engaging evening with entertainment and nightlife.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Golden Gate Bridge",
+          "time": "10:00",
+          "activity_name": "Ludus Magnus",
           "location": {
-            "name": "Golden Gate Bridge",
-            "city": "San Francisco",
+            "name": "Ludus Magnus",
+            "city": "Rome",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 41.890087,
+              "longitude": 12.4949419
             },
-            "place_id": "ChIJw____96GhYARCVVwg5cT7c0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM-zf0JCps7S-CqgSynrwAwaTI8MMNc59Cyi5wrmISROZpSZXGYt5DdiSSCi3xxsoPHCGnoPHhzO8RXe1kYSoeMFpnSBlawCxhFqHAEsumF3Mgs50dzH3B6Q9i1leZFeNikFnqtk6HiLRFicJkAsZre2XWpzyIWTeHAPVUPRD9j7Stn"
+            "place_id": "ChIJJ540e7dhLxMR05OTuWWdXow",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNdjUtneG6aTF3_1IN1AtcetK3v7KIZVeSRQy3iIAwTLhUBcBibDA3l-DmRZQqG3TmYEJn12UxbYH5elPwBV3ZnO7saxFOUL1Av_zZoj0PVFMsB42TNfrvXhSJ4SldNG0pIHG-o6-Jmwi3VUnpbb4KvicmwhAf-a3ZzcxO1jLHXm0H3&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Walk across the iconic bridge and enjoy stunning views of the city."
+          "description": "Discover the ancient gladiator training school, Ludus Magnus, and learn about Rome's rich history of gladiatorial combat."
         },
         {
-          "time": "12:00 PM",
-          "activity_name": "Lunch at The Cliff House",
+          "time": "13:00",
+          "activity_name": "Lunch at Roscioli",
           "location": {
-            "name": "The Cliff House",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "ChIJ6RRKjbRhLxMRKHHdS4QvkK4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPD8-ATSt134fUsl3RYUaeKqqEDJKpmu-3ZIElmdq1VgS5SxF3A6Bv8wIPIBdrr6BspAoA-EqABUcJSw3gAym_Oz0pQj9bm4CJO9UJ-mZvgjznd2DGbj_YROiJn6KlHkaRH38jZYVUCyGE8wnuq6GcZtsTArOFeQkfF-gnVbkRWqlK8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE},"
-          },
-          "description": "Enjoy a meal with panoramic ocean views."
-        },
-        {
-          "time": "2:00 PM",
-          "activity_name": "Exploring the Art at San Francisco Museum of Modern Art",
-          "location": {
-            "name": "San Francisco Museum of Modern Art",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Roscioli",
+            "city": "Rome",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Immerse yourself in modern art collections."
+          "description": "Savor traditional Italian dishes at Roscioli, an acclaimed deli and restaurant known for its fresh ingredients."
         },
         {
-          "time": "6:30 PM",
-          "activity_name": "Dinner at Acquerello",
+          "time": "15:30",
+          "activity_name": "Visit to Trastevere",
           "location": {
-            "name": "Acquerello",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Trastevere",
+            "city": "Rome",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Savor Italian fine dining in an elegant setting."
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "date": "2024-11-07",
-      "summary": "Day trip to explore the natural beauty of Muir Woods and experience local vineyards.",
-      "activities": [
-        {
-          "time": "9:00 AM",
-          "activity_name": "Visit Muir Woods National Monument",
-          "location": {
-            "name": "Muir Woods National Monument",
-            "city": "Mill Valley",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "ChIJrWJnvbSRhYAR-a__aHZY_3o",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNvZ5jkwD_2TROp9se5bBmoU-GCHM1crxvm3hJJN1Rh1Va_q8xlmn4FxIuf8iAmy5bCew4d6_sc-kWf1NPQYkGRzkQ7nd8XNe8NDaBcGK4qE0WaNDgOJjB_I8aBF9ADHHatef81cEwEUirKG5Q08AZZh7ukPB-PXBTcbinXDGhnpkT4"
-          },
-          "description": "Experience the serene beauty of ancient redwood trees."
+          "description": "Stroll through the charming cobblestone streets of Trastevere, exploring its beautiful scenery and unique shops."
         },
         {
-          "time": "12:30 PM",
-          "activity_name": "Lunch at Mountain Home Inn",
+          "time": "20:00",
+          "activity_name": "Dinner and Show at La Maison",
           "location": {
-            "name": "Mountain Home Inn",
-            "city": "Mill Valley",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "La Maison",
+            "city": "Rome",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Delight in a cozy atmosphere with local cuisine."
+          "description": "Enjoy dinner paired with an engaging live performance at La Maison, a venue that offers great entertainment in a warm atmosphere."
         },
         {
-          "time": "3:00 PM",
-          "activity_name": "Wine Tasting at Marinwood Plaza",
+          "time": "22:30",
+          "activity_name": "Night out at Campo de' Fiori",
           "location": {
-            "name": "Marinwood Plaza",
-            "city": "San Rafael",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Campo de' Fiori",
+            "city": "Rome",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit local wineries and sample regional wines."
-        },
-        {
-          "time": "6:00 PM",
-          "activity_name": "Dinner at Farmshop",
-          "location": {
-            "name": "Farmshop",
-            "city": "Marin",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy farm-to-table dining at its best."
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "date": "2024-11-08",
-      "summary": "Last exploration day in the city with shopping and local culture before departure.",
-      "activities": [
-        {
-          "time": "10:00 AM",
-          "activity_name": "Visit Ferry Building Marketplace",
-          "location": {
-            "name": "Ferry Building Marketplace",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Shop for local goods and gourmet food."
-        },
-        {
-          "time": "1:00 PM",
-          "activity_name": "Lunch at Boulettes Larder",
-          "location": {
-            "name": "Boulettes Larder",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Experience delicious contemporary dishes."
-        },
-        {
-          "time": "3:00 PM",
-          "activity_name": "Explore Chinatown",
-          "location": {
-            "name": "Chinatown",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Stroll through vibrant streets filled with unique shops and restaurants."
-        },
-        {
-          "time": "5:00 PM",
-          "activity_name": "Dinner at House of Prime Rib",
-          "location": {
-            "name": "House of Prime Rib",
-            "city": "San Francisco",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "End your trip with a classic prime rib dinner."
+          "description": "End the trip with a lively night out at Campo de' Fiori, known for its bustling nightlife and crowd of locals and tourists alike."
         }
       ]
     }

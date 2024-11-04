@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 # Initialize OpenAI client
 client = AsyncOpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
+    api_key=os.environ.get("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"),
 )
 
 # Google Places API configurations

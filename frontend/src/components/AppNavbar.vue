@@ -26,34 +26,6 @@
         <li class="nav-item me-4">
           <router-link to="/saveditinerary" class="nav-link">My Itineraries</router-link>
         </li>
-
-        <li>
-          <img src="@/assets/profilepic.png" class="user-pic" alt="user-pic" @click="toggleMenu" />
-
-          <div class="sub-menu-wrap" :class="{ 'open-menu': isMenuOpen }" id="subMenu">
-            <div class="sub-menu">
-              <div class="user-info">
-                <img src="@/assets/profilepic.png" />
-                <h3>{{ displayName || "User" }}</h3>
-
-                <div class="user-email">
-                  <h4>{{ email }}</h4>
-                </div>
-              </div>
-
-              <hr />
-
-
-              <a href="#" class="sub-menu-link" @click="signOutUser">
-                <img
-                  src= "@\assets\logout_icon.png"
-                  alt="" />
-                <p>Logout</p>
-                <span>></span>
-              </a>
-            </div>
-          </div>
-        </li>
       </ul>
 
 
@@ -67,7 +39,7 @@
         </button>
 
         <img src="@/assets/profilepic.png" class="user-pic" alt="user-pic" @click="toggleProfileMenu" />
-        <!-- Profile Details Here --><!-- Profile Dropdown -->
+
         <div class="sub-menu-wrap" :class="{ 'open-menu': isMenuOpen }" id="subMenu">
           <div class="sub-menu">
             <div class="user-info">
@@ -81,34 +53,9 @@
 
             <hr />
 
-            <a href="#" class="sub-menu-link">
-              <img
-                src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                alt="" />
-              <p>Edit Profile</p>
-              <span>></span>
-            </a>
-
-            <a href="#" class="sub-menu-link">
-              <img
-                src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                alt="" />
-              <p>Settings</p>
-              <span>></span>
-            </a>
-
-            <a href="#" class="sub-menu-link">
-              <img
-                src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                alt="" />
-              <p>Help</p>
-              <span>></span>
-            </a>
 
             <a href="#" class="sub-menu-link" @click="signOutUser">
-              <img
-                src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
-                alt="" />
+              <img src="@\assets\logout_icon.png" alt="" />
               <p>Logout</p>
               <span>></span>
             </a>
@@ -122,13 +69,13 @@
       <!-- Dropdown Menu (Only visible when dropdown button is clicked) -->
       <div class="mobile-dropdown-wrap" :class="{ 'open-menu': isDropdownOpen }">
         <div class="mobile-dropdown">
-        <router-link to="/" class="dropdown-item" exact>Main Page</router-link>
-        <router-link to="/savedplaces" class="dropdown-item">Saved Places</router-link>
-        <router-link to="/destinations" class="dropdown-item">Destinations</router-link>
-        <router-link to="/about" class="dropdown-item">About</router-link>
-        <router-link to="/saveditinerary" class="dropdown-item">My itineraries</router-link>
+          <router-link to="/" class="dropdown-item" exact>Main Page</router-link>
+          <router-link to="/savedplaces" class="dropdown-item">Saved Places</router-link>
+          <router-link to="/destinations" class="dropdown-item">Destinations</router-link>
+          <router-link to="/about" class="dropdown-item">About</router-link>
+          <router-link to="/saveditinerary" class="dropdown-item">My itineraries</router-link>
+        </div>
       </div>
-    </div>
     </div>
   </nav>
 </template>
@@ -234,7 +181,8 @@ export default {
   font-size: 2.5vw;
   color: white;
   margin-left: 20px;
-  min-width: 80px; /* Set a minimum width to prevent shrinking */
+  min-width: 80px;
+  /* Set a minimum width to prevent shrinking */
 }
 
 /* Container background */
@@ -334,8 +282,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Translucent black filter */
-  z-index: 1040; /* Behind the navbar and dropdown */
+  background: rgba(0, 0, 0, 0.5);
+  /* Translucent black filter */
+  z-index: 1040;
+  /* Behind the navbar and dropdown */
 }
 
 .mobile-dropdown-wrap {
@@ -345,12 +295,14 @@ export default {
   width: 100%;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 1.2s ease; /* Smooth expand/collapse animation */
+  transition: max-height 1.2s ease;
+  /* Smooth expand/collapse animation */
   z-index: 1050;
 }
 
 .mobile-dropdown-wrap.open-menu {
-  max-height: 100vh; /* Adjust to fit the number of items */
+  max-height: 100vh;
+  /* Adjust to fit the number of items */
 }
 
 .mobile-dropdown {
@@ -379,7 +331,8 @@ export default {
 
 /* Active page color */
 .dropdown-item.router-link-exact-active {
-  color: #a8a8a8 !important;/* Set active page color to gray */
+  color: #a8a8a8 !important;
+  /* Set active page color to gray */
   font-weight: 600;
 }
 
@@ -568,12 +521,14 @@ export default {
   }
 
   #title {
-    font-size: 1.2rem; /* Set a fixed size to maintain consistency on small screens */
+    font-size: 1.2rem;
+    /* Set a fixed size to maintain consistency on small screens */
   }
 }
 
 /* Additional styles for very small screens (below 320px) */
 @media (max-width: 320px) {
+
   /* Hide the wander logo and profile picture */
   .navbar-brand,
   .user-pic {
@@ -583,7 +538,8 @@ export default {
   /* Keep the dropdown button visible */
   .dropdown-btn {
     display: inline-block;
-    margin-left: auto; /* Align dropdown button to the right */
+    margin-left: auto;
+    /* Align dropdown button to the right */
   }
 }
 </style>
