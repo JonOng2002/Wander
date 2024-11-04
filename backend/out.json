@@ -1,72 +1,75 @@
 {
   "location_info": {
-    "place_name": "Yakibuta Ramen Sanjyo",
+    "place_name": "Shinjuku",
     "country": "Japan",
-    "city": "Kasamatsu",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF3-pzZ8boxHWLUcr81cwaUCpBpR9nnYbZEftdSOQwpxBIRV7IvIB9Z_2NG-vdHaydbrvcXBfP0oNM_9XhbULPUNrwxvldiT6s=s1600-w510",
+    "city": "Tokyo",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFRS4KYH5Qhu6tXpwW_Kymjfh_59Yuxi63eSmWFh4q1gOwIj8iVECd9nZY766Tw8SmI1CPeQ-4iwqoBQvQYuWyKV7ii7qEz7JE=s1600-w800",
     "coordinates": {
-      "latitude": 35.3495432,
-      "longitude": 136.7488693
+      "latitude": 35.6938253,
+      "longitude": 139.7033559
     },
     "activities": [
-      "Enjoy authentic Japanese ramen",
-      "Watch the ramen master at work",
-      "Experience local dining culture"
+      "Shopping",
+      "Dining",
+      "Nightlife",
+      "Sightseeing"
     ],
-    "location_summary": "Yakibuta Ramen Sanjyo is known for its delicious BBQ pork ramen, prepared by a skilled ramen master.",
-    "vicinity": "メゾンＧ5 1F, ６５８ Kitaoyobi, Kasamatsu"
+    "location_summary": "Shinjuku is a bustling district in Tokyo known for its lively entertainment, shopping, and business areas. It features skyscrapers, retail shops, and vibrant nightlife.",
+    "vicinity": "Shinjuku City"
   },
   "related_places": [
     {
-      "place_name": "Ichiran Ramen",
-      "country": "Japan",
-      "city": "Fukuoka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaa44QbOAaTyC7CESE5iXtNabMhz_kRzZmuJrD11wH0QeMmvotRP6GjfuTlKgAMgCtepCwRvP1qI3S-gXMwsc9PGf41hSCph4=s1600-w800",
-      "coordinates": {
-        "latitude": 1.5009666,
-        "longitude": 103.777432
-      },
-      "activities": [
-        "Taste the famous tonkotsu ramen",
-        "Dine in a private booth",
-        "Customize your ramen flavor"
-      ],
-      "location_summary": "Ichiran Ramen is renowned for its rich tonkotsu broth and unique dining experience designed for ramen lovers.",
-      "vicinity": "TM-003, Third Floor (Mezzanine), The Mall, Mid Valley Southkey, No. 1, Persiaran Southkey 1, Kota Southkey, Johor Bahru"
-    },
-    {
-      "place_name": "Ramen Nagi",
+      "place_name": "Shibuya",
       "country": "Japan",
       "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHn618RAKfr9W-9VSMy_2VXKhpjjylW9enpAqBcGMOwpBMnZ8Hv134PECiPCIBe1jTettYymFpItIb3x0_FbOIZtS9FUVf0Rbg=s1600-w800",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGm6EZm5impV27GU0B4AdTXM0rQ0YmP9iDP7Fh5qB0cp3QmZXAXhEWj9IBq4IfJ4JPsCzW9jj62Y4Hfsnl6XpNuBHxR63QPYZI=s1600-w600",
       "coordinates": {
-        "latitude": 1.3039387,
-        "longitude": 103.8318267
+        "latitude": 35.6619707,
+        "longitude": 139.703795
       },
       "activities": [
-        "Explore different ramen styles",
-        "Enjoy a vibrant dining environment",
-        "Participate in seasonal specials"
+        "Shopping",
+        "Dining",
+        "Nightlife",
+        "Cultural Sites"
       ],
-      "location_summary": "Ramen Nagi offers a variety of ramen flavors and styles, making it a favorite spot for locals and tourists alike.",
-      "vicinity": "2 Orchard Turn, #B4-54"
+      "location_summary": "Shibuya is a famous district in Tokyo known for its iconic scramble crossing, vibrant shopping areas, and bustling youth culture.",
+      "vicinity": "Shibuya City"
     },
     {
-      "place_name": "Tonkotsu Ramen Shogun",
+      "place_name": "Harajuku",
       "country": "Japan",
-      "city": "Osaka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE1XO9y7F8rrJ4wHq2FYf7_itBVuWW_ty7T2NhV4EuQdo_QAxntIyKqwQxOUP4GFEd1zLBHnr2J_t_LDNmiO9lRq7mBjXevJ1g=s1600-w800",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqH4RDYF0vcIyjhFWyt7Vlzn4q7eRLNLR_1BQg0quJIMuwQb1y9J_J9tWHtiyURl7IKHbDz2F__r7NWfg5uW8qeGZV4ccHXg35M=s1600-w800",
       "coordinates": {
-        "latitude": 3.035682899999999,
-        "longitude": 101.7640742
+        "latitude": 35.6699682,
+        "longitude": 139.709008
       },
       "activities": [
-        "Delight in tonkotsu ramen",
-        "Pair ramen with local beers",
-        "Take part in tasting events"
+        "Shopping",
+        "Street Food",
+        "Cultural Exploration"
       ],
-      "location_summary": "Tonkotsu Ramen Shogun is famous for its creamy butter-infused broth and tender noodles, attracting ramen enthusiasts.",
-      "vicinity": "No. 80, Jalan Dataran Cheras 4, Dataran Perniagaan Cheras, Balakong Cheras, Balakong"
+      "location_summary": "Harajuku is a district in Tokyo renowned for its unique fashion scene, trendy shops, and the famous Takeshita Street.",
+      "vicinity": "Jingumae"
+    },
+    {
+      "place_name": "Akihabara",
+      "country": "Japan",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHfNzYoDB59xTtw7LAkD6sMz8KEto5HX4yDPVyueg3dZ4S3mMFM3bCVEdoSGaQF4gk8AcF7rmZPWLQ0a_M7Koe4_Gm1RdALIKo=s1600-w800",
+      "coordinates": {
+        "latitude": 35.6996473,
+        "longitude": 139.7713703
+      },
+      "activities": [
+        "Shopping",
+        "Gaming",
+        "Anime Culture",
+        "Tech Exploration"
+      ],
+      "location_summary": "Akihabara is known as Tokyo's electronics district, famous for its abundance of tech shops, anime culture, and gaming centers.",
+      "vicinity": "Tokyo, Japan"
     }
   ]
 }

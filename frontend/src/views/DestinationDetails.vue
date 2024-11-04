@@ -67,21 +67,23 @@
       </transition-group>
     </div>
 
-    <!-- Popup Notifications -->
-    <div v-if="showPopup" class="popup">
-      <p>Added to saved places!</p>
-    </div>
+  <!-- Added ToastNotification -->
+    <ToastNotification
+      :show="toastShow"
+      :message="toastMessage"
+      :type="toastType"
+      :duration="3000"
+      @update:show="toastShow = $event"
+    />
 
-    <div v-if="showAlreadySavedPopup" class="popup already-saved">
-      <p>Place has already been saved!</p>
-    </div>
-  </div>
+</div>
 </template>
 
 <script>
 // Import necessary components and functions
 import SavePlaceButton from "@/components/SavePlaceButton.vue"; // Adjust the path as needed
 import StarRating from "@/components/StarRating.vue"; // Import the StarRating component
+import ToastNotification from "@/components/ToastNotification.vue";
 import { auth, db } from "@/main.js"; // Adjust the path based on your project structure
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import axios from "axios";
@@ -91,6 +93,7 @@ export default {
   components: {
     SavePlaceButton,
     StarRating,
+    ToastNotification,
   },
   inject: ["savedPlacesState"], // Inject the provided global state
   data() {
@@ -102,13 +105,14 @@ export default {
       apiKey: process.env.VUE_APP_GOOGLE_API_KEY || "YOUR_GOOGLE_PLACES_API_KEY", // Replace with your actual API key or use environment variable
       cityName: this.$route.params.city || "Unknown City",
       userId: null,
-      showPopup: false,
-      showAlreadySavedPopup: false, // Ensure this is initialized correctly
       errorMessage: "", // For user-friendly error messages
       sortCriteria: {
       field: 'popularity', // 'popularity' or 'rating'
       direction: 'desc',    // 'asc' or 'desc'
       },
+      toastShow: false,
+      toastMessage: "",
+      toastType: "info", // Default type
     };
   },
   created() {
@@ -655,19 +659,18 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    showSavedPopup() {
-      this.showPopup = true; // Show the popup
-      setTimeout(() => {
-        this.showPopup = false; // Automatically hide after 3 seconds
-      }, 3000);
-    },
 
-    displayAlreadySavedPopup() { // Renamed method
-      this.showAlreadySavedPopup = true;
-      setTimeout(() => {
-        this.showAlreadySavedPopup = false;
-      }, 3000);
-    },
+    showSavedPopup() {
+    this.toastMessage = "Added to Saved Places!";
+    this.toastType = "add"; // Use 'add' type for success
+    this.toastShow = true; // Show the toast
+  },
+
+    displayAlreadySavedPopup() {
+    this.toastMessage = "Place has already been saved!";
+    this.toastType = "info"; // Use 'info' type for already saved
+    this.toastShow = true; // Show the toast
+  },
 
     isPlaceSaved(placeId) {
       // Check if the place is already saved using the reactive state
@@ -1015,21 +1018,6 @@ export default {
   padding: 20px;
 }
 
-/* Popup Notification Styles */
-.popup {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #2ecc71;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: opacity 0.3s ease;
-  opacity: 1;
-}
 
 .already-saved {
   background-color: #e74c3c; /* Different color for already saved */

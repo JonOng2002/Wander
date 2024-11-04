@@ -1,14 +1,30 @@
 <template>
-  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div
+    id="carouselExampleInterval"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="10000">
-        <img src="@/assets/countries/thailand.jpg" alt="Image 1" class="d-block w-100" />
+        <img
+          src="@/assets/countries/thailand.jpg"
+          alt="Image 1"
+          class="d-block w-100"
+        />
       </div>
       <div class="carousel-item" data-bs-interval="2000">
-        <img src="@/assets/countries/denmark.jpg" alt="Image 1" class="d-block w-100" />
+        <img
+          src="@/assets/countries/denmark.jpg"
+          alt="Image 1"
+          class="d-block w-100"
+        />
       </div>
       <div class="carousel-item">
-        <img src="@/assets/countries/germany.jpg" alt="Image 1" class="d-block w-100" />
+        <img
+          src="@/assets/countries/germany.jpg"
+          alt="Image 1"
+          class="d-block w-100"
+        />
       </div>
     </div>
 
@@ -16,7 +32,17 @@
       <!-- Toast Notification -->
       <div :class="['custom-toast', { active: toastActive }, toastType]">
         <div class="toast-content">
-          <i :class="['fas', toastType === 'add' ? 'fa-check' : 'fa-times', 'action-icon']"></i>
+          <i
+            :class="[
+              'fas',
+              toastType === 'add'
+                ? 'fa-check'
+                : toastType === 'remove'
+                ? 'fa-info'
+                : 'fa-times-circle',
+              'action-icon',
+            ]"
+          ></i>
           <div class="message">
             <span class="text text-2">{{ toastMessage }}</span>
           </div>
@@ -31,11 +57,21 @@
     <!-- Gradient Overlay -->
     <div class="gradientoverlay"></div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="prev"
+    >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="next"
+    >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -82,23 +118,48 @@
   </div>
 
   <div v-if="loading" class="empty-message">Loading saved places...</div>
-  <div v-else-if="filteredPlaces && filteredPlaces.length === 0" class="empty-message">
+  <div
+    v-else-if="filteredPlaces && filteredPlaces.length === 0"
+    class="empty-message"
+  >
     <p>No places saved yet.</p>
   </div>
 
   <div v-else class="card-grid">
     <transition-group name="list" tag="div" class="transition-wrapper">
-      <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs"
-        v-motion-slide-visible-once-top>
-        <div class="card destination-card" :style="{ backgroundImage: `url(${place.image})` }">
+      <div
+        v-for="place in filteredPlaces"
+        :key="place.place_id"
+        class="card-container"
+        ref="cardRefs"
+        v-motion-slide-visible-once-top
+      >
+        <div
+          class="card destination-card"
+          :style="{ backgroundImage: `url(${place.image})` }"
+        >
           <div class="overlay"></div>
-          <button @click="removePlace(place)" type="button" class="btn close-button">✖</button>
+          <button
+            @click="removePlace(place)"
+            type="button"
+            class="btn close-button"
+          >
+            ✖
+          </button>
           <div class="card-body">
             <h5 class="card-title">{{ place.name }}</h5>
             <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
             <div class="button-container">
-              <button @click="toggleItinerary(place, $event)" type="button" class="btn itinerary-button">
-                {{ isPlaceInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
+              <button
+                @click="toggleItinerary(place, $event)"
+                type="button"
+                class="btn itinerary-button"
+              >
+                {{
+                  isPlaceInItinerary(place)
+                    ? "Remove from Itinerary"
+                    : "Add to Itinerary"
+                }}
               </button>
             </div>
           </div>
@@ -111,22 +172,48 @@
     <div class="modal-content">
       <h3>Your Itinerary</h3>
       <ol class="list-group list-group-numbered">
-        <li class="list-group-item" v-for="(item, index) in itinerary" :key="index">
-          <img :src="item.image" class="modal-image" alt="Image of {{ item.name }}" />
+        <li
+          class="list-group-item"
+          v-for="(item, index) in itinerary"
+          :key="index"
+        >
+          <img
+            :src="item.image"
+            class="modal-image"
+            alt="Image of {{ item.name }}"
+          />
           {{ item.name }} - {{ item.vicinity }}
         </li>
       </ol>
-      <button @click="navigateToGeneratedItinerary" class="btn mb-2 view-full-itinerary-btn">View Full
-        Itinerary</button>
-      <button @click="toggleModal" type="button" class="btn close-modal-btn">Close</button>
+      <button
+        @click="navigateToGeneratedItinerary"
+        class="btn mb-2 view-full-itinerary-btn"
+      >
+        View Full Itinerary
+      </button>
+      <button @click="toggleModal" type="button" class="btn close-modal-btn">
+        Close
+      </button>
     </div>
   </div>
 
-  <div v-if="showDeletePopup" class="modal-overlay" @click.self="toggleDeletePopup">
+  <div
+    v-if="showDeletePopup"
+    class="modal-overlay"
+    @click.self="toggleDeletePopup"
+  >
     <div class="modal-content">
       <h3>Are you sure you want to delete all saved places?</h3>
-      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">Yes, Delete All</button>
-      <button @click="toggleDeletePopup" type="button" class="btn close-modal-btn">Cancel</button>
+      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">
+        Yes, Delete All
+      </button>
+      <button
+        @click="toggleDeletePopup"
+        type="button"
+        class="btn close-modal-btn"
+      >
+        Cancel
+      </button>
     </div>
   </div>
 
@@ -134,22 +221,29 @@
     <div v-if="showPopup" class="popup">
       <p>Added to itinerary!</p>
     </div>
-    <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
+    <div v-if="showRemovePopup" class="popup" style="background-color: #f44336">
       <p>Removed from itinerary!</p>
     </div>
   </div>
 </template>
 
-
 <script>
-import { ref, onMounted } from 'vue';
-import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-import { useRouter } from 'vue-router';
+import { ref, onMounted } from "vue";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { useRouter } from "vue-router";
 import { gsap } from "gsap";
 
 export default {
-  name: 'SavedPlaces',
+  name: "SavedPlaces",
   setup() {
     const savedPlaces = ref([]);
     const filteredPlaces = ref([]);
@@ -164,9 +258,9 @@ export default {
     // Reactive variables for toast notification
     const toastActive = ref(false);
     const progressBar = ref(null);
-    const toastTitle = ref('');
-    const toastMessage = ref('');
-    const toastType = ref(''); // Type of toast notification (add or remove)
+    const toastTitle = ref("");
+    const toastMessage = ref("");
+    const toastType = ref(""); // Type of toast notification (add or remove)
 
     let toastTimeout = null; // Keep track of the toast timeout
     let progressBarAnimation = null; // Keep track of the progress bar animation
@@ -204,7 +298,7 @@ export default {
 
     // Show toast notification
     const showToast = (title, message, type) => {
-      console.log('showToast called with title:', title, 'message:', message);
+      console.log("showToast called with title:", title, "message:", message);
 
       // Clear any existing timeout
       if (toastTimeout) {
@@ -233,9 +327,9 @@ export default {
       if (progressBar.value) {
         progressBarAnimation = gsap.to(progressBar.value, {
           scaleX: 1,
-          transformOrigin: 'left',
+          transformOrigin: "left",
           duration: 3,
-          ease: 'linear',
+          ease: "linear",
         });
       }
 
@@ -267,7 +361,7 @@ export default {
 
     // Save itinerary to Firestore
     const saveItinerary = async (place) => {
-      console.log('start saving itinerary');
+      console.log("start saving itinerary");
       console.log(itinerary.value);
       const auth = getAuth();
       const user = auth.currentUser;
@@ -296,7 +390,9 @@ export default {
           await updateDoc(userDocRef, {
             generatedItineraries: arrayRemove(placeData),
           });
-          itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
+          itinerary.value = itinerary.value.filter(
+            (item) => item.place_id !== place.place_id
+          );
           console.log("Place removed from itinerary:", placeData);
           togglePopup("remove");
         } else {
@@ -315,12 +411,12 @@ export default {
 
     const navigateToGeneratedItinerary = () => {
       router.push({
-        name: 'ItineraryBuilder',
+        name: "ItineraryBuilder",
       });
     };
 
     const isPlaceInItinerary = (place) => {
-      return itinerary.value.some(item => item.place_id === place.place_id);
+      return itinerary.value.some((item) => item.place_id === place.place_id);
     };
 
     const deleteAllPlaces = async () => {
@@ -328,10 +424,12 @@ export default {
     };
 
     const togglePopup = (type) => {
-      if (type === 'add') {
-        showToast('Success', 'Added to Itinerary!', 'add');
-      } else if (type === 'remove') {
-        showToast('Success', 'Removed from Itinerary!', 'remove');
+      if (type === "add") {
+        showToast("Success", "Added to Itinerary!", "add");
+      } else if (type === "remove") {
+        showToast("Success", "Removed from Itinerary!", "remove");
+      } else if (type === "error") {
+        showToast("Error", "An error occurred.", "error");
       }
     };
 
@@ -344,7 +442,7 @@ export default {
 
       if (user) {
         const userId = user.uid;
-        const userDocRef = doc(db, 'users', userId);
+        const userDocRef = doc(db, "users", userId);
 
         try {
           const docSnap = await getDoc(userDocRef);
@@ -352,27 +450,29 @@ export default {
             itinerary.value = docSnap.data().generatedItineraries || [];
             // Update the state for each place based on loaded itinerary
           } else {
-            console.error('No such document!');
+            console.error("No such document!");
           }
         } catch (error) {
-          console.error('Error fetching user itinerary:', error);
+          console.error("Error fetching user itinerary:", error);
         }
       }
     };
 
     const toggleItinerary = async (place, event) => {
-      const index = savedPlaces.value.findIndex(item => item.place_id === place.place_id);
+      const index = savedPlaces.value.findIndex(
+        (item) => item.place_id === place.place_id
+      );
 
       if (index !== -1) {
         const user = getAuth().currentUser;
 
         if (!user) {
-          console.error('User is not authenticated');
+          console.error("User is not authenticated");
           return;
         }
 
         const userId = user.uid;
-        const userDocRef = doc(db, 'users', userId);
+        const userDocRef = doc(db, "users", userId);
 
         try {
           const placeData = {
@@ -383,21 +483,23 @@ export default {
             country: place.country,
             coordinates: {
               latitude: place.coordinates.latitude,
-              longitude: place.coordinates.longitude
-            }
+              longitude: place.coordinates.longitude,
+            },
           };
 
-          const isInItinerary = isPlaceInItinerary(place);  // Check if the place is in the itinerary
+          const isInItinerary = isPlaceInItinerary(place); // Check if the place is in the itinerary
 
           // Immediate local state update for reactivity
           if (isInItinerary) {
             // Remove from itinerary locally first
-            itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
-            togglePopup('remove');  // Show remove toast
+            itinerary.value = itinerary.value.filter(
+              (item) => item.place_id !== place.place_id
+            );
+            togglePopup("remove"); // Show remove toast
 
             // Update Firebase after local state change
             await updateDoc(userDocRef, {
-              generatedItineraries: arrayRemove(placeData)
+              generatedItineraries: arrayRemove(placeData),
             });
           } else {
             const button = event.currentTarget;
@@ -410,21 +512,21 @@ export default {
                 scale: 1.1,
                 duration: 0.2,
                 yoyo: true,
-                repeat: 1
+                repeat: 1,
               }
             );
 
             // Add to itinerary locally first
             itinerary.value.push({ ...place });
-            togglePopup('add');  // Show add toast
+            togglePopup("add"); // Show add toast
 
             // Update Firebase after local state change
             await updateDoc(userDocRef, {
-              generatedItineraries: arrayUnion(placeData)
+              generatedItineraries: arrayUnion(placeData),
             });
           }
         } catch (error) {
-          console.error('Error updating itinerary in Firebase:', error);
+          console.error("Error updating itinerary in Firebase:", error);
         }
       }
     };
@@ -438,26 +540,31 @@ export default {
           const user = getAuth().currentUser;
           if (user) {
             const userId = user.uid;
-            const userDocRef = doc(db, 'users', userId);
+            const userDocRef = doc(db, "users", userId);
 
             const userDoc = await getDoc(userDocRef);
             if (userDoc.exists()) {
               const data = userDoc.data().generatedItineraries;
               itinerary.value = data || [];
             } else {
-              console.log('No document found for the user.');
+              console.log("No document found for the user.");
             }
           } else {
-            console.error('User is not authenticated.');
+            console.error("User is not authenticated.");
           }
         } catch (error) {
-          console.error('Error fetching generatedItineraries from Firebase:', error);
+          console.error(
+            "Error fetching generatedItineraries from Firebase:",
+            error
+          );
         }
       }
     };
 
     const removePlace = (place) => {
-      const index = savedPlaces.value.findIndex(item => item.place_id === place.place_id);
+      const index = savedPlaces.value.findIndex(
+        (item) => item.place_id === place.place_id
+      );
       if (index !== -1) {
         savedPlaces.value.splice(index, 1);
         filteredPlaces.value = [...savedPlaces.value];
@@ -472,10 +579,11 @@ export default {
           setDoc(userRef, { savedPlaces: savedPlaces.value }, { merge: true })
             .then(() => {
               console.log("Firestore updated successfully.");
-              showToast('Success', 'Place Removed!');
+              showToast("Success", "Place Removed!", "remove");
             })
             .catch((error) => {
               console.error("Error updating Firestore:", error);
+              showToast("Error", "Failed to remove place.", "error");
             });
         }
       } else {
@@ -485,9 +593,9 @@ export default {
 
     const filterPlaces = (event) => {
       const value = event.target.value;
-      if (value === 'alphabetical') {
+      if (value === "alphabetical") {
         filterAlphabetically();
-      } else if (value === 'recently-added') {
+      } else if (value === "recently-added") {
         filterRecentlyAdded();
       } else {
         filteredPlaces.value = [...savedPlaces.value];
@@ -495,11 +603,15 @@ export default {
     };
 
     const filterAlphabetically = () => {
-      filteredPlaces.value = [...savedPlaces.value].sort((a, b) => a.name.localeCompare(b.name));
+      filteredPlaces.value = [...savedPlaces.value].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
     };
 
     const filterRecentlyAdded = () => {
-      filteredPlaces.value = [...savedPlaces.value].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+      filteredPlaces.value = [...savedPlaces.value].sort(
+        (a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)
+      );
     };
 
     const confirmDeleteAllPlaces = async () => {
@@ -524,12 +636,12 @@ export default {
               try {
                 await setDoc(userRef, { savedPlaces: [] }, { merge: true });
                 console.log("All saved places deleted successfully.");
-                showToast('Success', 'All Places Deleted!');
+                showToast("Success", "All Places Deleted!", "remove");
               } catch (error) {
                 console.error("Error deleting saved places:", error);
               }
             }
-          }
+          },
         });
       } else {
         console.log("No cards to delete.");
@@ -541,7 +653,7 @@ export default {
 
       const user = getAuth().currentUser;
       const userEmail = user.email;
-      const userDocRef = doc(db, 'users', userEmail);
+      const userDocRef = doc(db, "users", userEmail);
 
       try {
         await updateDoc(userDocRef, {
@@ -553,9 +665,9 @@ export default {
             country: place.country,
             coordinates: {
               latitude: place.coordinates.latitude,
-              longitude: place.coordinates.longitude
-            }
-          })
+              longitude: place.coordinates.longitude,
+            },
+          }),
         });
       } catch (error) {
         console.error("Error updating itinerary in Firebase:", error);
@@ -624,7 +736,11 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2)
+  );
   /* Adjust gradient colors and opacity as desired */
   z-index: 1;
   /* Place it above the images but below the text */
@@ -667,7 +783,6 @@ export default {
   font-weight: 500;
   margin: 0.5rem 0 0;
 }
-
 
 /* <=========== SECONDARY HEADER =============> */
 
@@ -769,7 +884,6 @@ export default {
   display: block;
 }
 
-
 /* <=========== CARD GRID LAYOUT =============> */
 
 .transition-wrapper {
@@ -805,7 +919,7 @@ export default {
   border-radius: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin: 0;
-  background: rgba(0, 0, 0, 0.0);
+  background: rgba(0, 0, 0, 0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -988,12 +1102,10 @@ export default {
   transform: translateY(-5px);
 }
 
-
 /* <=========== BREAKPOINTS =============> */
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
     /* 2 items per row on medium screens */
@@ -1112,7 +1224,7 @@ export default {
 
 /* Add Type Toast */
 .custom-toast.add {
-  background: #e6f4ea;
+
   /* Light green background */
   border-left-color: #28a745;
   /* Green border */
@@ -1125,13 +1237,26 @@ export default {
 
 /* Remove Type Toast */
 .custom-toast.remove {
-  background: #f8e6e6;
+  
+  /* Light blue background */
+  border-left-color: #17a2b8;
+  /* Blue border */
+}
+
+.custom-toast.remove .action-icon {
+  background-color: #17a2b8;
+  /* Blue icon background */
+}
+
+/* Error Type Toast (Optional) */
+.custom-toast.error {
+  background: #fdecea;
   /* Light red background */
   border-left-color: #dc3545;
   /* Red border */
 }
 
-.custom-toast.remove .action-icon {
+.custom-toast.error .action-icon {
   background-color: #dc3545;
   /* Red icon background */
 }
@@ -1161,7 +1286,7 @@ export default {
 .message .text {
   font-size: 20px;
   font-weight: 600;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   color: #666666;
 }
 
@@ -1204,7 +1329,6 @@ export default {
   transform: scaleX(0);
   /* Start with scaleX(0) */
 }
-
 
 @keyframes progressBarAnimation {
   from {
