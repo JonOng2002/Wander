@@ -1,60 +1,207 @@
 <template>
-    <div class="main-container">
+    <div class="main-container-1">
         <div class="title">
             <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap"
                 rel="stylesheet">
+            <!-- Bootstrap CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+                crossorigin="anonymous">
+
+
             <h1>wander.</h1>
         </div>
         <div ref="threeContainer" class="three-container"></div>
 
-        <div class="main-feature">
-            <div class="heading">
-                <h2>Start your journey with a click!</h2>
+        <div class="container">
+            <div class="left-text">
+                <p>Welcome to</p>
+                <p style="font-style: italic;">Wander :</p>
+                <p>Explore the world</p>
+                <p>like</p>
+                <p>never before</p>
             </div>
-            <div class="destination-cards">
-                <div class="card">
-                    <img src="../assets/about/hongkong.jpeg" alt="Vanuatu" />
-                    <p>Vanuatu</p>
+            <div class="right-text">
+                <p>Embark on a journey of discovery with Wander, your go-to travel companion. Uncover hidden gems from
+                    TikTok videos and craft the perfect itineraries that transform your <span>travel dreams into
+                        reality</span> effortlessly.</p>
+            </div>
+        </div>
+
+        <div class="wander-container">
+            <h1>
+                Here's How To: Wander With
+                <span class="typed-text">{{ typeValue }}</span>
+                <span class="blinking-cursor">|</span>
+                <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
+            </h1>
+        </div>
+
+
+        <div class="project-container">
+            <div class="image-section">
+                <video src="../assets/link.mp4" loop autoplay muted></video>
+            </div>
+            <div class="text-section">
+                <p class="project-number">01</p>
+                <h2 class="project-title">
+                    Copy the link of the travel Tiktok of your choice!
+                </h2>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="project-container">
+            <div class="text-section">
+                <p class="project-number">02</p>
+                <h2 class="project-title">
+                    Paste the link in our search bar and press 'Search!'
+                </h2>
+            </div>
+            <div class="image-section">
+                <video src="../assets/search.mp4" loop autoplay muted></video>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="project-container">
+            <div class="image-section">
+                <video src="../assets/extract.mp4" loop autoplay muted></video>
+            </div>
+            <div class="text-section">
+                <p class="project-number">03</p>
+                <h2 class="project-title">
+                    View the extracted locations right away!
+                </h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="main-container-2">
+
+
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <div class="transition-image"><img src="../assets/head.png"></div>
+                <div class="grid-section">
+                    <div class="grid-layout">
+                        <div class="column column-1" data-speed="1">
+                            <div class="column-content">
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-1.jpeg" alt="">
+                                </div>
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-2.jpeg" alt="">
+                                </div>
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-3.jpeg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column-2" data-speed="1.01">
+                            <div class="column-content">
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-4.jpeg" alt="">
+                                </div>
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-5.jpeg" alt="">
+                                </div>
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-6.jpeg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column column-3" data-speed="1.1">
+                            <div class="column-content">
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-7.jpeg" alt="">
+                                </div>
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-8.jpeg" alt="">
+                                </div>
+                                <div class="grid-image">
+                                    <img src="../assets/about-scroll/scroll-9.jpeg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <img src="../assets/about/japan.jpeg" alt="Toulouse" />
-                    <p>Toulouse</p>
+
+                <div class="spacer"></div>
+
+                <section class="parallax-section">
+                    <img class="parallax-image" src="../assets/about-scroll/image.jpeg" data-speed="auto">
+                </section>
+
+                <div class="spacer"></div>
+
+                <div class="pin-section">
+                    <div class="pin-content pin-content-1">
+                        <div class="pin-box">
+                            <img class="pin-image" src="../assets/about-scroll/hori-1.jpeg">
+                        </div>
+                        <div class="pin-box">
+                            <img class="pin-image" src="../assets/about-scroll/hori-2.jpeg">
+                        </div>
+                        <div class="pin-box">
+                            <img class="pin-image" src="../assets/about-scroll/hori-3.jpeg">
+                        </div>
+                    </div>
+
+                    <div class="pin-content pin-content-2">
+                        <div class="pin-box">
+                            <img class="pin-image" src="../assets/about-scroll/hori-4.jpeg">
+                        </div>
+                        <div class="pin-box">
+                            <img class="pin-image" src="../assets/about-scroll/hori-5.jpeg">
+                        </div>
+                        <div class="pin-box">
+                            <img class="pin-image" src="../assets/about-scroll/hori-6.jpeg">
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <img src="../assets/about/france.jpeg" alt="Armenia" />
-                    <p>Armenia</p>
+            </div>
+
+
+            <div class="section-container">
+                <div class="headline">
+                    <h1>
+                        Ignite your sense of<br> <span class="highlight">adventure</span> and <span
+                            class="highlight-different">experience</span><br> life in ways you never thought possible!
+                    </h1>
+                </div>
+                <div class="divider"></div>
+                <div class="subheading">
+                    <div class="circles">
+                        <div class="circle">
+                            <img src="../assets/about-scroll/scroll-3.jpeg" alt="Ocean thumbnail 1" />
+                        </div>
+                        <div class="circle">
+                            <img src="../assets/about-scroll/scroll-5.jpeg" alt="Ocean thumbnail 2" />
+                        </div>
+                        <div class="circle">
+                            <img src="../assets/about-scroll/scroll-7.jpeg" alt="Ocean thumbnail 3" />
+                        </div>
+                    </div>
+                    <h2 class="subheading-text">choose wander.</h2>
                 </div>
             </div>
         </div>
 
-        <div class="video-section" ref="videoSection">
-            <p>Explore the world at your fingertips</p>
-            <div class="video-container">
-                <video autoplay loop muted playsinline>
-                    <source src="../assets/destinations.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
 
-        <div class="video-section" ref="videoSection">
-            <p>All your saved places at a glance</p>
-            <div class="video-container">
-                <video autoplay loop muted playsinline>
-                    <source src="../assets/saved.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
+
 
         <div class="carousel-section" ref="carouselSection">
             <div class="carousel-header">
-                <h2>Where to next?</h2>
+                <h2>Your next destination...</h2>
             </div>
             <div class="carousel-container">
                 <div class="carousel-track" ref="carouselTrack">
                     <!-- Double the images for seamless loop -->
-                    <div v-for="(image, index) in [...images, ...images, ...images, ...images]" :key="index"
+                    <div v-for="(image, index) in [...images, ...images, ...images, ...images, ...images]" :key="index"
                         class="carousel-slide">
                         <div class="image-container">
                             <img :src="image.src" :alt="image.alt || `Slide ${index + 1}`">
@@ -65,82 +212,31 @@
             </div>
         </div>
 
-        <div class="video-section" ref="videoSection">
-            <div class="video-container">
-                <video autoplay loop muted playsinline>
-                    <source src="../assets/travel.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+
+        <div class="call-to-action">
+            <h3>What are you waiting for? Start <span>Wander</span>ing.</h3><br>
         </div>
 
-        <footer class=" ">
-            <div class="footer-container">
-                <!-- Main footer content -->
-                <div class="footer-grid">
-                    <!-- Follow Us Section -->
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Follow Us</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-tiktok"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
+        <div class="auth-buttons">
+            <button @click="navigateTologin" class="login-btn">Log in</button>
+            <button @click="navigateTosignup" class="signup-btn">Sign up</button>
+        </div>
 
-                    <!-- Popular Destinations -->
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Popular Destinations</h3>
-                        <ul class="footer-links">
-                            <li><a href="#">Bali</a></li>
-                            <li><a href="#">Greece</a></li>
-                            <li><a href="#">Japan</a></li>
-                            <li><a href="#">Italy</a></li>
-                            <li><a href="#">France</a></li>
-                        </ul>
-                    </div>
 
-                    <!-- Travel Interests -->
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Travel Interests</h3>
-                        <ul class="footer-links">
-                            <li><a href="#">Adventure Travel</a></li>
-                            <li><a href="#">Cultural Tours</a></li>
-                            <li><a href="#">Beach Getaways</a></li>
-                            <li><a href="#">City Breaks</a></li>
-                            <li><a href="#">Food & Wine</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Subscribe Section -->
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Subscribe</h3>
-                        <p class="subscribe-text">Get exclusive travel tips and stories!</p>
-                        <div class="subscribe-form">
-                            <input type="email" placeholder="Enter your email" class="subscribe-input">
-                            <button class="subscribe-button">Subscribe</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
+
 </template>
 
 
 <script>
-import { onMounted, ref, router } from 'vue';
+import { onMounted, ref } from 'vue';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import gsap from 'gsap';
+import { ScrollTrigger, ScrollSmoother } from 'gsap/all';
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
 
 export default {
     name: 'ThreeScene',
@@ -163,9 +259,24 @@ export default {
             scrollInterval: null,
             scrollPosition: 0,
             scrollSpeed: 0.1, // Pixels per frame
+
+            typeValue: "",
+            typeStatus: false,
+            displayTextArray: ["Friends", "Family", "Purpose", "Curiosity", "Excitement"],
+            typingSpeed: 100,
+            erasingSpeed: 100,
+            newTextDelay: 800,
+            displayTextArrayIndex: 0,
+            charIndex: 0,
+
         };
     },
+    props: {},
+    created() {
+        setTimeout(this.typeText, this.newTextDelay + 200);
+    },
     setup() {
+        ScrollTrigger.refresh()
         const threeContainer = ref(null);
         const carouselSection = ref(null);
         const carouselTrack = ref(null);
@@ -199,6 +310,84 @@ export default {
         };
 
         onMounted(() => {
+
+            window.addEventListener('load', () => {
+                document.body.offsetHeight; // Force a reflow/repaint
+                ScrollTrigger.refresh();// Recalculate trigger positions
+            });
+            let gridTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".transition-image",
+                    scrub: 1,
+                    start: "bottom top",
+                    endTrigger: ".grid-section",
+                    end: "bottom center",
+                    markers: false,
+                    // pin: true,
+                },
+                defaults: {
+                    ease: "power1.inOut"
+                }
+            });
+
+            gridTl.add("start")
+                .from(".grid-layout", {
+                    ease: "power1",
+                    scale: 3
+                }, "start")
+                .from(".column-1 .grid-image", {
+                    duration: 0.4,
+                    xPercent: i => -((i + 1) * 40 + i * 100),
+                    yPercent: i => (i + 1) * 40 + i * 100
+                }, "start")
+                .from(".column-3 .grid-image", {
+                    duration: 0.4,
+                    xPercent: i => (i + 1) * 40 + i * 100,
+                    yPercent: i => (i + 1) * 40 + i * 100
+                }, "start");
+
+            // Parallax effect for the parallax section
+            gsap.from(".parallax-section", {
+                scale: 1 / 3,
+                scrollTrigger: {
+                    trigger: ".parallax-section",
+                    scrub: 1
+                }
+            });
+
+            // Pinning and horizontal scroll animation for the pin section
+            let pinSection = document.querySelector(".pin-section");
+            let pinContent1 = document.querySelector(".pin-content-1");
+            let pinContent2 = document.querySelector(".pin-content-2");
+
+            let pinTl = gsap.timeline({
+                scrollTrigger: {
+                    pin: true,
+                    trigger: pinSection,
+                    scrub: true,
+                    start: "top top",
+                    end: () => `+=${pinContent1.offsetWidth}`,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            pinTl.fromTo(".pin-content-1", {
+                x: () => document.body.clientWidth * 0.9
+            }, {
+                x: () => -(pinContent1.offsetWidth),
+                ease: "none"
+            }, 0);
+
+            pinTl.fromTo(".pin-content-2", {
+                x: () => -pinContent2.offsetWidth + document.body.clientWidth * 0.1
+            }, {
+                x: () => document.body.clientWidth,
+                ease: "none"
+            }, 0);
+
+
+
+
             if (!threeContainer.value) return;
 
             // Scene setup (same as before)
@@ -218,6 +407,22 @@ export default {
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 1.5;
             threeContainer.value.appendChild(renderer.domElement);
+
+
+            const handleResize = () => {
+                const width = threeContainer.value.clientWidth;
+                const height = threeContainer.value.clientHeight;
+
+                // Update camera
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+
+                // Update renderer
+                renderer.setSize(width, height);
+            };
+
+            // Add resize listener
+            window.addEventListener('resize', handleResize);
 
             // Controls setup (same as before)
             const controls = new OrbitControls(camera, renderer.domElement);
@@ -290,6 +495,7 @@ export default {
                         controls.minPolarAngle = Math.PI / 3;
                         controls.maxPolarAngle = Math.PI / 2;
                         controls.update();
+                        renderer.setPixelRatio(window.devicePixelRatio); // Add this line
                         renderer.render(scene, camera);
                     }
 
@@ -307,6 +513,7 @@ export default {
         return { threeContainer, carouselSection, carouselTrack };
     },
     mounted() {
+
         this.startAutoScroll();
         const video = document.querySelector('video');
         video.play().catch(function (error) {
@@ -315,9 +522,44 @@ export default {
     },
 
     beforeUnmount() {
+        window.removeEventListener('load', () => {
+            ScrollTrigger.refresh();
+        });
         this.stopAutoScroll();
     },
     methods: {
+        typeText() {
+            if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
+                if (!this.typeStatus) this.typeStatus = true;
+                this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
+                    this.charIndex
+                );
+                this.charIndex += 1;
+                setTimeout(this.typeText, this.typingSpeed);
+            } else {
+                this.typeStatus = false;
+                setTimeout(this.eraseText, this.newTextDelay);
+            }
+        },
+        eraseText() {
+            if (this.charIndex > 0) {
+                if (!this.typeStatus) this.typeStatus = true;
+                this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
+                    0,
+                    this.charIndex - 1
+                );
+                this.charIndex -= 1;
+                setTimeout(this.eraseText, this.erasingSpeed);
+            } else {
+                this.typeStatus = false;
+                this.displayTextArrayIndex += 1;
+                if (this.displayTextArrayIndex >= this.displayTextArray.length)
+                    this.displayTextArrayIndex = 0;
+                setTimeout(this.typeText, this.typingSpeed + 1000);
+            }
+        },
+
+
         startAutoScroll() {
             const animate = () => {
                 if (this.carouselTrack) {
@@ -340,39 +582,74 @@ export default {
             }
         },
 
-        navigateTologin() {
-            router.push({
-                name: 'LogIn',
-            });
-        },
 
+        navigateTologin() {
+            // Code to navigate to login page
+            this.$router.push('/log-in'); // Assuming you're using Vue Router
+        },
         navigateTosignup() {
-            router.push({
-                name: 'SignUp',
-            });
+            // Code to navigate to sign up page
+            this.$router.push('/sign-up'); // Assuming you're using Vue Router
         }
-    }
+    },
+
+
 };
+
 </script>
 
-<style>
-.main-container {
-    height: 200vh;
-    overflow-y: auto;
+<style scoped>
+.main-container-1 {
+    height: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     background-color: black;
     color: white;
     margin: 0;
     padding: 0;
+    padding-bottom: 150px;
 }
 
-.three-container {
-    width: 70vw;
-    height: 70vh;
-    overflow: hidden;
-    cursor: grab;
-    /* position: sticky; */
-    top: 0;
+.main-container-2 {
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+@media (min-width: 992px) {
+    .three-container {
+        width: 70vw;
+        height: 70vh;
+        overflow: visible;
+        cursor: grab;
+        /* position: sticky; */
+        top: 0;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .three-container {
+        width: 100vw;
+        height: 75vh;
+        overflow: visible;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 921px) {
+
+    /* Styles for screens 576px - 767px */
+    .three-container {
+        width: 100vw;
+        height: 70vh;
+        overflow: visible;
+    }
 }
 
 .title h1 {
@@ -386,290 +663,692 @@ export default {
 }
 
 .carousel-section {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    padding: 2rem 0;
+    padding: 20px;
+    text-align: center;
+    margin-top: 150px;
 }
 
+.carousel-header h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #0057d9;
+}
+
+/* Carousel container styling */
 .carousel-container {
-    width: 80vw;
-    height: 60vh;
-    position: relative;
     overflow: hidden;
-    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .carousel-track {
     display: flex;
-    height: 100%;
-    will-change: transform;
+    animation: scroll 150s linear infinite;
+    gap: 20px;
+    /* Adjust space between images */
 }
 
-.carousel-slide {
-    min-width: 33.333%;
-    height: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+
+    /* Adjust depending on total width */
 }
 
+/* Image container */
 .image-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: 85%;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
-}
-
-.image-caption {
-    width: 100%;
+    align-items: center;
     text-align: center;
-    padding: 12px;
-    font-size: 1.2rem;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    border-radius: 0 0 10px 10px;
-    margin-top: auto;
 }
 
-.carousel-header {
-    text-align: center;
-    padding: 1rem 0;
-    margin-bottom: 1rem;
-    margin-top: 100px;
+/* Responsive styles */
+
+/* Large screens (desktop) */
+@media (min-width: 1024px) {
+    .carousel-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .carousel-slide {
+        flex: 1 1 220px;
+    }
+
+    .image-container img {
+        width: 220px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    .image-caption {
+        font-size: 1rem;
+        margin-top: 8px;
+        color: #0057d9;
+    }
 }
 
-.carousel-header h2 {
-    font-size: 2.5rem;
-    margin: 0;
-    font-weight: bolder;
+/* Medium screens (tablet) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .carousel-header h2 {
+        font-size: 2rem;
+    }
+
+    .carousel-slide {
+        flex: 1 1 180px;
+    }
+
+    .image-container img {
+        width: 180px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .image-caption {
+        font-size: 0.9rem;
+        margin-top: 6px;
+        color: #0057d9;
+    }
 }
 
-.video-section {
+/* Small screens (mobile) */
+@media (max-width: 767px) {
+    .carousel-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-slide {
+        flex: 1 1 150px;
+    }
+
+    .image-container img {
+        width: 150px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .image-caption {
+        font-size: 0.8rem;
+        margin-top: 4px;
+        color: #0057d9;
+    }
+}
+
+
+
+
+.text-container {
+    color: #000000;
+    width: 40%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 4rem 0;
-    width: 100%;
+    gap: 10px;
+    text-align: left;
+    margin-left: 90px;
 }
 
-.video-container {
+.project-title {
+    text-align: left;
+    font-size: 30px;
+}
+
+.view-project {
+    background-color: #000000;
+    color: #ffffff;
+    width: fit-content;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-left: 0px;
+}
+
+
+.transition-image {
+    width: 100vw;
+    /* Set width to 100% of the container */
+    max-width: 100vw;
+    /* Restrict it to the viewport width */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin-bottom: 150px;
+    object-fit: contain;
     display: flex;
     justify-content: center;
-    height: 700px;
-    width: fit-content;
-    overflow: hidden;
-    border-radius: 15px;
-    border: 1px solid white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.video-container video {
-    height: 100%;
-    width: auto;
-    object-fit: cover;
+.transition-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-.footer-section {
-    background-color: #000;
-    color: white;
-    padding: 4rem 2rem;
-    margin-top: 2rem;
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+    /* Styles for screens 576px - 767px */
+    .container {
+        width: 100vw;
+        flex-direction: column;
+        background-color: #000000;
+        color: white;
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        padding: 100px 20px;
+        margin-bottom: 100px;
+        gap: 100px;
+        flex: 5;
+
+    }
+
+    .left-text {
+        font-size: 5vw;
+        flex: 3;
+        margin-top: 100px;
+    }
+
+    .right-text {
+        font-size: 3vw;
+        margin-bottom: 100px;
+        padding-bottom: 100px;
+    }
 }
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
+@media (min-width: 576px) and (max-width: 766px) {
+    .container {
+        flex-direction: column;
+        width: 100vw;
+        margin-bottom: 100px;
+        background-color: #000000;
+        color: white;
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        padding: 0 20px;
+    }
+
+    .left-text {
+        font-size: 8vw;
+        flex: 3;
+        margin-bottom: 50px;
+        padding-top: 0px
+    }
+
+    .right-text {
+        font-size: 5vw;
+        padding-bottom: 100px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 100px;
+
+        /* Adjust right text size for small screens */
+    }
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+@media (min-width: 992px) {
+    .left-text {
+        flex: 1;
+        font-size: 4vw;
+        font-weight: bold;
+        line-height: 1.2;
+        padding: 30px;
+    }
+
+    .right-text {
+        flex: 1;
+        font-size: 1.5vw;
+        line-height: 1.5;
+        max-width: 50%;
+    }
+
+    .container {
+        background-color: #000000;
+        color: white;
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        padding: 0 20px;
+        flex-direction: row;
+    }
 }
 
-.footer-column {
+.right-text span {
+    background-color: white;
+    color: black;
+}
+
+
+.project-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
-.footer-heading {
-    font-family: "Lobster Two", cursive;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: white;
+.image-section {
+    flex: 1;
+    border-radius: 20px;
 }
 
-.social-icons {
-    display: flex;
-    gap: 1rem;
+.image-section video {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: contain;
 }
 
-.social-icon {
-    color: white;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+.text-section {
+    flex: 1;
+    padding-left: 80px;
 }
 
-.social-icon:hover {
-    color: #4a90e2;
+.divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid white;
+    margin: 30px 0;
 }
 
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.project-number {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 50px;
 }
 
-.footer-links li {
-    margin-bottom: 0.8rem;
-}
-
-.footer-links a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.project-number-2 {
     font-size: 1rem;
 }
 
-.footer-links a:hover {
-    color: #4a90e2;
+@media (min-width: 576px) and (max-width: 766px) {
+    .wander-container h1 {
+        font-size: 1.5rem;
+        line-height: 1;
+
+        span.typed-text {
+            color: #64a2ff;
+        }
+    }
+
+    .blinking-cursor {
+        font-size: 2.5rem;
+        animation: 1s blink step-end infinite;
+    }
 }
 
-.subscribe-text {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
+@media (min-width: 767px) and (max-width: 991px) {
+    .wander-container h1 {
+        font-size: 2rem;
+        line-height: 1;
+
+        span.typed-text {
+            color: #64a2ff;
+        }
+    }
+
+    .blinking-cursor {
+        font-size: 3rem;
+        animation: 1s blink step-end infinite;
+    }
+
+    .wander-container {
+        margin-top: 450px;
+    }
 }
 
-.subscribe-form {
+@media (min-width: 992px) {
+    h1 {
+        font-size: 3rem;
+        font-weight: normal;
+
+        span.typed-text {
+            color: #64a2ff;
+        }
+    }
+
+    .blinking-cursor {
+        font-size: 6rem;
+        color: #2c3e50;
+        animation: 1s blink step-end infinite;
+    }
+}
+
+
+.wander-container {
+    width: 100%;
+    height: auto;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
-.subscribe-input {
-    padding: 0.8rem;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background-color: #1a1a1a;
-    color: white;
-}
 
-.subscribe-button {
-    padding: 0.8rem;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-.subscribe-button:hover {
-    background-color: #357abd;
-}
+@keyframes blink {
 
-@media (max-width: 768px) {
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
+    from,
+    to {
+        color: transparent;
+    }
+
+    50% {
+        color: #2c3e50;
     }
 }
 
-@media (max-width: 480px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
+
+
+
+
+
+* {
+    position: relative;
+    box-sizing: border-box;
 }
 
-.video-section>p {
-    font-size: 2.5rem;
-    padding-bottom: 50px;
-    font-weight: bolder;
+.smooth-content {
+    padding-top: 1000px;
 }
 
-.main-feature {
-    text-align: center;
-    padding: 2rem;
+
+.parallax-section {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    top: 0;
+    padding: 0 1rem;
+    transform-origin: center top;
 }
 
-.heading {
+.parallax-image {
+    height: 200vh;
+    width: 100%;
+    object-fit: cover;
+    will-change: transform;
+}
+
+
+.grid-section {
+    overflow: visible;
+    /* z-index: 2; */
+    min-height: 100vh;
+}
+
+.grid-layout {
+    display: flex;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    transform-origin: center top;
+}
+
+.column {
+    height: 100%;
+}
+
+.panel {
+    height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    margin-top: 150px;
+    justify-content: center;
 }
 
-.heading h2 {
+.column-content {
+    display: grid;
+    grid-template-rows: 45vh 45vh 45vh;
+    grid-gap: 1rem;
+    height: 100%;
+}
+
+.grid-image {
+    width: 100%;
+    position: relative;
+}
+
+.grid-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pin-section {
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-template-rows: 1fr 1fr;
+}
+
+.pin-content {
+    width: 300%;
+    display: grid;
+    grid-column-gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    will-change: transform;
+}
+
+.pin-box {
+    height: 100%;
+    width: 100%;
+}
+
+.pin-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spacer {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-letter {
+    fill: #fff;
+}
+
+.smoother-letter,
+#mouse-wheel {
+    fill: #88ce02;
+}
+
+.by-greensock-letter {
+    fill: #fff;
+    opacity: 0.6;
+}
+
+#mouse-outline {
+    fill: none;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    stroke-width: 13px;
+}
+
+
+
+
+
+.section-container {
+    margin-top: 10px;
+    text-align: left;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+}
+
+.headline h1 {
     font-size: 2.5rem;
     font-weight: bold;
-    overflow: hidden; /* Ensures text stays within the bounds */
-    white-space: nowrap; /* Prevents text from wrapping */
-    border-right: 3px solid black; /* Creates a blinking cursor */
-    animation: typing 3s steps(500, end), blink-caret 0.75s step-end infinite;
+    line-height: 1.4;
+    margin-bottom: 1rem;
 }
 
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+.highlight {
+    font-weight: 600;
+    font-style: italic;
+    color: #3f94a7;
 }
 
-@keyframes blink-caret {
-    50% { border-color: transparent; }
+.highlight-different {
+    font-weight: 600;
+    background-color: #3f94a7;
+    color: white;
+    display: inline-block;
+    padding-bottom: 0.2rem;
 }
 
-.destination-cards {
+.divider {
+    border-bottom: 2px solid black;
+    margin: 60px 0px;
+}
+
+.subheading {
     display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    background-color: black;
+    justify-content: right;
+    color: #3f94a7;
 }
 
-.card {
-    width: 450px; /* Keep width the same */
-    max-height: 550px; /* Reduced card height */
-    border-radius: 20px;
+.circles {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-right: 1.2rem;
+}
+
+.circle {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
     overflow: hidden;
-    text-align: left;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    background-color: transparent; /* Remove background color */
-
+    flex-shrink: 0;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.card img {
+.circle img {
     width: 100%;
-    height: 90%; /* Reduced image height */
-    /* object-fit: cover; */
+    height: 100%;
+    object-fit: cover;
 }
 
-.card p {
-    margin-left: 10px;
-    font-size: 1.25rem;
+.subheading-text {
+    font-size: 5rem;
     font-weight: bold;
-    color: #333;
-    padding: 0.5rem 0; /* Padding for text */
-    height: 10%; /* Ensures text occupies the remaining space */
+    margin: 0;
 }
 
+
+
+
+.auth-buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.login-btn,
+.signup-btn {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #0057d9;
+    color: #0057d9;
+    background-color: #ffffff;
+}
+
+.login-btn:hover {
+    background-color: #bdd7ff;
+    border-color: #d1d5db;
+}
+
+.signup-btn {
+    background-color: #2563eb;
+    border: 1px solid #2563eb;
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* Optional: Add focus states for accessibility */
+.login-btn:focus,
+.signup-btn:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Optional: Add active states */
+.login-btn:active {
+    background-color: #e5e7eb;
+}
+
+.signup-btn:active {
+    background-color: #1e40af;
+}
+
+/* Optional: Add responsive design */
+@media (max-width: 640px) {
+
+    .login-btn,
+    .signup-btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}
+
+
+.call-to-action {
+    margin-top: 100px;
+    font-weight: 200px;
+    text-align: center;
+}
+
+.call-to-action h3 {
+    font-size: 35px;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.call-to-action span {
+    color: #0057d9;
+    /* font-style: italic; */
+}
 </style>
