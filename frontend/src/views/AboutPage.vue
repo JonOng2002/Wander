@@ -212,17 +212,6 @@
             </div>
         </div>
 
-
-        <div class="call-to-action">
-            <h3>What are you waiting for? Start <span>Wander</span>ing.</h3><br>
-        </div>
-
-        <div class="auth-buttons">
-            <button @click="navigateTologin" class="login-btn">Log in</button>
-            <button @click="navigateTosignup" class="signup-btn">Sign up</button>
-        </div>
-
-
     </div>
 
 </template>
@@ -582,15 +571,6 @@ export default {
             }
         },
 
-
-        navigateTologin() {
-            // Code to navigate to login page
-            this.$router.push('/log-in'); // Assuming you're using Vue Router
-        },
-        navigateTosignup() {
-            // Code to navigate to sign up page
-            this.$router.push('/sign-up'); // Assuming you're using Vue Router
-        }
     },
 
 
@@ -1259,96 +1239,5 @@ export default {
 
 
 
-.auth-buttons {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 150px;
-}
 
-.login-btn,
-.signup-btn {
-    padding: 10px 24px;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid #0057d9;
-    color: #0057d9;
-    background-color: #ffffff;
-}
-
-.login-btn:hover {
-    background-color: #bdd7ff;
-    border-color: #d1d5db;
-}
-
-.signup-btn {
-    background-color: #2563eb;
-    border: 1px solid #2563eb;
-    color: white;
-}
-
-.signup-btn:hover {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
-}
-
-/* Optional: Add focus states for accessibility */
-.login-btn:focus,
-.signup-btn:focus {
-    outline: 2px solid #2563eb;
-    outline-offset: 2px;
-}
-
-/* Optional: Add active states */
-.login-btn:active {
-    background-color: #e5e7eb;
-}
-
-.signup-btn:active {
-    background-color: #1e40af;
-}
-
-/* Optional: Add responsive design */
-@media (max-width: 640px) {
-
-    .login-btn,
-    .signup-btn {
-        padding: 8px 20px;
-        font-size: 14px;
-    }
-}
-
-
-.call-to-action {
-    margin-top: 100px;
-    font-weight: 200px;
-    text-align: center;
-}
-
-.call-to-action h3 {
-    font-size: 35px;
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.call-to-action span {
-    color: #0057d9;
-    /* font-style: italic; */
-}
 </style>
