@@ -33,8 +33,7 @@
         <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container">
           <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
             <div class="overlay"></div>
-            <!-- Optional: You can remove the close button if not needed -->
-            <button @click="removePlace(attraction)" type="button" class="btn close-button">✖</button>
+   
             <div class="card-body">
               <h5 class="card-title">{{ attraction.name }}</h5>
               <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
@@ -42,8 +41,8 @@
               <!-- Star Rating and Exact Number -->
               <div class="rating-section">
                 <star-rating :rating="attraction.rating"></star-rating>
-                <span class="rating-number">{{ attraction.rating.toFixed(1) }}</span>
-                <span class="rating-text">({{ attraction.user_ratings_total }} reviews)</span>
+                <span class="rating-number">{{ attraction.rating.toFixed(1) }} / 5 </span> &nbsp;
+                <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
               </div>
 
               
@@ -112,6 +111,17 @@ export default {
       toastMessage: "",
       toastType: "info", // Default type
       defaultImage: defaultImage, // Fallback image
+      countryRadius: {
+        'Malaysia': 30000,     // 30 km radius for Malaysia
+        'Indonesia': 30000,    // 30 km radius for Indonesia
+        'Singapore': 25000,    // 30 km radius for Singapore
+        // Add more countries here if needed
+      },
+      defaultRadius: 50000,     // Default radius of 50 km for other countries
+      cityRadius: {
+      'Johor Bahru': 10000,   // 10 km radius for Johor Bahru
+      // Add more cities here if needed
+    },
     };
   },
   created() {
@@ -220,12 +230,15 @@ export default {
   async fetchAttractions() {
   const countryRef = doc(db, "countries", this.country);
   try {
+    console.log(`Fetching attractions for ${this.country} from Firestore...`);
     const countryDoc = await getDoc(countryRef);
     if (countryDoc.exists()) {
+      console.log(`Fetched attractions from Firestore for ${this.country}`);
       this.attractions = countryDoc.data().attractions;
       this.loading = false;
     } else {
       const cities = this.getCountryCities(this.country);
+      console.log(`No attractions in Firestore for ${this.country}, fetching from API...`)
       if (cities.length === 0) {
         this.errorMessage = "No cities available for the selected country.";
         this.loading = false;
@@ -233,10 +246,16 @@ export default {
       }
 
       let allAttractions = [];
+      const radius = this.countryRadius[this.country] || this.defaultRadius;
+      console.log(`Using radius: ${radius} meters for country: ${this.country}`);
 
       for (const city of cities) {
         const { name, location } = city;
-        const radius = 50000; // 50 km
+        // **Determine the Radius: City-specific > Country-specific > Default**
+        const citySpecificRadius = this.cityRadius[name];
+        const radius = citySpecificRadius || this.countryRadius[this.country] || this.defaultRadius;
+        console.log(`Using radius: ${radius} meters for city: ${name} in country: ${this.country}`);
+
         const type = "tourist_attraction";
         const proxyUrl = `/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${this.apiKey}`;
 
