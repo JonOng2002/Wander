@@ -171,7 +171,7 @@ export default {
       this.errorMessage = "";
       try {
         const response = await axios.get(
-          `http://127.0.0.1:5000/video-info-comments`,
+          `https://wander-backend-app-461191603321.asia-southeast1.run.app/video-info-comments`,
           {
             params: { url: this.tiktokLink },
             withCredentials: true,
