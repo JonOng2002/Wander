@@ -774,7 +774,7 @@ export default {
             source: "google_places",
             summary: "Google Places Summary",
             activities: [],
-    
+            timestamp: new Date(),
           };
 
           try {
