@@ -149,6 +149,13 @@
           <div class="card-body">
             <h5 class="card-title">{{ place.name }}</h5>
             <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
+
+              <div class="rating-container">
+                <StarRating :rating="place.rating" /> <!-- Your StarRating component -->
+                <span class="rating-number">{{ place.rating.toFixed(1) }}</span>
+                <span class="rating-text">/ 5</span> <!-- Add text like "/ 5" if desired -->
+              </div>
+
             <div class="button-container">
               <button
                 @click="toggleItinerary(place, $event)"
@@ -241,9 +248,12 @@ import {
 import { getAuth } from "firebase/auth";
 import { useRouter } from "vue-router";
 import { gsap } from "gsap";
+import StarRating from "@/components/StarRating.vue";
 
 export default {
   name: "SavedPlaces",
+  components: { StarRating },
+
   setup() {
     const savedPlaces = ref([]);
     const filteredPlaces = ref([]);
@@ -961,7 +971,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   /* Slightly opaque black background */
   z-index: 1;
   /* Place between background image and text */
@@ -1011,6 +1021,24 @@ export default {
   /* Adjust spacing if needed */
   margin-bottom: 0.3rem;
   text-align: left;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Adjust the spacing between items as needed */
+  margin: 0 ;
+  padding: 0;
+}
+
+.rating-number {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.rating-text {
+  font-size: 1rem;
+  color: #ffffff;
 }
 
 .button-container {

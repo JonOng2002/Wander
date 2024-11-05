@@ -31,7 +31,7 @@
     <div v-if="!loading && !errorMessage" class="card-grid">
       <transition-group name="list" tag="div" class="transition-wrapper">
         <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container">
-          <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image})` }">
+          <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
             <div class="overlay"></div>
             <!-- Optional: You can remove the close button if not needed -->
             <button @click="removePlace(attraction)" type="button" class="btn close-button">✖</button>
@@ -46,10 +46,7 @@
                 <span class="rating-text">({{ attraction.user_ratings_total }} reviews)</span>
               </div>
 
-              <!-- Open Status -->
-              <p v-if="attraction.open_now !== undefined" :class="['attraction-hours', attraction.open_now ? 'open' : 'closed']">
-  {{ attraction.open_now ? "🟢 Open Now" : "🔴 Closed" }}
-</p>
+              
 
               <!-- Save Place Button -->
               <save-place-button
@@ -87,6 +84,7 @@ import ToastNotification from "@/components/ToastNotification.vue";
 import { auth, db } from "@/main.js"; // Adjust the path based on your project structure
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import axios from "axios";
+import defaultImage from '@/assets/placeholder.jpg'; // Correctly import the fallback image
 
 export default {
   name: "DestinationDetails",
@@ -113,6 +111,7 @@ export default {
       toastShow: false,
       toastMessage: "",
       toastType: "info", // Default type
+      defaultImage: defaultImage, // Fallback image
     };
   },
   created() {
@@ -164,8 +163,51 @@ export default {
 
   },
   methods: {
+
+        /**
+     * Fetches an image from Unsplash based on a query.
+     * @param {String} query - The search term for the image.
+     * @returns {String} - The URL of the fetched image or a default image.
+     */
+
+    async getUnsplashImage(query) {
+      
+      const unsplashAccessKey = process.env.VUE_APP_UNSPLASH_ACCESS_KEY;
+
+      if (!unsplashAccessKey) {
+        console.error("Unsplash Access Key is not defined.");
+        return this.defaultImage; // Fallback image
+      }
+
+      const unsplashUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
+        query
+      )}&client_id=${unsplashAccessKey}&per_page=1&orientation=landscape`;
+
+      try {
+        const response = await axios.get(unsplashUrl);
+        console.log(`Unsplash API Response for "${query}":`, response.data);
+
+        if (
+          response.data &&
+          response.data.results &&
+          response.data.results.length > 0
+        ) {
+          return response.data.results[0].urls.regular;
+        } else {
+          console.warn(`No Unsplash images found for query: "${query}"`);
+          return this.defaultImage; // Fallback image
+        }
+      } catch (error) {
+        console.error(
+          `Error fetching image from Unsplash for query "${query}":`,
+          error.message
+        );
+        return this.defaultImage; // Fallback image
+      }
+    },
+
     toggleSortOrder() {
-      this.sortOrder = this.sortOrder === 'desc' ? 'desc' : 'asc';
+      this.sortCriteria.direction = this.sortCriteria.direction === 'desc' ? 'asc' : 'desc';
     },
 
     updateSortCriteria(event) {
@@ -175,98 +217,104 @@ export default {
     this.sortCriteria.direction = direction;
   },
 
-    async fetchAttractions() {
-      const countryRef = doc(db, "countries", this.country);
-      try {
-        // Check if attractions for the country exist in Firestore
-        const countryDoc = await getDoc(countryRef);
-        if (countryDoc.exists()) {
-          // Attractions exist, use them
-          console.log(`Fetched attractions for ${this.country} from Firestore.`);
-          this.attractions = countryDoc.data().attractions;
-          this.loading = false;
-        } else {
-          // Attractions do not exist, fetch from Google Places API via proxy
-          console.log(`No data for ${this.country} in Firestore. Fetching from Google API via proxy.`);
-          const cities = this.getCountryCities(this.country);
-          if (cities.length === 0) {
-            console.error(`No cities found for ${this.country}`);
-            this.errorMessage = "No cities available for the selected country.";
-            this.loading = false;
-            return;
-          }
-
-          let allAttractions = [];
-
-          // Fetch attractions for each city
-          for (const city of cities) {
-            const { name, location } = city;
-            const radius = 50000; // 50 km
-            const type = "tourist_attraction";
-            const proxyUrl = `/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${this.apiKey}`;
-
-            try {
-              const response = await axios.get(proxyUrl);
-              if (response.data.status !== "OK") {
-                console.error(`Error fetching attractions for ${name}:`, response.data.status, response.data.error_message || '');
-                continue; // Skip to the next city on error
-              }
-              console.log(`Fetched attractions for ${name}:`, response.data.results);
-
-              // Map attractions with additional data
-              const mappedAttractions = response.data.results.map((place) => ({
-                name: place.name,
-                place_id: place.place_id,
-                vicinity: place.vicinity,
-                image: place.photos
-                  ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
-                  : "/default-image.jpg",
-                coordinates: place.geometry?.location || { lat: 0, lng: 0 },
-                rating: place.rating || 0,
-                user_ratings_total: place.user_ratings_total || 0,
-                open_now: place.opening_hours?.open_now || false,
-                city: name, // Add city name to attraction
-              }));
-
-              allAttractions = allAttractions.concat(mappedAttractions);
-            } catch (apiError) {
-              console.error(`Error fetching attractions for ${name}:`, apiError.message);
-              continue; // Skip to the next city on error
-            }
-          }
-
-          if (allAttractions.length === 0) {
-            this.errorMessage = "No attractions found for the selected country.";
-            this.loading = false;
-            return;
-          }
-
-          // Remove duplicate attractions based on place_id
-          const uniqueAttractions = Array.from(
-            new Map(
-              allAttractions.map((item) => [item.place_id, item])
-            ).values()
-          );
-
-
-          // Limit to top 50 attractions
-          this.attractions = uniqueAttractions.slice(0, 50);
-
-          // Save the attractions to Firestore
-          await setDoc(countryRef, {
-            attractions: this.attractions,
-            lastUpdated: new Date(),
-          });
-
-          console.log(`Saved attractions for ${this.country} to Firestore.`);
-          this.loading = false;
-        }
-      } catch (error) {
-        console.error("Error accessing Firestore:", error);
-        this.errorMessage = "Failed to access the database. Please try again later.";
+  async fetchAttractions() {
+  const countryRef = doc(db, "countries", this.country);
+  try {
+    const countryDoc = await getDoc(countryRef);
+    if (countryDoc.exists()) {
+      this.attractions = countryDoc.data().attractions;
+      this.loading = false;
+    } else {
+      const cities = this.getCountryCities(this.country);
+      if (cities.length === 0) {
+        this.errorMessage = "No cities available for the selected country.";
         this.loading = false;
+        return;
       }
-    },
+
+      let allAttractions = [];
+
+      for (const city of cities) {
+        const { name, location } = city;
+        const radius = 50000; // 50 km
+        const type = "tourist_attraction";
+        const proxyUrl = `/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${this.apiKey}`;
+
+        try {
+          const response = await axios.get(proxyUrl);
+          if (response.data.status !== "OK") {
+            console.error(`Error fetching attractions for ${name}:`, response.data.status, response.data.error_message || "");
+            continue;
+          }
+
+          const mappedAttractions = response.data.results.map((place) => ({
+            name: place.name,
+            place_id: place.place_id,
+            vicinity: place.vicinity,
+            image: place.photos
+              ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
+              : null,
+            coordinates: place.geometry?.location || { lat: 0, lng: 0 },
+            rating: place.rating || 0,
+            user_ratings_total: place.user_ratings_total || 0,
+            open_now: place.opening_hours?.open_now || false,
+            city: name,
+          }));
+
+          allAttractions = allAttractions.concat(mappedAttractions);
+        } catch (apiError) {
+          console.error(`Error fetching attractions for ${name}:`, apiError.message);
+          continue;
+        }
+      }
+
+      if (allAttractions.length === 0) {
+        this.errorMessage = "No attractions found for the selected country.";
+        this.loading = false;
+        return;
+      }
+
+      const uniqueAttractions = Array.from(new Map(allAttractions.map(item => [item.place_id, item])).values());
+      const topAttractions = uniqueAttractions.slice(0, 50);
+
+      // Fetch Unsplash images for attractions missing Google images
+      const fetchImagesPromises = topAttractions.map(async (attraction) => {
+        if (!attraction.image) {
+          
+          const query = `${attraction.name}, ${attraction.city}`;
+          console.log(`Fetching Unsplash image for: ${query}`); // Debugging log
+          const unsplashImage = await this.getUnsplashImage(query);
+          console.log(`Fetched image URL: ${unsplashImage}`); // Debugging log
+          attraction.image = unsplashImage;
+        }
+      });
+
+      await Promise.all(fetchImagesPromises);
+
+      // Assign fallback image if still null
+      topAttractions.forEach(place => {
+        if (!place.image) {
+          place.image = this.defaultImage; // Ensure this path is correct
+        }
+      });
+
+      this.attractions = topAttractions;
+
+      await setDoc(countryRef, {
+        attractions: this.attractions,
+        lastUpdated: new Date(),
+      });
+
+      this.loading = false;
+    }
+  } catch (error) {
+    console.error("Error accessing Firestore:", error);
+    this.errorMessage = "Failed to access the database. Please try again later.";
+    this.loading = false;
+  }
+},
+
+    
     getCountryCities(country) {
       const cities = {
         France: [
@@ -738,6 +786,8 @@ export default {
       console.log("Generate Itinerary button clicked");
       // This could involve creating a new itinerary document in Firestore
     },
+
+    
   },
   mounted() {
     // Listen for authentication state changes
@@ -772,7 +822,7 @@ export default {
 
 .destination-details {
   text-align: center;
-  font-family: "Roboto", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .header-row {
@@ -941,7 +991,7 @@ export default {
 .rating-section {
   display: flex;
   align-items: center;
-  margin: 0 ;
+  margin-top: 0 ;
   padding: 0;
 }
 
@@ -955,22 +1005,6 @@ export default {
   margin-left: 0;
   font-size: 0.9rem;
   color: #ffffff;
-}
-
-.attraction-hours {
-  font-size: 0.9rem;
-  margin-left: 0;
-  padding: 0;
-  margin-bottom: 0;
-  
-}
-
-.attraction-hours.open {
-  color: #00ff3c; /* Green for open */
-}
-
-.attraction-hours.closed {
-  color: #ff3d51; /* Red for closed */
 }
 
 
