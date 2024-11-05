@@ -1,75 +1,55 @@
 {
   "location_info": {
-    "place_name": "Shinjuku",
+    "place_name": "Wakana Sushi",
     "country": "Japan",
     "city": "Tokyo",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFRS4KYH5Qhu6tXpwW_Kymjfh_59Yuxi63eSmWFh4q1gOwIj8iVECd9nZY766Tw8SmI1CPeQ-4iwqoBQvQYuWyKV7ii7qEz7JE=s1600-w800",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFhPNmGZL0CXWm3Rv9IdVf6qNKE_MniYeviiGfyo2n1PoMWuKfdQu_xLI2i0Edo-Y1Tv0t3-BJBlat1J-vctaTdX8N7TAknv9g=s1600-w800",
     "coordinates": {
-      "latitude": 35.6938253,
-      "longitude": 139.7033559
+      "latitude": 13.6827565,
+      "longitude": 100.5417059
     },
     "activities": [
-      "Shopping",
-      "Dining",
-      "Nightlife",
-      "Sightseeing"
+      "Enjoy a unique sushi experience made by a skilled grandmother",
+      "Taste premium sushi ingredients like fatty tuna and sea urchin",
+      "Experience traditional Japanese cuisine in a cozy setting"
     ],
-    "location_summary": "Shinjuku is a bustling district in Tokyo known for its lively entertainment, shopping, and business areas. It features skyscrapers, retail shops, and vibrant nightlife.",
-    "vicinity": "Shinjuku City"
+    "location_summary": "Wakana Sushi is a charming sushi restaurant in Higashi-Nagasaki, Tokyo, where an elderly grandmother prepares exquisite sushi herself. The restaurant features 13 pieces of special sushi, including high-end varieties, providing great value for money.",
+    "vicinity": "99/1 Industrial Ring Road, Khwaeng Chong Nonsi, Khet Yan Nawa"
   },
   "related_places": [
     {
-      "place_name": "Shibuya",
+      "place_name": "Sushi Saito",
       "country": "Japan",
       "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGm6EZm5impV27GU0B4AdTXM0rQ0YmP9iDP7Fh5qB0cp3QmZXAXhEWj9IBq4IfJ4JPsCzW9jj62Y4Hfsnl6XpNuBHxR63QPYZI=s1600-w600",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqG2O85fr4O4OlwLnY3oR-tcG7zqEWhUvVS9wRTqQrOe3ocbwvZnXTHx4TLpzzbpiAdZvT4AW7OyYX1EGhCWNwKB2l1ewX51ezs=s1600-w800",
       "coordinates": {
-        "latitude": 35.6619707,
-        "longitude": 139.703795
+        "latitude": 1.30492,
+        "longitude": 103.8084376
       },
       "activities": [
-        "Shopping",
-        "Dining",
-        "Nightlife",
-        "Cultural Sites"
+        "Experience one of the most renowned sushi restaurants in Japan",
+        "Savor ultra-fresh sushi crafted by expert chefs",
+        "Enjoy a luxurious dining environment"
       ],
-      "location_summary": "Shibuya is a famous district in Tokyo known for its iconic scramble crossing, vibrant shopping areas, and bustling youth culture.",
-      "vicinity": "Shibuya City"
+      "location_summary": "Sushi Saito is an exclusive sushi spot in Tokyo, known for its attention to detail and high culinary standards, providing an unforgettable dining experience for sushi lovers.",
+      "vicinity": "6B Dempsey Road"
     },
     {
-      "place_name": "Harajuku",
+      "place_name": "Sushiro",
       "country": "Japan",
       "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqH4RDYF0vcIyjhFWyt7Vlzn4q7eRLNLR_1BQg0quJIMuwQb1y9J_J9tWHtiyURl7IKHbDz2F__r7NWfg5uW8qeGZV4ccHXg35M=s1600-w800",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEAOM865fQdvNr9o60AkDbZ1Bm4_NCEeKJaESLYggnaRpS6bP4TpT7E49L0d30WjlvnaezZyX1Q36u18_9jIooism2NqKOiCAk=s1600-w800",
       "coordinates": {
-        "latitude": 35.6699682,
-        "longitude": 139.709008
+        "latitude": 1.3037148,
+        "longitude": 103.8332642
       },
       "activities": [
-        "Shopping",
-        "Street Food",
-        "Cultural Exploration"
+        "Dine at a popular conveyor belt sushi chain",
+        "Choose from a wide selection of sushi varieties",
+        "Enjoy a fun and casual dining atmosphere"
       ],
-      "location_summary": "Harajuku is a district in Tokyo renowned for its unique fashion scene, trendy shops, and the famous Takeshita Street.",
-      "vicinity": "Jingumae"
-    },
-    {
-      "place_name": "Akihabara",
-      "country": "Japan",
-      "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHfNzYoDB59xTtw7LAkD6sMz8KEto5HX4yDPVyueg3dZ4S3mMFM3bCVEdoSGaQF4gk8AcF7rmZPWLQ0a_M7Koe4_Gm1RdALIKo=s1600-w800",
-      "coordinates": {
-        "latitude": 35.6996473,
-        "longitude": 139.7713703
-      },
-      "activities": [
-        "Shopping",
-        "Gaming",
-        "Anime Culture",
-        "Tech Exploration"
-      ],
-      "location_summary": "Akihabara is known as Tokyo's electronics district, famous for its abundance of tech shops, anime culture, and gaming centers.",
-      "vicinity": "Tokyo, Japan"
+      "location_summary": "Sushiro is a well-known conveyor belt sushi chain in Tokyo, offering a fun and casual dining experience with a vast selection of sushi that caters to all taste preferences.",
+      "vicinity": "435 Orchard Road, #02-08 to 13 Wisma Atria"
     }
   ]
 }
