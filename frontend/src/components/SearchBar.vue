@@ -127,11 +127,13 @@ export default {
   transition: width 0.6s ease-in-out, opacity 0.6s ease-in-out;
   border-radius: 1.625rem;
   background: #f5f5f5;
+  max-width: calc(80% - 3.5rem); /* Full width minus SVG icon width */
+  padding-right: 3.5rem; /* Reserve space for SVG icon */
 }
 
 /* Expand on load */
 .searchInput.animated {
-  width: 100%; /* Full width on animation */
+  width: 80%; /* Full width on animation */
   opacity: 1;
 }
 #searchQuerySubmit {
