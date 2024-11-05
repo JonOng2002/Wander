@@ -266,20 +266,6 @@ app-navbar {
   display: none;
 }
 
-.fa-arrow-left {
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.fa-arrow-left:hover {
-  color: #0056b3; /* Change color on hover */
-  transform: scale(1.05); /* Slightly increase size */
-}
-
-.fa-arrow-left:active {
-  color: #004080; /* Darker color when clicked */
-  transform: scale(1); /* Return to original size */
-}
-
 .generated-itinerary {
   margin: 0;
   padding: 0;
@@ -578,12 +564,13 @@ app-navbar {
   display: flex;
   align-items: center;
   margin-bottom: 60px;
-  /* Add space below the button */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .back-button:hover {
   color: #333;
   /* Darker color on hover */
+  transform: scale(1.05); /* Slightly increase size */
 }
 
 .back-button i {

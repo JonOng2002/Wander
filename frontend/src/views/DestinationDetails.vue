@@ -1,24 +1,28 @@
 <!-- src/views/DestinationDetails.vue -->
 <template>
-  <div class="destination-details">
-    <div class="header-row">
-      <button @click="goBack" class="btn back-button">
-        Back to Destinations
-      </button>
-      <h1 class="page-title">Top Tourist Attractions in {{ country }}</h1>
-      
-      <!-- Styled Dropdown Filter Menu -->
-      <div class="filter-dropdown d-flex align-items-center">
-        <select v-model="sortOption" @change="updateSortCriteria" class="form-select me-2" aria-label="Sort Attractions">
+
+  <div class="secondary_header">
+    <div class="secondary_content">
+      <h2>Top tourist attractions in {{ country }} </h2>
+      <h5>Explore destinations</h5>
+    </div>
+
+    <div class="dropdown-container" v-motion-slide-visible-once-top>
+      <div class="dropdown">
+        <button class="dropdown-btn" @click="goBack">Back to Destinations</button>
+      </div>
+      <div class="dropdown">
+        <select v-model="sortOption" @change="updateSortCriteria" class="dropdown-btn form-select me-2" aria-label="Sort Attractions" v-auto-animate>
           <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
           <option value="popularity-asc">Sort By Popularity: Low to High</option>
           <option value="rating-desc">Sort By Rating: High to Low</option>
           <option value="rating-asc">Sort By Rating: Low to High</option>
-
         </select>
       </div>
     </div>
+  </div>
 
+  <div class="destination-details">
     <!-- Display Loading Indicator -->
     <div v-if="loading" class="loading">Loading...</div>
 
@@ -30,7 +34,7 @@
     <!-- Display Attractions List -->
     <div v-if="!loading && !errorMessage" class="card-grid">
       <transition-group name="list" tag="div" class="transition-wrapper">
-        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container">
+        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container" v-motion-slide-visible-once-top>
           <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image})` }">
             <div class="overlay"></div>
             <!-- Optional: You can remove the close button if not needed -->
@@ -38,7 +42,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ attraction.name }}</h5>
               <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
-              
+
               <!-- Star Rating and Exact Number -->
               <div class="rating-section">
                 <star-rating :rating="attraction.rating"></star-rating>
@@ -47,18 +51,15 @@
               </div>
 
               <!-- Open Status -->
-              <p v-if="attraction.open_now !== undefined" :class="['attraction-hours', attraction.open_now ? 'open' : 'closed']">
-  {{ attraction.open_now ? "🟢 Open Now" : "🔴 Closed" }}
-</p>
+              <p v-if="attraction.open_now !== undefined"
+                :class="['attraction-hours', attraction.open_now ? 'open' : 'closed']">
+                {{ attraction.open_now ? "🟢 Open Now" : "🔴 Closed" }}
+              </p>
 
               <!-- Save Place Button -->
-              <save-place-button
-                class="btn itinerary-button"
-                :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
-                :placeId="attraction.place_id"
-                :isAlreadySaved="isPlaceSaved(attraction.place_id)"
-                @save-place="savePlaceToFirebase"
-              >
+              <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
+                :placeId="attraction.place_id" :isAlreadySaved="isPlaceSaved(attraction.place_id)"
+                @save-place="savePlaceToFirebase">
                 {{ isPlaceSaved(attraction.place_id) ? 'Saved' : 'Add to Saved Places' }}
               </save-place-button>
             </div>
@@ -84,6 +85,8 @@ import SavePlaceButton from "@/components/SavePlaceButton.vue"; // Adjust the pa
 import StarRating from "@/components/StarRating.vue"; // Import the StarRating component
 import { auth, db } from "@/main.js"; // Adjust the path based on your project structure
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import autoAnimate from '@formkit/auto-animate/vue';
+import { vMotion } from '@vueuse/motion';
 import axios from "axios";
 
 export default {
@@ -91,6 +94,10 @@ export default {
   components: {
     SavePlaceButton,
     StarRating,
+  },
+  directives: {
+        autoAnimate,
+        motion: vMotion,
   },
   inject: ["savedPlacesState"], // Inject the provided global state
   data() {
@@ -106,8 +113,8 @@ export default {
       showAlreadySavedPopup: false, // Ensure this is initialized correctly
       errorMessage: "", // For user-friendly error messages
       sortCriteria: {
-      field: 'popularity', // 'popularity' or 'rating'
-      direction: 'desc',    // 'asc' or 'desc'
+        field: 'popularity', // 'popularity' or 'rating'
+        direction: 'desc',    // 'asc' or 'desc'
       },
     };
   },
@@ -117,46 +124,46 @@ export default {
   },
   computed: {
     sortedAttractions() {
-    return this.attractions.slice().sort((a, b) => {
-      const { field, direction } = this.sortCriteria;
+      return this.attractions.slice().sort((a, b) => {
+        const { field, direction } = this.sortCriteria;
 
-      if (field === 'popularity') {
-        // Sort by user_ratings_total
-        if (b.user_ratings_total !== a.user_ratings_total) {
-          return direction === 'asc'
-            ? a.user_ratings_total - b.user_ratings_total
-            : b.user_ratings_total - a.user_ratings_total;
+        if (field === 'popularity') {
+          // Sort by user_ratings_total
+          if (b.user_ratings_total !== a.user_ratings_total) {
+            return direction === 'asc'
+              ? a.user_ratings_total - b.user_ratings_total
+              : b.user_ratings_total - a.user_ratings_total;
+          }
+        } else if (field === 'rating') {
+          // Sort by rating
+          if (b.rating !== a.rating) {
+            return direction === 'asc'
+              ? a.rating - b.rating
+              : b.rating - a.rating;
+          }
         }
-      } else if (field === 'rating') {
-        // Sort by rating
-        if (b.rating !== a.rating) {
-          return direction === 'asc'
-            ? a.rating - b.rating
-            : b.rating - a.rating;
-        }
-      }
 
-      // If both fields are equal, maintain original order or apply a tertiary sort
-      return 0;
-    });
-  },
-
-  savedPlaceIds() {
-    return this.savedPlacesState && Array.isArray(this.savedPlacesState.savedPlaces)
-      ? new Set(this.savedPlacesState.savedPlaces.map(place => place.place_id))
-      : new Set();
-  },
-
-  sortOption: {
-    get() {
-      return `${this.sortCriteria.field}-${this.sortCriteria.direction}`;
+        // If both fields are equal, maintain original order or apply a tertiary sort
+        return 0;
+      });
     },
-    set(value) {
-      const [field, direction] = value.split('-');
-      this.sortCriteria.field = field;
-      this.sortCriteria.direction = direction;
+
+    savedPlaceIds() {
+      return this.savedPlacesState && Array.isArray(this.savedPlacesState.savedPlaces)
+        ? new Set(this.savedPlacesState.savedPlaces.map(place => place.place_id))
+        : new Set();
     },
-  },
+
+    sortOption: {
+      get() {
+        return `${this.sortCriteria.field}-${this.sortCriteria.direction}`;
+      },
+      set(value) {
+        const [field, direction] = value.split('-');
+        this.sortCriteria.field = field;
+        this.sortCriteria.direction = direction;
+      },
+    },
 
   },
   methods: {
@@ -165,11 +172,11 @@ export default {
     },
 
     updateSortCriteria(event) {
-    const value = event.target.value;
-    const [field, direction] = value.split('-');
-    this.sortCriteria.field = field;
-    this.sortCriteria.direction = direction;
-  },
+      const value = event.target.value;
+      const [field, direction] = value.split('-');
+      this.sortCriteria.field = field;
+      this.sortCriteria.direction = direction;
+    },
 
     async fetchAttractions() {
       const countryRef = doc(db, "countries", this.country);
@@ -651,7 +658,7 @@ export default {
       };
       return continentMapping[country] || 'Unknown';
     },
-    
+
     goBack() {
       this.$router.go(-1);
     },
@@ -765,51 +772,96 @@ export default {
 </script>
 
 <style scoped>
-
-
-.destination-details {
-  text-align: center;
-  font-family: "Roboto", sans-serif;
-}
-
-.header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 5%;
+/* <====================== secondary header ===================> */
+.secondary_header {
   position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  /* Add spacing below the header */
+  text-align: left;
+  /* Center align the text */
 }
 
-.back-button {
-  background-color: black;
-  color: white;
-  border: 1px solid black;
+.secondary_content {
+  padding: 0 60px;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+/* Container to align dropdowns side by side */
+.dropdown-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 60px;
+  /* Adjust this value to align the dropdowns with the text */
+}
+
+/* Style the dropdown button */
+.dropdown-btn {
+  background-color: #222;
+  /* Dark background color */
+  color: #fff;
+  /* White text */
   padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 16px;
 }
 
-.back-button:hover {
-  transform: scale(1.05);
-  background-color: black;
+/* Change button color on hover */
+.dropdown-btn:hover {
+  background-color: #555;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  background-color: #222;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+  top: 100%;
+  /* Position below the button */
+  left: 0;
+  padding: 10px 0;
+}
+
+/* Dropdown content links */
+.dropdown-content a {
   color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
 }
 
-.page-title {
-  font-size: 2rem; /* Adjusted font size */
-  color: black;
-  font-weight: bolder;
-  flex-grow: 1;
+/* Change background color on hover */
+.dropdown-content a:hover {
+  background-color: #333;
 }
 
-.filter-dropdown {
-  margin: 10px 0;
-  font-family: "Source Sans 3", sans-serif;
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
+/*<========================== cards and layout ====================> */
 .filter-dropdown .form-select {
   width: 350px;
   border-radius: 0.5rem;
@@ -843,9 +895,12 @@ export default {
 /* Card Grid Layout */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 items per row on large screens */
-  gap: 1.5rem; /* Space between cards */
-  padding: 2rem; /* Padding around the grid */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 items per row on large screens */
+  gap: 1.5rem;
+  /* Space between cards */
+  padding: 2rem;
+  /* Padding around the grid */
 }
 
 .card-container {
@@ -861,23 +916,28 @@ export default {
 }
 
 .card-container:hover {
-  transform: translateY(-4px); /* Slightly lifts the card on hover */
-  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2); /* Enhances shadow for lift effect */
+  transform: translateY(-4px);
+  /* Slightly lifts the card on hover */
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2);
+  /* Enhances shadow for lift effect */
 }
 
 .destination-card {
-  position: relative; /* To position overlay and buttons */
+  position: relative;
+  /* To position overlay and buttons */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  height: 400px; /* Adjust height as needed */
+  height: 400px;
+  /* Adjust height as needed */
   background-size: cover;
   background-position: center;
   border-radius: inherit;
   padding: 1.5rem;
   box-sizing: border-box;
-  color: #ffffff; /* Text color for readability on image */
+  color: #ffffff;
+  /* Text color for readability on image */
   overflow: hidden;
 }
 
@@ -887,8 +947,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Slightly opaque black background */
-  z-index: 1; /* Place between background image and text */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Slightly opaque black background */
+  z-index: 1;
+  /* Place between background image and text */
   border-radius: inherit;
 }
 
@@ -909,12 +971,18 @@ export default {
 }
 
 .card-body {
-  position: absolute; /* Position absolutely within the card */
-  bottom: 15px; /* Align to the bottom with some padding */
-  left: 15px; /* Align to the left with some padding */
-  z-index: 2; /* Ensure it stays above the overlay */
-  text-align: left; /* Align text to the left */
-  width: calc(100% - 30px); /* Prevent overflow */
+  position: absolute;
+  /* Position absolutely within the card */
+  bottom: 15px;
+  /* Align to the bottom with some padding */
+  left: 15px;
+  /* Align to the left with some padding */
+  z-index: 2;
+  /* Ensure it stays above the overlay */
+  text-align: left;
+  /* Align text to the left */
+  width: calc(100% - 30px);
+  /* Prevent overflow */
 }
 
 
@@ -922,14 +990,16 @@ export default {
   font-size: 1.25rem;
   font-weight: 700;
   color: white;
-  margin: 0; /* Remove any extra margins */
+  margin: 0;
+  /* Remove any extra margins */
   padding: 0;
 }
 
 .card-text {
   font-size: 0.9rem;
   color: #eaeaea;
-  margin-top: 0.1rem; /* Adjust spacing if needed */
+  margin-top: 0.1rem;
+  /* Adjust spacing if needed */
   margin-bottom: 0;
   margin-left: 0;
   padding: 0;
@@ -938,7 +1008,7 @@ export default {
 .rating-section {
   display: flex;
   align-items: center;
-  margin: 0 ;
+  margin: 0;
   padding: 0;
 }
 
@@ -959,15 +1029,17 @@ export default {
   margin-left: 0;
   padding: 0;
   margin-bottom: 0;
-  
+
 }
 
 .attraction-hours.open {
-  color: #00ff3c; /* Green for open */
+  color: #00ff3c;
+  /* Green for open */
 }
 
 .attraction-hours.closed {
-  color: #ff3d51; /* Red for closed */
+  color: #ff3d51;
+  /* Red for closed */
 }
 
 
@@ -991,24 +1063,13 @@ export default {
 }
 
 .itinerary-button.saved {
-  opacity: 0.7; /* Reduced opacity when saved */
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 items per row on medium screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .card-grid {
-    grid-template-columns: 1fr; /* 1 item per row on small screens */
-  }
+  opacity: 0.7;
+  /* Reduced opacity when saved */
 }
 
 .transition-wrapper {
-  display: contents; /* Keep the child elements visible */
+  display: contents;
+  /* Keep the child elements visible */
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 15px;
@@ -1032,11 +1093,38 @@ export default {
 }
 
 .already-saved {
-  background-color: #e74c3c; /* Different color for already saved */
+  background-color: #e74c3c;
+  /* Different color for already saved */
 }
 
 /* Additional Styles for Dropdown (already provided by user) */
 .btn {
   font-family: "Source Sans 3", sans-serif;
+}
+
+
+/* <=================== breakpoints ======================> */
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
+  }
+
+  .dropdown-container {
+        flex-direction: column;
+        /* Stack buttons vertically */
+        align-items: flex-start;
+        /* Align them to the start */
+        gap: 0.5rem;
+        /* Adjust gap for vertical spacing */
+    }
 }
 </style>

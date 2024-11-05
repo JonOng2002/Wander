@@ -1,14 +1,14 @@
 {
   "country": "Italy",
-  "itinerary_summary": "A vibrant two-day adventure in Rome focusing on nightlife and entertainment, featuring iconic landmarks, delicious food, and lively atmospheres perfect for enjoying with friends.",
+  "itinerary_summary": "A vibrant 3-day adventure in Rome exploring historical landmarks by day and indulging in lively nightlife by evening with friends.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-20",
-      "summary": "Exploring ancient Rome in the day and enjoying the nightlife in the evening, starting with iconic historical sites and wrapping up with energetic social scenes.",
+      "date": "2024-11-21",
+      "summary": "Arrive in Rome and explore ancient sites before diving into the nightlife scene.",
       "activities": [
         {
-          "time": "09:00",
+          "time": "10:00 AM",
           "activity_name": "Il Tempio dei Dioscuri",
           "location": {
             "name": "Il Tempio dei Dioscuri",
@@ -20,10 +20,10 @@
             "place_id": "ChIJ6RRKjbRhLxMRKHHdS4QvkK4",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPD8-ATSt134fUsl3RYUaeKqqEDJKpmu-3ZIElmdq1VgS5SxF3A6Bv8wIPIBdrr6BspAoA-EqABUcJSw3gAym_Oz0pQj9bm4CJO9UJ-mZvgjznd2DGbj_YROiJn6KlHkaRH38jZYVUCyGE8wnuq6GcZtsTArOFeQkfF-gnVbkRWqlK8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Visit the historic Temple of the Dioscuri, an impressive ancient structure and a landmark in central Rome."
+          "description": "Visit the iconic Temple of the Dioscuri, an ancient Roman temple dedicated to the twin brothers Castor and Pollux."
         },
         {
-          "time": "11:30",
+          "time": "1:00 PM",
           "activity_name": "Basilica Julia",
           "location": {
             "name": "Basilica Julia",
@@ -35,10 +35,41 @@
             "place_id": "ChIJM2qBt7RhLxMRBvo4dDqpXpw",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOLPjskswrWYoUnzZrtgm6Up_72DF-u_Zym3aL7vHhTSVdktNhCc3hkyJjj6yakbc0lHZ_mDooe9rsh5vgFXMMYVz1HBP0srDNyFO3qbKShTpA7houZmEeFW8xqXkWx5vYhhr9QFhqnbmVbyvN3jb4SO2cGV1ld6Aj71xGB9471nyb8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Explore the ruins of Basilica Julia, a significant historical site located in the Roman Forum."
+          "description": "Explore the historical ruins of Basilica Julia, a significant location in Roman history."
         },
         {
-          "time": "15:00",
+          "time": "6:00 PM",
+          "activity_name": "Dinner at Trattoria Da Enzo al 29",
+          "location": {
+            "name": "Trattoria Da Enzo al 29",
+            "city": "Rome",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy authentic Roman cuisine at this traditional trattoria, famous for its carbonara."
+        },
+        {
+          "time": "9:00 PM",
+          "activity_name": "Piper Club",
+          "location": {
+            "name": "Piper Club",
+            "city": "Rome",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience Rome's nightlife at the iconic Piper Club, known for its vibrant music and atmosphere."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-22",
+      "summary": "Deep dive into Rome's culture with visits to ancient sites followed by a fun evening exploring the nightlife.",
+      "activities": [
+        {
+          "time": "10:00 AM",
           "activity_name": "Temple of Apollo Palatinus",
           "location": {
             "name": "Temple of Apollo Palatinus",
@@ -50,41 +81,22 @@
             "place_id": "ChIJl5cSjsphLxMRv85ELFf8Dk4",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNypUW-aDTYcCIPNpAALHcslA_ZlcrKxpzuV7Vwu_urAids_HRioUqnJp5CbNE77kVGHb9U0jfu1xKNrt5U62TIVNhBubf0KbnCFvgs9RkwNNq1Y7FttXvtWv2QRvCq5ok1TGp0wRf7xJkTO7y3dmPZ2N361TJiscaTgyq7tR8gvqi9&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Visit the Temple of Apollo Palatinus, the ancient shrine located on the Palatine Hill, offering stunning views."
+          "description": "Visit the remains of the Temple of Apollo, a key religious site in ancient Rome."
         },
         {
-          "time": "19:00",
-          "activity_name": "Dinner at La Pergola",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Osteria delle Commari",
           "location": {
-            "name": "La Pergola",
+            "name": "Osteria delle Commari",
             "city": "Rome",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a fine dining experience at La Pergola, the only three Michelin-starred restaurant in Rome, offering exquisite Italian cuisine."
+          "description": "Savor locally sourced dishes at this charming osteria known for its warm atmosphere."
         },
         {
-          "time": "21:30",
-          "activity_name": "Cocktails at Shari Vari Playhouse",
-          "location": {
-            "name": "Shari Vari Playhouse",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Experience the vibrant nightlife at Shari Vari Playhouse, a trendy venue known for its cocktails and lively atmosphere."
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "date": "2024-11-21",
-      "summary": "Continue the exploration of Rome's cultural delights during the day followed by an engaging evening with entertainment and nightlife.",
-      "activities": [
-        {
-          "time": "10:00",
+          "time": "4:00 PM",
           "activity_name": "Ludus Magnus",
           "location": {
             "name": "Ludus Magnus",
@@ -96,55 +108,74 @@
             "place_id": "ChIJJ540e7dhLxMR05OTuWWdXow",
             "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNdjUtneG6aTF3_1IN1AtcetK3v7KIZVeSRQy3iIAwTLhUBcBibDA3l-DmRZQqG3TmYEJn12UxbYH5elPwBV3ZnO7saxFOUL1Av_zZoj0PVFMsB42TNfrvXhSJ4SldNG0pIHG-o6-Jmwi3VUnpbb4KvicmwhAf-a3ZzcxO1jLHXm0H3&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Discover the ancient gladiator training school, Ludus Magnus, and learn about Rome's rich history of gladiatorial combat."
+          "description": "Explore the remains of the Ludus Magnus, the largest gladiatorial school in ancient Rome."
         },
         {
-          "time": "13:00",
-          "activity_name": "Lunch at Roscioli",
+          "time": "8:00 PM",
+          "activity_name": "Rooftop Bar at Hotel Raphael",
           "location": {
-            "name": "Roscioli",
+            "name": "Rooftop Bar at Hotel Raphael",
             "city": "Rome",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Savor traditional Italian dishes at Roscioli, an acclaimed deli and restaurant known for its fresh ingredients."
-        },
+          "description": "Enjoy cocktails and panoramic views of the city skyline from this beautiful rooftop bar."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-23",
+      "summary": "Relax and enjoy brunch before concluding the trip with a chilled evening.",
+      "activities": [
         {
-          "time": "15:30",
-          "activity_name": "Visit to Trastevere",
+          "time": "10:00 AM",
+          "activity_name": "Brunch at Antico Arco",
           "location": {
-            "name": "Trastevere",
+            "name": "Antico Arco",
             "city": "Rome",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Stroll through the charming cobblestone streets of Trastevere, exploring its beautiful scenery and unique shops."
+          "description": "Start your day with a delicious brunch in a cozy, upscale restaurant."
         },
         {
-          "time": "20:00",
-          "activity_name": "Dinner and Show at La Maison",
+          "time": "12:00 PM",
+          "activity_name": "Stroll through Villa Borghese",
           "location": {
-            "name": "La Maison",
+            "name": "Villa Borghese",
             "city": "Rome",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy dinner paired with an engaging live performance at La Maison, a venue that offers great entertainment in a warm atmosphere."
+          "description": "Take a leisurely stroll through one of Rome's beautiful parks, home to gardens and museums."
         },
         {
-          "time": "22:30",
-          "activity_name": "Night out at Campo de' Fiori",
+          "time": "3:00 PM",
+          "activity_name": "Visit the Borghese Gallery",
           "location": {
-            "name": "Campo de' Fiori",
+            "name": "Borghese Gallery",
             "city": "Rome",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "End the trip with a lively night out at Campo de' Fiori, known for its bustling nightlife and crowd of locals and tourists alike."
+          "description": "Explore the renowned art collection housed in the beautiful Villa Borghese."
+        },
+        {
+          "time": "6:00 PM",
+          "activity_name": "Dinner at La Pergola",
+          "location": {
+            "name": "La Pergola",
+            "city": "Rome",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Indulge in a luxurious dining experience at Rome's only three Michelin-starred restaurant."
         }
       ]
     }

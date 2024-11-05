@@ -554,11 +554,13 @@ onMounted(async () => {
   align-items: center;
   margin-bottom: 60px;
   /* Add space below the button */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .back-button:hover {
   color: #333;
   /* Darker color on hover */
+  transform: scale(1.05); /* Slightly increase size */
 }
 
 .back-button i {

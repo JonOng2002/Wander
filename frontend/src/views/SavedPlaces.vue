@@ -116,8 +116,7 @@
           {{ item.name }} - {{ item.vicinity }}
         </li>
       </ol>
-      <button @click="navigateToGeneratedItinerary" class="btn mb-2 view-full-itinerary-btn">View Full
-        Itinerary</button>
+      <button @click="navigateToGeneratedItinerary" class="btn mb-2 confirm-modal-btn">View Full Itinerary</button>
       <button @click="toggleModal" type="button" class="btn close-modal-btn">Close</button>
     </div>
   </div>
@@ -125,7 +124,7 @@
   <div v-if="showDeletePopup" class="modal-overlay" @click.self="toggleDeletePopup">
     <div class="modal-content">
       <h3>Are you sure you want to delete all saved places?</h3>
-      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">Yes, Delete All</button>
+      <button @click="confirmDeleteAllPlaces" type="button" class="btn confirm-modal-btn mb-2">Yes, Delete All</button>
       <button @click="toggleDeletePopup" type="button" class="btn close-modal-btn">Cancel</button>
     </div>
   </div>
@@ -986,6 +985,31 @@ export default {
   border-radius: 5px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   transform: translateY(-5px);
+}
+
+.confirm-modal-btn {
+  background-color: #ff4d4d; /* Red color similar to the second image */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+}
+
+.close-modal-btn {
+  background-color: #1e90ff; /* Blue color */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 
