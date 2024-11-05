@@ -16,7 +16,7 @@
         <div class="container">
             <div class="left-text">
                 <p>Welcome to</p>
-                <p style="font-style: italic;">Wander :</p>
+                <p style="font-size: larger; font-family: Lobster Two; color: #3f94a7;">wander :</p>
                 <p>Explore the world</p>
                 <p>like</p>
                 <p>never before</p>
@@ -651,7 +651,7 @@ export default {
 .carousel-header h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #0057d9;
+    color: #3f94a7;
 }
 
 /* Carousel container styling */
@@ -711,7 +711,7 @@ export default {
     .image-caption {
         font-size: 1rem;
         margin-top: 8px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -735,7 +735,7 @@ export default {
     .image-caption {
         font-size: 0.9rem;
         margin-top: 6px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -759,7 +759,7 @@ export default {
     .image-caption {
         font-size: 0.8rem;
         margin-top: 4px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -904,8 +904,8 @@ export default {
 }
 
 .right-text span {
-    background-color: white;
-    color: black;
+    background-color: #3f94a7;
+    color: #ffffff;
 }
 
 
@@ -945,6 +945,7 @@ export default {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 50px;
+    color: #3f94a7;
 }
 
 .project-number-2 {
@@ -957,7 +958,7 @@ export default {
         line-height: 1;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -973,7 +974,7 @@ export default {
         line-height: 1;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -993,7 +994,7 @@ export default {
         font-weight: normal;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 

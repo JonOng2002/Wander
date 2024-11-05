@@ -16,7 +16,7 @@
         <div class="container">
             <div class="left-text">
                 <p>Welcome to</p>
-                <p style="font-style: italic;">Wander :</p>
+                <p style="font-family: Lobster Two; font-size: larger; color: #3f94a7;">wander :</p>
                 <p>Explore the world</p>
                 <p>like</p>
                 <p>never before</p>
@@ -671,7 +671,7 @@ export default {
 .carousel-header h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #0057d9;
+    color: #3f94a7;
 }
 
 /* Carousel container styling */
@@ -731,7 +731,7 @@ export default {
     .image-caption {
         font-size: 1rem;
         margin-top: 8px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -755,7 +755,7 @@ export default {
     .image-caption {
         font-size: 0.9rem;
         margin-top: 6px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -779,7 +779,7 @@ export default {
     .image-caption {
         font-size: 0.8rem;
         margin-top: 4px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -924,8 +924,8 @@ export default {
 }
 
 .right-text span {
-    background-color: white;
-    color: black;
+    background-color: #3f94a7;
+    color: #ffffff;
 }
 
 
@@ -965,6 +965,7 @@ export default {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 50px;
+    color: #3f94a7;
 }
 
 .project-number-2 {
@@ -977,7 +978,7 @@ export default {
         line-height: 1;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -993,7 +994,7 @@ export default {
         line-height: 1;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -1013,7 +1014,7 @@ export default {
         font-weight: normal;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -1276,8 +1277,8 @@ export default {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 1px solid #0057d9;
-    color: #0057d9;
+    border: 1px solid #3f94a7;
+    color: #3f94a7;
     background-color: #ffffff;
 }
 
@@ -1287,20 +1288,20 @@ export default {
 }
 
 .signup-btn {
-    background-color: #2563eb;
-    border: 1px solid #2563eb;
+    background-color: #3f94a7;
+    border: 1px solid #3f94a7;
     color: white;
 }
 
 .signup-btn:hover {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
+    background-color: #378597;
+    border-color: #378597;
 }
 
 /* Optional: Add focus states for accessibility */
 .login-btn:focus,
 .signup-btn:focus {
-    outline: 2px solid #2563eb;
+    outline: 2px solid #378597;
     outline-offset: 2px;
 }
 
@@ -1310,7 +1311,7 @@ export default {
 }
 
 .signup-btn:active {
-    background-color: #1e40af;
+    background-color: #3f94a7;
 }
 
 /* Optional: Add responsive design */
@@ -1348,7 +1349,7 @@ export default {
 }
 
 .call-to-action span {
-    color: #0057d9;
+    color: #3f94a7;
     /* font-style: italic; */
 }
 </style>
