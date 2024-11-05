@@ -13,6 +13,7 @@ import MyDestinations from '@/views/MyDestinations.vue';
 import DestinationDetails from '@/views/DestinationDetails.vue';
 import CalendarPage from '@/views/CalendarPage.vue';
 import TagsPage from '@/views/TagsPage.vue';
+import WelcomePage from './views/Welcome.vue';
 // import TrvPartner from '@/views/TravellingWithWho.vue';
 import ItineraryBuilder from '@/views/ItineraryBuilder.vue';
 import LocationDate from '@/views/LocationDate.vue';
@@ -22,9 +23,10 @@ import NotFound from '@/views/NotFound.vue'; // Create a NotFound.vue component
 import { auth } from './main'
 
 
+
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
-
+  { path: '/welcome', name: 'Welcome', component: WelcomePage },
   { path: '/', name: 'Home', component: MainPage },   
   { path: '/about', name: 'AboutPage', component: AboutPage },
   { path: '/location', name: 'ExtractedLocation', component: ExtractedLocation },
@@ -37,7 +39,7 @@ const routes = [
     path: '/itinerary-details/:savedAt',  // ':id' is the dynamic parameter for the itinerary ID
     name: 'ItineraryDetails',
     component: ItineraryDetails,
-  props: true,
+    props: true,
   },
   { path: '/sign-up', name: 'SignUp', component: SignUp },
   { path: '/destinations', name: 'MyDestinations', component: MyDestinations },
@@ -102,11 +104,11 @@ function handleNavigation(user, to, next) {
       next(); // Proceed if the user is authenticated and the route is not /log-in or /sign-up
     }
   } else {
-    // If the user is not authenticated, redirect to /log-in unless they are accessing /sign-up
-    if (to.path !== '/log-in' && to.path !== '/sign-up') {
-      next('/log-in');
+    // If the user is not authenticated, allow access to /welcome, /log-in, and /sign-up
+    if (to.path === '/welcome' || to.path === '/log-in' || to.path === '/sign-up') {
+      next(); // Allow access to these routes
     } else {
-      next(); // Allow access to /log-in or /sign-up
+      next('/welcome'); // Redirect to /welcome for all other routes
     }
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <header id="headercard">
+    <div class="gradientoverlay"></div>
     <div class="header_image"></div>
     <div class="header_container">
       <div class="content">
@@ -16,7 +17,7 @@
     </div>
 
     <!-- Custom Dropdowns for sorting and filtering -->
-    <div class="filter-container">
+    <div class="filter-container" v-motion-slide-visible-once-top>
       <!-- Sort by Dropdown -->
       <div class="dropdown" @click="toggleDropdown('sort')">
         <button class="dropdown-btn">
@@ -26,7 +27,7 @@
         <ul :style="{ display: showDropdowns.sort ? 'block' : 'none' }" class="dropdown-menu">
           <li @click.stop="selectSort('default')">Top Destinations</li>
           <li @click.stop="selectSort('alphabetical')">Alphabetical Order</li>
-          
+
         </ul>
       </div>
 
@@ -51,19 +52,10 @@
 
   <div class="container">
     <div class="card_container">
-      <article
-        v-for="country in filteredCountries"
-        :key="country.code"
-        class="card_article"
-      >
+      <article v-for="country in filteredCountries" :key="country.code" class="card_article" v-motion-slide-visible-once-top>
         <div class="text_overlay">{{ country.name }}</div>
 
-        <img
-          :src="country.image"
-          alt="country-image"
-          class="card_img"
-          loading="lazy"
-        />
+        <img :src="country.image" alt="country-image" class="card_img" loading="lazy" />
 
         <div class="card_data">
           <span class="card_description">
@@ -80,10 +72,13 @@
 
 
 <script>
-
+import { vMotion } from '@vueuse/motion';
 
 export default {
   name: "MyDestinations",
+  directives: {
+        motion: vMotion,
+    },
   data() {
     return {
       countries: [
@@ -475,7 +470,7 @@ export default {
       ],
       sortOrder: 'default', // Track sorting order
       continentFilter: '',  // Track continent filter
-      showDropdowns: { sort:false, filter:false },
+      showDropdowns: { sort: false, filter: false },
       sortLabel: 'Top Destinations',
       filterLabel: 'All Continents',
     };
@@ -493,7 +488,7 @@ export default {
 
       // Apply continent filter
       if (this.continentFilter) {
-        filteredList = filteredList.filter(country => 
+        filteredList = filteredList.filter(country =>
           this.getRegion(country.name) === this.continentFilter
         );
       }
@@ -573,8 +568,8 @@ export default {
     toggleDropdown(type) {
       // Toggle the dropdown visibility
       Object.keys(this.showDropdowns).forEach(key => {
-    this.showDropdowns[key] = (key === type) ? !this.showDropdowns[key] : false;
-  });
+        this.showDropdowns[key] = (key === type) ? !this.showDropdowns[key] : false;
+      });
     },
 
     selectSort(order) {
@@ -598,6 +593,7 @@ export default {
       this.showDropdowns.filter = false;
     },
   },
+
 };
 </script>
 
@@ -613,10 +609,12 @@ body,
   padding: 0;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  height: 100%; /* Make sure the body takes up the full viewport */
+  height: 100%;
+  /* Make sure the body takes up the full viewport */
   background-color: #2a5ead;
 }
 
@@ -626,10 +624,13 @@ html, body {
 header {
   position: relative;
   overflow: hidden;
-  min-height: 60vh; /* Minimum height to prevent cutoffs */
+  min-height: 60vh;
+  /* Minimum height to prevent cutoffs */
   display: flex;
-  align-items: center; /* Center contents vertically */
+  align-items: center;
+  /* Center contents vertically */
   justify-content: center;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .header_image {
@@ -639,7 +640,8 @@ header {
   width: 100%;
   height: 100%;
   background-image: url("@/assets/background_header.jpeg");
-  background-size: cover; /* Prevents cropping */
+  background-size: cover;
+  /* Prevents cropping */
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
@@ -654,10 +656,12 @@ header {
 }
 
 header .content h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+
 }
+
 header content h4 {
   color: hsl(0, 0%, 70%);
   font-size: 1.25rem;
@@ -670,12 +674,26 @@ header content h4 {
   position: relative;
   left: 50px;
   top: 60px;
-  padding-bottom: 1rem;
+  padding-bottom: 4rem;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .secondary_content h5 {
   color: rgb(166, 163, 163);
   margin-bottom: 1rem;
+}
+
+.gradientoverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Set a slightly darker default */
+    transition: background-color 0.4s ease, transform 0.4s ease;
+    /* Smooth color and scale transition */
+    z-index: 1;
 }
 
 /* Dropdown button styling */
@@ -684,15 +702,19 @@ header content h4 {
   color: #fff;
   border: none;
   text-align: left;
-  width: 320px; /* Consistent width with the dropdown */
+  width: 320px;
+  /* Consistent width with the dropdown */
   padding: 1rem;
   cursor: pointer;
-  display: flex; /* Use flexbox for alignment */
-  justify-content: space-between; /* Align text and arrow */
+  display: flex;
+  /* Use flexbox for alignment */
+  justify-content: space-between;
+  /* Align text and arrow */
   align-items: center;
   transition: background-color 0.3s;
   position: relative;
-  border-radius: 4px; /* Rounded edges for buttons */
+  border-radius: 4px;
+  /* Rounded edges for buttons */
 }
 
 .dropdown-btn:hover {
@@ -701,7 +723,8 @@ header content h4 {
 
 /* Add arrow icon to indicate dropdown */
 .arrow-down {
-  font-size: 0.8rem; /* Adjust the size of the arrow */
+  font-size: 0.8rem;
+  /* Adjust the size of the arrow */
   color: #fff;
   margin-left: 10px;
 }
@@ -720,8 +743,10 @@ header content h4 {
   padding: 0;
   margin: 0;
   top: 100%;
-  left: 0; /* Align the dropdown to the left of the parent button */
-  width: 320px; /* Same width as the parent button */
+  left: 0;
+  /* Align the dropdown to the left of the parent button */
+  width: 320px;
+  /* Same width as the parent button */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-out, visibility 0.1s linear;
@@ -758,39 +783,39 @@ header content h4 {
 .card_container {
   display: grid;
   row-gap: 3.5rem;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .card_article {
   position: relative;
   overflow: hidden;
-  
-  --elevation: 16; /* Set the elevation to 8 */
+
+  --elevation: 16;
+  /* Set the elevation to 8 */
   --epx: calc(var(--elevation) * 1px);
-  
+
   /* These 2 shadows serve as a border for 0-1 elevation */
   --shadow1: 0 0 1px rgba(0, 0, 0, .1);
   --shadow2: 0 1px 2px rgba(0, 0, 0, .08);
-  
+
   /* Calculate the dynamic shadow based on the elevation */
   --offset-y: calc(var(--epx) + 1px);
   --blur: calc(var(--epx) * 2);
   --spread: calc(var(--epx) * 0.3);
-  
+
   /* Final shadow for elevation effect */
-  --shadow3: 
-    0 var(--offset-y) 
-    var(--blur) 
-    var(--spread) 
-    rgba(0, 0, 0, 0.2);
+  --shadow3:
+    0 var(--offset-y) var(--blur) var(--spread) rgba(0, 0, 0, 0.2);
 
   /* Apply the shadows */
-  box-shadow: 
+  box-shadow:
     var(--shadow1),
     var(--shadow2),
     var(--shadow3);
 
   border-radius: 1.5rem;
-  transition: box-shadow 0.3s ease; /* Optional: smooth transitions for dynamic shadow changes */
+  transition: box-shadow 0.3s ease;
+  /* Optional: smooth transitions for dynamic shadow changes */
 }
 
 .card_img {
@@ -913,9 +938,11 @@ header content h4 {
   0% {
     transform: translateY(-7rem);
   }
+
   50% {
     transform: translateY(-10rem);
   }
+
   100% {
     transform: translateY(7rem);
   }
@@ -926,10 +953,13 @@ header content h4 {
     overflow: initial;
     pointer-events: none;
   }
+
   50% {
     overflow: hidden;
   }
 }
+
+/* <========================== breakpoints =========================> */
 
 @media screen and (max-width: 576px) {
   .container {
@@ -942,7 +972,8 @@ header content h4 {
   }
 
   header {
-    height: 40vh; /* Reduced height for small screens */
+    height: 40vh;
+    /* Reduced height for small screens */
   }
 
   header .content h1 {
@@ -959,38 +990,67 @@ header content h4 {
 
   .secondary_header {
     text-align: left;
-    padding-left: 1rem; /* Add padding to give some spacing from the edge */
+    padding-left: 1rem;
+    /* Add padding to give some spacing from the edge */
   }
 
   .secondary_content h2 {
-    font-size: 1.2rem; /* Adjust to a smaller size */
+    font-size: 1.2rem;
+    /* Adjust to a smaller size */
     margin-bottom: 0.5rem;
   }
 
   .secondary_content h5 {
-    font-size: 1rem; /* Smaller size for supporting text */
+    font-size: 1rem;
+    /* Smaller size for supporting text */
     color: rgb(166, 163, 163);
   }
 
-    /* Arrange filter buttons side-by-side */
-    .filter-container {
+  /* Arrange filter buttons side-by-side */
+  .filter-container {
     display: flex;
     flex-direction: column;
     align-items: left;
   }
 
   .dropdown-btn {
-    width: 60%; /* Full width on small screens */
+    width: 60%;
+    /* Full width on small screens */
     margin-bottom: 0.5rem;
   }
-
 
   .dropdown-btn {
     width: 60%;
     padding: 0.8rem;
   }
-
 }
+
+@media (max-width: 767.99px) {
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    /* Adjust the gap value as needed */
+  }
+
+  .dropdown {
+    margin-bottom: 10px;
+    /* Optional if more space is needed */
+  }
+
+  header .content h1 {
+    font-size: 2rem;
+  }
+
+  header .content h4 {
+    font-size: 1rem;
+  }
+
+  .header_container {
+    padding: 15px;
+  }
+}
+
 
 @media screen and (min-width: 768px) {
   .card_container {
@@ -999,27 +1059,27 @@ header content h4 {
   }
 
   header {
-    height: 50vh; /* Slightly reduced height for medium screens */
+    height: 50vh;
+    /* Slightly reduced height for medium screens */
   }
 
   header .content h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   header .content h4 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .header_container {
     padding: 15px;
   }
-
-  
 }
+
 
 @media screen and (min-width: 1024px) {
   .container {
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .card_container {
@@ -1036,15 +1096,16 @@ header content h4 {
   }
 
   header {
-    height: 60vh; /* Maintain default height for large screens */
+    height: 60vh;
+    /* Maintain default height for large screens */
   }
 
   header .content h1 {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
   header .content h4 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 
   .header_container {

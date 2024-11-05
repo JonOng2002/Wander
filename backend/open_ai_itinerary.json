@@ -1,71 +1,138 @@
 {
-  "country": "Indonesia",
-  "itinerary_summary": "Explore the stunning sights and rich culture of Uluwatu, Indonesia, with a focus on renowned attractions and must-see landmarks in a day-long solo adventure.",
+  "country": "Japan",
+  "itinerary_summary": "A short yet vibrant trip in Kushiro, Japan, filled with nightlife and entertainment experiences that blend cultural immersion with leisure.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-01",
-      "summary": "Immerse yourself in the breathtaking scenery and cultural richness of Uluwatu with a day packed with sightseeing and local experiences.",
+      "date": "2024-11-05",
+      "summary": "Explore the vibrant nightlife of Kushiro with unique entertainment and dining experiences.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Breakfast at Single Fin",
+          "time": "18:00",
+          "activity_name": "Kushiro Dinner Cruise, Kushiro",
           "location": {
-            "name": "Single Fin",
-            "city": "Uluwatu",
+            "name": "Kushiro Dinner Cruise",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": -8.8021,
-              "longitude": 115.1276
-            },
-            "place_id": "",
-            "photo_url": "https://images.unsplash.com/photo-1582551145495-ae6ba5c11013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzA0MzIyMTR8&ixlib=rb-4.0.3&q=80&w=1080"
-          },
-          "description": "Enjoy a delightful breakfast with stunning ocean views at Single Fin, a popular spot among surfers and tourists alike."
-        },
-        {
-          "time": "10:00",
-          "activity_name": "Visit Uluwatu Temple",
-          "location": {
-            "name": "Uluwatu Temple",
-            "city": "Uluwatu",
-            "coordinates": {
-              "latitude": -8.8305,
-              "longitude": 115.0862
+              "latitude": 0,
+              "longitude": 0
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore the majestic Uluwatu Temple, perched atop a cliff with breathtaking views of the Indian Ocean, a must-see cultural landmark."
+          "description": "Enjoy a scenic dinner cruise along Kushiro River, offering stunning views of the city and delicious local cuisine."
         },
         {
-          "time": "13:00",
-          "activity_name": "Lunch at The Cashew Tree",
+          "time": "20:30",
+          "activity_name": "Nihonryori Sato, Kushiro",
           "location": {
-            "name": "The Cashew Tree",
-            "city": "Uluwatu",
+            "name": "Nihonryori Sato",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": -8.802,
-              "longitude": 115.121
+              "latitude": 0,
+              "longitude": 0
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Savor fresh and healthy dishes at The Cashew Tree, known for its vibrant atmosphere and tasty organic meals."
+          "description": "Experience traditional Japanese dining with a focus on fresh seafood sourced from Hokkaido."
         },
         {
-          "time": "15:00",
-          "activity_name": "Relax at Padang Padang Beach",
+          "time": "22:00",
+          "activity_name": "Kushiro Night Market, Kushiro",
           "location": {
-            "name": "Padang Padang Beach",
-            "city": "Uluwatu",
+            "name": "Kushiro Night Market",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": -8.8424,
-              "longitude": 115.0858
+              "latitude": 0,
+              "longitude": 0
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit Padang Padang Beach, renowned for its stunning cliffs and turquoise waters, perfect for sunbathing and swimming."
+          "description": "Explore the vibrant night market with stalls selling local delicacies and drinks, perfect for a late-night snack."
+        },
+        {
+          "time": "23:30",
+          "activity_name": "Kushiro Pub Crawl, Kushiro",
+          "location": {
+            "name": "Various bars in Kushiro",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Join fellow travelers and locals for a guided pub crawl to experience Kushiro's nightlife in its charming local bars."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-06",
+      "summary": "Morning exploration followed by leisure and departure.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Breakfast at Cafe de Lait, Kushiro",
+          "location": {
+            "name": "Cafe de Lait",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Start your day with a delicious breakfast featuring local specialties and freshly brewed coffee."
+        },
+        {
+          "time": "10:30",
+          "activity_name": "Kushiro Fishermen's Wharf MOO, Kushiro",
+          "location": {
+            "name": "Kushiro Fishermen's Wharf MOO",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Visit this lively waterfront area filled with shops, restaurants, and galleries showcasing Hokkaido's seafood trade."
+        },
+        {
+          "time": "11:30",
+          "activity_name": "Hokkaido Museum of Northern Peoples, Kushiro",
+          "location": {
+            "name": "Hokkaido Museum of Northern Peoples",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Learn about the indigenous cultures of Hokkaido through various exhibits and displays at this engaging museum."
+        },
+        {
+          "time": "12:30",
+          "activity_name": "Departure from Kushiro, Kushiro",
+          "location": {
+            "name": "Kushiro Airport",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "End your trip in Kushiro with a reflective departure from the airport."
         }
       ]
     }

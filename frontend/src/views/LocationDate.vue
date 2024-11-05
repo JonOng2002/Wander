@@ -305,13 +305,66 @@ const goToNextStep = () => {
   align-items: center;
 }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
+/* <=============== breakpoints and media =============>*/
+/* Base styles (1200px and above) remain as is */
+
+
+/* XL to LG (1200px to 990px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .content-wrapper {
+    display: flex;
+    align-items: center; /* Centers the contents vertically */
+    justify-content: center; /* Centers the contents horizontally */
+    gap: 2rem;
+    max-height: 90vh; /* Limits the overall height of content-wrapper */
+  }
+
+  .form-section {
+    height: auto; /* Allow form-section to expand naturally */
+    padding: 1rem 1.5rem; /* Reduces excessive padding */
+    margin: 0 auto; /* Ensures horizontal centering */
+    box-sizing: border-box;
+  }
+}
+
+/* LG to MD (990px to 768px) */
+/* No changes required as per instructions */
+
+/* Below MD (less than 768px) */
+@media (max-width: 767px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .image-card {
+
+    width: 100%; /* Makes image-card take full width */
+    max-width: 500px; /* Optional: restricts width to avoid excessive stretching */
+    height: 40vh; /* Adjust height to fit smaller screens */
+    max-height: 400px; /* Limit height to prevent excessive scrolling */
+    margin: 0 auto; /* Centers the image card */
+  }
+  
+  .form-section {
+    width: 100%; /* Makes form-section take full width */
+    max-width: 500px; /* Optional: restricts width to avoid excessive stretching */
+    padding: 1rem; /* Adjust padding for better spacing on small screens */
+    margin: 0 auto; /* Centers the form section */
+    height: auto; /* Allow natural expansion */
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
   .content-wrapper {
     flex-direction: column;
   }
   .form-section {
     padding: 1rem 2rem;
+    text-align: center;
+  }
+  .trip-options,.action-buttons{
+    justify-content: center;
   }
 }
 </style>

@@ -20,6 +20,7 @@
             <button @click="deleteItinerary" class="delete-itinerary-button">
               Delete Itinerary
             </button>
+            <hr class="faint-line">
           </div>
 
           <div class="itinerary-summary" v-if="itinerarySummary">
@@ -35,18 +36,24 @@
               <div class="day-description">{{ day.summary }}</div>
 
               <!-- Activity Grid with Two Items Per Row -->
-              <div class="activity-grid" v-if="day.activities && day.activities.length">
+              <div class="activity-grid" v-if="day.activities && day.activities.length" v-motion-slide-visible-once-top>
                 <div class="itinerary-item" v-for="(activity, actIndex) in day.activities" :key="actIndex"
-                  @click="focusOnActivity(activity)">
-                  <div class="time-column">{{ activity.time }}</div>
-                  <div class="place-column">
-                    <h5>{{ activity.activity_name }}</h5>
-                    <p>
-                      <em>Location:</em>
-                      {{ activity.location?.name || 'Unknown location' }}
-                    </p>
-                    <img v-if="activity.location.photo_url" :src="activity.location.photo_url" class="place-image"
-                      :alt="activity.activity_name" />
+                  @click="focusOnActivity(activity)" :style="{
+                    backgroundImage: activity.location.photo_url
+                      ? `url(${activity.location.photo_url})`
+                      : 'none',
+                  }">
+                  <div class="text-container">
+                    <div class="time-column">{{ activity.time }}</div>
+                    <div class="place-column">
+                      <h5>{{ activity.activity_name }}</h5>
+                      <p>
+                        <em>Location:</em>
+                        {{ activity.location?.name || 'Unknown location' }}
+                      </p>
+                      <!-- <img v-if="activity.location.photo_url" :src="activity.location.photo_url" class="place-image"
+                      :alt="activity.activity_name" /> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -275,6 +282,7 @@ onMounted(async () => {
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 /* General styling */
+/* <================= layout and heading title ================>*/
 .generated-itinerary {
   margin: 0;
   padding: 0;
@@ -292,22 +300,57 @@ onMounted(async () => {
 }
 
 .user-info h2 {
-  font-size: 3rem;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 600;
+  padding: 10px 10px 10px 0px;
+}
+
+.user-info h4 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.faint-line {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.8);
+  /* Adjust color and opacity as needed */
+  margin: 20px 0;
+  /* Adjust top and bottom margin to add spacing */
 }
 
 .main-content {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
+  flex-wrap: nowrap;
 }
 
 /* Itinerary Details */
 .itinerary-details-container {
   position: relative;
   width: 55%;
-  overflow-y: auto;
-  max-height: 100vh;
-  padding-right: 10px;
-  padding-top: 0px;
+  /* overflow-y: auto; */
+  /* max-height: 100vh; */
+  /* padding-right: 10px; */
+  padding: 0px 60px 60px 60px;
+}
+
+/* Map Container */
+.map-container {
+  flex-grow: 1;
+  /* Allow map container to shrink */
+  background-color: #f8f9fa;
+  width: 45%;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
 }
 
 .itinerary-summary {
@@ -338,6 +381,8 @@ onMounted(async () => {
 .itinerary-details::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+/* <======================== itinerary layout ======================>*/
 
 .day-section {
   margin-bottom: 20px;
@@ -371,6 +416,35 @@ onMounted(async () => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   /* Indicates clickable */
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 200px;
+  /* Adjust height as necessary */
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.itinerary-item:hover {
+  transform: scale(1.05);
+  /* Slightly scale up the card */
+}
+
+.overlay-text {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  /* Dark overlay for readability */
+  padding: 15px;
+  border-radius: 10px;
+  width: 90%;
+  /* Slight padding from edges */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* Align text to the left */
+  text-align: left;
+  /* Ensure text aligns to the left */
 }
 
 .itinerary-item:hover {
@@ -378,20 +452,35 @@ onMounted(async () => {
   /* Light hover effect */
 }
 
-.time-column {
+/* .time-column {
   text-align: left;
   font-weight: bold;
   padding: 10px 0;
+} */
+
+.text-container {
+  width: 200px; /* Set fixed width for uniformity */
+  max-width: 100%;
+  text-align: left;
+  word-wrap: break-word; /* Break words if they're too long */
+  white-space: normal; /* Allow text to wrap to next line */
 }
 
-.place-column {
-  padding: 10px 0;
+.time-column {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.place-column p {
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .place-column h5 {
   font-size: 1.2rem;
-  margin: 0;
-  padding: 10px 0;
+  margin: 0 0 5px 0;
+  /* Margin below the activity name */
 }
 
 .place-column img {
@@ -400,20 +489,7 @@ onMounted(async () => {
   margin-bottom: 3px;
 }
 
-/* Map Container */
-.map-container {
-  background-color: #f8f9fa;
-  width: 45%;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.map {
-  width: 100%;
-  height: 100%;
-}
+/* <================= buttons, markers and popups ===================> */
 
 /* Delete Itinerary Button */
 .delete-itinerary-button {
@@ -424,6 +500,7 @@ onMounted(async () => {
   /* White text for contrast */
   cursor: pointer;
   font-size: 16px;
+  font-family: 'Source Sans 3', sans-serif;
   padding: 10px 20px;
   /* Adequate padding */
   border-radius: 5px;
@@ -471,11 +548,11 @@ onMounted(async () => {
   border: none;
   color: #000;
   /* Black color */
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 60px;
   /* Add space below the button */
 }
 
@@ -488,14 +565,114 @@ onMounted(async () => {
   margin-right: 5px;
 }
 
-/* Media query for responsiveness */
-@media (max-width: 768px) {
+/* Breakpoints for fixed sizes */
+@media (min-width: 1400px) {
+
+  /* XXL and up */
+  .itinerary-details-container {
+    width: 1000px;
+  }
+
   .map-container {
-    display: none;
+    flex-grow: 1;
+    position: sticky;
+    /* Sticky position for large screens */
+    top: 0;
+  }
+}
+
+@media (max-width: 1399px) and (min-width: 1200px) {
+
+  /* XL to just before XXL */
+  .itinerary-details-container {
+    width: 1000px;
+  }
+
+  .map-container {
+    flex-grow: 1;
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+
+  /* LG to just before XL */
+  .itinerary-details-container {
+    width: 700px;
+  }
+
+  .map-container {
+    flex-grow: 1;
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media (max-width: 991.98px) and (min-width: 768px) {
+
+  /* Between LG and MD */
+  .itinerary-details-container {
+    width: 700px;
+  }
+
+  .map-container {
+    flex-grow: 1;
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+
+  /* Below MD */
+  .main-content {
+    flex-direction: column;
+    /* Stack map on top of itinerary */
+  }
+
+  .map-container {
+    order: -1;
+    /* Place map above itinerary */
+    width: 100%;
+    height: 400px;
+    position: relative;
+    /* Override any sticky positioning */
+    top: auto;
+    /* Reset any top positioning */
   }
 
   .itinerary-details-container {
     width: 100%;
+    height: auto;
   }
+}
+
+/* Activity Grid layout for smaller screens */
+@media (max-width: 575.98px) {
+  .activity-grid {
+    grid-template-columns: 1fr;
+    /* Make each item take full width of the row */
+  }
+
+  .itinerary-details-container {
+    padding: 0px 10px 10px 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .back-button {
+    font-size: 2.8vw; /* Adjust font size for readability */
+  }
+
+  .back-button i {
+    font-size: 2vw; /* Adjust icon size */
+  }
+  .user-info h4{
+    font-size: 2vw;
+  }
+  .user-info h2{
+    font-size: 3.5vw;
+  }
+
 }
 </style>

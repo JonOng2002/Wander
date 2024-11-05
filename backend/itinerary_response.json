@@ -1,71 +1,138 @@
 {
-  "country": "Indonesia",
-  "itinerary_summary": "Explore the stunning sights and rich culture of Uluwatu, Indonesia, with a focus on renowned attractions and must-see landmarks in a day-long solo adventure.",
+  "country": "Japan",
+  "itinerary_summary": "A short yet vibrant trip in Kushiro, Japan, filled with nightlife and entertainment experiences that blend cultural immersion with leisure.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-01",
-      "summary": "Immerse yourself in the breathtaking scenery and cultural richness of Uluwatu with a day packed with sightseeing and local experiences.",
+      "date": "2024-11-05",
+      "summary": "Explore the vibrant nightlife of Kushiro with unique entertainment and dining experiences.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Breakfast at Single Fin",
+          "time": "18:00",
+          "activity_name": "Kushiro Dinner Cruise, Kushiro",
           "location": {
-            "name": "Single Fin",
-            "city": "Uluwatu",
+            "name": "Kushiro Dinner Cruise",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": -8.8149719,
-              "longitude": 115.0888956
+              "latitude": 42.9817916,
+              "longitude": 144.3791845
             },
-            "place_id": "ChIJ0aNPQ_lP0i0RtPlHW6trMHM",
-            "photo_url": "https://images.unsplash.com/photo-1582551145495-ae6ba5c11013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NjI3MjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MzA0MzIyMTR8&ixlib=rb-4.0.3&q=80&w=1080"
+            "place_id": "ChIJV9w6K2Y9cl8Rtzaj5osF5fE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM19Ae8NX-tPdnfUQw7omo2KfDpFiYPXlJjXe8dQjQqi1rb2GxnMi1qERYCZf1_DZtVU2MsAET2DhLJqeIh1PGYvZ7fRALqD8k1mLSwG8pTmxrmIbXQ4WZpJqYICHUzMu9dLHzYHcHXqZmUfw119qbEpR2dWDEsesbnh9e3cri5PMfl&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Enjoy a delightful breakfast with stunning ocean views at Single Fin, a popular spot among surfers and tourists alike."
+          "description": "Enjoy a scenic dinner cruise along Kushiro River, offering stunning views of the city and delicious local cuisine."
         },
         {
-          "time": "10:00",
-          "activity_name": "Visit Uluwatu Temple",
+          "time": "20:30",
+          "activity_name": "Nihonryori Sato, Kushiro",
           "location": {
-            "name": "Uluwatu Temple",
-            "city": "Uluwatu",
+            "name": "Nihonryori Sato",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": -8.829143199999999,
-              "longitude": 115.0849069
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJkYHLIPxP0i0RlQTbpxuNuQw",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM1Kqy6rhg_a_gdF8zicbYViWS-C_t0ZUhBzhag_4-mDaWFlcjCkePYgZL7b1jTBmBm-g14CeYl4cBpzaAabJyNZZKdA1-g8xoqav0svcIbqIsXFUEROyCLmiw9VbsMZz6PQQVXNjyxvPomavZrB6lFRcP07Pn1QeveZb464bgOsMZT&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Explore the majestic Uluwatu Temple, perched atop a cliff with breathtaking views of the Indian Ocean, a must-see cultural landmark."
+          "description": "Experience traditional Japanese dining with a focus on fresh seafood sourced from Hokkaido."
         },
         {
-          "time": "13:00",
-          "activity_name": "Lunch at The Cashew Tree",
+          "time": "22:00",
+          "activity_name": "Kushiro Night Market, Kushiro",
           "location": {
-            "name": "The Cashew Tree",
-            "city": "Uluwatu",
+            "name": "Kushiro Night Market",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": -8.8068677,
-              "longitude": 115.117054
+              "latitude": 42.9892463,
+              "longitude": 144.3799285
             },
-            "place_id": "ChIJUxiPm0dF0i0RagUyxqyib8c",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNexXLYWb8eCIOeHU2kqPqvousHwLdkfrFMZIGVXcISt5JZTXMKUt_QBEahqBjD3lLtPST6E3njSIBOVD_29Mt2TuFNrYVlnTVGHCzfLO9gOBcwKmNYg4Te76sPlQdJs5AQH_YwNqVNnSy0H4QgvWLxLPDgA9cjju11HEy34LNj_Xu3&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJSeSoNmM9cl8REDYZ-wvPmhE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOLyeedwxrWF-jWCAkCieyUQeDTqo-h0CENCqrret8jlFCEubwjj-ZFCx7Y9m1ucJ9SxFfP3tz4pV45CN4cSr5o0Eq-GNduWzeSWMYPF7VbEkIN-GXukJkwdGmaZrIpcYiy7SnNPosVfVHVlFPs6lxJYq0A9Q9jm5aL0n54a-TRRc3Z&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Savor fresh and healthy dishes at The Cashew Tree, known for its vibrant atmosphere and tasty organic meals."
+          "description": "Explore the vibrant night market with stalls selling local delicacies and drinks, perfect for a late-night snack."
         },
         {
-          "time": "15:00",
-          "activity_name": "Relax at Padang Padang Beach",
+          "time": "23:30",
+          "activity_name": "Kushiro Pub Crawl, Kushiro",
           "location": {
-            "name": "Padang Padang Beach",
-            "city": "Uluwatu",
+            "name": "Various bars in Kushiro",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": -8.8111377,
-              "longitude": 115.1037658
+              "latitude": 42.9845002,
+              "longitude": 144.389272
             },
-            "place_id": "ChIJV-JMXVBF0i0RFUBMWOw7eGQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMlDPGTqDDEWYX3kUaz3x9WXE1pMQzp_70JU8az4aIxb13yuDeSmdTwodD_qobAK5Ud2N_y7tmTTU6YhFULWww11Uudlg_GCI1mIZMQSzKstKG8zbreUieZp9IzqsBnO0i3FBjmF_yYq1KKNfjPCBvSSa8JTIVUBREB3vCKb9_dIQpm&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJdX2-i2A9cl8R6tpnZ4BomAc",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMxuUtBPOmHKI8T7tPLo9cG2etFlzvxm6qxGLpoWx507qssTqgzw4KGaOu7eSlRpHAi2SvBYApEVmtQIXx0DrVmK3FTq7a5WGMnn8DcEPQuWif-FtNuTHequwgbAsmX-LPWkg2K5IhTyNNYBmJIH7CMxD-bsS6MSOH7tmrINYaba88q&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Visit Padang Padang Beach, renowned for its stunning cliffs and turquoise waters, perfect for sunbathing and swimming."
+          "description": "Join fellow travelers and locals for a guided pub crawl to experience Kushiro's nightlife in its charming local bars."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-06",
+      "summary": "Morning exploration followed by leisure and departure.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Breakfast at Cafe de Lait, Kushiro",
+          "location": {
+            "name": "Cafe de Lait",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 42.9858165,
+              "longitude": 144.3888213
+            },
+            "place_id": "ChIJ__8juGE9cl8R1xYOM6Pnaqs",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNN2a7-ijZi2KgUDItqjJR-RfGgiBJU91gMAKMwcc9-T6763FL_bA-Bxsi770_mo2iaJo9j2JFk2YU5kZYbhZQDA6Wg_DXmDvDEycP14RsBbWX3RMeqVxEkj54SZZ-vhRV5eP377JuDX3DOy0x4bjCH_1b5fLeD2CfhogUnJ-F4NQMJ&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Start your day with a delicious breakfast featuring local specialties and freshly brewed coffee."
+        },
+        {
+          "time": "10:30",
+          "activity_name": "Kushiro Fishermen's Wharf MOO, Kushiro",
+          "location": {
+            "name": "Kushiro Fishermen's Wharf MOO",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 42.9817626,
+              "longitude": 144.3833396
+            },
+            "place_id": "ChIJ11_kdWc9cl8R50GFuq-zffE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM9kFP1BqfN_DtrtiVrOfTyjHTnCk52jPm5FxOELMrAycRH2KMwjPOLrIvjyjjmCpOeBN7SYTq1_fH0Omc40c8HP5xx4Tzzh2qV7odDy5JEkPtzWtN6mRloiSCFUhD2Lg_GkK367GUpkflO6m3UpCgYQVGZ5T1zlCMa2eVBkJf1N_Kj&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Visit this lively waterfront area filled with shops, restaurants, and galleries showcasing Hokkaido's seafood trade."
+        },
+        {
+          "time": "11:30",
+          "activity_name": "Hokkaido Museum of Northern Peoples, Kushiro",
+          "location": {
+            "name": "Hokkaido Museum of Northern Peoples",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 43.9968203,
+              "longitude": 144.2397519
+            },
+            "place_id": "ChIJ-TQ-uhI0bV8Rc_dgugArGqI",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNct2TvZsHqNS-GaqoZOu35EP_FdzSASyvATOtZU7GDdT5gBIq9iORAjT4x2KijdG-E2u72jvzZ2OFVBCJ-G4d-kzPpRanv3Bv0FwV7JeMMf8iXmXoEmqmNu8HnvBjoFE_DZvICHAt5aTyhX5yNx4s5AqkGQ1BolwQMXQSgEn220W-c&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Learn about the indigenous cultures of Hokkaido through various exhibits and displays at this engaging museum."
+        },
+        {
+          "time": "12:30",
+          "activity_name": "Departure from Kushiro, Kushiro",
+          "location": {
+            "name": "Kushiro Airport",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 43.0450955,
+              "longitude": 144.1962856
+            },
+            "place_id": "ChIJjyf21YJAcl8RS6iep9wMAUc",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP053Vu7O6os9sNPZKz7n6VVjV_0XzDn1QwlknpTTF1TGVMp9EvZiRiWFZfmRmKRt1U4kMe7lTBgKn2tZg48jsY3uuicIP4zufxVnRCzX6jkof4OOe8P1x1tpJ8lBWPi_j4l-CIZ5yPbturrvouws6cgCYad27kiyMGrnVt3qZDl-jd&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "End your trip in Kushiro with a reflective departure from the airport."
         }
       ]
     }

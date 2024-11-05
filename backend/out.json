@@ -1,72 +1,74 @@
 {
   "location_info": {
-    "place_name": "Cafe Pokpo",
-    "country": "South Korea",
-    "city": "Seoul",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGQgWjWP9ZGy-lMxvsqENjSQUW8fRXKRS9pGDdvBOZTTr53lyGrngQiyORWH_QP1QXLalZ6T4OO5ergoyRi6dtSshQ3VejtGZU=s1600-w800",
+    "place_name": "Hokkaido",
+    "country": "Japan",
+    "city": "Sapporo",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGHrjs3Wnmskwf1tHUSezLZBEZwOdq-JbZUlNmKb0WBi-DKpRvPxXlCB8NWxqo9F8eCs-rYdQQlgZgpsV_QTyd1_QDHlInzzIo=s1600-w800",
     "coordinates": {
-      "latitude": 37.5813283,
-      "longitude": 126.9370339
+      "latitude": 43.2203266,
+      "longitude": 142.8634737
     },
     "activities": [
-      "Enjoy waterfall views",
-      "Relax with a cup of coffee",
-      "Socialize in a cozy setting"
+      "Skiing",
+      "Snowboard",
+      "Hot springs",
+      "Sightseeing",
+      "Winter festivals"
     ],
-    "location_summary": "Cafe Pokpo is a charming cafe located in Seoul, near Hongdae, offering serene waterfall views and a cozy atmosphere perfect for relaxation.",
-    "vicinity": "262-29 Yeonhui-ro, Seodaemun-gu"
+    "location_summary": "Hokkaido, Japan's northernmost island, is renowned for its beautiful winter scenery, hot springs, and world-class ski resorts. Sapporo, the capital, is famous for its Snow Festival and delicious local cuisine, including fresh seafood and ramen.",
+    "vicinity": "Sapporo, Japan"
   },
   "related_places": [
     {
-      "place_name": "Cafe de Lulu",
-      "country": "South Korea",
-      "city": "Seoul",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaKsEbZcaADWTA1YHVTuau6uLfFOspd_4ZYK4RzJEFOPTspJz9-KB5g5Ot8rkU9kqOsbhZFA6jn1tYMM20wrUm3bqew30vy_E=s1600-w800",
+      "place_name": "Otaru",
+      "country": "Japan",
+      "city": "Otaru",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEhcIcADGrBM-sgPDNr0XWMBgBvcH7URkodhQ8VFe_OxiXZMP7Cg-w6Oop4Xi15kE2xZPrJxTomm00-xAyrOSK7C1AOPTMR-oY=s1600-w800",
       "coordinates": {
-        "latitude": 32.0414866,
-        "longitude": 34.7704038
+        "latitude": 43.1902372,
+        "longitude": 140.994172
       },
       "activities": [
-        "Enjoy desserts and drinks",
-        "Casual meeting spot",
-        "Photogenic interior"
+        "Canal walking",
+        "Shopping for glassware",
+        "Sushi tasting"
       ],
-      "location_summary": "Cafe de Lulu is a cute cafe known for its vibrant desserts and trendy interior, popular among locals and tourists alike.",
-      "vicinity": "Tel Giborim Street 5, Tel Aviv-Yafo"
+      "location_summary": "Otaru is a picturesque port city known for its beautifully preserved canal district and historic buildings, offering a charming atmosphere and renowned sushi restaurants.",
+      "vicinity": "Otaru"
     },
     {
-      "place_name": "The Booth",
-      "country": "South Korea",
-      "city": "Seoul",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHBJAI5Ne4Jzou7cNBZw8Bv9Cz7iZ8TZJ12UFfaWTMnAlj4FwPo1Rg9gHOrrJiMhwdvLuORAZR1aRE_f5qLis27dOXHJaI6zL8=s1600-w800",
+      "place_name": "Niseko",
+      "country": "Japan",
+      "city": "Niseko",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF0j7GSy7zgqtGhVCPVnTUzYGdyXn87z7kmzfq0W-4q-Q2Y4hPAg3jgCer2-Lzrg8DeVuOzeXVF55M7X1XZoqzYOJZp3KBgEjM=s1600-w800",
       "coordinates": {
-        "latitude": 1.4378735,
-        "longitude": 103.8067738
+        "latitude": 42.8047856,
+        "longitude": 140.6874494
       },
       "activities": [
-        "Craft beer tasting",
-        "Casual dining",
-        "Social hub"
+        "Skiing",
+        "Snowboarding",
+        "Onsen bathing"
       ],
-      "location_summary": "The Booth is a casual dining spot that specializes in craft beers and has a laid-back vibe, perfect for unwinding after a day of exploring Seoul.",
-      "vicinity": "39 Woodlands Close, #06-64A MEGA@Woodlands"
+      "location_summary": "Niseko is one of the most famous ski areas in Japan, known for its heavy powder snow and excellent skiing and snowboarding opportunities, as well as relaxing onsens.",
+      "vicinity": "Niseko"
     },
     {
-      "place_name": "Thanks Nature Cafe",
-      "country": "South Korea",
-      "city": "Seoul",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHqZb5TSFLdhKL8ZnrPL40BVvZ0sGoO0VGHIfn5HrXO8iBSumNbcNvIwa2akc8tw6ZCGKo1lnlo8UlVVnIX2hOlLXpQJcYPgfA=s1600-w800",
+      "place_name": "Hakodate",
+      "country": "Japan",
+      "city": "Hakodate",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHF4d6Hvvwf9Ybf7-sl9IDtR7VkR7wSQjJRfxwKCukXLLklqp2O91bE1foyhxsrG4-wP7FMhCSL938SzWOmQaMGI42jstXQTps=s1600-w670",
       "coordinates": {
-        "latitude": 37.5533849,
-        "longitude": 126.9237895
+        "latitude": 41.7686961,
+        "longitude": 140.7290599
       },
       "activities": [
-        "Cuddle with sheep",
-        "Enjoy coffee and pastries",
-        "Photo opportunities"
+        "Night view from Mount Hakodate",
+        "Historical site visits",
+        "Fresh seafood market"
       ],
-      "location_summary": "Thanks Nature Cafe is a unique cafe that features live sheep, offering a delightful atmosphere alongside delicious coffee and pastries.",
-      "vicinity": "10 Hongik-ro, Mapo-gu"
+      "location_summary": "Hakodate is known for its stunning night view from Mount Hakodate, rich history, and the famous morning market offering fresh seafood.",
+      "vicinity": "Hakodate"
     }
   ]
 }
