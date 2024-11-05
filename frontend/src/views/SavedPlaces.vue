@@ -153,7 +153,9 @@
             <div class="rating-container">
               <StarRating :rating="place.rating" />
               <!-- Your StarRating component -->
-              <span class="rating-number">{{ place.rating.toFixed(1) }}</span>
+              <span class="rating-number">
+  {{ place.rating ? place.rating.toFixed(1) : 'N/A' }}
+</span>
               <span class="rating-text">/ 5</span>
               <!-- Add text like "/ 5" if desired -->
             </div>
