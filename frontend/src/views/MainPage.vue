@@ -173,7 +173,8 @@ export default {
         const response = await axios.get(
           `http://127.0.0.1:5000/video-info-comments`,
           {
-            params: { url: this.tiktokLink, withCredentials: true },
+            params: { url: this.tiktokLink },
+            withCredentials: true,
           }
         );
         const data = response.data.openai_response;

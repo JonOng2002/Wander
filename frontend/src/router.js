@@ -16,15 +16,16 @@ import TagsPage from '@/views/TagsPage.vue';
 // import TrvPartner from '@/views/TravellingWithWho.vue';
 import ItineraryBuilder from '@/views/ItineraryBuilder.vue';
 import LocationDate from '@/views/LocationDate.vue';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import OverlayPage from '@/views/overlayPage.vue';
+import NotFound from '@/views/NotFound.vue'; // Create a NotFound.vue component
+import { auth } from './main'
 
 
 // Combined routes from both HEAD and Dominic's branch
 const routes = [
 
-  { path: '/', name: 'Home', component: MainPage },  
-  { path: '/mainpage', name: 'MainPage', component: MainPage },  
+  { path: '/', name: 'Home', component: MainPage },   
   { path: '/about', name: 'AboutPage', component: AboutPage },
   { path: '/location', name: 'ExtractedLocation', component: ExtractedLocation },
   { path: '/savedplaces', name: 'SavedPlaces', component: SavedPlaces },
@@ -56,6 +57,7 @@ const routes = [
     })
   },
   { path: '/overlay', name: 'OverlayPage', component: OverlayPage },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ];
 
 // Router instance with Firebase authentication logic
@@ -79,24 +81,34 @@ const router = createRouter({
 let isAuthResolved = false;
 
 router.beforeEach((to, from, next) => {
-  const auth = getAuth();
   if (!isAuthResolved) {
+    // Use onAuthStateChanged to resolve the authentication state
     onAuthStateChanged(auth, (user) => {
-      isAuthResolved = true;
-      if (!user && to.path !== '/log-in' && to.path !== '/sign-up') { // Redirect if not authenticated
-        next('/log-in');
-      } else {
-        next(); // Proceed if authenticated or public route
-      }
+      isAuthResolved = true; // Mark as resolved
+      handleNavigation(user, to, next);
     });
   } else {
-    const user = auth.currentUser;
-    if (!user && to.path !== '/log-in' && to.path !== '/sign-up') {
-      next('/log-in');
-    } else {
-      next();
-    }
+    // If auth state is already resolved, use auth.currentUser
+    handleNavigation(auth.currentUser, to, next);
   }
 });
+
+function handleNavigation(user, to, next) {
+  if (user) {
+    // If the user is authenticated and tries to access /log-in or /sign-up, redirect to main page
+    if (to.path === '/log-in' || to.path === '/sign-up') {
+      next('/');
+    } else {
+      next(); // Proceed if the user is authenticated and the route is not /log-in or /sign-up
+    }
+  } else {
+    // If the user is not authenticated, redirect to /log-in unless they are accessing /sign-up
+    if (to.path !== '/log-in' && to.path !== '/sign-up') {
+      next('/log-in');
+    } else {
+      next(); // Allow access to /log-in or /sign-up
+    }
+  }
+}
 
 export default router;
