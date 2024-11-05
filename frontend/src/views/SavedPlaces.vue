@@ -15,14 +15,14 @@
       <div class="carousel-item" data-bs-interval="2000">
         <img
           src="@/assets/countries/denmark.jpg"
-          alt="Image 1"
+          alt="Image 2"
           class="d-block w-100"
         />
       </div>
       <div class="carousel-item">
         <img
           src="@/assets/countries/germany.jpg"
-          alt="Image 1"
+          alt="Image 3"
           class="d-block w-100"
         />
       </div>
@@ -150,11 +150,13 @@
             <h5 class="card-title">{{ place.name }}</h5>
             <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
 
-              <div class="rating-container">
-                <StarRating :rating="place.rating" /> <!-- Your StarRating component -->
-                <span class="rating-number">{{ place.rating.toFixed(1) }}</span>
-                <span class="rating-text">/ 5</span> <!-- Add text like "/ 5" if desired -->
-              </div>
+            <div class="rating-container">
+              <StarRating :rating="place.rating" />
+              <!-- Your StarRating component -->
+              <span class="rating-number">{{ place.rating.toFixed(1) }}</span>
+              <span class="rating-text">/ 5</span>
+              <!-- Add text like "/ 5" if desired -->
+            </div>
 
             <div class="button-container">
               <button
@@ -279,7 +281,7 @@ export default {
     onMounted(async () => {
       const auth = getAuth();
       const user = auth.currentUser;
-      loadUserItinerary();
+      await loadUserItinerary(); // Ensure itineraries are loaded first
 
       if (user) {
         const userId = user.uid;
@@ -305,6 +307,11 @@ export default {
         loading.value = false;
       }
     });
+
+    cardRefs.value.forEach((card, index) => {
+    // Perform animations or operations on each card
+    gsap.fromTo(card, { opacity: 0 }, { opacity: 1, duration: 1, delay: index * 0.1 });
+  });
 
     // Show toast notification
     const showToast = (title, message, type) => {
@@ -343,7 +350,7 @@ export default {
         });
       }
 
-      // Set timeout to hide toast after 5 seconds
+      // Set timeout to hide toast after 3 seconds
       toastTimeout = setTimeout(() => {
         toastActive.value = false;
         toastTimeout = null;
@@ -367,56 +374,6 @@ export default {
         progressBarAnimation = null;
       }
       toastActive.value = false;
-    };
-
-    // Save itinerary to Firestore
-    const saveItinerary = async (place) => {
-      console.log("start saving itinerary");
-      console.log(itinerary.value);
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      if (!user) {
-        console.error("User is not authenticated");
-        return;
-      }
-
-      const userDocRef = doc(db, "users", user.uid);
-      const placeData = {
-        place_id: place.place_id,
-        name: place.name,
-        image: place.image,
-        vicinity: place.vicinity,
-        country: place.country,
-        coordinates: {
-          latitude: place.coordinates.latitude,
-          longitude: place.coordinates.longitude,
-        },
-      };
-
-      try {
-        if (isPlaceInItinerary(place)) {
-          // Remove place from itinerary in Firebase
-          await updateDoc(userDocRef, {
-            generatedItineraries: arrayRemove(placeData),
-          });
-          itinerary.value = itinerary.value.filter(
-            (item) => item.place_id !== place.place_id
-          );
-          console.log("Place removed from itinerary:", placeData);
-          togglePopup("remove");
-        } else {
-          // Add place to itinerary in Firebase
-          await updateDoc(userDocRef, {
-            generatedItineraries: arrayUnion(placeData),
-          });
-          itinerary.value.push(place);
-          console.log("Place added to itinerary:", placeData);
-          togglePopup("add");
-        }
-      } catch (error) {
-        console.error("Error updating itinerary in Firebase:", error);
-      }
     };
 
     const navigateToGeneratedItinerary = () => {
@@ -469,83 +426,103 @@ export default {
     };
 
     const toggleItinerary = async (place, event) => {
-      const index = savedPlaces.value.findIndex(
-        (item) => item.place_id === place.place_id
-      );
+      const isInItinerary = isPlaceInItinerary(place); // Check if the place is in the itinerary
 
-      if (index !== -1) {
-        const user = getAuth().currentUser;
+      const user = getAuth().currentUser;
 
-        if (!user) {
-          console.error("User is not authenticated");
-          return;
-        }
+      if (!user) {
+        console.error("User is not authenticated");
+        return;
+      }
 
-        const userId = user.uid;
-        const userDocRef = doc(db, "users", userId);
+      const userId = user.uid;
+      const userDocRef = doc(db, "users", userId);
 
-        try {
+      try {
+        if (isInItinerary) {
+          // Find the exact object in itinerary
+          const itemToRemove = itinerary.value.find(
+            (item) => item.place_id === place.place_id
+          );
+
+          if (!itemToRemove) {
+            console.error("Item to remove not found in itinerary.");
+            return;
+          }
+
+          // Remove from itinerary locally first
+          itinerary.value = itinerary.value.filter(
+            (item) => item.place_id !== place.place_id
+          );
+          togglePopup("remove"); // Show remove toast
+
+          // Update Firebase after local state change
+          try {
+            await updateDoc(userDocRef, {
+              generatedItineraries: arrayRemove(itemToRemove),
+            });
+
+            console.log("Place removed from itinerary:", itemToRemove);
+          } catch (error) {
+            console.error("Error removing itinerary from Firebase:", error);
+            // Optionally, revert the local state change if Firebase update fails
+            itinerary.value.push(itemToRemove);
+            showToast("Error", "Failed to remove place from itinerary.", "error");
+          }
+        } else {
+          // Construct placeData matching Firestore structure
           const placeData = {
-            place_id: place.place_id || null, // Use `place` instead of `attraction` for consistency
+            place_id: place.place_id || null,
             name: place.name || "Unknown",
             vicinity: place.vicinity || "Unknown vicinity",
             image: place.image || "/default-image.jpg",
-            coordinates: place.coordinates || { latitude: null, longitude: null }, // Ensure it is an object
+            coordinates: place.coordinates || { latitude: null, longitude: null },
             rating: place.rating || 0,
             user_ratings_total: place.user_ratings_total || 0,
             open_now: place.open_now || false,
             city: place.city || "Unknown City",
-            country: place.country || "Unknown Country", // Make sure `place.country` is defined
+            country: place.country || "Unknown Country",
             source: "google_places",
             summary: "Google Places Summary",
             activities: [],
-            timestamp: new Date(),
           };
 
-          
+          // GSAP animation for button
+          const button = event.currentTarget;
 
-          console.log("Adding place to itinerary:", placeData);
-          const isInItinerary = isPlaceInItinerary(place); // Check if the place is in the itinerary
+          gsap.fromTo(
+            button,
+            { scale: 1 },
+            {
+              scale: 1.1,
+              duration: 0.2,
+              yoyo: true,
+              repeat: 1,
+            }
+          );
 
-          // Immediate local state update for reactivity
-          if (isInItinerary) {
-            // Remove from itinerary locally first
-            itinerary.value = itinerary.value.filter(
-              (item) => item.place_id !== place.place_id
-            );
-            togglePopup("remove"); // Show remove toast
+          // Add to itinerary locally first
+          itinerary.value.push(placeData);
+          togglePopup("add"); // Show add toast
 
-            // Update Firebase after local state change
-            await updateDoc(userDocRef, {
-              generatedItineraries: arrayRemove(placeData),
-            });
-          } else {
-            const button = event.currentTarget;
-
-            // GSAP animation for button
-            gsap.fromTo(
-              button,
-              { scale: 1 },
-              {
-                scale: 1.1,
-                duration: 0.2,
-                yoyo: true,
-                repeat: 1,
-              }
-            );
-
-            // Add to itinerary locally first
-            itinerary.value.push({ ...place });
-            togglePopup("add"); // Show add toast
-
-            // Update Firebase after local state change
+          // Update Firebase after local state change
+          try {
             await updateDoc(userDocRef, {
               generatedItineraries: arrayUnion(placeData),
             });
+
+            console.log("Place added to itinerary:", placeData);
+          } catch (error) {
+            console.error("Error adding itinerary to Firebase:", error);
+            // Optionally, revert the local state change if Firebase update fails
+            itinerary.value = itinerary.value.filter(
+              (item) => item.place_id !== place.place_id
+            );
+            showToast("Error", "Failed to add place to itinerary.", "error");
           }
-        } catch (error) {
-          console.error("Error updating itinerary in Firebase:", error);
         }
+      } catch (error) {
+        console.error("Error updating itinerary in Firebase:", error);
       }
     };
 
@@ -627,6 +604,8 @@ export default {
     };
 
     const filterRecentlyAdded = () => {
+      // Ensure that each place has a 'dateAdded' field. If not, this will not sort correctly.
+      // You might need to add 'dateAdded' when saving places.
       filteredPlaces.value = [...savedPlaces.value].sort(
         (a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)
       );
@@ -666,35 +645,8 @@ export default {
       }
     };
 
-    const addPlaceToItinerary = async (place) => {
-      itinerary.value.push(place);
-
-      const user = getAuth().currentUser;
-      const userEmail = user.email;
-      const userDocRef = doc(db, "users", userEmail);
-
-      try {
-        await updateDoc(userDocRef, {
-          generatedItineraries: arrayUnion({
-            place_id: place.place_id,
-            name: place.name,
-            image: place.image,
-            vicinity: place.vicinity,
-            country: place.country,
-            coordinates: {
-              latitude: place.coordinates.latitude,
-              longitude: place.coordinates.longitude,
-            },
-          }),
-        });
-      } catch (error) {
-        console.error("Error updating itinerary in Firebase:", error);
-      }
-    };
-
     return {
       savedPlaces,
-      addPlaceToItinerary,
       filteredPlaces,
       loading,
       showModal,
@@ -709,8 +661,6 @@ export default {
       navigateToGeneratedItinerary,
       itinerary,
       deleteAllPlaces,
-      saveItinerary,
-      cardRefs,
       // Toast variables and functions
       progressBar,
       toastActive,
@@ -1027,7 +977,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 5px; /* Adjust the spacing between items as needed */
-  margin: 0 ;
+  margin: 0;
   padding: 0;
 }
 
@@ -1066,7 +1016,6 @@ export default {
   /* Center text horizontally */
   align-items: center;
   /* Center text vertically */
-  cursor: pointer;
 }
 
 .itinerary-button:hover {
@@ -1260,7 +1209,6 @@ export default {
 
 /* Add Type Toast */
 .custom-toast.add {
-
   /* Light green background */
   border-left-color: #28a745;
   /* Green border */
@@ -1273,7 +1221,6 @@ export default {
 
 /* Remove Type Toast */
 .custom-toast.remove {
-  
   /* Light blue background */
   border-left-color: #17a2b8;
   /* Blue border */
