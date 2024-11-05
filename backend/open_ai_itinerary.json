@@ -1,150 +1,138 @@
 {
-  "country": "Italy",
-  "itinerary_summary": "A vibrant two-day adventure in Rome focusing on nightlife and entertainment, featuring iconic landmarks, delicious food, and lively atmospheres perfect for enjoying with friends.",
+  "country": "Japan",
+  "itinerary_summary": "A short yet vibrant trip in Kushiro, Japan, filled with nightlife and entertainment experiences that blend cultural immersion with leisure.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-20",
-      "summary": "Exploring ancient Rome in the day and enjoying the nightlife in the evening, starting with iconic historical sites and wrapping up with energetic social scenes.",
+      "date": "2024-11-05",
+      "summary": "Explore the vibrant nightlife of Kushiro with unique entertainment and dining experiences.",
       "activities": [
         {
-          "time": "09:00",
-          "activity_name": "Il Tempio dei Dioscuri",
+          "time": "18:00",
+          "activity_name": "Kushiro Dinner Cruise, Kushiro",
           "location": {
-            "name": "Il Tempio dei Dioscuri",
-            "city": "Rome",
+            "name": "Kushiro Dinner Cruise",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": 41.89170310000001,
-              "longitude": 12.4856645
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJ6RRKjbRhLxMRKHHdS4QvkK4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPD8-ATSt134fUsl3RYUaeKqqEDJKpmu-3ZIElmdq1VgS5SxF3A6Bv8wIPIBdrr6BspAoA-EqABUcJSw3gAym_Oz0pQj9bm4CJO9UJ-mZvgjznd2DGbj_YROiJn6KlHkaRH38jZYVUCyGE8wnuq6GcZtsTArOFeQkfF-gnVbkRWqlK8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
-          },
-          "description": "Visit the historic Temple of the Dioscuri, an impressive ancient structure and a landmark in central Rome."
-        },
-        {
-          "time": "11:30",
-          "activity_name": "Basilica Julia",
-          "location": {
-            "name": "Basilica Julia",
-            "city": "Rome",
-            "coordinates": {
-              "latitude": 41.89199659999999,
-              "longitude": 12.4847898
-            },
-            "place_id": "ChIJM2qBt7RhLxMRBvo4dDqpXpw",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOLPjskswrWYoUnzZrtgm6Up_72DF-u_Zym3aL7vHhTSVdktNhCc3hkyJjj6yakbc0lHZ_mDooe9rsh5vgFXMMYVz1HBP0srDNyFO3qbKShTpA7houZmEeFW8xqXkWx5vYhhr9QFhqnbmVbyvN3jb4SO2cGV1ld6Aj71xGB9471nyb8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
-          },
-          "description": "Explore the ruins of Basilica Julia, a significant historical site located in the Roman Forum."
-        },
-        {
-          "time": "15:00",
-          "activity_name": "Temple of Apollo Palatinus",
-          "location": {
-            "name": "Temple of Apollo Palatinus",
-            "city": "Rome",
-            "coordinates": {
-              "latitude": 41.8888723,
-              "longitude": 12.4857443
-            },
-            "place_id": "ChIJl5cSjsphLxMRv85ELFf8Dk4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNypUW-aDTYcCIPNpAALHcslA_ZlcrKxpzuV7Vwu_urAids_HRioUqnJp5CbNE77kVGHb9U0jfu1xKNrt5U62TIVNhBubf0KbnCFvgs9RkwNNq1Y7FttXvtWv2QRvCq5ok1TGp0wRf7xJkTO7y3dmPZ2N361TJiscaTgyq7tR8gvqi9&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
-          },
-          "description": "Visit the Temple of Apollo Palatinus, the ancient shrine located on the Palatine Hill, offering stunning views."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Dinner at La Pergola",
-          "location": {
-            "name": "La Pergola",
-            "city": "Rome",
-            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a fine dining experience at La Pergola, the only three Michelin-starred restaurant in Rome, offering exquisite Italian cuisine."
+          "description": "Enjoy a scenic dinner cruise along Kushiro River, offering stunning views of the city and delicious local cuisine."
         },
         {
-          "time": "21:30",
-          "activity_name": "Cocktails at Shari Vari Playhouse",
+          "time": "20:30",
+          "activity_name": "Nihonryori Sato, Kushiro",
           "location": {
-            "name": "Shari Vari Playhouse",
-            "city": "Rome",
-            "coordinates": {},
+            "name": "Nihonryori Sato",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience the vibrant nightlife at Shari Vari Playhouse, a trendy venue known for its cocktails and lively atmosphere."
+          "description": "Experience traditional Japanese dining with a focus on fresh seafood sourced from Hokkaido."
+        },
+        {
+          "time": "22:00",
+          "activity_name": "Kushiro Night Market, Kushiro",
+          "location": {
+            "name": "Kushiro Night Market",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore the vibrant night market with stalls selling local delicacies and drinks, perfect for a late-night snack."
+        },
+        {
+          "time": "23:30",
+          "activity_name": "Kushiro Pub Crawl, Kushiro",
+          "location": {
+            "name": "Various bars in Kushiro",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Join fellow travelers and locals for a guided pub crawl to experience Kushiro's nightlife in its charming local bars."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-21",
-      "summary": "Continue the exploration of Rome's cultural delights during the day followed by an engaging evening with entertainment and nightlife.",
+      "date": "2024-11-06",
+      "summary": "Morning exploration followed by leisure and departure.",
       "activities": [
         {
-          "time": "10:00",
-          "activity_name": "Ludus Magnus",
+          "time": "09:00",
+          "activity_name": "Breakfast at Cafe de Lait, Kushiro",
           "location": {
-            "name": "Ludus Magnus",
-            "city": "Rome",
+            "name": "Cafe de Lait",
+            "city": "Kushiro",
             "coordinates": {
-              "latitude": 41.890087,
-              "longitude": 12.4949419
+              "latitude": 0,
+              "longitude": 0
             },
-            "place_id": "ChIJJ540e7dhLxMR05OTuWWdXow",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNdjUtneG6aTF3_1IN1AtcetK3v7KIZVeSRQy3iIAwTLhUBcBibDA3l-DmRZQqG3TmYEJn12UxbYH5elPwBV3ZnO7saxFOUL1Av_zZoj0PVFMsB42TNfrvXhSJ4SldNG0pIHG-o6-Jmwi3VUnpbb4KvicmwhAf-a3ZzcxO1jLHXm0H3&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
-          },
-          "description": "Discover the ancient gladiator training school, Ludus Magnus, and learn about Rome's rich history of gladiatorial combat."
-        },
-        {
-          "time": "13:00",
-          "activity_name": "Lunch at Roscioli",
-          "location": {
-            "name": "Roscioli",
-            "city": "Rome",
-            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Savor traditional Italian dishes at Roscioli, an acclaimed deli and restaurant known for its fresh ingredients."
+          "description": "Start your day with a delicious breakfast featuring local specialties and freshly brewed coffee."
         },
         {
-          "time": "15:30",
-          "activity_name": "Visit to Trastevere",
+          "time": "10:30",
+          "activity_name": "Kushiro Fishermen's Wharf MOO, Kushiro",
           "location": {
-            "name": "Trastevere",
-            "city": "Rome",
-            "coordinates": {},
+            "name": "Kushiro Fishermen's Wharf MOO",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Stroll through the charming cobblestone streets of Trastevere, exploring its beautiful scenery and unique shops."
+          "description": "Visit this lively waterfront area filled with shops, restaurants, and galleries showcasing Hokkaido's seafood trade."
         },
         {
-          "time": "20:00",
-          "activity_name": "Dinner and Show at La Maison",
+          "time": "11:30",
+          "activity_name": "Hokkaido Museum of Northern Peoples, Kushiro",
           "location": {
-            "name": "La Maison",
-            "city": "Rome",
-            "coordinates": {},
+            "name": "Hokkaido Museum of Northern Peoples",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy dinner paired with an engaging live performance at La Maison, a venue that offers great entertainment in a warm atmosphere."
+          "description": "Learn about the indigenous cultures of Hokkaido through various exhibits and displays at this engaging museum."
         },
         {
-          "time": "22:30",
-          "activity_name": "Night out at Campo de' Fiori",
+          "time": "12:30",
+          "activity_name": "Departure from Kushiro, Kushiro",
           "location": {
-            "name": "Campo de' Fiori",
-            "city": "Rome",
-            "coordinates": {},
+            "name": "Kushiro Airport",
+            "city": "Kushiro",
+            "coordinates": {
+              "latitude": 0,
+              "longitude": 0
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "End the trip with a lively night out at Campo de' Fiori, known for its bustling nightlife and crowd of locals and tourists alike."
+          "description": "End your trip in Kushiro with a reflective departure from the airport."
         }
       ]
     }

@@ -1,72 +1,79 @@
 {
   "location_info": {
-    "place_name": "Yakibuta Ramen Sanjyo",
-    "country": "Japan",
-    "city": "Kasamatsu",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF3-pzZ8boxHWLUcr81cwaUCpBpR9nnYbZEftdSOQwpxBIRV7IvIB9Z_2NG-vdHaydbrvcXBfP0oNM_9XhbULPUNrwxvldiT6s=s1600-w510",
+    "place_name": "Itaewon",
+    "country": "South Korea",
+    "city": "Seoul",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF44JseQ5SmiyDV4XO_agBTiTf21bxpXAGIWPzEAOfq_KueUYmDGlYPN61izoilAsr5uJgeoA6M4JDpUOP17L7nyaZzKA8Uu28=s1600-w800",
     "coordinates": {
-      "latitude": 35.3495432,
-      "longitude": 136.7488693
+      "latitude": 1.2775604,
+      "longitude": 103.8448156
     },
     "activities": [
-      "Enjoy authentic Japanese ramen",
-      "Watch the ramen master at work",
-      "Experience local dining culture"
+      "Shopping",
+      "Dining",
+      "Cafes",
+      "Nightlife",
+      "Cultural experiences"
     ],
-    "location_summary": "Yakibuta Ramen Sanjyo is known for its delicious BBQ pork ramen, prepared by a skilled ramen master.",
-    "vicinity": "メゾンＧ5 1F, ６５８ Kitaoyobi, Kasamatsu"
+    "location_summary": "Itaewon is a vibrant district in Seoul known for its diverse culture, trendy shops, delicious eateries, and popular cafes. It is a hotspot for both locals and tourists, offering a mix of international and Korean experiences.",
+    "vicinity": "64 Peck Seah Street, Singapore"
   },
   "related_places": [
     {
-      "place_name": "Ichiran Ramen",
-      "country": "Japan",
-      "city": "Fukuoka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaa44QbOAaTyC7CESE5iXtNabMhz_kRzZmuJrD11wH0QeMmvotRP6GjfuTlKgAMgCtepCwRvP1qI3S-gXMwsc9PGf41hSCph4=s1600-w800",
+      "place_name": "Myeongdong",
+      "country": "South Korea",
+      "city": "Seoul",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE-0ZFTEUCPBK76o0i72Yu-T8hG8e6hgDgW1zNfntOFEIgS9UkLzQiIHgxe-HwlVLfRHZWcQddfUlkyR_VmWOzPuInxsWYxhHw=s1600-w800",
       "coordinates": {
-        "latitude": 1.5009666,
-        "longitude": 103.777432
+        "latitude": 37.55998,
+        "longitude": 126.9858296
       },
       "activities": [
-        "Taste the famous tonkotsu ramen",
-        "Dine in a private booth",
-        "Customize your ramen flavor"
+        "Shopping",
+        "Street Food",
+        "Beauty Stores"
       ],
-      "location_summary": "Ichiran Ramen is renowned for its rich tonkotsu broth and unique dining experience designed for ramen lovers.",
-      "vicinity": "TM-003, Third Floor (Mezzanine), The Mall, Mid Valley Southkey, No. 1, Persiaran Southkey 1, Kota Southkey, Johor Bahru"
+      "location_summary": "Myeongdong is a bustling shopping district in Seoul known for its vibrant street food scene and numerous cosmetic shops.",
+      "vicinity": "Myeong-dong",
+      "query": "Myeongdong Seoul"
     },
     {
-      "place_name": "Ramen Nagi",
-      "country": "Japan",
-      "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHn618RAKfr9W-9VSMy_2VXKhpjjylW9enpAqBcGMOwpBMnZ8Hv134PECiPCIBe1jTettYymFpItIb3x0_FbOIZtS9FUVf0Rbg=s1600-w800",
+      "place_name": "Hongdae",
+      "country": "South Korea",
+      "city": "Seoul",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEsDUjWV3RT8vMvJWuXRjb3OpjVwpfJMPO0Cvyw-0bWsE5vDd_cVRIpPlWiQ8oKo6rFWZMWM3wQmGawdGCznbFI3m5zuiBK9Qs=s1600-w800",
       "coordinates": {
-        "latitude": 1.3039387,
-        "longitude": 103.8318267
+        "latitude": 1.2790171,
+        "longitude": 103.8417675
       },
       "activities": [
-        "Explore different ramen styles",
-        "Enjoy a vibrant dining environment",
-        "Participate in seasonal specials"
+        "Live Music",
+        "Shopping",
+        "Art Galleries",
+        "Cafes"
       ],
-      "location_summary": "Ramen Nagi offers a variety of ramen flavors and styles, making it a favorite spot for locals and tourists alike.",
-      "vicinity": "2 Orchard Turn, #B4-54"
+      "location_summary": "Hongdae is famous for its youthful vibe, live music scene, and artistic community, making it a great place for nightlife and culture.",
+      "vicinity": "118 Neil Road",
+      "query": "Hongdae Seoul"
     },
     {
-      "place_name": "Tonkotsu Ramen Shogun",
-      "country": "Japan",
-      "city": "Osaka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE1XO9y7F8rrJ4wHq2FYf7_itBVuWW_ty7T2NhV4EuQdo_QAxntIyKqwQxOUP4GFEd1zLBHnr2J_t_LDNmiO9lRq7mBjXevJ1g=s1600-w800",
+      "place_name": "Gangnam",
+      "country": "South Korea",
+      "city": "Seoul",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqECd9_jh7YYBJX45i2o_K5Nd9M4oyaGIL2wLDLE3aroTtnIViBY5YWtLKJU4ZmQXjSeX2As_VbP0qM1zyWmS4g6M2-voZ9q3GI=s1600-w800",
       "coordinates": {
-        "latitude": 3.035682899999999,
-        "longitude": 101.7640742
+        "latitude": 37.4966645,
+        "longitude": 127.0629804
       },
       "activities": [
-        "Delight in tonkotsu ramen",
-        "Pair ramen with local beers",
-        "Take part in tasting events"
+        "Shopping",
+        "Nightlife",
+        "Cafes",
+        "Luxury Experiences"
       ],
-      "location_summary": "Tonkotsu Ramen Shogun is famous for its creamy butter-infused broth and tender noodles, attracting ramen enthusiasts.",
-      "vicinity": "No. 80, Jalan Dataran Cheras 4, Dataran Perniagaan Cheras, Balakong Cheras, Balakong"
+      "location_summary": "Gangnam is a wealthy district known for its upscale shopping, trendy cafes, and a lively nightlife scene, popularized by the hit song 'Gangnam Style.'",
+      "vicinity": "Gangnam District",
+      "query": "Gangnam Seoul"
     }
   ]
 }
