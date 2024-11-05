@@ -48,3 +48,4 @@ backend/itinerary_response.json
 **/.env
 
 backend/app.yaml
+backend/app/__pycache__/__init__.cpython-311.pyc
