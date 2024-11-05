@@ -169,7 +169,7 @@ const saveToItinerary = async () => {
     };
     try {
       await updateDoc(userRef, {
-        savedItineraries: arrayUnion(itineraryToSave),
+        generatedItineraries: arrayUnion(itineraryToSave),
       });
       showPopup.value = true;
       setTimeout(() => (showPopup.value = false), 3000);
@@ -197,9 +197,16 @@ const submitData = async () => {
     );
     console.log('Backend Response:', response.data);
     itinerary.value = response.data;
+    
     allActivities.value = itinerary.value.day_by_day_itineraries.flatMap(
-      (day) => day.activities
+      (day) => day.activities.filter((activity) => {
+        const lat = activity.location?.coordinates?.latitude;
+        const lng = activity.location?.coordinates?.longitude;
+        // Check if lat and lng are valid numbers
+        return typeof lat === 'number' && typeof lng === 'number' && isFinite(lat) && isFinite(lng);
+      })
     );
+    
     if (allActivities.value.length > 0) {
       const firstActivity = allActivities.value[0];
       if (firstActivity.location && firstActivity.location.coordinates) {
