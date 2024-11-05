@@ -476,17 +476,25 @@ export default {
 
         try {
           const placeData = {
-            place_id: place.place_id,
-            name: place.name,
-            image: place.image,
-            vicinity: place.vicinity,
-            country: place.country,
-            coordinates: {
-              latitude: place.coordinates.latitude,
-              longitude: place.coordinates.longitude,
-            },
+            place_id: place.place_id || null, // Use `place` instead of `attraction` for consistency
+            name: place.name || "Unknown",
+            vicinity: place.vicinity || "Unknown vicinity",
+            image: place.image || "/default-image.jpg",
+            coordinates: place.coordinates || { latitude: null, longitude: null }, // Ensure it is an object
+            rating: place.rating || 0,
+            user_ratings_total: place.user_ratings_total || 0,
+            open_now: place.open_now || false,
+            city: place.city || "Unknown City",
+            country: place.country || "Unknown Country", // Make sure `place.country` is defined
+            source: "google_places",
+            summary: "Google Places Summary",
+            activities: [],
+            timestamp: new Date(),
           };
 
+          
+
+          console.log("Adding place to itinerary:", placeData);
           const isInItinerary = isPlaceInItinerary(place); // Check if the place is in the itinerary
 
           // Immediate local state update for reactivity

@@ -1,10 +1,12 @@
+<!-- frontend/src/views/ItineraryBuilder.vue -->
+
 <template>
   <div class="itinerary-page">
     <div class="sticky-header">
       <div class="back-button-container">
         <button @click="goBack" class="back-button">Back</button>
       </div>
-      <h2 class="header-title">Build your itinerary</h2>
+      <h2 class="header-title">Build Your Itinerary</h2>
       <div class="header-buttons">
         <button @click="removeAllPlaces" class="remove-all-button">Remove All</button>
         <button @click="generateItinerary" class="generate-button">Generate Itinerary</button>
@@ -56,6 +58,14 @@
         </div>
       </div>
     </div>
+
+    <!-- Toast Notification Component -->
+    <ToastNotification
+      v-model:show="toastVisible"
+      :message="toastMessage"
+      :type="toastType"
+      :duration="toastDuration"
+    />
   </div>
 </template>
 
@@ -67,11 +77,15 @@ import { getAuth } from 'firebase/auth';
 import { gsap } from 'gsap';
 import { toRaw } from 'vue';
 import autoAnimate from '@formkit/auto-animate/vue';
+import ToastNotification from '@/components/ToastNotification.vue'; // Adjust the path as needed
 
 export default {
   name: 'ItineraryBuilder',
   directives: {
     autoAnimate,
+  },
+  components: {
+    ToastNotification, // Registering the ToastNotification component
   },
   setup() {
     const itineraryPlaces = ref([]); // Itinerary places from Firebase
@@ -79,6 +93,20 @@ export default {
     const db = getFirestore(); // Firestore database reference
     const auth = getAuth(); // Firebase Auth reference
     const router = useRouter(); // Vue router reference
+
+    // New state variables for Toast
+    const toastVisible = ref(false);
+    const toastMessage = ref('');
+    const toastType = ref('info'); // 'add', 'remove', or 'info'
+    const toastDuration = ref(3000); // Duration in milliseconds
+
+    // Method to trigger the toast
+    const showToast = (message, type = 'info', duration = 3000) => {
+      toastMessage.value = message;
+      toastType.value = type;
+      toastDuration.value = duration;
+      toastVisible.value = true;
+    };
 
     // Fetch itinerary places from Firebase when component mounts
     onMounted(async () => {
@@ -110,6 +138,9 @@ export default {
         (place) => place.place_id !== placeId
       );
       await updateItineraryInFirestore();
+
+      // Trigger the toast notification
+      showToast('Place removed successfully!', 'info');
     };
 
     const removeAllPlaces = async () => {
@@ -122,7 +153,10 @@ export default {
         stagger: 0.1,
         onComplete: async () => {
           itineraryPlaces.value = []; // Clear the itinerary locally
-          await updateItineraryInFirestore(); // Sync the change with Firebase
+          await updateItineraryInFirestore();
+
+          // Trigger the toast notification
+          showToast('All places removed successfully!', 'info');
         },
       });
     };
@@ -147,6 +181,7 @@ export default {
         } catch (error) {
           console.error('Error updating itinerary:', error);
           // Optionally, notify the user of the failure
+          showToast('Failed to update itinerary.', 'info'); // Optional toast
         }
       }
     };
@@ -179,11 +214,16 @@ export default {
       goBack,
       moveLeft,
       moveRight,
+      // Toast state and methods
+      toastVisible,
+      toastMessage,
+      toastType,
+      toastDuration,
+      showToast,
     };
   },
 };
 </script>
-
 
 <style scoped>
 h2 {
@@ -283,19 +323,27 @@ h2 {
 .remove-all-button,
 .generate-button,
 .back-button {
+  background-color: #222;
+  /* Dark background color */
+  color: #fff;
+  /* White text */
   padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-  border-radius: 100px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
   transition: background-color 0.3s ease;
+  padding: 16px;
 }
 
 .remove-all-button:hover,
 .generate-button:hover,
 .back-button:hover {
-  background-color: #0057d9;
+  background-color: #555;
   color: white;
 }
 

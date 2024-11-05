@@ -9,47 +9,27 @@
       "longitude": 100.5417059
     },
     "activities": [
-      "Enjoy a unique sushi experience made by a skilled grandmother",
-      "Taste premium sushi ingredients like fatty tuna and sea urchin",
-      "Experience traditional Japanese cuisine in a cozy setting"
+      "Enjoy premium sushi made by an elderly chef",
+      "Experience authentic Japanese dining",
+      "Meet the chef, an 80-year-old grandma"
     ],
-    "location_summary": "Wakana Sushi is a charming sushi restaurant in Higashi-Nagasaki, Tokyo, where an elderly grandmother prepares exquisite sushi herself. The restaurant features 13 pieces of special sushi, including high-end varieties, providing great value for money.",
+    "location_summary": "Wakana Sushi in Higashi-Nagasaki, Tokyo, is a charming sushi restaurant run by an 80-year-old grandmother who prepares every dish herself.",
     "vicinity": "99/1 Industrial Ring Road, Khwaeng Chong Nonsi, Khet Yan Nawa"
   },
   "related_places": [
     {
-      "place_name": "Sushi Saito",
+      "place_name": "Sukiyabashi Jiro",
       "country": "Japan",
       "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqG2O85fr4O4OlwLnY3oR-tcG7zqEWhUvVS9wRTqQrOe3ocbwvZnXTHx4TLpzzbpiAdZvT4AW7OyYX1EGhCWNwKB2l1ewX51ezs=s1600-w800",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFQD1-yPi9BQdVoKc4SU7Pbecisv8YM6uGLZdt5yRWwLUU4DTfnppNCaz_CWgCntTirFt3h7HUepIsb3di5otDmRRvcZQuKZ-w=s1600-w800",
       "coordinates": {
-        "latitude": 1.30492,
-        "longitude": 103.8084376
+        "latitude": 35.67274039999999,
+        "longitude": 139.7639378
       },
       "activities": [
-        "Experience one of the most renowned sushi restaurants in Japan",
-        "Savor ultra-fresh sushi crafted by expert chefs",
-        "Enjoy a luxurious dining environment"
+        "Taste world-renowned sushi",
+        "Join a sushi-making class",
+        "Experience high-end dining"
       ],
-      "location_summary": "Sushi Saito is an exclusive sushi spot in Tokyo, known for its attention to detail and high culinary standards, providing an unforgettable dining experience for sushi lovers.",
-      "vicinity": "6B Dempsey Road"
-    },
-    {
-      "place_name": "Sushiro",
-      "country": "Japan",
-      "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEAOM865fQdvNr9o60AkDbZ1Bm4_NCEeKJaESLYggnaRpS6bP4TpT7E49L0d30WjlvnaezZyX1Q36u18_9jIooism2NqKOiCAk=s1600-w800",
-      "coordinates": {
-        "latitude": 1.3037148,
-        "longitude": 103.8332642
-      },
-      "activities": [
-        "Dine at a popular conveyor belt sushi chain",
-        "Choose from a wide selection of sushi varieties",
-        "Enjoy a fun and casual dining atmosphere"
-      ],
-      "location_summary": "Sushiro is a well-known conveyor belt sushi chain in Tokyo, offering a fun and casual dining experience with a vast selection of sushi that caters to all taste preferences.",
-      "vicinity": "435 Orchard Road, #02-08 to 13 Wisma Atria"
-    }
-  ]
-}
+      "location_summary": "Sukiyabashi Jiro is a prestigious sushi restaurant in Tokyo known for its meticulous preparation and the skill of its chef, Jiro Ono.",
+      "vicinity": 
