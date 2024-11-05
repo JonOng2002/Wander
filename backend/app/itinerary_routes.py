@@ -16,8 +16,8 @@ load_dotenv()
 COUNTRY_CODE_TO_NAME  = country_code_to_name()
 
 # Initialize OpenAI client
-client = AsyncOpenAI(api_key=os.environ.get("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"))
-GOOGLE_API_KEY = os.environ.get("AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE")
+client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 
 # GOOGLE COORDINATES AND PLACE ID FUNCTION
 def fetch_coordinates_and_place_id(place_name, city, country_code):

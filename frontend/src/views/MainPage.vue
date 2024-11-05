@@ -143,10 +143,14 @@ export default {
           extractedLocationsComponent.$refs.extractedLocationsRoot;
 
         if (extractedLocationsElement instanceof HTMLElement) {
-          extractedLocationsElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
+          const offsetTop = extractedLocationsElement.getBoundingClientRect().top + window.scrollY - 100;
+
+        // Smooth scroll to the calculated position
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth',
+        });
+          
         } else {
           console.warn(
             'extractedLocationsElement is not an HTMLElement. Actual value:',
@@ -169,7 +173,8 @@ export default {
         const response = await axios.get(
           `http://127.0.0.1:5000/video-info-comments`,
           {
-            params: { url: this.tiktokLink, withCredentials: true },
+            params: { url: this.tiktokLink },
+            withCredentials: true,
           }
         );
         const data = response.data.openai_response;

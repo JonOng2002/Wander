@@ -2,7 +2,7 @@
   <div ref="extractedLocationsRoot" class="page-fade-in">
     <hr>
 
-
+    <p class="header-main">Discovered from the Travel Clips!</p>
     <!-- Row of Location Images -->
     <div class="row mb-4 mx-4">
       <div v-for="(place, index) in allImages" :key="index" class="col-3">
@@ -32,7 +32,7 @@
 
         <!-- Image Section -->
         <div class="col-md-6">
-          <img :src="locationInfo.place_png" @error="handleImageError" class="img-fluid rounded-start"
+          <img :src="locationInfo.place_png" @error="handleImageError" class="img-fluid rounded-start main-img"
             alt="Image of {{ locationInfo.place_name }}" style="height: 100%; object-fit: cover;">
         </div>
 
@@ -120,7 +120,7 @@
       <div class="row g-0"> <!-- Use Bootstrap's row class for horizontal alignment -->
         <!-- Image Section -->
         <div class="col-md-6"> <!-- Adjust column size as needed -->
-          <img :src="place.place_png" class="img-fluid rounded-start" alt="Image of {{ place.place_name }}"
+          <img :src="place.place_png" class="img-fluid rounded-start main-img" alt="Image of {{ place.place_name }}"
             @error="handleImageError" style="height: 100%;  object-fit: cover;"> <!-- Ensure image fits well -->
         </div>
         
@@ -367,7 +367,7 @@ html {
 }
 
 .header-interested {
-
+  font-weight: bold;
   text-align: center;
 
 }
@@ -525,4 +525,10 @@ li {
 }
 
 /* Adjust other related styles if necessary */
+.main-img{
+  aspect-ratio: 16 / 9; /* Set the desired ratio, e.g., 16:9 */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 </style>
