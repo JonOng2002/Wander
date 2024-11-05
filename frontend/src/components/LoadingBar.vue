@@ -52,7 +52,7 @@ export default {
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     width: 100%; /* Full width */
-    margin-top: 10px;
+    margin-top: 3rem;
 }
 
 .loader {
@@ -81,7 +81,7 @@ export default {
 
 .loading-text {
     color: white; /* Text color */
-    margin-top: 20px; /* Space between loader and text */
+    margin-top: 1rem; /* Space between loader and text */
     font-size: 18px; /* Adjust font size */
     text-align: center; /* Center text */
     text-shadow: 1px 1px 2px black; /* Outline effect for text */

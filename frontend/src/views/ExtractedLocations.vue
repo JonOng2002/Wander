@@ -367,7 +367,7 @@ html {
 }
 
 .header-interested {
-
+  font-weight: bold;
   text-align: center;
 
 }

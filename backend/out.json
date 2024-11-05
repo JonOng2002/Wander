@@ -1,79 +1,74 @@
 {
   "location_info": {
-    "place_name": "Itaewon",
-    "country": "South Korea",
-    "city": "Seoul",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF44JseQ5SmiyDV4XO_agBTiTf21bxpXAGIWPzEAOfq_KueUYmDGlYPN61izoilAsr5uJgeoA6M4JDpUOP17L7nyaZzKA8Uu28=s1600-w800",
+    "place_name": "Hokkaido",
+    "country": "Japan",
+    "city": "Sapporo",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGHrjs3Wnmskwf1tHUSezLZBEZwOdq-JbZUlNmKb0WBi-DKpRvPxXlCB8NWxqo9F8eCs-rYdQQlgZgpsV_QTyd1_QDHlInzzIo=s1600-w800",
     "coordinates": {
-      "latitude": 1.2775604,
-      "longitude": 103.8448156
+      "latitude": 43.2203266,
+      "longitude": 142.8634737
     },
     "activities": [
-      "Shopping",
-      "Dining",
-      "Cafes",
-      "Nightlife",
-      "Cultural experiences"
+      "Skiing",
+      "Snowboard",
+      "Hot springs",
+      "Sightseeing",
+      "Winter festivals"
     ],
-    "location_summary": "Itaewon is a vibrant district in Seoul known for its diverse culture, trendy shops, delicious eateries, and popular cafes. It is a hotspot for both locals and tourists, offering a mix of international and Korean experiences.",
-    "vicinity": "64 Peck Seah Street, Singapore"
+    "location_summary": "Hokkaido, Japan's northernmost island, is renowned for its beautiful winter scenery, hot springs, and world-class ski resorts. Sapporo, the capital, is famous for its Snow Festival and delicious local cuisine, including fresh seafood and ramen.",
+    "vicinity": "Sapporo, Japan"
   },
   "related_places": [
     {
-      "place_name": "Myeongdong",
-      "country": "South Korea",
-      "city": "Seoul",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE-0ZFTEUCPBK76o0i72Yu-T8hG8e6hgDgW1zNfntOFEIgS9UkLzQiIHgxe-HwlVLfRHZWcQddfUlkyR_VmWOzPuInxsWYxhHw=s1600-w800",
+      "place_name": "Otaru",
+      "country": "Japan",
+      "city": "Otaru",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEhcIcADGrBM-sgPDNr0XWMBgBvcH7URkodhQ8VFe_OxiXZMP7Cg-w6Oop4Xi15kE2xZPrJxTomm00-xAyrOSK7C1AOPTMR-oY=s1600-w800",
       "coordinates": {
-        "latitude": 37.55998,
-        "longitude": 126.9858296
+        "latitude": 43.1902372,
+        "longitude": 140.994172
       },
       "activities": [
-        "Shopping",
-        "Street Food",
-        "Beauty Stores"
+        "Canal walking",
+        "Shopping for glassware",
+        "Sushi tasting"
       ],
-      "location_summary": "Myeongdong is a bustling shopping district in Seoul known for its vibrant street food scene and numerous cosmetic shops.",
-      "vicinity": "Myeong-dong",
-      "query": "Myeongdong Seoul"
+      "location_summary": "Otaru is a picturesque port city known for its beautifully preserved canal district and historic buildings, offering a charming atmosphere and renowned sushi restaurants.",
+      "vicinity": "Otaru"
     },
     {
-      "place_name": "Hongdae",
-      "country": "South Korea",
-      "city": "Seoul",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEsDUjWV3RT8vMvJWuXRjb3OpjVwpfJMPO0Cvyw-0bWsE5vDd_cVRIpPlWiQ8oKo6rFWZMWM3wQmGawdGCznbFI3m5zuiBK9Qs=s1600-w800",
+      "place_name": "Niseko",
+      "country": "Japan",
+      "city": "Niseko",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF0j7GSy7zgqtGhVCPVnTUzYGdyXn87z7kmzfq0W-4q-Q2Y4hPAg3jgCer2-Lzrg8DeVuOzeXVF55M7X1XZoqzYOJZp3KBgEjM=s1600-w800",
       "coordinates": {
-        "latitude": 1.2790171,
-        "longitude": 103.8417675
+        "latitude": 42.8047856,
+        "longitude": 140.6874494
       },
       "activities": [
-        "Live Music",
-        "Shopping",
-        "Art Galleries",
-        "Cafes"
+        "Skiing",
+        "Snowboarding",
+        "Onsen bathing"
       ],
-      "location_summary": "Hongdae is famous for its youthful vibe, live music scene, and artistic community, making it a great place for nightlife and culture.",
-      "vicinity": "118 Neil Road",
-      "query": "Hongdae Seoul"
+      "location_summary": "Niseko is one of the most famous ski areas in Japan, known for its heavy powder snow and excellent skiing and snowboarding opportunities, as well as relaxing onsens.",
+      "vicinity": "Niseko"
     },
     {
-      "place_name": "Gangnam",
-      "country": "South Korea",
-      "city": "Seoul",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqECd9_jh7YYBJX45i2o_K5Nd9M4oyaGIL2wLDLE3aroTtnIViBY5YWtLKJU4ZmQXjSeX2As_VbP0qM1zyWmS4g6M2-voZ9q3GI=s1600-w800",
+      "place_name": "Hakodate",
+      "country": "Japan",
+      "city": "Hakodate",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHF4d6Hvvwf9Ybf7-sl9IDtR7VkR7wSQjJRfxwKCukXLLklqp2O91bE1foyhxsrG4-wP7FMhCSL938SzWOmQaMGI42jstXQTps=s1600-w670",
       "coordinates": {
-        "latitude": 37.4966645,
-        "longitude": 127.0629804
+        "latitude": 41.7686961,
+        "longitude": 140.7290599
       },
       "activities": [
-        "Shopping",
-        "Nightlife",
-        "Cafes",
-        "Luxury Experiences"
+        "Night view from Mount Hakodate",
+        "Historical site visits",
+        "Fresh seafood market"
       ],
-      "location_summary": "Gangnam is a wealthy district known for its upscale shopping, trendy cafes, and a lively nightlife scene, popularized by the hit song 'Gangnam Style.'",
-      "vicinity": "Gangnam District",
-      "query": "Gangnam Seoul"
+      "location_summary": "Hakodate is known for its stunning night view from Mount Hakodate, rich history, and the famous morning market offering fresh seafood.",
+      "vicinity": "Hakodate"
     }
   ]
 }
