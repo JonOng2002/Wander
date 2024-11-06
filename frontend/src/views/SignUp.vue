@@ -4,7 +4,7 @@
       <!-- Left Side - Form Section -->
       <div class="col-md-6 px-5">
         <div class="mb-4">
-          <h1 class="display-4">wander.</h1>
+          <h1 class="display-4" style="font-weight: bolder; color: #3f94a7;">wander.</h1>
           <h2>Create an Account</h2>
         </div>
 
@@ -39,7 +39,7 @@
             Sign in with Google <img src="../assets/google.png" alt="Google" class="me-2"
               style="width: 20px;">
           </button>
-          <button id="facebook" class="btn btn-outline-dark flex-fill" @click="signInWithFacebook">
+          <button id="facebook" class="btn btn-outline-primary flex-fill" @click="signInWithFacebook">
             Sign in with Facebook <img src="../assets/facebook.png" alt="Facebook" class="me-2"
               style="width: 20px;">
           </button>
@@ -52,7 +52,7 @@
 
       <!-- Right Side - Image Section -->
       <div class="col-md-6 d-none d-md-block p-0">
-        <img src="../assets/boat.jpg" class="img-fluid vh-100 w-100" style="object-fit: cover;"
+        <img src="@/assets/boat1.jpeg" class="img-fluid vh-100 w-100" style="object-fit: cover;"
           alt="Boat with Mountains in the background">
       </div>
     </div>
@@ -156,12 +156,12 @@ h2 {
 }
 
 #signupBtn {
-    background-color: #3A5B22;
+    background-color: #3f94a7;
     color: white;
 }
 
 #signupBtn:hover {
-    background-color: #4c7231;
+    background-color: #378597;
 }
 
 .col-md-6.px-4 {
@@ -179,5 +179,15 @@ h2 {
 .row {
   padding: 0;
   margin: 0;
+}
+
+#google:hover {
+  background-color: #add8e6;
+  color: blue;
+}
+
+#facebook:hover {
+  background-color: #add8e6;
+  color: blue;
 }
 </style>
