@@ -1,9 +1,9 @@
-<!-- src/views/ExtractedLocations.vue -->
 <template>
   <div ref="extractedLocationsRoot" class="page-fade-in">
-    <hr>
+    <hr />
 
-    <p class="header-main">Discovered from the Travel Clips!</p>
+    <p class="header-main">Discovered From Your Travel Clips!</p>
+    
     <!-- Row of Location Images -->
     <div class="row mb-4 mx-4">
       <div
@@ -11,7 +11,7 @@
         :key="place.place_id || index"
         class="col-3"
       >
-        <!-- Add cursor-pointer class to make cursor appear as a hand -->
+        <!-- Clickable Card -->
         <div
           class="card h-100 position-relative cursor-pointer"
           @click="scrollToCard(place.place_name)"
@@ -25,34 +25,32 @@
           />
           <div class="overlay text-center">
             <h5 class="card-title">{{ place.place_name }}</h5>
-
           </div>
         </div>
       </div>
     </div>
 
     <p class="header-interested mb-5 mt-2">Interested? Scroll down for more info</p>
-    <br><br>
+    <br /><br />
 
     <p class="video-header">From your video</p>
     <p class="header-main">Main location</p>
 
-    <!-- Horizontal Location Information Card -->
+    <!-- Main Location Information Card -->
     <div
-      v-if="locationInfo"
-      :id="locationInfo.place_name.replace(/\s+/g, '-').toLowerCase() || 'main-location'"
+      v-if="processedLocationInfo"
+      :id="processedLocationInfo.place_name.replace(/\s+/g, '-').toLowerCase() || 'main-location'"
       class="card mb-5 mx-auto"
       style="max-width: 1000px;"
     >
       <div class="row g-0">
-
         <!-- Image Section -->
         <div class="col-md-6">
           <img
-            :src="locationInfo.place_png"
+            :src="processedLocationInfo.place_png"
             @error="handleImageError"
             class="img-fluid rounded-start main-img"
-            alt="Image of {{ locationInfo.place_name }}"
+            :alt="`Image of ${processedLocationInfo.place_name}`"
             style="height: 100%; object-fit: cover;"
           />
         </div>
@@ -60,21 +58,22 @@
         <!-- Content Section -->
         <div class="col-md-6">
           <div class="card-body pb-0">
-            <h5 class="card-title">{{ locationInfo.place_name }}</h5>
-            <p class="card-text">{{ locationInfo.location_summary }}</p>
-            <div class="d-flex align-items-center">
-              <StarRating :rating="locationInfo.rating" />
-              <span class="card-rating ms-2">({{ locationInfo.rating.toFixed(1) }})</span>
+            <h5 class="card-title">{{ processedLocationInfo.place_name }}</h5>
+            <p class="card-text">{{ processedLocationInfo.location_summary }}</p>
+            <div class="d-flex align-items-center justify-content-center">
+              <span>Rating: </span>&nbsp;
+              <StarRating :rating="processedLocationInfo.rating" />
+              <span class="card-rating ms-2">({{ processedLocationInfo.rating.toFixed(1) }})</span>
             </div>
           </div>
 
-          <hr>
+          <hr />
 
           <!-- Location Details -->
           <div class="card-body py-0">
             <h5 class="card-title">Location</h5>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
+              <li class="list-group-item">{{ processedLocationInfo.city }}, {{ processedLocationInfo.country }}</li>
             </ul>
 
             <!-- Map Toggle Button and Map -->
@@ -87,21 +86,21 @@
                 <GoogleMap
                   :api-promise="apiPromise"
                   style="width: 100%; height: 500px"
-                  :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }"
+                  :center="{ lat: processedLocationInfo.coordinates.latitude, lng: processedLocationInfo.coordinates.longitude }"
                   :zoom="15"
                 >
                   <CustomMarker
-                    :key="locationInfo.place_id"
+                    :key="processedLocationInfo.place_id"
                     :options="{
                       position: {
-                        lat: locationInfo.coordinates.latitude || 0,
-                        lng: locationInfo.coordinates.longitude || 0,
+                        lat: processedLocationInfo.coordinates.latitude || 0,
+                        lng: processedLocationInfo.coordinates.longitude || 0,
                       },
                       anchorPoint: 'BOTTOM_CENTER',
                     }"
                   >
                     <div style="text-align: center">
-                      <div style="font-size: 1.125rem">{{ locationInfo.place_name }}</div>
+                      <div style="font-size: 1.125rem">{{ processedLocationInfo.place_name }}</div>
                       <img
                         src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
                         width="1px"
@@ -115,71 +114,71 @@
             </transition>
           </div>
 
-          <hr>
+          <hr />
 
           <!-- Save Place Button -->
           <div class="card-body pt-0">
             <save-place-button
               class="btn btn-dark"
-              :class="{ 'saved': isPlaceSaved(locationInfo.place_id) }"
-              :placeId="locationInfo.place_id"
-              :isAlreadySaved="isPlaceSaved(locationInfo.place_id)"
+              :class="{ 'saved': isPlaceSaved(processedLocationInfo.place_id) }"
+              :placeId="processedLocationInfo.place_id"
+              :isAlreadySaved="isPlaceSaved(processedLocationInfo.place_id)"
               @save-place="savePlaceToFirebase"
             >
-              {{ isPlaceSaved(locationInfo.place_id) ? 'Saved' : 'Add to Saved Places' }}
+              {{ isPlaceSaved(processedLocationInfo.place_id) ? 'Saved' : 'Add to Saved Places' }}
             </save-place-button>
           </div>
-
         </div>
       </div>
     </div>
 
-    <br>
-    <br>
+    <br /><br />
 
     <!-- Related Places Section -->
-    <div v-if="relatedPlaces.length">
+    <div v-if="processedRelatedPlaces.length">
       <p class="related-header">Related Places</p>
       <p class="related-places-header">You might also be interested in...</p>
       <ul style="list-style-type: none; padding: 0; margin: 0;">
         <li
-          v-for="place in relatedPlaces"
+          v-for="place in processedRelatedPlaces"
           :key="place.place_id"
           :id="place.place_name.replace(/\s+/g, '-').toLowerCase()"
           class="card mx-auto mb-5"
           style="max-width: 1000px;"
         >
-
-          <div class="row g-0"> <!-- Use Bootstrap's row class for horizontal alignment -->
+          <div class="row g-0">
             <!-- Image Section -->
-            <div class="col-md-6"> <!-- Adjust column size as needed -->
+            <div class="col-md-6">
               <img
                 :src="place.place_png"
                 class="img-fluid rounded-start main-img"
-                alt="Image of {{ place.place_name }}"
+                :alt="`Image of ${place.place_name}`"
                 @error="handleImageError"
                 style="height: 100%; object-fit: cover;"
               />
             </div>
 
             <!-- Content Section -->
-            <div class="col-md-6"> <!-- Adjust column size as needed -->
+            <div class="col-md-6">
               <div class="card-body">
                 <h5 class="card-title">{{ place.place_name }}</h5>
                 <p class="card-text">{{ place.location_summary }}</p>
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center justify-content-center">
+                  <span>Rating: </span>&nbsp;
                   <StarRating :rating="place.rating" />
                   <span class="card-rating ms-2">({{ place.rating.toFixed(1) }})</span>
                 </div>
-                <hr>
+                <hr />
                 <h5 class="card-title">Location</h5>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
                 </ul>
-                <!-- Related Places Map Section -->
+                
+                <!-- Related Place Map Toggle and Map -->
                 <button @click="togglePlaceMap(place)" class="btn btn-dark mb-3">
                   {{ place.mapVisible ? 'Hide Map' : 'Show Map' }}
                 </button>
+                
                 <transition name="map">
                   <div v-if="place.mapVisible" id="location-map" class="map">
                     <GoogleMap
@@ -211,7 +210,8 @@
                     </GoogleMap>
                   </div>
                 </transition>
-                <hr>
+                <hr />
+                
                 <!-- Save Place Button -->
                 <save-place-button
                   class="btn btn-dark"
@@ -238,24 +238,30 @@
       :duration="3000"
       @update:show="toastShow = $event"
     />
-
   </div>
 </template>
 
 <script>
-// Helper function to generate a random alphanumeric Place ID
-function generateRandomPlaceId(length = 35) {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for(let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return result;
+// Helper function to generate deterministic place_id based on place properties
+function generateDeterministicPlaceId(place) {
+  // Concatenate unique properties to form a unique string
+  const uniqueString = `${place.place_name}-${place.city}-${place.country}-${place.coordinates.latitude}-${place.coordinates.longitude}`;
+  
+  // Replace spaces and special characters with hyphens and convert to lowercase
+  return uniqueString
+    .replace(/\s+/g, '-')       // Replace spaces with hyphens
+    .replace(/[^a-zA-Z0-9-]/g, '') // Remove all characters except letters, numbers, and hyphens
+    .toLowerCase();             // Convert to lowercase
 }
 
-// Helper function to generate a random rating between 4.0 and 5.0 with one decimal place
-function getRandomRating(min = 4.0, max = 5.0) {
-  return parseFloat((Math.random() * (max - min) + min).toFixed(1));
+function getDeterministicRating(placeId, min = 4.0, max = 5.0) {
+  let hash = 0;
+  for (let i = 0; i < placeId.length; i++) {
+    hash = placeId.charCodeAt(i) + ((hash << 5) - hash);
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  const normalized = (Math.abs(hash) % 1000) / 1000; // Normalize to 0 - 0.999
+  return parseFloat((min + normalized * (max - min)).toFixed(1)); // Scale to min - max
 }
 
 import SavePlaceButton from '@/components/SavePlaceButton.vue';
@@ -266,7 +272,11 @@ import { auth } from '@/main.js'; // Ensure auth is correctly imported
 
 export default {
   name: "ExtractedLocations",
+  
+  // Inject dependencies
   inject: ['apiPromise', 'savedPlacesState'], // Inject savedPlacesState
+  
+  // Register components
   components: {
     SavePlaceButton,
     StarRating, // Register StarRating component
@@ -275,8 +285,19 @@ export default {
     ToastNotification, // Register ToastNotification component
   },
 
-  emits: ['component-mounted'],
+  // Define props received from the backend
+  props: {
+    locationInfo: {
+      type: Object,
+      required: true,
+    },
+    relatedPlaces: {
+      type: Array,
+      required: true,
+    },
+  },
 
+  // Define data properties
   data() {
     return {
       navItems: [],
@@ -285,106 +306,27 @@ export default {
       toastType: "add", // Default type for ToastNotification
       toastKey: 0, // Unique key for ToastNotification
       center: { lat: 0, lng: 0 },
-      mainMapVisible: false, // New property for the main location map toggle
-      navbarVisible: false, // New property to control sidebar visibility
-      arrowRotated: false, // New property to track arrow rotation
+      mainMapVisible: false, // Toggle main location map
+      navbarVisible: false, // Control sidebar visibility
+      arrowRotated: false, // Track arrow rotation
       errorMessage: "", // For handling errors
-      // Placeholder data for testing with randomized place IDs and ratings
-      locationInfo: {
-        place_id: generateRandomPlaceId(35), // Assign a longer random Place ID
-        place_name: "Tokyo",
-        country: "Japan",
-        city: "Tokyo",
-        place_png: "https://lh3.googleusercontent.com/places/ANXAkqF1CuCtTFxqFDoOfUnj-P11Bm_ifmDw1s1Nlt-hRGO4I8MbFJb_ykDmHkcLWAf9Ey-HE1efeoHpP6oZzKDOywEktfMvopE3Msk=s1600-w800",
-        coordinates: {
-          latitude: 35.6764225,
-          longitude: 139.650027
-        },
-        activities: [
-          "Night photography",
-          "Sightseeing",
-          "Cultural experiences",
-          "Dining at izakayas",
-          "Visiting temples"
-        ],
-        location_summary: "Tokyo is a vibrant metropolis known for its blend of ultramodern and traditional features, from neon-lit skyscrapers and bustling streets to historic temples and serene gardens. The city is especially captivating at night with countless photo opportunities.",
-        vicinity: "Tokyo, Japan",
-        rating: getRandomRating(), // Assign random rating as Number
-      },
-      relatedPlaces: [
-        {
-          place_id: generateRandomPlaceId(35), // Assign a longer random Place ID
-          place_name: "Kyoto",
-          country: "Japan",
-          city: "Kyoto",
-          place_png: "https://lh3.googleusercontent.com/places/ANXAkqFhUb_YENj1ybGqMVzejr6hQGN-s8Yp8uAwevQBmgJupIkKz1KQXwkeXTdnLEVJvIQ_OK84H8Y_N0WrOx3Lq8uwKRaZBVeVkHg=s1600-w800",
-          coordinates: {
-            latitude: 35.011564,
-            longitude: 135.7681489
-          },
-          activities: [
-            "Temple visits",
-            "Cultural experiences",
-            "Cherry blossom viewing",
-            "Traditional tea ceremonies"
-          ],
-          location_summary: "Kyoto is famous for its classical Buddhist temples, as well as gardens, imperial palaces, Shinto shrines, and traditional wooden houses. It's a city that offers a glimpse into Japan's heritage.",
-          vicinity: "Kyoto",
-          mapVisible: false,
-          rating: getRandomRating(), // Assign random rating as Number
-        },
-        {
-          place_id: generateRandomPlaceId(35), // Assign a longer random Place ID
-          place_name: "Osaka",
-          country: "Japan",
-          city: "Osaka",
-          place_png: "https://lh3.googleusercontent.com/places/ANXAkqG_OA7RzCh0dKVNuw9BRSbZt8QABQn07tkCi_ufZcgrQ4KAN8xVod5p1xJ6L4L25gXZA-YtlNOh15-LkP9-hDsV7ZbkJDD9ot0=s1600-w711",
-          coordinates: {
-            latitude: 34.6937249,
-            longitude: 135.5022535
-          },
-          activities: [
-            "Visiting Osaka Castle",
-            "Street food tasting",
-            "Shopping in Namba",
-            "Nightlife exploration"
-          ],
-          location_summary: "Osaka is known for modern architecture, nightlife, and hearty street food, and it is often considered the culinary capital of Japan, making it a great city to experience both food and fun.",
-          vicinity: "Osaka",
-          mapVisible: false,
-          rating: getRandomRating(), // Assign random rating as Number
-        },
-        {
-          place_id: generateRandomPlaceId(35), // Assign a longer random Place ID
-          place_name: "Nara",
-          country: "Japan",
-          city: "Nara",
-          place_png: "https://lh3.googleusercontent.com/places/ANXAkqE7CGTelnYgPqBafHNng4ywu1G4q8HoUVY9KaZV57gtuvY3mDezBDER7BCo9Yn4XWBbrZ8UK0k1bA6_izoznVg4CZn2-ctF2lE=s1600-w800",
-          coordinates: {
-            latitude: 34.685109,
-            longitude: 135.8048019
-          },
-          activities: [
-            "Deer park exploration",
-            "Visiting Todai-ji Temple",
-            "Cultural experiences"
-          ],
-          location_summary: "Nara is a historic city known for its temples and friendly free-roaming deer in Nara Park, making it a significant cultural site dating back to Japan's ancient capital.",
-          vicinity: "Nara",
-          mapVisible: false,
-          rating: getRandomRating(), // Assign random rating as Number
-        }
-      ]
+      // Processed data with place_id and rating
+      processedLocationInfo: null,
+      processedRelatedPlaces: [],
     };
   },
+
+  // Define computed properties
   computed: {
+    // Aggregate all images for rendering
     allImages() {
       const images = [];
-      if (this.locationInfo) images.push(this.locationInfo); // Add main location image
-      if (this.relatedPlaces.length) images.push(...this.relatedPlaces); // Add related places images
+      if (this.processedLocationInfo) images.push(this.processedLocationInfo); // Add main location image
+      if (this.processedRelatedPlaces.length) images.push(...this.processedRelatedPlaces); // Add related places images
       return images;
     },
 
+    // Create a Set of saved place IDs for quick lookup
     savedPlaceIds() {
       return this.savedPlacesState && Array.isArray(this.savedPlacesState.savedPlaces)
         ? new Set(this.savedPlacesState.savedPlaces.map(place => place.place_id))
@@ -392,7 +334,55 @@ export default {
     },
   },
 
+  // Define methods
   methods: {
+    /**
+     * Initialize processedLocationInfo and processedRelatedPlaces with place_id and rating
+     * Should be called once, typically in mounted()
+     * @param {Object} locationInfo - The main location data from backend
+     * @param {Array} relatedPlaces - The related places data from backend
+     */
+    initializeData(locationInfo, relatedPlaces) {
+      if (!locationInfo) return;
+
+      // Assign deterministic place_id and rating to locationInfo if not already present
+      if (!locationInfo.place_id) {
+        const newPlaceId = generateDeterministicPlaceId(locationInfo);
+        this.processedLocationInfo = {
+          ...locationInfo,
+          place_id: newPlaceId,
+          rating: getDeterministicRating(newPlaceId),
+        };
+      } else {
+        this.processedLocationInfo = { 
+          ...locationInfo,
+          rating: getDeterministicRating(locationInfo.place_id) || locationInfo.rating,
+        };
+      }
+
+      // Process relatedPlaces with deterministic place_id and rating
+      if (Array.isArray(relatedPlaces)) {
+        this.processedRelatedPlaces = relatedPlaces.map(place => {
+          // Assign deterministic place_id and rating if not present
+          if (!place.place_id) {
+            const newPlaceId = generateDeterministicPlaceId(place);
+            return {
+              ...place,
+              place_id: newPlaceId,
+              rating: getDeterministicRating(newPlaceId),
+              mapVisible: false, // Initialize mapVisible property
+            };
+          } else {
+            return {
+              ...place,
+              rating: getDeterministicRating(place.place_id) || place.rating,
+              mapVisible: false,
+            };
+          }
+        });
+      }
+    },
+
     /**
      * Show a toast notification for a successfully saved place.
      */
@@ -425,6 +415,7 @@ export default {
 
     /**
      * Show an error toast notification.
+     * @param {String} message - The error message to display.
      */
     showErrorToast(message) {
       this.resetToast();
@@ -484,53 +475,6 @@ export default {
      */
     togglePlaceMap(place) {
       place.mapVisible = !place.mapVisible;
-    },
-
-    /**
-     * Generate navigation items based on locationInfo and relatedPlaces.
-     */
-    generateNavItems() {
-      const items = [];
-
-      if (this.locationInfo) {
-        items.push({
-          id: this.locationInfo.place_id, // Use place_id for unique identification
-          name: this.locationInfo.place_name,
-          active: true,
-        });
-      }
-
-      this.relatedPlaces.forEach((place) => {
-        items.push({
-          id: place.place_id, // Use place_id for unique identification
-          name: place.place_name,
-          active: false,
-          mapVisible: false,  // Default map visibility for related places
-        });
-      });
-
-      this.navItems = items;
-    },
-
-    /**
-     * Handle scroll events to update active navigation links.
-     */
-    handleScroll() {
-      const sections = document.querySelectorAll('.card');
-      const links = document.querySelectorAll('.nav-link');
-
-      if (sections.length === 0 || links.length === 0) return;
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const sectionId = section.getAttribute('id');
-
-        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-          links.forEach(link => link.classList.remove('active'));
-          const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-          if (activeLink) activeLink.classList.add('active');
-        }
-      });
     },
 
     /**
@@ -614,18 +558,21 @@ export default {
     },
   },
 
+  // Lifecycle hooks
   mounted() {
-    this.generateNavItems();
-
-    if (this.locationInfo?.coordinates) {
-      this.center = {
-        lat: this.locationInfo.coordinates.latitude,
-        lng: this.locationInfo.coordinates.longitude,
-      };
-    }
     this.$emit('component-mounted');
 
-    window.addEventListener('scroll', this.handleScroll);
+    // Initialize data without watchers
+    this.initializeData(this.locationInfo, this.relatedPlaces);
+    // Removed generateNavItems() call as it's undefined
+    // this.generateNavItems();
+
+    if (this.processedLocationInfo?.coordinates) {
+      this.center = {
+        lat: this.processedLocationInfo.coordinates.latitude,
+        lng: this.processedLocationInfo.coordinates.longitude,
+      };
+    }
 
     // Listen for authentication state changes
     auth.onAuthStateChanged((user) => {
@@ -649,13 +596,20 @@ export default {
         }
       }
     });
+
+    // Handle scroll if handleScroll is defined
+    // If handleScroll is not defined, remove these lines or define the method
+    // window.addEventListener('scroll', this.handleScroll);
   },
 
   beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    // Remove scroll listener if handleScroll is defined
+    // If handleScroll is not defined, remove this line
+    // window.removeEventListener('scroll', this.handleScroll);
   },
 };
 </script>
+
 
 <style scoped>
 html {
@@ -679,12 +633,13 @@ html {
 .header-interested {
   font-weight: bold;
   text-align: center;
+  font-size: 1rem;
 }
 
 .header-main {
   font-weight: bold;
   text-align: center;
-  font-size: x-large;
+  font-size: 2rem;
 }
 
 .video-header {
@@ -846,5 +801,13 @@ li {
 /* Optional: Additional styles for SavePlaceButton */
 .save-place-button {
   /* Add any additional styles if needed */
+}
+
+/* Loading Indicator Styles (Optional) */
+.loading {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 50px;
+  color: #555;
 }
 </style>

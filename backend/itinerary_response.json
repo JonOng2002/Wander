@@ -1,138 +1,272 @@
 {
-  "country": "Japan",
-  "itinerary_summary": "A short yet vibrant trip in Kushiro, Japan, filled with nightlife and entertainment experiences that blend cultural immersion with leisure.",
+  "country": "Italy",
+  "itinerary_summary": "A four-day solo trip exploring the beautiful cities of Rome, Florence, and Milan, filled with must-see attractions and delectable food experiences.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-05",
-      "summary": "Explore the vibrant nightlife of Kushiro with unique entertainment and dining experiences.",
+      "date": "2024-11-09",
+      "summary": "Arrive in Rome and explore its iconic landmarks while indulging in authentic Italian cuisine.",
       "activities": [
         {
-          "time": "18:00",
-          "activity_name": "Kushiro Dinner Cruise, Kushiro",
+          "time": "10:00 AM",
+          "activity_name": "Vatican Museums",
           "location": {
-            "name": "Kushiro Dinner Cruise",
-            "city": "Kushiro",
+            "name": "Vatican Museums",
+            "city": "Vatican City",
             "coordinates": {
-              "latitude": 42.9817916,
-              "longitude": 144.3791845
+              "latitude": 41.906487,
+              "longitude": 12.453439
             },
-            "place_id": "ChIJV9w6K2Y9cl8Rtzaj5osF5fE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM19Ae8NX-tPdnfUQw7omo2KfDpFiYPXlJjXe8dQjQqi1rb2GxnMi1qERYCZf1_DZtVU2MsAET2DhLJqeIh1PGYvZ7fRALqD8k1mLSwG8pTmxrmIbXQ4WZpJqYICHUzMu9dLHzYHcHXqZmUfw119qbEpR2dWDEsesbnh9e3cri5PMfl&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJM5D7ViNz2EcRZbEvG0knC0",
+            "photo_url": "https://example.com/vatican_museums.jpg"
           },
-          "description": "Enjoy a scenic dinner cruise along Kushiro River, offering stunning views of the city and delicious local cuisine."
+          "description": "Visit the world-renowned Vatican Museums, home to an extensive collection of art and historical artifacts."
         },
         {
-          "time": "20:30",
-          "activity_name": "Nihonryori Sato, Kushiro",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Pizzarium",
           "location": {
-            "name": "Nihonryori Sato",
-            "city": "Kushiro",
+            "name": "Pizzarium",
+            "city": "Rome",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 41.9066758,
+              "longitude": 12.4466709
+            },
+            "place_id": "ChIJr76feHtgLxMRSpUk8Ed4h24",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqqalGvvqcCxmg9PUelkIYeqwBivbubn120Mjmxz9KawIXaZ9P-hgzCE8MxZ04IAkRt9Fj9YmrcOwaTyAS6j916P5lUxzzOmz8pqZoZwTfysKzvQ7U6cZAV9h3-LFS621NIrxEGwnkhSne1MrUfFjqCDDIaPR7fuCskagke0FyWM_oN&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Savor delicious Roman-style pizza at Pizzarium, famous for its gourmet toppings."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "St. Peter's Basilica",
+          "location": {
+            "name": "St. Peter's Basilica",
+            "city": "Vatican City",
+            "coordinates": {
+              "latitude": 41.902282,
+              "longitude": 12.454339
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience traditional Japanese dining with a focus on fresh seafood sourced from Hokkaido."
+          "description": "Marvel at the magnificent architecture of St. Peter's Basilica, one of the holiest sites in Christendom."
         },
         {
-          "time": "22:00",
-          "activity_name": "Kushiro Night Market, Kushiro",
+          "time": "5:00 PM",
+          "activity_name": "Villa Borghese",
           "location": {
-            "name": "Kushiro Night Market",
-            "city": "Kushiro",
+            "name": "Villa Borghese",
+            "city": "Rome",
             "coordinates": {
-              "latitude": 42.9892463,
-              "longitude": 144.3799285
+              "latitude": 41.9138782,
+              "longitude": 12.4853818
             },
-            "place_id": "ChIJSeSoNmM9cl8REDYZ-wvPmhE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOLyeedwxrWF-jWCAkCieyUQeDTqo-h0CENCqrret8jlFCEubwjj-ZFCx7Y9m1ucJ9SxFfP3tz4pV45CN4cSr5o0Eq-GNduWzeSWMYPF7VbEkIN-GXukJkwdGmaZrIpcYiy7SnNPosVfVHVlFPs6lxJYq0A9Q9jm5aL0n54a-TRRc3Z&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJj1M8HQJhLxMRRI6D_z18Pes",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPp7-4Pl4twrUsOsjv5VQiGXWIf31Ell4WLiM3_2ska4LNXm5Ttv3TzdI5gFWICsQWO1guby8njdVMnp2ETuspDruquEB5lkl2T9brUSTpA92ipb9GMC9ON2aJfzW9H2TxXO6ODgiJO296nwFVLy_OWXBiXDkzy8lu4XfRgBQUAc5Rt&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Explore the vibrant night market with stalls selling local delicacies and drinks, perfect for a late-night snack."
-        },
-        {
-          "time": "23:30",
-          "activity_name": "Kushiro Pub Crawl, Kushiro",
-          "location": {
-            "name": "Various bars in Kushiro",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 42.9845002,
-              "longitude": 144.389272
-            },
-            "place_id": "ChIJdX2-i2A9cl8R6tpnZ4BomAc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMxuUtBPOmHKI8T7tPLo9cG2etFlzvxm6qxGLpoWx507qssTqgzw4KGaOu7eSlRpHAi2SvBYApEVmtQIXx0DrVmK3FTq7a5WGMnn8DcEPQuWif-FtNuTHequwgbAsmX-LPWkg2K5IhTyNNYBmJIH7CMxD-bsS6MSOH7tmrINYaba88q&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Join fellow travelers and locals for a guided pub crawl to experience Kushiro's nightlife in its charming local bars."
+          "description": "Enjoy a leisurely stroll through the beautiful gardens of Villa Borghese and visit its art gallery."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-06",
-      "summary": "Morning exploration followed by leisure and departure.",
+      "date": "2024-11-10",
+      "summary": "Travel to Florence to experience its cultural richness, art heritage, and renowned cuisine.",
       "activities": [
         {
-          "time": "09:00",
-          "activity_name": "Breakfast at Cafe de Lait, Kushiro",
+          "time": "9:00 AM",
+          "activity_name": "Accademia Gallery",
           "location": {
-            "name": "Cafe de Lait",
-            "city": "Kushiro",
+            "name": "Accademia Gallery",
+            "city": "Florence",
             "coordinates": {
-              "latitude": 42.9858165,
-              "longitude": 144.3888213
+              "latitude": 43.7768145,
+              "longitude": 11.2586424
             },
-            "place_id": "ChIJ__8juGE9cl8R1xYOM6Pnaqs",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNN2a7-ijZi2KgUDItqjJR-RfGgiBJU91gMAKMwcc9-T6763FL_bA-Bxsi770_mo2iaJo9j2JFk2YU5kZYbhZQDA6Wg_DXmDvDEycP14RsBbWX3RMeqVxEkj54SZZ-vhRV5eP377JuDX3DOy0x4bjCH_1b5fLeD2CfhogUnJ-F4NQMJ&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJJ7mRvIxVKhMRx6JB-q73TG0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPiANNlRAWpXIOlszzEYgS7NRpN-EYy4v_jLhxNTbDNKJon7I-8fuKt14GFgBzfrKgRRGvsESD7xXFP_jVFxWWRxaO-RoMNQLyj-JwSYNT_gdrY1Hatgl7gogJLzldWLEjWhXUQyO1ALNRj5Pa0OJLqWT5p1tJWu5RVxt2S_wV-9AkM&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Start your day with a delicious breakfast featuring local specialties and freshly brewed coffee."
+          "description": "See Michelangelo's famous sculpture of David and other masterpieces at the Accademia Gallery."
         },
         {
-          "time": "10:30",
-          "activity_name": "Kushiro Fishermen's Wharf MOO, Kushiro",
+          "time": "12:00 PM",
+          "activity_name": "Lunch at Trattoria Mario",
           "location": {
-            "name": "Kushiro Fishermen's Wharf MOO",
-            "city": "Kushiro",
+            "name": "Trattoria Mario",
+            "city": "Florence",
             "coordinates": {
-              "latitude": 42.9817626,
-              "longitude": 144.3833396
+              "latitude": 43.7765521,
+              "longitude": 11.2545944
             },
-            "place_id": "ChIJ11_kdWc9cl8R50GFuq-zffE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM9kFP1BqfN_DtrtiVrOfTyjHTnCk52jPm5FxOELMrAycRH2KMwjPOLrIvjyjjmCpOeBN7SYTq1_fH0Omc40c8HP5xx4Tzzh2qV7odDy5JEkPtzWtN6mRloiSCFUhD2Lg_GkK367GUpkflO6m3UpCgYQVGZ5T1zlCMa2eVBkJf1N_Kj&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJA4Ty0AJUKhMRN14HOd2lpe0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO_6kgbFuuYFfqLp20Iw_2RjmuTEVIVozhniIM2dGmjsgOGl3_OWV-I9BmsRME0uM01zNKBji0AHfVfMoZWlNSDtFmbjdOnKttluph0OPqGHh-YZD4uueYtbU1WnzvQd6li95MUrmmxNO_6rx6pBsd29_70RPCqzVH8Jc0uHmeghD_R&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Visit this lively waterfront area filled with shops, restaurants, and galleries showcasing Hokkaido's seafood trade."
+          "description": "Enjoy traditional Tuscan dishes at the beloved Trattoria Mario."
         },
         {
-          "time": "11:30",
-          "activity_name": "Hokkaido Museum of Northern Peoples, Kushiro",
+          "time": "2:00 PM",
+          "activity_name": "Florence Cathedral (Duomo)",
           "location": {
-            "name": "Hokkaido Museum of Northern Peoples",
-            "city": "Kushiro",
+            "name": "Florence Cathedral",
+            "city": "Florence",
             "coordinates": {
-              "latitude": 43.9968203,
-              "longitude": 144.2397519
+              "latitude": 43.773145,
+              "longitude": 11.2559602
             },
-            "place_id": "ChIJ-TQ-uhI0bV8Rc_dgugArGqI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNct2TvZsHqNS-GaqoZOu35EP_FdzSASyvATOtZU7GDdT5gBIq9iORAjT4x2KijdG-E2u72jvzZ2OFVBCJ-G4d-kzPpRanv3Bv0FwV7JeMMf8iXmXoEmqmNu8HnvBjoFE_DZvICHAt5aTyhX5yNx4s5AqkGQ1BolwQMXQSgEn220W-c&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJ9S_ivwNUKhMR9fGqh4RDkVU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMn_AlKu6jHYCmw0ZaYQSwksXErwqcZVPN9Q9XgF3NQ4NnTrniadVuo5R246piQJIYU3u4ZAWVZYWkzxR6ExlF1KL88oNY1uVJtoJ6ZhTZBA3RbNAyC-FXxulGCeKU40yJKEwyYfZwJSkk5mJ1h4JDFJH7RjRFcetir-w3PJRRmlNY&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Learn about the indigenous cultures of Hokkaido through various exhibits and displays at this engaging museum."
+          "description": "Visit the iconic Florence Cathedral, known for its impressive dome designed by Brunelleschi."
         },
         {
-          "time": "12:30",
-          "activity_name": "Departure from Kushiro, Kushiro",
+          "time": "5:00 PM",
+          "activity_name": "Ponte Vecchio",
           "location": {
-            "name": "Kushiro Airport",
-            "city": "Kushiro",
+            "name": "Ponte Vecchio",
+            "city": "Florence",
             "coordinates": {
-              "latitude": 43.0450955,
-              "longitude": 144.1962856
+              "latitude": 43.767925,
+              "longitude": 11.2531435
             },
-            "place_id": "ChIJjyf21YJAcl8RS6iep9wMAUc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DP053Vu7O6os9sNPZKz7n6VVjV_0XzDn1QwlknpTTF1TGVMp9EvZiRiWFZfmRmKRt1U4kMe7lTBgKn2tZg48jsY3uuicIP4zufxVnRCzX6jkof4OOe8P1x1tpJ8lBWPi_j4l-CIZ5yPbturrvouws6cgCYad27kiyMGrnVt3qZDl-jd&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJZ7bcoqpWKhMR6ALnMOgKMUA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOgT-ZCvBBTnsTtCw4Bx6x4zo6bviiKpFJQV0ZiQVyokTD6v7BjFPfwWz-46FGEF7EFOgeA7F5SiAI61kISjqRc6e3G2P2pPkNcZa4rO2iFfp_o7t7Zqo3pNM2lGGTxrLPjFCBd5UOC4LkxA20qOXnLXjzAS3U-KExdwW2jWqftBkNI&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "End your trip in Kushiro with a reflective departure from the airport."
+          "description": "Stroll across the famous Ponte Vecchio, a medieval stone bridge lined with shops."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-11",
+      "summary": "Head to Milan for a day filled with stunning architectural landmarks and world-class cuisine.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Duomo di Milano",
+          "location": {
+            "name": "Duomo di Milano",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.4640976,
+              "longitude": 9.1919265
+            },
+            "place_id": "ChIJoTZGw67GhkcREy4aECdOf6s",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqgvnx82SOtVe5zHqHjeLcnalTvM624tAWx-hWcR3SpUknuzwriQEImdSYz-3SrakrDW3-F7n9lEwNmpHLsJfRCB2jyU9BqQS21EFENKMuSfSGCdzJYQ_Byn7ZXOeb7iXkppfMzAyJcXoVDGuOon4H2UAThvcoyiUXWupY-4WDGEFka&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Explore the stunning Gothic Cathedral of Milan, a symbol of the city."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Luini Panzerotti",
+          "location": {
+            "name": "Luini Panzerotti",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.46582859999999,
+              "longitude": 9.1915578
+            },
+            "place_id": "ChIJoUEJQq7GhkcRI153LB6-eXY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoSeHju3lNqI0ixwZUdK8j9SBaPJnff0h5TUnanTuiCGkaCHnZlvIiiKWvTL9GE-Dlo0qhNyC-qoFyOQTaW1MCk-yDe6GySivSv_JKMVtYiTkYcsKutRNxE3fp5Im1XP4TtsJmMRdxZBspENGAv09X2g3tY7bm9NqaOtz_TtJwhZXux&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Try the famous panzerotti at Luini, a must-visit eatery known for its delicious stuffed pastries."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Sforzesco Castle",
+          "location": {
+            "name": "Sforzesco Castle",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.4704762,
+              "longitude": 9.1793325
+            },
+            "place_id": "ChIJPXupDrb8hkcRm8JyxGbdVmU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOVafPdQsoNrBJEpp59jRDO8fQn4EGj1QbNdlnWbt8TQzfGdc9lC92IciG1Z0mrB6L9L0vv2MDonPrdud5t4m-3lu5AVFOl-oOxHjefQXnhUGA153Pp2Q8h1OtwNLUzaFf5jA0j7z8HjvOuI5GgMXh7ye7huK-BZ7j0ML1DnBsKbJv4&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Visit the historical Sforzesco Castle and its museums, set in a beautiful park."
+        },
+        {
+          "time": "6:00 PM",
+          "activity_name": "Teatro alla Scala",
+          "location": {
+            "name": "Teatro alla Scala",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.4674021,
+              "longitude": 9.1895512
+            },
+            "place_id": "ChIJV1caia3GhkcRT4MuEEjprRs",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPUZUqu7ZJ3Wc4xXJy5nLy3BPc0vV-8dkmuZUy__mrnQoC-c1hIkds5RsQm7Tz76wZY2iElRZpCgUvV8X9iX5HIS8W2pPUz0FEZa8jF_0bCaNlOVIUwrDRnkegLlq-3G5WnuU5ujQ1bL3jd-eCUen3G1UhLv46pZASctXzMMqwR4PPg&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "End your day with a tour or a performance at the legendary Teatro alla Scala, known for its opera."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-12",
+      "summary": "Wrap up your Italian adventure with a morning in Milan and leisure time before departure.",
+      "activities": [
+        {
+          "time": "9:00 AM",
+          "activity_name": "Breakfast at Pav\u00e9",
+          "location": {
+            "name": "Pav\u00e9",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.4791076,
+              "longitude": 9.202541
+            },
+            "place_id": "ChIJR3Kw9PDHhkcRMEZH5KMCt_o",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPT-NwOaUsMoU3YTpCcfKBrJnataqS5hekeB0JZTJUdNhkW_0fbVSw5EN8XLJrReJ28XWJXBs5BE0nLp9hfDreFPRPEQR8MA8acsGQR8C2fFyvTFlhSgUZ3PMgRwZdNirujheqor2q7vKSXAXT8m7kaYOmHcpd8sL1NZ6KiiRL-DxJq&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Start your day with a delightful breakfast at Pav\u00e9, famous for its pastries and coffee."
+        },
+        {
+          "time": "11:00 AM",
+          "activity_name": "Shopping at Galleria Vittorio Emanuele II",
+          "location": {
+            "name": "Galleria Vittorio Emanuele II",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.4658434,
+              "longitude": 9.1899401
+            },
+            "place_id": "ChIJw7aG_QY1eUcRFtQJWKmcCyc",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqyWWfzCp_07tHoTHuV1_ghEryYqA23VIt1hIl8ZJx1U6jJIfQhtT-dJ2ZHt99jxW3qibl3IfrsF0vIzkCIqeT7dLDREx8f6mIB-JAt7B53zQFxg5A7f-BTcPXCL03jyiXkslWp7UUmnlXnmA5xIDjRXLtU9Ru4mCs3o1vaTVJXT9vi&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Enjoy a shopping experience in the stunning Galleria Vittorio Emanuele II, Milan's iconic shopping gallery."
+        },
+        {
+          "time": "2:00 PM",
+          "activity_name": "Last-minute sightseeing at Castello Sforzesco",
+          "location": {
+            "name": "Castello Sforzesco",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.4704762,
+              "longitude": 9.1793325
+            },
+            "place_id": "ChIJPXupDrb8hkcRm8JyxGbdVmU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPCyr7OpKkcY0Fv0EVJckqCn_PVOKhIbqs3AM1EL2Jj5dCZFPZ7QGduwBmdIOuSm_4lwIT6Dp7TOGtR4MrX3Z-HFK0yljmHE1E3N9tUEAi1ttmRP3CmhBmVpoh6WEum9-qeSN4bDxCwr77IsfUTCec6FA3I6osBEkDoPXVpSYgYb6q2&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Take a final stroll through the gardens of Castello Sforzesco on your way to the airport."
+        },
+        {
+          "time": "5:00 PM",
+          "activity_name": "Departure from Milan",
+          "location": {
+            "name": "Milan",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.468503,
+              "longitude": 9.182402699999999
+            },
+            "place_id": "ChIJ53USP0nBhkcRjQ50xhPN_zw",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNYKbywYpx_KD_EDTsbnkD38rPLIwTVXV6zngsa39I9GOgwwZFQAynJw2yjcwbQdgH2m1XvWpb-A5n7y3SXIL55HD_0PZ68dsOp6Gw6Amq8p5nO4fUbFbhwafXXXYG02MZm1V8Fw6Lri3UPg7aNHSoP5fceSaOsMH1g5llcaPxx8SCA&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Travel to the airport for your departure, concluding your Italian journey."
         }
       ]
     }
