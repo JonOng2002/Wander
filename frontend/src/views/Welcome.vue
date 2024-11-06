@@ -299,14 +299,10 @@ export default {
                             globe.children[0].material.opacity = opacity * 0.1;
                         }
                     }
-                    if (entry.target === carouselSection.value) {
-                        carouselSection.value.style.opacity = entry.intersectionRatio;
-                    }
                 });
             }, options);
 
             observer.observe(threeContainer.value);
-            observer.observe(carouselSection.value);
         };
 
         onMounted(() => {
@@ -330,21 +326,23 @@ export default {
                 }
             });
 
-            gridTl.add("start")
-                .from(".grid-layout", {
-                    ease: "power1",
-                    scale: 3
-                }, "start")
-                .from(".column-1 .grid-image", {
-                    duration: 0.4,
-                    xPercent: i => -((i + 1) * 40 + i * 100),
-                    yPercent: i => (i + 1) * 40 + i * 100
-                }, "start")
-                .from(".column-3 .grid-image", {
-                    duration: 0.4,
-                    xPercent: i => (i + 1) * 40 + i * 100,
-                    yPercent: i => (i + 1) * 40 + i * 100
-                }, "start");
+            if (document.querySelector(".grid-section")) {
+                gridTl.add("start")
+                    .from(".grid-layout", {
+                        ease: "power1",
+                        scale: 3
+                    }, "start")
+                    .from(".column-1 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => -((i + 1) * 40 + i * 100),
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start")
+                    .from(".column-3 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => (i + 1) * 40 + i * 100,
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start");
+            }
 
             // Parallax effect for the parallax section
             gsap.from(".parallax-section", {
