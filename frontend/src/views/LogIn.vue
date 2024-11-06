@@ -4,7 +4,7 @@
         <!-- Left Side - Form Section -->
         <div class="col-md-6 px-5">
           <div class="mb-4">
-            <h1 class="display-4">wander.</h1>
+            <h1 class="display-4" style="font-weight: bolder; color: #3f94a7;">wander.</h1>
             <h2>Welcome Back!</h2>
             <p>Enter your Credentials to access your account</p>
           </div>
@@ -12,12 +12,12 @@
           <form @submit.prevent="handleSubmit" class="signup-form">
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="email" v-model="email"
+              <input type="email" class="form-control email-input" id="email" v-model="email"
                 placeholder="Enter your email" required>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" v-model="password"
+              <input type="password" class="form-control password-input" id="password" v-model="password"
                 placeholder="Enter your password" required>
             </div>
   
@@ -35,7 +35,7 @@
               Sign in with Google <img src="../assets/google.png" alt="Google" class="me-2"
                 style="width: 20px;">
             </button>
-            <button id="facebook" class="btn btn-outline-dark flex-fill" @click="signInWithFacebook">
+            <button id="facebook" class="btn btn-outline-primary flex-fill" @click="signInWithFacebook">
               Sign in with Facebook <img src="../assets/facebook.png" alt="Facebook" class="me-2"
                 style="width: 20px;">
             </button>
@@ -48,7 +48,7 @@
   
         <!-- Right Side - Image Section -->
         <div class="col-md-6 d-none d-md-block p-0">
-          <img src="../assets/boat.jpg" class="img-fluid vh-100 w-100" style="object-fit: cover;"
+          <img src="../assets/boat1.jpeg" class="img-fluid vh-100 w-100" style="object-fit: cover;"
             alt="Boat with Mountains in the background">
         </div>
       </div>
@@ -156,12 +156,12 @@
   }
   
   #signupBtn {
-      background-color: #3A5B22;
+      background-color: #3f9da7;
       color: white;
   }
   
   #signupBtn:hover {
-      background-color: #4c7231;
+      background-color: #378597;
   }
   
   .col-md-6.px-4 {
@@ -180,4 +180,15 @@
     padding: 0;
     margin: 0;
 }
+
+#google:hover {
+  background-color: #add8e6;
+  color: blue;
+}
+
+#facebook:hover {
+  background-color: #add8e6;
+  color: blue;
+}
+
 </style>
