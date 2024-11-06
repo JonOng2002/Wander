@@ -734,6 +734,7 @@ header content h4 {
   position: relative;
   display: inline-block;
   margin-right: 1rem;
+  z-index: 1000;
 }
 
 .dropdown-menu {
@@ -750,6 +751,7 @@ header content h4 {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-out, visibility 0.1s linear;
+  z-index: 2000;
 }
 
 .dropdown-menu li {
@@ -816,6 +818,7 @@ header content h4 {
   border-radius: 1.5rem;
   transition: box-shadow 0.3s ease;
   /* Optional: smooth transitions for dynamic shadow changes */
+  z-index: 1;
 }
 
 .card_img {

@@ -3,26 +3,28 @@
 
   <div class="secondary_header">
     <div class="secondary_content">
-      <h2>Top tourist attractions in {{ country }} </h2>
-      <h5>Explore destinations</h5>
+      <h2>Top Tourist Attractions in {{ country }}</h2>
+      <h5>Exlpore the wonders of {{ country }}</h5>
     </div>
 
     <div class="dropdown-container" v-motion-slide-visible-once-top>
       <div class="dropdown">
-        <button class="dropdown-btn" @click="goBack">Back to Destinations</button>
+        <button @click="goBack" class="dropdown-btn">Back to Destinations</button>
       </div>
+
       <div class="dropdown">
-        <select v-model="sortOption" @change="updateSortCriteria" class="dropdown-btn form-select me-2" aria-label="Sort Attractions" v-auto-animate>
+        <select v-model="sortOption" @change="updateSortCriteria" class="dropdown-btn form-select me-2"
+          aria-label="Sort Attractions">
           <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
           <option value="popularity-asc">Sort By Popularity: Low to High</option>
           <option value="rating-desc">Sort By Rating: High to Low</option>
           <option value="rating-asc">Sort By Rating: Low to High</option>
+
         </select>
       </div>
     </div>
   </div>
 
-  <div class="destination-details">
     <!-- Display Loading Indicator -->
     <div v-if="loading" class="loading">Loading...</div>
 
@@ -34,10 +36,10 @@
     <!-- Display Attractions List -->
     <div v-if="!loading && !errorMessage" class="card-grid">
       <transition-group name="list" tag="div" class="transition-wrapper">
-        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container">
-          <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image})` }">
+        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container" v-motion-slide-visible-once-top>
+          <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
             <div class="overlay"></div>
-   
+
             <div class="card-body">
               <h5 class="card-title">{{ attraction.name }}</h5>
               <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
@@ -49,10 +51,7 @@
                 <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
               </div>
 
-              <!-- Open Status -->
-              <p v-if="attraction.open_now !== undefined" :class="['attraction-hours', attraction.open_now ? 'open' : 'closed']">
-  {{ attraction.open_now ? "🟢 Open Now" : "🔴 Closed" }}
-</p>
+
 
               <!-- Save Place Button -->
               <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
@@ -66,16 +65,9 @@
       </transition-group>
     </div>
 
-  <!-- Added ToastNotification -->
-    <ToastNotification
-      :show="toastShow"
-      :message="toastMessage"
-      :type="toastType"
-      :duration="3000"
-      @update:show="toastShow = $event"
-    />
-
-</div>
+    <!-- Added ToastNotification -->
+    <ToastNotification :show="toastShow" :message="toastMessage" :type="toastType" :duration="3000"
+      @update:show="toastShow = $event" />
 </template>
 
 <script>
@@ -85,8 +77,6 @@ import StarRating from "@/components/StarRating.vue"; // Import the StarRating c
 import ToastNotification from "@/components/ToastNotification.vue";
 import { auth, db } from "@/main.js"; // Adjust the path based on your project structure
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import autoAnimate from '@formkit/auto-animate/vue';
-import { vMotion } from '@vueuse/motion';
 import axios from "axios";
 import defaultImage from '@/assets/placeholder.jpg'; // Correctly import the fallback image
 
@@ -96,10 +86,6 @@ export default {
     SavePlaceButton,
     StarRating,
     ToastNotification,
-  },
-  directives: {
-        autoAnimate,
-        motion: vMotion,
   },
   inject: ["savedPlacesState"], // Inject the provided global state
   data() {
@@ -113,8 +99,23 @@ export default {
       userId: null,
       errorMessage: "", // For user-friendly error messages
       sortCriteria: {
-      field: 'popularity', // 'popularity' or 'rating'
-      direction: 'desc',    // 'asc' or 'desc'
+        field: 'popularity', // 'popularity' or 'rating'
+        direction: 'desc',    // 'asc' or 'desc'
+      },
+      toastShow: false,
+      toastMessage: "",
+      toastType: "info", // Default type
+      defaultImage: defaultImage, // Fallback image
+      countryRadius: {
+        'Malaysia': 30000,     // 30 km radius for Malaysia
+        'Indonesia': 30000,    // 30 km radius for Indonesia
+        'Singapore': 25000,    // 30 km radius for Singapore
+        // Add more countries here if needed
+      },
+      defaultRadius: 50000,     // Default radius of 50 km for other countries
+      cityRadius: {
+        'Johor Bahru': 10000,   // 10 km radius for Johor Bahru
+        // Add more cities here if needed
       },
     };
   },
@@ -123,6 +124,11 @@ export default {
     this.fetchAttractions();
   },
   computed: {
+    countryDetails() {
+      // Find the country in the list of countries
+      return this.countries.find(c => c.name === this.country);
+    },
+
     sortedAttractions() {
       return this.attractions.slice().sort((a, b) => {
         const { field, direction } = this.sortCriteria;
@@ -168,14 +174,14 @@ export default {
   },
   methods: {
 
-        /**
-     * Fetches an image from Unsplash based on a query.
-     * @param {String} query - The search term for the image.
-     * @returns {String} - The URL of the fetched image or a default image.
-     */
+    /**
+ * Fetches an image from Unsplash based on a query.
+ * @param {String} query - The search term for the image.
+ * @returns {String} - The URL of the fetched image or a default image.
+ */
 
     async getUnsplashImage(query) {
-      
+
       const unsplashAccessKey = process.env.VUE_APP_UNSPLASH_ACCESS_KEY;
 
       if (!unsplashAccessKey) {
@@ -221,113 +227,113 @@ export default {
       this.sortCriteria.direction = direction;
     },
 
-  async fetchAttractions() {
-  const countryRef = doc(db, "countries", this.country);
-  try {
-    console.log(`Fetching attractions for ${this.country} from Firestore...`);
-    const countryDoc = await getDoc(countryRef);
-    if (countryDoc.exists()) {
-      console.log(`Fetched attractions from Firestore for ${this.country}`);
-      this.attractions = countryDoc.data().attractions;
-      this.loading = false;
-    } else {
-      const cities = this.getCountryCities(this.country);
-      console.log(`No attractions in Firestore for ${this.country}, fetching from API...`)
-      if (cities.length === 0) {
-        this.errorMessage = "No cities available for the selected country.";
-        this.loading = false;
-        return;
-      }
-
-      let allAttractions = [];
-      const radius = this.countryRadius[this.country] || this.defaultRadius;
-      console.log(`Using radius: ${radius} meters for country: ${this.country}`);
-
-      for (const city of cities) {
-        const { name, location } = city;
-        // **Determine the Radius: City-specific > Country-specific > Default**
-        const citySpecificRadius = this.cityRadius[name];
-        const radius = citySpecificRadius || this.countryRadius[this.country] || this.defaultRadius;
-        console.log(`Using radius: ${radius} meters for city: ${name} in country: ${this.country}`);
-
-        const type = "tourist_attraction";
-        const proxyUrl = `/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${this.apiKey}`;
-
-        try {
-          const response = await axios.get(proxyUrl);
-          if (response.data.status !== "OK") {
-            console.error(`Error fetching attractions for ${name}:`, response.data.status, response.data.error_message || "");
-            continue;
+    async fetchAttractions() {
+      const countryRef = doc(db, "countries", this.country);
+      try {
+        console.log(`Fetching attractions for ${this.country} from Firestore...`);
+        const countryDoc = await getDoc(countryRef);
+        if (countryDoc.exists()) {
+          console.log(`Fetched attractions from Firestore for ${this.country}`);
+          this.attractions = countryDoc.data().attractions;
+          this.loading = false;
+        } else {
+          const cities = this.getCountryCities(this.country);
+          console.log(`No attractions in Firestore for ${this.country}, fetching from API...`)
+          if (cities.length === 0) {
+            this.errorMessage = "No cities available for the selected country.";
+            this.loading = false;
+            return;
           }
 
-          const mappedAttractions = response.data.results.map((place) => ({
-            name: place.name,
-            place_id: place.place_id,
-            vicinity: place.vicinity,
-            image: place.photos
-              ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
-              : null,
-            coordinates: place.geometry?.location || { lat: 0, lng: 0 },
-            rating: place.rating || 0,
-            user_ratings_total: place.user_ratings_total || 0,
-            open_now: place.opening_hours?.open_now || false,
-            city: name,
-          }));
+          let allAttractions = [];
+          const radius = this.countryRadius[this.country] || this.defaultRadius;
+          console.log(`Using radius: ${radius} meters for country: ${this.country}`);
 
-          allAttractions = allAttractions.concat(mappedAttractions);
-        } catch (apiError) {
-          console.error(`Error fetching attractions for ${name}:`, apiError.message);
-          continue;
+          for (const city of cities) {
+            const { name, location } = city;
+            // **Determine the Radius: City-specific > Country-specific > Default**
+            const citySpecificRadius = this.cityRadius[name];
+            const radius = citySpecificRadius || this.countryRadius[this.country] || this.defaultRadius;
+            console.log(`Using radius: ${radius} meters for city: ${name} in country: ${this.country}`);
+
+            const type = "tourist_attraction";
+            const proxyUrl = `/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${this.apiKey}`;
+
+            try {
+              const response = await axios.get(proxyUrl);
+              if (response.data.status !== "OK") {
+                console.error(`Error fetching attractions for ${name}:`, response.data.status, response.data.error_message || "");
+                continue;
+              }
+
+              const mappedAttractions = response.data.results.map((place) => ({
+                name: place.name,
+                place_id: place.place_id,
+                vicinity: place.vicinity,
+                image: place.photos
+                  ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
+                  : null,
+                coordinates: place.geometry?.location || { lat: 0, lng: 0 },
+                rating: place.rating || 0,
+                user_ratings_total: place.user_ratings_total || 0,
+                open_now: place.opening_hours?.open_now || false,
+                city: name,
+              }));
+
+              allAttractions = allAttractions.concat(mappedAttractions);
+            } catch (apiError) {
+              console.error(`Error fetching attractions for ${name}:`, apiError.message);
+              continue;
+            }
+          }
+
+          if (allAttractions.length === 0) {
+            this.errorMessage = "No attractions found for the selected country.";
+            this.loading = false;
+            return;
+          }
+
+          const uniqueAttractions = Array.from(new Map(allAttractions.map(item => [item.place_id, item])).values());
+          const topAttractions = uniqueAttractions.slice(0, 50);
+
+          // Fetch Unsplash images for attractions missing Google images
+          const fetchImagesPromises = topAttractions.map(async (attraction) => {
+            if (!attraction.image) {
+
+              const query = `${attraction.name}, ${attraction.city}`;
+              console.log(`Fetching Unsplash image for: ${query}`); // Debugging log
+              const unsplashImage = await this.getUnsplashImage(query);
+              console.log(`Fetched image URL: ${unsplashImage}`); // Debugging log
+              attraction.image = unsplashImage;
+            }
+          });
+
+          await Promise.all(fetchImagesPromises);
+
+          // Assign fallback image if still null
+          topAttractions.forEach(place => {
+            if (!place.image) {
+              place.image = this.defaultImage; // Ensure this path is correct
+            }
+          });
+
+          this.attractions = topAttractions;
+
+          await setDoc(countryRef, {
+            attractions: this.attractions,
+            lastUpdated: new Date(),
+          });
+
+          this.loading = false;
         }
-      }
-
-      if (allAttractions.length === 0) {
-        this.errorMessage = "No attractions found for the selected country.";
+      } catch (error) {
+        console.error("Error accessing Firestore:", error);
+        this.errorMessage = "Failed to access the database. Please try again later.";
         this.loading = false;
-        return;
       }
+    },
 
-      const uniqueAttractions = Array.from(new Map(allAttractions.map(item => [item.place_id, item])).values());
-      const topAttractions = uniqueAttractions.slice(0, 50);
 
-      // Fetch Unsplash images for attractions missing Google images
-      const fetchImagesPromises = topAttractions.map(async (attraction) => {
-        if (!attraction.image) {
-          
-          const query = `${attraction.name}, ${attraction.city}`;
-          console.log(`Fetching Unsplash image for: ${query}`); // Debugging log
-          const unsplashImage = await this.getUnsplashImage(query);
-          console.log(`Fetched image URL: ${unsplashImage}`); // Debugging log
-          attraction.image = unsplashImage;
-        }
-      });
-
-      await Promise.all(fetchImagesPromises);
-
-      // Assign fallback image if still null
-      topAttractions.forEach(place => {
-        if (!place.image) {
-          place.image = this.defaultImage; // Ensure this path is correct
-        }
-      });
-
-      this.attractions = topAttractions;
-
-      await setDoc(countryRef, {
-        attractions: this.attractions,
-        lastUpdated: new Date(),
-      });
-
-      this.loading = false;
-    }
-  } catch (error) {
-    console.error("Error accessing Firestore:", error);
-    this.errorMessage = "Failed to access the database. Please try again later.";
-    this.loading = false;
-  }
-},
-
-    
     getCountryCities(country) {
       const cities = {
         France: [
@@ -722,16 +728,16 @@ export default {
     },
 
     showSavedPopup() {
-    this.toastMessage = "Added to Saved Places!";
-    this.toastType = "add"; // Use 'add' type for success
-    this.toastShow = true; // Show the toast
-  },
+      this.toastMessage = "Added to Saved Places!";
+      this.toastType = "add"; // Use 'add' type for success
+      this.toastShow = true; // Show the toast
+    },
 
     displayAlreadySavedPopup() {
-    this.toastMessage = "Place has already been saved!";
-    this.toastType = "info"; // Use 'info' type for already saved
-    this.toastShow = true; // Show the toast
-  },
+      this.toastMessage = "Place has already been saved!";
+      this.toastType = "info"; // Use 'info' type for already saved
+      this.toastShow = true; // Show the toast
+    },
 
     isPlaceSaved(placeId) {
       // Check if the place is already saved using the reactive state
@@ -800,7 +806,7 @@ export default {
       // This could involve creating a new itinerary document in Firestore
     },
 
-    
+
   },
   mounted() {
     // Listen for authentication state changes
@@ -831,11 +837,25 @@ export default {
 </script>
 
 <style scoped>
+/* <====================== secondary header ===================> */
+.secondary_header {
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  /* Add spacing below the header */
+  text-align: left;
+  /* Center align the text */
+}
 
+.secondary_content {
+  padding: 0 60px;
+}
 
-.destination-details {
-  text-align: center;
-  font-family: "Roboto", sans-serif;
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
 }
 
 /* Container to align dropdowns side by side */
@@ -845,6 +865,8 @@ export default {
   margin-top: 1rem;
   margin-left: 60px;
   /* Adjust this value to align the dropdowns with the text */
+  z-index: 100;
+  /* Ensure it's above other page content */
 }
 
 /* Style the dropdown button */
@@ -873,18 +895,25 @@ export default {
 
 /* Dropdown content styling */
 .dropdown-content {
-  display: none;
-  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
   background-color: #222;
   min-width: 200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  z-index: 1;
+  z-index: 9999;
   top: 100%;
-  /* Position below the button */
   left: 0;
   padding: 10px 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  transform: translateY(-10px);
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* Dropdown content links */
@@ -906,7 +935,52 @@ export default {
   display: block;
 }
 
-/*<========================== cards and layout ====================> */
+
+/* <================== layout ================>*/
+.destination-details {
+  text-align: center;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  position: relative;
+}
+
+.back-button {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+  background-color: black;
+  color: white;
+}
+
+.page-title {
+  font-size: 2rem;
+  /* Adjusted font size */
+  color: black;
+  font-weight: bolder;
+  flex-grow: 1;
+}
+
+.filter-dropdown {
+  margin: 10px 0;
+  font-family: "Source Sans 3", sans-serif;
+}
+
 .filter-dropdown .form-select {
   width: 350px;
   border-radius: 0.5rem;
@@ -1053,7 +1127,7 @@ export default {
 .rating-section {
   display: flex;
   align-items: center;
-  margin: 0 ;
+  margin-top: 0;
   padding: 0;
 }
 
@@ -1067,22 +1141,6 @@ export default {
   margin-left: 0;
   font-size: 0.9rem;
   color: #ffffff;
-}
-
-.attraction-hours {
-  font-size: 0.9rem;
-  margin-left: 0;
-  padding: 0;
-  margin-bottom: 0;
-  
-}
-
-.attraction-hours.open {
-  color: #00ff3c; /* Green for open */
-}
-
-.attraction-hours.closed {
-  color: #ff3d51; /* Red for closed */
 }
 
 
@@ -1110,6 +1168,30 @@ export default {
   /* Reduced opacity when saved */
 }
 
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
+  }
+  
+  .dropdown-container {
+        flex-direction: column;
+        /* Stack buttons vertically */
+        align-items: flex-start;
+        /* Align them to the start */
+        gap: 0.5rem;
+        /* Adjust gap for vertical spacing */
+    }
+}
+
 .transition-wrapper {
   display: contents;
   /* Keep the child elements visible */
@@ -1131,28 +1213,4 @@ export default {
 }
 
 
-/* <=================== breakpoints ======================> */
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 items per row on medium screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-    /* 1 item per row on small screens */
-  }
-
-  .dropdown-container {
-        flex-direction: column;
-        /* Stack buttons vertically */
-        align-items: flex-start;
-        /* Align them to the start */
-        gap: 0.5rem;
-        /* Adjust gap for vertical spacing */
-    }
-}
 </style>

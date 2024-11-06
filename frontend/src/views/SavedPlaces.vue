@@ -91,7 +91,9 @@
     <div class="dropdown-container" v-motion-slide-visible-once-top>
       <div class="dropdown">
         <select @change="filterPlaces" class="dropdown-btn form-select me-2">
-          <option value="">Select Filter</option>
+          <option value="">
+            Select Filter
+          </option>
           <option value="alphabetical">Filter by Alphabet</option>
           <option value="recently-added">Filter by Recently Added</option>
         </select>
@@ -813,6 +815,7 @@ export default {
   transition: background-color 0.3s ease;
   padding: 16px;
 }
+
 
 /* Change button color on hover */
 .dropdown-btn:hover {
