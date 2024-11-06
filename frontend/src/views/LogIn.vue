@@ -156,12 +156,13 @@
   }
   
   #signupBtn {
-      background-color: #3A5B22;
+      background-color: #3f94a7;
       color: white;
   }
   
   #signupBtn:hover {
-      background-color: #4c7231;
+      background-color: #378597;
+      border-color: #378597;
   }
   
   .col-md-6.px-4 {

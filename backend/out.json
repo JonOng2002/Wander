@@ -10,19 +10,19 @@
     },
     "activities": [
       "Skiing",
-      "Snowboarding",
-      "Hot springs",
-      "Visiting snow festival",
-      "Exploring nature parks"
+      "Onsen hot springs",
+      "Exploring ice sculptures",
+      "Visiting Sapporo Snow Festival",
+      "Tasting local cuisine"
     ],
-    "location_summary": "Hokkaido is Japan's northernmost island known for its spectacular winter scenery, skiing resorts, and vibrant cultural experiences during the winter season, particularly in Sapporo.",
+    "location_summary": "Hokkaido, the northernmost island of Japan, is renowned for its stunning landscapes, skiing resorts, and vibrant winter festivals, particularly the Sapporo Snow Festival that showcases intricate ice sculptures.",
     "vicinity": "Sapporo, Japan"
   },
   "related_places": [
     {
       "place_name": "Niseko",
       "country": "Japan",
-      "city": "Niseko",
+      "city": "Hokkaido",
       "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF0j7GSy7zgqtGhVCPVnTUzYGdyXn87z7kmzfq0W-4q-Q2Y4hPAg3jgCer2-Lzrg8DeVuOzeXVF55M7X1XZoqzYOJZp3KBgEjM=s1600-w800",
       "coordinates": {
         "latitude": 42.8047856,
@@ -31,16 +31,18 @@
       "activities": [
         "Skiing",
         "Snowboarding",
-        "Dining",
-        "Hot air balloon rides"
+        "Onsen relaxation",
+        "Hiking in summer",
+        "Dining at local restaurants"
       ],
-      "location_summary": "Niseko is one of Japan's most famous ski resorts, attracting millions of visitors for its powder snow and luxurious resorts.",
-      "vicinity": "Niseko"
+      "location_summary": "Niseko is famous for its powder snow, making it one of the best skiing destinations in the world, attracting winter sports enthusiasts from all over the globe.",
+      "vicinity": "Niseko",
+      "query": "Niseko skiing resort"
     },
     {
       "place_name": "Furano",
       "country": "Japan",
-      "city": "Furano",
+      "city": "Hokkaido",
       "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF_nL9s6JlDUTqyWnjrIT1PW4JWP2rOmm5HA_qqRjTGC1OelCYBwJD6CnV6pXCSHRA3e-r8p65Z6QFiXiL3bNb7Zu2hCdXsnZc=s1600-w800",
       "coordinates": {
         "latitude": 43.3420458,
@@ -48,17 +50,19 @@
       },
       "activities": [
         "Skiing",
-        "Snowboarding",
-        "Flower viewing in summer",
-        "Wine tasting"
+        "Flower fields in summer",
+        "Wine tasting",
+        "Visiting farms",
+        "Outdoor activities"
       ],
-      "location_summary": "Furano is renowned for its beautiful scenery and is a popular ski destination in winter and flower viewing spot in summer.",
-      "vicinity": "Furano"
+      "location_summary": "Furano is known for its beautiful flower fields during summer and excellent skiing conditions in winter, making it a perfect year-round destination.",
+      "vicinity": "Furano",
+      "query": "Furano skiing resort"
     },
     {
       "place_name": "Otaru",
       "country": "Japan",
-      "city": "Otaru",
+      "city": "Hokkaido",
       "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEhcIcADGrBM-sgPDNr0XWMBgBvcH7URkodhQ8VFe_OxiXZMP7Cg-w6Oop4Xi15kE2xZPrJxTomm00-xAyrOSK7C1AOPTMR-oY=s1600-w800",
       "coordinates": {
         "latitude": 43.1902372,
@@ -66,12 +70,14 @@
       },
       "activities": [
         "Canal tours",
-        "Glass blowing",
-        "Sushi dining",
-        "Historical buildings tour"
+        "Shopping for glassware",
+        "Enjoying sushi",
+        "Visiting historical buildings",
+        "Experiencing local culture"
       ],
-      "location_summary": "Otaru is a charming port city famous for its picturesque canal, historical architecture, and thriving seafood scene.",
-      "vicinity": "Otaru"
+      "location_summary": "Otaru is a charming canal city known for its historical buildings, glassworks, and seafood, offering visitors a taste of Hokkaido's culture and traditions.",
+      "vicinity": "Otaru",
+      "query": "Otaru sightseeing spots"
     }
   ]
 }

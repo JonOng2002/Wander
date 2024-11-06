@@ -1,138 +1,178 @@
 {
-  "country": "Japan",
-  "itinerary_summary": "A short yet vibrant trip in Kushiro, Japan, filled with nightlife and entertainment experiences that blend cultural immersion with leisure.",
+  "country": "Italy",
+  "itinerary_summary": "Explore the vibrant city of Milan over three days, immersing yourself in its art, culture, and culinary delights while discovering hidden gems and enjoying beach activities nearby.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-05",
-      "summary": "Explore the vibrant nightlife of Kushiro with unique entertainment and dining experiences.",
+      "date": "2024-11-06",
+      "summary": "Arrive in Milan and kick off your adventure by exploring iconic sites and sampling local cuisine.",
       "activities": [
         {
-          "time": "18:00",
-          "activity_name": "Kushiro Dinner Cruise, Kushiro",
+          "time": "10:00",
+          "activity_name": "Galleria Vittorio Emanuele II",
           "location": {
-            "name": "Kushiro Dinner Cruise",
-            "city": "Kushiro",
+            "name": "Galleria Vittorio Emanuele II",
+            "city": "Milan",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 45.4658434,
+              "longitude": 9.1899401
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJw7aG_QY1eUcRFtQJWKmcCyc",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO8zkLOVzsvV3NPTsRqWTbMi65-eSzCXRKeZY4yqqRg7NfwNiBtkYR4iak-n0Czxg3vDDufqjkas8xrVNeF0XslczBaHW_rIqoVF3wSRx7DpE9HG-eEidErm1yjXa4IWgvCT2cniWasmRwYEhuO0leBTqy1oqtw5gHtVL2RvP29Do0E"
           },
-          "description": "Enjoy a scenic dinner cruise along Kushiro River, offering stunning views of the city and delicious local cuisine."
+          "description": "Stroll through this stunning shopping gallery featuring high-end boutiques and exquisite architecture."
         },
         {
-          "time": "20:30",
-          "activity_name": "Nihonryori Sato, Kushiro",
+          "time": "12:00",
+          "activity_name": "Lunch at Luini Panzerotti, Milan",
           "location": {
-            "name": "Nihonryori Sato",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Luini Panzerotti",
+            "city": "Milan",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience traditional Japanese dining with a focus on fresh seafood sourced from Hokkaido."
+          "description": "Indulge in delicious panzerotti, a local specialty, at this popular eatery known for its savory pastries."
         },
         {
-          "time": "22:00",
-          "activity_name": "Kushiro Night Market, Kushiro",
+          "time": "14:00",
+          "activity_name": "Palazzo Reale di Milano",
           "location": {
-            "name": "Kushiro Night Market",
-            "city": "Kushiro",
+            "name": "Palazzo Reale di Milano",
+            "city": "Milan",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": 45.46313139999999,
+              "longitude": 9.191156899999998
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJoXV1xa7GhkcRgWMIumOeV90",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOWkv7lsJixu69xzFUJ8ScxeU6Dv9Ods2-FFWYXdM2sWNGmKBeDF9HbvMElF1CIXP1tzLTexhrThSEEfOywdNx3Jynu4vi07vwvbtNpyhZ2qhEAgk-3woFOnif9wZ2ynCpLoaTDZDuTVarfecypOYFUqR06H8LFlOtCW8iGXQs8Dh_-&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Explore the vibrant night market with stalls selling local delicacies and drinks, perfect for a late-night snack."
+          "description": "Explore the grand rooms and stunning art exhibitions of this historic royal palace."
         },
         {
-          "time": "23:30",
-          "activity_name": "Kushiro Pub Crawl, Kushiro",
+          "time": "16:00",
+          "activity_name": "Visit Sforza Castle, Milan",
           "location": {
-            "name": "Various bars in Kushiro",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Castello Sforzesco",
+            "city": "Milan",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Join fellow travelers and locals for a guided pub crawl to experience Kushiro's nightlife in its charming local bars."
+          "description": "Discover the rich history of Milan at this impressive castle, which houses several museums and collections."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-06",
-      "summary": "Morning exploration followed by leisure and departure.",
+      "date": "2024-11-07",
+      "summary": "Take a day enjoying Milan's cultural gems and hidden spots, with beach activities on the agenda.",
+      "activities": [
+        {
+          "time": "10:00",
+          "activity_name": "Leonardo da Vinci Museum of Science and Technology",
+          "location": {
+            "name": "Leonardo da Vinci Museum of Science and Technology",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.462808,
+              "longitude": 9.1707478
+            },
+            "place_id": "ChIJm-5swlnBhkcRkuvlGcqPRXI",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOT1aZX86d_yZnXqlECyD_1QB_smSVY9lDywjUeLmVPuaYecAJ6Xe2RorgdhI0t48jzVOgm2LooDQqrZvuxEfS7fAjTY-Q_Cl9yScyUgWvAPMMxlXI-FQAGIE6mo8kFX6UhastcH4ahvUGLlIha1An8Yeo1BVKs_Fs0VKCqpYXjqNjJ&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Enjoy innovative exhibits focused on science and Leonardo's contributions to technology."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Ristorante Da Giacomo, Milan",
+          "location": {
+            "name": "Ristorante Da Giacomo",
+            "city": "Milan",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Dine at this classic Italian restaurant known for its fantastic seafood and elegant atmosphere."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Explore Brera District, Milan",
+          "location": {
+            "name": "Brera District",
+            "city": "Milan",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Wander through this artistic district filled with galleries, boutiques, and charming caf\u00e9s."
+        },
+        {
+          "time": "17:00",
+          "activity_name": "Day Trip to Varenna, Lake Como",
+          "location": {
+            "name": "Varenna, Lake Como",
+            "city": "Varenna",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Take a scenic train ride to Varenna and explore the picturesque lakeside town, perfect for beach activities."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-08",
+      "summary": "Wrap up your Milan getaway with visits to local markets and a relaxing day by the beach.",
       "activities": [
         {
           "time": "09:00",
-          "activity_name": "Breakfast at Cafe de Lait, Kushiro",
+          "activity_name": "Breakfast at Pav\u00e9, Milan",
           "location": {
-            "name": "Cafe de Lait",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Pav\u00e9",
+            "city": "Milan",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Start your day with a delicious breakfast featuring local specialties and freshly brewed coffee."
+          "description": "Start your day with delicious pastries and coffee at this hip bakery."
         },
         {
-          "time": "10:30",
-          "activity_name": "Kushiro Fishermen's Wharf MOO, Kushiro",
+          "time": "11:00",
+          "activity_name": "Visit Mercato Centrale Milano",
           "location": {
-            "name": "Kushiro Fishermen's Wharf MOO",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Mercato Centrale Milan",
+            "city": "Milan",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit this lively waterfront area filled with shops, restaurants, and galleries showcasing Hokkaido's seafood trade."
+          "description": "Explore this vibrant market featuring local produce, gourmet products, and diverse food stalls."
         },
         {
-          "time": "11:30",
-          "activity_name": "Hokkaido Museum of Northern Peoples, Kushiro",
+          "time": "14:00",
+          "activity_name": "Relax at I Due Pini Beach",
           "location": {
-            "name": "Hokkaido Museum of Northern Peoples",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "I Due Pini",
+            "city": "Lido di Jesolo",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Learn about the indigenous cultures of Hokkaido through various exhibits and displays at this engaging museum."
+          "description": "Head to the beach for some relaxation and enjoy sunbathing on this beautiful Lido."
         },
         {
-          "time": "12:30",
-          "activity_name": "Departure from Kushiro, Kushiro",
+          "time": "18:00",
+          "activity_name": "Dinner at Trattoria Milanese, Milan",
           "location": {
-            "name": "Kushiro Airport",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Trattoria Milanese",
+            "city": "Milan",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "End your trip in Kushiro with a reflective departure from the airport."
+          "description": "Wrap up your trip with a hearty dinner at this traditional trattoria known for Milanese cuisine."
         }
       ]
     }
