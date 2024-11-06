@@ -1,77 +1,77 @@
 {
   "location_info": {
-    "place_name": "Hokkaido",
+    "place_name": "Tokyo",
     "country": "Japan",
-    "city": "Sapporo",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGHrjs3Wnmskwf1tHUSezLZBEZwOdq-JbZUlNmKb0WBi-DKpRvPxXlCB8NWxqo9F8eCs-rYdQQlgZgpsV_QTyd1_QDHlInzzIo=s1600-w800",
+    "city": "Tokyo",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF1CuCtTFxqFDoOfUnj-P11Bm_ifmDw1s1Nlt-hRGO4I8MbFJb_ykDmHkcLWAf9Ey-HE1efeoHpP6oZzKDOywEktfMvopE3Msk=s1600-w800",
     "coordinates": {
-      "latitude": 43.2203266,
-      "longitude": 142.8634737
+      "latitude": 35.6764225,
+      "longitude": 139.650027
     },
     "activities": [
-      "Skiing",
-      "Snowboarding",
-      "Hot springs",
-      "Visiting snow festival",
-      "Exploring nature parks"
+      "Sightseeing",
+      "Night photography",
+      "Dining",
+      "Visiting temples",
+      "Exploring neighborhoods"
     ],
-    "location_summary": "Hokkaido is Japan's northernmost island known for its spectacular winter scenery, skiing resorts, and vibrant cultural experiences during the winter season, particularly in Sapporo.",
-    "vicinity": "Sapporo, Japan"
+    "location_summary": "Tokyo is a bustling metropolis known for its vibrant nightlife, rich history, and cultural landmarks. It offers an array of photo spots, especially at night, with neon lights and captivating cityscape views.",
+    "vicinity": "Tokyo, Japan"
   },
   "related_places": [
     {
-      "place_name": "Niseko",
+      "place_name": "Shibuya",
       "country": "Japan",
-      "city": "Niseko",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF0j7GSy7zgqtGhVCPVnTUzYGdyXn87z7kmzfq0W-4q-Q2Y4hPAg3jgCer2-Lzrg8DeVuOzeXVF55M7X1XZoqzYOJZp3KBgEjM=s1600-w800",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGm6EZm5impV27GU0B4AdTXM0rQ0YmP9iDP7Fh5qB0cp3QmZXAXhEWj9IBq4IfJ4JPsCzW9jj62Y4Hfsnl6XpNuBHxR63QPYZI=s1600-w600",
       "coordinates": {
-        "latitude": 42.8047856,
-        "longitude": 140.6874494
+        "latitude": 35.6619707,
+        "longitude": 139.703795
       },
       "activities": [
-        "Skiing",
-        "Snowboarding",
+        "Shopping",
         "Dining",
-        "Hot air balloon rides"
+        "Nightlife",
+        "Cultural experiences"
       ],
-      "location_summary": "Niseko is one of Japan's most famous ski resorts, attracting millions of visitors for its powder snow and luxurious resorts.",
-      "vicinity": "Niseko"
+      "location_summary": "Shibuya is famous for its iconic crossing and vibrant youth culture, offering a blend of shopping, dining, and entertainment options.",
+      "vicinity": "Shibuya City"
     },
     {
-      "place_name": "Furano",
+      "place_name": "Asakusa",
       "country": "Japan",
-      "city": "Furano",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF_nL9s6JlDUTqyWnjrIT1PW4JWP2rOmm5HA_qqRjTGC1OelCYBwJD6CnV6pXCSHRA3e-r8p65Z6QFiXiL3bNb7Zu2hCdXsnZc=s1600-w800",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEtbhd-J0oEHQ3R_Fn8VuCeBwiq68RbBSDBiOUa2YjqfQJxj2m3r8fU7abW70yZ3BPPkAJfMezXS2t8dNf9IPcdH5I9LZtCDsw=s1600-w800",
       "coordinates": {
-        "latitude": 43.3420458,
-        "longitude": 142.3831624
+        "latitude": 35.7185858,
+        "longitude": 139.7958849
       },
       "activities": [
-        "Skiing",
-        "Snowboarding",
-        "Flower viewing in summer",
-        "Wine tasting"
+        "Temple visits",
+        "Cultural experiences",
+        "Shopping",
+        "Dining"
       ],
-      "location_summary": "Furano is renowned for its beautiful scenery and is a popular ski destination in winter and flower viewing spot in summer.",
-      "vicinity": "Furano"
+      "location_summary": "Asakusa is home to Sensoji Temple, Tokyo's oldest temple, and offers a glimpse into traditional Japanese culture with its shops and festivals.",
+      "vicinity": "Asakusa"
     },
     {
-      "place_name": "Otaru",
+      "place_name": "Roppongi",
       "country": "Japan",
-      "city": "Otaru",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEhcIcADGrBM-sgPDNr0XWMBgBvcH7URkodhQ8VFe_OxiXZMP7Cg-w6Oop4Xi15kE2xZPrJxTomm00-xAyrOSK7C1AOPTMR-oY=s1600-w800",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFJuGR7-8AK7m6hWpNFzEfSrlvAkcVX4HRNvRELPP-Z7fP_a-WqTUn5R5eDB3BHDnQOj-1peHg9mmvOhoyEuDK3M3LNHvE6ndk=s1600-w800",
       "coordinates": {
-        "latitude": 43.1902372,
-        "longitude": 140.994172
+        "latitude": 35.6618586,
+        "longitude": 139.7345469
       },
       "activities": [
-        "Canal tours",
-        "Glass blowing",
-        "Sushi dining",
-        "Historical buildings tour"
+        "Nightlife",
+        "Fine dining",
+        "Art museums",
+        "Shopping"
       ],
-      "location_summary": "Otaru is a charming port city famous for its picturesque canal, historical architecture, and thriving seafood scene.",
-      "vicinity": "Otaru"
+      "location_summary": "Roppongi is known for its vibrant nightlife and upscale dining, along with contemporary art museums like the Mori Art Museum.",
+      "vicinity": "Roppongi"
     }
   ]
 }

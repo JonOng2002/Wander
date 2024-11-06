@@ -715,6 +715,7 @@ header content h4 {
   position: relative;
   border-radius: 4px;
   /* Rounded edges for buttons */
+  z-index: 50;
 }
 
 .dropdown-btn:hover {
@@ -734,7 +735,7 @@ header content h4 {
   position: relative;
   display: inline-block;
   margin-right: 1rem;
-  z-index: 100;
+  
 }
 
 .dropdown-menu {
@@ -751,7 +752,7 @@ header content h4 {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-out, visibility 0.1s linear;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .dropdown-menu li {
@@ -760,7 +761,7 @@ header content h4 {
   cursor: pointer;
   border-bottom: 1px solid #ccc;
   transition: background-color 0.3s;
-  z-index: 100;
+  z-index: 1000;
 }
 
 
@@ -788,7 +789,7 @@ header content h4 {
   display: grid;
   row-gap: 3.5rem;
   font-family: "Source Sans 3", sans-serif;
-  z-index: -1;
+  z-index: 1;
 }
 
 .card_article {
@@ -1016,21 +1017,29 @@ header content h4 {
     display: flex;
     flex-direction: column;
     align-items: left;
-    z-index: 100;
+    
   }
 
   .dropdown-btn {
-    width: 60%;
+    width: 70%;
     /* Full width on small screens */
-    margin-bottom: 0.5rem;
-    z-index: 100;
+    padding: 0.8rem;
+    z-index: 50;
+   
   }
 
-  .dropdown-btn {
-    width: 60%;
-    padding: 0.8rem;
-    z-index: 100;
+  .dropdown-menu{
+    width: 70%;
+    z-index: 9999;
   }
+
+  .dropdown-menu li {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+}
+
 }
 
 @media (max-width: 767.99px) {
