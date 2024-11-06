@@ -16,7 +16,7 @@
         <div class="container">
             <div class="left-text">
                 <p>Welcome to</p>
-                <p style="font-size: larger; font-family: Lobster Two; color: #3f94a7;">wander :</p>
+                <p style="font-family: Lobster Two; font-size: larger; color: #3f94a7;">wander :</p>
                 <p>Explore the world</p>
                 <p>like</p>
                 <p>never before</p>
@@ -212,6 +212,17 @@
             </div>
         </div>
 
+
+        <div class="call-to-action">
+            <h3>What are you waiting for? Start <span>Wander</span>ing.</h3><br>
+        </div>
+
+        <div class="auth-buttons">
+            <button @click="navigateTologin" class="login-btn">Log in</button>
+            <button @click="navigateTosignup" class="signup-btn">Sign up</button>
+        </div>
+
+
     </div>
 
 </template>
@@ -228,7 +239,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 
 export default {
-    name: 'ThreeScene',
+    name: 'WelcomePage',
     data() {
         return {
             images: [
@@ -571,6 +582,15 @@ export default {
             }
         },
 
+
+        navigateTologin() {
+            // Code to navigate to login page
+            this.$router.push('/log-in'); // Assuming you're using Vue Router
+        },
+        navigateTosignup() {
+            // Code to navigate to sign up page
+            this.$router.push('/sign-up'); // Assuming you're using Vue Router
+        }
     },
 
 
@@ -1240,5 +1260,96 @@ export default {
 
 
 
+.auth-buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
 
+.login-btn,
+.signup-btn {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #3f94a7;
+    color: #3f94a7;
+    background-color: #ffffff;
+}
+
+.login-btn:hover {
+    background-color: #bdd7ff;
+    border-color: #d1d5db;
+}
+
+.signup-btn {
+    background-color: #3f94a7;
+    border: 1px solid #3f94a7;
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: #378597;
+    border-color: #378597;
+}
+
+/* Optional: Add focus states for accessibility */
+.login-btn:focus,
+.signup-btn:focus {
+    outline: 2px solid #378597;
+    outline-offset: 2px;
+}
+
+/* Optional: Add active states */
+.login-btn:active {
+    background-color: #e5e7eb;
+}
+
+.signup-btn:active {
+    background-color: #3f94a7;
+}
+
+/* Optional: Add responsive design */
+@media (max-width: 640px) {
+
+    .login-btn,
+    .signup-btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}
+
+
+.call-to-action {
+    margin-top: 100px;
+    font-weight: 200px;
+    text-align: center;
+}
+
+.call-to-action h3 {
+    font-size: 35px;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.call-to-action span {
+    color: #3f94a7;
+    /* font-style: italic; */
+}
 </style>

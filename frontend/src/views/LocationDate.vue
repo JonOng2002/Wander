@@ -355,4 +355,16 @@ const goToNextStep = () => {
     height: auto; /* Allow natural expansion */
   }
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  .form-section {
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+  .trip-options,.action-buttons{
+    justify-content: center;
+  }
+}
 </style>

@@ -143,10 +143,14 @@ export default {
           extractedLocationsComponent.$refs.extractedLocationsRoot;
 
         if (extractedLocationsElement instanceof HTMLElement) {
-          extractedLocationsElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
+          const offsetTop = extractedLocationsElement.getBoundingClientRect().top + window.scrollY - 100;
+
+        // Smooth scroll to the calculated position
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth',
+        });
+          
         } else {
           console.warn(
             'extractedLocationsElement is not an HTMLElement. Actual value:',
@@ -169,7 +173,8 @@ export default {
         const response = await axios.get(
           `http://127.0.0.1:5000/video-info-comments`,
           {
-            params: { url: this.tiktokLink, withCredentials: true },
+            params: { url: this.tiktokLink },
+            withCredentials: true,
           }
         );
         const data = response.data.openai_response;
@@ -255,7 +260,7 @@ html, body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2); /* Black with 50% opacity */
-  z-index: 0; /* Places the overlay above the images but below the content */
+  z-index: -4; /* Places the overlay above the images but below the content */
 }
 
 .background {
@@ -266,14 +271,14 @@ html, body {
   height: 100vh;
   object-fit: cover;
   opacity: 0;
-  z-index: -1;
+  z-index: -2;
   transition: opacity 2s ease-in-out;
 }
 
 .showing {
   opacity: 1;
   z-index: -1;
-  transition: none;
+  
 }
 
 .overlay-content {
@@ -281,7 +286,7 @@ html, body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10rem;
+  padding: 2rem;
   width: 100%;           /* Ensures full-width overlay content */
   max-width: 100vw;      /* Prevents any padding from restricting width */
   text-align: center;
@@ -314,6 +319,16 @@ p {
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
 }
+/* Media query for medium screens */
+@media (min-width: 768px) and (max-width: 991px) {
+  .searchBarTitle {
+    font-size: 4vw; /* Smaller font size for medium screens */
+  }
 
+  .search-bar {
+    width: 100%; /* Adjust width of the search bar */
+    margin: 0 auto; /* Center search bar */
+  }
+}
 
 </style>

@@ -91,7 +91,7 @@ const handleSubmit = async () => {
     });
 
     console.log('Successfully registered and updated profile with name!');
-    router.push('/mainpage'); // Redirect to feed after successful registration
+    router.push('/'); // Redirect to feed after successful registration
   } catch (error) {
     console.error('Error during registration:', error.code);
     errMsg.value = error.message; // Show error message to user

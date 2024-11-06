@@ -1,8 +1,21 @@
+<!-- frontend/src/components/ToastNotification.vue -->
+
 <template>
-  <div :class="['custom-toast', { active: toastActive }, toastType]">
+  <div :class="['custom-toast', { active: toastActive, exit: !toastActive }, toastType]">
+    <i class="fas fa-times close" @click="closeToast"></i>
     <div class="toast-content">
       <!-- Action Icon -->
-      <i :class="['fas', toastType === 'add' ? 'fa-check' : (toastType === 'remove' ? 'fa-times' : 'fa-info-circle'), 'action-icon']"></i>
+      <i
+        :class="[ 
+          'fas',
+          toastType === 'add'
+            ? 'fa-check'
+            : toastType === 'remove'
+            ? 'fa-times'
+            : 'fa-info',
+          'action-icon',
+        ]"
+      ></i>
 
       <!-- Message -->
       <div class="message">
@@ -10,18 +23,18 @@
       </div>
 
       <!-- Close Icon -->
-      <i class="fas fa-times close" @click="closeToast"></i>
+      
+    </div>
 
-      <!-- Progress Bar -->
-      <div class="custom-progress">
-        <div class="progress-bar" ref="progressBar"></div>
-      </div>
+    <!-- Progress Bar -->
+    <div class="custom-progress">
+      <div class="progress-bar" ref="progressBar"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
 import gsap from 'gsap';
 
 export default {
@@ -37,15 +50,15 @@ export default {
     },
     type: {
       type: String,
-      default: 'add', // 'add', 'remove', or 'error'
+      default: 'add', // 'add', 'remove', or 'info'
     },
     duration: {
       type: Number,
-      default: 5000, // Duration in milliseconds
+      default: 3000, // Duration in milliseconds (3 seconds)
     },
   },
   setup(props, { emit }) {
-    const toastActive = ref(props.show);
+    const toastActive = ref(false);
     const toastMessage = ref(props.message);
     const toastType = ref(props.type);
     const progressBar = ref(null);
@@ -53,42 +66,18 @@ export default {
     let toastTimeout = null;
     let progressBarAnimation = null;
 
-    // Watch for changes in the 'show' prop
-    watch(
-      () => props.show,
-      (newVal) => {
-        if (newVal) {
-          showToast();
-        } else {
-          closeToast();
-        }
-      }
-    );
-
     const showToast = () => {
-      // Clear any existing timeout
-      if (toastTimeout) {
-        clearTimeout(toastTimeout);
-        toastTimeout = null;
-      }
+      if (toastTimeout) clearTimeout(toastTimeout);
+      if (progressBarAnimation) progressBarAnimation.kill();
 
-      // Kill any existing progress bar animation
-      if (progressBarAnimation) {
-        progressBarAnimation.kill();
-        progressBarAnimation = null;
-      }
-
-      // Reset progress bar
       if (progressBar.value) {
         gsap.set(progressBar.value, { scaleX: 0 });
       }
 
-      // Set toast content and show it
       toastMessage.value = props.message;
       toastType.value = props.type;
       toastActive.value = true;
 
-      // Animate progress bar using GSAP
       if (progressBar.value) {
         progressBarAnimation = gsap.to(progressBar.value, {
           scaleX: 1,
@@ -98,53 +87,58 @@ export default {
         });
       }
 
-      // Set timeout to hide toast after specified duration
       toastTimeout = setTimeout(() => {
         closeToast();
       }, props.duration);
     };
 
     const closeToast = () => {
-      if (toastTimeout) {
-        clearTimeout(toastTimeout);
-        toastTimeout = null;
-      }
-      if (progressBarAnimation) {
-        progressBarAnimation.kill();
-        progressBarAnimation = null;
-      }
+      if (toastTimeout) clearTimeout(toastTimeout);
+      if (progressBarAnimation) progressBarAnimation.kill();
+
       toastActive.value = false;
-      emit('update:show', false); // Emit event to update parent component
+      setTimeout(() => emit('update:show', false), 500); // Delay for exit animation
     };
 
-    return {
-      toastActive,
-      toastMessage,
-      toastType,
-      progressBar,
-      closeToast,
-    };
+    watch(() => props.show, (newVal) => {
+      if (newVal) {
+        showToast();
+      } else {
+        closeToast();
+      }
+    });
+
+    onBeforeUnmount(() => {
+      if (toastTimeout) clearTimeout(toastTimeout);
+      if (progressBarAnimation) progressBarAnimation.kill();
+    });
+
+    onMounted(() => {
+      if (props.show) {
+        showToast();
+      }
+    });
+
+    return { toastActive, toastMessage, toastType, progressBar, closeToast };
   },
 };
 </script>
 
 <style scoped>
-/* Toast Notification Styles */
 .custom-toast {
   position: fixed;
   top: 25px;
   right: 35px;
   border-radius: 12px;
-  background: #fff; /* Default background */
-  padding: 15px 20px;
+  background: #fff;
+  padding: 20px 35px 20px 25px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  border-left: 6px solid #007bff; /* Default border color */
+  border-left: 6px solid #007bff;
   overflow: hidden;
   transform: translateX(100%);
   opacity: 0;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   z-index: 9999;
-  min-width: 300px;
 }
 
 .custom-toast.active {
@@ -152,44 +146,45 @@ export default {
   opacity: 1;
 }
 
-/* Add Type Toast */
+.custom-toast.exit {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
 .custom-toast.add {
-  background: #e6f4ea; /* Light green background */
-  border-left-color: #28a745; /* Green border */
+  background: #e6f4ea;
+  border-left-color: #28a745;
 }
 
 .custom-toast.add .action-icon {
-  background-color: #28a745; /* Green icon background */
+  background-color: #28a745;
 }
 
-/* Remove Type Toast */
 .custom-toast.remove {
-  background: #f8e6e6; /* Light red background */
-  border-left-color: #dc3545; /* Red border */
+  background: #f8e6e6;
+  border-left-color: #dc3545;
 }
 
 .custom-toast.remove .action-icon {
-  background-color: #dc3545; /* Red icon background */
+  background-color: #dc3545;
 }
 
-/* Error Type Toast */
-.custom-toast.error {
-  background: #f8d7da; /* Light red background for errors */
-  border-left-color: #dc3545; /* Red border */
+.custom-toast.info {
+  background: #e6f0fa;
+  border-left-color: #17a2b8;
 }
 
-.custom-toast.error .action-icon {
-  background-color: #dc3545; /* Red icon background */
+.custom-toast.info .action-icon {
+  background-color: #17a2b8;
 }
 
-/* Toast Content Layout */
 .toast-content {
   display: flex;
   align-items: center;
   position: relative;
+  padding-right: 30px; /* Space for the close icon */
 }
 
-/* Action Icon Styles */
 .toast-content .action-icon {
   display: flex;
   align-items: center;
@@ -199,44 +194,44 @@ export default {
   color: #fff;
   font-size: 20px;
   border-radius: 50%;
-  margin-right: 15px; /* Space between icon and message */
+  flex-shrink: 0; /* Prevent the icon from being squished */
 }
 
-/* Message Styles */
 .toast-content .message {
-  flex-grow: 1;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px 0 20px;
 }
 
 .toast-content .message .text {
-  font-size: 16px;
-  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Source Sans 3', sans-serif;
+  color: #333333;
 }
 
-/* Close Icon Styles */
 .custom-toast .close {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 10px; /* Adjusts distance from the top of the container */
+  right: 1rem; /* Adjusts distance from the right of the container */
   padding: 5px;
   cursor: pointer;
   opacity: 0.7;
-  background: transparent; /* Ensure no background color */
+  background: transparent;
   border: none;
   color: #666;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .custom-toast .close:hover {
   opacity: 1;
 }
 
-/* Progress Bar Styles */
 .custom-progress {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 3px;
+  height: 4px;
   width: 100%;
   background: #ddd;
   overflow: hidden;
@@ -247,6 +242,79 @@ export default {
   width: 100%;
   background-color: #0057d9;
   transform-origin: left;
-  transform: scaleX(0); /* Start with scaleX(0) */
+  transform: scaleX(0);
+}
+
+/* Media Queries for Responsiveness */
+
+/* Medium screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .custom-toast {
+    right: 20px;
+    padding: 15px 25px 15px 20px;
+    max-width: 350px;
+  }
+
+  .toast-content .message .text {
+    font-size: 14px;
+  }
+
+  .custom-toast .close {
+    font-size: 14px;
+    top: 8px;
+    right: 8px;
+  }
+}
+
+/* Small screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .custom-toast {
+    right: 15px;
+    padding: 12px 20px 12px 15px;
+    max-width: 300px;
+  }
+
+  .toast-content .action-icon {
+    height: 30px;
+    width: 30px;
+    font-size: 18px;
+  }
+
+  .toast-content .message .text {
+    font-size: 15px;
+  }
+
+  .custom-toast .close {
+    font-size: 14px;
+    top: 8px;
+    right: 8px;
+  }
+}
+
+/* Extra small screens (max-width: 576px) */
+@media (max-width: 576px) {
+  .custom-toast {
+    right: 10px;
+    padding: 10px 15px 10px 10px;
+    max-width: 250px;
+  }
+
+  .toast-content .action-icon {
+    height: 25px;
+    width: 25px;
+    font-size: 14px;
+    min-width: 25px; /* Maintain aspect ratio */
+    min-height: 25px; /* Maintain aspect ratio */
+  }
+
+  .toast-content .message .text {
+    font-size: 14px;
+  }
+
+  .custom-toast .close {
+    font-size: 15px;
+    top: 5px;
+    right: 5px;
+  }
 }
 </style>

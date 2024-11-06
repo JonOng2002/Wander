@@ -1,72 +1,77 @@
 {
   "location_info": {
-    "place_name": "Yakibuta Ramen Sanjyo",
+    "place_name": "Hokkaido",
     "country": "Japan",
-    "city": "Kasamatsu",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF3-pzZ8boxHWLUcr81cwaUCpBpR9nnYbZEftdSOQwpxBIRV7IvIB9Z_2NG-vdHaydbrvcXBfP0oNM_9XhbULPUNrwxvldiT6s=s1600-w510",
+    "city": "Sapporo",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGHrjs3Wnmskwf1tHUSezLZBEZwOdq-JbZUlNmKb0WBi-DKpRvPxXlCB8NWxqo9F8eCs-rYdQQlgZgpsV_QTyd1_QDHlInzzIo=s1600-w800",
     "coordinates": {
-      "latitude": 35.3495432,
-      "longitude": 136.7488693
+      "latitude": 43.2203266,
+      "longitude": 142.8634737
     },
     "activities": [
-      "Enjoy authentic Japanese ramen",
-      "Watch the ramen master at work",
-      "Experience local dining culture"
+      "Skiing",
+      "Snowboarding",
+      "Hot springs",
+      "Visiting snow festival",
+      "Exploring nature parks"
     ],
-    "location_summary": "Yakibuta Ramen Sanjyo is known for its delicious BBQ pork ramen, prepared by a skilled ramen master.",
-    "vicinity": "メゾンＧ5 1F, ６５８ Kitaoyobi, Kasamatsu"
+    "location_summary": "Hokkaido is Japan's northernmost island known for its spectacular winter scenery, skiing resorts, and vibrant cultural experiences during the winter season, particularly in Sapporo.",
+    "vicinity": "Sapporo, Japan"
   },
   "related_places": [
     {
-      "place_name": "Ichiran Ramen",
+      "place_name": "Niseko",
       "country": "Japan",
-      "city": "Fukuoka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEaa44QbOAaTyC7CESE5iXtNabMhz_kRzZmuJrD11wH0QeMmvotRP6GjfuTlKgAMgCtepCwRvP1qI3S-gXMwsc9PGf41hSCph4=s1600-w800",
+      "city": "Niseko",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF0j7GSy7zgqtGhVCPVnTUzYGdyXn87z7kmzfq0W-4q-Q2Y4hPAg3jgCer2-Lzrg8DeVuOzeXVF55M7X1XZoqzYOJZp3KBgEjM=s1600-w800",
       "coordinates": {
-        "latitude": 1.5009666,
-        "longitude": 103.777432
+        "latitude": 42.8047856,
+        "longitude": 140.6874494
       },
       "activities": [
-        "Taste the famous tonkotsu ramen",
-        "Dine in a private booth",
-        "Customize your ramen flavor"
+        "Skiing",
+        "Snowboarding",
+        "Dining",
+        "Hot air balloon rides"
       ],
-      "location_summary": "Ichiran Ramen is renowned for its rich tonkotsu broth and unique dining experience designed for ramen lovers.",
-      "vicinity": "TM-003, Third Floor (Mezzanine), The Mall, Mid Valley Southkey, No. 1, Persiaran Southkey 1, Kota Southkey, Johor Bahru"
+      "location_summary": "Niseko is one of Japan's most famous ski resorts, attracting millions of visitors for its powder snow and luxurious resorts.",
+      "vicinity": "Niseko"
     },
     {
-      "place_name": "Ramen Nagi",
+      "place_name": "Furano",
       "country": "Japan",
-      "city": "Tokyo",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHn618RAKfr9W-9VSMy_2VXKhpjjylW9enpAqBcGMOwpBMnZ8Hv134PECiPCIBe1jTettYymFpItIb3x0_FbOIZtS9FUVf0Rbg=s1600-w800",
+      "city": "Furano",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF_nL9s6JlDUTqyWnjrIT1PW4JWP2rOmm5HA_qqRjTGC1OelCYBwJD6CnV6pXCSHRA3e-r8p65Z6QFiXiL3bNb7Zu2hCdXsnZc=s1600-w800",
       "coordinates": {
-        "latitude": 1.3039387,
-        "longitude": 103.8318267
+        "latitude": 43.3420458,
+        "longitude": 142.3831624
       },
       "activities": [
-        "Explore different ramen styles",
-        "Enjoy a vibrant dining environment",
-        "Participate in seasonal specials"
+        "Skiing",
+        "Snowboarding",
+        "Flower viewing in summer",
+        "Wine tasting"
       ],
-      "location_summary": "Ramen Nagi offers a variety of ramen flavors and styles, making it a favorite spot for locals and tourists alike.",
-      "vicinity": "2 Orchard Turn, #B4-54"
+      "location_summary": "Furano is renowned for its beautiful scenery and is a popular ski destination in winter and flower viewing spot in summer.",
+      "vicinity": "Furano"
     },
     {
-      "place_name": "Tonkotsu Ramen Shogun",
+      "place_name": "Otaru",
       "country": "Japan",
-      "city": "Osaka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE1XO9y7F8rrJ4wHq2FYf7_itBVuWW_ty7T2NhV4EuQdo_QAxntIyKqwQxOUP4GFEd1zLBHnr2J_t_LDNmiO9lRq7mBjXevJ1g=s1600-w800",
+      "city": "Otaru",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEhcIcADGrBM-sgPDNr0XWMBgBvcH7URkodhQ8VFe_OxiXZMP7Cg-w6Oop4Xi15kE2xZPrJxTomm00-xAyrOSK7C1AOPTMR-oY=s1600-w800",
       "coordinates": {
-        "latitude": 3.035682899999999,
-        "longitude": 101.7640742
+        "latitude": 43.1902372,
+        "longitude": 140.994172
       },
       "activities": [
-        "Delight in tonkotsu ramen",
-        "Pair ramen with local beers",
-        "Take part in tasting events"
+        "Canal tours",
+        "Glass blowing",
+        "Sushi dining",
+        "Historical buildings tour"
       ],
-      "location_summary": "Tonkotsu Ramen Shogun is famous for its creamy butter-infused broth and tender noodles, attracting ramen enthusiasts.",
-      "vicinity": "No. 80, Jalan Dataran Cheras 4, Dataran Perniagaan Cheras, Balakong Cheras, Balakong"
+      "location_summary": "Otaru is a charming port city famous for its picturesque canal, historical architecture, and thriving seafood scene.",
+      "vicinity": "Otaru"
     }
   ]
 }

@@ -166,7 +166,7 @@ export default {
 
 .subscribe-button {
     padding: 0.8rem;
-    background-color: #4a90e2;
+    background-color: #3f94a7;
     color: white;
     border: none;
     border-radius: 4px;
@@ -175,7 +175,7 @@ export default {
 }
 
 .subscribe-button:hover {
-    background-color: #357abd;
+    background-color: #378597;
 }
 
 @media (max-width: 768px) {

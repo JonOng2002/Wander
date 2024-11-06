@@ -1,181 +1,181 @@
 {
-  "country": "Italy",
-  "itinerary_summary": "A vibrant 3-day adventure in Rome exploring historical landmarks by day and indulging in lively nightlife by evening with friends.",
+  "country": "France & Italy",
+  "itinerary_summary": "A romantic 3-day getaway to Milan and Paris, exploring iconic landmarks, indulging in exquisite dining, and soaking in local nightlife.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-21",
-      "summary": "Arrive in Rome and explore ancient sites before diving into the nightlife scene.",
+      "date": "2024-11-20",
+      "summary": "Arrive in Milan and dive into local culture and nightlife.",
       "activities": [
         {
           "time": "10:00 AM",
-          "activity_name": "Il Tempio dei Dioscuri",
+          "activity_name": "Duomo di Milano",
           "location": {
-            "name": "Il Tempio dei Dioscuri",
-            "city": "Rome",
+            "name": "Duomo di Milano",
+            "city": "Milan",
             "coordinates": {
-              "latitude": 41.89170310000001,
-              "longitude": 12.4856645
+              "latitude": 45.4640976,
+              "longitude": 9.1919265
             },
-            "place_id": "ChIJ6RRKjbRhLxMRKHHdS4QvkK4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPD8-ATSt134fUsl3RYUaeKqqEDJKpmu-3ZIElmdq1VgS5SxF3A6Bv8wIPIBdrr6BspAoA-EqABUcJSw3gAym_Oz0pQj9bm4CJO9UJ-mZvgjznd2DGbj_YROiJn6KlHkaRH38jZYVUCyGE8wnuq6GcZtsTArOFeQkfF-gnVbkRWqlK8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+            "place_id": "ChIJoTZGw67GhkcREy4aECdOf6s",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOmQrbTUypXNOOxnQ03wtgVyi47TC9QarkfPGNX1qNmZH8IJuyK5zazkpGSTShdiATTSKBkiBKETGVnrk7gTH2IaEOwtH9-AR3pNfd3HcHmUxJLUn56vvGnLPzuJCeg92VFG6Gc0NGqwS6Jymx4otLbc2476UKet3o5zMzug88ArKnO&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Visit the iconic Temple of the Dioscuri, an ancient Roman temple dedicated to the twin brothers Castor and Pollux."
+          "description": "Visit the iconic cathedral and enjoy stunning views from the rooftop."
         },
         {
           "time": "1:00 PM",
-          "activity_name": "Basilica Julia",
+          "activity_name": "Lunch at Galleria Vittorio Emanuele II",
           "location": {
-            "name": "Basilica Julia",
-            "city": "Rome",
+            "name": "Galleria Vittorio Emanuele II",
+            "city": "Milan",
             "coordinates": {
-              "latitude": 41.89199659999999,
-              "longitude": 12.4847898
+              "latitude": 45.4658434,
+              "longitude": 9.1899401
             },
-            "place_id": "ChIJM2qBt7RhLxMRBvo4dDqpXpw",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOLPjskswrWYoUnzZrtgm6Up_72DF-u_Zym3aL7vHhTSVdktNhCc3hkyJjj6yakbc0lHZ_mDooe9rsh5vgFXMMYVz1HBP0srDNyFO3qbKShTpA7houZmEeFW8xqXkWx5vYhhr9QFhqnbmVbyvN3jb4SO2cGV1ld6Aj71xGB9471nyb8&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+            "place_id": "ChIJw7aG_QY1eUcRFtQJWKmcCyc",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPKNM2CeIU06e3Y0AG3idT2lShB99eLhxxMlrSVR1AkO3rP6yrZYXrvEQnc0IVtoJ8T_mDqRt-rALBlokJCNBurlukgpeYNeI24JaNUfziB5KHGB0UuJvP9NbgkakXCvwo2l-krrO1g8MwxwpIuCnWZndUDgBD7IOEcXzXzZapTvC1W&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Explore the historical ruins of Basilica Julia, a significant location in Roman history."
+          "description": "Enjoy lunch at a historic shopping gallery filled with shops, cafes, and restaurants."
         },
         {
-          "time": "6:00 PM",
-          "activity_name": "Dinner at Trattoria Da Enzo al 29",
+          "time": "4:00 PM",
+          "activity_name": "Explore the Navigli District",
           "location": {
-            "name": "Trattoria Da Enzo al 29",
-            "city": "Rome",
+            "name": "Navigli District",
+            "city": "Milan",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy authentic Roman cuisine at this traditional trattoria, famous for its carbonara."
+          "description": "Wander around the picturesque canals and enjoy the local boutiques and art galleries."
         },
         {
-          "time": "9:00 PM",
-          "activity_name": "Piper Club",
+          "time": "8:00 PM",
+          "activity_name": "Dinner at a Local Milanese Restaurant",
           "location": {
-            "name": "Piper Club",
-            "city": "Rome",
+            "name": "Ratan\u00e0",
+            "city": "Milan",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience Rome's nightlife at the iconic Piper Club, known for its vibrant music and atmosphere."
+          "description": "Experience authentic Milanese cuisine at this trendy restaurant."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-22",
-      "summary": "Deep dive into Rome's culture with visits to ancient sites followed by a fun evening exploring the nightlife.",
+      "date": "2024-11-21",
+      "summary": "Travel to Paris, soaking in iconic landmarks and vibrant nightlife.",
       "activities": [
         {
-          "time": "10:00 AM",
-          "activity_name": "Temple of Apollo Palatinus",
+          "time": "9:00 AM",
+          "activity_name": "Eiffel Tower",
           "location": {
-            "name": "Temple of Apollo Palatinus",
-            "city": "Rome",
+            "name": "Eiffel Tower",
+            "city": "Paris",
             "coordinates": {
-              "latitude": 41.8888723,
-              "longitude": 12.4857443
+              "latitude": 48.8583701,
+              "longitude": 2.2944813
             },
-            "place_id": "ChIJl5cSjsphLxMRv85ELFf8Dk4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNypUW-aDTYcCIPNpAALHcslA_ZlcrKxpzuV7Vwu_urAids_HRioUqnJp5CbNE77kVGHb9U0jfu1xKNrt5U62TIVNhBubf0KbnCFvgs9RkwNNq1Y7FttXvtWv2QRvCq5ok1TGp0wRf7xJkTO7y3dmPZ2N361TJiscaTgyq7tR8gvqi9&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
+            "place_id": "ChIJLU7jZClu5kcR4PcOOO6p3I0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNGTbhZM1y5ryuy9MeLdPpbJXr_hkSjtTkxlS6NQNEfQCJdOsBbtVtAXm-Ej2Q1GbJFKysdHttQS36RBd3mySHLTocogKs9HefNBXLtSi4xviWrmsKqv5o__xJ_3He6QInaKjmaIf2_FldBBrGV_HiGCU7-4qeOad3SoICSo6dxnDCd&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Visit the remains of the Temple of Apollo, a key religious site in ancient Rome."
+          "description": "Take in breathtaking views of Paris from the top of this iconic landmark."
         },
         {
           "time": "1:00 PM",
-          "activity_name": "Lunch at Osteria delle Commari",
+          "activity_name": "Lunch at Caf\u00e9 de Flore",
           "location": {
-            "name": "Osteria delle Commari",
-            "city": "Rome",
+            "name": "Caf\u00e9 de Flore",
+            "city": "Paris",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Savor locally sourced dishes at this charming osteria known for its warm atmosphere."
+          "description": "Enjoy a classic Parisian lunch at one of the oldest coffeehouses in the city."
         },
         {
-          "time": "4:00 PM",
-          "activity_name": "Ludus Magnus",
+          "time": "3:00 PM",
+          "activity_name": "Visit Louvre Museum",
           "location": {
-            "name": "Ludus Magnus",
-            "city": "Rome",
-            "coordinates": {
-              "latitude": 41.890087,
-              "longitude": 12.4949419
-            },
-            "place_id": "ChIJJ540e7dhLxMR05OTuWWdXow",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNdjUtneG6aTF3_1IN1AtcetK3v7KIZVeSRQy3iIAwTLhUBcBibDA3l-DmRZQqG3TmYEJn12UxbYH5elPwBV3ZnO7saxFOUL1Av_zZoj0PVFMsB42TNfrvXhSJ4SldNG0pIHG-o6-Jmwi3VUnpbb4KvicmwhAf-a3ZzcxO1jLHXm0H3&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
-          },
-          "description": "Explore the remains of the Ludus Magnus, the largest gladiatorial school in ancient Rome."
-        },
-        {
-          "time": "8:00 PM",
-          "activity_name": "Rooftop Bar at Hotel Raphael",
-          "location": {
-            "name": "Rooftop Bar at Hotel Raphael",
-            "city": "Rome",
+            "name": "Louvre Museum",
+            "city": "Paris",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy cocktails and panoramic views of the city skyline from this beautiful rooftop bar."
+          "description": "Explore world-famous art pieces housed in this historic museum."
+        },
+        {
+          "time": "9:00 PM",
+          "activity_name": "Montmartre Night Tour",
+          "location": {
+            "name": "Montmartre",
+            "city": "Paris",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a guided night tour of the artistic neighborhood, culminating in vibrant nightlife."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-11-23",
-      "summary": "Relax and enjoy brunch before concluding the trip with a chilled evening.",
+      "date": "2024-11-22",
+      "summary": "Enjoy the final day in Paris before departure.",
       "activities": [
         {
           "time": "10:00 AM",
-          "activity_name": "Brunch at Antico Arco",
+          "activity_name": "Brunch at Le Consulat",
           "location": {
-            "name": "Antico Arco",
-            "city": "Rome",
+            "name": "Le Consulat",
+            "city": "Paris",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Start your day with a delicious brunch in a cozy, upscale restaurant."
+          "description": "Savor a delightful brunch with pastry goodies in this charming caf\u00e9."
         },
         {
           "time": "12:00 PM",
-          "activity_name": "Stroll through Villa Borghese",
+          "activity_name": "Walk in Parc de la T\u00eate d'Or",
           "location": {
-            "name": "Villa Borghese",
-            "city": "Rome",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "name": "Parc de la T\u00eate d'Or",
+            "city": "Lyon",
+            "coordinates": {
+              "latitude": 45.7773731,
+              "longitude": 4.8454817
+            },
+            "place_id": "ChIJRSpfGOvq9EcRPFTYvmRr9Q4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMU83oSXgm0NUE120AAHS2wK9r381ihLc5H9Idc8eoitHFFoFo3mki-rCfQ-xMYDx_BEAeoTXAY5lOgAgb7B8cF-pXMPeoU-12SzTrKKQe_rGkascz5nZMXdZ449_bO8pUWCafzkUH1j7KyrFK6SwY6bKEK8WyU2twB36Mmcor4s7Xb&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE"
           },
-          "description": "Take a leisurely stroll through one of Rome's beautiful parks, home to gardens and museums."
+          "description": "Unwind in one of the largest urban parks in France, enjoying the beautiful surroundings."
         },
         {
-          "time": "3:00 PM",
-          "activity_name": "Visit the Borghese Gallery",
+          "time": "5:00 PM",
+          "activity_name": "Shopping at Champs-\u00c9lys\u00e9es",
           "location": {
-            "name": "Borghese Gallery",
-            "city": "Rome",
+            "name": "Champs-\u00c9lys\u00e9es",
+            "city": "Paris",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore the renowned art collection housed in the beautiful Villa Borghese."
+          "description": "Stroll along one of the world's most famous avenues, packed with shops and cafes."
         },
         {
-          "time": "6:00 PM",
-          "activity_name": "Dinner at La Pergola",
+          "time": "8:00 PM",
+          "activity_name": "Dinner Cruise on the Seine River",
           "location": {
-            "name": "La Pergola",
-            "city": "Rome",
+            "name": "Seine River",
+            "city": "Paris",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Indulge in a luxurious dining experience at Rome's only three Michelin-starred restaurant."
+          "description": "End your trip with a romantic dinner cruise, enjoying French cuisine with stunning views."
         }
       ]
     }

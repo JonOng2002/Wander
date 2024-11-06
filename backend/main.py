@@ -5,8 +5,17 @@ from app.itinerary_routes import itinerary_blueprint
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)  # Enable CORS for all routes
-
+    
+    # Configure CORS
+    CORS(app, resources={
+        r"/*": {
+            "origins": ["https://wander-g8t9.vercel.app", "http://localhost:8080"],
+            "methods": ["GET", "POST", "OPTIONS"],
+            "allow_headers": ["Content-Type", "Authorization"],
+            "supports_credentials": True
+        }
+    })
+    
     # Register blueprints
     app.register_blueprint(tiktok_blueprint)
     app.register_blueprint(itinerary_blueprint)

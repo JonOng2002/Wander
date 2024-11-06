@@ -43,7 +43,8 @@ export default {
         route.name === 'GeneratedItinerary' ||
         route.name === 'LocationDate' || 
         route.name === 'CalendarPage' || 
-        route.name === 'TagsPage'
+        route.name === 'TagsPage' ||
+        route.name === 'Welcome'
 
       );
     });
