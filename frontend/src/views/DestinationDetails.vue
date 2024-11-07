@@ -2,7 +2,7 @@
 <template>
   <div class="destination-details">
     <div class="header-row">
-      <button @click="goBack" class="btn back-button">
+      <button @click="goBack" class="btn back-button" type="button">
         Back to Destinations
       </button>
       <h1 class="page-title">Top Tourist Attractions in {{ country }}</h1>
@@ -125,7 +125,7 @@ export default {
     };
   },
   created() {
-    console.log(`Using API Key: ${this.apiKey}`); // Verify API key
+    
     this.fetchAttractions();
   },
   computed: {
@@ -722,9 +722,13 @@ export default {
       return continentMapping[country] || 'Unknown';
     },
     
-    goBack() {
-      this.$router.go(-1);
-    },
+    goBack(event) {
+    event.preventDefault(); // Prevent any default behavior
+    console.log("Back button clicked");
+    // Navigate to the 'MyDestinations' route directly
+    this.$router.push({ name: 'MyDestinations' }); // Ensure 'MyDestinations' is the correct route name
+    console.log("Navigated to Destinations List");
+  },
 
     showSavedPopup() {
     this.toastMessage = "Added to Saved Places!";
@@ -847,6 +851,7 @@ export default {
   padding: 20px 5%;
   position: relative;
   flex-wrap: wrap; /* Allows items to wrap to the next line if needed */
+  z-index: 1000; /* Added z-index to ensure it's on top */
 }
 
 .back-button {
@@ -860,6 +865,7 @@ export default {
   cursor: pointer;
   transition: transform 0.3s ease;
   flex-shrink: 0; /* Prevents the button from shrinking */
+  z-index: 9999; /* Ensure it's above the header-row */
 }
 
 .back-button:hover {
@@ -875,6 +881,7 @@ export default {
   flex-grow: 1;
   margin: 0 20px; /* Added horizontal margins */
   min-width: 150px; /* Ensures the title doesn't shrink below 150px */
+  text-align: center; /* Center the title */
 }
 
 .filter-dropdown {
@@ -883,24 +890,33 @@ export default {
   flex-grow: 1;
   display: flex;
   justify-content: flex-end; /* Aligns the dropdown to the right */
+  position: relative; /* To position the custom arrow */
+  width: 320px; /* Consistent width with MyDestinations.vue dropdowns */
 }
 
 .filter-dropdown .form-select {
   width: 100%;
   max-width: 350px; /* Sets a maximum width */
-  border-radius: 0.5rem;
-  border: 1px solid black;
+  border-radius: 4px; /* Rounded corners */
+  border: none; /* Remove default border */
+  padding: 1rem; /* Consistent padding */
   font-family: "Source Sans 3", sans-serif;
-  padding: 8px;
   font-size: 1rem;
-  background-color: white;
-  color: black;
+  background-color: #222; /* Dark background to match dropdown-btn */
+  color: #fff; /* White text */
   cursor: pointer;
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="%23FFFFFF" d="M0 0l5 5 5-5z"/></svg>'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 10px 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .filter-dropdown .form-select:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #3f94a7;
+  background-color: #555 ;
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
@@ -1083,34 +1099,49 @@ export default {
   .rating-text {
     margin-left: 8px; /* Desired spacing */
   }
+
+  .back-button{
+    z-index: 9999;
+  }
 }
 
-@media (min-width: 576px) and (max-width: 628px) {
+@media (min-width: 576px) and (max-width: 992px) {
   .transition-wrapper {
-    grid-template-columns: repeat(2, 1fr); /* Maintain 2 items per row between 576px and 628px */
+    grid-template-columns: repeat(2, 1fr); /* Maintain 2 items per row between 576px and 662px */
     padding: 1rem; /* Reduce padding */
     gap: 1rem; /* Reduce gap */
   }
 
-  /* Header adjustments for 576px to 628px */
+  /* Header adjustments for 576px to 662px */
   .header-row {
-    padding: 15px 5%; /* Reduce padding */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: stretch; /* Stretch children to fill width */
+    padding: 15px 5%; /* Adjust padding as needed */
+    z-index: 10; /* Ensure header is on top */
+  }
+
+  .back-button {
+    width: 100%; /* Span full width */
+    margin-bottom: 10px; /* Space below the button */
+    z-index: 9999; /* Ensure it's above the header-row */
   }
 
   .page-title {
     font-size: 1.75rem; /* Slightly reduce font size */
-    margin: 10px 20px; /* Adjust margin to prevent overlap */
+    margin: 10px 0; /* Adjust margin to prevent overlap */
     min-width: 150px; /* Allow title to shrink more */
+    text-align: center; /* Center the title */
   }
 
   .filter-dropdown {
     flex-grow: 1;
-    justify-content: flex-end;
+    justify-content: center; /* Center the dropdown */
   }
 
   .filter-dropdown .form-select {
-    max-width: 250px; /* Reduce max-width for smaller screens */
+    max-width: 300px; /* Increased max-width from 250px to 300px */
     font-size: 0.9rem; /* Slightly reduce font size */
+    margin: 0 auto; /* Center the dropdown within its container */
   }
 
   /* Rating Section Adjustments */
@@ -1153,6 +1184,7 @@ export default {
     width: 100%; /* Full width on small screens */
     font-size: 0.8rem; /* Smaller font size */
     padding: 8px; /* Adjust padding */
+    z-index: 11; /* Ensure it's above other elements */
   }
 
   .page-title {
@@ -1203,6 +1235,7 @@ export default {
   font-family: "Source Sans 3", sans-serif;
 }
 </style>
+
 
 
 
