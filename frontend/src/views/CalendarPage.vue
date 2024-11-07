@@ -331,6 +331,8 @@ onMounted(async () => {
   .form-section {
     padding: 1rem 2rem;
     height: auto;
+    text-align: center; 
+    align-items: center;
   }
 
   .btn-primary {

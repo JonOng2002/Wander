@@ -344,7 +344,7 @@ button.selected {
     align-items: center; /* Centers the contents vertically */
     justify-content: center; /* Centers the contents horizontally */
     gap: 2rem;
-    max-height: 90vh; /* Limits the overall height of content-wrapper */
+    max-height: 150vh; /* Limits the overall height of content-wrapper */
   }
 
   .form-section {
@@ -381,6 +381,7 @@ button.selected {
     padding: 1rem; /* Adjust padding for better spacing on small screens */
     margin: 0 auto; /* Centers the form section */
     height: auto; /* Allow natural expansion */
+    align-items: center;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -391,25 +392,17 @@ button.selected {
     padding: 1rem 2rem;
     text-align: center;
     align-items: center;
+    
   }
-  .btn-primary{
-    background: linear-gradient(90deg, #4a90e2, #8e44ad); /* Gradient colors */
-  color: white;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 25px; /* Rounded edges */
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-left: 1rem; /* Space between buttons */
-  height: 50px;
-  flex-grow: 1; /* Allow the button to expand to available space */
-  max-width: 400px;
-  }
-  .image-card-content{
-    height: 80vh;
-  }
+  
+  .image-card {
+
+width: 100%; /* Makes image-card take full width */
+max-width: 600px; /* Optional: restricts width to avoid excessive stretching */
+height: 40vh; /* Adjust height to fit smaller screens */
+max-height: 400px; /* Limit height to prevent excessive scrolling */
+margin: 0 auto; /* Centers the image card */
+}
 }
 
 </style>
