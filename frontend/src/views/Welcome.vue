@@ -13,7 +13,21 @@
         </div>
         <div ref="threeContainer" class="three-container"></div>
 
-        <div class="container">
+        <!-- Buttons for scrolling -->
+        <div class="scroll-buttons">
+            <button class="explore-button" @click="scrollToExplore">
+                <div class="explore-button-text">
+                    <p>Explore Wander now</p>
+                </div>
+            </button>
+            <button class="signup-button" @click="scrollToSignUp">
+                <div class="signup-button-text">
+                    <p>Skip</p>
+                </div>
+            </button>
+        </div>
+
+        <div ref="exploreSection" class="container">
             <div class="left-text">
                 <p>Welcome to</p>
                 <p style="font-family: Lobster Two; font-size: larger; color: #3f94a7;">wander :</p>
@@ -217,7 +231,7 @@
             <h3>What are you waiting for? Start <span>Wander</span>ing.</h3><br>
         </div>
 
-        <div class="auth-buttons">
+        <div ref="signUpSection" class="auth-buttons">
             <button @click="navigateTologin" class="login-btn">Log in</button>
             <button @click="navigateTosignup" class="signup-btn">Sign up</button>
         </div>
@@ -286,6 +300,8 @@ export default {
         const carouselTrack = ref(null);
         let globe = null;
         let renderer = null;
+        // const exploreSection = ref(null);
+        // const signUpSection = ref(null);
 
         const camera = new THREE.PerspectiveCamera(
             75,
@@ -311,6 +327,31 @@ export default {
         }
 
 
+        const setupIntersectionObserver = () => {
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: [0, 0.2, 0.4, 0.6, 0.8, 1]
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.target === threeContainer.value) {
+                        const opacity = entry.intersectionRatio;
+                        if (globe) {
+                            globe.material.opacity = opacity;
+                            globe.children[0].material.opacity = opacity * 0.1;
+                        }
+                    }
+                    // if (entry.target === carouselSection.value) {
+                    //     carouselSection.value.style.opacity = entry.intersectionRatio;
+                    // }
+                });
+            }, options);
+
+            observer.observe(threeContainer.value);
+            // observer.observe(carouselSection.value);
+        };
 
         onMounted(() => {
 
@@ -476,6 +517,7 @@ export default {
                     const pmremGenerator = new THREE.PMREMGenerator(renderer);
                     scene.environment = pmremGenerator.fromScene(scene).texture;
 
+                    setupIntersectionObserver();
 
                     function animate() {
                         requestAnimationFrame(animate);
@@ -518,77 +560,163 @@ export default {
         this.stopAutoScroll();
     },
     methods: {
-        typeText() {
-            if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
-                if (!this.typeStatus) this.typeStatus = true;
-                this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
-                    this.charIndex
-                );
-                this.charIndex += 1;
-                setTimeout(this.typeText, this.typingSpeed);
-            } else {
-                this.typeStatus = false;
-                setTimeout(this.eraseText, this.newTextDelay);
-            }
+        // Scroll to Explore section
+        scrollToExplore() {
+            this.$refs.exploreSection.scrollIntoView({ behavior: 'smooth' });
         },
-        eraseText() {
-            if (this.charIndex > 0) {
-                if (!this.typeStatus) this.typeStatus = true;
-                this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
-                    0,
-                    this.charIndex - 1
-                );
-                this.charIndex -= 1;
-                setTimeout(this.eraseText, this.erasingSpeed);
-            } else {
-                this.typeStatus = false;
-                this.displayTextArrayIndex += 1;
-                if (this.displayTextArrayIndex >= this.displayTextArray.length)
-                    this.displayTextArrayIndex = 0;
-                setTimeout(this.typeText, this.typingSpeed + 1000);
-            }
+        // Scroll to Sign Up section
+        scrollToSignUp() {
+            this.$refs.signUpSection.scrollIntoView({ behavior: 'smooth' });
         },
 
-
-        startAutoScroll() {
-            const animate = () => {
-                if (this.carouselTrack) {
-                    this.scrollPosition += this.scrollSpeed;
-                    const maxScroll = this.images.length * 100; // 100% per image
-
-                    if (this.scrollPosition >= maxScroll) {
-                        this.scrollPosition = 0;
-                    }
-
-                    this.$refs.carouselTrack.style.transform = `translateX(-${this.scrollPosition}%)`;
+            typeText() {
+                if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
+                    if (!this.typeStatus) this.typeStatus = true;
+                    this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
+                        this.charIndex
+                    );
+                    this.charIndex += 1;
+                    setTimeout(this.typeText, this.typingSpeed);
+                } else {
+                    this.typeStatus = false;
+                    setTimeout(this.eraseText, this.newTextDelay);
                 }
-                this.scrollInterval = requestAnimationFrame(animate);
-            };
-            animate();
-        },
-        stopAutoScroll() {
-            if (this.scrollInterval) {
-                cancelAnimationFrame(this.scrollInterval);
+            },
+            eraseText() {
+                if (this.charIndex > 0) {
+                    if (!this.typeStatus) this.typeStatus = true;
+                    this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
+                        0,
+                        this.charIndex - 1
+                    );
+                    this.charIndex -= 1;
+                    setTimeout(this.eraseText, this.erasingSpeed);
+                } else {
+                    this.typeStatus = false;
+                    this.displayTextArrayIndex += 1;
+                    if (this.displayTextArrayIndex >= this.displayTextArray.length)
+                        this.displayTextArrayIndex = 0;
+                    setTimeout(this.typeText, this.typingSpeed + 1000);
+                }
+            },
+
+
+            startAutoScroll() {
+                const animate = () => {
+                    if (this.carouselTrack) {
+                        this.scrollPosition += this.scrollSpeed;
+                        const maxScroll = this.images.length * 100; // 100% per image
+
+                        if (this.scrollPosition >= maxScroll) {
+                            this.scrollPosition = 0;
+                        }
+
+                        this.$refs.carouselTrack.style.transform = `translateX(-${this.scrollPosition}%)`;
+                    }
+                    this.scrollInterval = requestAnimationFrame(animate);
+                };
+                animate();
+            },
+            stopAutoScroll() {
+                if (this.scrollInterval) {
+                    cancelAnimationFrame(this.scrollInterval);
+                }
+            },
+
+    navigateTologin() {
+                // Code to navigate to login page
+                this.$router.push('/log-in'); // Assuming you're using Vue Router
+            },
+            navigateTosignup() {
+                // Code to navigate to sign up page
+                this.$router.push('/sign-up'); // Assuming you're using Vue Router
             }
+
         },
 
-        navigateTologin() {
-            // Code to navigate to login page
-            this.$router.push('/log-in'); // Assuming you're using Vue Router
-        },
-        navigateTosignup() {
-            // Code to navigate to sign up page
-            this.$router.push('/sign-up'); // Assuming you're using Vue Router
-        }
 
-    },
-
-
-};
+    };
 
 </script>
 
 <style scoped>
+.scroll-buttons {
+    display: flex;
+    justify-content: space-between;
+    /* Distribute buttons across the container */
+    align-items: center;
+    /* Align buttons vertically in the center */
+    width: 100%;
+    margin: 10px 0 50px 0;
+    position: relative;
+}
+
+/* Center the Explore button directly under the globe */
+.explore-button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Keep the Sign Up button on the far right */
+.signup-button {
+    margin-left: auto;
+}
+
+.explore-button-text {
+    font-size: 2rem;
+}
+
+.signup-button-text {
+    animation: bounce 2s 5;
+    color: #a3a7ae;
+}
+
+.explore-button,
+.signup-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: rgba(63, 148, 167, 1);
+}
+
+.signup-button:hover {
+    background-color: rgba(63, 148, 167, 1);
+    transform: scale(1.05);
+    color: white;
+}
+
+.explore-button-text p {
+    width: 0;
+    overflow: hidden;
+    /* Ensure the text is not visible until the typewriter effect*/
+    border-right: 2px solid white;
+    /* The cursor*/
+    font-size: 2rem;
+    white-space: nowrap;
+    /* Keeps the text on a single line */
+    animation: typing 2s forwards;
+}
+
+/* The typing animation */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
 .main-container-1 {
     height: auto;
     overflow-y: hidden;

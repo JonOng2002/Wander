@@ -822,6 +822,7 @@ header content h4 {
   border-radius: 1.5rem;
   transition: box-shadow 0.3s ease;
   /* Optional: smooth transitions for dynamic shadow changes */
+  z-index: 1;
 }
 
 .card_img {

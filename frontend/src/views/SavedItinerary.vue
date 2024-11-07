@@ -42,7 +42,10 @@
 
         <div class="dropdown-container" v-motion-slide-visible-once-top>
             <div class="dropdown">
-                <button class="dropdown-btn">Filter by: Top Destinations</button>
+                <button class="dropdown-btn">
+                    Filter by: Top Destinations
+                    <span class="arrow-down">&#9662;</span>
+                </button>
                 <div class="dropdown-content">
                     <a href="#">Popular Destinations</a>
                     <a href="#">Recent Additions</a>
@@ -50,7 +53,10 @@
                 </div>
             </div>
             <div class="dropdown">
-                <button class="dropdown-btn">Filter by Continent: All Continents</button>
+                <button class="dropdown-btn">
+                    Filter by Continent: All Continents
+                    <span class="arrow-down">&#9662;</span>
+                </button>
                 <div class="dropdown-content">
                     <a href="#">Africa</a>
                     <a href="#">Asia</a>
@@ -939,6 +945,8 @@ export default {
     margin-top: 1rem;
     margin-left: 60px;
     /* Adjust this value to align the dropdowns with the text */
+    z-index: 100;
+    /* Ensure it's above other page content */
 }
 
 /* Style the dropdown button */
@@ -960,6 +968,14 @@ export default {
     padding: 16px;
 }
 
+/* Add arrow icon to indicate dropdown */
+.arrow-down {
+    font-size: 0.8rem;
+    /* Adjust the size of the arrow */
+    color: #fff;
+    margin-left: 10px;
+}
+
 /* Change button color on hover */
 .dropdown-btn:hover {
     background-color: #555;
@@ -967,18 +983,31 @@ export default {
 
 /* Dropdown content styling */
 .dropdown-content {
-    display: none;
-    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
     position: absolute;
     background-color: #222;
     min-width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    z-index: 1;
+    z-index: 9999;
     top: 100%;
-    /* Position below the button */
     left: 0;
     padding: 10px 0;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    transform: translateY(-10px);
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.single-itinerary-card .gradient-overlay,
+.hero-card .gradient-overlay {
+    z-index: 1;
+    /* Set lower than dropdown content */
 }
 
 /* Dropdown content links */
@@ -1008,7 +1037,7 @@ export default {
     align-items: center;
     padding: 20px;
     margin: 0 auto;
-
+    margin-bottom: 50px;
     width: 100%;
     max-width: 1600px;
     /* Increased max width */
@@ -1063,6 +1092,7 @@ export default {
     /* Align items at the top */
     margin: 0 auto;
     /* Center the grid container */
+
 }
 
 /* ************************************************ */
@@ -1070,19 +1100,18 @@ export default {
 
 .single-itinerary-card {
     width: 100%;
-    /* Adjust width to take a larger space */
     max-width: 900px;
-    /* Limit the maximum width */
-    margin: 20px 0;
-    /* Add spacing above and below */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    /* Optional styling for shadow */
+    /* Stricter max-width constraint for smaller card size */
+    height: auto;
+    /* Let the height adjust based on content */
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    /* Optional rounded corners */
-    flex: 1;
-    /* Allow the single card to take more space */
-    max-width: 100%;
-    /* Ensure it does not overflow */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1;
 }
 
 .card {
@@ -1094,8 +1123,10 @@ export default {
 
 .card-img-top {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: 600px;
+    /* Set a fixed height to ensure image doesn't expand card */
+    object-fit: cover;
+    /* Ensures the image fills the set area without distortion */
 }
 
 .single-itinerary-card .gradient-overlay {
@@ -1163,7 +1194,8 @@ export default {
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, ;
+    z-index: 1;
     /* Smooth transition */
 }
 

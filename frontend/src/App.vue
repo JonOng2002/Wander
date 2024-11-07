@@ -61,7 +61,8 @@ export default {
         route.name === 'MainPage' || 
         route.name === 'AboutPage' || 
         route.name === 'ExtractedLocation' || 
-        route.name === 'ItineraryBuilder'
+        route.name === 'ItineraryBuilder' || 
+        route.name === 'Welcome'
       );
     });
 

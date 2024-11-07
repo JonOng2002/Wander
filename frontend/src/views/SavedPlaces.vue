@@ -93,7 +93,9 @@
     <div class="dropdown-container" v-motion-slide-visible-once-top>
       <div class="dropdown">
         <select @change="filterPlaces" class="dropdown-btn form-select me-2">
-          <option value="">Select Filter</option>
+          <option value="">
+            Select Filter
+          </option>
           <option value="alphabetical">Filter by Alphabet</option>
           <option value="recently-added">Filter by Recently Added</option>
         </select>
@@ -124,14 +126,14 @@
     v-else-if="filteredPlaces && filteredPlaces.length === 0"
     class="empty-message"
   >
-    <p>No places saved yet.</p>
+    <p>No places saved yet. Start exploring now!</p>
   </div>
 
   <div v-else class="card-grid">
     <transition-group name="list" tag="div" class="transition-wrapper">
       <div
         v-for="place in filteredPlaces"
-        :key="place.place_id"
+        :key="place.place_id" 
         class="card-container"
         ref="cardRefs"
         v-motion-slide-visible-once-top
@@ -816,6 +818,7 @@ export default {
   padding: 16px;
 }
 
+
 /* Change button color on hover */
 .dropdown-btn:hover {
   background-color: #555;
@@ -858,6 +861,15 @@ export default {
 
 /* <=========== CARD GRID LAYOUT =============> */
 
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Adjust this if necessary */
+  font-size: 1rem; /* Optional: to make the text more readable */
+  color: #333; /* Optional: customize text color */
+}
+
 .transition-wrapper {
   display: contents;
   /* Keep the child elements visible */
@@ -880,6 +892,7 @@ export default {
   row-gap: 4rem;
   padding: 2rem;
   /* Padding around the grid */
+  margin-bottom: 50px;
 }
 
 .card-container {
@@ -1090,6 +1103,32 @@ export default {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   transform: translateY(-5px);
 }
+
+.confirm-modal-btn {
+  background-color: #ff4d4d; /* Red color similar to the second image */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+}
+
+.close-modal-btn {
+  background-color: #1e90ff; /* Blue color */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
 
 /* <=========== BREAKPOINTS =============> */
 

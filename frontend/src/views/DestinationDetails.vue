@@ -1,15 +1,20 @@
 <!-- src/views/DestinationDetails.vue -->
 <template>
-  <div class="destination-details">
-    <div class="header-row">
-      <button @click="goBack" class="btn back-button">
-        Back to Destinations
-      </button>
-      <h1 class="page-title">Top Tourist Attractions in {{ country }}</h1>
-      
-      <!-- Styled Dropdown Filter Menu -->
-      <div class="filter-dropdown d-flex align-items-center">
-        <select v-model="sortOption" @change="updateSortCriteria" class="form-select me-2" aria-label="Sort Attractions">
+
+  <div class="secondary_header">
+    <div class="secondary_content">
+      <h2>Top Tourist Attractions in {{ country }}</h2>
+      <h5>Exlpore the wonders of {{ country }}</h5>
+    </div>
+
+    <div class="dropdown-container" v-motion-slide-visible-once-top>
+      <div class="dropdown">
+        <button @click="goBack" class="dropdown-btn">Back to Destinations</button>
+      </div>
+
+      <div class="dropdown">
+        <select v-model="sortOption" @change="updateSortCriteria" class="dropdown-btn form-select me-2"
+          aria-label="Sort Attractions">
           <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
           <option value="popularity-asc">Sort By Popularity: Low to High</option>
           <option value="rating-desc">Sort By Rating: High to Low</option>
@@ -18,6 +23,7 @@
         </select>
       </div>
     </div>
+  </div>
 
     <!-- Display Loading Indicator -->
     <div v-if="loading" class="loading">Loading...</div>
@@ -30,14 +36,14 @@
     <!-- Display Attractions List -->
     <div v-if="!loading && !errorMessage" class="card-grid">
       <transition-group name="list" tag="div" class="transition-wrapper">
-        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container">
+        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container" v-motion-slide-visible-once-top>
           <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
             <div class="overlay"></div>
-   
+
             <div class="card-body">
               <h5 class="card-title">{{ attraction.name }}</h5>
               <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
-              
+
               <!-- Star Rating and Exact Number -->
               <div class="rating-section">
                 <star-rating :rating="attraction.rating"></star-rating>
@@ -45,16 +51,12 @@
                 <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
               </div>
 
-              
+
 
               <!-- Save Place Button -->
-              <save-place-button
-                class="btn itinerary-button"
-                :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
-                :placeId="attraction.place_id"
-                :isAlreadySaved="isPlaceSaved(attraction.place_id)"
-                @save-place="savePlaceToFirebase"
-              >
+              <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
+                :placeId="attraction.place_id" :isAlreadySaved="isPlaceSaved(attraction.place_id)"
+                @save-place="savePlaceToFirebase">
                 {{ isPlaceSaved(attraction.place_id) ? 'Saved' : 'Add to Saved Places' }}
               </save-place-button>
             </div>
@@ -63,16 +65,9 @@
       </transition-group>
     </div>
 
-  <!-- Added ToastNotification -->
-    <ToastNotification
-      :show="toastShow"
-      :message="toastMessage"
-      :type="toastType"
-      :duration="3000"
-      @update:show="toastShow = $event"
-    />
-
-</div>
+    <!-- Added ToastNotification -->
+    <ToastNotification :show="toastShow" :message="toastMessage" :type="toastType" :duration="3000"
+      @update:show="toastShow = $event" />
 </template>
 
 <script>
@@ -104,8 +99,8 @@ export default {
       userId: null,
       errorMessage: "", // For user-friendly error messages
       sortCriteria: {
-      field: 'popularity', // 'popularity' or 'rating'
-      direction: 'desc',    // 'asc' or 'desc'
+        field: 'popularity', // 'popularity' or 'rating'
+        direction: 'desc',    // 'asc' or 'desc'
       },
       toastShow: false,
       toastMessage: "",
@@ -119,9 +114,9 @@ export default {
       },
       defaultRadius: 50000,     // Default radius of 50 km for other countries
       cityRadius: {
-      'Johor Bahru': 10000,   // 10 km radius for Johor Bahru
-      // Add more cities here if needed
-    },
+        'Johor Bahru': 10000,   // 10 km radius for Johor Bahru
+        // Add more cities here if needed
+      },
     };
   },
   created() {
@@ -129,59 +124,64 @@ export default {
     this.fetchAttractions();
   },
   computed: {
+    countryDetails() {
+      // Find the country in the list of countries
+      return this.countries.find(c => c.name === this.country);
+    },
+
     sortedAttractions() {
-    return this.attractions.slice().sort((a, b) => {
-      const { field, direction } = this.sortCriteria;
+      return this.attractions.slice().sort((a, b) => {
+        const { field, direction } = this.sortCriteria;
 
-      if (field === 'popularity') {
-        // Sort by user_ratings_total
-        if (b.user_ratings_total !== a.user_ratings_total) {
-          return direction === 'asc'
-            ? a.user_ratings_total - b.user_ratings_total
-            : b.user_ratings_total - a.user_ratings_total;
+        if (field === 'popularity') {
+          // Sort by user_ratings_total
+          if (b.user_ratings_total !== a.user_ratings_total) {
+            return direction === 'asc'
+              ? a.user_ratings_total - b.user_ratings_total
+              : b.user_ratings_total - a.user_ratings_total;
+          }
+        } else if (field === 'rating') {
+          // Sort by rating
+          if (b.rating !== a.rating) {
+            return direction === 'asc'
+              ? a.rating - b.rating
+              : b.rating - a.rating;
+          }
         }
-      } else if (field === 'rating') {
-        // Sort by rating
-        if (b.rating !== a.rating) {
-          return direction === 'asc'
-            ? a.rating - b.rating
-            : b.rating - a.rating;
-        }
-      }
 
-      // If both fields are equal, maintain original order or apply a tertiary sort
-      return 0;
-    });
-  },
-
-  savedPlaceIds() {
-    return this.savedPlacesState && Array.isArray(this.savedPlacesState.savedPlaces)
-      ? new Set(this.savedPlacesState.savedPlaces.map(place => place.place_id))
-      : new Set();
-  },
-
-  sortOption: {
-    get() {
-      return `${this.sortCriteria.field}-${this.sortCriteria.direction}`;
+        // If both fields are equal, maintain original order or apply a tertiary sort
+        return 0;
+      });
     },
-    set(value) {
-      const [field, direction] = value.split('-');
-      this.sortCriteria.field = field;
-      this.sortCriteria.direction = direction;
+
+    savedPlaceIds() {
+      return this.savedPlacesState && Array.isArray(this.savedPlacesState.savedPlaces)
+        ? new Set(this.savedPlacesState.savedPlaces.map(place => place.place_id))
+        : new Set();
     },
-  },
+
+    sortOption: {
+      get() {
+        return `${this.sortCriteria.field}-${this.sortCriteria.direction}`;
+      },
+      set(value) {
+        const [field, direction] = value.split('-');
+        this.sortCriteria.field = field;
+        this.sortCriteria.direction = direction;
+      },
+    },
 
   },
   methods: {
 
-        /**
-     * Fetches an image from Unsplash based on a query.
-     * @param {String} query - The search term for the image.
-     * @returns {String} - The URL of the fetched image or a default image.
-     */
+    /**
+ * Fetches an image from Unsplash based on a query.
+ * @param {String} query - The search term for the image.
+ * @returns {String} - The URL of the fetched image or a default image.
+ */
 
     async getUnsplashImage(query) {
-      
+
       const unsplashAccessKey = process.env.VUE_APP_UNSPLASH_ACCESS_KEY;
 
       if (!unsplashAccessKey) {
@@ -221,118 +221,129 @@ export default {
     },
 
     updateSortCriteria(event) {
-    const value = event.target.value;
-    const [field, direction] = value.split('-');
-    this.sortCriteria.field = field;
-    this.sortCriteria.direction = direction;
-  },
+      const value = event.target.value;
+      const [field, direction] = value.split('-');
+      this.sortCriteria.field = field;
+      this.sortCriteria.direction = direction;
+    },
 
-  async fetchAttractions() {
-  const countryRef = doc(db, "countries", this.country);
-  try {
-    console.log(`Fetching attractions for ${this.country} from Firestore...`);
-    const countryDoc = await getDoc(countryRef);
-    if (countryDoc.exists()) {
-      console.log(`Fetched attractions from Firestore for ${this.country}`);
-      this.attractions = countryDoc.data().attractions;
-      this.loading = false;
-    } else {
-      const cities = this.getCountryCities(this.country);
-      console.log(`No attractions in Firestore for ${this.country}, fetching from API...`)
-      if (cities.length === 0) {
-        this.errorMessage = "No cities available for the selected country.";
-        this.loading = false;
-        return;
-      }
-
-      let allAttractions = [];
-      const radius = this.countryRadius[this.country] || this.defaultRadius;
-      console.log(`Using radius: ${radius} meters for country: ${this.country}`);
-
-      for (const city of cities) {
-        const { name, location } = city;
-        // **Determine the Radius: City-specific > Country-specific > Default**
-        const citySpecificRadius = this.cityRadius[name];
-        const radius = citySpecificRadius || this.countryRadius[this.country] || this.defaultRadius;
-        console.log(`Using radius: ${radius} meters for city: ${name} in country: ${this.country}`);
-
-        const type = "tourist_attraction";
-        const proxyUrl = `/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${this.apiKey}`;
-
-        try {
-          const response = await axios.get(proxyUrl);
-          if (response.data.status !== "OK") {
-            console.error(`Error fetching attractions for ${name}:`, response.data.status, response.data.error_message || "");
-            continue;
+    async fetchAttractions() {
+      const countryRef = doc(db, "countries", this.country);
+      let allAttractions = []; // Declare allAttractions
+      try {
+        console.log(`Fetching attractions for ${this.country} from Firestore...`);
+        const countryDoc = await getDoc(countryRef);
+        if (countryDoc.exists()) {
+          console.log(`Fetched attractions from Firestore for ${this.country}`);
+          this.attractions = countryDoc.data().attractions;
+          this.loading = false;
+        } else {
+          const cities = this.getCountryCities(this.country);
+          console.log(`No attractions in Firestore for ${this.country}, fetching from API...`)
+          if (cities.length === 0) {
+            this.errorMessage = "No cities available for the selected country.";
+            this.loading = false;
+            return;
           }
 
-          const mappedAttractions = response.data.results.map((place) => ({
-            name: place.name,
-            place_id: place.place_id,
-            vicinity: place.vicinity,
-            image: place.photos
-              ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
-              : null,
-            coordinates: place.geometry?.location || { lat: 0, lng: 0 },
-            rating: place.rating || 0,
-            user_ratings_total: place.user_ratings_total || 0,
-            city: name,
-          }));
+          // const mappedAttractions = response.data.results.map((place) => ({
+          //   name: place.name,
+          //   place_id: place.place_id,
+          //   vicinity: place.vicinity,
+          //   image: place.photos
+          //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
+          //     : null,
+          //   coordinates: place.geometry?.location || { lat: 0, lng: 0 },
+          //   rating: place.rating || 0,
+          //   user_ratings_total: place.user_ratings_total || 0,
+          //   city: name,
+          // }));
 
-          allAttractions = allAttractions.concat(mappedAttractions);
-        } catch (apiError) {
-          console.error(`Error fetching attractions for ${name}:`, apiError.message);
-          continue;
+          for (const city of cities) {
+            const { name, location } = city;
+            // **Determine the Radius: City-specific > Country-specific > Default**
+            const citySpecificRadius = this.cityRadius[name];
+            const radius = citySpecificRadius || this.countryRadius[this.country] || this.defaultRadius;
+            console.log(`Using radius: ${radius} meters for city: ${name} in country: ${this.country}`);
+
+            const type = "tourist_attraction";
+            const proxyUrl = `/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${this.apiKey}`;
+
+            try {
+              const response = await axios.get(proxyUrl);
+              if (response.data.status !== "OK") {
+                console.error(`Error fetching attractions for ${name}:`, response.data.status, response.data.error_message || "");
+                continue;
+              }
+
+              const mappedAttractions = response.data.results.map((place) => ({
+                name: place.name,
+                place_id: place.place_id,
+                vicinity: place.vicinity,
+                image: place.photos
+                  ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
+                  : null,
+                coordinates: place.geometry?.location || { lat: 0, lng: 0 },
+                rating: place.rating || 0,
+                user_ratings_total: place.user_ratings_total || 0,
+                open_now: place.opening_hours?.open_now || false,
+                city: name,
+              }));
+
+              allAttractions = allAttractions.concat(mappedAttractions);
+            } catch (apiError) {
+              console.error(`Error fetching attractions for ${name}:`, apiError.message);
+              continue;
+            }
+          }
+
+          if (allAttractions.length === 0) {
+            this.errorMessage = "No attractions found for the selected country.";
+            this.loading = false;
+            return;
+          }
+
+          const uniqueAttractions = Array.from(new Map(allAttractions.map(item => [item.place_id, item])).values());
+          const topAttractions = uniqueAttractions.slice(0, 50);
+
+          // Fetch Unsplash images for attractions missing Google images
+          const fetchImagesPromises = topAttractions.map(async (attraction) => {
+            if (!attraction.image) {
+
+              const query = `${attraction.name}, ${attraction.city}`;
+              console.log(`Fetching Unsplash image for: ${query}`); // Debugging log
+              const unsplashImage = await this.getUnsplashImage(query);
+              console.log(`Fetched image URL: ${unsplashImage}`); // Debugging log
+              attraction.image = unsplashImage;
+            }
+          });
+
+          await Promise.all(fetchImagesPromises);
+
+          // Assign fallback image if still null
+          topAttractions.forEach(place => {
+            if (!place.image) {
+              place.image = this.defaultImage; // Ensure this path is correct
+            }
+          });
+
+          this.attractions = topAttractions;
+
+          await setDoc(countryRef, {
+            attractions: this.attractions,
+            lastUpdated: new Date(),
+          });
+
+          this.loading = false;
         }
-      }
-
-      if (allAttractions.length === 0) {
-        this.errorMessage = "No attractions found for the selected country.";
+      } catch (error) {
+        console.error("Error accessing Firestore:", error);
+        this.errorMessage = "Failed to access the database. Please try again later.";
         this.loading = false;
-        return;
       }
+    },
 
-      const uniqueAttractions = Array.from(new Map(allAttractions.map(item => [item.place_id, item])).values());
-      const topAttractions = uniqueAttractions.slice(0, 50);
 
-      // Fetch Unsplash images for attractions missing Google images
-      const fetchImagesPromises = topAttractions.map(async (attraction) => {
-        if (!attraction.image) {
-          
-          const query = `${attraction.name}, ${attraction.city}`;
-          console.log(`Fetching Unsplash image for: ${query}`); // Debugging log
-          const unsplashImage = await this.getUnsplashImage(query);
-          console.log(`Fetched image URL: ${unsplashImage}`); // Debugging log
-          attraction.image = unsplashImage;
-        }
-      });
-
-      await Promise.all(fetchImagesPromises);
-
-      // Assign fallback image if still null
-      topAttractions.forEach(place => {
-        if (!place.image) {
-          place.image = this.defaultImage; // Ensure this path is correct
-        }
-      });
-
-      this.attractions = topAttractions;
-
-      await setDoc(countryRef, {
-        attractions: this.attractions,
-        lastUpdated: new Date(),
-      });
-
-      this.loading = false;
-    }
-  } catch (error) {
-    console.error("Error accessing Firestore:", error);
-    this.errorMessage = "Failed to access the database. Please try again later.";
-    this.loading = false;
-  }
-},
-
-    
     getCountryCities(country) {
       const cities = {
         France: [
@@ -721,22 +732,22 @@ export default {
       };
       return continentMapping[country] || 'Unknown';
     },
-    
+
     goBack() {
       this.$router.go(-1);
     },
 
     showSavedPopup() {
-    this.toastMessage = "Added to Saved Places!";
-    this.toastType = "add"; // Use 'add' type for success
-    this.toastShow = true; // Show the toast
-  },
+      this.toastMessage = "Added to Saved Places!";
+      this.toastType = "add"; // Use 'add' type for success
+      this.toastShow = true; // Show the toast
+    },
 
     displayAlreadySavedPopup() {
-    this.toastMessage = "Place has already been saved!";
-    this.toastType = "info"; // Use 'info' type for already saved
-    this.toastShow = true; // Show the toast
-  },
+      this.toastMessage = "Place has already been saved!";
+      this.toastType = "info"; // Use 'info' type for already saved
+      this.toastShow = true; // Show the toast
+    },
 
     isPlaceSaved(placeId) {
       // Check if the place is already saved using the reactive state
@@ -804,7 +815,7 @@ export default {
       // This could involve creating a new itinerary document in Firestore
     },
 
-    
+
   },
   mounted() {
     // Listen for authentication state changes
@@ -835,8 +846,106 @@ export default {
 </script>
 
 <style scoped>
+/* <====================== secondary header ===================> */
+.secondary_header {
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  /* Add spacing below the header */
+  text-align: left;
+  /* Center align the text */
+}
+
+.secondary_content {
+  padding: 0 60px;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+/* Container to align dropdowns side by side */
+.dropdown-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 60px;
+  /* Adjust this value to align the dropdowns with the text */
+  z-index: 100;
+  /* Ensure it's above other page content */
+}
+
+/* Style the dropdown button */
+.dropdown-btn {
+  background-color: #222;
+  /* Dark background color */
+  color: #fff;
+  /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 16px;
+}
+
+/* Change button color on hover */
+.dropdown-btn:hover {
+  background-color: #555;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: #222;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  padding: 10px 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  transform: translateY(-10px);
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown content links */
+.dropdown-content a {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+/* Change background color on hover */
+.dropdown-content a:hover {
+  background-color: #333;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 
+/* <================== layout ================>*/
 .destination-details {
   text-align: center;
   font-family: "Source Sans 3", sans-serif;
@@ -869,7 +978,8 @@ export default {
 }
 
 .page-title {
-  font-size: 2rem; /* Adjusted font size */
+  font-size: 2rem;
+  /* Adjusted font size */
   color: black;
   font-weight: bolder;
   flex-grow: 1;
@@ -913,9 +1023,12 @@ export default {
 /* Card Grid Layout */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 items per row on large screens */
-  gap: 1.5rem; /* Space between cards */
-  padding: 2rem; /* Padding around the grid */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 items per row on large screens */
+  gap: 1.5rem;
+  /* Space between cards */
+  padding: 2rem;
+  /* Padding around the grid */
 }
 
 .card-container {
@@ -931,23 +1044,28 @@ export default {
 }
 
 .card-container:hover {
-  transform: translateY(-4px); /* Slightly lifts the card on hover */
-  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2); /* Enhances shadow for lift effect */
+  transform: translateY(-4px);
+  /* Slightly lifts the card on hover */
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2);
+  /* Enhances shadow for lift effect */
 }
 
 .destination-card {
-  position: relative; /* To position overlay and buttons */
+  position: relative;
+  /* To position overlay and buttons */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  height: 400px; /* Adjust height as needed */
+  height: 400px;
+  /* Adjust height as needed */
   background-size: cover;
   background-position: center;
   border-radius: inherit;
   padding: 1.5rem;
   box-sizing: border-box;
-  color: #ffffff; /* Text color for readability on image */
+  color: #ffffff;
+  /* Text color for readability on image */
   overflow: hidden;
 }
 
@@ -957,8 +1075,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Slightly opaque black background */
-  z-index: 1; /* Place between background image and text */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Slightly opaque black background */
+  z-index: 1;
+  /* Place between background image and text */
   border-radius: inherit;
 }
 
@@ -979,12 +1099,18 @@ export default {
 }
 
 .card-body {
-  position: absolute; /* Position absolutely within the card */
-  bottom: 15px; /* Align to the bottom with some padding */
-  left: 15px; /* Align to the left with some padding */
-  z-index: 2; /* Ensure it stays above the overlay */
-  text-align: left; /* Align text to the left */
-  width: calc(100% - 30px); /* Prevent overflow */
+  position: absolute;
+  /* Position absolutely within the card */
+  bottom: 15px;
+  /* Align to the bottom with some padding */
+  left: 15px;
+  /* Align to the left with some padding */
+  z-index: 2;
+  /* Ensure it stays above the overlay */
+  text-align: left;
+  /* Align text to the left */
+  width: calc(100% - 30px);
+  /* Prevent overflow */
 }
 
 
@@ -992,14 +1118,16 @@ export default {
   font-size: 1.25rem;
   font-weight: 700;
   color: white;
-  margin: 0; /* Remove any extra margins */
+  margin: 0;
+  /* Remove any extra margins */
   padding: 0;
 }
 
 .card-text {
   font-size: 0.9rem;
   color: #eaeaea;
-  margin-top: 0.1rem; /* Adjust spacing if needed */
+  margin-top: 0.1rem;
+  /* Adjust spacing if needed */
   margin-bottom: 0;
   margin-left: 0;
   padding: 0;
@@ -1008,7 +1136,7 @@ export default {
 .rating-section {
   display: flex;
   align-items: center;
-  margin-top: 0 ;
+  margin-top: 0;
   padding: 0;
 }
 
@@ -1045,24 +1173,37 @@ export default {
 }
 
 .itinerary-button.saved {
-  opacity: 0.7; /* Reduced opacity when saved */
+  opacity: 0.7;
+  /* Reduced opacity when saved */
 }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 items per row on medium screens */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
   }
 }
 
 @media (max-width: 768px) {
   .card-grid {
-    grid-template-columns: 1fr; /* 1 item per row on small screens */
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
   }
+  
+  .dropdown-container {
+        flex-direction: column;
+        /* Stack buttons vertically */
+        align-items: flex-start;
+        /* Align them to the start */
+        gap: 0.5rem;
+        /* Adjust gap for vertical spacing */
+    }
 }
 
 .transition-wrapper {
-  display: contents; /* Keep the child elements visible */
+  display: contents;
+  /* Keep the child elements visible */
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 15px;
@@ -1071,11 +1212,14 @@ export default {
 
 
 .already-saved {
-  background-color: #e74c3c; /* Different color for already saved */
+  background-color: #e74c3c;
+  /* Different color for already saved */
 }
 
 /* Additional Styles for Dropdown (already provided by user) */
 .btn {
   font-family: "Source Sans 3", sans-serif;
 }
+
+
 </style>
