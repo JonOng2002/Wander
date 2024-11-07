@@ -105,7 +105,7 @@ const signInWithGoogle = async () => {
     const result = await signInWithPopup(auth, googleProvider);
     // Handle successful sign-in
     console.log('User signed in with Google:', result.user);
-    router.push('/feed');
+    router.push('/');
   } catch (error) {
     console.error('Error signing in with Google:', error.message);
   }
@@ -118,7 +118,7 @@ const signInWithFacebook = async () => {
     const result = await signInWithPopup(auth, facebookProvider);
     // Handle successful sign-in
     console.log('User signed in with Facebook:', result.user);
-    router.push('/feed');
+    router.push('/');
   } catch (error) {
     console.error('Error signing in with Facebook:', error.message);
   }

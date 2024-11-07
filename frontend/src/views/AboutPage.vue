@@ -9,9 +9,9 @@
                 crossorigin="anonymous">
 
 
-            <h1>wander.</h1>
+            <h1 v-motion-slide-visible-once-top>wander.</h1>
         </div>
-        <div ref="threeContainer" class="three-container"></div>
+        <div ref="threeContainer" class="three-container" v-motion-slide-visible-once-top></div>
 
         <div class="container">
             <div class="left-text">
@@ -186,7 +186,7 @@
                             <img src="../assets/about-scroll/scroll-7.jpeg" alt="Ocean thumbnail 3" />
                         </div>
                     </div>
-                    <h2 class="subheading-text">choose wander.</h2>
+                    <h2 class="subheading-text">choose <span style="font-size: larger; font-family: Lobster Two; color: white; background-color: #3f94a7;">wander</span></h2>
                 </div>
             </div>
         </div>
@@ -222,9 +222,13 @@ import { onMounted, ref } from 'vue';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import gsap from 'gsap';
-import { ScrollTrigger, ScrollSmoother } from 'gsap/all';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ColorManagement } from 'three';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger);
+
+ColorManagement.enabled = true;
+
 
 
 export default {
@@ -282,7 +286,7 @@ export default {
 
 
         const handleResize = () => {
-            if (threeContainer.value && renderer) { // Ensure both are valid
+            if (threeContainer.value && renderer) {
                 const width = threeContainer.value.clientWidth;
                 const height = threeContainer.value.clientHeight;
 
@@ -292,299 +296,271 @@ export default {
 
                 // Update renderer
                 renderer.setSize(width, height);
-            } else {
-                console.warn("threeContainer or renderer is not initialized yet.");
             }
         }
-    
 
-    const setupIntersectionObserver = () => {
-        const options = {
-            root: null,
-            rootMargin: '0px',
-            threshold: [0, 0.2, 0.4, 0.6, 0.8, 1]
-        };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.target === threeContainer.value) {
-                    const opacity = entry.intersectionRatio;
-                    if (globe) {
-                        globe.material.opacity = opacity;
-                        globe.children[0].material.opacity = opacity * 0.1;
-                    }
+
+        onMounted(() => {
+
+
+            window.addEventListener('resize', handleResize);
+            // Call handleResize once to ensure everything is properly sized initially
+            handleResize();
+
+            window.addEventListener('load', () => {
+                document.body.offsetHeight; // Force a reflow/repaint
+                ScrollTrigger.refresh();// Recalculate trigger positions
+            });
+            let gridTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".transition-image",
+                    scrub: 1,
+                    start: "bottom top",
+                    endTrigger: ".grid-section",
+                    end: "bottom center",
+                    markers: false,
+                    // pin: true,
+                },
+                defaults: {
+                    ease: "power1.inOut"
                 }
-                // if (entry.target === carouselSection.value) {
-                //     carouselSection.value.style.opacity = entry.intersectionRatio;
-                // }
-            });
-        }, options);
-
-        observer.observe(threeContainer.value);
-        // observer.observe(carouselSection.value);
-    };
-
-    onMounted(() => {
-
-
-    window.addEventListener('resize', handleResize);
-    // Call handleResize once to ensure everything is properly sized initially
-    handleResize();
-
-    window.addEventListener('load', () => {
-        document.body.offsetHeight; // Force a reflow/repaint
-        ScrollTrigger.refresh();// Recalculate trigger positions
-    });
-    let gridTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".transition-image",
-            scrub: 1,
-            start: "bottom top",
-            endTrigger: ".grid-section",
-            end: "bottom center",
-            markers: false,
-            // pin: true,
-        },
-        defaults: {
-            ease: "power1.inOut"
-        }
-    });
-
-    if (document.querySelector(".grid-section")) {
-        gridTl.add("start")
-            .from(".grid-layout", {
-                ease: "power1",
-                scale: 3
-            }, "start")
-            .from(".column-1 .grid-image", {
-                duration: 0.4,
-                xPercent: i => -((i + 1) * 40 + i * 100),
-                yPercent: i => (i + 1) * 40 + i * 100
-            }, "start")
-            .from(".column-3 .grid-image", {
-                duration: 0.4,
-                xPercent: i => (i + 1) * 40 + i * 100,
-                yPercent: i => (i + 1) * 40 + i * 100
-            }, "start");
-    }
-
-    // Parallax effect for the parallax section
-    gsap.from(".parallax-section", {
-        scale: 1 / 3,
-        scrollTrigger: {
-            trigger: ".parallax-section",
-            scrub: 1
-        }
-    });
-
-    // Pinning and horizontal scroll animation for the pin section
-    let pinSection = document.querySelector(".pin-section");
-    let pinContent1 = document.querySelector(".pin-content-1");
-    let pinContent2 = document.querySelector(".pin-content-2");
-
-    let pinTl = gsap.timeline({
-        scrollTrigger: {
-            pin: true,
-            trigger: pinSection,
-            scrub: true,
-            start: "top top",
-            end: () => `+=${pinContent1.offsetWidth}`,
-            invalidateOnRefresh: true
-        }
-    });
-
-    pinTl.fromTo(".pin-content-1", {
-        x: () => document.body.clientWidth * 0.9
-    }, {
-        x: () => -(pinContent1.offsetWidth),
-        ease: "none"
-    }, 0);
-
-    pinTl.fromTo(".pin-content-2", {
-        x: () => -pinContent2.offsetWidth + document.body.clientWidth * 0.1
-    }, {
-        x: () => document.body.clientWidth,
-        ease: "none"
-    }, 0);
-
-
-
-
-    if (!threeContainer.value) return;
-
-    // Scene setup (same as before)
-    const scene = new THREE.Scene();
-
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 1);
-    renderer.physicallyCorrectLights = true;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.5;
-    threeContainer.value.appendChild(renderer.domElement);
-
-    // Controls setup (same as before)
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.rotateSpeed = 0.5;
-    controls.enableRotate = true;
-    controls.enableZoom = false;
-    controls.minDistance = 3;
-    controls.maxDistance = 10;
-    controls.enablePan = true;
-    controls.panSpeed = 0.5;
-
-    // Lighting (same as before)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
-
-    const mainLight = new THREE.DirectionalLight(0xffffff, 2);
-    mainLight.position.set(5, 3, 5);
-    scene.add(mainLight);
-
-    const rimLight = new THREE.DirectionalLight(0x9999ff, 1);
-    rimLight.position.set(-5, 3, -5);
-    scene.add(rimLight);
-
-    const fillLight = new THREE.DirectionalLight(0xfff0dd, 0.5);
-    fillLight.position.set(0, -5, 0);
-    scene.add(fillLight);
-
-    // Load Earth texture (same as before)
-    const textureLoader = new THREE.TextureLoader();
-    textureLoader.load(
-        '/nasa.jpg',
-        (texture) => {
-            texture.encoding = THREE.sRGBEncoding;
-            texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-
-            const geometry = new THREE.SphereGeometry(2, 64, 64);
-            const material = new THREE.MeshStandardMaterial({
-                map: texture,
-                roughness: 0.5,
-                metalness: 0.1,
-                envMapIntensity: 1.0,
-                transparent: true,
-                opacity: 1
             });
 
-            globe = new THREE.Mesh(geometry, material);
-
-            const atmosphereGeometry = new THREE.SphereGeometry(2.1, 64, 64);
-            const atmosphereMaterial = new THREE.MeshPhongMaterial({
-                color: 0x4ca6ff,
-                transparent: true,
-                opacity: 0.1,
-                side: THREE.BackSide,
-            });
-            const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
-            globe.add(atmosphere);
-
-            scene.add(globe);
-            globe.position.y = 0.8;
-
-            const pmremGenerator = new THREE.PMREMGenerator(renderer);
-            scene.environment = pmremGenerator.fromScene(scene).texture;
-
-            setupIntersectionObserver();
-
-            function animate() {
-                requestAnimationFrame(animate);
-                controls.minPolarAngle = Math.PI / 3;
-                controls.maxPolarAngle = Math.PI / 2;
-                controls.update();
-                renderer.setPixelRatio(window.devicePixelRatio); // Add this line
-                renderer.render(scene, camera);
+            if (document.querySelector(".grid-section")) {
+                gridTl.add("start")
+                    .from(".grid-layout", {
+                        ease: "power1",
+                        scale: 3
+                    }, "start")
+                    .from(".column-1 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => -((i + 1) * 40 + i * 100),
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start")
+                    .from(".column-3 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => (i + 1) * 40 + i * 100,
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start");
             }
 
+            // Parallax effect for the parallax section
+            gsap.from(".parallax-section", {
+                scale: 1 / 3,
+                scrollTrigger: {
+                    trigger: ".parallax-section",
+                    scrub: 1
+                }
+            });
+
+            // Pinning and horizontal scroll animation for the pin section
+            let pinSection = document.querySelector(".pin-section");
+            let pinContent1 = document.querySelector(".pin-content-1");
+            let pinContent2 = document.querySelector(".pin-content-2");
+
+            let pinTl = gsap.timeline({
+                scrollTrigger: {
+                    pin: true,
+                    trigger: pinSection,
+                    scrub: true,
+                    start: "top top",
+                    end: () => `+=${pinContent1.offsetWidth}`,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            pinTl.fromTo(".pin-content-1", {
+                x: () => document.body.clientWidth * 0.9
+            }, {
+                x: () => -(pinContent1.offsetWidth),
+                ease: "none"
+            }, 0);
+
+            pinTl.fromTo(".pin-content-2", {
+                x: () => -pinContent2.offsetWidth + document.body.clientWidth * 0.1
+            }, {
+                x: () => document.body.clientWidth,
+                ease: "none"
+            }, 0);
+
+
+
+
+            if (!threeContainer.value) return;
+
+            // Scene setup (same as before)
+            const scene = new THREE.Scene();
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 1);
+            renderer.physicallyCorrectLights = true;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.5;
+            threeContainer.value.appendChild(renderer.domElement);
+
+            // Controls setup (same as before)
+            const controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.rotateSpeed = 0.5;
+            controls.enableRotate = true;
+            controls.enableZoom = false;
+            controls.minDistance = 3;
+            controls.maxDistance = 10;
+            controls.enablePan = true;
+            controls.panSpeed = 0.5;
+
+            // Lighting (same as before)
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const mainLight = new THREE.DirectionalLight(0xffffff, 2);
+            mainLight.position.set(5, 3, 5);
+            scene.add(mainLight);
+
+            const rimLight = new THREE.DirectionalLight(0x9999ff, 1);
+            rimLight.position.set(-5, 3, -5);
+            scene.add(rimLight);
+
+            const fillLight = new THREE.DirectionalLight(0xfff0dd, 0.5);
+            fillLight.position.set(0, -5, 0);
+            scene.add(fillLight);
+
+            // Load Earth texture (same as before)
+            const textureLoader = new THREE.TextureLoader();
+            textureLoader.load(
+                '/nasa.jpg',
+                (texture) => {
+                    // texture.encoding = THREE.sRGBEncoding;
+                    texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+                    const geometry = new THREE.SphereGeometry(2, 64, 64);
+                    const material = new THREE.MeshStandardMaterial({
+                        map: texture,
+                        roughness: 0.5,
+                        metalness: 0.1,
+                        envMapIntensity: 1.0,
+                        transparent: true,
+                        opacity: 1
+                    });
+
+                    globe = new THREE.Mesh(geometry, material);
+
+                    const atmosphereGeometry = new THREE.SphereGeometry(2.1, 64, 64);
+                    const atmosphereMaterial = new THREE.MeshPhongMaterial({
+                        color: 0x4ca6ff,
+                        transparent: true,
+                        opacity: 0.1,
+                        side: THREE.BackSide,
+                    });
+                    const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+                    globe.add(atmosphere);
+
+                    scene.add(globe);
+                    globe.position.y = 0.8;
+
+                    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+                    scene.environment = pmremGenerator.fromScene(scene).texture;
+
+
+                    function animate() {
+                        requestAnimationFrame(animate);
+                        controls.minPolarAngle = Math.PI / 3;
+                        controls.maxPolarAngle = Math.PI / 2;
+                        controls.update();
+                        renderer.setPixelRatio(window.devicePixelRatio); // Add this line
+                        renderer.render(scene, camera);
+                    }
+
+                    animate();
+                },
+                undefined,
+                (error) => {
+                    console.error('An error occurred loading the texture.', error);
+                }
+            );
+
+
+        });
+
+        return { threeContainer, carouselSection, carouselTrack, handleResize };
+    },
+    mounted() {
+
+        this.startAutoScroll();
+        const video = document.querySelector('video');
+        video.play().catch(function (error) {
+            console.log("Video autoplay failed:", error);
+        });
+    },
+
+    beforeUnmount() {
+
+        window.removeEventListener('resize', this.handleResize);
+
+        window.removeEventListener('load', () => {
+            ScrollTrigger.refresh();
+        });
+        this.stopAutoScroll();
+    },
+    methods: {
+        typeText() {
+            if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
+                if (!this.typeStatus) this.typeStatus = true;
+                this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
+                    this.charIndex
+                );
+                this.charIndex += 1;
+                setTimeout(this.typeText, this.typingSpeed);
+            } else {
+                this.typeStatus = false;
+                setTimeout(this.eraseText, this.newTextDelay);
+            }
+        },
+        eraseText() {
+            if (this.charIndex > 0) {
+                if (!this.typeStatus) this.typeStatus = true;
+                this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
+                    0,
+                    this.charIndex - 1
+                );
+                this.charIndex -= 1;
+                setTimeout(this.eraseText, this.erasingSpeed);
+            } else {
+                this.typeStatus = false;
+                this.displayTextArrayIndex += 1;
+                if (this.displayTextArrayIndex >= this.displayTextArray.length)
+                    this.displayTextArrayIndex = 0;
+                setTimeout(this.typeText, this.typingSpeed + 1000);
+            }
+        },
+
+
+        startAutoScroll() {
+            const animate = () => {
+                if (this.carouselTrack) {
+                    this.scrollPosition += this.scrollSpeed;
+                    const maxScroll = this.images.length * 100; // 100% per image
+
+                    if (this.scrollPosition >= maxScroll) {
+                        this.scrollPosition = 0;
+                    }
+
+                    this.$refs.carouselTrack.style.transform = `translateX(-${this.scrollPosition}%)`;
+                }
+                this.scrollInterval = requestAnimationFrame(animate);
+            };
             animate();
         },
-        undefined,
-        (error) => {
-            console.error('An error occurred loading the texture.', error);
-        }
-    );
-
-
-});
-
-return { threeContainer, carouselSection, carouselTrack, handleResize };
-    },
-mounted() {
-
-    this.startAutoScroll();
-    const video = document.querySelector('video');
-    video.play().catch(function (error) {
-        console.log("Video autoplay failed:", error);
-    });
-},
-
-beforeUnmount() {
-
-    window.removeEventListener('resize', this.handleResize);
-
-    window.removeEventListener('load', () => {
-        ScrollTrigger.refresh();
-    });
-    this.stopAutoScroll();
-},
-methods: {
-    typeText() {
-        if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
-            if (!this.typeStatus) this.typeStatus = true;
-            this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
-                this.charIndex
-            );
-            this.charIndex += 1;
-            setTimeout(this.typeText, this.typingSpeed);
-        } else {
-            this.typeStatus = false;
-            setTimeout(this.eraseText, this.newTextDelay);
-        }
-    },
-    eraseText() {
-        if (this.charIndex > 0) {
-            if (!this.typeStatus) this.typeStatus = true;
-            this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
-                0,
-                this.charIndex - 1
-            );
-            this.charIndex -= 1;
-            setTimeout(this.eraseText, this.erasingSpeed);
-        } else {
-            this.typeStatus = false;
-            this.displayTextArrayIndex += 1;
-            if (this.displayTextArrayIndex >= this.displayTextArray.length)
-                this.displayTextArrayIndex = 0;
-            setTimeout(this.typeText, this.typingSpeed + 1000);
-        }
-    },
-
-
-    startAutoScroll() {
-        const animate = () => {
-            if (this.carouselTrack) {
-                this.scrollPosition += this.scrollSpeed;
-                const maxScroll = this.images.length * 100; // 100% per image
-
-                if (this.scrollPosition >= maxScroll) {
-                    this.scrollPosition = 0;
-                }
-
-                this.$refs.carouselTrack.style.transform = `translateX(-${this.scrollPosition}%)`;
+        stopAutoScroll() {
+            if (this.scrollInterval) {
+                cancelAnimationFrame(this.scrollInterval);
             }
-            this.scrollInterval = requestAnimationFrame(animate);
-        };
-        animate();
+        },
     },
-    stopAutoScroll() {
-        if (this.scrollInterval) {
-            cancelAnimationFrame(this.scrollInterval);
-        }
-    },
-
-},
 
 
 };
@@ -592,6 +568,7 @@ methods: {
 </script>
 
 <style scoped>
+
 .main-container-1 {
     height: auto;
     overflow-y: hidden;
@@ -614,23 +591,22 @@ methods: {
 }
 
 
-
-
 @media (min-width: 992px) and (max-width: 1200px) {
     .three-container {
-        width: 70vw;
-        height: 70vh;
-        overflow: visible;
-        cursor: grab;
-        /* position: sticky; */
+        width: 100vw;
+        height: 100vh;
+        /* Increase the height to make the globe bigger */
+        overflow: hidden;
         top: 0;
     }
 }
 
+
+
 @media (min-width: 576px) and (max-width: 767px) {
     .three-container {
         width: 100vw;
-        height: 75vh;
+        height: 80vh;
         overflow: visible;
     }
 }
@@ -640,7 +616,7 @@ methods: {
     /* Styles for screens 576px - 767px */
     .three-container {
         width: 100vw;
-        height: 70vh;
+        height: 85vh;
         overflow: visible;
     }
 }

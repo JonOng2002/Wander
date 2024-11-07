@@ -93,7 +93,9 @@
     <div class="dropdown-container" v-motion-slide-visible-once-top>
       <div class="dropdown">
         <select @change="filterPlaces" class="dropdown-btn form-select me-2">
-          <option value="">Select Filter</option>
+          <option value="">
+            Select Filter
+          </option>
           <option value="alphabetical">Filter by Alphabet</option>
           <option value="recently-added">Filter by Recently Added</option>
         </select>
@@ -124,14 +126,14 @@
     v-else-if="filteredPlaces && filteredPlaces.length === 0"
     class="empty-message"
   >
-    <p>No places saved yet.</p>
+    <p>No places saved yet. Start exploring now!</p>
   </div>
 
   <div v-else class="card-grid">
     <transition-group name="list" tag="div" class="transition-wrapper">
       <div
         v-for="place in filteredPlaces"
-        :key="place.place_id"
+        :key="place.place_id" 
         class="card-container"
         ref="cardRefs"
         v-motion-slide-visible-once-top
@@ -794,6 +796,8 @@ export default {
   gap: 1rem;
   margin-top: 1rem;
   margin-left: 60px;
+  margin-right: 40px;
+
   /* Adjust this value to align the dropdowns with the text */
 }
 
@@ -815,6 +819,15 @@ export default {
   transition: background-color 0.3s ease;
   padding: 16px;
 }
+
+.dropdown-btn,
+.form-select {
+  width: 100%; /* Make all elements the same width */
+  padding: 16px; /* Uniform padding */
+  font-size: 1rem; /* Uniform font size */
+  box-sizing: border-box; /* Include padding and border in the element’s total width and height */
+}
+
 
 /* Change button color on hover */
 .dropdown-btn:hover {
@@ -858,6 +871,15 @@ export default {
 
 /* <=========== CARD GRID LAYOUT =============> */
 
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Adjust this if necessary */
+  font-size: 1rem; /* Optional: to make the text more readable */
+  color: #333; /* Optional: customize text color */
+}
+
 .transition-wrapper {
   display: contents;
   /* Keep the child elements visible */
@@ -880,6 +902,7 @@ export default {
   row-gap: 4rem;
   padding: 2rem;
   /* Padding around the grid */
+  margin-bottom: 50px;
 }
 
 .card-container {
@@ -1091,101 +1114,31 @@ export default {
   transform: translateY(-5px);
 }
 
-/* <=========== BREAKPOINTS =============> */
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 items per row on medium screens */
-  }
-
-  .sticky-top {
-    padding: 0 3vw;
-  }
-
-  .overlay-text {
-    font-size: 1.2rem;
-  }
-
-  .content h1 {
-    font-size: 6rem;
-  }
-
-  .content h4 {
-    font-size: 1.5rem;
-  }
-
-  .carousel-content h1 {
-    font-size: 4rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1.5rem;
-  }
+.confirm-modal-btn {
+  background-color: #ff4d4d; /* Red color similar to the second image */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
 }
 
-@media (max-width: 992px) {
-  .carousel-content h1 {
-    font-size: 3rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1.2rem;
-  }
+.close-modal-btn {
+  background-color: #1e90ff; /* Blue color */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-@media (max-width: 768px) {
-  .dropdown-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 2x2 grid */
-    gap: 1rem;
-    /* Consistent gap between buttons */
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-    /* 1 item per row on small screens */
-  }
-
-  .sticky-top {
-    padding: 0 2vw;
-  }
-
-  .overlay-text {
-    font-size: 1rem;
-  }
-
-  .content h1 {
-    font-size: 3rem;
-  }
-
-  .content h4 {
-    font-size: 1.2rem;
-  }
-
-  .carousel-content h1 {
-    font-size: 2rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .dropdown-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* Consistent gap between buttons */
-  }
-
-  .sticky-top {
-    padding: 0 1.5vw;
-  }
-}
 
 /* Toast Notification Styles */
 .custom-toast {
@@ -1326,4 +1279,100 @@ export default {
     transform: scaleX(1);
   }
 }
+
+
+/* <=========== BREAKPOINTS =============> */
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
+  }
+
+  .sticky-top {
+    padding: 0 3vw;
+  }
+
+  .overlay-text {
+    font-size: 1.2rem;
+  }
+
+  .content h1 {
+    font-size: 6rem;
+  }
+
+  .content h4 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 4rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .carousel-content h1 {
+    font-size: 3rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
+  }
+
+  .sticky-top {
+    padding: 0 2vw;
+  }
+
+  .overlay-text {
+    font-size: 1rem;
+  }
+
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content h4 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
+  }
+} 
+
+
 </style>
