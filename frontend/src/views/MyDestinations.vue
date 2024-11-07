@@ -671,10 +671,12 @@ header content h4 {
 /*====== SECONDARY HEADER ======*/
 
 .secondary_header {
-  position: relative;
+
+  padding-left: 3.5rem;
+  padding-top: 3rem;
   left: 50px;
   top: 60px;
-  padding-bottom: 4rem;
+
   font-family: "Source Sans 3", sans-serif;
 }
 
