@@ -19,8 +19,6 @@ COUNTRY_CODE_TO_NAME  = country_code_to_name()
 client = AsyncOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 
-FALLBACK_IMAGE_URL = "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
-
 # GOOGLE COORDINATES AND PLACE ID FUNCTION
 def fetch_coordinates_and_place_id(place_name, city, country_code):
     try:
@@ -33,8 +31,6 @@ def fetch_coordinates_and_place_id(place_name, city, country_code):
 
         print(f"Google API Response: {data}")  # Debugging print
 
-        
-
         if data['candidates']:
             location = data['candidates'][0]['geometry']['location']
             place_id = data['candidates'][0]['place_id']
@@ -43,9 +39,35 @@ def fetch_coordinates_and_place_id(place_name, city, country_code):
             print(f"Formatted Address: {formatted_address}")
             print(f"Country Code: {country_code}")
 
+            # Convert country_code to lowercase for case-insensitive matching
+            country_code_lower = country_code.lower()
+
+            # First, try to get the country names using the two-letter code (case-insensitive)
+            country_names = COUNTRY_CODE_TO_NAME.get(country_code.upper(), [])
+
+            # If no names found, attempt to find the country code by matching the alias
+            if not country_names:
+                matched_codes = [
+                    code for code, names in COUNTRY_CODE_TO_NAME.items()
+                    if any(alias.lower() == country_code_lower for alias in names)
+                ]
+                if matched_codes:
+                    country_code = matched_codes[0]
+                    country_names = COUNTRY_CODE_TO_NAME.get(country_code, [])
+                else:
+                    print(f"Invalid country code or name: {country_code}")
+                    return None
+
+            # Convert both formatted_address and country_names to lowercase for case-insensitive comparison
+            formatted_address_lower = formatted_address.lower()
+            country_names_lower = [name.lower() for name in country_names]
+
+            # Debugging: Print the lowercased formatted address and country names
+            print(f"Lowercased Formatted Address: {formatted_address_lower}")
+            print(f"Lowercased Country Names/Aliases: {country_names_lower}")
 
             # Check if the formatted address contains any of the valid country names/abbreviations
-            if country_code.lower() in formatted_address.lower() or any(name.lower() in formatted_address.lower() for name in COUNTRY_CODE_TO_NAME.get(country_code, [])):
+            if any(name in formatted_address_lower for name in country_names_lower):
                 return {
                     'latitude': location['lat'],
                     'longitude': location['lng'],
@@ -73,10 +95,10 @@ def fetch_place_photo_url(place_id):
             photo_reference = data['result']['photos'][0]['photo_reference']
             photo_url = f'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photo_reference}&key={GOOGLE_API_KEY}'
             return photo_url
-        return FALLBACK_IMAGE_URL
+        return None
     except Exception as e:
         print(f"Error fetching photo for place_id {place_id}: {e}")
-        return FALLBACK_IMAGE_URL
+        return None
 
 # Function to generate the itinerary using OpenAI
 async def generate_openai_itinerary(start_date, end_date, country_code, trip_type, itinerary, tags):
@@ -205,13 +227,17 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
         }
         )
         
-        # Process the response from OpenAI and return it
+        # Ensure response is parsed into a dictionary before any operations
         openai_response = response.choices[0].message.content
-        itinerary_data = json.loads(openai_response)
+        try:
+            itinerary_data = json.loads(openai_response)
+        except json.JSONDecodeError as decode_err:
+            print(f"JSON decoding error: {decode_err}")
+            return {"error": "Invalid response format from OpenAI."}
+
         with open("open_ai_itinerary.json", "w") as f:
             json.dump(itinerary_data, f, indent=2)
 
-        # Iterate through each day in the itinerary and each activity for fetching/updating location data
         # Iterate through each day in the itinerary and each activity for fetching/updating location data
         for day in itinerary_data["day_by_day_itineraries"]:
             for activity in day["activities"]:
@@ -223,7 +249,7 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
                 city = location.get("city")  # default to Bangkok if city is missing
                 
                 # Check if any essential details are missing
-                details_needed = not all([location.get("place_id"), location.get("coordinates"),location.get("photo_url")])
+                details_needed = not all([location.get("place_id"), location.get("coordinates"), location.get("photo_url")])
                 
                 if details_needed:
                     print(f"Fetching data for {place_name} due to missing details.")
@@ -252,7 +278,7 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
                 if matching_place:
                     location["photo_url"] = location.get("photo_url") or matching_place.get("image")
                     location["place_id"] = location.get("place_id") or matching_place.get("place_id")
-                    print(f"Retained original place_id and photo URL for {place_name} if present.") 
+                    print(f"Retained original place_id and photo URL for {place_name} if present.")
 
                 # Debugging: Print the updated activity to verify it
                 print(f"Updated activity for {place_name}: {json.dumps(activity, indent=2)}")
@@ -265,6 +291,7 @@ async def generate_openai_itinerary(start_date, end_date, country_code, trip_typ
     except Exception as e:
         print(f"Error generating itinerary: {e}")
         return {"error": "Error generating itinerary."}
+
 
 # Route to handle itinerary generation
 @itinerary_blueprint.route("/generate-itinerary", methods=["POST"])

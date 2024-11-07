@@ -5,7 +5,7 @@
     <!-- Static Image Section -->
     <div class="static-image-container">
       <img
-        src="@/assets/countries/thailand.jpg"
+        src="@/assets/countries/norway.jpg"
         alt="Thailand"
         class="d-block w-100"
       />

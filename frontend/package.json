@@ -3,13 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "frontend": "npm run build && serve -s dist",
-    "backend": "cd ../backend && source venv/bin/activate && python main.py",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
-    "prod": "concurrently \"npm run frontend\" \"npm run backend\""
-  },
+  "serve": "vue-cli-service serve",  
+  "build": "vue-cli-service build",  
+  "dev": "npm run serve",         
+  "prod": "npm run build && serve -s dist" 
+},
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
     "@formkit/auto-animate": "^0.8.2",

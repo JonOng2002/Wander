@@ -119,7 +119,7 @@ const country = ref('');
 const showPopup = ref(false);
 const selectedActivity = ref(null);
 const getNumDays = computed(() => itinerary.value?.day_by_day_itineraries?.length || 0);
-
+const itinerarySummary = ref('');
 // Construct data to send
 const {
   start,
@@ -197,6 +197,7 @@ const submitData = async () => {
     );
     console.log('Backend Response:', response.data);
     itinerary.value = response.data;
+    itinerarySummary.value = response.data.itinerary_summary;
     allActivities.value = itinerary.value.day_by_day_itineraries.flatMap(
       (day) => day.activities
     );
@@ -443,11 +444,14 @@ app-navbar {
 } */
 
 .text-container {
-  width: 200px; /* Set fixed width for uniformity */
+  width: 200px;
+  /* Set fixed width for uniformity */
   max-width: 100%;
   text-align: left;
-  word-wrap: break-word; /* Break words if they're too long */
-  white-space: normal; /* Allow text to wrap to next line */
+  word-wrap: break-word;
+  /* Break words if they're too long */
+  white-space: normal;
+  /* Allow text to wrap to next line */
 }
 
 .time-column {
