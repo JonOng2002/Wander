@@ -9,12 +9,18 @@ import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 // FormKit imports
 import { plugin, defaultConfig } from '@formkit/vue';
 
+import '@fortawesome/fontawesome-free/css/all.css';
+
 //motion pluggin imports
 import { MotionPlugin } from '@vueuse/motion'
 
 // Bootstrap imports
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
 import 'bootstrap/dist/js/bootstrap.bundle.js'; // Bootstrap JS (includes Popper.js)
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faCircleInfo, faQuestion } from '@fortawesome/free-solid-svg-icons'; 
 
 // Firebase imports
 import { initializeApp } from 'firebase/app';
@@ -264,6 +270,8 @@ const savedItineraryState = reactive({
   }
 });
 
+library.add(faCircleInfo, faQuestion);
+
 // Function to store user data (called when a new user is created or signs in)
 async function storeUserData(userId, email) {
   try {
@@ -312,6 +320,8 @@ console.log("MotionPlugin registered");
 
 
 vueApp.use(autoAnimatePlugin);
+
+vueApp.component('font-awesome-icon', FontAwesomeIcon);
 
 // Mount the app
 vueApp.mount('#app');

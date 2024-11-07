@@ -48,7 +48,7 @@
   
         <!-- Right Side - Image Section -->
         <div class="col-md-6 d-none d-md-block p-0">
-          <img src="../assets/boat1.jpeg" class="img-fluid vh-100 w-100" style="object-fit: cover;"
+          <img src="@/assets/boat1.jpeg" class="img-fluid vh-100 w-100" style="object-fit: cover;"
             alt="Boat with Mountains in the background">
         </div>
       </div>

@@ -186,7 +186,7 @@
                             <img src="../assets/about-scroll/scroll-7.jpeg" alt="Ocean thumbnail 3" />
                         </div>
                     </div>
-                    <h2 class="subheading-text">choose wander.</h2>
+                    <h2 class="subheading-text">choose <span style="font-size: larger; font-family: Lobster Two; color: white; background-color: #3f94a7;">wander</span></h2>
                 </div>
             </div>
         </div>

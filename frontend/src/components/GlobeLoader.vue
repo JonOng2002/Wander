@@ -34,7 +34,7 @@ export default {
 <style scoped>
 /* Globe Loader Styles */
 .globe-loader {
-  --loader-color: #2a5ead; /* Define color variable locally */
+  --loader-color: #3f94a7; /* Define color variable locally */
   position: relative;
   font-size: 10rem;
   color: var(--loader-color); /* Use the locally defined variable */
@@ -95,7 +95,7 @@ export default {
 
 .loading-message {
   font-size: 1.2rem;
-  color: #2a5ead;
+  color: #3f94a7;
   text-align: center;
 }
 </style>
