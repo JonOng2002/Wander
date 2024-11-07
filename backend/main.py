@@ -9,7 +9,7 @@ def create_app():
     # Configure CORS
     CORS(app, resources={
         r"/*": {
-            "origins": ["https://wander-g8t9.vercel.app", "http://localhost:8080"],
+            "origins": ["https://wander-g8t9.vercel.app", "http://localhost:8080", "http://localhost:3000"],
             "methods": ["GET", "POST", "OPTIONS"],
             "allow_headers": ["Content-Type", "Authorization"],
             "supports_credentials": True

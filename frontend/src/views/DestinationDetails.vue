@@ -41,7 +41,7 @@
               <!-- Star Rating and Exact Number -->
               <div class="rating-section">
                 <star-rating :rating="attraction.rating"></star-rating>
-                <span class="rating-number">{{ attraction.rating.toFixed(1) }} / 5 </span> &nbsp;
+                <span class="rating-number">{{ attraction.rating.toFixed(1) }} / 5 </span>
                 <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
               </div>
 
@@ -835,8 +835,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .destination-details {
   text-align: center;
   font-family: "Source Sans 3", sans-serif;
@@ -848,6 +846,7 @@ export default {
   align-items: center;
   padding: 20px 5%;
   position: relative;
+  flex-wrap: wrap; /* Allows items to wrap to the next line if needed */
 }
 
 .back-button {
@@ -860,6 +859,7 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  flex-shrink: 0; /* Prevents the button from shrinking */
 }
 
 .back-button:hover {
@@ -873,15 +873,21 @@ export default {
   color: black;
   font-weight: bolder;
   flex-grow: 1;
+  margin: 0 20px; /* Added horizontal margins */
+  min-width: 150px; /* Ensures the title doesn't shrink below 150px */
 }
 
 .filter-dropdown {
   margin: 10px 0;
   font-family: "Source Sans 3", sans-serif;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end; /* Aligns the dropdown to the right */
 }
 
 .filter-dropdown .form-select {
-  width: 350px;
+  width: 100%;
+  max-width: 350px; /* Sets a maximum width */
   border-radius: 0.5rem;
   border: 1px solid black;
   font-family: "Source Sans 3", sans-serif;
@@ -912,6 +918,13 @@ export default {
 
 /* Card Grid Layout */
 .card-grid {
+  /* Remove grid display to avoid nesting conflicts */
+  display: block;
+  padding: 0;
+}
+
+.transition-wrapper {
+  /* Change from flex to grid to align with .card-grid */
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 items per row on large screens */
   gap: 1.5rem; /* Space between cards */
@@ -922,12 +935,15 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  /* Remove height: 100% to prevent stretching */
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background: rgba(0, 0, 0, 0.0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Indicates interactivity */
+  aspect-ratio: 16 / 9; /* Maintains a 16:9 aspect ratio */
+  height: 400px; /* Fixed height as per requirement */
 }
 
 .card-container:hover {
@@ -941,7 +957,7 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  height: 400px; /* Adjust height as needed */
+  height: 100%; /* Ensures the card fills the container */
   background-size: cover;
   background-position: center;
   border-radius: inherit;
@@ -985,8 +1001,8 @@ export default {
   z-index: 2; /* Ensure it stays above the overlay */
   text-align: left; /* Align text to the left */
   width: calc(100% - 30px); /* Prevent overflow */
+  box-sizing: border-box; /* Ensure padding is included in width */
 }
-
 
 .card-title {
   font-size: 1.25rem;
@@ -1003,12 +1019,13 @@ export default {
   margin-bottom: 0;
   margin-left: 0;
   padding: 0;
+  word-wrap: break-word; /* Allows long words to break and wrap */
 }
 
 .rating-section {
   display: flex;
   align-items: center;
-  margin-top: 0 ;
+  margin-top: 0;
   padding: 0;
 }
 
@@ -1023,7 +1040,6 @@ export default {
   font-size: 0.9rem;
   color: #ffffff;
 }
-
 
 .itinerary-button {
   margin-top: 10px;
@@ -1049,26 +1065,134 @@ export default {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
+
+/* Below 992px: Remove margin-left for rating-text */
+@media (max-width: 992px) {
+  .transition-wrapper {
     grid-template-columns: repeat(2, 1fr); /* 2 items per row on medium screens */
   }
-}
 
-@media (max-width: 768px) {
-  .card-grid {
-    grid-template-columns: 1fr; /* 1 item per row on small screens */
+  /* Remove margin-left for rating-text */
+  .rating-text {
+    margin-left: 0; /* Remove left margin */
   }
 }
 
-.transition-wrapper {
-  display: contents; /* Keep the child elements visible */
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 15px;
-  padding: 20px;
+/* 992px and above: Add margin-left for rating-text */
+@media (min-width: 992px) {
+  .rating-text {
+    margin-left: 8px; /* Desired spacing */
+  }
 }
 
+@media (min-width: 576px) and (max-width: 628px) {
+  .transition-wrapper {
+    grid-template-columns: repeat(2, 1fr); /* Maintain 2 items per row between 576px and 628px */
+    padding: 1rem; /* Reduce padding */
+    gap: 1rem; /* Reduce gap */
+  }
+
+  /* Header adjustments for 576px to 628px */
+  .header-row {
+    padding: 15px 5%; /* Reduce padding */
+  }
+
+  .page-title {
+    font-size: 1.75rem; /* Slightly reduce font size */
+    margin: 10px 20px; /* Adjust margin to prevent overlap */
+    min-width: 150px; /* Allow title to shrink more */
+  }
+
+  .filter-dropdown {
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
+
+  .filter-dropdown .form-select {
+    max-width: 250px; /* Reduce max-width for smaller screens */
+    font-size: 0.9rem; /* Slightly reduce font size */
+  }
+
+  /* Rating Section Adjustments */
+  .rating-section {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .rating-number,
+  .rating-text {
+    margin-left: 0; /* Remove left margin */
+    font-size: 0.8rem; /* Smaller font size */
+  }
+
+  .rating-section span {
+    margin-top: 4px; /* Adds spacing between star rating and text */
+  }
+
+  .rating-section star-rating {
+    width: auto; /* Allows the star rating to adjust based on content */
+    max-width: 100px; /* Sets a maximum width to prevent excessive stretching */
+  }
+}
+
+/* Below 576px */
+@media (max-width: 576px) {
+  .transition-wrapper {
+    grid-template-columns: 1fr; /* 1 item per row on small screens */
+    padding: 1rem; /* Reduce padding */
+    gap: 1rem; /* Reduce gap */
+  }
+
+  .header-row {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+    padding: 10px 2%; /* Reduce padding */
+  }
+
+  .back-button {
+    width: 100%; /* Full width on small screens */
+    font-size: 0.8rem; /* Smaller font size */
+    padding: 8px; /* Adjust padding */
+  }
+
+  .page-title {
+    font-size: 1.5rem; /* Reduce font size */
+    margin-top: 10px; /* Add spacing above title */
+    text-align: center; /* Center the title */
+  }
+
+  .filter-dropdown {
+    width: 100%; /* Full width on small screens */
+    margin-top: 10px; /* Add space above */
+  }
+
+  .filter-dropdown .form-select {
+    width: 100%; /* Full width */
+    font-size: 0.8rem; /* Adjust font size */
+  }
+
+  .itinerary-button {
+    font-size: 0.7rem; /* Smaller font size */
+    padding: 6px; /* Reduce padding */
+  }
+
+  .rating-section {
+    flex-direction: column; /* Stack rating and text vertically */
+    align-items: flex-start; /* Align to the start */
+  }
+
+  .rating-number,
+  .rating-text {
+    margin-left: 0; /* Remove left margin */
+    font-size: 0.8rem; /* Smaller font size */
+  }
+
+  /* Adjust destination-card height for small screens */
+  .destination-card {
+    /* Ensure aspect ratio is maintained */
+    height: 100%; /* Already handled by aspect-ratio on .card-container */
+  }
+}
 
 .already-saved {
   background-color: #e74c3c; /* Different color for already saved */
@@ -1079,3 +1203,9 @@ export default {
   font-family: "Source Sans 3", sans-serif;
 }
 </style>
+
+
+
+
+
+
