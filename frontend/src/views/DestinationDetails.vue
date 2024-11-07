@@ -229,6 +229,7 @@ export default {
 
     async fetchAttractions() {
       const countryRef = doc(db, "countries", this.country);
+      let allAttractions = []; // Declare allAttractions
       try {
         console.log(`Fetching attractions for ${this.country} from Firestore...`);
         const countryDoc = await getDoc(countryRef);
@@ -245,9 +246,18 @@ export default {
             return;
           }
 
-          let allAttractions = [];
-          const radius = this.countryRadius[this.country] || this.defaultRadius;
-          console.log(`Using radius: ${radius} meters for country: ${this.country}`);
+          // const mappedAttractions = response.data.results.map((place) => ({
+          //   name: place.name,
+          //   place_id: place.place_id,
+          //   vicinity: place.vicinity,
+          //   image: place.photos
+          //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
+          //     : null,
+          //   coordinates: place.geometry?.location || { lat: 0, lng: 0 },
+          //   rating: place.rating || 0,
+          //   user_ratings_total: place.user_ratings_total || 0,
+          //   city: name,
+          // }));
 
           for (const city of cities) {
             const { name, location } = city;
@@ -768,13 +778,12 @@ export default {
             coordinates: attraction.coordinates,
             rating: attraction.rating || 0,
             user_ratings_total: attraction.user_ratings_total || 0,
-            open_now: attraction.open_now || false,
             city: attraction.city || "Unknown City",
             country: this.country || "Unknown Country",
             source: "google_places",
             summary: "Google Places Summary",
             activities: [],
-            timestamp: new Date(),
+          
           };
 
           try {

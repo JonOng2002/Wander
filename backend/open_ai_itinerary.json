@@ -1,65 +1,517 @@
 {
-  "country": "Italy",
-  "itinerary_summary": "A romantic trip exploring Milan's remarkable architecture, exquisite dining, and vibrant nightlife.",
+  "country": "China",
+  "itinerary_summary": "An exciting 9-day solo adventure exploring the vibrant city of Shanghai, discovering its captivating attractions, and experiencing the flavor of Chongqing's renowned mala dishes.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-06",
-      "summary": "Arrive in Milan and explore iconic landmarks followed by a night of fine dining and entertainment.",
+      "date": "2024-11-10",
+      "summary": "Arrive in Shanghai and explore the Bund, immersed in the city's stunning skyline.",
       "activities": [
         {
           "time": "14:00",
-          "activity_name": "Duomo di Milano",
+          "activity_name": "The Bund (Waitan), Shanghai",
           "location": {
-            "name": "Duomo di Milano",
-            "city": "Milan",
+            "name": "The Bund (Waitan)",
+            "city": "Shanghai",
             "coordinates": {
-              "latitude": 45.4640976,
-              "longitude": 9.1919265
+              "latitude": 31.239694,
+              "longitude": 121.49115
             },
-            "place_id": "ChIJoTZGw67GhkcREy4aECdOf6s",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOmQrbTUypXNOOxnQ03wtgVyi47TC9QarkfPGNX1qNmZH8IJuyK5zazkpGSTShdiATTSKBkiBKETGVnrk7gTH2IaEOwtH9-AR3pNfd3HcHmUxJLUn56vvGnLPzuJCeg92VFG6Gc0NGqwS6Jymx4otLbc2476UKet3o5zMzug88ArKnO&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE},"
+            "place_id": "ChIJq8D8lUdwsjURWas45M1WbXo",
+            "photo_url": "https://lh3.googleusercontent.com/places/ANXAkqE9yuv6xVZMSIjAQjxA-pNe-ZJAG5KkFPWP834Hveu1n8-iIL0dB0BfmgHGMY0k77-A3yetYOw72RwTjZeV6wMd7EgmGzzDZGa6A=s1600-w800"
           },
-          "description": "Visit the magnificent Cathedral of Milan, known for its stunning Gothic architecture."
+          "description": "A scenic waterfront area lined with historic buildings, offering breathtaking views of the modern skyscrapers across the Huangpu River."
         },
         {
           "time": "16:00",
-          "activity_name": "Galleria Vittorio Emanuele II",
+          "activity_name": "Oriental Pearl TV Tower, Shanghai",
           "location": {
-            "name": "Galleria Vittorio Emanuele II",
-            "city": "Milan",
+            "name": "Oriental Pearl TV Tower",
+            "city": "Shanghai",
             "coordinates": {
-              "latitude": 45.4658434,
-              "longitude": 9.1899401
+              "latitude": 31.2396889,
+              "longitude": 121.4997553
             },
-            "place_id": "ChIJw7aG_QY1eUcRFtQJWKmcCyc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPKNM2CeIU06e3Y0AG3idT2lShB99eLhxxMlrSVR1AkO3rP6yrZYXrvEQnc0IVtoJ8T_mDqRt-rALBlokJCNBurlukgpeYNeI24JaNUfziB5KHGB0UuJvP9NbgkakXCvwo2l-krrO1g8MwxwpIuCnWZndUDgBD7IOEcXzXzZapTvC1W&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE},"
+            "place_id": "ChIJ29SwJftwsjURZYXg4jufPhY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO605rUeCtjNUcnqZKIfuhau4y93eQ1BuW9P8wkwYKmTpYMAfr85kBeIYP0XwosIFjKbaBRrp2r3USan5sGSeI4Yd2904o0hTi3N7kjhUpz-y_Rz-ywTU6O3T033bZDslfUC_5_e_X6rwQ41Ad4g8Xbrbd6atFe6XdfCetD92ZOBvBF&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Stroll through this grand shopping gallery and enjoy the exquisite architecture and luxury shops."
+          "description": "A unique TV tower with stunning observation decks, providing panoramic views of Shanghai from its towering heights."
         },
         {
           "time": "19:00",
-          "activity_name": "Dinner at Ristorante Cracco",
+          "activity_name": "Dinner at Nanjing Road, Shanghai",
           "location": {
-            "name": "Ristorante Cracco",
-            "city": "Milan",
+            "name": "Nanjing Road",
+            "city": "Shanghai",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Dine at the renowned Ristorante Cracco where traditional Italian cuisine meets contemporary flair."
+          "description": "Famous shopping street offering various dining options with local cuisine and international food."
         },
         {
           "time": "21:00",
-          "activity_name": "Visit Negroni Bar",
+          "activity_name": "Huangpu River Cruise, Shanghai",
           "location": {
-            "name": "Negroni Bar",
-            "city": "Milan",
+            "name": "Huangpu River",
+            "city": "Shanghai",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy creative cocktails at one of Milan's trendiest bars, known for its stylish atmosphere."
+          "description": "Enjoy a peaceful cruise on the Huangpu River while admiring the illuminated city skyline and landmarks."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-11",
+      "summary": "Discover the cultural heritage of Shanghai with visits to Yu Garden and Tianzifang.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Yu Garden, Shanghai",
+          "location": {
+            "name": "Yu Garden",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2272355,
+              "longitude": 121.492094
+            },
+            "place_id": "ChIJidPZMUGHrTUR29eIuHbpoIQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPk7VTAneVSmjJ39pdH_kCjF_DyiN003OW_ZBNPrtQVmDYA5xFKvMDwZLVQHIrZJOkco2QaYxqIXiVZz3GrSstk09vnqcCStB0hocdzZVII6ASx6IQG1D3Tg83hJ55-AHK6SBhweyLteMpK1drozuiMnTSAN-heVGt7geDPDLVKq6wl&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Explore this classical Chinese garden famed for its beautiful landscaping, traditional architecture, and koi ponds."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Tianzifang, Shanghai",
+          "location": {
+            "name": "Tianzifang",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.20881199999999,
+              "longitude": 121.468898
+            },
+            "place_id": "ChIJ2-UI76F6sjURj_HAeG5PMhE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPjzZu_o5BFQHoL-_xHseMpD3BK_8Ft3I0temtFAKT5lKf3b1ZxwEcI9lnaE8lU0m3gmk1a2CE_QDBSH64z-V88PYMClEnqBpI8YV576BE-J92_QNYTUoaLX9KSq8uEmn6p8q-eHgbdQf-wNAsz-4rKijiefWVSVYYpyUYrba8k6NNn&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Stroll through this artsy neighborhood filled with quaint shops, galleries, and cafes, perfect for lunch and local crafts."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Shanghai Wild Animal Park, Shanghai",
+          "location": {
+            "name": "Shanghai Wild Animal Park",
+            "city": "Shanghai",
+            "coordinates": {
+              "lat": 31.0547658,
+              "lng": 121.7243301
+            },
+            "place_id": "ChIJ6_xMJGpwsjUR-29bPK4JLLo",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMNnP_c1-nxRuDumNsdQJtLWa2yLMS3cYR_89Ao0i3u-CvDvHGQHzG_VpldOHbP4NPuQiLo0Q7z6IDTtLC853Mika-8Cp6ByqWIUtBTYRZMsA5l8sN6WukPwubpzSAXBXZsO3_C08bh_6qMbSOKES5TqBahaExf1JrJXoE2M2UbAdgF&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Visit this large wildlife park to see over a hundred species of animals, with opportunities for family-friendly activities."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at Hot Pot Restaurant, Shanghai",
+          "location": {
+            "name": "Local Hot Pot Restaurant",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience the local culinary tradition with a delicious mala hot pot dinner."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-12",
+      "summary": "Travel to Chongqing, immerse yourself in the local culture, and indulge in spicy mala cuisine.",
+      "activities": [
+        {
+          "time": "08:00",
+          "activity_name": "Travel to Chongqing from Shanghai",
+          "location": {
+            "name": "Chongqing",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Catch a morning flight or train from Shanghai to Chongqing."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Chongqing Hot Pot Restaurant, Chongqing",
+          "location": {
+            "name": "Chongqing Hot Pot",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Savor the authentic flavors of Chongqing's famous spicy hot pot."
+        },
+        {
+          "time": "14:30",
+          "activity_name": "Three Gorges Museum, Chongqing",
+          "location": {
+            "name": "Three Gorges Museum",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Discover the history and culture of the Three Gorges region through engaging exhibits."
+        },
+        {
+          "time": "18:00",
+          "activity_name": "Dinner at a Local Restaurant, Chongqing",
+          "location": {
+            "name": "Local Cuisine Restaurant",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience traditional Chongqing dishes in a cozy, local atmosphere."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-13",
+      "summary": "Enjoy more of Chongqing's attractions and the beautiful scenery.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Ciqikou Ancient Town, Chongqing",
+          "location": {
+            "name": "Ciqikou Ancient Town",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Wander through this ancient town filled with historic architecture, shops, and street food."
+        },
+        {
+          "time": "13:00",
+          "activity_name": "Lunch at Local Street Food, Chongqing",
+          "location": {
+            "name": "Street Vendors",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Try delicious local specialties from renowned street food vendors."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Riverside Park, Chongqing",
+          "location": {
+            "name": "Riverside Park",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Relax in this beautiful park that offers scenic views of the Yangtze River."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Mala Dinner, Chongqing",
+          "location": {
+            "name": "Mala Restaurant",
+            "city": "Chongqing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Indulge in tantalizing mala dishes that Chongqing is famous for."
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2024-11-14",
+      "summary": "Return to Shanghai and continue exploring.",
+      "activities": [
+        {
+          "time": "08:00",
+          "activity_name": "Travel back to Shanghai from Chongqing",
+          "location": {
+            "name": "Shanghai",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Board a morning train or flight back to Shanghai."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at a Dim Sum Restaurant, Shanghai",
+          "location": {
+            "name": "Local Dim Sum Restaurant",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a delightful lunch at a restaurant specializing in dim sum."
+        },
+        {
+          "time": "14:30",
+          "activity_name": "Shanghai World Financial Center, Shanghai",
+          "location": {
+            "name": "Shanghai World Financial Center",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2345644,
+              "longitude": 121.5074394
+            },
+            "place_id": "ChIJwefaxOVwsjURO6kUnqabBCA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPXJYqgmMC7trsixvkWoLVTOKhaW1lzTI7-cTFTtseEzs_xAYkjpjtsqmEivXQwx5it7wLvuK7KLl7dN16ZK5E1IB20YJCyZDo0tmZ-Z8dIbtF-1KNjZtMF2SGbWC4szmKK5PU3nfoGEyBMOHUc5dMOcDYGvRYzPM9an86FzBkjKj8&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Visit this iconic skyscraper with an observation deck for breathtaking views of the city."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at a Shanghai Restaurant, Shanghai",
+          "location": {
+            "name": "Local Restaurant",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Dine at a local restaurant and enjoy Shanghai's distinct culinary offerings."
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2024-11-15",
+      "summary": "Experience more sightseeing in Shanghai: art and shopping.",
+      "activities": [
+        {
+          "time": "10:00",
+          "activity_name": "Shanghai Museum, Shanghai",
+          "location": {
+            "name": "Shanghai Museum",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore a vast collection of Chinese art, artifacts and historical exhibits."
+        },
+        {
+          "time": "12:30",
+          "activity_name": "Lunch at a Near Museum Caf\u00e9, Shanghai",
+          "location": {
+            "name": "Museum Caf\u00e9",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": "",
+            "description": "Relax and grab a bite at the museum's caf\u00e9."
+          }
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Shopping at Xintiandi, Shanghai",
+          "location": {
+            "name": "Xintiandi",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Stroll through this upscale shopping and dining district with boutiques and cafes."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at a Famous Restaurant, Shanghai",
+          "location": {
+            "name": "Local Famous Restaurant",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Taste Shanghai's famous dishes in a highly recommended dining spot."
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2024-11-16",
+      "summary": "Explore more of Shanghai's historical and cultural spots.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Visit Jade Buddha Temple, Shanghai",
+          "location": {
+            "name": "Jade Buddha Temple",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience Buddhism at this active temple home to two stunning jade Buddha statues."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Local Noodles Restaurant, Shanghai",
+          "location": {
+            "name": "Noodles Restaurant",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Taste authentic Shanghai noodles at a local favorite spot."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Shanghai Propaganda Poster Art Centre, Shanghai",
+          "location": {
+            "name": "Propaganda Poster Art Centre",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore fascinating propaganda posters from China\u2019s revolutionary past."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at a Traditional Restaurant, Shanghai",
+          "location": {
+            "name": "Traditional Restaurant",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "End the day with a dinner featuring classic Shanghai cuisine."
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2024-11-17",
+      "summary": "Final explore day in Shanghai, indulging in more local specialties.",
+      "activities": [
+        {
+          "time": "10:00",
+          "activity_name": "Visit Tiananmen Square, Beijing",
+          "location": {
+            "name": "Tiananmen Square",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "A historic site known for its vast size and significance in modern Chinese history."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Peking Duck Restaurant, Beijing",
+          "location": {
+            "name": "Famous Peking Duck Restaurant",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a famous Beijing dish at a renowned local eatery."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Visit Temple of Heaven, Beijing",
+          "location": {
+            "name": "Temple of Heaven",
+            "city": "Beijing",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore this magnificent complex where emperors of the Ming and Qing dynasties would pray for a good harvest."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Farewell Dinner at Top Restaurant, Shanghai",
+          "location": {
+            "name": "Top Restaurant",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a memorable farewell dinner at an iconic restaurant in Shanghai."
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "date": "2024-11-18",
+      "summary": "Leisurely activities before departure.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Relax in Century Park, Shanghai",
+          "location": {
+            "name": "Century Park",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Spend the morning relaxing and enjoying nature in Shanghai's largest park."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Caf\u00e9, Shanghai",
+          "location": {
+            "name": "Caf\u00e9 in Century Park",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a light lunch at one of the caf\u00e9s located inside Century Park."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Pack and Prepare for Departure",
+          "location": {
+            "name": "Hotel",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Check out from the hotel and prepare for your journey back."
+        },
+        {
+          "time": "17:00",
+          "activity_name": "Departure from Shanghai",
+          "location": {
+            "name": "Shanghai Airport",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Head to the airport for your departure."
         }
       ]
     }

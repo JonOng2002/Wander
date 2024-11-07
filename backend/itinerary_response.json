@@ -1,65 +1,601 @@
 {
-  "country": "Italy",
-  "itinerary_summary": "A romantic trip exploring Milan's remarkable architecture, exquisite dining, and vibrant nightlife.",
+  "country": "China",
+  "itinerary_summary": "An exciting 9-day solo adventure exploring the vibrant city of Shanghai, discovering its captivating attractions, and experiencing the flavor of Chongqing's renowned mala dishes.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-06",
-      "summary": "Arrive in Milan and explore iconic landmarks followed by a night of fine dining and entertainment.",
+      "date": "2024-11-10",
+      "summary": "Arrive in Shanghai and explore the Bund, immersed in the city's stunning skyline.",
       "activities": [
         {
           "time": "14:00",
-          "activity_name": "Duomo di Milano",
+          "activity_name": "The Bund (Waitan), Shanghai",
           "location": {
-            "name": "Duomo di Milano",
-            "city": "Milan",
+            "name": "The Bund (Waitan)",
+            "city": "Shanghai",
             "coordinates": {
-              "latitude": 45.4640976,
-              "longitude": 9.1919265
+              "latitude": 31.239694,
+              "longitude": 121.49115
             },
-            "place_id": "ChIJoTZGw67GhkcREy4aECdOf6s",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOmQrbTUypXNOOxnQ03wtgVyi47TC9QarkfPGNX1qNmZH8IJuyK5zazkpGSTShdiATTSKBkiBKETGVnrk7gTH2IaEOwtH9-AR3pNfd3HcHmUxJLUn56vvGnLPzuJCeg92VFG6Gc0NGqwS6Jymx4otLbc2476UKet3o5zMzug88ArKnO&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE},"
+            "place_id": "ChIJq8D8lUdwsjURWas45M1WbXo",
+            "photo_url": "https://lh3.googleusercontent.com/places/ANXAkqE9yuv6xVZMSIjAQjxA-pNe-ZJAG5KkFPWP834Hveu1n8-iIL0dB0BfmgHGMY0k77-A3yetYOw72RwTjZeV6wMd7EgmGzzDZGa6A=s1600-w800"
           },
-          "description": "Visit the magnificent Cathedral of Milan, known for its stunning Gothic architecture."
+          "description": "A scenic waterfront area lined with historic buildings, offering breathtaking views of the modern skyscrapers across the Huangpu River."
         },
         {
           "time": "16:00",
-          "activity_name": "Galleria Vittorio Emanuele II",
+          "activity_name": "Oriental Pearl TV Tower, Shanghai",
           "location": {
-            "name": "Galleria Vittorio Emanuele II",
-            "city": "Milan",
+            "name": "Oriental Pearl TV Tower",
+            "city": "Shanghai",
             "coordinates": {
-              "latitude": 45.4658434,
-              "longitude": 9.1899401
+              "latitude": 31.2396889,
+              "longitude": 121.4997553
             },
-            "place_id": "ChIJw7aG_QY1eUcRFtQJWKmcCyc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPKNM2CeIU06e3Y0AG3idT2lShB99eLhxxMlrSVR1AkO3rP6yrZYXrvEQnc0IVtoJ8T_mDqRt-rALBlokJCNBurlukgpeYNeI24JaNUfziB5KHGB0UuJvP9NbgkakXCvwo2l-krrO1g8MwxwpIuCnWZndUDgBD7IOEcXzXzZapTvC1W&key=AIzaSyAlRNUntEwMM5zLz3LaPQiJF68cw9uL4rE},"
+            "place_id": "ChIJ29SwJftwsjURZYXg4jufPhY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO605rUeCtjNUcnqZKIfuhau4y93eQ1BuW9P8wkwYKmTpYMAfr85kBeIYP0XwosIFjKbaBRrp2r3USan5sGSeI4Yd2904o0hTi3N7kjhUpz-y_Rz-ywTU6O3T033bZDslfUC_5_e_X6rwQ41Ad4g8Xbrbd6atFe6XdfCetD92ZOBvBF&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Stroll through this grand shopping gallery and enjoy the exquisite architecture and luxury shops."
+          "description": "A unique TV tower with stunning observation decks, providing panoramic views of Shanghai from its towering heights."
         },
         {
           "time": "19:00",
-          "activity_name": "Dinner at Ristorante Cracco",
+          "activity_name": "Dinner at Nanjing Road, Shanghai",
           "location": {
-            "name": "Ristorante Cracco",
-            "city": "Milan",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
+            "name": "Nanjing Road",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.23575,
+              "longitude": 121.47972
+            },
+            "place_id": "ChIJxS5frERwsjURarZMDHvsuuM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWquURwsoAMZ726oEtc6ITqW5ED1m21YsToOD5-DQ_xsb0PaRdde8GizBzXtrAW1Lt7WEaGZrOO4DA4-tXlC5-qA6HFmw0dW1e8c42OpLlSeNBOnVXIYXeUfvSqFn1zv22KuOtkaaOvYvWGnsA4gFUxF8BqtzBoxsCUC2xgNMxyi7Wo&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
           },
-          "description": "Dine at the renowned Ristorante Cracco where traditional Italian cuisine meets contemporary flair."
+          "description": "Famous shopping street offering various dining options with local cuisine and international food."
         },
         {
           "time": "21:00",
-          "activity_name": "Visit Negroni Bar",
+          "activity_name": "Huangpu River Cruise, Shanghai",
           "location": {
-            "name": "Negroni Bar",
-            "city": "Milan",
+            "name": "Huangpu River",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.1491099,
+              "longitude": 121.45631
+            },
+            "place_id": "ChIJ6wT69V5ksjURwSznQ8ExnfA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqG3CbYkjZ9_3kk2eaVpK6s4xHsZtTQu4bTNNJsQQK1CnsDx_L4U2C0EtYt7iiSdEk3ZhTe-KJJIrUoxdWYLcQMOIY6XxD_6SAR08LbQAb6zOod_kvgrajicIQyM8W3c2oezbD5oHGzlYFZ-1s7k1yBlHfkHviC0PdJoAoWhLVD3J5R&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Enjoy a peaceful cruise on the Huangpu River while admiring the illuminated city skyline and landmarks."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-11",
+      "summary": "Discover the cultural heritage of Shanghai with visits to Yu Garden and Tianzifang.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Yu Garden, Shanghai",
+          "location": {
+            "name": "Yu Garden",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2272355,
+              "longitude": 121.492094
+            },
+            "place_id": "ChIJidPZMUGHrTUR29eIuHbpoIQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPk7VTAneVSmjJ39pdH_kCjF_DyiN003OW_ZBNPrtQVmDYA5xFKvMDwZLVQHIrZJOkco2QaYxqIXiVZz3GrSstk09vnqcCStB0hocdzZVII6ASx6IQG1D3Tg83hJ55-AHK6SBhweyLteMpK1drozuiMnTSAN-heVGt7geDPDLVKq6wl&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Explore this classical Chinese garden famed for its beautiful landscaping, traditional architecture, and koi ponds."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Tianzifang, Shanghai",
+          "location": {
+            "name": "Tianzifang",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.20881199999999,
+              "longitude": 121.468898
+            },
+            "place_id": "ChIJ2-UI76F6sjURj_HAeG5PMhE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPjzZu_o5BFQHoL-_xHseMpD3BK_8Ft3I0temtFAKT5lKf3b1ZxwEcI9lnaE8lU0m3gmk1a2CE_QDBSH64z-V88PYMClEnqBpI8YV576BE-J92_QNYTUoaLX9KSq8uEmn6p8q-eHgbdQf-wNAsz-4rKijiefWVSVYYpyUYrba8k6NNn&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Stroll through this artsy neighborhood filled with quaint shops, galleries, and cafes, perfect for lunch and local crafts."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Shanghai Wild Animal Park, Shanghai",
+          "location": {
+            "name": "Shanghai Wild Animal Park",
+            "city": "Shanghai",
+            "coordinates": {
+              "lat": 31.0547658,
+              "lng": 121.7243301
+            },
+            "place_id": "ChIJ6_xMJGpwsjUR-29bPK4JLLo",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMNnP_c1-nxRuDumNsdQJtLWa2yLMS3cYR_89Ao0i3u-CvDvHGQHzG_VpldOHbP4NPuQiLo0Q7z6IDTtLC853Mika-8Cp6ByqWIUtBTYRZMsA5l8sN6WukPwubpzSAXBXZsO3_C08bh_6qMbSOKES5TqBahaExf1JrJXoE2M2UbAdgF&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Visit this large wildlife park to see over a hundred species of animals, with opportunities for family-friendly activities."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at Hot Pot Restaurant, Shanghai",
+          "location": {
+            "name": "Local Hot Pot Restaurant",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2509094,
+              "longitude": 121.4877395
+            },
+            "place_id": "ChIJjdwLBKtxsjURQn9QFgLSfI8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpZDeFKgjZku9ZUV11rjBd0hAnecx5VA4dG6GSPb5wLRX5ebmsffWAG8EJkMxF2ngAoFVYgylduyxhD8d-Nn1fme50yD_AZyEoK70R94sJNhvTVjxT6C18kRfnMCOhC3DZNn8pEUSomJXOOu3Q_BYHdirH3g8asgQDj_bEVd3Elqxc1&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Experience the local culinary tradition with a delicious mala hot pot dinner."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-12",
+      "summary": "Travel to Chongqing, immerse yourself in the local culture, and indulge in spicy mala cuisine.",
+      "activities": [
+        {
+          "time": "08:00",
+          "activity_name": "Travel to Chongqing from Shanghai",
+          "location": {
+            "name": "Chongqing",
+            "city": "Chongqing",
+            "coordinates": {
+              "latitude": 29.5656843,
+              "longitude": 106.5511838
+            },
+            "place_id": "ChIJQ0_m87o0kzYRIbOI3BaGn94",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpSQZ_JMLe8u7BDgvV7Vqqmzd_uYlbE0_CiDrPYX8R2PifZLufWDcmbNreaJrvh37UXa6IAsmXI1TyD8lrrBDYmqWUJ3W8YRZK3HSqbKXodermTx1F2qZGNiA-4eFHW_LPEd4eGagjOSUHes-Oh76zUDhbh2uKV14wW63kEmB6xa60w&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Catch a morning flight or train from Shanghai to Chongqing."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Chongqing Hot Pot Restaurant, Chongqing",
+          "location": {
+            "name": "Chongqing Hot Pot",
+            "city": "Chongqing",
+            "coordinates": {
+              "latitude": 29.745012,
+              "longitude": 106.494383
+            },
+            "place_id": "ChIJOwbuD3rT7DYR8vwZFX8rCTw",
+            "photo_url": "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
+          },
+          "description": "Savor the authentic flavors of Chongqing's famous spicy hot pot."
+        },
+        {
+          "time": "14:30",
+          "activity_name": "Three Gorges Museum, Chongqing",
+          "location": {
+            "name": "Three Gorges Museum",
+            "city": "Chongqing",
+            "coordinates": {
+              "latitude": 29.5620795,
+              "longitude": 106.5504808
+            },
+            "place_id": "ChIJ4RM-JaQ0kzYRo8HBJwsmdiE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpU3UO4o_iDQ1_f91mhxL3gt40zli6bpDC2fEQsFfcpdN3aiPvlmrB9gzjkpe6wPoe27dZwWE5vBwCdAzfe0TJWdr9EryXT6l5OzKbR_ZA9PyWByIYcHcpGHqrycA6wT7tg_4UhoPhMbWyL8iIHHbz_OCwlPmk87hEhX9FiTMDE4ZJq&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Discover the history and culture of the Three Gorges region through engaging exhibits."
+        },
+        {
+          "time": "18:00",
+          "activity_name": "Dinner at a Local Restaurant, Chongqing",
+          "location": {
+            "name": "Local Cuisine Restaurant",
+            "city": "Chongqing",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy creative cocktails at one of Milan's trendiest bars, known for its stylish atmosphere."
+          "description": "Experience traditional Chongqing dishes in a cozy, local atmosphere."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-13",
+      "summary": "Enjoy more of Chongqing's attractions and the beautiful scenery.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Ciqikou Ancient Town, Chongqing",
+          "location": {
+            "name": "Ciqikou Ancient Town",
+            "city": "Chongqing",
+            "coordinates": {
+              "latitude": 29.58177,
+              "longitude": 106.4501576
+            },
+            "place_id": "ChIJm7KCCvjL7DYRtrpQJzkrJ9M",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWr3vMxopaQqx5AqtkcVYt_xNw4nM9JtI8ezzL79uUkiuu7YVYUjT3r0ixvZCB8-Q0mwtFXE4jE5xgAsROnjDpHDarxdkj4qCPPhkBR8_8q-aLwuEl-riuO6JyikC6-mHOGsJLx9bRuMx99oOhpbLm77G2xYipYCsSPYEwUMHlzGMM1Y&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Wander through this ancient town filled with historic architecture, shops, and street food."
+        },
+        {
+          "time": "13:00",
+          "activity_name": "Lunch at Local Street Food, Chongqing",
+          "location": {
+            "name": "Street Vendors",
+            "city": "Chongqing",
+            "coordinates": {
+              "latitude": 29.555901,
+              "longitude": 106.577495
+            },
+            "place_id": "ChIJIb92Z4Y0kzYRg9o6eV5fzR4",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrlvr0t7ay45cqFktau0cQWfz6K0n4u3AwVEKZJohAp5Fk9AH9gjUteGVG68vZyPhOQ-n1EgGBwetcbkNjdCvZ60yQiy21A7Wyf_eUoCRPmHB-sEtNvqfZfQrhtkFl6WFtQj8jZX2wLGYwJUfqguh34v-bHzkXY9HRFFvL31i9tzenv&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Try delicious local specialties from renowned street food vendors."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Riverside Park, Chongqing",
+          "location": {
+            "name": "Riverside Park",
+            "city": "Chongqing",
+            "coordinates": {
+              "latitude": 29.583993,
+              "longitude": 106.583954
+            },
+            "place_id": "ChIJbfK5s58zkzYROVnTWu9M6FE",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqPTi6vAd6v1_NOke599aVd0QNJSr4a6LW2YxjGRIMnY_RbMTQUVSpNJ1xjFdq70HnZaaoWSrmVykHhN64pSlmPFlDnnp8Fyk7VLVKCEV1Fu7OHAUAjPMBVQ7xPXatO0JSOPtCMNRWmJX_t7goXm4lvbPQp_DBh5uIMPJlIYsso7RmS&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Relax in this beautiful park that offers scenic views of the Yangtze River."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Mala Dinner, Chongqing",
+          "location": {
+            "name": "Mala Restaurant",
+            "city": "Chongqing",
+            "coordinates": {
+              "latitude": 29.55074999999999,
+              "longitude": 106.54789
+            },
+            "place_id": "ChIJxVZh7Lk0kzYRq8-urDGOyf0",
+            "photo_url": "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
+          },
+          "description": "Indulge in tantalizing mala dishes that Chongqing is famous for."
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2024-11-14",
+      "summary": "Return to Shanghai and continue exploring.",
+      "activities": [
+        {
+          "time": "08:00",
+          "activity_name": "Travel back to Shanghai from Chongqing",
+          "location": {
+            "name": "Shanghai",
+            "city": "Shanghai",
+            "coordinates": {},
+            "place_id": "shanghai-shanghai-china-31230416-121473701",
+            "photo_url": "https://lh3.googleusercontent.com/places/ANXAkqE-AywDsL-__703h3EYZ3wW0otWJtpZP_TE7Gw0DZdpjSNhe9t2HAcW6pfTOaGqpyFuvxv1PPrcDLIUod3ZqDC8Ok3bmJDfPSA=s1600-w800"
+          },
+          "description": "Board a morning train or flight back to Shanghai."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at a Dim Sum Restaurant, Shanghai",
+          "location": {
+            "name": "Local Dim Sum Restaurant",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.23457059999999,
+              "longitude": 121.4708037
+            },
+            "place_id": "ChIJA5s-SUBwsjURFhARLaLPojs",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrzf5S1n3DLdFm0I_3t8PHDOlrY80Pr7j0VrjklKxZnfbwypJf9oPWPQhNjH59DQ5CI1ZT1bqd96Rr357KpUERwCiYyXJs_uB42C9ouPzhhzwBfhqRvNt9ERrGi6_w7DmwKI2F092Kf9FWNcn2yj5P1K6daPTmfZvJ6QxQkjFqoHhH3&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Enjoy a delightful lunch at a restaurant specializing in dim sum."
+        },
+        {
+          "time": "14:30",
+          "activity_name": "Shanghai World Financial Center, Shanghai",
+          "location": {
+            "name": "Shanghai World Financial Center",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2345644,
+              "longitude": 121.5074394
+            },
+            "place_id": "ChIJwefaxOVwsjURO6kUnqabBCA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPXJYqgmMC7trsixvkWoLVTOKhaW1lzTI7-cTFTtseEzs_xAYkjpjtsqmEivXQwx5it7wLvuK7KLl7dN16ZK5E1IB20YJCyZDo0tmZ-Z8dIbtF-1KNjZtMF2SGbWC4szmKK5PU3nfoGEyBMOHUc5dMOcDYGvRYzPM9an86FzBkjKj8&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Visit this iconic skyscraper with an observation deck for breathtaking views of the city."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at a Shanghai Restaurant, Shanghai",
+          "location": {
+            "name": "Local Restaurant",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.23457059999999,
+              "longitude": 121.4708037
+            },
+            "place_id": "ChIJA5s-SUBwsjURFhARLaLPojs",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoSbuyouV_6-yFnkocLqDyGoNSi-CCUu1J6mVDUtxDu9DLoW_bCpY_Otn6ujTKzX0he4WGY7io1Lt2RYufZc9U8rv4cs4n-_E_eKJOLLgGoh7F6m1hvS14lileldmzMoCu_vLi1AdNe0hNeSEOInj1lVjqcw2fa6tyXrELy40zZPVjU&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Dine at a local restaurant and enjoy Shanghai's distinct culinary offerings."
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2024-11-15",
+      "summary": "Experience more sightseeing in Shanghai: art and shopping.",
+      "activities": [
+        {
+          "time": "10:00",
+          "activity_name": "Shanghai Museum, Shanghai",
+          "location": {
+            "name": "Shanghai Museum",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.22833069999999,
+              "longitude": 121.4755278
+            },
+            "place_id": "ChIJPWUSbWlwsjURbNvIw3tOTE0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpAnNENEm42iqVKnonnQ1H9gYn14uZaBGEs6ZY4-ue_hvdIH9G-xqgu1DvABSzcKROwt84r8-rIVlD9YXy7r1pmSYTtjMmOt6mduPgnDgXu1_3QllUMcyVUe_XdSxgKJqBhebbtHywniAPpYkq5pEIX1CYZY21XG0SUZv97dKdj7fo8&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Explore a vast collection of Chinese art, artifacts and historical exhibits."
+        },
+        {
+          "time": "12:30",
+          "activity_name": "Lunch at a Near Museum Caf\u00e9, Shanghai",
+          "location": {
+            "name": "Museum Caf\u00e9",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2285615,
+              "longitude": 121.4760239
+            },
+            "place_id": "ChIJPWUSbWlwsjURjYNLkOXNZGw",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrm2qDWMrCVR-UTo6eYjQkgPnknPRoBY-FS_ddgdVXa8m_1eQUeWZEDBaTC64vBXu6h0_yojfXl66wVcmefjryPLh6DR0TmFnd0l8jlh1xebJ-3heHAx66sMUnAmro5K0fxVKa7zeiQ3NQ8hX0PwvNHK4-tp-k4IEccHx_Ym11lWbQU&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM",
+            "description": "Relax and grab a bite at the museum's caf\u00e9."
+          }
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Shopping at Xintiandi, Shanghai",
+          "location": {
+            "name": "Xintiandi",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.21652,
+              "longitude": 121.475105
+            },
+            "place_id": "ChIJcVgGUHFwsjURDPLrdEiQT1Q",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWr03rnHwepS8pQfEVLA-8gT31ksLBdiOy0uQnIMCp3niNd4dQPxtzwZIXFRGrzi3o012sgm7AQsCKf6AW4jl8m3hHowaWwwgiS6bROPYDKXvzPVVIhT0xA8TGr2ofWZpAGu_ZLnyvYjL1CkOVRdWplPowb-KsNvi9QmCQoNCDobuyS5&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Stroll through this upscale shopping and dining district with boutiques and cafes."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at a Famous Restaurant, Shanghai",
+          "location": {
+            "name": "Local Famous Restaurant",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.23457059999999,
+              "longitude": 121.4708037
+            },
+            "place_id": "ChIJA5s-SUBwsjURFhARLaLPojs",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqmXfCGYv1scYqcChc1-YEhh7HTGFXXZlDPVZVzMUZJqCyW3iPfnZP72zbYiAVmzru-Uw6bs_rL-NnXhCOrQDJCuhKOBjhJ4qyoDiR2pa4PWJBpQRJEhoMkDHVGNNVHdlWk7VVPB7dKdxqtSsTGPkI-8CoFrfIzwo1wmVIHqhZuUNvF&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Taste Shanghai's famous dishes in a highly recommended dining spot."
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2024-11-16",
+      "summary": "Explore more of Shanghai's historical and cultural spots.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Visit Jade Buddha Temple, Shanghai",
+          "location": {
+            "name": "Jade Buddha Temple",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2413822,
+              "longitude": 121.4450914
+            },
+            "place_id": "ChIJY2v3jN9vsjURmJotCOxoanY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWopfiUJZdU5TGjMAMH9uttU_OTCQcamCi-aycDdiT6E7Q0PXl2ttGomCy6ee8jozbWrSmB14OxDeuI4my1yGJLVwYf_vcXjtoTcdUEXc4I4BEh2PIo-9w3ahtZJsyL86y07wDn1WKWqM4_qykvmO1sQ3tfoj_dxfYkHCHwxCSV1gCMv&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Experience Buddhism at this active temple home to two stunning jade Buddha statues."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Local Noodles Restaurant, Shanghai",
+          "location": {
+            "name": "Noodles Restaurant",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2361696,
+              "longitude": 121.4802723
+            },
+            "place_id": "ChIJw84DTltwsjURU77aaEIJoTI",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqnSFwOPh8JAnXqsGgWGfDnp7AoCHpaX_XfpSoQ3uJS9V35uovOjtaReEK8HwF1WFFxOE678pjw5AXDyh1vmvqYnfCaoy41xGl8PqzU9cAtMaC4LwbIqNA401YAIl5hXamedHQQiSaE_Ey7LCKVur2Ty9DNob3FcrijeVlFlHYRv1m0&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Taste authentic Shanghai noodles at a local favorite spot."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Shanghai Propaganda Poster Art Centre, Shanghai",
+          "location": {
+            "name": "Propaganda Poster Art Centre",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2109052,
+              "longitude": 121.4261246
+            },
+            "place_id": "ChIJY1m5yFFlsjUR5f2tnuV-u9E",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqUUOrKGXXm9PeZ-paoSrZgkmyXrkVR3Vdu9deRlzIgfvLs1kRzhIyZZyBchuwwuuLsglujke5BaSRfNA1wMPRIEVArjwuKgfgdwzLqrPg8pqOkctBNVoEMi_lhYtQhQzcipy1PeQw1xvx7vGKz8MGxoTjoDD14E0Tv0ZDNAPy0CUnA&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Explore fascinating propaganda posters from China\u2019s revolutionary past."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Dinner at a Traditional Restaurant, Shanghai",
+          "location": {
+            "name": "Traditional Restaurant",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2212359,
+              "longitude": 121.4635902
+            },
+            "place_id": "ChIJMa4ROwxwsjUR46G4qL0sMZk",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoMH4B39uNejmOVaNVWmZeZhe2JAcpMn_87PmDFcB2_Lviws9FaOS74EGPuEupMIUJPzsy6dGWMbUCBqZUB95E866E3rjctfPh_YboyDTZbK9JMVevkul-eYNfULZeFvXdgMmvEzSnI5eXFTdbXWjOaGOh0sARYA89PTR3w1CIcScuU&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "End the day with a dinner featuring classic Shanghai cuisine."
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2024-11-17",
+      "summary": "Final explore day in Shanghai, indulging in more local specialties.",
+      "activities": [
+        {
+          "time": "10:00",
+          "activity_name": "Visit Tiananmen Square, Beijing",
+          "location": {
+            "name": "Tiananmen Square",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.9054895,
+              "longitude": 116.3976317
+            },
+            "place_id": "ChIJ2XRD3Jh2YzYRE1lUrcku6io",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOh7j_pOATKsLYJ1ITPCuh6gqSbskIWlfbSLel3_FNjDw68M1kS0unu-GiBgsCVEN-vocznT1qTAuLCW0Nw9-CZB5lewLjyOgl5mppobk2ED0vC3N4h3jAFOKMXcRCDK4BA772jtlcQFvXCT05mhTIDK-eqbIy2rmyFy1uKdOq87Ulk&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "A historic site known for its vast size and significance in modern Chinese history."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Peking Duck Restaurant, Beijing",
+          "location": {
+            "name": "Famous Peking Duck Restaurant",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.915462,
+              "longitude": 116.421249
+            },
+            "place_id": "ChIJMzYkES2t8TURdL08FpqY9zQ",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOZnLZ42qOrI1Ez5Npn38BiIry2QRnNhQksqH1OSH_qw55RYDpw9Yu4psevsVTnDZSO17qkYiSYCtDMBsglSLZF2KgNmAxUaJiwVjlgG25Vi-8g87fuPwNVWJ9MvtRQjgUgBnLhzA_svl2zBc9LnJwNLnllmYxF_veLw8vXW51egpxM&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Enjoy a famous Beijing dish at a renowned local eatery."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Visit Temple of Heaven, Beijing",
+          "location": {
+            "name": "Temple of Heaven",
+            "city": "Beijing",
+            "coordinates": {
+              "latitude": 39.8821803,
+              "longitude": 116.4066056
+            },
+            "place_id": "ChIJ65H_GWBN8DURag4RO0UVLDc",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNfwm2gAd-V0Gbj0JZGcpQvzdOxdiX3_x2da4Mp6R0zCKRGTGhq8TPGib55k8cGZMYsjE46RbU25RsRuRkN0cutvc7sb0hplrvXcLGobk4c52m8vd2e6jkX0NR-rou6kjRzC665ZfGDasW4XSIVkREXpEI8dftSRw-gY-A6s-1OTPJv&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Explore this magnificent complex where emperors of the Ming and Qing dynasties would pray for a good harvest."
+        },
+        {
+          "time": "19:00",
+          "activity_name": "Farewell Dinner at Top Restaurant, Shanghai",
+          "location": {
+            "name": "Top Restaurant",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.23844,
+              "longitude": 121.48979
+            },
+            "place_id": "ChIJKyuYjFdwsjURvVe38TrKPJU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOMgpjZuaWIkMARDxdeuxASKaS8o472R5knqRMB5Umkn11-OeD76yli0VOx1PjTvhuDnat0bzMTIsgcQetUjFbpDDMflqZGrG_bNxb5i6ffGUHf2e0qPy8i2QKktllHYBegRmP_RLlNK3Aluv18JmIMdMqiWgm_St8cnn9Be99H4xjE&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Enjoy a memorable farewell dinner at an iconic restaurant in Shanghai."
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "date": "2024-11-18",
+      "summary": "Leisurely activities before departure.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Relax in Century Park, Shanghai",
+          "location": {
+            "name": "Century Park",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.212134,
+              "longitude": 121.543724
+            },
+            "place_id": "ChIJuccQ7El3sjURFulj6_8THUg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOSpqPELXHvxMNsSKPfVqinC-saeZNO0irRRUI-P850lrqdmV6GxokObyFmhCKWumnFf6SDSx0hfBzcjphcyQTK_FbLv0KxOiW81HYc95ckpw0n6SoKVTLDw_oYSFdWo737AtQj-pE51pRepgK7D6P9cGttrKoia1NZw0RexnltXb1c&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Spend the morning relaxing and enjoying nature in Shanghai's largest park."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Caf\u00e9, Shanghai",
+          "location": {
+            "name": "Caf\u00e9 in Century Park",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2087526,
+              "longitude": 121.4614348
+            },
+            "place_id": "ChIJwQvXFaR6sjURTCm1PKnQNg0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPcX6Gn0cpylMo_kf_S6mkLh_ELuHFZuu28u7TXi_92PaLYkQxMtoSDg9jSSA_qZffhWNnLcRUaTbLRBNqM3eElabSc7DxBqISM7lrnZ1VRc6BmkMZ-8dxC5qJcHHb5GwzHwg0zwa9sLqNNltd2MTYILjgDs4ZQXCNGTUAR97NJFsyn&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Enjoy a light lunch at one of the caf\u00e9s located inside Century Park."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Pack and Prepare for Departure",
+          "location": {
+            "name": "Hotel",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.2409934,
+              "longitude": 121.5201153
+            },
+            "place_id": "ChIJJ-lyaiBxsjURIxGNTTz4NSA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWr7IZ0ntpoXBN4SWQKJor6MrJG686TgrLubv6O2MuWLiTrw6PncjUHCKb_l4gDiPGcuJoRAakJrYJSU0MnrbwlTxY9Ig_GmsYw4xz4Gu754xMLU5Ejg1vGJDgQyW2DSrRogNpfcAFR61i9T-euWqhV-z8YtwKJ24JiPiC-zWvFGWm8h&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Check out from the hotel and prepare for your journey back."
+        },
+        {
+          "time": "17:00",
+          "activity_name": "Departure from Shanghai",
+          "location": {
+            "name": "Shanghai Airport",
+            "city": "Shanghai",
+            "coordinates": {
+              "latitude": 31.1443439,
+              "longitude": 121.808273
+            },
+            "place_id": "ChIJwVCVdt6PrTURXzUsyXET5Mk",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrOsqIhBQDI8_1to1ntyw_9rMdjLCqiUr7OwNz9Av_b5OO9vtjL0cK_Gu_zAGfU8D_wxarRCKqhexjPiiNeDMJm-06L-gFepZAfrSSlO8UB26MDVU5Zq81UKHCpTiYqbL0cbhuxGaVo_0q1AiWCtebgwYoBVtl6FcS6_NTD3XCrU9FV&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+          },
+          "description": "Head to the airport for your departure."
         }
       ]
     }

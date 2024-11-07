@@ -161,7 +161,7 @@ const goToNextStep = () => {
 }
 
 .progress-bar {
-  background-color: #2a5ead;
+  background-color: #3f94a7;
   height: 100%;
   transition: width 0.4s ease;
 }
@@ -186,7 +186,7 @@ const goToNextStep = () => {
 #title {
   font-family: "Lobster Two", cursive;
   font-size: 2.5vw;
-  color: #2a5ead;
+  color: #3f94a7;;
 }
 
 /* Content Wrapper */
@@ -281,7 +281,7 @@ button {
 }
 
 button.selected {
-  background: linear-gradient(90deg, #44c7f4, #3dd598);;
+  background: linear-gradient(90deg, #3f94a7, #6fb3d2);;
   color: white;
 }
 
@@ -323,7 +323,7 @@ button.selected {
 }
 
 .btn-primary {
-  background: linear-gradient(90deg, #4a90e2, #8e44ad);
+  background: linear-gradient(90deg, #3f94a7, #6fb3d2);
   color: white;
   padding: 0.5rem 2rem;
   border-radius: 25px;

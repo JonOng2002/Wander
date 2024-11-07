@@ -253,7 +253,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 
 export default {
-    name: 'WelcomePage',
+    name: 'ThreeScene',
     data() {
         return {
             images: [
@@ -296,8 +296,34 @@ export default {
         const carouselTrack = ref(null);
         let globe = null;
         let renderer = null;
-        const exploreSection = ref(null);
-        const signUpSection = ref(null);
+        // const exploreSection = ref(null);
+        // const signUpSection = ref(null);
+
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 5;
+
+
+        const handleResize = () => {
+            if (threeContainer.value && renderer) { // Ensure both are valid
+                const width = threeContainer.value.clientWidth;
+                const height = threeContainer.value.clientHeight;
+
+                // Update camera
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+
+                // Update renderer
+                renderer.setSize(width, height);
+            } else {
+                console.warn("threeContainer or renderer is not initialized yet.");
+            }
+        }
+
 
         const setupIntersectionObserver = () => {
             const options = {
@@ -315,17 +341,22 @@ export default {
                             globe.children[0].material.opacity = opacity * 0.1;
                         }
                     }
-                    if (entry.target === carouselSection.value) {
-                        carouselSection.value.style.opacity = entry.intersectionRatio;
-                    }
+                    // if (entry.target === carouselSection.value) {
+                    //     carouselSection.value.style.opacity = entry.intersectionRatio;
+                    // }
                 });
             }, options);
 
             observer.observe(threeContainer.value);
-            observer.observe(carouselSection.value);
+            // observer.observe(carouselSection.value);
         };
 
         onMounted(() => {
+
+
+            window.addEventListener('resize', handleResize);
+            // Call handleResize once to ensure everything is properly sized initially
+            handleResize();
 
             window.addEventListener('load', () => {
                 document.body.offsetHeight; // Force a reflow/repaint
@@ -346,21 +377,23 @@ export default {
                 }
             });
 
-            gridTl.add("start")
-                .from(".grid-layout", {
-                    ease: "power1",
-                    scale: 3
-                }, "start")
-                .from(".column-1 .grid-image", {
-                    duration: 0.4,
-                    xPercent: i => -((i + 1) * 40 + i * 100),
-                    yPercent: i => (i + 1) * 40 + i * 100
-                }, "start")
-                .from(".column-3 .grid-image", {
-                    duration: 0.4,
-                    xPercent: i => (i + 1) * 40 + i * 100,
-                    yPercent: i => (i + 1) * 40 + i * 100
-                }, "start");
+            if (document.querySelector(".grid-section")) {
+                gridTl.add("start")
+                    .from(".grid-layout", {
+                        ease: "power1",
+                        scale: 3
+                    }, "start")
+                    .from(".column-1 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => -((i + 1) * 40 + i * 100),
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start")
+                    .from(".column-3 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => (i + 1) * 40 + i * 100,
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start");
+            }
 
             // Parallax effect for the parallax section
             gsap.from(".parallax-section", {
@@ -408,13 +441,6 @@ export default {
 
             // Scene setup (same as before)
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(
-                75,
-                window.innerWidth / window.innerHeight,
-                0.1,
-                1000
-            );
-            camera.position.z = 5;
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
@@ -423,22 +449,6 @@ export default {
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 1.5;
             threeContainer.value.appendChild(renderer.domElement);
-
-
-            const handleResize = () => {
-                const width = threeContainer.value.clientWidth;
-                const height = threeContainer.value.clientHeight;
-
-                // Update camera
-                camera.aspect = width / height;
-                camera.updateProjectionMatrix();
-
-                // Update renderer
-                renderer.setSize(width, height);
-            };
-
-            // Add resize listener
-            window.addEventListener('resize', handleResize);
 
             // Controls setup (same as before)
             const controls = new OrbitControls(camera, renderer.domElement);
@@ -526,7 +536,7 @@ export default {
 
         });
 
-        return { threeContainer, carouselSection, carouselTrack, exploreSection, signUpSection };
+        return { threeContainer, carouselSection, carouselTrack, handleResize };
     },
     mounted() {
 
@@ -538,6 +548,9 @@ export default {
     },
 
     beforeUnmount() {
+
+        window.removeEventListener('resize', this.handleResize);
+
         window.removeEventListener('load', () => {
             ScrollTrigger.refresh();
         });
@@ -552,72 +565,74 @@ export default {
         scrollToSignUp() {
             this.$refs.signUpSection.scrollIntoView({ behavior: 'smooth' });
         },
-        typeText() {
-            if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
-                if (!this.typeStatus) this.typeStatus = true;
-                this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
-                    this.charIndex
-                );
-                this.charIndex += 1;
-                setTimeout(this.typeText, this.typingSpeed);
-            } else {
-                this.typeStatus = false;
-                setTimeout(this.eraseText, this.newTextDelay);
-            }
-        },
-        eraseText() {
-            if (this.charIndex > 0) {
-                if (!this.typeStatus) this.typeStatus = true;
-                this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
-                    0,
-                    this.charIndex - 1
-                );
-                this.charIndex -= 1;
-                setTimeout(this.eraseText, this.erasingSpeed);
-            } else {
-                this.typeStatus = false;
-                this.displayTextArrayIndex += 1;
-                if (this.displayTextArrayIndex >= this.displayTextArray.length)
-                    this.displayTextArrayIndex = 0;
-                setTimeout(this.typeText, this.typingSpeed + 1000);
-            }
-        },
 
-
-        startAutoScroll() {
-            const animate = () => {
-                if (this.carouselTrack) {
-                    this.scrollPosition += this.scrollSpeed;
-                    const maxScroll = this.images.length * 100; // 100% per image
-
-                    if (this.scrollPosition >= maxScroll) {
-                        this.scrollPosition = 0;
-                    }
-
-                    this.$refs.carouselTrack.style.transform = `translateX(-${this.scrollPosition}%)`;
+            typeText() {
+                if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
+                    if (!this.typeStatus) this.typeStatus = true;
+                    this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
+                        this.charIndex
+                    );
+                    this.charIndex += 1;
+                    setTimeout(this.typeText, this.typingSpeed);
+                } else {
+                    this.typeStatus = false;
+                    setTimeout(this.eraseText, this.newTextDelay);
                 }
-                this.scrollInterval = requestAnimationFrame(animate);
-            };
-            animate();
-        },
-        stopAutoScroll() {
-            if (this.scrollInterval) {
-                cancelAnimationFrame(this.scrollInterval);
+            },
+            eraseText() {
+                if (this.charIndex > 0) {
+                    if (!this.typeStatus) this.typeStatus = true;
+                    this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
+                        0,
+                        this.charIndex - 1
+                    );
+                    this.charIndex -= 1;
+                    setTimeout(this.eraseText, this.erasingSpeed);
+                } else {
+                    this.typeStatus = false;
+                    this.displayTextArrayIndex += 1;
+                    if (this.displayTextArrayIndex >= this.displayTextArray.length)
+                        this.displayTextArrayIndex = 0;
+                    setTimeout(this.typeText, this.typingSpeed + 1000);
+                }
+            },
+
+
+            startAutoScroll() {
+                const animate = () => {
+                    if (this.carouselTrack) {
+                        this.scrollPosition += this.scrollSpeed;
+                        const maxScroll = this.images.length * 100; // 100% per image
+
+                        if (this.scrollPosition >= maxScroll) {
+                            this.scrollPosition = 0;
+                        }
+
+                        this.$refs.carouselTrack.style.transform = `translateX(-${this.scrollPosition}%)`;
+                    }
+                    this.scrollInterval = requestAnimationFrame(animate);
+                };
+                animate();
+            },
+            stopAutoScroll() {
+                if (this.scrollInterval) {
+                    cancelAnimationFrame(this.scrollInterval);
+                }
+            },
+
+    navigateTologin() {
+                // Code to navigate to login page
+                this.$router.push('/log-in'); // Assuming you're using Vue Router
+            },
+            navigateTosignup() {
+                // Code to navigate to sign up page
+                this.$router.push('/sign-up'); // Assuming you're using Vue Router
             }
+
         },
 
-        navigateTologin() {
-            // Code to navigate to login page
-            this.$router.push('/log-in'); // Assuming you're using Vue Router
-        },
-        navigateTosignup() {
-            // Code to navigate to sign up page
-            this.$router.push('/sign-up'); // Assuming you're using Vue Router
-        }
-    },
 
-
-};
+    };
 
 </script>
 
@@ -673,7 +688,7 @@ export default {
 .signup-button:hover {
     background-color: rgba(63, 148, 167, 1);
     transform: scale(1.05);
-    color:white;
+    color: white;
 }
 
 .explore-button-text p {
@@ -723,7 +738,7 @@ export default {
 
 
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1200px) {
     .three-container {
         width: 70vw;
         height: 70vh;
@@ -1108,7 +1123,7 @@ export default {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1200px) {
     h1 {
         font-size: 3rem;
         font-weight: normal;
