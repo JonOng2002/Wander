@@ -796,6 +796,8 @@ export default {
   gap: 1rem;
   margin-top: 1rem;
   margin-left: 60px;
+  margin-right: 40px;
+
   /* Adjust this value to align the dropdowns with the text */
 }
 
@@ -816,6 +818,14 @@ export default {
   position: relative;
   transition: background-color 0.3s ease;
   padding: 16px;
+}
+
+.dropdown-btn,
+.form-select {
+  width: 100%; /* Make all elements the same width */
+  padding: 16px; /* Uniform padding */
+  font-size: 1rem; /* Uniform font size */
+  box-sizing: border-box; /* Include padding and border in the element’s total width and height */
 }
 
 
@@ -1130,91 +1140,6 @@ export default {
 }
 
 
-/* <=========== BREAKPOINTS =============> */
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 items per row on medium screens */
-  }
-
-  .sticky-top {
-    padding: 0 3vw;
-  }
-
-  .overlay-text {
-    font-size: 1.2rem;
-  }
-
-  .content h1 {
-    font-size: 6rem;
-  }
-
-  .content h4 {
-    font-size: 1.5rem;
-  }
-
-  .carousel-content h1 {
-    font-size: 4rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .carousel-content h1 {
-    font-size: 3rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .dropdown-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 2x2 grid */
-    gap: 1rem;
-    /* Consistent gap between buttons */
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-    /* 1 item per row on small screens */
-  }
-
-  .sticky-top {
-    padding: 0 2vw;
-  }
-
-  .overlay-text {
-    font-size: 1rem;
-  }
-
-  .content h1 {
-    font-size: 3rem;
-  }
-
-  .content h4 {
-    font-size: 1.2rem;
-  }
-
-  .carousel-content h1 {
-    font-size: 2rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1rem;
-  }
-}
-
-
-
 /* Toast Notification Styles */
 .custom-toast {
   position: fixed;
@@ -1354,4 +1279,100 @@ export default {
     transform: scaleX(1);
   }
 }
+
+
+/* <=========== BREAKPOINTS =============> */
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
+  }
+
+  .sticky-top {
+    padding: 0 3vw;
+  }
+
+  .overlay-text {
+    font-size: 1.2rem;
+  }
+
+  .content h1 {
+    font-size: 6rem;
+  }
+
+  .content h4 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 4rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .carousel-content h1 {
+    font-size: 3rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
+  }
+
+  .sticky-top {
+    padding: 0 2vw;
+  }
+
+  .overlay-text {
+    font-size: 1rem;
+  }
+
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content h4 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
+  }
+} 
+
+
 </style>

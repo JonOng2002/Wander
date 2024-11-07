@@ -11,10 +11,9 @@
                 </div>
 
                 <!-- Popular Destinations -->
-                <div class="footer-column">
-                    <h3 class="footer-heading">Popular Destinations</h3>
+                <div class="footer-column to-hide">
+                    <h3 class="footer-heading ">Popular Destinations</h3>
                     <ul class="footer-links">
-                        <li><a href="#" @click.prevent="goToDestinationDetails('Bali')">Bali</a></li>
                         <li><a href="#" @click.prevent="goToDestinationDetails('Greece')">Greece</a></li>
                         <li><a href="#" @click.prevent="goToDestinationDetails('Japan')">Japan</a></li>
                         <li><a href="#" @click.prevent="goToDestinationDetails('Italy')">Italy</a></li>
@@ -23,7 +22,7 @@
                 </div>
 
                 <!-- Travel Interests -->
-                <div class="footer-column">
+                <div class="footer-column to-hide">
                     <h3 class="footer-heading">Discover more</h3>
                     <ul class="footer-links">
                         <li><a href="#" @click.prevent=viewDestinations>Explore Destinations</a></li>
@@ -225,15 +224,51 @@ export default {
     background-color: #378597;
 }
 
+/* @media (max-width: 991px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+} */
+@media (max-width: 1260px) {
+    .footer-container {
+        padding: 0 40px;
+    }
+
+}
+
+
+@media (max-width: 1119px) {
+    .footer-container {
+        padding: 0 40px;
+    }
+
+}
+
+
+@media (max-width: 991px) {
+    .footer-container {
+        padding: 0 40px;
+    }
+
+}
+
 @media (max-width: 768px) {
+    .footer-container {
+        padding: 0 40px;
+    }
+
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 575px) {
     .footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .to-hide {
+        display: none;
     }
 }
 </style>
