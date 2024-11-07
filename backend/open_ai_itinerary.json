@@ -1,15 +1,45 @@
 {
   "country": "Italy",
-  "itinerary_summary": "Explore the vibrant city of Milan over three days, immersing yourself in its art, culture, and culinary delights while discovering hidden gems and enjoying beach activities nearby.",
+  "itinerary_summary": "A solo trip to Milan, focusing on nightlife, entertainment, and must-see attractions, blending cultural experiences with exciting evenings.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-06",
-      "summary": "Arrive in Milan and kick off your adventure by exploring iconic sites and sampling local cuisine.",
+      "date": "2024-11-10",
+      "summary": "Explore the historic and cultural highlights of Milan, starting with iconic landmarks and ending the day with stunning nightlife.",
       "activities": [
         {
-          "time": "10:00",
-          "activity_name": "Galleria Vittorio Emanuele II",
+          "time": "09:00",
+          "activity_name": "Visit the Duomo di Milano (Milan Cathedral)",
+          "location": {
+            "name": "Duomo di Milano",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.464211,
+              "longitude": 9.191383
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Marvel at the stunning Gothic architecture and climb to the rooftop for panoramic views of the city."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch at Luini Panzerotti",
+          "location": {
+            "name": "Luini Panzerotti",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.463234,
+              "longitude": 9.187365
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Savor the famous panzerotti, a delicious pastry filled with mozzarella and tomato, from this iconic eatery."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Visit Galleria Vittorio Emanuele II",
           "location": {
             "name": "Galleria Vittorio Emanuele II",
             "city": "Milan",
@@ -18,161 +48,225 @@
               "longitude": 9.1899401
             },
             "place_id": "ChIJw7aG_QY1eUcRFtQJWKmcCyc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO8zkLOVzsvV3NPTsRqWTbMi65-eSzCXRKeZY4yqqRg7NfwNiBtkYR4iak-n0Czxg3vDDufqjkas8xrVNeF0XslczBaHW_rIqoVF3wSRx7DpE9HG-eEidErm1yjXa4IWgvCT2cniWasmRwYEhuO0leBTqy1oqtw5gHtVL2RvP29Do0E"
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO8zkLOVzsvV3NPTsRqWTbMi65-eSzCXRKeZY4yqqRg7NfwNiBtkYR4iak-n0Czxg3vDDufqjkas8xrVNeF0XslczBaHW_rIqoVF3wSRx7DpE9HG-eEidErm1yjXa4IWgvCT2cniWasmRwYEhuO0leBTqy1oqtw5gHtVL2RvP29Do0E&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Stroll through this stunning shopping gallery featuring high-end boutiques and exquisite architecture."
+          "description": "Stroll through the stunning shopping gallery, admiring the architecture, shops, and cafes."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch at Luini Panzerotti, Milan",
+          "time": "20:00",
+          "activity_name": "Dinner and cocktails at Terrazza Aperol",
           "location": {
-            "name": "Luini Panzerotti",
-            "city": "Milan",
-            "coordinates": {},
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Indulge in delicious panzerotti, a local specialty, at this popular eatery known for its savory pastries."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Palazzo Reale di Milano",
-          "location": {
-            "name": "Palazzo Reale di Milano",
+            "name": "Terrazza Aperol",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.46313139999999,
-              "longitude": 9.191156899999998
+              "latitude": 45.458068,
+              "longitude": 9.195001
             },
-            "place_id": "ChIJoXV1xa7GhkcRgWMIumOeV90",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOWkv7lsJixu69xzFUJ8ScxeU6Dv9Ods2-FFWYXdM2sWNGmKBeDF9HbvMElF1CIXP1tzLTexhrThSEEfOywdNx3Jynu4vi07vwvbtNpyhZ2qhEAgk-3woFOnif9wZ2ynCpLoaTDZDuTVarfecypOYFUqR06H8LFlOtCW8iGXQs8Dh_-&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
-          },
-          "description": "Explore the grand rooms and stunning art exhibitions of this historic royal palace."
-        },
-        {
-          "time": "16:00",
-          "activity_name": "Visit Sforza Castle, Milan",
-          "location": {
-            "name": "Castello Sforzesco",
-            "city": "Milan",
-            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Discover the rich history of Milan at this impressive castle, which houses several museums and collections."
+          "description": "Enjoy delicious Italian cuisine with a view of the Duomo, followed by Aperol spritz cocktails."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-07",
-      "summary": "Take a day enjoying Milan's cultural gems and hidden spots, with beach activities on the agenda.",
+      "date": "2024-11-11",
+      "summary": "Immerse in Milan's vibrant culture with a day dedicated to art, history, and nightlife entertainment.",
       "activities": [
         {
-          "time": "10:00",
-          "activity_name": "Leonardo da Vinci Museum of Science and Technology",
+          "time": "09:30",
+          "activity_name": "Visit Castello Sforzesco (Sforza Castle)",
           "location": {
-            "name": "Leonardo da Vinci Museum of Science and Technology",
+            "name": "Castello Sforzesco",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.462808,
-              "longitude": 9.1707478
+              "latitude": 45.471533,
+              "longitude": 9.179812
             },
-            "place_id": "ChIJm-5swlnBhkcRkuvlGcqPRXI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOT1aZX86d_yZnXqlECyD_1QB_smSVY9lDywjUeLmVPuaYecAJ6Xe2RorgdhI0t48jzVOgm2LooDQqrZvuxEfS7fAjTY-Q_Cl9yScyUgWvAPMMxlXI-FQAGIE6mo8kFX6UhastcH4ahvUGLlIha1An8Yeo1BVKs_Fs0VKCqpYXjqNjJ&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Enjoy innovative exhibits focused on science and Leonardo's contributions to technology."
+          "description": "Explore this historic castle with its beautiful gardens and museums."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch at Ristorante Da Giacomo, Milan",
+          "time": "12:30",
+          "activity_name": "Lunch at Eataly Smeraldo",
           "location": {
-            "name": "Ristorante Da Giacomo",
+            "name": "Eataly Smeraldo",
             "city": "Milan",
-            "coordinates": {},
+            "coordinates": {
+              "latitude": 45.478305,
+              "longitude": 9.189425
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Dine at this classic Italian restaurant known for its fantastic seafood and elegant atmosphere."
+          "description": "Indulge in a variety of gourmet Italian dishes and local specialties in this renowned food market."
         },
         {
-          "time": "14:00",
-          "activity_name": "Explore Brera District, Milan",
+          "time": "15:00",
+          "activity_name": "Visit Pinacoteca di Brera",
           "location": {
-            "name": "Brera District",
+            "name": "Pinacoteca di Brera",
             "city": "Milan",
-            "coordinates": {},
+            "coordinates": {
+              "latitude": 45.478843,
+              "longitude": 9.188974
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Wander through this artistic district filled with galleries, boutiques, and charming caf\u00e9s."
+          "description": "Admire masterpieces by Italian artists in this famous art gallery."
         },
         {
-          "time": "17:00",
-          "activity_name": "Day Trip to Varenna, Lake Como",
+          "time": "21:00",
+          "activity_name": "Experience Milan\u2019s nightlife at Just Cavalli Club",
           "location": {
-            "name": "Varenna, Lake Como",
-            "city": "Varenna",
-            "coordinates": {},
+            "name": "Just Cavalli Club",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.479033,
+              "longitude": 9.14658
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Take a scenic train ride to Varenna and explore the picturesque lakeside town, perfect for beach activities."
+          "description": "Dance the night away at this luxurious nightclub known for its vibrant atmosphere and famous DJs."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-11-08",
-      "summary": "Wrap up your Milan getaway with visits to local markets and a relaxing day by the beach.",
+      "date": "2024-11-12",
+      "summary": "Enjoy a mix of modern attractions and cultural experiences while deepening your exploration of Milan.",
       "activities": [
         {
-          "time": "09:00",
-          "activity_name": "Breakfast at Pav\u00e9, Milan",
+          "time": "10:00",
+          "activity_name": "Visit Santa Maria delle Grazie (The Last Supper)",
           "location": {
-            "name": "Pav\u00e9",
+            "name": "Santa Maria delle Grazie",
             "city": "Milan",
-            "coordinates": {},
+            "coordinates": {
+              "latitude": 45.466308,
+              "longitude": 9.17841
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Start your day with delicious pastries and coffee at this hip bakery."
+          "description": "See Leonardo da Vinci's iconic painting, 'The Last Supper,' housed in this beautiful church."
         },
         {
-          "time": "11:00",
-          "activity_name": "Visit Mercato Centrale Milano",
+          "time": "13:00",
+          "activity_name": "Lunch at Pizzeria Spontini",
           "location": {
-            "name": "Mercato Centrale Milan",
+            "name": "Pizzeria Spontini",
             "city": "Milan",
-            "coordinates": {},
+            "coordinates": {
+              "latitude": 45.477808,
+              "longitude": 9.197631
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore this vibrant market featuring local produce, gourmet products, and diverse food stalls."
+          "description": "Try the famous thick crust pizza at this iconic local pizzeria."
         },
         {
-          "time": "14:00",
-          "activity_name": "Relax at I Due Pini Beach",
+          "time": "15:00",
+          "activity_name": "Stroll through Parco Sempione",
           "location": {
-            "name": "I Due Pini",
-            "city": "Lido di Jesolo",
-            "coordinates": {},
+            "name": "Parco Sempione",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.471029,
+              "longitude": 9.167353
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Head to the beach for some relaxation and enjoy sunbathing on this beautiful Lido."
+          "description": "Relax in this beautiful park and marvel at the Arch of Peace."
         },
         {
-          "time": "18:00",
-          "activity_name": "Dinner at Trattoria Milanese, Milan",
+          "time": "20:00",
+          "activity_name": "Dinner at Ristorante Da Giacomo",
           "location": {
-            "name": "Trattoria Milanese",
+            "name": "Ristorante Da Giacomo",
             "city": "Milan",
-            "coordinates": {},
+            "coordinates": {
+              "latitude": 45.46504,
+              "longitude": 9.197207
+            },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Wrap up your trip with a hearty dinner at this traditional trattoria known for Milanese cuisine."
+          "description": "Savor gourmet Italian dishes at this stylish restaurant famous for its seafood."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-13",
+      "summary": "Wrap up your Milan adventure with some last-minute sightseeing and shopping before your departure.",
+      "activities": [
+        {
+          "time": "10:00",
+          "activity_name": "Visit the Museo del Novecento",
+          "location": {
+            "name": "Museo del Novecento",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.463905,
+              "longitude": 9.189366
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore a collection of 20th-century art in this modern museum."
+        },
+        {
+          "time": "13:00",
+          "activity_name": "Lunch at Panzerotti Luini",
+          "location": {
+            "name": "Panzerotti Luini",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.463234,
+              "longitude": 9.187365
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Return for another delicious panzerotti, this time with different fillings."
+        },
+        {
+          "time": "15:00",
+          "activity_name": "Shopping at Corso Buenos Aires",
+          "location": {
+            "name": "Corso Buenos Aires",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.463886,
+              "longitude": 9.20947
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Go shopping on one of Milan's most famous shopping streets, featuring a mix of high-street and luxury brands."
+        },
+        {
+          "time": "20:00",
+          "activity_name": "Cocktails at Spritz Navigli",
+          "location": {
+            "name": "Spritz Navigli",
+            "city": "Milan",
+            "coordinates": {
+              "latitude": 45.456889,
+              "longitude": 9.18522
+            },
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy cocktails along the canals while soaking in the lively atmosphere of the Navigli district."
         }
       ]
     }

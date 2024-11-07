@@ -45,14 +45,14 @@
 
           <hr>
 
-          
+
 
           <!-- Location Details -->
           <div class="card-body py-0">
             <h5 class="card-title">Location</h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
-              
+
             </ul>
 
             <!-- Map Toggle Button and Map -->
@@ -65,21 +65,20 @@
                 <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
                   :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }"
                   :zoom="15">
-                  <CustomMarker
-                :key="index"
-                :options="{
-                  position: {
-                    lat: locationInfo?.coordinates?.latitude || 0,
-                    lng: locationInfo?.coordinates?.longitude || 0,
-                  },
-                  anchorPoint: 'BOTTOM_CENTER',
-                  
-                }">
-                 <div style="text-align: center">
-        <div style="font-size: 1.125rem">{{ locationInfo.place_name }}</div>
-        <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="1px" height="1px" style="margin-top: 8px" />
-        </div>
-              </CustomMarker>
+                  <CustomMarker :key="index" :options="{
+                    position: {
+                      lat: locationInfo?.coordinates?.latitude || 0,
+                      lng: locationInfo?.coordinates?.longitude || 0,
+                    },
+                    anchorPoint: 'BOTTOM_CENTER',
+
+                  }">
+                    <div style="text-align: center">
+                      <div style="font-size: 1.125rem">{{ locationInfo.place_name }}</div>
+                      <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="1px" height="1px"
+                        style="margin-top: 8px" />
+                    </div>
+                  </CustomMarker>
                 </GoogleMap>
               </div>
             </transition>
@@ -89,11 +88,12 @@
 
           <!-- Save Place Button -->
           <div class="card-body pt-0">
-            <save-place-button class='btn btn-dark' @place-saved="handlePlaceSaved" :placeName="locationInfo.place_name"
+            <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved" :placeId="locationInfo.place_id"
+              :isAlreadySaved="checkIfPlaceIsSaved(locationInfo)" :placeName="locationInfo.place_name"
               :country="locationInfo.country" :city="locationInfo.city" :latitude="locationInfo.coordinates.latitude"
               :longitude="locationInfo.coordinates.longitude" :placePng="locationInfo.place_png" :userId="userId"
-              :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces" :vicinity="locationInfo.vicinity">
-            </save-place-button>
+              :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces"
+              :vicinity="locationInfo.vicinity"></save-place-button>
           </div>
 
         </div>
@@ -110,75 +110,77 @@
     <br>
 
     <!-- Related Places Section -->
-    <div v-if="relatedPlaces.length" >
+    <div v-if="relatedPlaces.length">
       <p class="related-header">Related Places</p>
-  <p class="related-places-header">You might also be interested in...</p>
-  <ul style="list-style-type: none; padding: 0; margin: 0;">
-    <li v-for="place in relatedPlaces" :key="place.place_name"
-      :id="place.place_name.replace(/\s+/g, '-').toLowerCase()" class="card mx-auto mb-5" style="max-width: 1000px;">
-      
-      <div class="row g-0"> <!-- Use Bootstrap's row class for horizontal alignment -->
-        <!-- Image Section -->
-        <div class="col-md-6"> <!-- Adjust column size as needed -->
-          <img :src="place.place_png" class="img-fluid rounded-start main-img" alt="Image of {{ place.place_name }}"
-            @error="handleImageError" style="height: 100%;  object-fit: cover;"> <!-- Ensure image fits well -->
-        </div>
-        
-        <!-- Content Section -->
-        <div class="col-md-6"> <!-- Adjust column size as needed -->
-          <div class="card-body">
-            <h5 class="card-title">{{ place.place_name }}</h5>
-            <p class="card-text">{{ place.location_summary }}</p>
-            <hr>
-            <h5 class="card-title">Location</h5>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
-              
-            </ul>
-            <!-- Related Places Map Section -->
-            <button @click="place.mapVisible = !place.mapVisible" class="btn btn-dark mb-3">
-              {{ place.mapVisible ? 'Hide Map' : 'Show Map' }}
-            </button>
-            <transition name="map">
-              <div v-if="place.mapVisible" id="location-map" class="map">
-                <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
-                  :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
-                  <CustomMarker
-                :key="index"
-                :options="{
-                  position: {
-                    lat: place.coordinates?.latitude || 0,
-                    lng: place.coordinates?.longitude || 0,
-                  },
-                  anchorPoint: 'BOTTOM_CENTER',
-                }">
-                <div style="text-align: center">
-        <div style="font-size: 1.125rem">{{ place.place_name }}</div>
-        <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="10" height="10" style="margin-top: 8px" />
-        </div>
-              </CustomMarker>
-                </GoogleMap>
+      <p class="related-places-header">You might also be interested in...</p>
+      <ul style="list-style-type: none; padding: 0; margin: 0;">
+        <li v-for="place in relatedPlaces" :key="place.place_name"
+          :id="place.place_name.replace(/\s+/g, '-').toLowerCase()" class="card mx-auto mb-5"
+          style="max-width: 1000px;">
+
+          <div class="row g-0"> <!-- Use Bootstrap's row class for horizontal alignment -->
+            <!-- Image Section -->
+            <div class="col-md-6"> <!-- Adjust column size as needed -->
+              <img :src="place.place_png" class="img-fluid rounded-start main-img" alt="Image of {{ place.place_name }}"
+                @error="handleImageError" style="height: 100%;  object-fit: cover;"> <!-- Ensure image fits well -->
+            </div>
+
+            <!-- Content Section -->
+            <div class="col-md-6"> <!-- Adjust column size as needed -->
+              <div class="card-body">
+                <h5 class="card-title">{{ place.place_name }}</h5>
+                <p class="card-text">{{ place.location_summary }}</p>
+                <hr>
+                <h5 class="card-title">Location</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
+
+                </ul>
+                <!-- Related Places Map Section -->
+                <button @click="place.mapVisible = !place.mapVisible" class="btn btn-dark mb-3">
+                  {{ place.mapVisible ? 'Hide Map' : 'Show Map' }}
+                </button>
+                <transition name="map">
+                  <div v-if="place.mapVisible" id="location-map" class="map">
+                    <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
+                      :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
+                      <CustomMarker :key="index" :options="{
+                        position: {
+                          lat: place.coordinates?.latitude || 0,
+                          lng: place.coordinates?.longitude || 0,
+                        },
+                        anchorPoint: 'BOTTOM_CENTER',
+                      }">
+                        <div style="text-align: center">
+                          <div style="font-size: 1.125rem">{{ place.place_name }}</div>
+                          <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="10" height="10"
+                            style="margin-top: 8px" />
+                        </div>
+                      </CustomMarker>
+                    </GoogleMap>
+                  </div>
+                </transition>
+                <hr>
+                <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved" :placeName="place.place_name"
+                  :country="place.country" :city="place.city" :latitude="place.coordinates.latitude"
+                  :longitude="place.coordinates.longitude" :placePng="place.place_png" :userId="userId"
+                  :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces"
+                  :vicinity="place.vicinity">
+                </save-place-button>
+                
               </div>
-            </transition>
-            <hr>
-            <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved" :placeName="place.place_name"
-              :country="place.country" :city="place.city" :latitude="place.coordinates.latitude"
-              :longitude="place.coordinates.longitude" :placePng="place.place_png" :userId="userId"
-              :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces" :vicinity="place.vicinity">
-            </save-place-button>
+            </div>
           </div>
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
+        </li>
+      </ul>
+    </div>
 
   </div>
 </template>
 
 <script>
 import SavePlaceButton from '@/components/SavePlaceButton.vue';
-import { GoogleMap, CustomMarker} from 'vue3-google-map';
+import { GoogleMap, CustomMarker } from 'vue3-google-map';
 
 
 
@@ -198,7 +200,7 @@ export default {
       default: '',
     },
     savedPlaces: Array,
-    
+
   },
 
   emits: ['component-mounted'],
@@ -237,10 +239,10 @@ export default {
       if (targetSection) {
         const offsetTop = targetSection.getBoundingClientRect().top + window.scrollY - 100; // Adjust -100 as needed
 
-    window.scrollTo({
-      top: offsetTop,
-      behavior: 'smooth',
-    });
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth',
+        });
       }
     },
 
@@ -402,7 +404,9 @@ html {
 
 }
 
-.related-header, .extracted-header, .video-header{
+.related-header,
+.extracted-header,
+.video-header {
   font-weight: bold;
   text-align: center;
   font-size: smaller;
@@ -514,19 +518,22 @@ li {
   /* Changes cursor to hand on hover */
 }
 
-.card-text{
+.card-text {
   font-weight: normal;
   font-size: large;
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .card {
-    width: 90%; /* Allow full-width for smaller screens */
+    width: 90%;
+    /* Allow full-width for smaller screens */
   }
 }
 
 /* Adjust other related styles if necessary */
-.main-img{
-  aspect-ratio: 16 / 9; /* Set the desired ratio, e.g., 16:9 */
+.main-img {
+  aspect-ratio: 16 / 9;
+  /* Set the desired ratio, e.g., 16:9 */
   width: 100%;
   height: auto;
   object-fit: cover;

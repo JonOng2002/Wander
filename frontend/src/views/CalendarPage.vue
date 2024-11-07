@@ -25,7 +25,7 @@
         <h2 class="calendar-header">Select Your Travel Dates</h2>
 <p class="calendar-subtext">Choose a date range to plan your next adventure.</p>
         <VDatePicker transparent borderless expanded v-model.range="range" :columns="columns" :min-date="today" :disabled-dates="disablePastDates"
-          :select-attribute="selectDragAttribute">
+          :select-attribute="selectDragAttribute" :color="selectedColor">
           <template #day-popover="{ format }">
             <div class="text-sm">
               {{ format(dragValue ? dragValue.start : range.start, 'MMM D') }} -
@@ -65,6 +65,7 @@ today.setDate(today.getDate() - 1);
 
 const disablePastDates = ref([{ start: null, end: today }]);
 
+const selectedColor = ref('teal');
 
 const range = ref({
   start: new Date(),
@@ -114,6 +115,19 @@ onMounted(async () => {
 
 <style scoped>
 /* Progress Bar */
+
+.vc-teal {
+  --vc-accent-50: #e0f2f5;   /* Lightest shade */
+  --vc-accent-100: #c2e6ec;
+  --vc-accent-200: #a3d9e2;
+  --vc-accent-300: #85cdd9;
+  --vc-accent-400: #66c0cf;
+  --vc-accent-500: #3f94a7;   /* Base color */
+  --vc-accent-600: #357f8e;
+  --vc-accent-700: #2a6a75;
+  --vc-accent-800: #20555c;
+  --vc-accent-900: #163043;   /* Darkest shade */
+}
 .progress-container {
   width: 100%;
   height: 10px;
@@ -122,7 +136,7 @@ onMounted(async () => {
 }
 
 .progress-bar {
-  background-color: #2a5ead;
+  background-color: #3f94a7;
   height: 100%;
   transition: width 0.4s ease;
 }
@@ -147,7 +161,7 @@ onMounted(async () => {
 #title {
   font-family: "Lobster Two", cursive;
   font-size: 2.5vw;
-  color: #2a5ead;
+  color: #3f94a7;
 }
 
 /* Content Wrapper */
@@ -252,7 +266,7 @@ onMounted(async () => {
 #startDate,
 #endDate {
   font-weight: bold;
-  color: #2a5ead;
+  color: #3f94a7;
   padding: 0rem .5rem 0rem .5rem;
 }
 
@@ -281,13 +295,14 @@ onMounted(async () => {
   color: #333;
 }
 
+
 .btn-back:hover {
   border-color: #888;
 }
 
 /* Next Button - Gradient Background */
 .btn-primary {
-  background: linear-gradient(90deg, #4a90e2, #8e44ad);
+  background: linear-gradient(90deg, #3f94a7, #6fb3d2);;
   height: 50px;
   color: white;
   padding: 0.5rem 3rem;
@@ -337,7 +352,7 @@ onMounted(async () => {
     justify-content: center;
   }
   .btn-primary{
-    background: linear-gradient(90deg, #4a90e2, #8e44ad); /* Gradient colors */
+    background: linear-gradient(90deg, #3f94a7, #6fb3d2); /* Gradient colors */
   color: white;
   padding: 0.75rem 2rem;
   border: none;

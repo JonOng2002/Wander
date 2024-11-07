@@ -18,7 +18,7 @@
           <router-link to="/destinations" class="nav-link">Destinations</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/about" class="nav-link">About</router-link>
+          <router-link to="/itineraryBuilder" class="nav-link">Build Itinerary</router-link>
         </li>
         <!-- <li class="nav-item me-4">
           <router-link to="/myitinerary" class="nav-link">middle itinerary</router-link>
