@@ -276,7 +276,6 @@ export default {
             coordinates: place.geometry?.location || { lat: 0, lng: 0 },
             rating: place.rating || 0,
             user_ratings_total: place.user_ratings_total || 0,
-            open_now: place.opening_hours?.open_now || false,
             city: name,
           }));
 
@@ -768,13 +767,12 @@ export default {
             coordinates: attraction.coordinates,
             rating: attraction.rating || 0,
             user_ratings_total: attraction.user_ratings_total || 0,
-            open_now: attraction.open_now || false,
             city: attraction.city || "Unknown City",
             country: this.country || "Unknown Country",
             source: "google_places",
             summary: "Google Places Summary",
             activities: [],
-            timestamp: new Date(),
+          
           };
 
           try {

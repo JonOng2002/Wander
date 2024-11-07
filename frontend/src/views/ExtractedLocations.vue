@@ -1,15 +1,28 @@
 <template>
   <div ref="extractedLocationsRoot" class="page-fade-in">
-    <hr>
+    <hr />
 
-    <p class="header-main">Discovered from the Travel Clips!</p>
+    <p class="header-main">Discovered From Your Travel Clips!</p>
+    
     <!-- Row of Location Images -->
     <div class="row mb-4 mx-4">
-      <div v-for="(place, index) in allImages" :key="index" class="col-3">
-        <!-- Add cursor-pointer class to make cursor appear as a hand -->
-        <div class="card h-100 position-relative cursor-pointer" @click="scrollToCard(place.place_name)">
-          <img :src="place.place_png" @error="handleImageError" class="card-img-top w-100 h-100 card-href"
-            :alt="`Image of ${place.place_name}`" style="object-fit: cover;">
+      <div
+        v-for="(place, index) in allImages"
+        :key="place.place_id || index"
+        class="col-3"
+      >
+        <!-- Clickable Card -->
+        <div
+          class="card h-100 position-relative cursor-pointer"
+          @click="scrollToCard(place.place_name)"
+        >
+          <img
+            :src="place.place_png"
+            @error="handleImageError"
+            class="card-img-top w-100 h-100 card-href"
+            :alt="`Image of ${place.place_name}`"
+            style="object-fit: cover;"
+          />
           <div class="overlay text-center">
             <h5 class="card-title">{{ place.place_name }}</h5>
           </div>
@@ -17,30 +30,41 @@
       </div>
     </div>
 
-
     <p class="header-interested mb-5 mt-2">Interested? Scroll down for more info</p>
-    <br><br>
+    <br /><br />
 
     <p class="video-header">From your video</p>
     <p class="header-main">Main location</p>
 
-
-    <!-- Horizontal Location Information Card -->
-    <div v-if="locationInfo" :id="locationInfo.place_name.replace(/\s+/g, '-').toLowerCase() || 'main-location'"
-      class="card mb-5 mx-auto" style="max-width: 1000px;">
+    <!-- Main Location Information Card -->
+    <div
+      v-if="processedLocationInfo"
+      :id="processedLocationInfo.place_name.replace(/\s+/g, '-').toLowerCase() || 'main-location'"
+      class="card mb-5 mx-auto"
+      style="max-width: 1000px;"
+    >
       <div class="row g-0">
-
         <!-- Image Section -->
         <div class="col-md-6">
-          <img :src="locationInfo.place_png" @error="handleImageError" class="img-fluid rounded-start main-img"
-            alt="Image of {{ locationInfo.place_name }}" style="height: 100%; object-fit: cover;">
+          <img
+            :src="processedLocationInfo.place_png"
+            @error="handleImageError"
+            class="img-fluid rounded-start main-img"
+            :alt="`Image of ${processedLocationInfo.place_name}`"
+            style="height: 100%; object-fit: cover;"
+          />
         </div>
 
         <!-- Content Section -->
         <div class="col-md-6">
           <div class="card-body pb-0">
-            <h5 class="card-title">{{ locationInfo.place_name }}</h5>
-            <p class="card-text">{{ locationInfo.location_summary }}</p>
+            <h5 class="card-title">{{ processedLocationInfo.place_name }}</h5>
+            <p class="card-text">{{ processedLocationInfo.location_summary }}</p>
+            <div class="d-flex align-items-center justify-content-center">
+              <span>Rating: </span>&nbsp;
+              <StarRating :rating="processedLocationInfo.rating" />
+              <span class="card-rating ms-2">({{ processedLocationInfo.rating.toFixed(1) }})</span>
+            </div>
           </div>
 
           <hr>
@@ -51,32 +75,40 @@
           <div class="card-body py-0">
             <h5 class="card-title">Location</h5>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{ locationInfo.city }}, {{ locationInfo.country }}</li>
-
+              <li class="list-group-item">{{ processedLocationInfo.city }}, {{ processedLocationInfo.country }}</li>
             </ul>
 
             <!-- Map Toggle Button and Map -->
-            <button @click="mainMapVisible = !mainMapVisible" class="btn btn-dark mb-3">
+            <button @click="toggleMainMap" class="btn btn-dark mb-3">
               {{ mainMapVisible ? 'Hide Map' : 'Show Map' }}
             </button>
 
             <transition name="map">
               <div v-if="mainMapVisible" id="location-map" class="map">
-                <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
-                  :center="{ lat: locationInfo.coordinates.latitude, lng: locationInfo.coordinates.longitude }"
-                  :zoom="15">
-                  <CustomMarker :key="index" :options="{
-                    position: {
-                      lat: locationInfo?.coordinates?.latitude || 0,
-                      lng: locationInfo?.coordinates?.longitude || 0,
-                    },
-                    anchorPoint: 'BOTTOM_CENTER',
-
-                  }">
+                <GoogleMap
+                  :api-promise="apiPromise"
+                  style="width: 100%; height: 500px"
+                  :center="{ lat: processedLocationInfo.coordinates.latitude, lng: processedLocationInfo.coordinates.longitude }"
+                  :zoom="15"
+                >
+                  <CustomMarker
+                    :key="processedLocationInfo.place_id"
+                    :options="{
+                      position: {
+                        lat: processedLocationInfo.coordinates.latitude || 0,
+                        lng: processedLocationInfo.coordinates.longitude || 0,
+                      },
+                      anchorPoint: 'BOTTOM_CENTER',
+                    }"
+                  >
                     <div style="text-align: center">
-                      <div style="font-size: 1.125rem">{{ locationInfo.place_name }}</div>
-                      <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="1px" height="1px"
-                        style="margin-top: 8px" />
+                      <div style="font-size: 1.125rem">{{ processedLocationInfo.place_name }}</div>
+                      <img
+                        src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
+                        width="1px"
+                        height="1px"
+                        style="margin-top: 8px"
+                      />
                     </div>
                   </CustomMarker>
                 </GoogleMap>
@@ -84,90 +116,114 @@
             </transition>
           </div>
 
-          <hr>
+          <hr />
 
           <!-- Save Place Button -->
           <div class="card-body pt-0">
-            <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved" :placeId="locationInfo.place_id"
-              :isAlreadySaved="checkIfPlaceIsSaved(locationInfo)" :placeName="locationInfo.place_name"
-              :country="locationInfo.country" :city="locationInfo.city" :latitude="locationInfo.coordinates.latitude"
-              :longitude="locationInfo.coordinates.longitude" :placePng="locationInfo.place_png" :userId="userId"
-              :activities="locationInfo.activities" :summary="locationInfo.location_summary" :savedPlaces="savedPlaces"
-              :vicinity="locationInfo.vicinity"></save-place-button>
+            <save-place-button
+              class="btn btn-dark"
+              :class="{ 'saved': isPlaceSaved(processedLocationInfo.place_id) }"
+              :placeId="processedLocationInfo.place_id"
+              :isAlreadySaved="isPlaceSaved(processedLocationInfo.place_id)"
+              @save-place="savePlaceToFirebase"
+            >
+              {{ isPlaceSaved(processedLocationInfo.place_id) ? 'Saved' : 'Add to Saved Places' }}
+            </save-place-button>
           </div>
-
         </div>
       </div>
     </div>
 
-
-    <!-- Popup for confirmation -->
-    <div v-if="showPopup" class="popup">
-      <p>Added to saved places!</p>
-    </div>
-
-    <br>
-    <br>
+    <br /><br />
 
     <!-- Related Places Section -->
-    <div v-if="relatedPlaces.length">
+    <div v-if="processedRelatedPlaces.length">
       <p class="related-header">Related Places</p>
       <p class="related-places-header">You might also be interested in...</p>
       <ul style="list-style-type: none; padding: 0; margin: 0;">
-        <li v-for="place in relatedPlaces" :key="place.place_name"
-          :id="place.place_name.replace(/\s+/g, '-').toLowerCase()" class="card mx-auto mb-5"
-          style="max-width: 1000px;">
-
-          <div class="row g-0"> <!-- Use Bootstrap's row class for horizontal alignment -->
+        <li
+          v-for="place in processedRelatedPlaces"
+          :key="place.place_id"
+          :id="place.place_name.replace(/\s+/g, '-').toLowerCase()"
+          class="card mx-auto mb-5"
+          style="max-width: 1000px;"
+        >
+          <div class="row g-0">
             <!-- Image Section -->
-            <div class="col-md-6"> <!-- Adjust column size as needed -->
-              <img :src="place.place_png" class="img-fluid rounded-start main-img" alt="Image of {{ place.place_name }}"
-                @error="handleImageError" style="height: 100%;  object-fit: cover;"> <!-- Ensure image fits well -->
+            <div class="col-md-6">
+              <img
+                :src="place.place_png"
+                class="img-fluid rounded-start main-img"
+                :alt="`Image of ${place.place_name}`"
+                @error="handleImageError"
+                style="height: 100%; object-fit: cover;"
+              />
             </div>
 
             <!-- Content Section -->
-            <div class="col-md-6"> <!-- Adjust column size as needed -->
+            <div class="col-md-6">
               <div class="card-body">
                 <h5 class="card-title">{{ place.place_name }}</h5>
                 <p class="card-text">{{ place.location_summary }}</p>
-                <hr>
+                <div class="d-flex align-items-center justify-content-center">
+                  <span>Rating: </span>&nbsp;
+                  <StarRating :rating="place.rating" />
+                  <span class="card-rating ms-2">({{ place.rating.toFixed(1) }})</span>
+                </div>
+                <hr />
                 <h5 class="card-title">Location</h5>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">{{ place.city }}, {{ place.country }}</li>
-
                 </ul>
-                <!-- Related Places Map Section -->
-                <button @click="place.mapVisible = !place.mapVisible" class="btn btn-dark mb-3">
+                
+                <!-- Related Place Map Toggle and Map -->
+                <button @click="togglePlaceMap(place)" class="btn btn-dark mb-3">
                   {{ place.mapVisible ? 'Hide Map' : 'Show Map' }}
                 </button>
+                
                 <transition name="map">
                   <div v-if="place.mapVisible" id="location-map" class="map">
-                    <GoogleMap :api-promise="apiPromise" style="width: 100%; height: 500px"
-                      :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }" :zoom="15">
-                      <CustomMarker :key="index" :options="{
-                        position: {
-                          lat: place.coordinates?.latitude || 0,
-                          lng: place.coordinates?.longitude || 0,
-                        },
-                        anchorPoint: 'BOTTOM_CENTER',
-                      }">
+                    <GoogleMap
+                      :api-promise="apiPromise"
+                      style="width: 100%; height: 500px"
+                      :center="{ lat: place.coordinates.latitude, lng: place.coordinates.longitude }"
+                      :zoom="15"
+                    >
+                      <CustomMarker
+                        :key="place.place_id"
+                        :options="{
+                          position: {
+                            lat: place.coordinates.latitude || 0,
+                            lng: place.coordinates.longitude || 0,
+                          },
+                          anchorPoint: 'BOTTOM_CENTER',
+                        }"
+                      >
                         <div style="text-align: center">
                           <div style="font-size: 1.125rem">{{ place.place_name }}</div>
-                          <img src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg" width="10" height="10"
-                            style="margin-top: 8px" />
+                          <img
+                            src="https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
+                            width="10"
+                            height="10"
+                            style="margin-top: 8px"
+                          />
                         </div>
                       </CustomMarker>
                     </GoogleMap>
                   </div>
                 </transition>
-                <hr>
-                <save-place-button class="btn btn-dark" @place-saved="handlePlaceSaved" :placeName="place.place_name"
-                  :country="place.country" :city="place.city" :latitude="place.coordinates.latitude"
-                  :longitude="place.coordinates.longitude" :placePng="place.place_png" :userId="userId"
-                  :activities="place.activities" :summary="place.location_summary" :savedPlaces="savedPlaces"
-                  :vicinity="place.vicinity">
-                </save-place-button>
+                <hr />
                 
+                <!-- Save Place Button -->
+                <save-place-button
+                  class="btn btn-dark"
+                  :class="{ 'saved': isPlaceSaved(place.place_id) }"
+                  :placeId="place.place_id"
+                  :isAlreadySaved="isPlaceSaved(place.place_id)"
+                  @save-place="savePlaceToFirebase"
+                >
+                  {{ isPlaceSaved(place.place_id) ? 'Saved' : 'Add to Saved Places' }}
+                </save-place-button>
               </div>
             </div>
           </div>
@@ -175,63 +231,217 @@
       </ul>
     </div>
 
+    <!-- Toast Notification -->
+    <ToastNotification
+      :key="toastKey"
+      :show="toastShow"
+      :message="toastMessage"
+      :type="toastType"
+      :duration="3000"
+      @update:show="toastShow = $event"
+    />
   </div>
 </template>
 
 <script>
+// Helper function to generate deterministic place_id based on place properties
+function generateDeterministicPlaceId(place) {
+  // Concatenate unique properties to form a unique string
+  const uniqueString = `${place.place_name}-${place.city}-${place.country}-${place.coordinates.latitude}-${place.coordinates.longitude}`;
+  
+  // Replace spaces and special characters with hyphens and convert to lowercase
+  return uniqueString
+    .replace(/\s+/g, '-')       // Replace spaces with hyphens
+    .replace(/[^a-zA-Z0-9-]/g, '') // Remove all characters except letters, numbers, and hyphens
+    .toLowerCase();             // Convert to lowercase
+}
+
+function getDeterministicRating(placeId, min = 4.0, max = 5.0) {
+  let hash = 0;
+  for (let i = 0; i < placeId.length; i++) {
+    hash = placeId.charCodeAt(i) + ((hash << 5) - hash);
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  const normalized = (Math.abs(hash) % 1000) / 1000; // Normalize to 0 - 0.999
+  return parseFloat((min + normalized * (max - min)).toFixed(1)); // Scale to min - max
+}
+
 import SavePlaceButton from '@/components/SavePlaceButton.vue';
+import StarRating from '@/components/StarRating.vue'; // Import StarRating component
 import { GoogleMap, CustomMarker } from 'vue3-google-map';
-
-
-
+import ToastNotification from '@/components/ToastNotification.vue'; // Import the ToastNotification component
+import { auth } from '@/main.js'; // Ensure auth is correctly imported
 
 export default {
-  inject: ['apiPromise'],
+  name: "ExtractedLocations",
+  
+  // Inject dependencies
+  inject: ['apiPromise', 'savedPlacesState'], // Inject savedPlacesState
+  
+  // Register components
   components: {
     SavePlaceButton,
+    StarRating, // Register StarRating component
     GoogleMap,    // Register GoogleMap component
-    CustomMarker       // Register Marker component
+    CustomMarker, // Register CustomMarker component
+    ToastNotification, // Register ToastNotification component
   },
+
+  // Define props received from the backend
   props: {
-    locationInfo: Object,
-    relatedPlaces: Array,
-    userId: {
-      type: [String, null],
-      default: '',
+    locationInfo: {
+      type: Object,
+      required: true,
     },
-    savedPlaces: Array,
-
+    relatedPlaces: {
+      type: Array,
+      required: true,
+    },
   },
 
-  emits: ['component-mounted'],
-
+  // Define data properties
   data() {
     return {
       navItems: [],
-      showPopup: false,
+      toastShow: false, // For ToastNotification
+      toastMessage: "",
+      toastType: "add", // Default type for ToastNotification
+      toastKey: 0, // Unique key for ToastNotification
       center: { lat: 0, lng: 0 },
-      mainMapVisible: false, // New property for the main location map toggle
-      navbarVisible: false, // New property to control sidebar visibility
-      arrowRotated: false, // New property to track arrow rotation
+      mainMapVisible: false, // Toggle main location map
+      navbarVisible: false, // Control sidebar visibility
+      arrowRotated: false, // Track arrow rotation
+      errorMessage: "", // For handling errors
+      // Processed data with place_id and rating
+      processedLocationInfo: null,
+      processedRelatedPlaces: [],
     };
   },
+
+  // Define computed properties
   computed: {
+    // Aggregate all images for rendering
     allImages() {
       const images = [];
-      if (this.locationInfo) images.push(this.locationInfo); // Add main location image
-      if (this.relatedPlaces.length) images.push(...this.relatedPlaces); // Add related places images
+      if (this.processedLocationInfo) images.push(this.processedLocationInfo); // Add main location image
+      if (this.processedRelatedPlaces.length) images.push(...this.processedRelatedPlaces); // Add related places images
       return images;
-    }
+    },
+
+    // Create a Set of saved place IDs for quick lookup
+    savedPlaceIds() {
+      return this.savedPlacesState && Array.isArray(this.savedPlacesState.savedPlaces)
+        ? new Set(this.savedPlacesState.savedPlaces.map(place => place.place_id))
+        : new Set();
+    },
   },
 
-
+  // Define methods
   methods: {
-    handlePlaceSaved() {
-      this.showPopup = true;
-      setTimeout(() => {
-        this.showPopup = false;
-      }, 2000);
+    /**
+     * Initialize processedLocationInfo and processedRelatedPlaces with place_id and rating
+     * Should be called once, typically in mounted()
+     * @param {Object} locationInfo - The main location data from backend
+     * @param {Array} relatedPlaces - The related places data from backend
+     */
+    initializeData(locationInfo, relatedPlaces) {
+      if (!locationInfo) return;
+
+      // Assign deterministic place_id and rating to locationInfo if not already present
+      if (!locationInfo.place_id) {
+        const newPlaceId = generateDeterministicPlaceId(locationInfo);
+        this.processedLocationInfo = {
+          ...locationInfo,
+          place_id: newPlaceId,
+          rating: getDeterministicRating(newPlaceId),
+        };
+      } else {
+        this.processedLocationInfo = { 
+          ...locationInfo,
+          rating: getDeterministicRating(locationInfo.place_id) || locationInfo.rating,
+        };
+      }
+
+      // Process relatedPlaces with deterministic place_id and rating
+      if (Array.isArray(relatedPlaces)) {
+        this.processedRelatedPlaces = relatedPlaces.map(place => {
+          // Assign deterministic place_id and rating if not present
+          if (!place.place_id) {
+            const newPlaceId = generateDeterministicPlaceId(place);
+            return {
+              ...place,
+              place_id: newPlaceId,
+              rating: getDeterministicRating(newPlaceId),
+              mapVisible: false, // Initialize mapVisible property
+            };
+          } else {
+            return {
+              ...place,
+              rating: getDeterministicRating(place.place_id) || place.rating,
+              mapVisible: false,
+            };
+          }
+        });
+      }
     },
+
+    /**
+     * Show a toast notification for a successfully saved place.
+     */
+    showSavedToast() {
+      this.resetToast();
+      this.$nextTick(() => {
+        this.toastMessage = "Added to Saved Places!";
+        this.toastType = "add"; // Use 'add' type for positive feedback
+        this.toastKey += 1; // Update the key to force re-render
+        setTimeout(() => {
+          this.toastShow = true; // Show the toast
+        }, 100); // Short delay to allow DOM update
+      });
+    },
+
+    /**
+     * Show a toast notification for an already saved place.
+     */
+    displayAlreadySavedToast() {
+      this.resetToast();
+      this.$nextTick(() => {
+        this.toastMessage = "Place has already been saved!";
+        this.toastType = "info"; // Use 'info' type for informational feedback
+        this.toastKey += 1; // Update the key to force re-render
+        setTimeout(() => {
+          this.toastShow = true; // Show the toast
+        }, 100);
+      });
+    },
+
+    /**
+     * Show an error toast notification.
+     * @param {String} message - The error message to display.
+     */
+    showErrorToast(message) {
+      this.resetToast();
+      this.$nextTick(() => {
+        this.toastMessage = message;
+        this.toastType = "error"; // Use 'error' type for failure
+        this.toastKey += 1; // Update the key to force re-render
+        setTimeout(() => {
+          this.toastShow = true; // Show the toast
+        }, 100);
+      });
+    },
+
+    /**
+     * Reset the toast state to hide any existing toast.
+     */
+    resetToast() {
+      this.toastShow = false;
+    },
+
+    /**
+     * Scroll to the specific card section based on place name.
+     * @param {String} placeName - The name of the place to scroll to.
+     */
     scrollToCard(placeName) {
       const sectionId = placeName.replace(/\s+/g, '-').toLowerCase(); // Transform the name to match the ID
       const targetSection = document.getElementById(sectionId); // Find the target section
@@ -246,122 +456,176 @@ export default {
       }
     },
 
+    /**
+     * Toggle the visibility of the navbar.
+     */
     toggleNavbar() {
       this.navbarVisible = !this.navbarVisible;
       this.arrowRotated = !this.arrowRotated; // Toggle the rotation state on button click
     },
 
-    generateNavItems() {
-      const items = [];
-
-      if (this.locationInfo) {
-        items.push({
-          id: this.locationInfo.place_name,
-          name: this.locationInfo.place_name,
-          active: true,
-
-        });
-      }
-
-      this.relatedPlaces.forEach((place) => {
-        items.push({
-          id: place.place_name,
-          name: place.place_name,
-          active: false,
-          mapVisible: false,  // Default map visibility for related places
-        });
-      });
-
-      this.navItems = items;
+    /**
+     * Toggle the visibility of the main location map.
+     */
+    toggleMainMap() {
+      this.mainMapVisible = !this.mainMapVisible;
     },
 
-    handleScroll() {
-      const sections = document.querySelectorAll('.card');
-      const links = document.querySelectorAll('.nav-link');
-
-      if (sections.length === 0 || links.length === 0) return;
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const sectionId = section.getAttribute('id');
-
-        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-          links.forEach(link => link.classList.remove('active'));
-          const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-          if (activeLink) activeLink.classList.add('active');
-        }
-      });
+    /**
+     * Toggle the visibility of a related place's map.
+     * @param {Object} place - The related place object.
+     */
+    togglePlaceMap(place) {
+      place.mapVisible = !place.mapVisible;
     },
 
+    /**
+     * Handle image loading errors by setting a default image.
+     * @param {Event} event - The error event.
+     */
     handleImageError(event) {
       event.target.src = 'https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg';
     },
+
+    /**
+     * Checks if a place is already saved.
+     * @param {String} placeId - The unique identifier of the place.
+     * @returns {Boolean} - True if the place is saved, else false.
+     */
+    isPlaceSaved(placeId) {
+      if (
+        this.savedPlacesState &&
+        Array.isArray(this.savedPlacesState.savedPlaces)
+      ) {
+        return this.savedPlaceIds.has(placeId);
+      }
+      return false;
+    },
+
+    /**
+     * Saves a place to Firebase and updates the global savedPlacesState.
+     * @param {String} placeId - The unique identifier of the place to save.
+     */
+    async savePlaceToFirebase(placeId) {
+      const user = auth.currentUser;
+
+      if (user) {
+        const userId = user.uid;
+
+        // Find the place data based on placeId
+        const attraction = this.allImages.find(
+          (place) => place.place_id === placeId
+        );
+
+        if (attraction) {
+          const placeData = {
+            place_id: attraction.place_id || null,
+            name: attraction.place_name || "Unknown",
+            vicinity: attraction.vicinity || "Unknown vicinity",
+            image: attraction.place_png || "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg",
+            coordinates: {
+              latitude: attraction.coordinates.latitude || 0,
+              longitude: attraction.coordinates.longitude || 0,
+            },
+            rating: typeof attraction.rating === 'number' ? attraction.rating : parseFloat(attraction.rating) || 4.5, // Ensure rating is a number
+            user_ratings_total: attraction.user_ratings_total || 0,
+            city: attraction.city || "Unknown City",
+            country: attraction.country || "Unknown Country",
+            source: "travel_clips",
+            summary: attraction.location_summary || "No summary available.",
+            activities: attraction.activities || [],
+          };
+
+          try {
+            // Use the global state to add the place
+            const wasAdded = await this.savedPlacesState.addPlace(userId, placeData);
+            console.log(`Was the place added? ${wasAdded}`);
+            if (wasAdded) {
+              this.showSavedToast();
+            } else {
+              this.displayAlreadySavedToast();
+            }
+          } catch (error) {
+            console.error("Error saving place to Firebase:", error);
+            this.showErrorToast("Failed to save the place. Please try again.");
+          }
+        } else {
+          console.error("Place data not found for saving.");
+          this.showErrorToast("Place data is missing. Unable to save.");
+        }
+      } else {
+        console.error("User is not authenticated");
+        this.showErrorToast("You must be logged in to save places.");
+      }
+    },
   },
 
+  // Lifecycle hooks
   mounted() {
-    this.generateNavItems();
-
-    if (this.locationInfo?.coordinates) {
-      this.center = {
-        lat: this.locationInfo.coordinates.latitude,
-        lng: this.locationInfo.coordinates.longitude,
-      };
-    }
     this.$emit('component-mounted');
 
-    window.addEventListener('scroll', this.handleScroll);
+    // Initialize data without watchers
+    this.initializeData(this.locationInfo, this.relatedPlaces);
+    // Removed generateNavItems() call as it's undefined
+    // this.generateNavItems();
+
+    if (this.processedLocationInfo?.coordinates) {
+      this.center = {
+        lat: this.processedLocationInfo.coordinates.latitude,
+        lng: this.processedLocationInfo.coordinates.longitude,
+      };
+    }
+
+    // Listen for authentication state changes
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        const userId = user.uid;
+        // Load saved places for the authenticated user
+        if (
+          this.savedPlacesState &&
+          typeof this.savedPlacesState.loadSavedPlaces === "function"
+        ) {
+          this.savedPlacesState.loadSavedPlaces(userId);
+        }
+      } else {
+        console.error("User is not authenticated");
+        // Clear the global savedPlacesState
+        if (
+          this.savedPlacesState &&
+          typeof this.savedPlacesState.clearSavedPlaces === "function"
+        ) {
+          this.savedPlacesState.clearSavedPlaces();
+        }
+      }
+    });
+
+    // Handle scroll if handleScroll is defined
+    // If handleScroll is not defined, remove these lines or define the method
+    // window.addEventListener('scroll', this.handleScroll);
   },
 
   beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    // Remove scroll listener if handleScroll is defined
+    // If handleScroll is not defined, remove this line
+    // window.removeEventListener('scroll', this.handleScroll);
   },
 };
 </script>
+
 
 <style scoped>
 html {
   scroll-behavior: smooth;
 }
 
+/* Toast Notification Styles (handled by the ToastNotification component) */
 
-
-
-/* .btn {
-  background-color: lightgray;
-  color: black;
-  border: 1px solid black;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-} */
-
-.popup {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  z-index: 2000;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.3s ease;
-}
-
-
-
-
+/* Image Styles */
 .card-img-top {
   width: 100%;
   height: 300px;
   object-fit: cover;
 }
-
 
 .location-map {
   height: 300px;
@@ -371,41 +635,15 @@ html {
 .header-interested {
   font-weight: bold;
   text-align: center;
-
+  font-size: 1rem;
 }
 
 .header-main {
   font-weight: bold;
   text-align: center;
-  font-size: x-large;
+  font-size: 2rem;
 }
 
-
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.page-fade-in {
-  animation: fadeIn 2s ease-in-out;
-}
-
-.related-places-header {
-
-  font-weight: bold;
-  text-align: center;
-  font-size: x-large;
-
-}
-
-.related-header,
-.extracted-header,
 .video-header {
   font-weight: bold;
   text-align: center;
@@ -413,7 +651,17 @@ html {
   opacity: 0.5;
 }
 
+.related-header,
+.extracted-header,
+.related-places-header {
+  font-weight: bold;
+  text-align: center;
+  font-size: x-large;
+}
 
+.related-places-header {
+  font-size: large;
+}
 
 .related-divider {
   color: black;
@@ -445,7 +693,6 @@ html {
 /* Ensure the card content fits within the scaled card */
 .card-body {
   overflow: hidden;
-
 }
 
 .card {
@@ -479,10 +726,12 @@ html {
   opacity: 1;
 }
 
+/* List Styles */
 li {
   background-color: #f0f6ff;
 }
 
+/* Overlay Styles */
 .overlay {
   position: absolute;
   bottom: 10px;
@@ -505,7 +754,6 @@ li {
   /* Optional rounded corners */
 }
 
-
 .card-href {
   aspect-ratio: 1 / 1.5;
   /* Sets the aspect ratio to be 1:2 (width : height) */
@@ -523,6 +771,11 @@ li {
   font-size: large;
 }
 
+.card-rating {
+  font-weight: bold;
+  color: #ff9800; /* Orange color for ratings */
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .card {
     width: 90%;
@@ -532,10 +785,32 @@ li {
 
 /* Adjust other related styles if necessary */
 .main-img {
-  aspect-ratio: 16 / 9;
-  /* Set the desired ratio, e.g., 16:9 */
+  aspect-ratio: 16 / 9; /* Set the desired ratio, e.g., 16:9 */
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+/* Style for saved places */
+.saved {
+  background-color: #4caf50; /* Green background to indicate saved */
+  color: white;
+}
+
+.btn-dark.saved:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Optional: Additional styles for SavePlaceButton */
+.save-place-button {
+  /* Add any additional styles if needed */
+}
+
+/* Loading Indicator Styles (Optional) */
+.loading {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 50px;
+  color: #555;
 }
 </style>

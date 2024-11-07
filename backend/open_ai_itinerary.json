@@ -1,272 +1,272 @@
 {
   "country": "Italy",
-  "itinerary_summary": "A solo trip to Milan, focusing on nightlife, entertainment, and must-see attractions, blending cultural experiences with exciting evenings.",
+  "itinerary_summary": "A four-day solo trip exploring the beautiful cities of Rome, Florence, and Milan, filled with must-see attractions and delectable food experiences.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-10",
-      "summary": "Explore the historic and cultural highlights of Milan, starting with iconic landmarks and ending the day with stunning nightlife.",
+      "date": "2024-11-09",
+      "summary": "Arrive in Rome and explore its iconic landmarks while indulging in authentic Italian cuisine.",
       "activities": [
         {
-          "time": "09:00",
-          "activity_name": "Visit the Duomo di Milano (Milan Cathedral)",
+          "time": "10:00 AM",
+          "activity_name": "Vatican Museums",
           "location": {
-            "name": "Duomo di Milano",
-            "city": "Milan",
+            "name": "Vatican Museums",
+            "city": "Vatican City",
             "coordinates": {
-              "latitude": 45.464211,
-              "longitude": 9.191383
+              "latitude": 41.906487,
+              "longitude": 12.453439
+            },
+            "place_id": "ChIJM5D7ViNz2EcRZbEvG0knC0",
+            "photo_url": "https://example.com/vatican_museums.jpg"
+          },
+          "description": "Visit the world-renowned Vatican Museums, home to an extensive collection of art and historical artifacts."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Pizzarium",
+          "location": {
+            "name": "Pizzarium",
+            "city": "Rome",
+            "coordinates": {
+              "latitude": 41.906165,
+              "longitude": 12.459993
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Marvel at the stunning Gothic architecture and climb to the rooftop for panoramic views of the city."
+          "description": "Savor delicious Roman-style pizza at Pizzarium, famous for its gourmet toppings."
         },
         {
-          "time": "12:00",
-          "activity_name": "Lunch at Luini Panzerotti",
+          "time": "3:00 PM",
+          "activity_name": "St. Peter's Basilica",
           "location": {
-            "name": "Luini Panzerotti",
-            "city": "Milan",
+            "name": "St. Peter's Basilica",
+            "city": "Vatican City",
             "coordinates": {
-              "latitude": 45.463234,
-              "longitude": 9.187365
+              "latitude": 41.902282,
+              "longitude": 12.454339
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Savor the famous panzerotti, a delicious pastry filled with mozzarella and tomato, from this iconic eatery."
+          "description": "Marvel at the magnificent architecture of St. Peter's Basilica, one of the holiest sites in Christendom."
         },
         {
-          "time": "14:00",
-          "activity_name": "Visit Galleria Vittorio Emanuele II",
+          "time": "5:00 PM",
+          "activity_name": "Villa Borghese",
           "location": {
-            "name": "Galleria Vittorio Emanuele II",
-            "city": "Milan",
+            "name": "Villa Borghese",
+            "city": "Rome",
             "coordinates": {
-              "latitude": 45.4658434,
-              "longitude": 9.1899401
+              "latitude": 41.9138782,
+              "longitude": 12.4853818
             },
-            "place_id": "ChIJw7aG_QY1eUcRFtQJWKmcCyc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO8zkLOVzsvV3NPTsRqWTbMi65-eSzCXRKeZY4yqqRg7NfwNiBtkYR4iak-n0Czxg3vDDufqjkas8xrVNeF0XslczBaHW_rIqoVF3wSRx7DpE9HG-eEidErm1yjXa4IWgvCT2cniWasmRwYEhuO0leBTqy1oqtw5gHtVL2RvP29Do0E&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+            "place_id": "ChIJj1M8HQJhLxMRRI6D_z18Pes",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPp7-4Pl4twrUsOsjv5VQiGXWIf31Ell4WLiM3_2ska4LNXm5Ttv3TzdI5gFWICsQWO1guby8njdVMnp2ETuspDruquEB5lkl2T9brUSTpA92ipb9GMC9ON2aJfzW9H2TxXO6ODgiJO296nwFVLy_OWXBiXDkzy8lu4XfRgBQUAc5Rt&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Stroll through the stunning shopping gallery, admiring the architecture, shops, and cafes."
-        },
-        {
-          "time": "20:00",
-          "activity_name": "Dinner and cocktails at Terrazza Aperol",
-          "location": {
-            "name": "Terrazza Aperol",
-            "city": "Milan",
-            "coordinates": {
-              "latitude": 45.458068,
-              "longitude": 9.195001
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Enjoy delicious Italian cuisine with a view of the Duomo, followed by Aperol spritz cocktails."
+          "description": "Enjoy a leisurely stroll through the beautiful gardens of Villa Borghese and visit its art gallery."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-11",
-      "summary": "Immerse in Milan's vibrant culture with a day dedicated to art, history, and nightlife entertainment.",
+      "date": "2024-11-10",
+      "summary": "Travel to Florence to experience its cultural richness, art heritage, and renowned cuisine.",
       "activities": [
         {
-          "time": "09:30",
-          "activity_name": "Visit Castello Sforzesco (Sforza Castle)",
+          "time": "9:00 AM",
+          "activity_name": "Accademia Gallery",
           "location": {
-            "name": "Castello Sforzesco",
-            "city": "Milan",
+            "name": "Accademia Gallery",
+            "city": "Florence",
             "coordinates": {
-              "latitude": 45.471533,
-              "longitude": 9.179812
+              "latitude": 43.776129,
+              "longitude": 11.254363
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore this historic castle with its beautiful gardens and museums."
+          "description": "See Michelangelo's famous sculpture of David and other masterpieces at the Accademia Gallery."
         },
         {
-          "time": "12:30",
-          "activity_name": "Lunch at Eataly Smeraldo",
+          "time": "12:00 PM",
+          "activity_name": "Lunch at Trattoria Mario",
           "location": {
-            "name": "Eataly Smeraldo",
-            "city": "Milan",
+            "name": "Trattoria Mario",
+            "city": "Florence",
             "coordinates": {
-              "latitude": 45.478305,
-              "longitude": 9.189425
+              "latitude": 43.776577,
+              "longitude": 11.253016
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Indulge in a variety of gourmet Italian dishes and local specialties in this renowned food market."
+          "description": "Enjoy traditional Tuscan dishes at the beloved Trattoria Mario."
         },
         {
-          "time": "15:00",
-          "activity_name": "Visit Pinacoteca di Brera",
+          "time": "2:00 PM",
+          "activity_name": "Florence Cathedral (Duomo)",
           "location": {
-            "name": "Pinacoteca di Brera",
-            "city": "Milan",
+            "name": "Florence Cathedral",
+            "city": "Florence",
             "coordinates": {
-              "latitude": 45.478843,
-              "longitude": 9.188974
+              "latitude": 43.774999,
+              "longitude": 11.256197
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Admire masterpieces by Italian artists in this famous art gallery."
+          "description": "Visit the iconic Florence Cathedral, known for its impressive dome designed by Brunelleschi."
         },
         {
-          "time": "21:00",
-          "activity_name": "Experience Milan\u2019s nightlife at Just Cavalli Club",
+          "time": "5:00 PM",
+          "activity_name": "Ponte Vecchio",
           "location": {
-            "name": "Just Cavalli Club",
-            "city": "Milan",
+            "name": "Ponte Vecchio",
+            "city": "Florence",
             "coordinates": {
-              "latitude": 45.479033,
-              "longitude": 9.14658
+              "latitude": 43.767907,
+              "longitude": 11.25
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Dance the night away at this luxurious nightclub known for its vibrant atmosphere and famous DJs."
+          "description": "Stroll across the famous Ponte Vecchio, a medieval stone bridge lined with shops."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-11-12",
-      "summary": "Enjoy a mix of modern attractions and cultural experiences while deepening your exploration of Milan.",
+      "date": "2024-11-11",
+      "summary": "Head to Milan for a day filled with stunning architectural landmarks and world-class cuisine.",
       "activities": [
         {
-          "time": "10:00",
-          "activity_name": "Visit Santa Maria delle Grazie (The Last Supper)",
+          "time": "10:00 AM",
+          "activity_name": "Duomo di Milano",
           "location": {
-            "name": "Santa Maria delle Grazie",
+            "name": "Duomo di Milano",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.466308,
-              "longitude": 9.17841
+              "latitude": 45.464204,
+              "longitude": 9.190727
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "See Leonardo da Vinci's iconic painting, 'The Last Supper,' housed in this beautiful church."
+          "description": "Explore the stunning Gothic Cathedral of Milan, a symbol of the city."
         },
         {
-          "time": "13:00",
-          "activity_name": "Lunch at Pizzeria Spontini",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Luini Panzerotti",
           "location": {
-            "name": "Pizzeria Spontini",
+            "name": "Luini Panzerotti",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.477808,
-              "longitude": 9.197631
+              "latitude": 45.465271,
+              "longitude": 9.191626
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Try the famous thick crust pizza at this iconic local pizzeria."
+          "description": "Try the famous panzerotti at Luini, a must-visit eatery known for its delicious stuffed pastries."
         },
         {
-          "time": "15:00",
-          "activity_name": "Stroll through Parco Sempione",
+          "time": "3:00 PM",
+          "activity_name": "Sforzesco Castle",
           "location": {
-            "name": "Parco Sempione",
+            "name": "Sforzesco Castle",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.471029,
-              "longitude": 9.167353
+              "latitude": 45.4704762,
+              "longitude": 9.1793325
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJPXupDrb8hkcRm8JyxGbdVmU",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOVafPdQsoNrBJEpp59jRDO8fQn4EGj1QbNdlnWbt8TQzfGdc9lC92IciG1Z0mrB6L9L0vv2MDonPrdud5t4m-3lu5AVFOl-oOxHjefQXnhUGA153Pp2Q8h1OtwNLUzaFf5jA0j7z8HjvOuI5GgMXh7ye7huK-BZ7j0ML1DnBsKbJv4&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Relax in this beautiful park and marvel at the Arch of Peace."
+          "description": "Visit the historical Sforzesco Castle and its museums, set in a beautiful park."
         },
         {
-          "time": "20:00",
-          "activity_name": "Dinner at Ristorante Da Giacomo",
+          "time": "6:00 PM",
+          "activity_name": "Teatro alla Scala",
           "location": {
-            "name": "Ristorante Da Giacomo",
+            "name": "Teatro alla Scala",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.46504,
-              "longitude": 9.197207
+              "latitude": 45.4674021,
+              "longitude": 9.1895512
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJV1caia3GhkcRT4MuEEjprRs",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPUZUqu7ZJ3Wc4xXJy5nLy3BPc0vV-8dkmuZUy__mrnQoC-c1hIkds5RsQm7Tz76wZY2iElRZpCgUvV8X9iX5HIS8W2pPUz0FEZa8jF_0bCaNlOVIUwrDRnkegLlq-3G5WnuU5ujQ1bL3jd-eCUen3G1UhLv46pZASctXzMMqwR4PPg&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Savor gourmet Italian dishes at this stylish restaurant famous for its seafood."
+          "description": "End your day with a tour or a performance at the legendary Teatro alla Scala, known for its opera."
         }
       ]
     },
     {
       "day": 4,
-      "date": "2024-11-13",
-      "summary": "Wrap up your Milan adventure with some last-minute sightseeing and shopping before your departure.",
+      "date": "2024-11-12",
+      "summary": "Wrap up your Italian adventure with a morning in Milan and leisure time before departure.",
       "activities": [
         {
-          "time": "10:00",
-          "activity_name": "Visit the Museo del Novecento",
+          "time": "9:00 AM",
+          "activity_name": "Breakfast at Pav\u00e9",
           "location": {
-            "name": "Museo del Novecento",
+            "name": "Pav\u00e9",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.463905,
-              "longitude": 9.189366
+              "latitude": 45.466148,
+              "longitude": 9.183695
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore a collection of 20th-century art in this modern museum."
+          "description": "Start your day with a delightful breakfast at Pav\u00e9, famous for its pastries and coffee."
         },
         {
-          "time": "13:00",
-          "activity_name": "Lunch at Panzerotti Luini",
+          "time": "11:00 AM",
+          "activity_name": "Shopping at Galleria Vittorio Emanuele II",
           "location": {
-            "name": "Panzerotti Luini",
+            "name": "Galleria Vittorio Emanuele II",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.463234,
-              "longitude": 9.187365
+              "latitude": 45.465961,
+              "longitude": 9.189321
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Return for another delicious panzerotti, this time with different fillings."
+          "description": "Enjoy a shopping experience in the stunning Galleria Vittorio Emanuele II, Milan's iconic shopping gallery."
         },
         {
-          "time": "15:00",
-          "activity_name": "Shopping at Corso Buenos Aires",
+          "time": "2:00 PM",
+          "activity_name": "Last-minute sightseeing at Castello Sforzesco",
           "location": {
-            "name": "Corso Buenos Aires",
+            "name": "Castello Sforzesco",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.463886,
-              "longitude": 9.20947
+              "latitude": 45.4702,
+              "longitude": 9.1795
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Go shopping on one of Milan's most famous shopping streets, featuring a mix of high-street and luxury brands."
+          "description": "Take a final stroll through the gardens of Castello Sforzesco on your way to the airport."
         },
         {
-          "time": "20:00",
-          "activity_name": "Cocktails at Spritz Navigli",
+          "time": "5:00 PM",
+          "activity_name": "Departure from Milan",
           "location": {
-            "name": "Spritz Navigli",
+            "name": "Milan",
             "city": "Milan",
             "coordinates": {
-              "latitude": 45.456889,
-              "longitude": 9.18522
+              "latitude": 45.4668,
+              "longitude": 9.1905
             },
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy cocktails along the canals while soaking in the lively atmosphere of the Navigli district."
+          "description": "Travel to the airport for your departure, concluding your Italian journey."
         }
       ]
     }

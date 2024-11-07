@@ -1,83 +1,72 @@
 {
   "location_info": {
-    "place_name": "Hokkaido",
-    "country": "Japan",
-    "city": "Sapporo",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGHrjs3Wnmskwf1tHUSezLZBEZwOdq-JbZUlNmKb0WBi-DKpRvPxXlCB8NWxqo9F8eCs-rYdQQlgZgpsV_QTyd1_QDHlInzzIo=s1600-w800",
+    "place_name": "Genting Highlands",
+    "country": "Malaysia",
+    "city": "Genting Highlands",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFEGFRIwNnIdbunypI-hlvhoO3rAjLLu_7S-s-hn9xrhIveR_fDdnj0wj_8mePAq1ZWYG3wHv8yRRRRXEQb7PHqiVAeGv_EUxs=s1600-w800",
     "coordinates": {
-      "latitude": 43.2203266,
-      "longitude": 142.8634737
+      "latitude": 3.423978,
+      "longitude": 101.7932011
     },
     "activities": [
-      "Skiing",
-      "Onsen hot springs",
-      "Exploring ice sculptures",
-      "Visiting Sapporo Snow Festival",
-      "Tasting local cuisine"
+      "Visit the Skytropolis Indoor Theme Park",
+      "Ride the Awana Skyway cable car",
+      "Explore the casinos and resorts"
     ],
-    "location_summary": "Hokkaido, the northernmost island of Japan, is renowned for its stunning landscapes, skiing resorts, and vibrant winter festivals, particularly the Sapporo Snow Festival that showcases intricate ice sculptures.",
-    "vicinity": "Sapporo, Japan"
+    "location_summary": "Genting Highlands is a hill resort located in Malaysia, known for its cool climate, casinos, and entertainment facilities. It offers a unique escape from the heat of the city and various attractions.",
+    "vicinity": "Genting Highlands"
   },
   "related_places": [
     {
-      "place_name": "Niseko",
-      "country": "Japan",
-      "city": "Hokkaido",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF0j7GSy7zgqtGhVCPVnTUzYGdyXn87z7kmzfq0W-4q-Q2Y4hPAg3jgCer2-Lzrg8DeVuOzeXVF55M7X1XZoqzYOJZp3KBgEjM=s1600-w800",
+      "place_name": "Cameron Highlands",
+      "country": "Malaysia",
+      "city": "Cameron Highlands",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqHdM5QD-wAfB3MPg9clYpPA9jnQ59atcvul7ECdrTogE0lRNyD7u35rFEqVBQaQY68fDFJ7GIIklAKxzmHdiXib9YVXFfldTE4=s1600-w800",
       "coordinates": {
-        "latitude": 42.8047856,
-        "longitude": 140.6874494
+        "latitude": 4.4678921,
+        "longitude": 101.3847868
       },
       "activities": [
-        "Skiing",
-        "Snowboarding",
-        "Onsen relaxation",
-        "Hiking in summer",
-        "Dining at local restaurants"
+        "Visit tea plantations and factories",
+        "Explore strawberry farms",
+        "Hike in the mossy forest"
       ],
-      "location_summary": "Niseko is famous for its powder snow, making it one of the best skiing destinations in the world, attracting winter sports enthusiasts from all over the globe.",
-      "vicinity": "Niseko",
-      "query": "Niseko skiing resort"
+      "location_summary": "Cameron Highlands is a popular destination for its tea estates, strawberry farms, and cool climate, making it an ideal getaway for nature lovers and adventure seekers.",
+      "vicinity": "Cameron Highlands"
     },
     {
-      "place_name": "Furano",
-      "country": "Japan",
-      "city": "Hokkaido",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF_nL9s6JlDUTqyWnjrIT1PW4JWP2rOmm5HA_qqRjTGC1OelCYBwJD6CnV6pXCSHRA3e-r8p65Z6QFiXiL3bNb7Zu2hCdXsnZc=s1600-w800",
+      "place_name": "Langkawi",
+      "country": "Malaysia",
+      "city": "Langkawi",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE3LnkDf7utzlS0TpTwHFcF_6dFP0gZSBJEHudEkitO38yXN_XMrJm_Ls9CcFfAAzuq4jqKJ8dy60hGJ6Nd3BgeFmRUGSVgYoA=s1600-w800",
       "coordinates": {
-        "latitude": 43.3420458,
-        "longitude": 142.3831624
+        "latitude": 6.3661203,
+        "longitude": 99.7798102
       },
       "activities": [
-        "Skiing",
-        "Flower fields in summer",
-        "Wine tasting",
-        "Visiting farms",
-        "Outdoor activities"
+        "Visit the Langkawi Sky Bridge",
+        "Relax on Pantai Cenang Beach",
+        "Explore the Kilim Karst Geoforest Park"
       ],
-      "location_summary": "Furano is known for its beautiful flower fields during summer and excellent skiing conditions in winter, making it a perfect year-round destination.",
-      "vicinity": "Furano",
-      "query": "Furano skiing resort"
+      "location_summary": "Langkawi is an archipelago known for its stunning beaches, clear waters, and natural beauty, perfect for relaxation and outdoor activities.",
+      "vicinity": "Langkawi"
     },
     {
-      "place_name": "Otaru",
-      "country": "Japan",
-      "city": "Hokkaido",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEhcIcADGrBM-sgPDNr0XWMBgBvcH7URkodhQ8VFe_OxiXZMP7Cg-w6Oop4Xi15kE2xZPrJxTomm00-xAyrOSK7C1AOPTMR-oY=s1600-w800",
+      "place_name": "Bukit Bintang",
+      "country": "Malaysia",
+      "city": "Kuala Lumpur",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEsKHPx0WJg6G647KIS8D1TMT3czQVMAk_hlCMlKR3zlMbGUWLzxxZwl49K88ZhfHz3CvvhAGHs57Kxh9TDGgd5EbcDSJ5CZVk=s1600-w800",
       "coordinates": {
-        "latitude": 43.1902372,
-        "longitude": 140.994172
+        "latitude": 3.1467855,
+        "longitude": 101.7113043
       },
       "activities": [
-        "Canal tours",
-        "Shopping for glassware",
-        "Enjoying sushi",
-        "Visiting historical buildings",
-        "Experiencing local culture"
+        "Shopping at Pavilion KL",
+        "Enjoy street food at Jalan Alor",
+        "Explore nightlife and entertainment"
       ],
-      "location_summary": "Otaru is a charming canal city known for its historical buildings, glassworks, and seafood, offering visitors a taste of Hokkaido's culture and traditions.",
-      "vicinity": "Otaru",
-      "query": "Otaru sightseeing spots"
+      "location_summary": "Bukit Bintang is the shopping and entertainment district of Kuala Lumpur, famous for its vibrant nightlife, street food, and shopping malls.",
+      "vicinity": "Bukit Bintang"
     }
   ]
 }
