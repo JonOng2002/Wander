@@ -1174,18 +1174,7 @@ export default {
   }
 }
 
-@media (max-width: 576px) {
-  .dropdown-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* Consistent gap between buttons */
-  }
 
-  .sticky-top {
-    padding: 0 1.5vw;
-  }
-}
 
 /* Toast Notification Styles */
 .custom-toast {

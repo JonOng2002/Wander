@@ -776,7 +776,7 @@ li {
   color: #ff9800; /* Orange color for ratings */
 }
 
-@media (min-width: 576px) and (max-width: 1199px) {
+@media (max-width: 1199px) {
   .card {
     width: 90%;
     /* Allow full-width for smaller screens */

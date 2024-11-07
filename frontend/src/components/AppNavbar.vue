@@ -542,4 +542,20 @@ export default {
     /* Align dropdown button to the right */
   }
 }
+/* Ensure the parent container doesn't wrap */
+
+
+/* Adjust the profile picture size between 768px and 815px */
+@media (max-width: 992px) and (min-width: 768px) {
+  .user-pic {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  .nav-contain {
+    justify-content: space-between;
+  }
+}
+
 </style>

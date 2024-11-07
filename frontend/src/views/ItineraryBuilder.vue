@@ -854,9 +854,7 @@ export default {
     font-size: 1.5rem;
   }
 
-  .secondary_content {
-    padding: 0 30px;
-  }
+
 }
 
 @media (max-width: 992px) {
@@ -890,12 +888,12 @@ export default {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1199px) {
   .dropdown-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
-    margin-left: 15px;
+    margin-left: 3.6rem;
   }
 }
 </style>
