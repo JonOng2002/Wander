@@ -34,6 +34,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <!-- Display Loading Indicator -->
     <div v-if="loading" class="loading">Loading...</div>
@@ -62,13 +63,9 @@
               </div>
 
               <!-- Save Place Button -->
-              <save-place-button
-                class="btn itinerary-button"
-                :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
-                :placeId="attraction.place_id"
-                :isAlreadySaved="isPlaceSaved(attraction.place_id)"
-                @save-place="savePlaceToFirebase"
-              >
+              <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
+                :placeId="attraction.place_id" :isAlreadySaved="isPlaceSaved(attraction.place_id)"
+                @save-place="savePlaceToFirebase">
                 {{ isPlaceSaved(attraction.place_id) ? 'Saved' : 'Add to Saved Places' }}
               </save-place-button>
             </div>
@@ -85,7 +82,7 @@
       :duration="3000"
       @update:show="toastShow = $event"
     />
-  </div>
+
 </template>
 
 <script>
@@ -844,6 +841,103 @@ export default {
 </script>
 
 <style scoped>
+/* <====================== secondary header ===================> */
+.secondary_header {
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  /* Add spacing below the header */
+  text-align: left;
+  /* Center align the text */
+}
+
+.secondary_content {
+  padding: 0 60px;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+/* Container to align dropdowns side by side */
+.dropdown-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 60px;
+  /* Adjust this value to align the dropdowns with the text */
+  z-index: 100;
+  /* Ensure it's above other page content */
+}
+
+/* Style the dropdown button */
+.dropdown-btn {
+  background-color: #222;
+  /* Dark background color */
+  color: #fff;
+  /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 16px;
+}
+
+/* Change button color on hover */
+.dropdown-btn:hover {
+  background-color: #555;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: #222;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  padding: 10px 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  transform: translateY(-10px);
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown content links */
+.dropdown-content a {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+/* Change background color on hover */
+.dropdown-content a:hover {
+  background-color: #333;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* ====================== Header Card ====================== */
 .header-card {
@@ -1275,6 +1369,15 @@ export default {
   .back-button{
     z-index: 9999;
   }
+  
+  .dropdown-container {
+        flex-direction: column;
+        /* Stack buttons vertically */
+        align-items: flex-start;
+        /* Align them to the start */
+        gap: 0.5rem;
+        /* Adjust gap for vertical spacing */
+    }
 }
 
 @media (min-width: 576px) and (max-width: 992px) {
