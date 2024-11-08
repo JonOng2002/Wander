@@ -1143,7 +1143,7 @@ export default {
     object-fit: contain;
 }
 
-@media (max-width: 575px) {
+@media (min-width:375px) and (max-width: 575px) {
     .container {
         flex-direction: column;
         width: 100vw;
