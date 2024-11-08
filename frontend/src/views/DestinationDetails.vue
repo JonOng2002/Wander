@@ -943,7 +943,7 @@ export default {
 .header-card {
   width: 100%;
   height: 300px; /* Adjust the height as needed */
-  background-image: url('@/assets/tourist.jpg'); /* Replace with your desired background image path */
+  background-image: url('@/assets/tourist.jpg');
   background-size: cover;
   background-position: center;
   position: relative;
