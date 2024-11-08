@@ -1,138 +1,346 @@
 {
-  "country": "Canada",
-  "itinerary_summary": "A weekend exploration of Toronto, focusing on nature, wildlife, and beautiful parks, highlighted by visits to iconic landmarks.",
+  "country": "Chile",
+  "itinerary_summary": "A week-long solo adventure in Santiago, Chile, exploring cultural heritage, thrilling activities, and must-see attractions.",
   "day_by_day_itineraries": [
     {
       "day": 1,
       "date": "2024-11-09",
-      "summary": "Discover the vibrant city of Toronto, focusing on its stunning parks and nature-oriented activities.",
+      "summary": "Arrival in Santiago. Explore the city and enjoy local cuisine.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Breakfast at First Canadian Place",
+          "time": "10:00 AM",
+          "activity_name": "Santiago Central Market",
           "location": {
-            "name": "First Canadian Place",
-            "city": "Toronto",
+            "name": "Santiago Central Market",
+            "city": "Santiago",
             "coordinates": {
-              "latitude": 43.6480631,
-              "longitude": -79.3799293
+              "latitude": -33.4334323,
+              "longitude": -70.6511061
             },
+            "place_id": "ChIJ6YvQprzFYpYRebfwPoa7VPg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpr-qwNKJ60g_xM9KqzI0IztThzyGZaiPuh-9iqjxteL19a0sLQciEtqcxJxjWpG9yL3XlS_Og9fUerwTiCwfs0QjLjZGl7336EVcLzxIcVzGu0OfHUnIYUtdUiuWNi-AKZvJ00pMscDLGwcY4BrVa1yuGWYDWxqvBJ62x30Lu3eyAy"
+          },
+          "description": "Explore the vibrant market, sample fresh seafood and local specialties."
+        },
+        {
+          "time": "12:30 PM",
+          "activity_name": "Lunch at La Piojera",
+          "location": {
+            "name": "La Piojera",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Start your day with a delightful breakfast at one of the iconic restaurants in the First Canadian Place, a great way to fuel up before a day of exploration."
+          "description": "Enjoy a traditional Chilean meal at one of Santiago's iconic restaurants."
         },
         {
-          "time": "10:30 AM",
-          "activity_name": "Stroll through High Park",
+          "time": "2:00 PM",
+          "activity_name": "Cerro San Crist\u00f3bal Hill",
           "location": {
-            "name": "High Park",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.6465,
-              "longitude": -79.4633
-            },
+            "name": "Cerro San Crist\u00f3bal",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a leisurely walk in High Park, Toronto's largest public park, featuring beautiful gardens and scenic walking trails."
+          "description": "Hike or take a funicular to the top for panoramic views of the city."
         },
         {
-          "time": "01:00 PM",
-          "activity_name": "Visit the Royal Ontario Museum",
+          "time": "5:00 PM",
+          "activity_name": "Cenco Costanera",
           "location": {
-            "name": "Royal Ontario Museum",
-            "city": "Toronto",
+            "name": "Cenco Costanera",
+            "city": "Santiago",
             "coordinates": {
-              "latitude": 43.6677097,
-              "longitude": -79.3947771
+              "latitude": -33.4183176,
+              "longitude": -70.6059997
             },
-            "place_id": "ChIJE-Xa87o0K4gRkvXFHuE0hMk",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoJupIeQt7qRoDF6qIVf22B4s4zynOPv6qB_1mygO0TppDuklE3_9kfG65lQIrOgO99Sn8ZFLyGDxjR2orB1CUptj6C-d8aVL9ZcNCiD0FVyIo2hstwbg_jJBZt1jFGQZRSM3H5bZ3-jWa5KH5aGdhkUCFymD_XFYMBKcNVvk2rXwP_&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+            "place_id": "ChIJUUmF1GnPYpYR39Cq7y_vh5o",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWo8_6m5fV9Gw0hjuw7xOpl380D37hQuUVMB4xdePbwcsGRYj-KC2n3_KVT139FZ-VhMSe1WGQ2RdUlPakzEKXud1wHkyNnwKMcpcUl6Eo-twiQuwpXtaxXm_aVes2CcOLKGGvfc4pnB5eiNSo93wfiQrgkQ70VXUNHs_nkPZiCk1e-k&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Explore the Royal Ontario Museum, known for its natural history exhibits, and discover fascinating wildlife displays."
-        },
-        {
-          "time": "04:00 PM",
-          "activity_name": "Relax at Toronto Islands",
-          "location": {
-            "name": "Toronto Islands",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.6178,
-              "longitude": -79.3768
-            },
-            "place_id": "",
-            "photo_url": ""
-          },
-          "description": "Take a ferry to the Toronto Islands, where you can relax in nature, enjoy views of the city skyline, and take a stroll through scenic pathways."
+          "description": "Visit one of the tallest buildings in Latin America for an incredible sunset view."
         }
       ]
     },
     {
       "day": 2,
       "date": "2024-11-10",
-      "summary": "Continue your journey in Toronto while discovering more of the city\u2019s natural beauty and cultural sites.",
+      "summary": "Adventure activities and cultural immersion.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Breakfast at St. Lawrence Market",
+          "time": "9:00 AM",
+          "activity_name": "Valle Nevado Ski Resort",
           "location": {
-            "name": "St. Lawrence Market",
-            "city": "Toronto",
+            "name": "Valle Nevado",
+            "city": "Santiago",
             "coordinates": {
-              "latitude": 43.6488,
-              "longitude": -79.3725
+              "latitude": -33.3557958,
+              "longitude": -70.2525563
             },
+            "place_id": "ChIJKWbtg6IwfZYRckmeFcV0Ml8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpyO4OATYgu-p7CEGtnC0APEPaT6TUdENjdaNwe15HbjXA4BNGVrfV5euIsQk8EulSvmwLLhmsjvhuGLp6Z1_2_JJuhA4CV7us0LoF8kAtjT-XWMw4vU_BoALniKjeTZ86_DNUyITqUsGdqkkDodLI6AlAxMcjCTmFybmEgm00L8eW8&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Enjoy skiing or snowboarding in the Andes mountains."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at La Mustache",
+          "location": {
+            "name": "La Mustache",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Start your day with a unique breakfast at the famous St. Lawrence Market, known for its fresh produce and variety of food stalls."
+          "description": "Have a delicious lunch at this trendy eatery known for its unique sandwiches."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Fantasilandia Amusement Park",
+          "location": {
+            "name": "Fantasilandia",
+            "city": "Santiago",
+            "coordinates": {
+              "latitude": -33.4602869,
+              "longitude": -70.6625814
+            },
+            "place_id": "ChIJr9wRnBzFYpYRMm3sSIEl3e8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoBs6Ugax3jjDjQpS8947e3j8f2NqcHih9dlQZeWOO1wm7RqZKBt2mZJeb4Y_HbZOen9hc6ZrxX5WJJwgzqZzWdD_8BONa4izbfW0GhCyXAm7F0_uKa7NDRYdwA1N7lPL7-RpDz5KNdHDGAVw04WtDCCnIUiZEaE_WXjgsF7tKR4-6E&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+          },
+          "description": "Spend the afternoon enjoying thrilling rides and attractions."
+        },
+        {
+          "time": "7:00 PM",
+          "activity_name": "Dinner at Los Borrachos",
+          "location": {
+            "name": "Los Borrachos",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy hearty Chilean dishes and great ambiance."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-11",
+      "summary": "Cultural exploration and history.",
+      "activities": [
+        {
+          "time": "9:00 AM",
+          "activity_name": "Plaza de Armas",
+          "location": {
+            "name": "Plaza de Armas",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Visit the main square to see historical buildings and street performers."
         },
         {
           "time": "11:00 AM",
-          "activity_name": "Explore the Allan Gardens Conservatory",
+          "activity_name": "Visit the Museum of Memory and Human Rights",
           "location": {
-            "name": "Allan Gardens Conservatory",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.6625,
-              "longitude": -79.3736
-            },
+            "name": "Museum of Memory and Human Rights",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit Allan Gardens Conservatory, a beautiful botanic garden featuring tropical plants and a tranquil setting amidst the city."
+          "description": "Learn about Chile's history and the impact of human rights violations."
         },
         {
-          "time": "01:00 PM",
-          "activity_name": "Visit the Toronto Botanical Garden",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at El Huerto",
           "location": {
-            "name": "Toronto Botanical Garden",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.7116,
-              "longitude": -79.3763
-            },
+            "name": "El Huerto",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore the lush landscapes at the Toronto Botanical Garden, showcasing various themed gardens and a wealth of biodiversity."
+          "description": "Dine at this vegetarian restaurant known for its creative dishes."
         },
         {
-          "time": "03:00 PM",
-          "activity_name": "Visit the Distillery District",
+          "time": "3:00 PM",
+          "activity_name": "Walk through Barrio Bellavista",
           "location": {
-            "name": "Distillery District",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.6502,
-              "longitude": -79.3603
-            },
+            "name": "Barrio Bellavista",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Conclude your trip with a visit to the Distillery District, where you can wander through historic brick buildings, enjoy art galleries, and relax at outdoor cafes."
+          "description": "Explore the artistic neighborhood filled with colorful street art and craft shops."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-12",
+      "summary": "Day trip to Machu Picchu.",
+      "activities": [
+        {
+          "time": "5:00 AM",
+          "activity_name": "Fly to Cusco, Peru",
+          "location": {
+            "name": "Cusco International Airport",
+            "city": "Cusco",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Early morning flight to Cusco, the gateway to Machu Picchu."
+        },
+        {
+          "time": "8:00 AM",
+          "activity_name": "Train to Machu Picchu",
+          "location": {
+            "name": "Machu Picchu",
+            "city": "Machu Picchu",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Scenic train ride to the stunning archaeological site."
+        },
+        {
+          "time": "10:00 AM",
+          "activity_name": "Explore Machu Picchu",
+          "location": {
+            "name": "Machu Picchu",
+            "city": "Machu Picchu",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Guided tour of the ancient Incan citadel."
+        },
+        {
+          "time": "4:00 PM",
+          "activity_name": "Return to Cusco",
+          "location": {
+            "name": "Machu Picchu",
+            "city": "Machu Picchu",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Return to Cusco by train for the evening flight back to Santiago."
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2024-11-13",
+      "summary": "Leisure day with optional activities in Santiago.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit to Museo Chileno de Arte Precolombino",
+          "location": {
+            "name": "Museo Chileno de Arte Precolombino",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Discover Chilean and Latin American pre-Columbian art."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Bocan\u00e1riz",
+          "location": {
+            "name": "Bocan\u00e1riz",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a wine tasting and delicious meal at this wine-centered restaurant."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Stroll through Parque Forestal",
+          "location": {
+            "name": "Parque Forestal",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a leisurely walk in the park, surrounded by lush greenery."
+        },
+        {
+          "time": "6:00 PM",
+          "activity_name": "Dinner at Tenedor Libre",
+          "location": {
+            "name": "Tenedor Libre",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience a buffet-style dining experience with a variety of dishes."
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2024-11-14",
+      "summary": "Last day for shopping and sightseeing.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Shopping at Costanera Center Mall",
+          "location": {
+            "name": "Costanera Center Mall",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Shop for souvenirs and enjoy the modern mall experience."
+        },
+        {
+          "time": "12:00 PM",
+          "activity_name": "Visit to Patio Bellavista",
+          "location": {
+            "name": "Patio Bellavista",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore local artisan shops and cafes in this vibrant area."
+        },
+        {
+          "time": "2:00 PM",
+          "activity_name": "Lunch at Pizzeria Tiramisu",
+          "location": {
+            "name": "Pizzeria Tiramisu",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Delicious pizza in a cozy setting, perfect for a relaxed meal."
+        },
+        {
+          "time": "4:00 PM",
+          "activity_name": "Farewell at Parque Bicentenario",
+          "location": {
+            "name": "Parque Bicentenario",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a final stroll in the park and reflect on your trip."
         }
       ]
     }

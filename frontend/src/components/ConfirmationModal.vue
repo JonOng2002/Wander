@@ -59,7 +59,7 @@ const cancel = () => {
 
 .confirm-button,
 .cancel-button {
-  background-color: #007bff;
+  background-color: #3f94a7;
   color: #fff;
   border: none;
   padding: 10px 20px;
