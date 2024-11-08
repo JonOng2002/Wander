@@ -1,138 +1,184 @@
 {
-  "country": "Canada",
-  "itinerary_summary": "A weekend exploration of Toronto, focusing on nature, wildlife, and beautiful parks, highlighted by visits to iconic landmarks.",
+  "country": "Japan",
+  "itinerary_summary": "This exciting 3-day solo trip features must-see attractions in Kyoto, Osaka, and Yokohama, offering a mix of culture, history, and culinary experiences.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-09",
-      "summary": "Discover the vibrant city of Toronto, focusing on its stunning parks and nature-oriented activities.",
+      "date": "2024-11-12",
+      "summary": "Arrive in Kyoto and explore iconic temples and shrines, enjoying the city's historic charm.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Breakfast at First Canadian Place",
+          "time": "16:30",
+          "activity_name": "Kiyomizu-dera",
           "location": {
-            "name": "First Canadian Place",
-            "city": "Toronto",
+            "name": "Kiyomizu-dera",
+            "city": "Kyoto",
             "coordinates": {
-              "latitude": 43.6480631,
-              "longitude": -79.3799293
+              "latitude": 34.9946662,
+              "longitude": 135.784661
             },
+            "place_id": "ChIJB_vchdMIAWARujTEUIZlr2I",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNpVtNFdzcTijNkzt1rPynp22YaYAoy9OI3pmtlRaVgTWRDuWPmKgUyAUMxe9lc-L4l4Gx74G5-zyQq56WaemGFaEQxHQC-eyPz8LIN8nWpjoBJCZECOfMxacQNng2btvnxioRMWpgDytKX7opQZvRefNf2N_aXnCU2xn79Rj6fOprv&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
+          },
+          "description": "A UNESCO World Heritage site, famous for its wooden stage that offers breathtaking views, especially during the cherry blossom season."
+        },
+        {
+          "time": "18:30",
+          "activity_name": "Dinner at Nishiki Market",
+          "location": {
+            "name": "Nishiki Market",
+            "city": "Kyoto",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Start your day with a delightful breakfast at one of the iconic restaurants in the First Canadian Place, a great way to fuel up before a day of exploration."
+          "description": "Enjoy an array of local delicacies, from fresh seafood to traditional sweets in Kyoto\u2019s famous food market."
         },
         {
-          "time": "10:30 AM",
-          "activity_name": "Stroll through High Park",
+          "time": "20:00",
+          "activity_name": "Stroll through Gion District",
           "location": {
-            "name": "High Park",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.6465,
-              "longitude": -79.4633
-            },
+            "name": "Gion District",
+            "city": "Kyoto",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Enjoy a leisurely walk in High Park, Toronto's largest public park, featuring beautiful gardens and scenic walking trails."
+          "description": "Walk through this historic district, known for its traditional wooden machiya houses, and catch a glimpse of Geishas."
         },
         {
-          "time": "01:00 PM",
-          "activity_name": "Visit the Royal Ontario Museum",
+          "time": "21:30",
+          "activity_name": "Relax at a local Ryokan",
           "location": {
-            "name": "Royal Ontario Museum",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.6677097,
-              "longitude": -79.3947771
-            },
-            "place_id": "ChIJE-Xa87o0K4gRkvXFHuE0hMk",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoJupIeQt7qRoDF6qIVf22B4s4zynOPv6qB_1mygO0TppDuklE3_9kfG65lQIrOgO99Sn8ZFLyGDxjR2orB1CUptj6C-d8aVL9ZcNCiD0FVyIo2hstwbg_jJBZt1jFGQZRSM3H5bZ3-jWa5KH5aGdhkUCFymD_XFYMBKcNVvk2rXwP_&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
-          },
-          "description": "Explore the Royal Ontario Museum, known for its natural history exhibits, and discover fascinating wildlife displays."
-        },
-        {
-          "time": "04:00 PM",
-          "activity_name": "Relax at Toronto Islands",
-          "location": {
-            "name": "Toronto Islands",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.6178,
-              "longitude": -79.3768
-            },
+            "name": "Ryokan",
+            "city": "Kyoto",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Take a ferry to the Toronto Islands, where you can relax in nature, enjoy views of the city skyline, and take a stroll through scenic pathways."
+          "description": "Experience overnight stay in a traditional Japanese inn and enjoy its serene ambiance."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-10",
-      "summary": "Continue your journey in Toronto while discovering more of the city\u2019s natural beauty and cultural sites.",
+      "date": "2024-11-13",
+      "summary": "Travel to Osaka to explore vibrant shopping districts and culinary hotspots, ending the day with some cultural exploration.",
       "activities": [
         {
-          "time": "09:00 AM",
-          "activity_name": "Breakfast at St. Lawrence Market",
+          "time": "09:00",
+          "activity_name": "Hankyu Umeda Main Store",
           "location": {
-            "name": "St. Lawrence Market",
-            "city": "Toronto",
+            "name": "Hankyu Umeda Main Store",
+            "city": "Osaka",
             "coordinates": {
-              "latitude": 43.6488,
-              "longitude": -79.3725
+              "latitude": 34.70281860000001,
+              "longitude": 135.4985323
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJ67mcWJLmAGARrUf0FlFtm7w",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOrVTR5_wwH1An67NJvPqUyl9-9vPsNfKgQecC6Cb63HAz8grumJrVHR5ojiA9VpIhByC2aOvPeyyMT-FsOZNtmCsYrerzUOV4NyZinp1OJR5GWNss6OmC8Ze_pz9fCCgGW5vkMGl-HcMj7Rnx4K5Zh5PaNadhN0tMXImCUwnH2mZk&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
           },
-          "description": "Start your day with a unique breakfast at the famous St. Lawrence Market, known for its fresh produce and variety of food stalls."
+          "description": "Shop in one of the largest department stores in Japan, featuring everything from luxury goods to local souvenirs."
         },
         {
-          "time": "11:00 AM",
-          "activity_name": "Explore the Allan Gardens Conservatory",
+          "time": "12:00",
+          "activity_name": "Lunch at Dotonbori",
           "location": {
-            "name": "Allan Gardens Conservatory",
-            "city": "Toronto",
-            "coordinates": {
-              "latitude": 43.6625,
-              "longitude": -79.3736
-            },
+            "name": "Dotonbori",
+            "city": "Osaka",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit Allan Gardens Conservatory, a beautiful botanic garden featuring tropical plants and a tranquil setting amidst the city."
+          "description": "Savor Osaka\u2019s street food culture with takoyaki and okonomiyaki in this bustling entertainment district."
         },
         {
-          "time": "01:00 PM",
-          "activity_name": "Visit the Toronto Botanical Garden",
+          "time": "14:00",
+          "activity_name": "T\u014ddai-ji Temple",
           "location": {
-            "name": "Toronto Botanical Garden",
-            "city": "Toronto",
+            "name": "T\u014ddai-ji",
+            "city": "Nara",
             "coordinates": {
-              "latitude": 43.7116,
-              "longitude": -79.3763
+              "latitude": 34.6889851,
+              "longitude": 135.8398158
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJ3XYIepA5AWARjzzVnT-skPg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOERiNRFTz04b74Qn5n38aSBTxht-ivc7iQ1o6JgsgBuc1sDvSL7K_b_-QLPWBd-Df_IxJOqLAO2VyVwpHe_NWX21dqoblRZwMvRFkQ-iDKDahiyWvALYQZ9ZVOxAtMeV1nTvllNLclKyEqsVCA-IE7dyUU5-KvR44wdJoOFEZY2kwV&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
           },
-          "description": "Explore the lush landscapes at the Toronto Botanical Garden, showcasing various themed gardens and a wealth of biodiversity."
+          "description": "Visit this historic temple, known for its Great Buddha statue and beautiful architectural style."
         },
         {
-          "time": "03:00 PM",
-          "activity_name": "Visit the Distillery District",
+          "time": "17:00",
+          "activity_name": "Byodoin Temple",
           "location": {
-            "name": "Distillery District",
-            "city": "Toronto",
+            "name": "Byodoin",
+            "city": "Osaka",
             "coordinates": {
-              "latitude": 43.6502,
-              "longitude": -79.3603
+              "latitude": 34.8892908,
+              "longitude": 135.8076783
             },
+            "place_id": "ChIJqyva4AwRAWARpAf6j5MUhGA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM7BFwmjD4icH28gfWjxnLpl_lcW3igQUwnVe_CbTgrOIWt_mJN4e_V08jGobRBzthRlJlK0924chJmlkBKo-SOkJSxXvXzZwB8pisl_o8X5DL4ADpy07uf7Iys8TAIHxQOg7TlPfjjZJcUr-6L-qbDoSW0-fKC-ZFBjUHtMayVoJoo&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
+          },
+          "description": "A stunning temple featuring a beautiful pond and garden, notable for its Phoenix Hall, which is depicted on the 10 yen coin."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-14",
+      "summary": "A day in Yokohama featuring interactive exhibits and cultural experiences, before heading back.",
+      "activities": [
+        {
+          "time": "09:00",
+          "activity_name": "Cup Noodles Museum Yokohama",
+          "location": {
+            "name": "Cup Noodles Museum Yokohama",
+            "city": "Yokohama",
+            "coordinates": {
+              "latitude": 35.4554755,
+              "longitude": 139.6388669
+            },
+            "place_id": "ChIJ3ZNhe1dcGGARvjq5QHdmaHM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMHM6TDdI5TMDjdDVdR5MQpyky1QAzdmnXr38_WtMeI_rMN4ycCt7xmhLzPtBy3euNcvhuMQxgzXXG18fSwAZBYhK6js2waaAXkXl6Z2xrwZvwkfnVOXRHjM5EFif3e-S72TDOReRouOrwVOHaamIBwGpzvN7MrHg77zh1if5Cub4Hf&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
+          },
+          "description": "Learn about the history of instant noodles, and even design your own cup noodle."
+        },
+        {
+          "time": "12:00",
+          "activity_name": "Lunch in Yokohama Chinatown",
+          "location": {
+            "name": "Yokohama Chinatown",
+            "city": "Yokohama",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Conclude your trip with a visit to the Distillery District, where you can wander through historic brick buildings, enjoy art galleries, and relax at outdoor cafes."
+          "description": "Explore the vibrant streets of one of the largest Chinatowns in the world, tasting various Chinese cuisines."
+        },
+        {
+          "time": "14:00",
+          "activity_name": "Yamashita Park",
+          "location": {
+            "name": "Yamashita Park",
+            "city": "Yokohama",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a stroll along the waterfront park, taking in views of the bay and iconic Red Brick Warehouse."
+        },
+        {
+          "time": "16:00",
+          "activity_name": "Return to Kyoto",
+          "location": {
+            "name": "",
+            "city": "",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Head back to Kyoto for departure."
         }
       ]
     }

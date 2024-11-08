@@ -606,9 +606,7 @@ export default {
     const filterRecentlyAdded = () => {
       // Ensure that each place has a 'dateAdded' field. If not, this will not sort correctly.
       // You might need to add 'dateAdded' when saving places.
-      filteredPlaces.value = [...savedPlaces.value].sort(
-        (a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)
-      );
+      filteredPlaces.value = [...savedPlaces.value].reverse();
     };
 
     const confirmDeleteAllPlaces = async () => {
@@ -790,6 +788,7 @@ export default {
 .filter-button {
   position: relative;
   display: inline-block;
+  flex: 1;
   width: auto; /* Set to auto to reduce width */
 }
 
@@ -825,6 +824,7 @@ export default {
   margin-top: 1rem;
   margin-left: 60px;
   margin-right: 40px;
+  flex-wrap: wrap;
 
   /* Adjust this value to align the dropdowns with the text */
 }
