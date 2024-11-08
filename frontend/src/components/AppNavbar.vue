@@ -2,14 +2,14 @@
   <nav class="navbar navbar-expand-lg sticky-top w-100">
     <div class="nav-contain container-fluid d-flex justify-content-between align-items-center">
       <!-- Title -->
-      <a class="navbar-brand" href="#">
-        <h1 id="title" class="h1">wander.</h1>
-      </a>
+      <router-link to="/about" class="navbar-brand nav-link">
+  <h1 id="title">wander.</h1>
+</router-link>
 
       <!-- Navigation Links (hidden below md breakpoint) -->
       <ul v-if="!isMobile" class="navbar-nav d-flex flex-row align-items-center ms-auto">
         <li class="nav-item me-4">
-          <router-link to="/" class="nav-link" exact>Main Page</router-link>
+          <router-link to="/" class="nav-link" exact>Explore</router-link>
         </li>
         <li class="nav-item me-4">
           <router-link to="/savedplaces" class="nav-link">Saved Places</router-link>
@@ -18,7 +18,7 @@
           <router-link to="/destinations" class="nav-link">Destinations</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/about" class="nav-link">About</router-link>
+          <router-link to="/itineraryBuilder" class="nav-link">Itinerary Builder</router-link>
         </li>
         <!-- <li class="nav-item me-4">
           <router-link to="/myitinerary" class="nav-link">middle itinerary</router-link>
@@ -69,10 +69,10 @@
       <!-- Dropdown Menu (Only visible when dropdown button is clicked) -->
       <div class="mobile-dropdown-wrap" :class="{ 'open-menu': isDropdownOpen }">
         <div class="mobile-dropdown">
-          <router-link to="/" class="dropdown-item" exact>Main Page</router-link>
+          <router-link to="/" class="dropdown-item" exact>Explore</router-link>
           <router-link to="/savedplaces" class="dropdown-item">Saved Places</router-link>
           <router-link to="/destinations" class="dropdown-item">Destinations</router-link>
-          <router-link to="/about" class="dropdown-item">About</router-link>
+          <router-link to="/itineraryBuilder" class="dropdown-item">Build Itinerary</router-link>
           <router-link to="/saveditinerary" class="dropdown-item">My itineraries</router-link>
         </div>
       </div>
@@ -542,4 +542,20 @@ export default {
     /* Align dropdown button to the right */
   }
 }
+/* Ensure the parent container doesn't wrap */
+
+
+/* Adjust the profile picture size between 768px and 815px */
+@media (max-width: 992px) and (min-width: 768px) {
+  .user-pic {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  .nav-contain {
+    justify-content: space-between;
+  }
+}
+
 </style>

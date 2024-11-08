@@ -8,7 +8,7 @@ from .urlFix import resolve_redirect
 import os
 import json
 from dotenv import load_dotenv
-from .unsplashAPI import update_openai_response_with_images
+from .unsplashAPI import fetch_image_from_unsplash, update_openai_response_with_images
 import requests
 import logging
 

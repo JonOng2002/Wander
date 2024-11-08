@@ -1,72 +1,78 @@
 {
   "location_info": {
-    "place_name": "Hokkaido",
+    "place_name": "Tokyo",
     "country": "Japan",
-    "city": "Sapporo",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGHrjs3Wnmskwf1tHUSezLZBEZwOdq-JbZUlNmKb0WBi-DKpRvPxXlCB8NWxqo9F8eCs-rYdQQlgZgpsV_QTyd1_QDHlInzzIo=s1600-w800",
+    "city": "Tokyo",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF1CuCtTFxqFDoOfUnj-P11Bm_ifmDw1s1Nlt-hRGO4I8MbFJb_ykDmHkcLWAf9Ey-HE1efeoHpP6oZzKDOywEktfMvopE3Msk=s1600-w800",
     "coordinates": {
-      "latitude": 43.2203266,
-      "longitude": 142.8634737
+      "latitude": 35.6764225,
+      "longitude": 139.650027
     },
     "activities": [
-      "Skiing in winter resorts",
-      "Visiting Sapporo Snow Festival",
-      "Enjoying hot springs (onsen)"
+      "Explore the bustling streets of Shibuya",
+      "Visit the historic Senso-ji Temple",
+      "Marvel at the views from Tokyo Tower",
+      "Experience the tranquility of Ueno Park",
+      "Shop in the fashionable district of Harajuku",
+      "Enjoy sushi at Tsukiji Outer Market"
     ],
-    "location_summary": "Hokkaido, Japan's northernmost island, is renowned for its stunning natural landscapes, winter sports, and vibrant local culture, especially during the winter season when it transforms into a snowy wonderland.",
-    "vicinity": "Sapporo, Japan"
+    "location_summary": "Tokyo, Japan's capital, is a vibrant metropolis that blends tradition with modernity. It is famous for its eclectic neighborhoods, historical landmarks, and advanced technology.",
+    "vicinity": "Tokyo, Japan"
   },
   "related_places": [
     {
-      "place_name": "Niseko",
+      "place_name": "Kyoto",
       "country": "Japan",
-      "city": "Niseko",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF0j7GSy7zgqtGhVCPVnTUzYGdyXn87z7kmzfq0W-4q-Q2Y4hPAg3jgCer2-Lzrg8DeVuOzeXVF55M7X1XZoqzYOJZp3KBgEjM=s1600-w800",
+      "city": "Kyoto",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFhUb_YENj1ybGqMVzejr6hQGN-s8Yp8uAwevQBmgJupIkKz1KQXwkeXTdnLEVJvIQ_OK84H8Y_N0WrOx3Lq8uwKRaZBVeVkHg=s1600-w800",
       "coordinates": {
-        "latitude": 42.8047856,
-        "longitude": 140.6874494
+        "latitude": 35.011564,
+        "longitude": 135.7681489
       },
       "activities": [
-        "Skiing and snowboarding",
-        "Hiking in summer",
-        "Hot spring baths"
+        "Visit Kinkaku-ji (Golden Pavilion)",
+        "Explore the traditional Gion district",
+        "Walk through Fushimi Inari Taisha shrine",
+        "Discover ancient temples and gardens"
       ],
-      "location_summary": "Niseko is famous for its excellent ski resorts and powder snow, making it a popular destination for winter sports enthusiasts from around the world.",
-      "vicinity": "Niseko"
+      "location_summary": "Kyoto is known for its classical Buddhist temples, as well as gardens, imperial palaces, Shinto shrines, and traditional wooden houses.",
+      "vicinity": "Kyoto"
     },
     {
-      "place_name": "Otaru",
+      "place_name": "Osaka",
       "country": "Japan",
-      "city": "Otaru",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEhcIcADGrBM-sgPDNr0XWMBgBvcH7URkodhQ8VFe_OxiXZMP7Cg-w6Oop4Xi15kE2xZPrJxTomm00-xAyrOSK7C1AOPTMR-oY=s1600-w800",
+      "city": "Osaka",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqG_OA7RzCh0dKVNuw9BRSbZt8QABQn07tkCi_ufZcgrQ4KAN8xVod5p1xJ6L4L25gXZA-YtlNOh15-LkP9-hDsV7ZbkJDD9ot0=s1600-w711",
       "coordinates": {
-        "latitude": 43.1902372,
-        "longitude": 140.994172
+        "latitude": 34.6937249,
+        "longitude": 135.5022535
       },
       "activities": [
-        "Exploring historic canals",
-        "Visiting glass workshops",
-        "Tasting local sushi"
+        "Visit Osaka Castle",
+        "Enjoy street food at Dotonbori",
+        "Aquarium of Osaka",
+        "Shop at Shinsaibashi shopping district"
       ],
-      "location_summary": "Otaru is a picturesque port city in Hokkaido famous for its well-preserved canal area, seafood dining, and glassworks, providing a charming historical atmosphere for visitors.",
-      "vicinity": "Otaru"
+      "location_summary": "Osaka is known for modern architecture, nightlife, and hearty street food. It's a major economic hub and offers a vibrant urban experience.",
+      "vicinity": "Osaka"
     },
     {
-      "place_name": "Furano",
+      "place_name": "Nara",
       "country": "Japan",
-      "city": "Furano",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF_nL9s6JlDUTqyWnjrIT1PW4JWP2rOmm5HA_qqRjTGC1OelCYBwJD6CnV6pXCSHRA3e-r8p65Z6QFiXiL3bNb7Zu2hCdXsnZc=s1600-w800",
+      "city": "Nara",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE7CGTelnYgPqBafHNng4ywu1G4q8HoUVY9KaZV57gtuvY3mDezBDER7BCo9Yn4XWBbrZ8UK0k1bA6_izoznVg4CZn2-ctF2lE=s1600-w800",
       "coordinates": {
-        "latitude": 43.3420458,
-        "longitude": 142.3831624
+        "latitude": 34.685109,
+        "longitude": 135.8048019
       },
       "activities": [
-        "Visiting lavender fields",
-        "Skiing in winter",
-        "Enjoying rural landscapes"
+        "Explore Nara Park with free-roaming deer",
+        "Visit Todai-ji Temple and see the Great Buddha",
+        "Wander through historic streets",
+        "Experience traditional tea ceremonies"
       ],
-      "location_summary": "Furano is well-known for its stunning flower fields in summer, particularly lavender, and serves as a popular location for both winter sports and agricultural tourism.",
-      "vicinity": "Furano"
+      "location_summary": "Nara is famous for its ancient temples and friendly deer, offering a peaceful atmosphere and a glimpse into Japan's historical roots.",
+      "vicinity": "Nara"
     }
   ]
 }

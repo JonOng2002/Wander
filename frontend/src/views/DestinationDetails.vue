@@ -1,23 +1,41 @@
 <!-- src/views/DestinationDetails.vue -->
 <template>
   <div class="destination-details">
-    <div class="header-row">
-      <button @click="goBack" class="btn back-button">
-        Back to Destinations
-      </button>
-      <h1 class="page-title">Top Tourist Attractions in {{ country }}</h1>
-      
-      <!-- Styled Dropdown Filter Menu -->
-      <div class="filter-dropdown d-flex align-items-center">
-        <select v-model="sortOption" @change="updateSortCriteria" class="form-select me-2" aria-label="Sort Attractions">
-          <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
-          <option value="popularity-asc">Sort By Popularity: Low to High</option>
-          <option value="rating-desc">Sort By Rating: High to Low</option>
-          <option value="rating-asc">Sort By Rating: Low to High</option>
 
-        </select>
+        <!-- Header Card -->
+      <div class="header-card">
+      <div class="content">
+        <h1>Discover {{ country }}.</h1>
+        <h4 class="header-subtitle">Embark on an Adventure | Discover the World's Most Breathtaking Destinations Today.</h4>
+      </div>
+      </div>
+
+    <!-- Secondary Header -->
+    <div class="secondary_header">
+      <div class="secondary_content">
+        <h2>Top Tourist Attractions in {{ country }}</h2>
+        <h5>Explore the wonders of {{ country }}</h5>
+      </div>
+
+      <!-- Dropdown Container with Motion Animation -->
+      <div class="dropdown-container" v-motion-slide-visible-once-top>
+        <div class="dropdown">
+          <button @click="goBack" class="dropdown-btn">Back to Destinations</button>
+        </div>
+
+        <div class="filter-button">
+          <!-- Styled Dropdown Filter Menu -->
+          <select v-model="sortOption" @change="updateSortCriteria" class="custom-select  form-select me-2" aria-label="Sort Attractions">
+            <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
+            <option value="popularity-asc">Sort By Popularity: Low to High</option>
+            <option value="rating-desc">Sort By Rating: High to Low</option>
+            <option value="rating-asc">Sort By Rating: Low to High</option>
+          </select>
+          <span class="arrow-down">&#9662;</span> <!-- Custom arrow icon -->
+        </div>
       </div>
     </div>
+  </div>
 
     <!-- Display Loading Indicator -->
     <div v-if="loading" class="loading">Loading...</div>
@@ -30,35 +48,25 @@
     <!-- Display Attractions List -->
     <div v-if="!loading && !errorMessage" class="card-grid">
       <transition-group name="list" tag="div" class="transition-wrapper">
-        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container">
-          <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image})` }">
+        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container" v-motion-slide-visible-once-top>
+          <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
             <div class="overlay"></div>
-            <!-- Optional: You can remove the close button if not needed -->
-            <button @click="removePlace(attraction)" type="button" class="btn close-button">✖</button>
+
             <div class="card-body">
               <h5 class="card-title">{{ attraction.name }}</h5>
               <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
-              
+
               <!-- Star Rating and Exact Number -->
               <div class="rating-section">
                 <star-rating :rating="attraction.rating"></star-rating>
-                <span class="rating-number">{{ attraction.rating.toFixed(1) }}</span>
-                <span class="rating-text">({{ attraction.user_ratings_total }} reviews)</span>
+                <span class="rating-number">{{ attraction.rating.toFixed(1) }} / 5 </span>
+                <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
               </div>
 
-              <!-- Open Status -->
-              <p v-if="attraction.open_now !== undefined" :class="['attraction-hours', attraction.open_now ? 'open' : 'closed']">
-  {{ attraction.open_now ? "🟢 Open Now" : "🔴 Closed" }}
-</p>
-
               <!-- Save Place Button -->
-              <save-place-button
-                class="btn itinerary-button"
-                :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
-                :placeId="attraction.place_id"
-                :isAlreadySaved="isPlaceSaved(attraction.place_id)"
-                @save-place="savePlaceToFirebase"
-              >
+              <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
+                :placeId="attraction.place_id" :isAlreadySaved="isPlaceSaved(attraction.place_id)"
+                @save-place="savePlaceToFirebase">
                 {{ isPlaceSaved(attraction.place_id) ? 'Saved' : 'Add to Saved Places' }}
               </save-place-button>
             </div>
@@ -67,31 +75,35 @@
       </transition-group>
     </div>
 
-    <!-- Popup Notifications -->
-    <div v-if="showPopup" class="popup">
-      <p>Added to saved places!</p>
-    </div>
+    <!-- Added ToastNotification -->
+    <ToastNotification
+      :show="toastShow"
+      :message="toastMessage"
+      :type="toastType"
+      :duration="3000"
+      @update:show="toastShow = $event"
+    />
 
-    <div v-if="showAlreadySavedPopup" class="popup already-saved">
-      <p>Place has already been saved!</p>
-    </div>
-  </div>
 </template>
 
 <script>
 // Import necessary components and functions
 import SavePlaceButton from "@/components/SavePlaceButton.vue"; // Adjust the path as needed
 import StarRating from "@/components/StarRating.vue"; // Import the StarRating component
+import ToastNotification from "@/components/ToastNotification.vue";
 import { auth, db } from "@/main.js"; // Adjust the path based on your project structure
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import axios from "axios";
+import defaultImage from '@/assets/placeholder.jpg'; // Correctly import the fallback image
 
 export default {
   name: "DestinationDetails",
   components: {
     SavePlaceButton,
     StarRating,
+    ToastNotification,
   },
+  
   inject: ["savedPlacesState"], // Inject the provided global state
   data() {
     return {
@@ -102,132 +114,187 @@ export default {
       apiKey: process.env.VUE_APP_GOOGLE_API_KEY || "YOUR_GOOGLE_PLACES_API_KEY", // Replace with your actual API key or use environment variable
       cityName: this.$route.params.city || "Unknown City",
       userId: null,
-      showPopup: false,
-      showAlreadySavedPopup: false, // Ensure this is initialized correctly
       errorMessage: "", // For user-friendly error messages
       sortCriteria: {
-      field: 'popularity', // 'popularity' or 'rating'
-      direction: 'desc',    // 'asc' or 'desc'
+        field: 'popularity', // 'popularity' or 'rating'
+        direction: 'desc',    // 'asc' or 'desc'
+      },
+      toastShow: false,
+      toastMessage: "",
+      toastType: "info", // Default type
+      defaultImage: defaultImage, // Fallback image
+      countryRadius: {
+        'Malaysia': 30000,     // 30 km radius for Malaysia
+        'Indonesia': 30000,    // 30 km radius for Indonesia
+        'Singapore': 25000,    // 25 km radius for Singapore
+        // Add more countries here if needed
+      },
+      defaultRadius: 50000,     // Default radius of 50 km for other countries
+      cityRadius: {
+        'Johor Bahru': 10000,   // 10 km radius for Johor Bahru
+        // Add more cities here if needed
       },
     };
   },
   created() {
-    console.log(`Using API Key: ${this.apiKey}`); // Verify API key
     this.fetchAttractions();
   },
   computed: {
-    sortedAttractions() {
-    return this.attractions.slice().sort((a, b) => {
-      const { field, direction } = this.sortCriteria;
+    countryDetails() {
+      // Find the country in the list of countries
+      return this.countries.find(c => c.name === this.country);
+    },
 
-      if (field === 'popularity') {
-        // Sort by user_ratings_total
-        if (b.user_ratings_total !== a.user_ratings_total) {
-          return direction === 'asc'
-            ? a.user_ratings_total - b.user_ratings_total
-            : b.user_ratings_total - a.user_ratings_total;
+    sortedAttractions() {
+      return this.attractions.slice().sort((a, b) => {
+        const { field, direction } = this.sortCriteria;
+
+        if (field === 'popularity') {
+          // Sort by user_ratings_total
+          if (b.user_ratings_total !== a.user_ratings_total) {
+            return direction === 'asc'
+              ? a.user_ratings_total - b.user_ratings_total
+              : b.user_ratings_total - a.user_ratings_total;
+          }
+        } else if (field === 'rating') {
+          // Sort by rating
+          if (b.rating !== a.rating) {
+            return direction === 'asc'
+              ? a.rating - b.rating
+              : b.rating - a.rating;
+          }
         }
-      } else if (field === 'rating') {
-        // Sort by rating
-        if (b.rating !== a.rating) {
-          return direction === 'asc'
-            ? a.rating - b.rating
-            : b.rating - a.rating;
-        }
+
+        // If both fields are equal, maintain original order or apply a tertiary sort
+        return 0;
+      });
+    },
+
+    savedPlaceIds() {
+      return this.savedPlacesState && Array.isArray(this.savedPlacesState.savedPlaces)
+        ? new Set(this.savedPlacesState.savedPlaces.map(place => place.place_id))
+        : new Set();
+    },
+
+    sortOption: {
+      get() {
+        return `${this.sortCriteria.field}-${this.sortCriteria.direction}`;
+      },
+      set(value) {
+        const [field, direction] = value.split('-');
+        this.sortCriteria.field = field;
+        this.sortCriteria.direction = direction;
+      },
+    },
+
+  },
+  methods: {
+
+    /**
+     * Fetches an image from Unsplash based on a query.
+     * @param {String} query - The search term for the image.
+     * @returns {String} - The URL of the fetched image or a default image.
+     */
+    async getUnsplashImage(query) {
+      const unsplashAccessKey = process.env.VUE_APP_UNSPLASH_ACCESS_KEY;
+
+      if (!unsplashAccessKey) {
+        console.error("Unsplash Access Key is not defined.");
+        return this.defaultImage; // Fallback image
       }
 
-      // If both fields are equal, maintain original order or apply a tertiary sort
-      return 0;
-    });
-  },
+      const unsplashUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
+        query
+      )}&client_id=${unsplashAccessKey}&per_page=1&orientation=landscape`;
 
-  savedPlaceIds() {
-    return this.savedPlacesState && Array.isArray(this.savedPlacesState.savedPlaces)
-      ? new Set(this.savedPlacesState.savedPlaces.map(place => place.place_id))
-      : new Set();
-  },
+      try {
+        const response = await axios.get(unsplashUrl);
+        console.log(`Unsplash API Response for "${query}":`, response.data);
 
-  sortOption: {
-    get() {
-      return `${this.sortCriteria.field}-${this.sortCriteria.direction}`;
+        if (
+          response.data &&
+          response.data.results &&
+          response.data.results.length > 0
+        ) {
+          return response.data.results[0].urls.regular;
+        } else {
+          console.warn(`No Unsplash images found for query: "${query}"`);
+          return this.defaultImage; // Fallback image
+        }
+      } catch (error) {
+        console.error(
+          `Error fetching image from Unsplash for query "${query}":`,
+          error.message
+        );
+        return this.defaultImage; // Fallback image
+      }
     },
-    set(value) {
+
+    toggleSortOrder() {
+      this.sortCriteria.direction = this.sortCriteria.direction === 'desc' ? 'asc' : 'desc';
+    },
+
+    updateSortCriteria(event) {
+      const value = event.target.value;
       const [field, direction] = value.split('-');
       this.sortCriteria.field = field;
       this.sortCriteria.direction = direction;
     },
-  },
-
-  },
-  methods: {
-    toggleSortOrder() {
-      this.sortOrder = this.sortOrder === 'desc' ? 'desc' : 'asc';
-    },
-
-    updateSortCriteria(event) {
-    const value = event.target.value;
-    const [field, direction] = value.split('-');
-    this.sortCriteria.field = field;
-    this.sortCriteria.direction = direction;
-  },
 
     async fetchAttractions() {
       const countryRef = doc(db, "countries", this.country);
+      let allAttractions = []; // Declare allAttractions
       try {
-        // Check if attractions for the country exist in Firestore
+        console.log(`Fetching attractions for ${this.country} from Firestore...`);
         const countryDoc = await getDoc(countryRef);
         if (countryDoc.exists()) {
-          // Attractions exist, use them
-          console.log(`Fetched attractions for ${this.country} from Firestore.`);
+          console.log(`Fetched attractions from Firestore for ${this.country}`);
           this.attractions = countryDoc.data().attractions;
           this.loading = false;
         } else {
-          // Attractions do not exist, fetch from Google Places API via proxy
-          console.log(`No data for ${this.country} in Firestore. Fetching from Google API via proxy.`);
           const cities = this.getCountryCities(this.country);
+          console.log(`No attractions in Firestore for ${this.country}, fetching from API...`)
           if (cities.length === 0) {
-            console.error(`No cities found for ${this.country}`);
             this.errorMessage = "No cities available for the selected country.";
             this.loading = false;
             return;
           }
 
-          let allAttractions = [];
-
-          // Fetch attractions for each city
           for (const city of cities) {
             const { name, location } = city;
-            const radius = 50000; // 50 km
+            // **Determine the Radius: City-specific > Country-specific > Default**
+            const citySpecificRadius = this.cityRadius[name];
+            const radius = citySpecificRadius || this.countryRadius[this.country] || this.defaultRadius;
+            console.log(`Using radius: ${radius} meters for city: ${name} in country: ${this.country}`);
+
             const type = "tourist_attraction";
             const proxyUrl = `/api/place/nearbysearch/json?location=${location}&radius=${radius}&type=${type}&key=${this.apiKey}`;
 
             try {
               const response = await axios.get(proxyUrl);
               if (response.data.status !== "OK") {
-                console.error(`Error fetching attractions for ${name}:`, response.data.status, response.data.error_message || '');
-                continue; // Skip to the next city on error
+                console.error(`Error fetching attractions for ${name}:`, response.data.status, response.data.error_message || "");
+                continue;
               }
-              console.log(`Fetched attractions for ${name}:`, response.data.results);
 
-              // Map attractions with additional data
               const mappedAttractions = response.data.results.map((place) => ({
                 name: place.name,
                 place_id: place.place_id,
                 vicinity: place.vicinity,
                 image: place.photos
                   ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
-                  : "/default-image.jpg",
+                  : null,
                 coordinates: place.geometry?.location || { lat: 0, lng: 0 },
                 rating: place.rating || 0,
                 user_ratings_total: place.user_ratings_total || 0,
                 open_now: place.opening_hours?.open_now || false,
-                city: name, // Add city name to attraction
+                city: name,
               }));
 
               allAttractions = allAttractions.concat(mappedAttractions);
             } catch (apiError) {
               console.error(`Error fetching attractions for ${name}:`, apiError.message);
-              continue; // Skip to the next city on error
+              continue;
             }
           }
 
@@ -237,24 +304,36 @@ export default {
             return;
           }
 
-          // Remove duplicate attractions based on place_id
-          const uniqueAttractions = Array.from(
-            new Map(
-              allAttractions.map((item) => [item.place_id, item])
-            ).values()
-          );
+          const uniqueAttractions = Array.from(new Map(allAttractions.map(item => [item.place_id, item])).values());
+          const topAttractions = uniqueAttractions.slice(0, 50);
 
+          // Fetch Unsplash images for attractions missing Google images
+          const fetchImagesPromises = topAttractions.map(async (attraction) => {
+            if (!attraction.image) {
+              const query = `${attraction.name}, ${attraction.city}`;
+              console.log(`Fetching Unsplash image for: ${query}`); // Debugging log
+              const unsplashImage = await this.getUnsplashImage(query);
+              console.log(`Fetched image URL: ${unsplashImage}`); // Debugging log
+              attraction.image = unsplashImage;
+            }
+          });
 
-          // Limit to top 50 attractions
-          this.attractions = uniqueAttractions.slice(0, 50);
+          await Promise.all(fetchImagesPromises);
 
-          // Save the attractions to Firestore
+          // Assign fallback image if still null
+          topAttractions.forEach(place => {
+            if (!place.image) {
+              place.image = this.defaultImage; // Ensure this path is correct
+            }
+          });
+
+          this.attractions = topAttractions;
+
           await setDoc(countryRef, {
             attractions: this.attractions,
             lastUpdated: new Date(),
           });
 
-          console.log(`Saved attractions for ${this.country} to Firestore.`);
           this.loading = false;
         }
       } catch (error) {
@@ -263,6 +342,7 @@ export default {
         this.loading = false;
       }
     },
+
     getCountryCities(country) {
       const cities = {
         France: [
@@ -651,22 +731,21 @@ export default {
       };
       return continentMapping[country] || 'Unknown';
     },
-    
+
     goBack() {
-      this.$router.go(-1);
-    },
-    showSavedPopup() {
-      this.showPopup = true; // Show the popup
-      setTimeout(() => {
-        this.showPopup = false; // Automatically hide after 3 seconds
-      }, 3000);
+      this.$router.push("/destinations");
     },
 
-    displayAlreadySavedPopup() { // Renamed method
-      this.showAlreadySavedPopup = true;
-      setTimeout(() => {
-        this.showAlreadySavedPopup = false;
-      }, 3000);
+    showSavedPopup() {
+      this.toastMessage = "Added to Saved Places!";
+      this.toastType = "add"; // Use 'add' type for success
+      this.toastShow = true; // Show the toast
+    },
+
+    displayAlreadySavedPopup() {
+      this.toastMessage = "Place has already been saved!";
+      this.toastType = "info"; // Use 'info' type for already saved
+      this.toastShow = true; // Show the toast
     },
 
     isPlaceSaved(placeId) {
@@ -698,13 +777,11 @@ export default {
             coordinates: attraction.coordinates,
             rating: attraction.rating || 0,
             user_ratings_total: attraction.user_ratings_total || 0,
-            open_now: attraction.open_now || false,
             city: attraction.city || "Unknown City",
             country: this.country || "Unknown Country",
             source: "google_places",
             summary: "Google Places Summary",
             activities: [],
-            timestamp: new Date(),
           };
 
           try {
@@ -735,6 +812,7 @@ export default {
       console.log("Generate Itinerary button clicked");
       // This could involve creating a new itinerary document in Firestore
     },
+
   },
   mounted() {
     // Listen for authentication state changes
@@ -765,11 +843,221 @@ export default {
 </script>
 
 <style scoped>
+/* <====================== secondary header ===================> */
+.secondary_header {
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  /* Add spacing below the header */
+  text-align: left;
+  /* Center align the text */
+}
+
+.secondary_content {
+  padding: 0 60px;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+/* Container to align dropdowns side by side */
+.dropdown-container {
+  display: flex;
+  flex-direction: row; /* Horizontal layout */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center; /* Vertically center items */
+  gap: 1rem; /* Space between buttons */
+  margin-top: 1rem;
+  margin-left: 60px;
+  margin-right: 40px;
+}
+
+.filter-button {
+  position: relative;
+  display: inline-block;
+  width: auto; /* Set to auto to reduce width */
+  transition: background-color 0.4s ease;
+}
+
+.filter-button:hover {
+  background-color: #3f94a7;
+}
+
+.custom-select {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 1rem;
+  padding-right: 2.5rem; /* Add space for the custom arrow */
+  border: none;
+  background-color: #222;
+  color: white;
+  font-size: 1rem;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.arrow-down {
+    position: absolute;
+  top: 50%;
+  right: 1rem; /* Adjust the position to match your design */
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: white;
+  pointer-events: none; /* Make sure the arrow doesn't interfere with clicks */
+}
+
+/* Style the dropdown button */
+.dropdown-btn {
+  background-color: #222;
+  /* Dark background color */
+  color: #fff;
+  /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 16px;
+}
+
+/* Change button color on hover */
+.dropdown-btn:hover {
+  background-color:#3f94a7;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: #222;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  padding: 10px 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  transform: translateY(-10px);
+}
+
+.dropdown-content:hover {
+  background-color: #3f94a7
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown content links */
+.dropdown-content a {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+/* Change background color on hover */
+.dropdown-content a:hover {
+  background-color:#3f94a7;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* ====================== Header Card ====================== */
+.header-card {
+  width: 100%;
+  height: 300px; /* Adjust the height as needed */
+  background-image: url('@/assets/tourist.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem; /* Space below the header card */
+  min-height: 60vh;
+}
+
+.header-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for better text readability */
+}
+
+.header-card h1 {
+  position: relative; /* Ensure text is above the overlay */
+  color: #ffffff;
+  font-size: 4rem; /* Adjust font size as needed */
+  font-weight: 700;
+  text-align: center;
+  z-index: 1; /* Place text above the overlay */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Optional: Adds a shadow to the text for better visibility */
+}
+
+.header-card .header-subtitle {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional: Adds a shadow for better visibility */
+}
+
+/* ====================== Secondary Header ====================== */
+.secondary_header {
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  margin-bottom: 4rem;
+  text-align: left;
+}
+
+.secondary_content {
+  padding: 0 60px;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+/* Container to align dropdowns side by side */
+.dropdown-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 60px;
+  z-index: 100;
+}
 
 
+/* ====================== Primary Styles ====================== */
 .destination-details {
   text-align: center;
-  font-family: "Roboto", sans-serif;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .header-row {
@@ -778,6 +1066,8 @@ export default {
   align-items: center;
   padding: 20px 5%;
   position: relative;
+  flex-wrap: wrap;
+  z-index: 1000;
 }
 
 .back-button {
@@ -790,6 +1080,8 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
+  z-index: 9999;
 }
 
 .back-button:hover {
@@ -799,32 +1091,48 @@ export default {
 }
 
 .page-title {
-  font-size: 2rem; /* Adjusted font size */
+  font-size: 2rem;
   color: black;
   font-weight: bolder;
   flex-grow: 1;
+  margin: 0 20px;
+  min-width: 150px;
+  text-align: center;
 }
 
 .filter-dropdown {
   margin: 10px 0;
   font-family: "Source Sans 3", sans-serif;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  width: 320px;
 }
 
 .filter-dropdown .form-select {
-  width: 350px;
-  border-radius: 0.5rem;
-  border: 1px solid black;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 4px;
+  border: none;
+  padding: 1rem;
   font-family: "Source Sans 3", sans-serif;
-  padding: 8px;
   font-size: 1rem;
-  background-color: white;
-  color: black;
+  background-color: #222;
+  color: #fff;
   cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="%23FFFFFF" d="M0 0l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 10px 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .filter-dropdown .form-select:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #3f94a7;
+  background-color: #555;
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
@@ -842,42 +1150,51 @@ export default {
 
 /* Card Grid Layout */
 .card-grid {
+  display: block;
+  padding: 0;
+}
+
+.transition-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 items per row on large screens */
-  gap: 1.5rem; /* Space between cards */
-  padding: 2rem; /* Padding around the grid */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+  /* Padding around the grid */
+  margin-bottom: 50px;
 }
 
 .card-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background: rgba(0, 0, 0, 0.0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  aspect-ratio: 16 / 9;
+  height: 400px;
 }
 
 .card-container:hover {
-  transform: translateY(-4px); /* Slightly lifts the card on hover */
-  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2); /* Enhances shadow for lift effect */
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2);
 }
 
 .destination-card {
-  position: relative; /* To position overlay and buttons */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  height: 400px; /* Adjust height as needed */
+  height: 400px;
   background-size: cover;
   background-position: center;
   border-radius: inherit;
   padding: 1.5rem;
   box-sizing: border-box;
-  color: #ffffff; /* Text color for readability on image */
+  color: #ffffff;
   overflow: hidden;
 }
 
@@ -887,58 +1204,43 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Slightly opaque black background */
-  z-index: 1; /* Place between background image and text */
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
   border-radius: inherit;
 }
 
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.close-button:hover {
-  color: red;
-}
-
 .card-body {
-  position: absolute; /* Position absolutely within the card */
-  bottom: 15px; /* Align to the bottom with some padding */
-  left: 15px; /* Align to the left with some padding */
-  z-index: 2; /* Ensure it stays above the overlay */
-  text-align: left; /* Align text to the left */
-  width: calc(100% - 30px); /* Prevent overflow */
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  z-index: 2;
+  text-align: left;
+  width: calc(100% - 30px);
+  box-sizing: border-box;
 }
-
 
 .card-title {
   font-size: 1.25rem;
   font-weight: 700;
   color: white;
-  margin: 0; /* Remove any extra margins */
+  margin: 0;
   padding: 0;
 }
 
 .card-text {
   font-size: 0.9rem;
   color: #eaeaea;
-  margin-top: 0.1rem; /* Adjust spacing if needed */
+  margin-top: 0.1rem;
   margin-bottom: 0;
   margin-left: 0;
   padding: 0;
+  word-wrap: break-word;
 }
 
 .rating-section {
   display: flex;
   align-items: center;
-  margin: 0 ;
+  margin-top: 0;
   padding: 0;
 }
 
@@ -953,23 +1255,6 @@ export default {
   font-size: 0.9rem;
   color: #ffffff;
 }
-
-.attraction-hours {
-  font-size: 0.9rem;
-  margin-left: 0;
-  padding: 0;
-  margin-bottom: 0;
-  
-}
-
-.attraction-hours.open {
-  color: #00ff3c; /* Green for open */
-}
-
-.attraction-hours.closed {
-  color: #ff3d51; /* Red for closed */
-}
-
 
 .itinerary-button {
   margin-top: 10px;
@@ -991,48 +1276,222 @@ export default {
 }
 
 .itinerary-button.saved {
-  opacity: 0.7; /* Reduced opacity when saved */
+  opacity: 0.7;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 items per row on medium screens */
+/* ====================== Responsive Adjustments ====================== */
+
+/* Default Styles for Larger Screens (992px and above) */
+@media (min-width: 992px) {
+  .transition-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  .rating-text {
+    margin-left: 8px; /* Desired spacing */
+  }
+
+  .dropdown-container {
+    flex-direction: row; /* Horizontal layout */
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .back-button {
+    z-index: 9999;
   }
 }
 
-@media (max-width: 768px) {
-  .card-grid {
-    grid-template-columns: 1fr; /* 1 item per row on small screens */
+/* Styles for Medium Screens (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .transition-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .dropdown-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    z-index: 100;
+  }
+
+  .header-row {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: stretch;
+    padding: 15px 5%;
+    z-index: 10;
+  }
+
+  .back-button {
+    width: 100%;
+    margin-bottom: 10px;
+    z-index: 9999;
+  }
+
+  .page-title {
+    font-size: 1.75rem;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .filter-dropdown {
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .filter-dropdown .form-select {
+    max-width: 300px;
+    font-size: 0.9rem;
+    margin: 0 auto;
+  }
+
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rating-number,
+  .rating-text {
+    margin-left: 0;
+    font-size: 0.8rem;
+  }
+
+  .rating-section span {
+    margin-top: 4px;
+  }
+
+  .rating-section star-rating {
+    width: auto;
+    max-width: 100px;
   }
 }
 
-.transition-wrapper {
-  display: contents; /* Keep the child elements visible */
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 15px;
-  padding: 20px;
+/* Styles for Small Screens (Below 768px) */
+@media (max-width: 767px) {
+  .transition-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .dropdown-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-left: 3.7rem;
+    margin-right: 0;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 2%;
+  }
+
+  .back-button {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 8px;
+    z-index: 11;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .filter-dropdown {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .filter-dropdown .form-select {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .itinerary-button {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rating-number,
+  .rating-text {
+    margin-left: 0;
+    font-size: 0.8rem;
+  }
+
+  .destination-card {
+    height: 100%; /* Maintain aspect ratio */
+  }
 }
 
-/* Popup Notification Styles */
-.popup {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #2ecc71;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: opacity 0.3s ease;
-  opacity: 1;
+/* Styles for Extra Small Screens (Below 576px) */
+@media (max-width: 576px) {
+  .transition-wrapper {
+    grid-template-columns: 1fr; /* 1 item per row */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 2%;
+  }
+
+  .back-button {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 8px;
+    z-index: 11;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .filter-dropdown {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .filter-dropdown .form-select {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .itinerary-button {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rating-number,
+  .rating-text {
+    margin-left: 0;
+    font-size: 0.8rem;
+  }
 }
 
 .already-saved {
-  background-color: #e74c3c; /* Different color for already saved */
+  background-color: #e74c3c;
 }
 
 /* Additional Styles for Dropdown (already provided by user) */
@@ -1040,3 +1499,4 @@ export default {
   font-family: "Source Sans 3", sans-serif;
 }
 </style>
+

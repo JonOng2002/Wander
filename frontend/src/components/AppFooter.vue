@@ -2,69 +2,106 @@
 <template>
     <footer class="footer">
         <div class="footer-container">
-                <!-- Main footer content -->
-                <div class="footer-grid">
-                    <!-- Follow Us Section -->
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Follow Us</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-tiktok"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
+            <!-- Main footer content -->
+            <div class="footer-grid">
+                <!-- Follow Us Section -->
+                <div class="footer-column">
+                    <h1 class="wander-logo footer-heading">wander.</h1>
+                    <h6>© 2024 Wander, an SMU project</h6>
+                </div>
 
-                    <!-- Popular Destinations -->
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Popular Destinations</h3>
-                        <ul class="footer-links">
-                            <li><a href="#">Bali</a></li>
-                            <li><a href="#">Greece</a></li>
-                            <li><a href="#">Japan</a></li>
-                            <li><a href="#">Italy</a></li>
-                            <li><a href="#">France</a></li>
-                        </ul>
-                    </div>
+                <!-- Popular Destinations -->
+                <div class="footer-column to-hide">
+                    <h3 class="footer-heading ">Popular Destinations</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" @click.prevent="goToDestinationDetails('Greece')">Greece</a></li>
+                        <li><a href="#" @click.prevent="goToDestinationDetails('Japan')">Japan</a></li>
+                        <li><a href="#" @click.prevent="goToDestinationDetails('Italy')">Italy</a></li>
+                        <li><a href="#" @click.prevent="goToDestinationDetails('France')">France</a></li>   
+                    </ul>
+                </div>
 
-                    <!-- Travel Interests -->
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Travel Interests</h3>
-                        <ul class="footer-links">
-                            <li><a href="#">Adventure Travel</a></li>
-                            <li><a href="#">Cultural Tours</a></li>
-                            <li><a href="#">Beach Getaways</a></li>
-                            <li><a href="#">City Breaks</a></li>
-                            <li><a href="#">Food & Wine</a></li>
-                        </ul>
-                    </div>
+                <!-- Travel Interests -->
+                <div class="footer-column to-hide">
+                    <h3 class="footer-heading">Discover more</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" @click.prevent=viewDestinations>Explore Destinations</a></li>
+                        <li><a href="#" @click.prevent=viewMainPage>Extract Locations</a></li>
+                        <li><a href="#" @click.prevent=goToDestinationDetails></a></li>
+                        <li><a href="#" @click.prevent=viewSavedPlaces>Plan Your Trip</a></li>
+                        <li><a href="#" @click.prevent=viewAbout>About Us</a></li>
+                    </ul>
+                </div>
 
-                    <!-- Subscribe Section -->
-                    <div class="footer-column">
-                        <h3 class="footer-heading">Subscribe</h3>
-                        <p class="subscribe-text">Get exclusive travel tips and stories!</p>
-                        <div class="subscribe-form">
-                            <input type="email" placeholder="Enter your email" class="subscribe-input">
-                            <button class="subscribe-button">Subscribe</button>
-                        </div>
+                <!-- Subscribe Section -->
+                <div class="footer-column">
+                    <h3 class="footer-heading">Subscribe</h3>
+                    <p class="subscribe-text">Get exclusive travel tips and stories!</p>
+                    <div class="subscribe-form">
+                        <input type="email" placeholder="Enter your email" class="subscribe-input">
+                        <button class="subscribe-button">Subscribe</button>
                     </div>
                 </div>
             </div>
+        </div>
     </footer>
 </template>
 
 <script>
+import router from '@/router';
+
 export default {
     name: 'AppFooter',
+
+    setup() {
+        const goToDestinationDetails = (countryName) => {
+            router.push({
+                name: "DestinationDetails",
+                params: { country: countryName },
+            });
+        };
+
+        //redirecting to the itinerary when clicked
+        const viewDestinations = () => {
+            router.push({
+                name: 'MyDestinations',
+            });
+        };
+
+        const viewAbout = () => {
+            router.push({
+                name: 'AboutPage',
+            });
+        };
+
+        //redirecting to the itinerary when clicked
+        const viewSavedPlaces = () => {
+            router.push({
+                name: 'SavedPlaces',
+            });
+        };
+
+        //redirecting to the itinerary when clicked
+        const viewMainPage = () => {
+            router.push({
+                name: 'MainPage',
+            });
+        };
+
+        return {
+            goToDestinationDetails,
+            viewDestinations,
+            viewSavedPlaces,
+            viewMainPage,
+            viewAbout,
+        }
+    }
+
 };
+
+
+
+
 </script>
 
 <style scoped>
@@ -76,7 +113,6 @@ export default {
     color: white;
     padding: 20px 0;
     text-align: center;
-    margin-top: 50px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -99,7 +135,8 @@ export default {
 .footer-column {
     display: flex;
     flex-direction: column;
-    text-align: left; /* Aligns text to the left */
+    text-align: left;
+    /* Aligns text to the left */
 }
 
 .footer-heading {
@@ -107,6 +144,17 @@ export default {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: white;
+    z-index: 1;
+}
+
+.wander-logo {
+    position: relative;
+    top: -12px;
+    font-family: 'Lobster Two', cursive;
+    font-size: 3rem;
+    color: white;
+    margin: 0;
+    z-index: 1;
 }
 
 .social-icons {
@@ -166,7 +214,7 @@ export default {
 
 .subscribe-button {
     padding: 0.8rem;
-    background-color: #4a90e2;
+    background-color: #3f94a7;
     color: white;
     border: none;
     border-radius: 4px;
@@ -175,18 +223,54 @@ export default {
 }
 
 .subscribe-button:hover {
-    background-color: #357abd;
+    background-color: #378597;
+}
+
+/* @media (max-width: 991px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+} */
+@media (max-width: 1260px) {
+    .footer-container {
+        padding: 0 40px;
+    }
+
+}
+
+
+@media (max-width: 1119px) {
+    .footer-container {
+        padding: 0 40px;
+    }
+
+}
+
+
+@media (max-width: 991px) {
+    .footer-container {
+        padding: 0 40px;
+    }
+
 }
 
 @media (max-width: 768px) {
+    .footer-container {
+        padding: 0 40px;
+    }
+
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 575px) {
     .footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .to-hide {
+        display: none;
     }
 }
 </style>

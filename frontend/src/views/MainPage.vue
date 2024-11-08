@@ -2,6 +2,7 @@
   <div class="homepage">
     <header class="header-container">
       <!-- Fading Background Images -->
+      <div class="gradientoverlay"></div>
       <div class="backgrounds-container">
         <img
           class="background showing"
@@ -178,6 +179,7 @@ export default {
           }
         );
         const data = response.data.openai_response;
+        
         if (data.error)
           throw new Error("Error generating response from OpenAI.");
         this.extractedLocationsState.setLocationInfo(data.location_info);
@@ -242,6 +244,19 @@ html, body {
   overflow: hidden;
 }
 
+.gradientoverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Set a slightly darker default */
+  transition: background-color 0.4s ease, transform 0.4s ease;
+  /* Smooth color and scale transition */
+  z-index: 1;
+}
+
 .backgrounds-container {
   position: absolute;
   top: 0;
@@ -260,7 +275,7 @@ html, body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2); /* Black with 50% opacity */
-  z-index: 0; /* Places the overlay above the images but below the content */
+  z-index: -4; /* Places the overlay above the images but below the content */
 }
 
 .background {
@@ -271,14 +286,14 @@ html, body {
   height: 100vh;
   object-fit: cover;
   opacity: 0;
-  z-index: -1;
+  z-index: -2;
   transition: opacity 2s ease-in-out;
 }
 
 .showing {
   opacity: 1;
   z-index: -1;
-  transition: none;
+  
 }
 
 .overlay-content {
@@ -286,7 +301,7 @@ html, body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10rem;
+  padding: 2rem;
   width: 100%;           /* Ensures full-width overlay content */
   max-width: 100vw;      /* Prevents any padding from restricting width */
   text-align: center;

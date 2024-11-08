@@ -1,138 +1,346 @@
 {
-  "country": "Japan",
-  "itinerary_summary": "A short yet vibrant trip in Kushiro, Japan, filled with nightlife and entertainment experiences that blend cultural immersion with leisure.",
+  "country": "Chile",
+  "itinerary_summary": "A week-long solo adventure in Santiago, Chile, exploring cultural heritage, thrilling activities, and must-see attractions.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-05",
-      "summary": "Explore the vibrant nightlife of Kushiro with unique entertainment and dining experiences.",
+      "date": "2024-11-09",
+      "summary": "Arrival in Santiago. Explore the city and enjoy local cuisine.",
       "activities": [
         {
-          "time": "18:00",
-          "activity_name": "Kushiro Dinner Cruise, Kushiro",
+          "time": "10:00 AM",
+          "activity_name": "Santiago Central Market",
           "location": {
-            "name": "Kushiro Dinner Cruise",
-            "city": "Kushiro",
+            "name": "Santiago Central Market",
+            "city": "Santiago",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": -33.4334323,
+              "longitude": -70.6511061
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJ6YvQprzFYpYRebfwPoa7VPg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpr-qwNKJ60g_xM9KqzI0IztThzyGZaiPuh-9iqjxteL19a0sLQciEtqcxJxjWpG9yL3XlS_Og9fUerwTiCwfs0QjLjZGl7336EVcLzxIcVzGu0OfHUnIYUtdUiuWNi-AKZvJ00pMscDLGwcY4BrVa1yuGWYDWxqvBJ62x30Lu3eyAy"
           },
-          "description": "Enjoy a scenic dinner cruise along Kushiro River, offering stunning views of the city and delicious local cuisine."
+          "description": "Explore the vibrant market, sample fresh seafood and local specialties."
         },
         {
-          "time": "20:30",
-          "activity_name": "Nihonryori Sato, Kushiro",
+          "time": "12:30 PM",
+          "activity_name": "Lunch at La Piojera",
           "location": {
-            "name": "Nihonryori Sato",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "La Piojera",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience traditional Japanese dining with a focus on fresh seafood sourced from Hokkaido."
+          "description": "Enjoy a traditional Chilean meal at one of Santiago's iconic restaurants."
         },
         {
-          "time": "22:00",
-          "activity_name": "Kushiro Night Market, Kushiro",
+          "time": "2:00 PM",
+          "activity_name": "Cerro San Crist\u00f3bal Hill",
           "location": {
-            "name": "Kushiro Night Market",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Cerro San Crist\u00f3bal",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Explore the vibrant night market with stalls selling local delicacies and drinks, perfect for a late-night snack."
+          "description": "Hike or take a funicular to the top for panoramic views of the city."
         },
         {
-          "time": "23:30",
-          "activity_name": "Kushiro Pub Crawl, Kushiro",
+          "time": "5:00 PM",
+          "activity_name": "Cenco Costanera",
           "location": {
-            "name": "Various bars in Kushiro",
-            "city": "Kushiro",
+            "name": "Cenco Costanera",
+            "city": "Santiago",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": -33.4183176,
+              "longitude": -70.6059997
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJUUmF1GnPYpYR39Cq7y_vh5o",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWo8_6m5fV9Gw0hjuw7xOpl380D37hQuUVMB4xdePbwcsGRYj-KC2n3_KVT139FZ-VhMSe1WGQ2RdUlPakzEKXud1wHkyNnwKMcpcUl6Eo-twiQuwpXtaxXm_aVes2CcOLKGGvfc4pnB5eiNSo93wfiQrgkQ70VXUNHs_nkPZiCk1e-k&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Join fellow travelers and locals for a guided pub crawl to experience Kushiro's nightlife in its charming local bars."
+          "description": "Visit one of the tallest buildings in Latin America for an incredible sunset view."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-06",
-      "summary": "Morning exploration followed by leisure and departure.",
+      "date": "2024-11-10",
+      "summary": "Adventure activities and cultural immersion.",
       "activities": [
         {
-          "time": "09:00",
-          "activity_name": "Breakfast at Cafe de Lait, Kushiro",
+          "time": "9:00 AM",
+          "activity_name": "Valle Nevado Ski Resort",
           "location": {
-            "name": "Cafe de Lait",
-            "city": "Kushiro",
+            "name": "Valle Nevado",
+            "city": "Santiago",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": -33.3557958,
+              "longitude": -70.2525563
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJKWbtg6IwfZYRckmeFcV0Ml8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpyO4OATYgu-p7CEGtnC0APEPaT6TUdENjdaNwe15HbjXA4BNGVrfV5euIsQk8EulSvmwLLhmsjvhuGLp6Z1_2_JJuhA4CV7us0LoF8kAtjT-XWMw4vU_BoALniKjeTZ86_DNUyITqUsGdqkkDodLI6AlAxMcjCTmFybmEgm00L8eW8&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Start your day with a delicious breakfast featuring local specialties and freshly brewed coffee."
+          "description": "Enjoy skiing or snowboarding in the Andes mountains."
         },
         {
-          "time": "10:30",
-          "activity_name": "Kushiro Fishermen's Wharf MOO, Kushiro",
+          "time": "1:00 PM",
+          "activity_name": "Lunch at La Mustache",
           "location": {
-            "name": "Kushiro Fishermen's Wharf MOO",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "La Mustache",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Visit this lively waterfront area filled with shops, restaurants, and galleries showcasing Hokkaido's seafood trade."
+          "description": "Have a delicious lunch at this trendy eatery known for its unique sandwiches."
         },
         {
-          "time": "11:30",
-          "activity_name": "Hokkaido Museum of Northern Peoples, Kushiro",
+          "time": "3:00 PM",
+          "activity_name": "Fantasilandia Amusement Park",
           "location": {
-            "name": "Hokkaido Museum of Northern Peoples",
-            "city": "Kushiro",
+            "name": "Fantasilandia",
+            "city": "Santiago",
             "coordinates": {
-              "latitude": 0,
-              "longitude": 0
+              "latitude": -33.4602869,
+              "longitude": -70.6625814
             },
-            "place_id": "",
-            "photo_url": ""
+            "place_id": "ChIJr9wRnBzFYpYRMm3sSIEl3e8",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoBs6Ugax3jjDjQpS8947e3j8f2NqcHih9dlQZeWOO1wm7RqZKBt2mZJeb4Y_HbZOen9hc6ZrxX5WJJwgzqZzWdD_8BONa4izbfW0GhCyXAm7F0_uKa7NDRYdwA1N7lPL7-RpDz5KNdHDGAVw04WtDCCnIUiZEaE_WXjgsF7tKR4-6E&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Learn about the indigenous cultures of Hokkaido through various exhibits and displays at this engaging museum."
+          "description": "Spend the afternoon enjoying thrilling rides and attractions."
         },
         {
-          "time": "12:30",
-          "activity_name": "Departure from Kushiro, Kushiro",
+          "time": "7:00 PM",
+          "activity_name": "Dinner at Los Borrachos",
           "location": {
-            "name": "Kushiro Airport",
-            "city": "Kushiro",
-            "coordinates": {
-              "latitude": 0,
-              "longitude": 0
-            },
+            "name": "Los Borrachos",
+            "city": "Santiago",
+            "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "End your trip in Kushiro with a reflective departure from the airport."
+          "description": "Enjoy hearty Chilean dishes and great ambiance."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-11",
+      "summary": "Cultural exploration and history.",
+      "activities": [
+        {
+          "time": "9:00 AM",
+          "activity_name": "Plaza de Armas",
+          "location": {
+            "name": "Plaza de Armas",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Visit the main square to see historical buildings and street performers."
+        },
+        {
+          "time": "11:00 AM",
+          "activity_name": "Visit the Museum of Memory and Human Rights",
+          "location": {
+            "name": "Museum of Memory and Human Rights",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Learn about Chile's history and the impact of human rights violations."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at El Huerto",
+          "location": {
+            "name": "El Huerto",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Dine at this vegetarian restaurant known for its creative dishes."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Walk through Barrio Bellavista",
+          "location": {
+            "name": "Barrio Bellavista",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore the artistic neighborhood filled with colorful street art and craft shops."
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-12",
+      "summary": "Day trip to Machu Picchu.",
+      "activities": [
+        {
+          "time": "5:00 AM",
+          "activity_name": "Fly to Cusco, Peru",
+          "location": {
+            "name": "Cusco International Airport",
+            "city": "Cusco",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Early morning flight to Cusco, the gateway to Machu Picchu."
+        },
+        {
+          "time": "8:00 AM",
+          "activity_name": "Train to Machu Picchu",
+          "location": {
+            "name": "Machu Picchu",
+            "city": "Machu Picchu",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Scenic train ride to the stunning archaeological site."
+        },
+        {
+          "time": "10:00 AM",
+          "activity_name": "Explore Machu Picchu",
+          "location": {
+            "name": "Machu Picchu",
+            "city": "Machu Picchu",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Guided tour of the ancient Incan citadel."
+        },
+        {
+          "time": "4:00 PM",
+          "activity_name": "Return to Cusco",
+          "location": {
+            "name": "Machu Picchu",
+            "city": "Machu Picchu",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Return to Cusco by train for the evening flight back to Santiago."
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2024-11-13",
+      "summary": "Leisure day with optional activities in Santiago.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Visit to Museo Chileno de Arte Precolombino",
+          "location": {
+            "name": "Museo Chileno de Arte Precolombino",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Discover Chilean and Latin American pre-Columbian art."
+        },
+        {
+          "time": "1:00 PM",
+          "activity_name": "Lunch at Bocan\u00e1riz",
+          "location": {
+            "name": "Bocan\u00e1riz",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a wine tasting and delicious meal at this wine-centered restaurant."
+        },
+        {
+          "time": "3:00 PM",
+          "activity_name": "Stroll through Parque Forestal",
+          "location": {
+            "name": "Parque Forestal",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a leisurely walk in the park, surrounded by lush greenery."
+        },
+        {
+          "time": "6:00 PM",
+          "activity_name": "Dinner at Tenedor Libre",
+          "location": {
+            "name": "Tenedor Libre",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Experience a buffet-style dining experience with a variety of dishes."
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2024-11-14",
+      "summary": "Last day for shopping and sightseeing.",
+      "activities": [
+        {
+          "time": "10:00 AM",
+          "activity_name": "Shopping at Costanera Center Mall",
+          "location": {
+            "name": "Costanera Center Mall",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Shop for souvenirs and enjoy the modern mall experience."
+        },
+        {
+          "time": "12:00 PM",
+          "activity_name": "Visit to Patio Bellavista",
+          "location": {
+            "name": "Patio Bellavista",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Explore local artisan shops and cafes in this vibrant area."
+        },
+        {
+          "time": "2:00 PM",
+          "activity_name": "Lunch at Pizzeria Tiramisu",
+          "location": {
+            "name": "Pizzeria Tiramisu",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Delicious pizza in a cozy setting, perfect for a relaxed meal."
+        },
+        {
+          "time": "4:00 PM",
+          "activity_name": "Farewell at Parque Bicentenario",
+          "location": {
+            "name": "Parque Bicentenario",
+            "city": "Santiago",
+            "coordinates": {},
+            "place_id": "",
+            "photo_url": ""
+          },
+          "description": "Enjoy a final stroll in the park and reflect on your trip."
         }
       ]
     }

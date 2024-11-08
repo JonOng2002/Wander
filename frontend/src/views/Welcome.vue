@@ -11,12 +11,32 @@
 
             <h1>wander.</h1>
         </div>
-        <div ref="threeContainer" class="three-container"></div>
+        <div ref="threeContainer" class="three-container">
 
-        <div class="container">
+            <!-- Buttons for scrolling -->
+            <div class="scroll-buttons">
+                <button class="explore-button" @click="scrollToExplore">
+                    <div class="explore-button-text">
+                        <p>Explore Wander now</p>
+                    </div>
+                </button>
+                <button class="signup-button" @click="scrollToSignUp">
+                    <div class="signup-button-text">
+                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
+                        </div>
+                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
+                        </div>
+                        <p>Skip</p>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+
+        <div ref="exploreSection" class="container">
             <div class="left-text">
                 <p>Welcome to</p>
-                <p style="font-style: italic;">Wander :</p>
+                <p style="font-family: Lobster Two; font-size: larger; color: #3f94a7;">wander :</p>
                 <p>Explore the world</p>
                 <p>like</p>
                 <p>never before</p>
@@ -217,7 +237,7 @@
             <h3>What are you waiting for? Start <span>Wander</span>ing.</h3><br>
         </div>
 
-        <div class="auth-buttons">
+        <div ref="signUpSection" class="auth-buttons">
             <button @click="navigateTologin" class="login-btn">Log in</button>
             <button @click="navigateTosignup" class="signup-btn">Sign up</button>
         </div>
@@ -233,13 +253,17 @@ import { onMounted, ref } from 'vue';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import gsap from 'gsap';
-import { ScrollTrigger, ScrollSmoother } from 'gsap/all';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ColorManagement } from 'three';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+// Enable color management
+ColorManagement.enabled = true;
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 export default {
-    name: 'WelcomePage',
+    name: 'ThreeScene',
     data() {
         return {
             images: [
@@ -282,6 +306,32 @@ export default {
         const carouselTrack = ref(null);
         let globe = null;
         let renderer = null;
+        // const exploreSection = ref(null);
+        // const signUpSection = ref(null);
+
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 5;
+
+
+        const handleResize = () => {
+            if (threeContainer.value && renderer) {
+                const width = threeContainer.value.clientWidth;
+                const height = threeContainer.value.clientHeight;
+
+                // Update camera
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+
+                // Update renderer
+                renderer.setSize(width, height);
+            }
+        }
+
 
         const setupIntersectionObserver = () => {
             const options = {
@@ -299,17 +349,22 @@ export default {
                             globe.children[0].material.opacity = opacity * 0.1;
                         }
                     }
-                    if (entry.target === carouselSection.value) {
-                        carouselSection.value.style.opacity = entry.intersectionRatio;
-                    }
+                    // if (entry.target === carouselSection.value) {
+                    //     carouselSection.value.style.opacity = entry.intersectionRatio;
+                    // }
                 });
             }, options);
 
             observer.observe(threeContainer.value);
-            observer.observe(carouselSection.value);
+            // observer.observe(carouselSection.value);
         };
 
         onMounted(() => {
+
+
+            window.addEventListener('resize', handleResize);
+            // Call handleResize once to ensure everything is properly sized initially
+            handleResize();
 
             window.addEventListener('load', () => {
                 document.body.offsetHeight; // Force a reflow/repaint
@@ -330,21 +385,23 @@ export default {
                 }
             });
 
-            gridTl.add("start")
-                .from(".grid-layout", {
-                    ease: "power1",
-                    scale: 3
-                }, "start")
-                .from(".column-1 .grid-image", {
-                    duration: 0.4,
-                    xPercent: i => -((i + 1) * 40 + i * 100),
-                    yPercent: i => (i + 1) * 40 + i * 100
-                }, "start")
-                .from(".column-3 .grid-image", {
-                    duration: 0.4,
-                    xPercent: i => (i + 1) * 40 + i * 100,
-                    yPercent: i => (i + 1) * 40 + i * 100
-                }, "start");
+            if (document.querySelector(".grid-section")) {
+                gridTl.add("start")
+                    .from(".grid-layout", {
+                        ease: "power1",
+                        scale: 3
+                    }, "start")
+                    .from(".column-1 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => -((i + 1) * 40 + i * 100),
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start")
+                    .from(".column-3 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => (i + 1) * 40 + i * 100,
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start");
+            }
 
             // Parallax effect for the parallax section
             gsap.from(".parallax-section", {
@@ -392,37 +449,15 @@ export default {
 
             // Scene setup (same as before)
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(
-                75,
-                window.innerWidth / window.innerHeight,
-                0.1,
-                1000
-            );
-            camera.position.z = 5;
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setClearColor(0x000000, 1);
             renderer.physicallyCorrectLights = true;
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 1.5;
             threeContainer.value.appendChild(renderer.domElement);
-
-
-            const handleResize = () => {
-                const width = threeContainer.value.clientWidth;
-                const height = threeContainer.value.clientHeight;
-
-                // Update camera
-                camera.aspect = width / height;
-                camera.updateProjectionMatrix();
-
-                // Update renderer
-                renderer.setSize(width, height);
-            };
-
-            // Add resize listener
-            window.addEventListener('resize', handleResize);
 
             // Controls setup (same as before)
             const controls = new OrbitControls(camera, renderer.domElement);
@@ -457,7 +492,7 @@ export default {
             textureLoader.load(
                 '/nasa.jpg',
                 (texture) => {
-                    texture.encoding = THREE.sRGBEncoding;
+                    // texture.encoding = THREE.sRGBEncoding;
                     texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
                     const geometry = new THREE.SphereGeometry(2, 64, 64);
@@ -510,7 +545,7 @@ export default {
 
         });
 
-        return { threeContainer, carouselSection, carouselTrack };
+        return { threeContainer, carouselSection, carouselTrack, handleResize };
     },
     mounted() {
 
@@ -522,12 +557,24 @@ export default {
     },
 
     beforeUnmount() {
+
+        window.removeEventListener('resize', this.handleResize);
+
         window.removeEventListener('load', () => {
             ScrollTrigger.refresh();
         });
         this.stopAutoScroll();
     },
     methods: {
+        // Scroll to Explore section
+        scrollToExplore() {
+            this.$refs.exploreSection.scrollIntoView({ behavior: 'smooth' });
+        },
+        // Scroll to Sign Up section
+        scrollToSignUp() {
+            this.$refs.signUpSection.scrollIntoView({ behavior: 'smooth' });
+        },
+
         typeText() {
             if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
                 if (!this.typeStatus) this.typeStatus = true;
@@ -582,7 +629,6 @@ export default {
             }
         },
 
-
         navigateTologin() {
             // Code to navigate to login page
             this.$router.push('/log-in'); // Assuming you're using Vue Router
@@ -591,6 +637,7 @@ export default {
             // Code to navigate to sign up page
             this.$router.push('/sign-up'); // Assuming you're using Vue Router
         }
+
     },
 
 
@@ -599,6 +646,131 @@ export default {
 </script>
 
 <style scoped>
+.scroll-buttons {
+    position: absolute;
+    /* Make the buttons overlay the three-container */
+    bottom: 150px;
+    /* Align to the bottom of the three-container */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    /* Distribute the buttons evenly */
+    align-items: center;
+    /* Center buttons vertically */
+    padding: 10px 20px;
+    /* Adjust padding as necessary */
+    z-index: 9999;
+    /* Ensure the buttons are on top */
+}
+
+/* Center the Explore button directly under the globe */
+.explore-button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Keep the Sign Up button on the far right */
+.signup-button {
+    margin-left: auto;
+}
+
+.explore-button-text {
+    font-size: 2rem;
+}
+
+.signup-button-text {
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: center;
+    /* Center items horizontally */
+    animation: bounce 2s 30;
+    color: #a3a7ae;
+    gap: 8px;
+    /* Add space between the chevrons and the text */
+    animation: bounce 2s 30;
+    color: #a3a7ae;
+}
+
+.signup-button-text p {
+    padding-left: 18px;
+    padding-top: 5px;
+    font-size: 1.5rem;
+}
+
+.chevron {
+    border-right:
+        4px solid #a3a7ae;
+    border-bottom:
+        4px solid #a3a7ae;
+    width: 30px;
+    height: 30px;
+}
+
+#chevron-arrow-down {
+    transform: rotate(45deg);
+}
+
+.explore-button,
+.signup-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: rgba(63, 148, 167, 1);
+}
+
+.signup-button:hover {
+    background-color: rgba(63, 148, 167, 1);
+    transform: scale(1.05);
+    color: white;
+}
+
+.explore-button-text p {
+    width: 0;
+    overflow: hidden;
+    /* Ensure the text is not visible until the typewriter effect*/
+    border-right: 2px solid white;
+    /* The cursor*/
+    font-size: 2rem;
+    white-space: nowrap;
+    /* Keeps the text on a single line */
+    animation: typing 2s forwards, blinking 1.5s step-end infinite;
+    ;
+}
+
+/* The typing animation */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blinking {
+
+    from,
+    to {
+        border-right-color: transparent;
+    }
+
+    50% {
+        border-right-color: white;
+    }
+}
+
 .main-container-1 {
     height: auto;
     overflow-y: hidden;
@@ -620,25 +792,92 @@ export default {
     padding: 0;
 }
 
+.three-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    /* Increase the height to make the globe bigger */
+    overflow: hidden;
+    top: 0;
+    z-index: 1;
+}
 
 
 
-@media (min-width: 992px) {
+
+@media (min-width: 992px) and (max-width: 1199px) {
     .three-container {
-        width: 70vw;
-        height: 70vh;
-        overflow: visible;
-        cursor: grab;
-        /* position: sticky; */
+        width: 100vw;
+        height: 100vh;
+        /* Increase the height to make the globe bigger */
+        overflow: hidden;
         top: 0;
     }
 }
 
+@media (max-width:576px) {
+    .three-container {
+        width: 100vw;
+        height: 70vh;
+        overflow: hidden;
+        top: 0;
+        margin-bottom: 150px;
+    }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
+    }
+}
+
+@media (min-width: 1200px) {
+    .three-container {
+        width: 100vw;
+        height: 100vh;
+        /* Increase the height to make the globe bigger */
+        overflow: hidden;
+        top: 0;
+    }
+}
+
+
+
 @media (min-width: 576px) and (max-width: 767px) {
     .three-container {
         width: 100vw;
-        height: 75vh;
+        height: 80vh;
         overflow: visible;
+    }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
     }
 }
 
@@ -647,8 +886,26 @@ export default {
     /* Styles for screens 576px - 767px */
     .three-container {
         width: 100vw;
-        height: 70vh;
+        height: 85vh;
         overflow: visible;
+    }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
     }
 }
 
@@ -671,7 +928,7 @@ export default {
 .carousel-header h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #0057d9;
+    color: #3f94a7;
 }
 
 /* Carousel container styling */
@@ -731,7 +988,7 @@ export default {
     .image-caption {
         font-size: 1rem;
         margin-top: 8px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -755,7 +1012,7 @@ export default {
     .image-caption {
         font-size: 0.9rem;
         margin-top: 6px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -779,7 +1036,7 @@ export default {
     .image-caption {
         font-size: 0.8rem;
         margin-top: 4px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -924,8 +1181,8 @@ export default {
 }
 
 .right-text span {
-    background-color: white;
-    color: black;
+    background-color: #3f94a7;
+    color: #ffffff;
 }
 
 
@@ -965,6 +1222,7 @@ export default {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 50px;
+    color: #3f94a7;
 }
 
 .project-number-2 {
@@ -977,7 +1235,7 @@ export default {
         line-height: 1;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -993,7 +1251,7 @@ export default {
         line-height: 1;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -1007,13 +1265,13 @@ export default {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1200px) {
     h1 {
         font-size: 3rem;
         font-weight: normal;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -1276,8 +1534,8 @@ export default {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 1px solid #0057d9;
-    color: #0057d9;
+    border: 1px solid #3f94a7;
+    color: #3f94a7;
     background-color: #ffffff;
 }
 
@@ -1287,20 +1545,20 @@ export default {
 }
 
 .signup-btn {
-    background-color: #2563eb;
-    border: 1px solid #2563eb;
+    background-color: #3f94a7;
+    border: 1px solid #3f94a7;
     color: white;
 }
 
 .signup-btn:hover {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
+    background-color: #378597;
+    border-color: #378597;
 }
 
 /* Optional: Add focus states for accessibility */
 .login-btn:focus,
 .signup-btn:focus {
-    outline: 2px solid #2563eb;
+    outline: 2px solid #378597;
     outline-offset: 2px;
 }
 
@@ -1310,7 +1568,7 @@ export default {
 }
 
 .signup-btn:active {
-    background-color: #1e40af;
+    background-color: #3f94a7;
 }
 
 /* Optional: Add responsive design */
@@ -1348,7 +1606,7 @@ export default {
 }
 
 .call-to-action span {
-    color: #0057d9;
+    color: #3f94a7;
     /* font-style: italic; */
 }
 </style>

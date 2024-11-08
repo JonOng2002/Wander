@@ -4,8 +4,8 @@
     <div class="container-fluid p-0">
         <div class="header_container">
             <div class="content">
-                <h1>Travel the world</h1>
-                <h4>Start Exploring | Plan your trips</h4>
+                <h1>Archive Your Journey</h1>
+                <h4>Detail Your Trips | Make Lasting Memories</h4>
             </div>
         </div>
         <!-- Section 1 -->
@@ -41,17 +41,24 @@
         </div>
 
         <div class="dropdown-container" v-motion-slide-visible-once-top>
-            <div class="dropdown">
-                <button class="dropdown-btn">Filter by: Top Destinations</button>
+            <!-- <div class="dropdown">
+                <button class="dropdown-btn">
+                    Filter by: Top Destinations
+                    <span class="arrow-down">&#9662;</span>
+                </button>
                 <div class="dropdown-content">
                     <a href="#">Popular Destinations</a>
                     <a href="#">Recent Additions</a>
                     <a href="#">Highly Rated</a>
                 </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropdown-btn">Filter by Continent: All Continents</button>
-                <div class="dropdown-content">
+            </div> -->
+            <!-- Sort by Dropdown -->
+            <div class="dropdown" @click="toggleDropdown('continent')">
+                <button class="dropdown-btn">
+                    Filter by Continent: All Continents
+                    <span class="arrow-down">&#9662;</span>
+                </button>
+                <div class="dropdown-content" v-show="isOpen === 'continent'">
                     <a href="#">Africa</a>
                     <a href="#">Asia</a>
                     <a href="#">Europe</a>
@@ -156,6 +163,7 @@ export default {
         const selectedFilter = ref("addedDate");
         const currentPage = ref(0); // Track the current page for pagination
         const itemsPerPage = 5; // Number of items to show at a time
+        const isOpen = ref(null); // Track which dropdown is open
         const countries = ref([
             {
                 name: "France",
@@ -672,6 +680,13 @@ export default {
             });
         };
 
+        const toggleDropdown = (dropdown) => {
+            // Toggle the dropdown open/close
+            isOpen.value = isOpen.value === dropdown ? null : dropdown;
+            console.log("Dropdown clicked:", dropdown);
+            console.log("isOpen value:", isOpen.value);
+        };
+
         const filteredItineraries = computed(() => {
             if (!savedItineraries.value || savedItineraries.value.length === 0) {
                 console.log("No saved itineraries to filter.");
@@ -773,6 +788,7 @@ export default {
 
         return {
             // motionConfig,
+            isOpen,
             getContinent,
             savedItineraries,
             filteredItineraries,
@@ -783,6 +799,7 @@ export default {
             viewMainPage,
             selectedFilter,
             filterPlaces,
+            toggleDropdown,
             getCountryImage,
             countries,
             scrollToElement,
@@ -797,6 +814,10 @@ export default {
 </script>
 
 <style scoped>
+.no-itineraries-message {
+    color: #666;
+}
+
 /* ******************** header  container ******************* */
 /* General styling for grid items */
 .container-fluid {
@@ -939,6 +960,12 @@ export default {
     margin-top: 1rem;
     margin-left: 60px;
     /* Adjust this value to align the dropdowns with the text */
+    z-index: 8000;
+    /* Ensure it's above other page content */
+}
+
+.dropdown {
+    z-index: 9000;
 }
 
 /* Style the dropdown button */
@@ -958,27 +985,53 @@ export default {
     position: relative;
     transition: background-color 0.3s ease;
     padding: 16px;
+    z-index: 50;
+    /* Lower than dropdown-menu */
+}
+
+/* Add arrow icon to indicate dropdown */
+.arrow-down {
+    font-size: 0.8rem;
+    /* Adjust the size of the arrow */
+    color: #fff;
+    margin-left: 10px;
 }
 
 /* Change button color on hover */
 .dropdown-btn:hover {
-    background-color: #555;
+    background-color: #3f94a7;
 }
 
 /* Dropdown content styling */
 .dropdown-content {
-    display: none;
-    /* Hidden by default */
     position: absolute;
     background-color: #222;
-    min-width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
     top: 100%;
-    /* Position below the button */
     left: 0;
-    padding: 10px 0;
+    width: 100%;
+    /* Spans full width in media query */
+    box-sizing: border-box;
+    transition: opacity 0.3s ease-out, visibility 0.1s linear;
+    z-index: 10000;
+    display: block; /* Directly control with `v-show` */
+}
+
+.dropdown-content.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* .dropdown:hover .dropdown-content {
+    display: none;
+} */
+
+.single-itinerary-card .gradient-overlay,
+.hero-card .gradient-overlay {
+    z-index: 1;
+    /* Set lower than dropdown content */
 }
 
 /* Dropdown content links */
@@ -992,7 +1045,7 @@ export default {
 
 /* Change background color on hover */
 .dropdown-content a:hover {
-    background-color: #333;
+    background-color: #3f94a7;
 }
 
 /* Show dropdown on hover */
@@ -1008,9 +1061,10 @@ export default {
     align-items: center;
     padding: 20px;
     margin: 0 auto;
-
+    margin-bottom: 50px;
     width: 100%;
     max-width: 1600px;
+    z-index: 1;
     /* Increased max width */
 }
 
@@ -1063,6 +1117,7 @@ export default {
     /* Align items at the top */
     margin: 0 auto;
     /* Center the grid container */
+
 }
 
 /* ************************************************ */
@@ -1070,19 +1125,18 @@ export default {
 
 .single-itinerary-card {
     width: 100%;
-    /* Adjust width to take a larger space */
     max-width: 900px;
-    /* Limit the maximum width */
-    margin: 20px 0;
-    /* Add spacing above and below */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    /* Optional styling for shadow */
+    /* Stricter max-width constraint for smaller card size */
+    height: auto;
+    /* Let the height adjust based on content */
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    /* Optional rounded corners */
-    flex: 1;
-    /* Allow the single card to take more space */
-    max-width: 100%;
-    /* Ensure it does not overflow */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1;
 }
 
 .card {
@@ -1094,8 +1148,10 @@ export default {
 
 .card-img-top {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: 600px;
+    /* Set a fixed height to ensure image doesn't expand card */
+    object-fit: cover;
+    /* Ensures the image fills the set area without distortion */
 }
 
 .single-itinerary-card .gradient-overlay {
@@ -1163,7 +1219,8 @@ export default {
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, ;
+    z-index: 1;
     /* Smooth transition */
 }
 
@@ -1374,7 +1431,7 @@ export default {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .dropdown-container {
         flex-direction: column;
         /* Stack buttons vertically */

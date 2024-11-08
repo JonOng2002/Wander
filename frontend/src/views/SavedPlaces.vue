@@ -1,14 +1,32 @@
+<!-- C:\wamp64\www\WAD2_Project\WadProj\frontend\src\views\SavedPlaces.vue -->
+
 <template>
-  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div
+    id="carouselExampleInterval"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="10000">
-        <img src="@/assets/countries/thailand.jpg" alt="Image 1" class="d-block w-100" />
+        <img
+          src="@/assets/countries/thailand.jpg"
+          alt="Image 1"
+          class="d-block w-100"
+        />
       </div>
       <div class="carousel-item" data-bs-interval="2000">
-        <img src="@/assets/countries/denmark.jpg" alt="Image 1" class="d-block w-100" />
+        <img
+          src="@/assets/countries/denmark.jpg"
+          alt="Image 2"
+          class="d-block w-100"
+        />
       </div>
       <div class="carousel-item">
-        <img src="@/assets/countries/germany.jpg" alt="Image 1" class="d-block w-100" />
+        <img
+          src="@/assets/countries/germany.jpg"
+          alt="Image 3"
+          class="d-block w-100"
+        />
       </div>
     </div>
 
@@ -16,7 +34,17 @@
       <!-- Toast Notification -->
       <div :class="['custom-toast', { active: toastActive }, toastType]">
         <div class="toast-content">
-          <i :class="['fas', toastType === 'add' ? 'fa-check' : 'fa-times', 'action-icon']"></i>
+          <i
+            :class="[
+              'fas',
+              toastType === 'add'
+                ? 'fa-check'
+                : toastType === 'remove'
+                ? 'fa-info'
+                : 'fa-times-circle',
+              'action-icon',
+            ]"
+          ></i>
           <div class="message">
             <span class="text text-2">{{ toastMessage }}</span>
           </div>
@@ -31,18 +59,28 @@
     <!-- Gradient Overlay -->
     <div class="gradientoverlay"></div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="prev"
+    >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="next"
+    >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
 
     <div class="carousel-content">
-      <h1>Archive Your Journey</h1>
-      <h4>Detail Your Trips | Make Lasting Memories</h4>
+      <h1>Travel The World</h1>
+      <h4>Start Exploring | Plan your trips</h4>
     </div>
   </div>
 
@@ -53,12 +91,15 @@
     </div>
 
     <div class="dropdown-container" v-motion-slide-visible-once-top>
-      <div class="dropdown">
-        <select @change="filterPlaces" class="dropdown-btn form-select me-2">
-          <option value="">Select Filter</option>
+      <div class="filter-button">
+        <select @change="filterPlaces" class="custom-select  form-select me-2">
+          <option value="">
+            Select Filter
+          </option>
           <option value="alphabetical">Filter by Alphabet</option>
           <option value="recently-added">Filter by Recently Added</option>
         </select>
+        <span class="arrow-down">&#9662;</span> <!-- Custom arrow icon -->
       </div>
 
       <div class="dropdown">
@@ -82,23 +123,59 @@
   </div>
 
   <div v-if="loading" class="empty-message">Loading saved places...</div>
-  <div v-else-if="filteredPlaces && filteredPlaces.length === 0" class="empty-message">
-    <p>No places saved yet.</p>
+  <div
+    v-else-if="filteredPlaces && filteredPlaces.length === 0"
+    class="empty-message"
+  >
+    <p>No places saved yet. Start exploring now!</p>
   </div>
 
   <div v-else class="card-grid">
     <transition-group name="list" tag="div" class="transition-wrapper">
-      <div v-for="place in filteredPlaces" :key="place.place_id" class="card-container" ref="cardRefs"
-        v-motion-slide-visible-once-top>
-        <div class="card destination-card" :style="{ backgroundImage: `url(${place.image})` }">
+      <div
+        v-for="place in filteredPlaces"
+        :key="place.place_id" 
+        class="card-container"
+        ref="cardRefs"
+        v-motion-slide-visible-once-top
+      >
+        <div
+          class="card destination-card"
+          :style="{ backgroundImage: `url(${place.image})` }"
+        >
           <div class="overlay"></div>
-          <button @click="removePlace(place)" type="button" class="btn close-button">✖</button>
+          <button
+            @click="removePlace(place)"
+            type="button"
+            class="btn close-button"
+          >
+            ✖
+          </button>
           <div class="card-body">
             <h5 class="card-title">{{ place.name }}</h5>
             <p class="card-text">{{ place.vicinity }}, {{ place.country }}</p>
+
+            <div class="rating-container">
+              <StarRating :rating="place.rating" />
+              <!-- Your StarRating component -->
+              <span class="rating-number">
+                {{ place.rating ? place.rating.toFixed(1) : 'N/A' }}
+              </span>
+              <span class="rating-text">/ 5</span>
+              <!-- Add text like "/ 5" if desired -->
+            </div>
+
             <div class="button-container">
-              <button @click="toggleItinerary(place, $event)" type="button" class="btn itinerary-button">
-                {{ isPlaceInItinerary(place) ? 'Remove from Itinerary' : 'Add to Itinerary' }}
+              <button
+                @click="toggleItinerary(place, $event)"
+                type="button"
+                class="btn itinerary-button"
+              >
+                {{
+                  isPlaceInItinerary(place)
+                    ? "Remove from Itinerary"
+                    : "Add to Itinerary"
+                }}
               </button>
             </div>
           </div>
@@ -111,45 +188,74 @@
     <div class="modal-content">
       <h3>Your Itinerary</h3>
       <ol class="list-group list-group-numbered">
-        <li class="list-group-item" v-for="(item, index) in itinerary" :key="index">
-          <img :src="item.image" class="modal-image" alt="Image of {{ item.name }}" />
+        <li
+          class="list-group-item"
+          v-for="(item, index) in itinerary"
+          :key="index"
+        >
+          <img
+            :src="item.image"
+            class="modal-image"
+            alt="Image of {{ item.name }}"
+          />
           {{ item.name }} - {{ item.vicinity }}
         </li>
       </ol>
-      <button @click="navigateToGeneratedItinerary" class="btn mb-2 view-full-itinerary-btn">View Full
-        Itinerary</button>
-      <button @click="toggleModal" type="button" class="btn close-modal-btn">Close</button>
+      <button
+        @click="navigateToGeneratedItinerary"
+        class="btn mb-2 view-full-itinerary-btn"
+      >
+        View Full Itinerary
+      </button>
+      <button @click="toggleModal" type="button" class="btn close-modal-btn">
+        Close
+      </button>
     </div>
   </div>
 
-  <div v-if="showDeletePopup" class="modal-overlay" @click.self="toggleDeletePopup">
+  <div
+    v-if="showDeletePopup"
+    class="modal-overlay"
+    @click.self="toggleDeletePopup"
+  >
     <div class="modal-content">
       <h3>Are you sure you want to delete all saved places?</h3>
-      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">Yes, Delete All</button>
-      <button @click="toggleDeletePopup" type="button" class="btn close-modal-btn">Cancel</button>
+      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2 confirm-modal-btn">
+        Yes, Delete All
+      </button>
+      <button
+        @click="toggleDeletePopup"
+        type="button"
+        class="btn close-modal-btn"
+      >
+        Cancel
+      </button>
     </div>
   </div>
 
-  <div class="popup-container">
-    <div v-if="showPopup" class="popup">
-      <p>Added to itinerary!</p>
-    </div>
-    <div v-if="showRemovePopup" class="popup" style="background-color: #f44336;">
-      <p>Removed from itinerary!</p>
-    </div>
-  </div>
+
 </template>
 
-
 <script>
-import { ref, onMounted } from 'vue';
-import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-import { useRouter } from 'vue-router';
+import { ref, onMounted } from "vue";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { useRouter } from "vue-router";
 import { gsap } from "gsap";
+import StarRating from "@/components/StarRating.vue";
 
 export default {
-  name: 'SavedPlaces',
+  name: "SavedPlaces",
+  components: { StarRating },
+
   setup() {
     const savedPlaces = ref([]);
     const filteredPlaces = ref([]);
@@ -164,9 +270,9 @@ export default {
     // Reactive variables for toast notification
     const toastActive = ref(false);
     const progressBar = ref(null);
-    const toastTitle = ref('');
-    const toastMessage = ref('');
-    const toastType = ref(''); // Type of toast notification (add or remove)
+    const toastTitle = ref("");
+    const toastMessage = ref("");
+    const toastType = ref(""); // Type of toast notification (add or remove)
 
     let toastTimeout = null; // Keep track of the toast timeout
     let progressBarAnimation = null; // Keep track of the progress bar animation
@@ -175,7 +281,7 @@ export default {
     onMounted(async () => {
       const auth = getAuth();
       const user = auth.currentUser;
-      loadUserItinerary();
+      await loadUserItinerary(); // Ensure itineraries are loaded first
 
       if (user) {
         const userId = user.uid;
@@ -202,9 +308,14 @@ export default {
       }
     });
 
+    cardRefs.value.forEach((card, index) => {
+    // Perform animations or operations on each card
+    gsap.fromTo(card, { opacity: 0 }, { opacity: 1, duration: 1, delay: index * 0.1 });
+  });
+
     // Show toast notification
     const showToast = (title, message, type) => {
-      console.log('showToast called with title:', title, 'message:', message);
+      console.log("showToast called with title:", title, "message:", message);
 
       // Clear any existing timeout
       if (toastTimeout) {
@@ -233,13 +344,13 @@ export default {
       if (progressBar.value) {
         progressBarAnimation = gsap.to(progressBar.value, {
           scaleX: 1,
-          transformOrigin: 'left',
+          transformOrigin: "left",
           duration: 3,
-          ease: 'linear',
+          ease: "linear",
         });
       }
 
-      // Set timeout to hide toast after 5 seconds
+      // Set timeout to hide toast after 3 seconds
       toastTimeout = setTimeout(() => {
         toastActive.value = false;
         toastTimeout = null;
@@ -265,62 +376,14 @@ export default {
       toastActive.value = false;
     };
 
-    // Save itinerary to Firestore
-    const saveItinerary = async (place) => {
-      console.log('start saving itinerary');
-      console.log(itinerary.value);
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      if (!user) {
-        console.error("User is not authenticated");
-        return;
-      }
-
-      const userDocRef = doc(db, "users", user.uid);
-      const placeData = {
-        place_id: place.place_id,
-        name: place.name,
-        image: place.image,
-        vicinity: place.vicinity,
-        country: place.country,
-        coordinates: {
-          latitude: place.coordinates.latitude,
-          longitude: place.coordinates.longitude,
-        },
-      };
-
-      try {
-        if (isPlaceInItinerary(place)) {
-          // Remove place from itinerary in Firebase
-          await updateDoc(userDocRef, {
-            generatedItineraries: arrayRemove(placeData),
-          });
-          itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
-          console.log("Place removed from itinerary:", placeData);
-          togglePopup("remove");
-        } else {
-          // Add place to itinerary in Firebase
-          await updateDoc(userDocRef, {
-            generatedItineraries: arrayUnion(placeData),
-          });
-          itinerary.value.push(place);
-          console.log("Place added to itinerary:", placeData);
-          togglePopup("add");
-        }
-      } catch (error) {
-        console.error("Error updating itinerary in Firebase:", error);
-      }
-    };
-
     const navigateToGeneratedItinerary = () => {
       router.push({
-        name: 'ItineraryBuilder',
+        name: "ItineraryBuilder",
       });
     };
 
     const isPlaceInItinerary = (place) => {
-      return itinerary.value.some(item => item.place_id === place.place_id);
+      return itinerary.value.some((item) => item.place_id === place.place_id);
     };
 
     const deleteAllPlaces = async () => {
@@ -328,10 +391,12 @@ export default {
     };
 
     const togglePopup = (type) => {
-      if (type === 'add') {
-        showToast('Success', 'Added to Itinerary!', 'add');
-      } else if (type === 'remove') {
-        showToast('Success', 'Removed from Itinerary!', 'remove');
+      if (type === "add") {
+        showToast("Success", "Added to Itinerary!", "add");
+      } else if (type === "remove") {
+        showToast("Success", "Removed from Itinerary!", "remove");
+      } else if (type === "error") {
+        showToast("Error", "An error occurred.", "error");
       }
     };
 
@@ -344,7 +409,7 @@ export default {
 
       if (user) {
         const userId = user.uid;
-        const userDocRef = doc(db, 'users', userId);
+        const userDocRef = doc(db, "users", userId);
 
         try {
           const docSnap = await getDoc(userDocRef);
@@ -352,80 +417,112 @@ export default {
             itinerary.value = docSnap.data().generatedItineraries || [];
             // Update the state for each place based on loaded itinerary
           } else {
-            console.error('No such document!');
+            console.error("No such document!");
           }
         } catch (error) {
-          console.error('Error fetching user itinerary:', error);
+          console.error("Error fetching user itinerary:", error);
         }
       }
     };
 
     const toggleItinerary = async (place, event) => {
-      const index = savedPlaces.value.findIndex(item => item.place_id === place.place_id);
+      const isInItinerary = isPlaceInItinerary(place); // Check if the place is in the itinerary
 
-      if (index !== -1) {
-        const user = getAuth().currentUser;
+      const user = getAuth().currentUser;
 
-        if (!user) {
-          console.error('User is not authenticated');
-          return;
-        }
+      if (!user) {
+        console.error("User is not authenticated");
+        return;
+      }
 
-        const userId = user.uid;
-        const userDocRef = doc(db, 'users', userId);
+      const userId = user.uid;
+      const userDocRef = doc(db, "users", userId);
 
-        try {
+      try {
+        if (isInItinerary) {
+          // Find the exact object in itinerary
+          const itemToRemove = itinerary.value.find(
+            (item) => item.place_id === place.place_id
+          );
+
+          if (!itemToRemove) {
+            console.error("Item to remove not found in itinerary.");
+            return;
+          }
+
+          // Remove from itinerary locally first
+          itinerary.value = itinerary.value.filter(
+            (item) => item.place_id !== place.place_id
+          );
+          togglePopup("remove"); // Show remove toast
+
+          // Update Firebase after local state change
+          try {
+            await updateDoc(userDocRef, {
+              generatedItineraries: arrayRemove(itemToRemove),
+            });
+
+            console.log("Place removed from itinerary:", itemToRemove);
+          } catch (error) {
+            console.error("Error removing itinerary from Firebase:", error);
+            // Optionally, revert the local state change if Firebase update fails
+            itinerary.value.push(itemToRemove);
+            showToast("Error", "Failed to remove place from itinerary.", "error");
+          }
+        } else {
+          // Construct placeData matching Firestore structure
           const placeData = {
-            place_id: place.place_id,
-            name: place.name,
-            image: place.image,
-            vicinity: place.vicinity,
-            country: place.country,
-            coordinates: {
-              latitude: place.coordinates.latitude,
-              longitude: place.coordinates.longitude
-            }
+            place_id: place.place_id || null,
+            name: place.name || "Unknown",
+            vicinity: place.vicinity || "Unknown vicinity",
+            image: place.image || "/default-image.jpg",
+            coordinates: place.coordinates || { latitude: null, longitude: null },
+            rating: place.rating || 0,
+            user_ratings_total: place.user_ratings_total || 0,
+            open_now: place.open_now || false,
+            city: place.city || "Unknown City",
+            country: place.country || "Unknown Country",
+            source: "google_places",
+            summary: "Google Places Summary",
+            activities: [],
           };
 
-          const isInItinerary = isPlaceInItinerary(place);  // Check if the place is in the itinerary
+          // GSAP animation for button
+          const button = event.currentTarget;
 
-          // Immediate local state update for reactivity
-          if (isInItinerary) {
-            // Remove from itinerary locally first
-            itinerary.value = itinerary.value.filter(item => item.place_id !== place.place_id);
-            togglePopup('remove');  // Show remove toast
+          gsap.fromTo(
+            button,
+            { scale: 1 },
+            {
+              scale: 1.1,
+              duration: 0.2,
+              yoyo: true,
+              repeat: 1,
+            }
+          );
 
-            // Update Firebase after local state change
+          // Add to itinerary locally first
+          itinerary.value.push(placeData);
+          togglePopup("add"); // Show add toast
+
+          // Update Firebase after local state change
+          try {
             await updateDoc(userDocRef, {
-              generatedItineraries: arrayRemove(placeData)
+              generatedItineraries: arrayUnion(placeData),
             });
-          } else {
-            const button = event.currentTarget;
 
-            // GSAP animation for button
-            gsap.fromTo(
-              button,
-              { scale: 1 },
-              {
-                scale: 1.1,
-                duration: 0.2,
-                yoyo: true,
-                repeat: 1
-              }
+            console.log("Place added to itinerary:", placeData);
+          } catch (error) {
+            console.error("Error adding itinerary to Firebase:", error);
+            // Optionally, revert the local state change if Firebase update fails
+            itinerary.value = itinerary.value.filter(
+              (item) => item.place_id !== place.place_id
             );
-
-            // Add to itinerary locally first
-            itinerary.value.push({ ...place });
-            togglePopup('add');  // Show add toast
-
-            // Update Firebase after local state change
-            await updateDoc(userDocRef, {
-              generatedItineraries: arrayUnion(placeData)
-            });
+            showToast("Error", "Failed to add place to itinerary.", "error");
           }
-        } catch (error) {
-          console.error('Error updating itinerary in Firebase:', error);
         }
+      } catch (error) {
+        console.error("Error updating itinerary in Firebase:", error);
       }
     };
 
@@ -438,26 +535,31 @@ export default {
           const user = getAuth().currentUser;
           if (user) {
             const userId = user.uid;
-            const userDocRef = doc(db, 'users', userId);
+            const userDocRef = doc(db, "users", userId);
 
             const userDoc = await getDoc(userDocRef);
             if (userDoc.exists()) {
               const data = userDoc.data().generatedItineraries;
               itinerary.value = data || [];
             } else {
-              console.log('No document found for the user.');
+              console.log("No document found for the user.");
             }
           } else {
-            console.error('User is not authenticated.');
+            console.error("User is not authenticated.");
           }
         } catch (error) {
-          console.error('Error fetching generatedItineraries from Firebase:', error);
+          console.error(
+            "Error fetching generatedItineraries from Firebase:",
+            error
+          );
         }
       }
     };
 
     const removePlace = (place) => {
-      const index = savedPlaces.value.findIndex(item => item.place_id === place.place_id);
+      const index = savedPlaces.value.findIndex(
+        (item) => item.place_id === place.place_id
+      );
       if (index !== -1) {
         savedPlaces.value.splice(index, 1);
         filteredPlaces.value = [...savedPlaces.value];
@@ -472,10 +574,11 @@ export default {
           setDoc(userRef, { savedPlaces: savedPlaces.value }, { merge: true })
             .then(() => {
               console.log("Firestore updated successfully.");
-              showToast('Success', 'Place Removed!');
+              showToast("Success", "Place Removed!", "remove");
             })
             .catch((error) => {
               console.error("Error updating Firestore:", error);
+              showToast("Error", "Failed to remove place.", "error");
             });
         }
       } else {
@@ -485,9 +588,9 @@ export default {
 
     const filterPlaces = (event) => {
       const value = event.target.value;
-      if (value === 'alphabetical') {
+      if (value === "alphabetical") {
         filterAlphabetically();
-      } else if (value === 'recently-added') {
+      } else if (value === "recently-added") {
         filterRecentlyAdded();
       } else {
         filteredPlaces.value = [...savedPlaces.value];
@@ -495,11 +598,17 @@ export default {
     };
 
     const filterAlphabetically = () => {
-      filteredPlaces.value = [...savedPlaces.value].sort((a, b) => a.name.localeCompare(b.name));
+      filteredPlaces.value = [...savedPlaces.value].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
     };
 
     const filterRecentlyAdded = () => {
-      filteredPlaces.value = [...savedPlaces.value].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+      // Ensure that each place has a 'dateAdded' field. If not, this will not sort correctly.
+      // You might need to add 'dateAdded' when saving places.
+      filteredPlaces.value = [...savedPlaces.value].sort(
+        (a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)
+      );
     };
 
     const confirmDeleteAllPlaces = async () => {
@@ -524,47 +633,20 @@ export default {
               try {
                 await setDoc(userRef, { savedPlaces: [] }, { merge: true });
                 console.log("All saved places deleted successfully.");
-                showToast('Success', 'All Places Deleted!');
+                showToast("Success", "All Places Deleted!", "remove");
               } catch (error) {
                 console.error("Error deleting saved places:", error);
               }
             }
-          }
+          },
         });
       } else {
         console.log("No cards to delete.");
       }
     };
 
-    const addPlaceToItinerary = async (place) => {
-      itinerary.value.push(place);
-
-      const user = getAuth().currentUser;
-      const userEmail = user.email;
-      const userDocRef = doc(db, 'users', userEmail);
-
-      try {
-        await updateDoc(userDocRef, {
-          generatedItineraries: arrayUnion({
-            place_id: place.place_id,
-            name: place.name,
-            image: place.image,
-            vicinity: place.vicinity,
-            country: place.country,
-            coordinates: {
-              latitude: place.coordinates.latitude,
-              longitude: place.coordinates.longitude
-            }
-          })
-        });
-      } catch (error) {
-        console.error("Error updating itinerary in Firebase:", error);
-      }
-    };
-
     return {
       savedPlaces,
-      addPlaceToItinerary,
       filteredPlaces,
       loading,
       showModal,
@@ -579,8 +661,6 @@ export default {
       navigateToGeneratedItinerary,
       itinerary,
       deleteAllPlaces,
-      saveItinerary,
-      cardRefs,
       // Toast variables and functions
       progressBar,
       toastActive,
@@ -599,7 +679,7 @@ export default {
 
 #carouselExampleInterval {
   position: relative;
-  height: 550px;
+  height: 60vh;
   /* Fixed height */
   /* Set your desired height here */
   overflow: hidden;
@@ -624,7 +704,11 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2)
+  );
   /* Adjust gradient colors and opacity as desired */
   z-index: 1;
   /* Place it above the images but below the text */
@@ -668,7 +752,6 @@ export default {
   margin: 0.5rem 0 0;
 }
 
-
 /* <=========== SECONDARY HEADER =============> */
 
 .secondary_header {
@@ -692,6 +775,9 @@ export default {
 }
 
 .form-select {
+  appearance: none; /* Remove the default arrow */
+  -webkit-appearance: none; /* Remove arrow in WebKit browsers */
+  -moz-appearance: none; /* Remove arrow in Mozilla browsers */
   background-color: #222;
   color: white;
   border: none;
@@ -701,12 +787,50 @@ export default {
   transition: background-color 0.3s ease;
 }
 
+.filter-button {
+  position: relative;
+  display: inline-block;
+  width: auto; /* Set to auto to reduce width */
+  transition: background-color 0.4s ease;
+}
+
+.filter-button:hover {
+  background-color: #3f94a7;
+}
+
+.custom-select {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 1rem;
+  padding-right: 2.5rem; /* Add space for the custom arrow */
+  border: none;
+  background-color: #222;
+  color: white;
+  font-size: 1rem;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.arrow-down {
+    position: absolute;
+  top: 50%;
+  right: 1rem; /* Adjust the position to match your design */
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: white;
+  pointer-events: none; /* Make sure the arrow doesn't interfere with clicks */
+}
+
 /* Container to align dropdowns side by side */
 .dropdown-container {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
   margin-left: 60px;
+  margin-right: 40px;
+
   /* Adjust this value to align the dropdowns with the text */
 }
 
@@ -729,9 +853,18 @@ export default {
   padding: 16px;
 }
 
+.dropdown-btn,
+.form-select {
+  width: 100%; /* Make all elements the same width */
+  padding: 16px; /* Uniform padding */
+  font-size: 1rem; /* Uniform font size */
+  box-sizing: border-box; /* Include padding and border in the element’s total width and height */
+}
+
+
 /* Change button color on hover */
 .dropdown-btn:hover {
-  background-color: #555;
+  background-color:#3f94a7;
 }
 
 /* Dropdown content styling */
@@ -761,7 +894,7 @@ export default {
 
 /* Change background color on hover */
 .dropdown-content a:hover {
-  background-color: #333;
+  background-color: #17a2b8;
 }
 
 /* Show dropdown on hover */
@@ -769,8 +902,16 @@ export default {
   display: block;
 }
 
-
 /* <=========== CARD GRID LAYOUT =============> */
+
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Adjust this if necessary */
+  font-size: 1rem; /* Optional: to make the text more readable */
+  color: #333; /* Optional: customize text color */
+}
 
 .transition-wrapper {
   display: contents;
@@ -794,6 +935,7 @@ export default {
   row-gap: 4rem;
   padding: 2rem;
   /* Padding around the grid */
+  margin-bottom: 50px;
 }
 
 .card-container {
@@ -805,7 +947,7 @@ export default {
   border-radius: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin: 0;
-  background: rgba(0, 0, 0, 0.0);
+  background: rgba(0, 0, 0, 0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -839,7 +981,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   /* Slightly opaque black background */
   z-index: 1;
   /* Place between background image and text */
@@ -891,6 +1033,24 @@ export default {
   text-align: left;
 }
 
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Adjust the spacing between items as needed */
+  margin: 0;
+  padding: 0;
+}
+
+.rating-number {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.rating-text {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
 .button-container {
   margin-top: 0.3rem;
   margin-bottom: 1rem;
@@ -916,7 +1076,6 @@ export default {
   /* Center text horizontally */
   align-items: center;
   /* Center text vertically */
-  cursor: pointer;
 }
 
 .itinerary-button:hover {
@@ -988,103 +1147,56 @@ export default {
   transform: translateY(-5px);
 }
 
-
-/* <=========== BREAKPOINTS =============> */
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 items per row on medium screens */
-  }
-
-  .sticky-top {
-    padding: 0 3vw;
-  }
-
-  .overlay-text {
-    font-size: 1.2rem;
-  }
-
-  .content h1 {
-    font-size: 6rem;
-  }
-
-  .content h4 {
-    font-size: 1.5rem;
-  }
-
-  .carousel-content h1 {
-    font-size: 4rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1.5rem;
-  }
+.confirm-modal-btn {
+  background-color: black; /* Red color similar to the second image */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.3s, ease;
 }
 
-@media (max-width: 992px) {
-  .carousel-content h1 {
-    font-size: 3rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1.2rem;
-  }
+.view-full-itinerary-btn {
+  background-color: black; /* Blue color */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 1s, ease;
 }
 
-@media (max-width: 768px) {
-  .dropdown-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 2x2 grid */
-    gap: 1rem;
-    /* Consistent gap between buttons */
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-    /* 1 item per row on small screens */
-  }
-
-  .sticky-top {
-    padding: 0 2vw;
-  }
-
-  .overlay-text {
-    font-size: 1rem;
-  }
-
-  .content h1 {
-    font-size: 3rem;
-  }
-
-  .content h4 {
-    font-size: 1.2rem;
-  }
-
-  .carousel-content h1 {
-    font-size: 2rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1rem;
-  }
+.close-modal-btn {
+  background-color: black; /* Blue color */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 1s, ease;
 }
 
-@media (max-width: 576px) {
-  .dropdown-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* Consistent gap between buttons */
-  }
-
-  .sticky-top {
-    padding: 0 1.5vw;
-  }
+.close-modal-btn:hover {
+  background-color: #3f94a7;
 }
+
+.view-full-itinerary-btn:hover {
+  background-color: #3f94a7;
+}
+
+.confirm-modal-btn:hover {
+  background-color: red;
+}
+
 
 /* Toast Notification Styles */
 .custom-toast {
@@ -1112,7 +1224,6 @@ export default {
 
 /* Add Type Toast */
 .custom-toast.add {
-  background: #e6f4ea;
   /* Light green background */
   border-left-color: #28a745;
   /* Green border */
@@ -1125,13 +1236,25 @@ export default {
 
 /* Remove Type Toast */
 .custom-toast.remove {
-  background: #f8e6e6;
+  /* Light blue background */
+  border-left-color: #17a2b8;
+  /* Blue border */
+}
+
+.custom-toast.remove .action-icon {
+  background-color: #17a2b8;
+  /* Blue icon background */
+}
+
+/* Error Type Toast (Optional) */
+.custom-toast.error {
+  background: #fdecea;
   /* Light red background */
   border-left-color: #dc3545;
   /* Red border */
 }
 
-.custom-toast.remove .action-icon {
+.custom-toast.error .action-icon {
   background-color: #dc3545;
   /* Red icon background */
 }
@@ -1161,7 +1284,7 @@ export default {
 .message .text {
   font-size: 20px;
   font-weight: 600;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   color: #666666;
 }
 
@@ -1205,7 +1328,6 @@ export default {
   /* Start with scaleX(0) */
 }
 
-
 @keyframes progressBarAnimation {
   from {
     transform: scaleX(0);
@@ -1215,4 +1337,100 @@ export default {
     transform: scaleX(1);
   }
 }
+
+
+/* <=========== BREAKPOINTS =============> */
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
+  }
+
+  .sticky-top {
+    padding: 0 3vw;
+  }
+
+  .overlay-text {
+    font-size: 1.2rem;
+  }
+
+  .content h1 {
+    font-size: 6rem;
+  }
+
+  .content h4 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 4rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .carousel-content h1 {
+    font-size: 3rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
+  }
+
+  .sticky-top {
+    padding: 0 2vw;
+  }
+
+  .overlay-text {
+    font-size: 1rem;
+  }
+
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content h4 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
+  }
+} 
+
+
 </style>

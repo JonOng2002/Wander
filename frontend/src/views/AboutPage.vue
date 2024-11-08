@@ -9,14 +9,14 @@
                 crossorigin="anonymous">
 
 
-            <h1>wander.</h1>
+            <h1 v-motion-slide-visible-once-top>wander.</h1>
         </div>
-        <div ref="threeContainer" class="three-container"></div>
+        <div ref="threeContainer" class="three-container" v-motion-slide-visible-once-top></div>
 
         <div class="container">
             <div class="left-text">
                 <p>Welcome to</p>
-                <p style="font-style: italic;">Wander :</p>
+                <p style="font-size: larger; font-family: Lobster Two; color: #3f94a7;">wander :</p>
                 <p>Explore the world</p>
                 <p>like</p>
                 <p>never before</p>
@@ -186,7 +186,7 @@
                             <img src="../assets/about-scroll/scroll-7.jpeg" alt="Ocean thumbnail 3" />
                         </div>
                     </div>
-                    <h2 class="subheading-text">choose wander.</h2>
+                    <h2 class="subheading-text">choose <span style="font-size: larger; font-family: Lobster Two; color: white; background-color: #3f94a7;">wander</span></h2>
                 </div>
             </div>
         </div>
@@ -212,17 +212,6 @@
             </div>
         </div>
 
-
-        <div class="call-to-action">
-            <h3>What are you waiting for? Start <span>Wander</span>ing.</h3><br>
-        </div>
-
-        <div class="auth-buttons">
-            <button @click="navigateTologin" class="login-btn">Log in</button>
-            <button @click="navigateTosignup" class="signup-btn">Sign up</button>
-        </div>
-
-
     </div>
 
 </template>
@@ -233,9 +222,13 @@ import { onMounted, ref } from 'vue';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import gsap from 'gsap';
-import { ScrollTrigger, ScrollSmoother } from 'gsap/all';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ColorManagement } from 'three';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger);
+
+ColorManagement.enabled = true;
+
 
 
 export default {
@@ -283,33 +276,37 @@ export default {
         let globe = null;
         let renderer = null;
 
-        const setupIntersectionObserver = () => {
-            const options = {
-                root: null,
-                rootMargin: '0px',
-                threshold: [0, 0.2, 0.4, 0.6, 0.8, 1]
-            };
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 5;
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.target === threeContainer.value) {
-                        const opacity = entry.intersectionRatio;
-                        if (globe) {
-                            globe.material.opacity = opacity;
-                            globe.children[0].material.opacity = opacity * 0.1;
-                        }
-                    }
-                    if (entry.target === carouselSection.value) {
-                        carouselSection.value.style.opacity = entry.intersectionRatio;
-                    }
-                });
-            }, options);
 
-            observer.observe(threeContainer.value);
-            observer.observe(carouselSection.value);
-        };
+        const handleResize = () => {
+            if (threeContainer.value && renderer) {
+                const width = threeContainer.value.clientWidth;
+                const height = threeContainer.value.clientHeight;
+
+                // Update camera
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+
+                // Update renderer
+                renderer.setSize(width, height);
+            }
+        }
+
+
 
         onMounted(() => {
+
+
+            window.addEventListener('resize', handleResize);
+            // Call handleResize once to ensure everything is properly sized initially
+            handleResize();
 
             window.addEventListener('load', () => {
                 document.body.offsetHeight; // Force a reflow/repaint
@@ -330,21 +327,23 @@ export default {
                 }
             });
 
-            gridTl.add("start")
-                .from(".grid-layout", {
-                    ease: "power1",
-                    scale: 3
-                }, "start")
-                .from(".column-1 .grid-image", {
-                    duration: 0.4,
-                    xPercent: i => -((i + 1) * 40 + i * 100),
-                    yPercent: i => (i + 1) * 40 + i * 100
-                }, "start")
-                .from(".column-3 .grid-image", {
-                    duration: 0.4,
-                    xPercent: i => (i + 1) * 40 + i * 100,
-                    yPercent: i => (i + 1) * 40 + i * 100
-                }, "start");
+            if (document.querySelector(".grid-section")) {
+                gridTl.add("start")
+                    .from(".grid-layout", {
+                        ease: "power1",
+                        scale: 3
+                    }, "start")
+                    .from(".column-1 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => -((i + 1) * 40 + i * 100),
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start")
+                    .from(".column-3 .grid-image", {
+                        duration: 0.4,
+                        xPercent: i => (i + 1) * 40 + i * 100,
+                        yPercent: i => (i + 1) * 40 + i * 100
+                    }, "start");
+            }
 
             // Parallax effect for the parallax section
             gsap.from(".parallax-section", {
@@ -392,37 +391,15 @@ export default {
 
             // Scene setup (same as before)
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(
-                75,
-                window.innerWidth / window.innerHeight,
-                0.1,
-                1000
-            );
-            camera.position.z = 5;
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setClearColor(0x000000, 1);
             renderer.physicallyCorrectLights = true;
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 1.5;
             threeContainer.value.appendChild(renderer.domElement);
-
-
-            const handleResize = () => {
-                const width = threeContainer.value.clientWidth;
-                const height = threeContainer.value.clientHeight;
-
-                // Update camera
-                camera.aspect = width / height;
-                camera.updateProjectionMatrix();
-
-                // Update renderer
-                renderer.setSize(width, height);
-            };
-
-            // Add resize listener
-            window.addEventListener('resize', handleResize);
 
             // Controls setup (same as before)
             const controls = new OrbitControls(camera, renderer.domElement);
@@ -457,7 +434,7 @@ export default {
             textureLoader.load(
                 '/nasa.jpg',
                 (texture) => {
-                    texture.encoding = THREE.sRGBEncoding;
+                    // texture.encoding = THREE.sRGBEncoding;
                     texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
                     const geometry = new THREE.SphereGeometry(2, 64, 64);
@@ -488,7 +465,6 @@ export default {
                     const pmremGenerator = new THREE.PMREMGenerator(renderer);
                     scene.environment = pmremGenerator.fromScene(scene).texture;
 
-                    setupIntersectionObserver();
 
                     function animate() {
                         requestAnimationFrame(animate);
@@ -510,7 +486,7 @@ export default {
 
         });
 
-        return { threeContainer, carouselSection, carouselTrack };
+        return { threeContainer, carouselSection, carouselTrack, handleResize };
     },
     mounted() {
 
@@ -522,6 +498,9 @@ export default {
     },
 
     beforeUnmount() {
+
+        window.removeEventListener('resize', this.handleResize);
+
         window.removeEventListener('load', () => {
             ScrollTrigger.refresh();
         });
@@ -581,16 +560,6 @@ export default {
                 cancelAnimationFrame(this.scrollInterval);
             }
         },
-
-
-        navigateTologin() {
-            // Code to navigate to login page
-            this.$router.push('/log-in'); // Assuming you're using Vue Router
-        },
-        navigateTosignup() {
-            // Code to navigate to sign up page
-            this.$router.push('/sign-up'); // Assuming you're using Vue Router
-        }
     },
 
 
@@ -599,6 +568,7 @@ export default {
 </script>
 
 <style scoped>
+
 .main-container-1 {
     height: auto;
     overflow-y: hidden;
@@ -621,23 +591,22 @@ export default {
 }
 
 
-
-
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1200px) {
     .three-container {
-        width: 70vw;
-        height: 70vh;
-        overflow: visible;
-        cursor: grab;
-        /* position: sticky; */
+        width: 100vw;
+        height: 100vh;
+        /* Increase the height to make the globe bigger */
+        overflow: hidden;
         top: 0;
     }
 }
 
+
+
 @media (min-width: 576px) and (max-width: 767px) {
     .three-container {
         width: 100vw;
-        height: 75vh;
+        height: 80vh;
         overflow: visible;
     }
 }
@@ -647,7 +616,7 @@ export default {
     /* Styles for screens 576px - 767px */
     .three-container {
         width: 100vw;
-        height: 70vh;
+        height: 85vh;
         overflow: visible;
     }
 }
@@ -671,7 +640,7 @@ export default {
 .carousel-header h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #0057d9;
+    color: #3f94a7;
 }
 
 /* Carousel container styling */
@@ -731,7 +700,7 @@ export default {
     .image-caption {
         font-size: 1rem;
         margin-top: 8px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -755,7 +724,7 @@ export default {
     .image-caption {
         font-size: 0.9rem;
         margin-top: 6px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -779,7 +748,7 @@ export default {
     .image-caption {
         font-size: 0.8rem;
         margin-top: 4px;
-        color: #0057d9;
+        color: #3f94a7;
     }
 }
 
@@ -924,8 +893,8 @@ export default {
 }
 
 .right-text span {
-    background-color: white;
-    color: black;
+    background-color: #3f94a7;
+    color: #ffffff;
 }
 
 
@@ -965,6 +934,7 @@ export default {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 50px;
+    color: #3f94a7;
 }
 
 .project-number-2 {
@@ -977,7 +947,7 @@ export default {
         line-height: 1;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -993,7 +963,7 @@ export default {
         line-height: 1;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -1007,13 +977,13 @@ export default {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1200px) {
     h1 {
         font-size: 3rem;
         font-weight: normal;
 
         span.typed-text {
-            color: #64a2ff;
+            color: #3f94a7;
         }
     }
 
@@ -1254,101 +1224,5 @@ export default {
     font-size: 5rem;
     font-weight: bold;
     margin: 0;
-}
-
-
-
-
-.auth-buttons {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 150px;
-}
-
-.login-btn,
-.signup-btn {
-    padding: 10px 24px;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid #0057d9;
-    color: #0057d9;
-    background-color: #ffffff;
-}
-
-.login-btn:hover {
-    background-color: #bdd7ff;
-    border-color: #d1d5db;
-}
-
-.signup-btn {
-    background-color: #2563eb;
-    border: 1px solid #2563eb;
-    color: white;
-}
-
-.signup-btn:hover {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
-}
-
-/* Optional: Add focus states for accessibility */
-.login-btn:focus,
-.signup-btn:focus {
-    outline: 2px solid #2563eb;
-    outline-offset: 2px;
-}
-
-/* Optional: Add active states */
-.login-btn:active {
-    background-color: #e5e7eb;
-}
-
-.signup-btn:active {
-    background-color: #1e40af;
-}
-
-/* Optional: Add responsive design */
-@media (max-width: 640px) {
-
-    .login-btn,
-    .signup-btn {
-        padding: 8px 20px;
-        font-size: 14px;
-    }
-}
-
-
-.call-to-action {
-    margin-top: 100px;
-    font-weight: 200px;
-    text-align: center;
-}
-
-.call-to-action h3 {
-    font-size: 35px;
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.call-to-action span {
-    color: #0057d9;
-    /* font-style: italic; */
 }
 </style>
