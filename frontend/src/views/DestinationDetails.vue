@@ -1,92 +1,88 @@
 <!-- src/views/DestinationDetails.vue -->
 <template>
+  <div class="destination-details">
 
-  <div class="secondary_header">
-    <div class="secondary_content">
-      <h2>Top Tourist Attractions in {{ country }}</h2>
-      <h5>Exlpore the wonders of {{ country }}</h5>
-    </div>
-
-    <div class="dropdown-container" v-motion-slide-visible-once-top>
-      <div class="dropdown">
-        <button @click="goBack" class="dropdown-btn">Back to Destinations</button>
+        <!-- Header Card -->
+        <div class="header-card">
+      <div class="content">
+        <h1>{{ country }}</h1>
+        <h4>See The Sights That {{ country }} Has To Offer.</h4>
+      </div>
       </div>
 
-      <div class="dropdown">
-        <select v-model="sortOption" @change="updateSortCriteria" class="dropdown-btn form-select me-2"
-          aria-label="Sort Attractions">
-          <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
-          <option value="popularity-asc">Sort By Popularity: Low to High</option>
-          <option value="rating-desc">Sort By Rating: High to Low</option>
-          <option value="rating-asc">Sort By Rating: Low to High</option>
-        </select>
+    <!-- Secondary Header -->
+    <div class="secondary_header">
+      <div class="secondary_content">
+        <h2>Top Tourist Attractions in {{ country }}</h2>
+        <h5>Explore the wonders of {{ country }}</h5>
+      </div>
 
-        <!-- Dropdown Container with Motion Animation -->
-        <div class="dropdown-container" v-motion-slide-visible-once-top>
-          <div class="dropdown">
-            <button @click="goBack" class="dropdown-btn">Back to Destinations</button>
-          </div>
+      <!-- Dropdown Container with Motion Animation -->
+      <div class="dropdown-container" v-motion-slide-visible-once-top>
+        <div class="dropdown">
+          <button @click="goBack" class="dropdown-btn">Back to Destinations</button>
+        </div>
 
-          <div class="filter-button">
-            <!-- Styled Dropdown Filter Menu -->
-            <select v-model="sortOption" @change="updateSortCriteria" class="custom-select form-select me-2"
-              aria-label="Sort Attractions">
-              <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
-              <option value="popularity-asc">Sort By Popularity: Low to High</option>
-              <option value="rating-desc">Sort By Rating: High to Low</option>
-              <option value="rating-asc">Sort By Rating: Low to High</option>
-            </select>
-            <span class="arrow-down">&#9662;</span> <!-- Custom arrow icon -->
-          </div>
+        <div class="dropdown">
+          <!-- Styled Dropdown Filter Menu -->
+          <select v-model="sortOption" @change="updateSortCriteria" class="dropdown-btn form-select me-2" aria-label="Sort Attractions">
+            <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
+            <option value="popularity-asc">Sort By Popularity: Low to High</option>
+            <option value="rating-desc">Sort By Rating: High to Low</option>
+            <option value="rating-asc">Sort By Rating: Low to High</option>
+          </select>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Display Loading Indicator -->
-  <div v-if="loading" class="loading">Loading...</div>
+    <!-- Display Loading Indicator -->
+    <div v-if="loading" class="loading">Loading...</div>
 
-  <!-- Display Error Message -->
-  <div v-if="errorMessage" class="error-message">
-    {{ errorMessage }}
-  </div>
+    <!-- Display Error Message -->
+    <div v-if="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
 
-  <!-- Display Attractions List -->
-  <div v-if="!loading && !errorMessage" class="card-grid">
-    <transition-group name="list" tag="div" class="transition-wrapper">
-      <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container"
-        v-motion-slide-visible-once-top>
-        <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
-          <div class="overlay"></div>
+    <!-- Display Attractions List -->
+    <div v-if="!loading && !errorMessage" class="card-grid">
+      <transition-group name="list" tag="div" class="transition-wrapper">
+        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container" v-motion-slide-visible-once-top>
+          <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
+            <div class="overlay"></div>
 
-          <div class="card-body">
-            <h5 class="card-title">{{ attraction.name }}</h5>
-            <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
+            <div class="card-body">
+              <h5 class="card-title">{{ attraction.name }}</h5>
+              <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
 
-            <!-- Star Rating and Exact Number -->
-            <div class="rating-section">
-              <star-rating :rating="attraction.rating"></star-rating>
-              <span class="rating-number">{{ attraction.rating.toFixed(1) }} / 5 </span> &nbsp;
-              <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
+              <!-- Star Rating and Exact Number -->
+              <div class="rating-section">
+                <star-rating :rating="attraction.rating"></star-rating>
+                <span class="rating-number">{{ attraction.rating.toFixed(1) }} / 5 </span>
+                <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
+              </div>
+
+              <!-- Save Place Button -->
+              <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
+                :placeId="attraction.place_id" :isAlreadySaved="isPlaceSaved(attraction.place_id)"
+                @save-place="savePlaceToFirebase">
+                {{ isPlaceSaved(attraction.place_id) ? 'Saved' : 'Add to Saved Places' }}
+              </save-place-button>
             </div>
-
-
-
-            <!-- Save Place Button -->
-            <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
-              :placeId="attraction.place_id" :isAlreadySaved="isPlaceSaved(attraction.place_id)"
-              @save-place="savePlaceToFirebase">
-              {{ isPlaceSaved(attraction.place_id) ? 'Saved' : 'Add to Saved Places' }}
-            </save-place-button>
           </div>
         </div>
-      </div>
-    </transition-group>
-  </div>
+      </transition-group>
+    </div>
 
-  <!-- Added ToastNotification -->
-  <ToastNotification :show="toastShow" :message="toastMessage" :type="toastType" :duration="3000"
-    @update:show="toastShow = $event" />
+    <!-- Added ToastNotification -->
+    <ToastNotification
+      :show="toastShow"
+      :message="toastMessage"
+      :type="toastType"
+      :duration="3000"
+      @update:show="toastShow = $event"
+    />
+
 </template>
 
 <script>
@@ -128,7 +124,7 @@ export default {
       countryRadius: {
         'Malaysia': 30000,     // 30 km radius for Malaysia
         'Indonesia': 30000,    // 30 km radius for Indonesia
-        'Singapore': 25000,    // 30 km radius for Singapore
+        'Singapore': 25000,    // 25 km radius for Singapore
         // Add more countries here if needed
       },
       defaultRadius: 50000,     // Default radius of 50 km for other countries
@@ -139,7 +135,6 @@ export default {
     };
   },
   created() {
-    console.log(`Using API Key: ${this.apiKey}`); // Verify API key
     this.fetchAttractions();
   },
   computed: {
@@ -194,13 +189,11 @@ export default {
   methods: {
 
     /**
- * Fetches an image from Unsplash based on a query.
- * @param {String} query - The search term for the image.
- * @returns {String} - The URL of the fetched image or a default image.
- */
-
+     * Fetches an image from Unsplash based on a query.
+     * @param {String} query - The search term for the image.
+     * @returns {String} - The URL of the fetched image or a default image.
+     */
     async getUnsplashImage(query) {
-
       const unsplashAccessKey = process.env.VUE_APP_UNSPLASH_ACCESS_KEY;
 
       if (!unsplashAccessKey) {
@@ -265,19 +258,6 @@ export default {
             return;
           }
 
-          // const mappedAttractions = response.data.results.map((place) => ({
-          //   name: place.name,
-          //   place_id: place.place_id,
-          //   vicinity: place.vicinity,
-          //   image: place.photos
-          //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${this.apiKey}`
-          //     : null,
-          //   coordinates: place.geometry?.location || { lat: 0, lng: 0 },
-          //   rating: place.rating || 0,
-          //   user_ratings_total: place.user_ratings_total || 0,
-          //   city: name,
-          // }));
-
           for (const city of cities) {
             const { name, location } = city;
             // **Determine the Radius: City-specific > Country-specific > Default**
@@ -328,7 +308,6 @@ export default {
           // Fetch Unsplash images for attractions missing Google images
           const fetchImagesPromises = topAttractions.map(async (attraction) => {
             if (!attraction.image) {
-
               const query = `${attraction.name}, ${attraction.city}`;
               console.log(`Fetching Unsplash image for: ${query}`); // Debugging log
               const unsplashImage = await this.getUnsplashImage(query);
@@ -361,7 +340,6 @@ export default {
         this.loading = false;
       }
     },
-
 
     getCountryCities(country) {
       const cities = {
@@ -753,7 +731,7 @@ export default {
     },
 
     goBack() {
-      this.$router.go(-1);
+      this.$router.push("/destinations");
     },
 
     showSavedPopup() {
@@ -802,7 +780,6 @@ export default {
             source: "google_places",
             summary: "Google Places Summary",
             activities: [],
-
           };
 
           try {
@@ -833,7 +810,6 @@ export default {
       console.log("Generate Itinerary button clicked");
       // This could involve creating a new itinerary document in Firestore
     },
-
 
   },
   mounted() {
@@ -889,50 +865,13 @@ export default {
 /* Container to align dropdowns side by side */
 .dropdown-container {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  flex-direction: row; /* Horizontal layout */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center; /* Vertically center items */
+  gap: 1rem; /* Space between buttons */
   margin-top: 1rem;
   margin-left: 60px;
   margin-right: 40px;
-  align-items: center;
-  flex-wrap: wrap;
-  /* Allow wrapping on smaller screens */
-}
-
-.filter-button {
-  position: relative;
-  display: inline-block;
-  width: auto;
-  /* Set to auto to reduce width */
-}
-
-.custom-select {
-  appearance: none;
-  /* Remove default arrow */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 100%;
-  padding: 1rem;
-  padding-right: 2.5rem;
-  /* Add space for the custom arrow */
-  border: none;
-  background-color: #222;
-  color: white;
-  font-size: 1rem;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.arrow-down {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  /* Adjust the position to match your design */
-  transform: translateY(-50%);
-  font-size: 1.2rem;
-  color: white;
-  pointer-events: none;
-  /* Make sure the arrow doesn't interfere with clicks */
 }
 
 /* Style the dropdown button */
@@ -1001,6 +940,20 @@ export default {
   display: block;
 }
 
+/* ====================== Header Card ====================== */
+.header-card {
+  width: 100%;
+  height: 300px; /* Adjust the height as needed */
+  background-image: url('@/assets/tourist.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem; /* Space below the header card */
+  min-height: 60vh;
+}
 
 
 .header-card::after {
@@ -1010,22 +963,17 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Semi-transparent overlay for better text readability */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for better text readability */
 }
 
 .header-card h1 {
-  position: relative;
-  /* Ensure text is above the overlay */
+  position: relative; /* Ensure text is above the overlay */
   color: #ffffff;
-  font-size: 4rem;
-  /* Adjust font size as needed */
+  font-size: 4rem; /* Adjust font size as needed */
   font-weight: 700;
   text-align: center;
-  z-index: 1;
-  /* Place text above the overlay */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  /* Optional: Adds a shadow to the text for better visibility */
+  z-index: 1; /* Place text above the overlay */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Optional: Adds a shadow to the text for better visibility */
 }
 
 .header-card h4 {
@@ -1053,6 +1001,17 @@ export default {
 .secondary_content h5 {
   color: rgb(166, 163, 163);
   margin-bottom: 1rem;
+}
+
+/* Container to align dropdowns side by side */
+.dropdown-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-left: 60px;
+  /* Adjust this value to align the dropdowns with the text */
+  z-index: 100;
+  /* Ensure it's above other page content */
 }
 
 /* Style the dropdown button */
@@ -1127,6 +1086,8 @@ export default {
   align-items: center;
   padding: 20px 5%;
   position: relative;
+  flex-wrap: wrap; /* Allows items to wrap to the next line if needed */
+  z-index: 1000; /* Added z-index to ensure it's on top */
 }
 
 .back-button {
@@ -1139,6 +1100,8 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  flex-shrink: 0; /* Prevents the button from shrinking */
+  z-index: 9999; /* Ensure it's above the header-row */
 }
 
 .back-button:hover {
@@ -1153,28 +1116,44 @@ export default {
   color: black;
   font-weight: bolder;
   flex-grow: 1;
+  margin: 0 20px; /* Added horizontal margins */
+  min-width: 150px; /* Ensures the title doesn't shrink below 150px */
+  text-align: center; /* Center the title */
 }
 
 .filter-dropdown {
   margin: 10px 0;
   font-family: "Source Sans 3", sans-serif;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end; /* Aligns the dropdown to the right */
+  position: relative; /* To position the custom arrow */
+  width: 320px; /* Consistent width with MyDestinations.vue dropdowns */
 }
 
 .filter-dropdown .form-select {
-  width: 350px;
-  border-radius: 0.5rem;
-  border: 1px solid black;
+  width: 100%;
+  max-width: 350px; /* Sets a maximum width */
+  border-radius: 4px; /* Rounded corners */
+  border: none; /* Remove default border */
+  padding: 1rem; /* Consistent padding */
   font-family: "Source Sans 3", sans-serif;
-  padding: 8px;
   font-size: 1rem;
-  background-color: white;
-  color: black;
+  background-color: #222; /* Dark background to match dropdown-btn */
+  color: #fff; /* White text */
   cursor: pointer;
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="%23FFFFFF" d="M0 0l5 5 5-5z"/></svg>'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 10px 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .filter-dropdown .form-select:focus {
   outline: none;
-  border-color: #3498db;
+  border-color: #3f94a7;
+  background-color: #555 ;
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
@@ -1192,6 +1171,13 @@ export default {
 
 /* Card Grid Layout */
 .card-grid {
+  /* Remove grid display to avoid nesting conflicts */
+  display: block;
+  padding: 0;
+}
+
+.transition-wrapper {
+  /* Change from flex to grid to align with .card-grid */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* 3 items per row on large screens */
@@ -1205,12 +1191,15 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  /* Remove height: 100% to prevent stretching */
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background: rgba(0, 0, 0, 0.0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Indicates interactivity */
+  aspect-ratio: 16 / 9; /* Maintains a 16:9 aspect ratio */
+  height: 400px; /* Fixed height as per requirement */
 }
 
 .card-container:hover {
@@ -1281,8 +1270,8 @@ export default {
   /* Align text to the left */
   width: calc(100% - 30px);
   /* Prevent overflow */
+  box-sizing: border-box;
 }
-
 
 .card-title {
   font-size: 1.25rem;
@@ -1301,6 +1290,8 @@ export default {
   margin-bottom: 0;
   margin-left: 0;
   padding: 0;
+  word-wrap: break-word;
+  /* Allows long words to break and wrap */
 }
 
 .rating-section {
@@ -1321,7 +1312,6 @@ export default {
   font-size: 0.9rem;
   color: #ffffff;
 }
-
 
 .itinerary-button {
   margin-top: 10px;
@@ -1358,13 +1348,11 @@ export default {
   }
 
   .rating-text {
-    margin-left: 8px;
-    /* Desired spacing */
+    margin-left: 8px; /* Desired spacing */
   }
 
   .dropdown-container {
-    flex-direction: row;
-    /* Horizontal layout */
+    flex-direction: row; /* Horizontal layout */
     align-items: center;
     gap: 1rem;
   }
@@ -1383,16 +1371,16 @@ export default {
   }
 
   .dropdown-container {
-    flex-direction: row;
-    /* Ensure horizontal layout */
-    align-items: center;
-    /* Vertically center items */
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  /* Adjust as necessary to align perfectly */
+  z-index: 100;
+
   }
 
   .header-row {
-    flex-direction: column;
-    /* Stack elements vertically */
+    flex-direction: column; /* Stack elements vertically */
     align-items: stretch;
     padding: 15px 5%;
     z-index: 10;
@@ -1450,6 +1438,14 @@ export default {
     padding: 1rem;
   }
 
+  .dropdown-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-left: 3.7rem;
+    margin-right: 0;
+  }
+
   .header-row {
     flex-direction: column;
     align-items: center;
@@ -1496,33 +1492,14 @@ export default {
   }
 
   .destination-card {
-    height: 100%;
-    /* Maintain aspect ratio */
-  }
-
-  .dropdown-btn,
-  .custom-select {
-    width: auto;
-    /* Keep buttons from stretching too wide */
-    text-align: left;
+    height: 100%; /* Maintain aspect ratio */
   }
 }
 
 /* Styles for Extra Small Screens (Below 576px) */
 @media (max-width: 576px) {
-  .dropdown-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    /* Stack items in a single column */
-    gap: 1rem;
-    /* Space between items */
-    padding-left: 10px;
-    /* Further adjust padding */
-  }
-
   .transition-wrapper {
-    grid-template-columns: 1fr;
-    /* 1 item per row */
+    grid-template-columns: 1fr; /* 1 item per row */
     gap: 1rem;
     padding: 1rem;
   }
@@ -1573,7 +1550,6 @@ export default {
   }
 }
 
-@media (max-width: 576px) {}
 
 .already-saved {
   background-color: #e74c3c;
@@ -1584,4 +1560,6 @@ export default {
 .btn {
   font-family: "Source Sans 3", sans-serif;
 }
+
+
 </style>

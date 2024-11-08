@@ -1,3 +1,5 @@
+<!-- frontend\src\views\MyDestinations.vue -->
+
 <template>
   <header id="headercard">
     <div class="gradientoverlay"></div>
@@ -24,10 +26,12 @@
           Filter by: {{ sortLabel }}
           <span class="arrow-down">&#9662;</span>
         </button>
-        <ul :style="{ display: showDropdowns.sort ? 'block' : 'none' }" class="dropdown-menu">
+        <ul
+          :style="{ display: showDropdowns.sort ? 'block' : 'none' }"
+          class="dropdown-menu"
+        >
           <li @click.stop="selectSort('default')">Top Destinations</li>
           <li @click.stop="selectSort('alphabetical')">Alphabetical Order</li>
-
         </ul>
       </div>
 
@@ -37,7 +41,10 @@
           Filter by Continent: {{ filterLabel }}
           <span class="arrow-down">&#9662;</span>
         </button>
-        <ul :style="{ display: showDropdowns.filter ? 'block' : 'none' }" class="dropdown-menu">
+        <ul
+          :style="{ display: showDropdowns.filter ? 'block' : 'none' }"
+          class="dropdown-menu"
+        >
           <li @click.stop="selectContinent('')">All Continents</li>
           <li @click.stop="selectContinent('Europe')">Europe</li>
           <li @click.stop="selectContinent('Asia')">Asia</li>
@@ -52,11 +59,20 @@
 
   <div class="container">
     <div class="card_container">
-      <article v-for="country in filteredCountries" :key="country.code" class="card_article"
-        v-motion-slide-visible-once-top>
+      <article
+        v-for="country in filteredCountries"
+        :key="country.code"
+        class="card_article"
+        v-motion-slide-visible-once-top
+      >
         <div class="text_overlay">{{ country.name }}</div>
 
-        <img :src="country.image" alt="country-image" class="card_img" loading="lazy" />
+        <img
+          :src="country.image"
+          alt="country-image"
+          class="card_img"
+          loading="lazy"
+        />
 
         <div class="card_data">
           <span class="card_description">
@@ -64,10 +80,13 @@
           </span>
           <h2 class="card_title">{{ country.place }}</h2>
           <p class="country_description">{{ country.description }}</p>
-          <router-link :to="{
-            name: 'DestinationDetails',
-            params: { country: country.name },
-          }" class="card_button">
+          <router-link
+            :to="{
+              name: 'DestinationDetails',
+              params: { country: country.name },
+            }"
+            class="card_button"
+          >
             Explore More
           </router-link>
         </div>
@@ -76,15 +95,14 @@
   </div>
 </template>
 
-
 <script>
-import { vMotion } from '@vueuse/motion';
+import { vMotion } from "@vueuse/motion";
 
 export default {
   name: "MyDestinations",
   directives: {
-        motion: vMotion,
-    },
+    motion: vMotion,
+  },
   data() {
     return {
       countries: [
@@ -100,10 +118,9 @@ export default {
           name: "Italy",
           code: "IT",
           place: "Rome",
-          image: new URL('@/assets/countries/italy.jpeg', import.meta.url).href,
+          image: new URL("@/assets/countries/italy.jpeg", import.meta.url).href,
           description:
             "Rome is the cradle of Western civilization, home to iconic sites like the Colosseum and the Vatican.",
-
         },
         {
           name: "Japan",
@@ -180,7 +197,7 @@ export default {
         {
           name: "Australia",
           code: "AU",
-          palce: "Sydney",
+          place: "Sydney", // Fixed typo here
           image: require("@/assets/countries/australia.jpg"),
           description:
             "Australia is famous for its outback adventures, Great Barrier Reef, and cosmopolitan cities like Sydney.",
@@ -474,11 +491,12 @@ export default {
             "Ukraine is a country of rich history and beautiful landscapes, with Kyiv's stunning cathedrals and ancient sites.",
         },
       ],
-      sortOrder: 'default', // Track sorting order
-      continentFilter: '',  // Track continent filter
+      sortOrder: "default", // Track sorting order
+      continentFilter: "", // Track continent filter
       showDropdowns: { sort: false, filter: false },
-      sortLabel: 'Top Destinations',
-      filterLabel: 'All Continents',
+      sortLabel: "Top Destinations",
+      filterLabel: "All Continents",
+      originalCountries: [], // To store the original order
     };
   },
 
@@ -494,20 +512,21 @@ export default {
 
       // Apply continent filter
       if (this.continentFilter) {
-        filteredList = filteredList.filter(country =>
-          this.getRegion(country.name) === this.continentFilter
+        filteredList = filteredList.filter(
+          (country) => this.getRegion(country.name) === this.continentFilter
         );
       }
 
       // Apply sorting
-      if (this.sortOrder === 'alphabetical') {
-        filteredList = filteredList.sort((a, b) => a.name.localeCompare(b.name));
+      if (this.sortOrder === "alphabetical") {
+        filteredList = [...filteredList].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
       }
 
       return filteredList;
     },
   },
-
 
   methods: {
     getRegion(country) {
@@ -573,21 +592,25 @@ export default {
 
     toggleDropdown(type) {
       // Toggle the dropdown visibility
-      Object.keys(this.showDropdowns).forEach(key => {
-        this.showDropdowns[key] = (key === type) ? !this.showDropdowns[key] : false;
+      Object.keys(this.showDropdowns).forEach((key) => {
+        this.showDropdowns[key] =
+          key === type ? !this.showDropdowns[key] : false;
       });
     },
 
     selectSort(order) {
       this.sortOrder = order;
-      this.sortLabel = order === 'alphabetical' ? 'Alphabetical Order' : 'Top Destinations';
+      this.sortLabel =
+        order === "alphabetical" ? "Alphabetical Order" : "Top Destinations";
 
-      if (order === 'default') {
+      if (order === "default") {
         // Reset the countries list to the original order
         this.countries = [...this.originalCountries];
-      } else if (order === 'alphabetical') {
+      } else if (order === "alphabetical") {
         // Sort the countries list alphabetically
-        this.countries = [...this.countries].sort((a, b) => a.name.localeCompare(b.name));
+        this.countries = [...this.countries].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
       }
 
       this.showDropdowns.sort = false;
@@ -595,11 +618,37 @@ export default {
 
     selectContinent(continent) {
       this.continentFilter = continent;
-      this.filterLabel = continent === '' ? 'All Continents' : continent;
+      this.filterLabel = continent === "" ? "All Continents" : continent;
       this.showDropdowns.filter = false;
     },
   },
 
+  // **Properly Placed Hooks**
+  beforeRouteLeave(to, from, next) {
+    // Save the current scroll position before leaving
+    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+    sessionStorage.setItem("MyDestinationsScrollPosition", scrollPos);
+    console.log("Scroll position saved:", scrollPos);
+    next();
+  },
+
+  mounted() {
+    // Restore the scroll position when the component is mounted
+    this.$nextTick(() => {
+      const savedPosition = sessionStorage.getItem(
+        "MyDestinationsScrollPosition"
+      );
+      if (savedPosition) {
+        window.scrollTo({
+          top: parseInt(savedPosition, 10),
+          behavior: "smooth", // Use 'smooth' for smooth scrolling
+        });
+        console.log("Scroll position restored:", savedPosition);
+        // Optionally, remove the saved position after restoring
+        sessionStorage.removeItem("MyDestinationsScrollPosition");
+      }
+    });
+  },
 };
 </script>
 
@@ -625,7 +674,6 @@ body {
 }
 
 /*====== HEADER ======*/
-
 
 header {
   position: relative;
@@ -721,9 +769,7 @@ header {
   padding: 1rem;
   cursor: pointer;
   display: flex;
-  /* Use flexbox for alignment */
   justify-content: space-between;
-  /* Align text and arrow */
   align-items: center;
   transition: background-color 0.3s;
   position: relative;
@@ -733,7 +779,7 @@ header {
 }
 
 .dropdown-btn:hover {
-  background-color: #555;
+  background-color: #3f94a7;
 }
 
 /* Add arrow icon to indicate dropdown */
@@ -749,10 +795,10 @@ header {
   position: relative;
   display: inline-block;
   margin-right: 1rem;
-  
 }
 
 .dropdown-menu {
+  /* As defined earlier */
   position: absolute;
   background-color: #222;
   list-style: none;
@@ -779,9 +825,8 @@ header {
   z-index: 1000;
 }
 
-
 .dropdown-menu li:hover {
-  background-color: #333;
+  background-color: #3f94a7;
 }
 
 /* Show the dropdown menu on hover */
@@ -789,7 +834,6 @@ header {
   opacity: 1;
   visibility: visible;
 }
-
 
 /*====== CARD ======*/
 
@@ -805,7 +849,7 @@ header {
   display: grid;
   row-gap: 3.5rem;
   font-family: "Source Sans 3", sans-serif;
-  z-index: 1;
+  z-index: 0;
 }
 
 .card_article {
@@ -817,8 +861,8 @@ header {
   --epx: calc(var(--elevation) * 1px);
 
   /* These 2 shadows serve as a border for 0-1 elevation */
-  --shadow1: 0 0 1px rgba(0, 0, 0, .1);
-  --shadow2: 0 1px 2px rgba(0, 0, 0, .08);
+  --shadow1: 0 0 1px rgba(0, 0, 0, 0.1);
+  --shadow2: 0 1px 2px rgba(0, 0, 0, 0.08);
 
   /* Calculate the dynamic shadow based on the elevation */
   --offset-y: calc(var(--epx) + 1px);
@@ -826,14 +870,10 @@ header {
   --spread: calc(var(--epx) * 0.3);
 
   /* Final shadow for elevation effect */
-  --shadow3:
-    0 var(--offset-y) var(--blur) var(--spread) rgba(0, 0, 0, 0.2);
+  --shadow3: 0 var(--offset-y) var(--blur) var(--spread) rgba(0, 0, 0, 0.2);
 
   /* Apply the shadows */
-  box-shadow:
-    var(--shadow1),
-    var(--shadow2),
-    var(--shadow3);
+  box-shadow: var(--shadow1), var(--shadow2), var(--shadow3);
 
   border-radius: 1.5rem;
   transition: box-shadow 0.3s ease;
@@ -846,13 +886,6 @@ header {
   height: 400px;
   border-radius: 1.5rem;
 }
-
-.card_img {
-  width: 328px;
-  height: 400px;
-  border-radius: 1.5rem;
-}
-
 
 /* Text overlay styling */
 .text_overlay {
@@ -1034,7 +1067,6 @@ header {
     display: flex;
     flex-direction: column;
     align-items: left;
-    
   }
 
   .dropdown-btn {
@@ -1042,25 +1074,22 @@ header {
     /* Full width on small screens */
     padding: 0.8rem;
     z-index: 50;
-   
   }
 
-  .dropdown-menu{
+  .dropdown-menu {
     width: 70%;
     z-index: 9999;
   }
 
   .dropdown-menu li {
-  padding: 10px;
-  color: white;
-  cursor: pointer;
-  z-index: 1000;
-}
-
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    z-index: 10000;
+  }
 }
 
 @media (max-width: 767.99px) {
-
   .filter-container {
     display: flex;
     flex-direction: column;
@@ -1084,7 +1113,6 @@ header {
     padding: 15px;
   }
 }
-
 
 @media screen and (min-width: 768px) {
   .card_container {
@@ -1111,25 +1139,26 @@ header {
 }
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
-
-  .dropdown,
-  .dropdown-btn,
-  .dropdown-menu {
-    width: 100%;
-    /* Span full width of the screen */
-    box-sizing: border-box;
-    /* Ensure padding and borders do not exceed width */
+  .dropdown, .dropdown-btn, .dropdown-menu {
+    width: 100%; /* Span full width of the screen */
+    box-sizing: border-box; /* Ensure padding and borders do not exceed width */
   }
-
+  
   .dropdown-menu {
-    left: 0;
-    /* Align the dropdown menu to the left edge */
-    top: 100%;
-    /* Ensure it appears below the button */
+    left: 0; /* Align the dropdown menu to the left edge */
+    top: 100%; /* Ensure it appears below the button */
     z-index: 10000;
   }
 
-@media screen and (min-width: 1024px) {
+  .dropdown-menu li {
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    z-index: 10000;
+  }
+}
+
+@media screen and (min-width: 992px) {
   .container {
     min-height: 100vh;
   }
@@ -1164,5 +1193,9 @@ header {
     padding: 20px;
   }
 }
+
+/* Optional: Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
 }
 </style>

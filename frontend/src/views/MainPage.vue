@@ -179,6 +179,7 @@ export default {
           }
         );
         const data = response.data.openai_response;
+        
         if (data.error)
           throw new Error("Error generating response from OpenAI.");
         this.extractedLocationsState.setLocationInfo(data.location_info);

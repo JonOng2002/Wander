@@ -543,7 +543,7 @@ onMounted(async () => {
 
 /* Marker Styles */
 .marker-selected {
-  border: 2px solid #007bff;
+  border: 2px solid #3f94a7;
   border-radius: 50%;
 }
 
