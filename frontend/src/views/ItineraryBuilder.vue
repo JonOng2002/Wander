@@ -4,14 +4,8 @@
   <div>
     <!-- Static Image Section -->
     <div class="static-image-container">
-      <img
-        src="@/assets/countries/norway.jpg"
-        alt="Thailand"
-        class="d-block w-100"
-      />
+      <img src="@/assets/countries/norway.jpg" alt="Thailand" class="d-block w-100" />
 
-      <!-- Gradient Overlay -->
-      <div class="gradientoverlay"></div>
 
       <!-- Image Content -->
       <div class="carousel-content">
@@ -21,9 +15,20 @@
     </div>
 
     <!-- Secondary Header -->
+    <!-- Secondary Header -->
     <div class="secondary_header">
       <div class="secondary_content">
-        <h2>Manage Your Itinerary</h2>
+        <div class="header-with-tooltip">
+          <h2>Manage Your Itinerary<div class="tooltip-container ">
+            <span class="question-mark" aria-label="Tooltip">
+              <font-awesome-icon :icon="['fas', 'circle-info']" class="custom-icon" />
+              <span class="tooltip-text">
+                Ensure all your destinations are located in one country to get the best results.
+              </span>
+            </span>
+          </div></h2>
+          
+        </div>
         <h5>Organize your saved locations:</h5>
       </div>
 
@@ -35,7 +40,7 @@
         </div>
         <div class="dropdown">
           <button @click="generateItinerary" class="dropdown-btn">
-            Generate Itinerary
+            Build Your Itinerary
           </button>
         </div>
       </div>
@@ -44,30 +49,18 @@
     <!-- Loading and Empty States -->
     <div v-if="loading" class="empty-message">Loading itinerary...</div>
     <div v-else-if="itineraryPlaces.length === 0" class="empty-message">
-      <p>No places in the itinerary.</p>
+      <p>No places to plan your trip! Start saving places now!</p>
     </div>
 
     <!-- Itinerary Cards -->
     <div v-else class="card-grid" v-auto-animate>
       <transition-group name="list" tag="div" class="transition-wrapper">
-        <div
-          v-for="(place, index) in itineraryPlaces"
-          :key="place.place_id"
-          class="card-container"
-          ref="cardRefs"
-          v-motion-slide-visible-once-top
-        >
-          <div
-            class="card destination-card"
-            :style="{ backgroundImage: `url(${place.image})` }"
-          >
+        <div v-for="(place, index) in itineraryPlaces" :key="place.place_id" class="card-container" ref="cardRefs"
+          v-motion-slide-visible-once-top>
+          <div class="card destination-card" :style="{ backgroundImage: `url(${place.image})` }">
             <div class="overlay"></div>
-            <button
-              @click="removePlace(place.place_id)"
-              type="button"
-              class="btn close-button"
-              aria-label="Remove Place"
-            >
+            <button @click="removePlace(place.place_id)" type="button" class="btn close-button"
+              aria-label="Remove Place">
               ✖
             </button>
             <div class="card-body">
@@ -85,20 +78,12 @@
               <div class="button-container">
                 <div class="rearrange-container">
                   <div class="reorder-buttons">
-                    <button
-                      @click="moveLeft(index)"
-                      :disabled="index === 0"
-                      class="move-button"
-                      aria-label="Move Place Left"
-                    >
+                    <button @click="moveLeft(index)" :disabled="index === 0" class="move-button"
+                      aria-label="Move Place Left">
                       ◀
                     </button>
-                    <button
-                      @click="moveRight(index)"
-                      :disabled="index === itineraryPlaces.length - 1"
-                      class="move-button"
-                      aria-label="Move Place Right"
-                    >
+                    <button @click="moveRight(index)" :disabled="index === itineraryPlaces.length - 1"
+                      class="move-button" aria-label="Move Place Right">
                       ▶
                     </button>
                   </div>
@@ -106,9 +91,10 @@
                   <!-- Question Mark Icon with Tooltip -->
                   <div class="tooltip-container">
                     <span class="question-mark" aria-label="Tooltip">
-                      <font-awesome-icon :icon="['fas', 'circle-info']" class="custom-icon"/>
+                      <font-awesome-icon :icon="['fas', 'circle-info']" class="custom-icon" />
                       <span class="tooltip-text">
-                        Use these buttons to rearrange the order of your places of interest. The sequence determines the order in which places will appear in your generated itinerary.
+                        Use these buttons to rearrange the order of your places of interest. The sequence determines the
+                        order in which places will appear in your generated itinerary.
                       </span>
                     </span>
                   </div>
@@ -123,17 +109,15 @@
     <!-- Toast Notification -->
     <div :class="['custom-toast', { active: toastActive }, toastType]">
       <div class="toast-content">
-        <i
-          :class="[
-            'fas',
-            toastType === 'add'
-              ? 'fa-check'
-              : toastType === 'remove'
+        <i :class="[
+          'fas',
+          toastType === 'add'
+            ? 'fa-check'
+            : toastType === 'remove'
               ? 'fa-info'
               : 'fa-times-circle',
-            'action-icon',
-          ]"
-        ></i>
+          'action-icon',
+        ]"></i>
         <div class="message">
           <span class="text text-2">{{ toastMessage }}</span>
         </div>
@@ -398,14 +382,11 @@ export default {
 
 .static-image-container {
   position: relative;
-  height: 500px; /* Reduced height for a more compact design */
+  height: 500px;
+  /* Reduced height for a more compact design */
   overflow: hidden;
 }
 
-.carousel-inner,
-.gradientoverlay {
-  height: 100%;
-}
 
 .gradientoverlay {
   position: absolute;
@@ -413,11 +394,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2)
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2));
   z-index: 1;
 }
 
@@ -546,6 +525,13 @@ export default {
   box-sizing: border-box;
   color: #ffffff;
   position: relative;
+}
+
+.empty-message {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #666;
 }
 
 .overlay {
