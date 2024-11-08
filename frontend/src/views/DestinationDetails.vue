@@ -3,10 +3,10 @@
   <div class="destination-details">
 
         <!-- Header Card -->
-        <div class="header-card">
+      <div class="header-card">
       <div class="content">
-        <h1>{{ country }}</h1>
-        <h4>See The Sights That {{ country }} Has To Offer.</h4>
+        <h1>Discover {{ country }}.</h1>
+        <h4 class="header-subtitle">Embark on an Adventure | Discover the World's Most Breathtaking Destinations Today.</h4>
       </div>
       </div>
 
@@ -102,6 +102,7 @@ export default {
     StarRating,
     ToastNotification,
   },
+  
   inject: ["savedPlacesState"], // Inject the provided global state
   data() {
     return {
@@ -841,105 +842,6 @@ export default {
 </script>
 
 <style scoped>
-/* <====================== secondary header ===================> */
-.secondary_header {
-  position: relative;
-  padding: 1rem 0;
-  margin-top: 2.4rem;
-  /* Add spacing above the header */
-  margin-bottom: 4rem;
-  /* Add spacing below the header */
-  text-align: left;
-  /* Center align the text */
-}
-
-.secondary_content {
-  padding: 0 60px;
-}
-
-.secondary_content h5 {
-  color: rgb(166, 163, 163);
-  margin-bottom: 1rem;
-}
-
-/* Container to align dropdowns side by side */
-.dropdown-container {
-  display: flex;
-  flex-direction: row; /* Horizontal layout */
-  justify-content: flex-start; /* Align items to the left */
-  align-items: center; /* Vertically center items */
-  gap: 1rem; /* Space between buttons */
-  margin-top: 1rem;
-  margin-left: 60px;
-  margin-right: 40px;
-}
-
-/* Style the dropdown button */
-.dropdown-btn {
-  background-color: #222;
-  /* Dark background color */
-  color: #fff;
-  /* White text */
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  transition: background-color 0.3s ease;
-  padding: 16px;
-}
-
-/* Change button color on hover */
-.dropdown-btn:hover {
-  background-color: #555;
-}
-
-/* Dropdown content styling */
-.dropdown-content {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  background-color: #222;
-  min-width: 200px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  z-index: 9999;
-  top: 100%;
-  left: 0;
-  padding: 10px 0;
-  transition: opacity 0.3s ease, transform 0.5s ease;
-  transform: translateY(-10px);
-}
-
-.dropdown:hover .dropdown-content {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* Dropdown content links */
-.dropdown-content a {
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.3s ease;
-}
-
-/* Change background color on hover */
-.dropdown-content a:hover {
-  background-color: #333;
-}
-
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 /* ====================== Header Card ====================== */
 .header-card {
   width: 100%;
@@ -954,7 +856,6 @@ export default {
   margin-bottom: 2rem; /* Space below the header card */
   min-height: 60vh;
 }
-
 
 .header-card::after {
   content: "";
@@ -976,10 +877,13 @@ export default {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Optional: Adds a shadow to the text for better visibility */
 }
 
-.header-card h4 {
+.header-card .header-subtitle {
   color: #ffffff;
   font-size: 1.25rem;
   font-weight: 500;
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional: Adds a shadow for better visibility */
 }
 
 /* ====================== Secondary Header ====================== */
@@ -987,11 +891,8 @@ export default {
   position: relative;
   padding: 1rem 0;
   margin-top: 2.4rem;
-  /* Add spacing above the header */
   margin-bottom: 4rem;
-  /* Add spacing below the header */
   text-align: left;
-  /* Left align the text */
 }
 
 .secondary_content {
@@ -1009,17 +910,13 @@ export default {
   gap: 1rem;
   margin-top: 1rem;
   margin-left: 60px;
-  /* Adjust this value to align the dropdowns with the text */
   z-index: 100;
-  /* Ensure it's above other page content */
 }
 
 /* Style the dropdown button */
 .dropdown-btn {
   background-color: #222;
-  /* Dark background color */
   color: #fff;
-  /* White text */
   padding: 16px;
   border: none;
   border-radius: 5px;
@@ -1032,7 +929,6 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-/* Change button color on hover */
 .dropdown-btn:hover {
   background-color: #555;
 }
@@ -1060,7 +956,6 @@ export default {
   transform: translateY(0);
 }
 
-/* Dropdown content links */
 .dropdown-content a {
   color: white;
   padding: 10px 20px;
@@ -1069,7 +964,6 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-/* Change background color on hover */
 .dropdown-content a:hover {
   background-color: #333;
 }
@@ -1086,8 +980,8 @@ export default {
   align-items: center;
   padding: 20px 5%;
   position: relative;
-  flex-wrap: wrap; /* Allows items to wrap to the next line if needed */
-  z-index: 1000; /* Added z-index to ensure it's on top */
+  flex-wrap: wrap;
+  z-index: 1000;
 }
 
 .back-button {
@@ -1100,8 +994,8 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  flex-shrink: 0; /* Prevents the button from shrinking */
-  z-index: 9999; /* Ensure it's above the header-row */
+  flex-shrink: 0;
+  z-index: 9999;
 }
 
 .back-button:hover {
@@ -1112,13 +1006,12 @@ export default {
 
 .page-title {
   font-size: 2rem;
-  /* Adjusted font size */
   color: black;
   font-weight: bolder;
   flex-grow: 1;
-  margin: 0 20px; /* Added horizontal margins */
-  min-width: 150px; /* Ensures the title doesn't shrink below 150px */
-  text-align: center; /* Center the title */
+  margin: 0 20px;
+  min-width: 150px;
+  text-align: center;
 }
 
 .filter-dropdown {
@@ -1126,24 +1019,24 @@ export default {
   font-family: "Source Sans 3", sans-serif;
   flex-grow: 1;
   display: flex;
-  justify-content: flex-end; /* Aligns the dropdown to the right */
-  position: relative; /* To position the custom arrow */
-  width: 320px; /* Consistent width with MyDestinations.vue dropdowns */
+  justify-content: flex-end;
+  position: relative;
+  width: 320px;
 }
 
 .filter-dropdown .form-select {
   width: 100%;
-  max-width: 350px; /* Sets a maximum width */
-  border-radius: 4px; /* Rounded corners */
-  border: none; /* Remove default border */
-  padding: 1rem; /* Consistent padding */
+  max-width: 350px;
+  border-radius: 4px;
+  border: none;
+  padding: 1rem;
   font-family: "Source Sans 3", sans-serif;
   font-size: 1rem;
-  background-color: #222; /* Dark background to match dropdown-btn */
-  color: #fff; /* White text */
+  background-color: #222;
+  color: #fff;
   cursor: pointer;
-  appearance: none; /* Remove default arrow */
-  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="%23FFFFFF" d="M0 0l5 5 5-5z"/></svg>'); /* Custom arrow */
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="%23FFFFFF" d="M0 0l5 5 5-5z"/></svg>');
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 10px 5px;
@@ -1153,7 +1046,7 @@ export default {
 .filter-dropdown .form-select:focus {
   outline: none;
   border-color: #3f94a7;
-  background-color: #555 ;
+  background-color: #555;
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
@@ -1171,60 +1064,49 @@ export default {
 
 /* Card Grid Layout */
 .card-grid {
-  /* Remove grid display to avoid nesting conflicts */
   display: block;
   padding: 0;
 }
 
 .transition-wrapper {
-  /* Change from flex to grid to align with .card-grid */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* 3 items per row on large screens */
   gap: 1.5rem;
-  /* Space between cards */
   padding: 2rem;
-  /* Padding around the grid */
 }
 
 .card-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* Remove height: 100% to prevent stretching */
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background: rgba(0, 0, 0, 0.0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer; /* Indicates interactivity */
-  aspect-ratio: 16 / 9; /* Maintains a 16:9 aspect ratio */
-  height: 400px; /* Fixed height as per requirement */
+  cursor: pointer;
+  aspect-ratio: 16 / 9;
+  height: 400px;
 }
 
 .card-container:hover {
   transform: translateY(-4px);
-  /* Slightly lifts the card on hover */
   box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.2);
-  /* Enhances shadow for lift effect */
 }
 
 .destination-card {
   position: relative;
-  /* To position overlay and buttons */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
   height: 400px;
-  /* Adjust height as needed */
   background-size: cover;
   background-position: center;
   border-radius: inherit;
   padding: 1.5rem;
   box-sizing: border-box;
   color: #ffffff;
-  /* Text color for readability on image */
   overflow: hidden;
 }
 
@@ -1235,41 +1117,17 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  /* Slightly opaque black background */
   z-index: 1;
-  /* Place between background image and text */
   border-radius: inherit;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.close-button:hover {
-  color: red;
 }
 
 .card-body {
   position: absolute;
-  /* Position absolutely within the card */
   bottom: 15px;
-  /* Align to the bottom with some padding */
   left: 15px;
-  /* Align to the left with some padding */
   z-index: 2;
-  /* Ensure it stays above the overlay */
   text-align: left;
-  /* Align text to the left */
   width: calc(100% - 30px);
-  /* Prevent overflow */
   box-sizing: border-box;
 }
 
@@ -1278,7 +1136,6 @@ export default {
   font-weight: 700;
   color: white;
   margin: 0;
-  /* Remove any extra margins */
   padding: 0;
 }
 
@@ -1286,12 +1143,10 @@ export default {
   font-size: 0.9rem;
   color: #eaeaea;
   margin-top: 0.1rem;
-  /* Adjust spacing if needed */
   margin-bottom: 0;
   margin-left: 0;
   padding: 0;
   word-wrap: break-word;
-  /* Allows long words to break and wrap */
 }
 
 .rating-section {
@@ -1334,7 +1189,6 @@ export default {
 
 .itinerary-button.saved {
   opacity: 0.7;
-  /* Reduced opacity when saved */
 }
 
 /* ====================== Responsive Adjustments ====================== */
@@ -1371,12 +1225,10 @@ export default {
   }
 
   .dropdown-container {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  /* Adjust as necessary to align perfectly */
-  z-index: 100;
-
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    z-index: 100;
   }
 
   .header-row {
@@ -1550,16 +1402,13 @@ export default {
   }
 }
 
-
 .already-saved {
   background-color: #e74c3c;
-  /* Different color for already saved */
 }
 
 /* Additional Styles for Dropdown (already provided by user) */
 .btn {
   font-family: "Source Sans 3", sans-serif;
 }
-
-
 </style>
+
