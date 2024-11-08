@@ -4,8 +4,9 @@
   <div>
     <!-- Static Image Section -->
     <div class="static-image-container">
+      <div class="gradientoverlay"></div>
       <img
-        src="@/assets/countries/norway.jpg"
+        src="@/assets/countries/switzerland.jpg"
         alt="Thailand"
         class="d-block w-100"
       />
@@ -15,8 +16,8 @@
 
       <!-- Image Content -->
       <div class="carousel-content">
-        <h1>Build Your Itinerary</h1>
-        <h4>Plan Your Trips | Make Lasting Memories</h4>
+        <h1>Explore New Possibilities</h1>
+        <h4>Build Your Itinerary | Shuffle Your destinations</h4>
       </div>
     </div>
 
@@ -398,9 +399,19 @@ export default {
 
 .static-image-container {
   position: relative;
-  height: 500px; /* Reduced height for a more compact design */
+  height: 60vh; /* Reduced height for a more compact design */
   overflow: hidden;
 }
+
+.static-image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; /* Ensures the image covers the container */
+  object-position: center; /* Centers the image */
+}
+
+
+
 
 .carousel-inner,
 .gradientoverlay {
@@ -413,11 +424,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2)
-  );
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -504,6 +511,7 @@ export default {
   gap: 1.5rem;
   row-gap: 4rem;
   padding: 2rem;
+  margin: 50px;
 }
 
 .transition-wrapper {
@@ -896,4 +904,43 @@ export default {
     margin-left: 3.6rem;
   }
 }
+
+/* Adjustments for small screens (below 373px) */
+@media (max-width: 373px) {
+  /* Align the dropdown-container items in a single column */
+  .dropdown-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Adjust gap as necessary for compact spacing */
+    margin-left: 0; /* Remove any left margin */
+    margin-right: 0; /* Remove any right margin */
+    align-items: stretch; /* Make buttons take full width */
+    padding: 0 50px 0 50px;
+  }
+
+  /* Make buttons full-width and uniform in size */
+  .dropdown-btn {
+    width: 80%; /* Ensure buttons span the full width */
+    padding: 12px; /* Adjust padding for a consistent look */
+    font-size: 0.9rem; /* Adjust font size for readability */
+    text-align: center; /* Center-align text */
+  }
+
+  /* Adjust secondary header content */
+  .secondary_content {
+    padding: 0 1rem; /* Reduce padding for smaller screens */
+    text-align: center; /* Center the headings */
+  }
+
+  .secondary_content h2 {
+    font-size: 1.5rem; /* Adjust font size for better fit */
+    margin-bottom: 0.5rem;
+  }
+
+  .secondary_content h5 {
+    font-size: 0.85rem; /* Smaller font size for subtitle */
+    margin-bottom: 1rem;
+  }
+}
+
 </style>

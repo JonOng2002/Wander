@@ -2,6 +2,7 @@
   <div class="homepage">
     <header class="header-container">
       <!-- Fading Background Images -->
+      <div class="gradientoverlay"></div>
       <div class="backgrounds-container">
         <img
           class="background showing"
@@ -240,6 +241,19 @@ html, body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.gradientoverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Set a slightly darker default */
+  transition: background-color 0.4s ease, transform 0.4s ease;
+  /* Smooth color and scale transition */
+  z-index: 1;
 }
 
 .backgrounds-container {

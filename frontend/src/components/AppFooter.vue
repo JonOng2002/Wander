@@ -144,6 +144,7 @@ export default {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: white;
+    z-index: 1;
 }
 
 .wander-logo {
@@ -153,6 +154,7 @@ export default {
     font-size: 3rem;
     color: white;
     margin: 0;
+    z-index: 1;
 }
 
 .social-icons {

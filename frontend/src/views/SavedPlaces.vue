@@ -79,8 +79,8 @@
     </button>
 
     <div class="carousel-content">
-      <h1>Archive Your Journey</h1>
-      <h4>Detail Your Trips | Make Lasting Memories</h4>
+      <h1>Travel The World</h1>
+      <h4>Start Exploring | Plan your trips</h4>
     </div>
   </div>
 
@@ -91,14 +91,15 @@
     </div>
 
     <div class="dropdown-container" v-motion-slide-visible-once-top>
-      <div class="dropdown">
-        <select @change="filterPlaces" class="dropdown-btn form-select me-2">
+      <div class="filter-button">
+        <select @change="filterPlaces" class="custom-select  form-select me-2">
           <option value="">
             Select Filter
           </option>
           <option value="alphabetical">Filter by Alphabet</option>
           <option value="recently-added">Filter by Recently Added</option>
         </select>
+        <span class="arrow-down">&#9662;</span> <!-- Custom arrow icon -->
       </div>
 
       <div class="dropdown">
@@ -685,7 +686,7 @@ export default {
 
 #carouselExampleInterval {
   position: relative;
-  height: 550px;
+  height: 60vh;
   /* Fixed height */
   /* Set your desired height here */
   overflow: hidden;
@@ -781,6 +782,9 @@ export default {
 }
 
 .form-select {
+  appearance: none; /* Remove the default arrow */
+  -webkit-appearance: none; /* Remove arrow in WebKit browsers */
+  -moz-appearance: none; /* Remove arrow in Mozilla browsers */
   background-color: #222;
   color: white;
   border: none;
@@ -788,6 +792,37 @@ export default {
   font-size: 1rem;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+}
+
+.filter-button {
+  position: relative;
+  display: inline-block;
+  width: auto; /* Set to auto to reduce width */
+}
+
+.custom-select {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 1rem;
+  padding-right: 2.5rem; /* Add space for the custom arrow */
+  border: none;
+  background-color: #222;
+  color: white;
+  font-size: 1rem;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.arrow-down {
+    position: absolute;
+  top: 50%;
+  right: 1rem; /* Adjust the position to match your design */
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: white;
+  pointer-events: none; /* Make sure the arrow doesn't interfere with clicks */
 }
 
 /* Container to align dropdowns side by side */

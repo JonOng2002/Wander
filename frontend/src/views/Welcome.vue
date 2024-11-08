@@ -11,20 +11,26 @@
 
             <h1>wander.</h1>
         </div>
-        <div ref="threeContainer" class="three-container"></div>
+        <div ref="threeContainer" class="three-container">
 
-        <!-- Buttons for scrolling -->
-        <div class="scroll-buttons">
-            <button class="explore-button" @click="scrollToExplore">
-                <div class="explore-button-text">
-                    <p>Explore Wander now</p>
-                </div>
-            </button>
-            <button class="signup-button" @click="scrollToSignUp">
-                <div class="signup-button-text">
-                    <p>Skip</p>
-                </div>
-            </button>
+            <!-- Buttons for scrolling -->
+            <div class="scroll-buttons">
+                <button class="explore-button" @click="scrollToExplore">
+                    <div class="explore-button-text">
+                        <p>Explore Wander now</p>
+                    </div>
+                </button>
+                <button class="signup-button" @click="scrollToSignUp">
+                    <div class="signup-button-text">
+                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
+                        </div>
+                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
+                        </div>
+                        <p>Skip</p>
+                    </div>
+                </button>
+            </div>
+
         </div>
 
         <div ref="exploreSection" class="container">
@@ -323,7 +329,7 @@ export default {
 
                 // Update renderer
                 renderer.setSize(width, height);
-            } 
+            }
         }
 
 
@@ -569,86 +575,93 @@ export default {
             this.$refs.signUpSection.scrollIntoView({ behavior: 'smooth' });
         },
 
-            typeText() {
-                if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
-                    if (!this.typeStatus) this.typeStatus = true;
-                    this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
-                        this.charIndex
-                    );
-                    this.charIndex += 1;
-                    setTimeout(this.typeText, this.typingSpeed);
-                } else {
-                    this.typeStatus = false;
-                    setTimeout(this.eraseText, this.newTextDelay);
-                }
-            },
-            eraseText() {
-                if (this.charIndex > 0) {
-                    if (!this.typeStatus) this.typeStatus = true;
-                    this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
-                        0,
-                        this.charIndex - 1
-                    );
-                    this.charIndex -= 1;
-                    setTimeout(this.eraseText, this.erasingSpeed);
-                } else {
-                    this.typeStatus = false;
-                    this.displayTextArrayIndex += 1;
-                    if (this.displayTextArrayIndex >= this.displayTextArray.length)
-                        this.displayTextArrayIndex = 0;
-                    setTimeout(this.typeText, this.typingSpeed + 1000);
-                }
-            },
-
-
-            startAutoScroll() {
-                const animate = () => {
-                    if (this.carouselTrack) {
-                        this.scrollPosition += this.scrollSpeed;
-                        const maxScroll = this.images.length * 100; // 100% per image
-
-                        if (this.scrollPosition >= maxScroll) {
-                            this.scrollPosition = 0;
-                        }
-
-                        this.$refs.carouselTrack.style.transform = `translateX(-${this.scrollPosition}%)`;
-                    }
-                    this.scrollInterval = requestAnimationFrame(animate);
-                };
-                animate();
-            },
-            stopAutoScroll() {
-                if (this.scrollInterval) {
-                    cancelAnimationFrame(this.scrollInterval);
-                }
-            },
-
-    navigateTologin() {
-                // Code to navigate to login page
-                this.$router.push('/log-in'); // Assuming you're using Vue Router
-            },
-            navigateTosignup() {
-                // Code to navigate to sign up page
-                this.$router.push('/sign-up'); // Assuming you're using Vue Router
+        typeText() {
+            if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
+                if (!this.typeStatus) this.typeStatus = true;
+                this.typeValue += this.displayTextArray[this.displayTextArrayIndex].charAt(
+                    this.charIndex
+                );
+                this.charIndex += 1;
+                setTimeout(this.typeText, this.typingSpeed);
+            } else {
+                this.typeStatus = false;
+                setTimeout(this.eraseText, this.newTextDelay);
             }
-
+        },
+        eraseText() {
+            if (this.charIndex > 0) {
+                if (!this.typeStatus) this.typeStatus = true;
+                this.typeValue = this.displayTextArray[this.displayTextArrayIndex].substring(
+                    0,
+                    this.charIndex - 1
+                );
+                this.charIndex -= 1;
+                setTimeout(this.eraseText, this.erasingSpeed);
+            } else {
+                this.typeStatus = false;
+                this.displayTextArrayIndex += 1;
+                if (this.displayTextArrayIndex >= this.displayTextArray.length)
+                    this.displayTextArrayIndex = 0;
+                setTimeout(this.typeText, this.typingSpeed + 1000);
+            }
         },
 
 
-    };
+        startAutoScroll() {
+            const animate = () => {
+                if (this.carouselTrack) {
+                    this.scrollPosition += this.scrollSpeed;
+                    const maxScroll = this.images.length * 100; // 100% per image
+
+                    if (this.scrollPosition >= maxScroll) {
+                        this.scrollPosition = 0;
+                    }
+
+                    this.$refs.carouselTrack.style.transform = `translateX(-${this.scrollPosition}%)`;
+                }
+                this.scrollInterval = requestAnimationFrame(animate);
+            };
+            animate();
+        },
+        stopAutoScroll() {
+            if (this.scrollInterval) {
+                cancelAnimationFrame(this.scrollInterval);
+            }
+        },
+
+        navigateTologin() {
+            // Code to navigate to login page
+            this.$router.push('/log-in'); // Assuming you're using Vue Router
+        },
+        navigateTosignup() {
+            // Code to navigate to sign up page
+            this.$router.push('/sign-up'); // Assuming you're using Vue Router
+        }
+
+    },
+
+
+};
 
 </script>
 
 <style scoped>
 .scroll-buttons {
+    position: absolute;
+    /* Make the buttons overlay the three-container */
+    bottom: 170px;
+    /* Align to the bottom of the three-container */
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
-    /* Distribute buttons across the container */
+    /* Distribute the buttons evenly */
     align-items: center;
-    /* Align buttons vertically in the center */
-    width: 100%;
-    margin: 10px 0 50px 0;
-    position: relative;
+    /* Center buttons vertically */
+    padding: 10px 20px;
+    /* Adjust padding as necessary */
+    z-index: 9999;
+    /* Ensure the buttons are on top */
 }
 
 /* Center the Explore button directly under the globe */
@@ -668,8 +681,33 @@ export default {
 }
 
 .signup-button-text {
-    animation: bounce 2s 5;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    animation: bounce 2s 30;
     color: #a3a7ae;
+    gap: 8px; /* Add space between the chevrons and the text */
+    animation: bounce 2s 30;
+    color: #a3a7ae;
+}
+
+.signup-button-text p{
+    padding-left: 18px;
+    padding-top: 5px;
+    font-size: 1.5rem;
+}
+
+.chevron {
+    border-right:
+        4px solid #a3a7ae;
+    border-bottom:
+        4px solid #a3a7ae;
+    width: 30px;
+    height: 30px;
+}
+
+#chevron-arrow-down {
+    transform: rotate(45deg);
 }
 
 .explore-button,
@@ -703,7 +741,8 @@ export default {
     font-size: 2rem;
     white-space: nowrap;
     /* Keeps the text on a single line */
-    animation: typing 2s forwards;
+    animation: typing 2s forwards, blinking 1.5s step-end infinite;
+    ;
 }
 
 /* The typing animation */
@@ -714,6 +753,18 @@ export default {
 
     to {
         width: 100%
+    }
+}
+
+@keyframes blinking {
+
+    from,
+    to {
+        border-right-color: transparent;
+    }
+
+    50% {
+        border-right-color: white;
     }
 }
 
@@ -736,6 +787,16 @@ export default {
     color: black;
     margin: 0;
     padding: 0;
+}
+
+.three-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    /* Increase the height to make the globe bigger */
+    overflow: hidden;
+    top: 0;
+    z-index: 1;
 }
 
 

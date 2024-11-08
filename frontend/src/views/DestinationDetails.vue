@@ -19,55 +19,74 @@
           <option value="popularity-asc">Sort By Popularity: Low to High</option>
           <option value="rating-desc">Sort By Rating: High to Low</option>
           <option value="rating-asc">Sort By Rating: Low to High</option>
-
         </select>
+
+        <!-- Dropdown Container with Motion Animation -->
+        <div class="dropdown-container" v-motion-slide-visible-once-top>
+          <div class="dropdown">
+            <button @click="goBack" class="dropdown-btn">Back to Destinations</button>
+          </div>
+
+          <div class="filter-button">
+            <!-- Styled Dropdown Filter Menu -->
+            <select v-model="sortOption" @change="updateSortCriteria" class="custom-select form-select me-2"
+              aria-label="Sort Attractions">
+              <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
+              <option value="popularity-asc">Sort By Popularity: Low to High</option>
+              <option value="rating-desc">Sort By Rating: High to Low</option>
+              <option value="rating-asc">Sort By Rating: Low to High</option>
+            </select>
+            <span class="arrow-down">&#9662;</span> <!-- Custom arrow icon -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-    <!-- Display Loading Indicator -->
-    <div v-if="loading" class="loading">Loading...</div>
+  <!-- Display Loading Indicator -->
+  <div v-if="loading" class="loading">Loading...</div>
 
-    <!-- Display Error Message -->
-    <div v-if="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
+  <!-- Display Error Message -->
+  <div v-if="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
 
-    <!-- Display Attractions List -->
-    <div v-if="!loading && !errorMessage" class="card-grid">
-      <transition-group name="list" tag="div" class="transition-wrapper">
-        <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container" v-motion-slide-visible-once-top>
-          <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
-            <div class="overlay"></div>
+  <!-- Display Attractions List -->
+  <div v-if="!loading && !errorMessage" class="card-grid">
+    <transition-group name="list" tag="div" class="transition-wrapper">
+      <div v-for="attraction in sortedAttractions" :key="attraction.place_id" class="card-container"
+        v-motion-slide-visible-once-top>
+        <div class="card destination-card" :style="{ backgroundImage: `url(${attraction.image || defaultImage})` }">
+          <div class="overlay"></div>
 
-            <div class="card-body">
-              <h5 class="card-title">{{ attraction.name }}</h5>
-              <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
+          <div class="card-body">
+            <h5 class="card-title">{{ attraction.name }}</h5>
+            <p class="card-text">{{ attraction.vicinity }}, {{ attraction.city }}</p>
 
-              <!-- Star Rating and Exact Number -->
-              <div class="rating-section">
-                <star-rating :rating="attraction.rating"></star-rating>
-                <span class="rating-number">{{ attraction.rating.toFixed(1) }} / 5 </span> &nbsp;
-                <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
-              </div>
-
-
-
-              <!-- Save Place Button -->
-              <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
-                :placeId="attraction.place_id" :isAlreadySaved="isPlaceSaved(attraction.place_id)"
-                @save-place="savePlaceToFirebase">
-                {{ isPlaceSaved(attraction.place_id) ? 'Saved' : 'Add to Saved Places' }}
-              </save-place-button>
+            <!-- Star Rating and Exact Number -->
+            <div class="rating-section">
+              <star-rating :rating="attraction.rating"></star-rating>
+              <span class="rating-number">{{ attraction.rating.toFixed(1) }} / 5 </span> &nbsp;
+              <span class="rating-text">( {{ attraction.user_ratings_total }} reviews)</span>
             </div>
+
+
+
+            <!-- Save Place Button -->
+            <save-place-button class="btn itinerary-button" :class="{ 'saved': isPlaceSaved(attraction.place_id) }"
+              :placeId="attraction.place_id" :isAlreadySaved="isPlaceSaved(attraction.place_id)"
+              @save-place="savePlaceToFirebase">
+              {{ isPlaceSaved(attraction.place_id) ? 'Saved' : 'Add to Saved Places' }}
+            </save-place-button>
           </div>
         </div>
-      </transition-group>
-    </div>
+      </div>
+    </transition-group>
+  </div>
 
-    <!-- Added ToastNotification -->
-    <ToastNotification :show="toastShow" :message="toastMessage" :type="toastType" :duration="3000"
-      @update:show="toastShow = $event" />
+  <!-- Added ToastNotification -->
+  <ToastNotification :show="toastShow" :message="toastMessage" :type="toastType" :duration="3000"
+    @update:show="toastShow = $event" />
 </template>
 
 <script>
@@ -783,7 +802,7 @@ export default {
             source: "google_places",
             summary: "Google Places Summary",
             activities: [],
-          
+
           };
 
           try {
@@ -870,12 +889,50 @@ export default {
 /* Container to align dropdowns side by side */
 .dropdown-container {
   display: flex;
+  flex-direction: row;
   gap: 1rem;
   margin-top: 1rem;
   margin-left: 60px;
-  /* Adjust this value to align the dropdowns with the text */
-  z-index: 100;
-  /* Ensure it's above other page content */
+  margin-right: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Allow wrapping on smaller screens */
+}
+
+.filter-button {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  /* Set to auto to reduce width */
+}
+
+.custom-select {
+  appearance: none;
+  /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 1rem;
+  padding-right: 2.5rem;
+  /* Add space for the custom arrow */
+  border: none;
+  background-color: #222;
+  color: white;
+  font-size: 1rem;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.arrow-down {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  /* Adjust the position to match your design */
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: white;
+  pointer-events: none;
+  /* Make sure the arrow doesn't interfere with clicks */
 }
 
 /* Style the dropdown button */
@@ -945,7 +1002,120 @@ export default {
 }
 
 
-/* <================== layout ================>*/
+
+.header-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent overlay for better text readability */
+}
+
+.header-card h1 {
+  position: relative;
+  /* Ensure text is above the overlay */
+  color: #ffffff;
+  font-size: 4rem;
+  /* Adjust font size as needed */
+  font-weight: 700;
+  text-align: center;
+  z-index: 1;
+  /* Place text above the overlay */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  /* Optional: Adds a shadow to the text for better visibility */
+}
+
+.header-card h4 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* ====================== Secondary Header ====================== */
+.secondary_header {
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  /* Add spacing below the header */
+  text-align: left;
+  /* Left align the text */
+}
+
+.secondary_content {
+  padding: 0 60px;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+/* Style the dropdown button */
+.dropdown-btn {
+  background-color: #222;
+  /* Dark background color */
+  color: #fff;
+  /* White text */
+  padding: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+/* Change button color on hover */
+.dropdown-btn:hover {
+  background-color: #555;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: #222;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  padding: 10px 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  transform: translateY(-10px);
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown content links */
+.dropdown-content a {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+/* Change background color on hover */
+.dropdown-content a:hover {
+  background-color: #333;
+}
+
+/* ====================== Primary Styles ====================== */
 .destination-details {
   text-align: center;
   font-family: "Source Sans 3", sans-serif;
@@ -1177,39 +1347,233 @@ export default {
   /* Reduced opacity when saved */
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 items per row on medium screens */
-  }
-}
+/* ====================== Responsive Adjustments ====================== */
 
-@media (max-width: 768px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-    /* 1 item per row on small screens */
+/* Default Styles for Larger Screens (992px and above) */
+@media (min-width: 992px) {
+  .transition-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
   }
-  
+
+  .rating-text {
+    margin-left: 8px;
+    /* Desired spacing */
+  }
+
   .dropdown-container {
-        flex-direction: column;
-        /* Stack buttons vertically */
-        align-items: flex-start;
-        /* Align them to the start */
-        gap: 0.5rem;
-        /* Adjust gap for vertical spacing */
-    }
+    flex-direction: row;
+    /* Horizontal layout */
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .back-button {
+    z-index: 9999;
+  }
 }
 
-.transition-wrapper {
-  display: contents;
-  /* Keep the child elements visible */
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 15px;
-  padding: 20px;
+/* Styles for Medium Screens (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .transition-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .dropdown-container {
+    flex-direction: row;
+    /* Ensure horizontal layout */
+    align-items: center;
+    /* Vertically center items */
+    gap: 1rem;
+  }
+
+  .header-row {
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: stretch;
+    padding: 15px 5%;
+    z-index: 10;
+  }
+
+  .back-button {
+    width: 100%;
+    margin-bottom: 10px;
+    z-index: 9999;
+  }
+
+  .page-title {
+    font-size: 1.75rem;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .filter-dropdown {
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .filter-dropdown .form-select {
+    max-width: 300px;
+    font-size: 0.9rem;
+    margin: 0 auto;
+  }
+
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rating-number,
+  .rating-text {
+    margin-left: 0;
+    font-size: 0.8rem;
+  }
+
+  .rating-section span {
+    margin-top: 4px;
+  }
+
+  .rating-section star-rating {
+    width: auto;
+    max-width: 100px;
+  }
 }
 
+/* Styles for Small Screens (Below 768px) */
+@media (max-width: 767px) {
+  .transition-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 2%;
+  }
+
+  .back-button {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 8px;
+    z-index: 11;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .filter-dropdown {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .filter-dropdown .form-select {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .itinerary-button {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rating-number,
+  .rating-text {
+    margin-left: 0;
+    font-size: 0.8rem;
+  }
+
+  .destination-card {
+    height: 100%;
+    /* Maintain aspect ratio */
+  }
+
+  .dropdown-btn,
+  .custom-select {
+    width: auto;
+    /* Keep buttons from stretching too wide */
+    text-align: left;
+  }
+}
+
+/* Styles for Extra Small Screens (Below 576px) */
+@media (max-width: 576px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Stack items in a single column */
+    gap: 1rem;
+    /* Space between items */
+    padding-left: 10px;
+    /* Further adjust padding */
+  }
+
+  .transition-wrapper {
+    grid-template-columns: 1fr;
+    /* 1 item per row */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 2%;
+  }
+
+  .back-button {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 8px;
+    z-index: 11;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .filter-dropdown {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .filter-dropdown .form-select {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .itinerary-button {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rating-number,
+  .rating-text {
+    margin-left: 0;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {}
 
 .already-saved {
   background-color: #e74c3c;
@@ -1220,6 +1584,4 @@ export default {
 .btn {
   font-family: "Source Sans 3", sans-serif;
 }
-
-
 </style>

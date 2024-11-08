@@ -5,7 +5,7 @@
     <div class="header_container">
       <div class="content">
         <h1>Unleash the Magic of Travel.</h1>
-        <h4>Adventure Awaits—Choose Your Dream Destination Now.</h4>
+        <h4>Adventure Awaits | Choose Your Dream Destination Now.</h4>
       </div>
     </div>
   </header>
@@ -52,7 +52,8 @@
 
   <div class="container">
     <div class="card_container">
-      <article v-for="country in filteredCountries" :key="country.code" class="card_article" v-motion-slide-visible-once-top>
+      <article v-for="country in filteredCountries" :key="country.code" class="card_article"
+        v-motion-slide-visible-once-top>
         <div class="text_overlay">{{ country.name }}</div>
 
         <img :src="country.image" alt="country-image" class="card_img" loading="lazy" />
@@ -63,7 +64,12 @@
           </span>
           <h2 class="card_title">{{ country.place }}</h2>
           <p class="country_description">{{ country.description }}</p>
-          <a href="#" class="card_button" @click="goToDestinationDetails(country.name)">Explore More</a>
+          <router-link :to="{
+            name: 'DestinationDetails',
+            params: { country: country.name },
+          }" class="card_button">
+            Explore More
+          </router-link>
         </div>
       </article>
     </div>
@@ -655,29 +661,35 @@ header {
   z-index: 1;
 }
 
-header .content h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-
+.content h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
 }
 
-header content h4 {
-  color: hsl(0, 0%, 70%);
-  font-size: 1.25rem;
-  font-weight: 500;
+.header_container .content h4 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 /*====== SECONDARY HEADER ======*/
 
 .secondary_header {
-
-  padding-left: 3.5rem;
-  padding-top: 3rem;
-  left: 50px;
-  top: 60px;
-
+  width: 100%;
+  /* Ensure it doesn't exceed container */
+  max-width: 100%;
+  margin: 0 auto;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  padding: 16px 60px;
+  /* Padding for spacing */
+  box-sizing: border-box;
   font-family: "Source Sans 3", sans-serif;
+  position: relative;
+  /* Ensure positioning context */
+  z-index: 1;
+  /* Lower than dropdown-menu */
 }
 
 .secondary_content h5 {
@@ -686,16 +698,16 @@ header content h4 {
 }
 
 .gradientoverlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Set a slightly darker default */
-    transition: background-color 0.4s ease, transform 0.4s ease;
-    /* Smooth color and scale transition */
-    z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Set a slightly darker default */
+  transition: background-color 0.4s ease, transform 0.4s ease;
+  /* Smooth color and scale transition */
+  z-index: 1;
 }
 
 /* Dropdown button styling */
@@ -704,8 +716,8 @@ header content h4 {
   color: #fff;
   border: none;
   text-align: left;
-  width: 320px;
-  /* Consistent width with the dropdown */
+  width: 100%;
+  /* Full width within media query */
   padding: 1rem;
   cursor: pointer;
   display: flex;
@@ -716,8 +728,8 @@ header content h4 {
   transition: background-color 0.3s;
   position: relative;
   border-radius: 4px;
-  /* Rounded edges for buttons */
   z-index: 50;
+  /* Lower than dropdown-menu */
 }
 
 .dropdown-btn:hover {
@@ -748,13 +760,14 @@ header content h4 {
   margin: 0;
   top: 100%;
   left: 0;
-  /* Align the dropdown to the left of the parent button */
-  width: 320px;
-  /* Same width as the parent button */
+  width: 100%;
+  /* Spans full width in media query */
+  box-sizing: border-box;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-out, visibility 0.1s linear;
-  z-index: 1000;
+  z-index: 10000;
+  /* High z-index to appear on top */
 }
 
 .dropdown-menu li {
@@ -784,7 +797,8 @@ header content h4 {
   display: grid;
   place-items: center;
   padding-block: 5rem;
-  
+  padding-top: 32px;
+  z-index: 0;
 }
 
 .card_container {
@@ -1096,6 +1110,24 @@ header content h4 {
   }
 }
 
+@media screen and (min-width: 576px) and (max-width: 768px) {
+
+  .dropdown,
+  .dropdown-btn,
+  .dropdown-menu {
+    width: 100%;
+    /* Span full width of the screen */
+    box-sizing: border-box;
+    /* Ensure padding and borders do not exceed width */
+  }
+
+  .dropdown-menu {
+    left: 0;
+    /* Align the dropdown menu to the left edge */
+    top: 100%;
+    /* Ensure it appears below the button */
+    z-index: 10000;
+  }
 
 @media screen and (min-width: 1024px) {
   .container {
@@ -1131,5 +1163,6 @@ header content h4 {
   .header_container {
     padding: 20px;
   }
+}
 }
 </style>

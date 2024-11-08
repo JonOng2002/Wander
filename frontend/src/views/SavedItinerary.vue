@@ -4,8 +4,8 @@
     <div class="container-fluid p-0">
         <div class="header_container">
             <div class="content">
-                <h1>Travel the world</h1>
-                <h4>Start Exploring | Plan your trips</h4>
+                <h1>Archive Your Journey</h1>
+                <h4>Detail Your Trips | Make Lasting Memories</h4>
             </div>
         </div>
         <!-- Section 1 -->
@@ -41,7 +41,7 @@
         </div>
 
         <div class="dropdown-container" v-motion-slide-visible-once-top>
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="dropdown-btn">
                     Filter by: Top Destinations
                     <span class="arrow-down">&#9662;</span>
@@ -51,13 +51,14 @@
                     <a href="#">Recent Additions</a>
                     <a href="#">Highly Rated</a>
                 </div>
-            </div>
-            <div class="dropdown">
+            </div> -->
+            <!-- Sort by Dropdown -->
+            <div class="dropdown" @click="toggleDropdown('continent')">
                 <button class="dropdown-btn">
                     Filter by Continent: All Continents
                     <span class="arrow-down">&#9662;</span>
                 </button>
-                <div class="dropdown-content">
+                <div class="dropdown-content" v-show="isOpen === 'continent'">
                     <a href="#">Africa</a>
                     <a href="#">Asia</a>
                     <a href="#">Europe</a>
@@ -162,6 +163,7 @@ export default {
         const selectedFilter = ref("addedDate");
         const currentPage = ref(0); // Track the current page for pagination
         const itemsPerPage = 5; // Number of items to show at a time
+        const isOpen = ref(null); // Track which dropdown is open
         const countries = ref([
             {
                 name: "France",
@@ -678,6 +680,13 @@ export default {
             });
         };
 
+        const toggleDropdown = (dropdown) => {
+            // Toggle the dropdown open/close
+            isOpen.value = isOpen.value === dropdown ? null : dropdown;
+            console.log("Dropdown clicked:", dropdown);
+            console.log("isOpen value:", isOpen.value);
+        };
+
         const filteredItineraries = computed(() => {
             if (!savedItineraries.value || savedItineraries.value.length === 0) {
                 console.log("No saved itineraries to filter.");
@@ -779,6 +788,7 @@ export default {
 
         return {
             // motionConfig,
+            isOpen,
             getContinent,
             savedItineraries,
             filteredItineraries,
@@ -789,6 +799,7 @@ export default {
             viewMainPage,
             selectedFilter,
             filterPlaces,
+            toggleDropdown,
             getCountryImage,
             countries,
             scrollToElement,
@@ -945,8 +956,12 @@ export default {
     margin-top: 1rem;
     margin-left: 60px;
     /* Adjust this value to align the dropdowns with the text */
-    z-index: 100;
+    z-index: 8000;
     /* Ensure it's above other page content */
+}
+
+.dropdown {
+    z-index: 9000;
 }
 
 /* Style the dropdown button */
@@ -966,6 +981,8 @@ export default {
     position: relative;
     transition: background-color 0.3s ease;
     padding: 16px;
+    z-index: 50;
+    /* Lower than dropdown-menu */
 }
 
 /* Add arrow icon to indicate dropdown */
@@ -978,31 +995,34 @@ export default {
 
 /* Change button color on hover */
 .dropdown-btn:hover {
-    background-color: #555;
+    background-color: #3f94a7;
 }
 
 /* Dropdown content styling */
 .dropdown-content {
-    opacity: 0;
-    visibility: hidden;
     position: absolute;
     background-color: #222;
-    min-width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    z-index: 9999;
+    list-style: none;
+    padding: 0;
+    margin: 0;
     top: 100%;
     left: 0;
-    padding: 10px 0;
-    transition: opacity 0.3s ease, transform 0.5s ease;
-    transform: translateY(-10px);
+    width: 100%;
+    /* Spans full width in media query */
+    box-sizing: border-box;
+    transition: opacity 0.3s ease-out, visibility 0.1s linear;
+    z-index: 10000;
+    display: block; /* Directly control with `v-show` */
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-content.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
 }
+
+/* .dropdown:hover .dropdown-content {
+    display: none;
+} */
 
 .single-itinerary-card .gradient-overlay,
 .hero-card .gradient-overlay {
@@ -1021,7 +1041,7 @@ export default {
 
 /* Change background color on hover */
 .dropdown-content a:hover {
-    background-color: #333;
+    background-color: #3f94a7;
 }
 
 /* Show dropdown on hover */
@@ -1406,7 +1426,7 @@ export default {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .dropdown-container {
         flex-direction: column;
         /* Stack buttons vertically */

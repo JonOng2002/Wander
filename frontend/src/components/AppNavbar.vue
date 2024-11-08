@@ -9,7 +9,7 @@
       <!-- Navigation Links (hidden below md breakpoint) -->
       <ul v-if="!isMobile" class="navbar-nav d-flex flex-row align-items-center ms-auto">
         <li class="nav-item me-4">
-          <router-link to="/" class="nav-link" exact>Main Page</router-link>
+          <router-link to="/" class="nav-link" exact>Explore</router-link>
         </li>
         <li class="nav-item me-4">
           <router-link to="/savedplaces" class="nav-link">Saved Places</router-link>
