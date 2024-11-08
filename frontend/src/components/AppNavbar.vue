@@ -9,7 +9,7 @@
       <!-- Navigation Links (hidden below md breakpoint) -->
       <ul v-if="!isMobile" class="navbar-nav d-flex flex-row align-items-center ms-auto">
         <li class="nav-item me-4">
-          <router-link to="/" class="nav-link" exact>Main Page</router-link>
+          <router-link to="/" class="nav-link" exact>Explore</router-link>
         </li>
         <li class="nav-item me-4">
           <router-link to="/savedplaces" class="nav-link">Saved Places</router-link>
@@ -18,7 +18,7 @@
           <router-link to="/destinations" class="nav-link">Destinations</router-link>
         </li>
         <li class="nav-item me-4">
-          <router-link to="/itineraryBuilder" class="nav-link">Build Itinerary</router-link>
+          <router-link to="/itineraryBuilder" class="nav-link">Itinerary Builder</router-link>
         </li>
         <!-- <li class="nav-item me-4">
           <router-link to="/myitinerary" class="nav-link">middle itinerary</router-link>
@@ -542,4 +542,20 @@ export default {
     /* Align dropdown button to the right */
   }
 }
+/* Ensure the parent container doesn't wrap */
+
+
+/* Adjust the profile picture size between 768px and 815px */
+@media (max-width: 992px) and (min-width: 768px) {
+  .user-pic {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  .nav-contain {
+    justify-content: space-between;
+  }
+}
+
 </style>

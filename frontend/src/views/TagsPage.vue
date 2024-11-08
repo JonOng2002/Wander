@@ -35,7 +35,7 @@
 
         <!-- Add Custom Tag -->
         <div class="add-custom-tag">
-          <input v-model="newTag" type="text" placeholder="Add custom tag"
+          <input v-model="newTag" type="text" placeholder="Add custom tag (max 30 characters)" maxlength="30"
             :disabled="customTags.length >= 5 || selectedTags.length >= 10" @keyup.enter="addCustomTag" />
           <button @click="addCustomTag"
             :disabled="newTag.length === 0 || customTags.length >= 5 || selectedTags.length >= 10">
@@ -186,7 +186,8 @@ const goToNextStep = () => {
 #title {
   font-family: "Lobster Two", cursive;
   font-size: 2.5vw;
-  color: #3f94a7;;
+  color: #3f94a7;
+  ;
 }
 
 /* Content Wrapper */
@@ -229,14 +230,15 @@ const goToNextStep = () => {
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  
+
 }
 
 .image-card-overlay h1 {
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-  backdrop-filter: blur(2px); /* Applies the blur effect */
+  backdrop-filter: blur(2px);
+  /* Applies the blur effect */
 }
 
 /* Form Section */
@@ -281,7 +283,8 @@ button {
 }
 
 button.selected {
-  background: linear-gradient(90deg, #3f94a7, #6fb3d2);;
+  background: linear-gradient(90deg, #3f94a7, #6fb3d2);
+  ;
   color: white;
 }
 
@@ -291,6 +294,7 @@ button.selected {
   gap: 10px;
   margin-top: 1rem;
   background-color: transparent;
+  width: 80%;
 }
 
 .add-custom-tag input {
@@ -306,6 +310,8 @@ button.selected {
   gap: 0.5rem;
   align-items: center;
   margin-top: 2rem;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .btn-back {
@@ -329,8 +335,16 @@ button.selected {
   border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
+  flex-grow: 1;
+  max-width: 400px;
+  height: 50px;
 }
 
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
 
 /* <=================== breakpoints and media =======================>*/
 /* Base styles (1200px and above) remain as is */
@@ -341,16 +355,22 @@ button.selected {
 @media (max-width: 1199px) and (min-width: 768px) {
   .content-wrapper {
     display: flex;
-    align-items: center; /* Centers the contents vertically */
-    justify-content: center; /* Centers the contents horizontally */
+    align-items: center;
+    /* Centers the contents vertically */
+    justify-content: center;
+    /* Centers the contents horizontally */
     gap: 2rem;
-    max-height: 90vh; /* Limits the overall height of content-wrapper */
+    max-height: 150vh;
+    /* Limits the overall height of content-wrapper */
   }
 
   .form-section {
-    height: auto; /* Allow form-section to expand naturally */
-    padding: 1rem 1.5rem; /* Reduces excessive padding */
-    margin: 0 auto; /* Ensures horizontal centering */
+    height: auto;
+    /* Allow form-section to expand naturally */
+    padding: 1rem 1.5rem;
+    /* Reduces excessive padding */
+    margin: 0 auto;
+    /* Ensures horizontal centering */
     box-sizing: border-box;
   }
 }
@@ -368,48 +388,57 @@ button.selected {
 
   .image-card {
 
-    width: 100%; /* Makes image-card take full width */
-    max-width: 500px; /* Optional: restricts width to avoid excessive stretching */
-    height: 40vh; /* Adjust height to fit smaller screens */
-    max-height: 400px; /* Limit height to prevent excessive scrolling */
-    margin: 0 auto; /* Centers the image card */
+    width: 100%;
+    /* Makes image-card take full width */
+
+    /* Optional: restricts width to avoid excessive stretching */
+    height: 40vh;
+    /* Adjust height to fit smaller screens */
+    max-height: 400px;
+    /* Limit height to prevent excessive scrolling */
+    margin: 0 auto;
+    /* Centers the image card */
   }
-  
+
   .form-section {
-    width: 100%; /* Makes form-section take full width */
-    max-width: 500px; /* Optional: restricts width to avoid excessive stretching */
-    padding: 1rem; /* Adjust padding for better spacing on small screens */
-    margin: 0 auto; /* Centers the form section */
-    height: auto; /* Allow natural expansion */
+    width: 100%;
+    /* Makes form-section take full width */
+    max-width: 500px;
+    /* Optional: restricts width to avoid excessive stretching */
+    padding: 1rem;
+    /* Adjust padding for better spacing on small screens */
+    margin: 0 auto;
+    /* Centers the form section */
+    height: auto;
+    /* Allow natural expansion */
+    align-items: center;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrapper {
     flex-direction: column;
   }
+
   .form-section {
     padding: 1rem 2rem;
     text-align: center;
     align-items: center;
+
   }
-  .btn-primary{
-    background: linear-gradient(90deg, #4a90e2, #8e44ad); /* Gradient colors */
-  color: white;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 25px; /* Rounded edges */
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-left: 1rem; /* Space between buttons */
-  height: 50px;
-  flex-grow: 1; /* Allow the button to expand to available space */
-  max-width: 400px;
-  }
-  .image-card-content{
-    height: 80vh;
+
+  .image-card {
+
+    width: 100%;
+    /* Makes image-card take full width */
+    
+    /* Optional: restricts width to avoid excessive stretching */
+    height: 40vh;
+    /* Adjust height to fit smaller screens */
+    max-height: 400px;
+    /* Limit height to prevent excessive scrolling */
+    margin: 0 auto;
+    /* Centers the image card */
   }
 }
-
 </style>

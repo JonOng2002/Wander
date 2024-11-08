@@ -1,601 +1,202 @@
 {
-  "country": "China",
-  "itinerary_summary": "An exciting 9-day solo adventure exploring the vibrant city of Shanghai, discovering its captivating attractions, and experiencing the flavor of Chongqing's renowned mala dishes.",
+  "country": "Japan",
+  "itinerary_summary": "This exciting 3-day solo trip features must-see attractions in Kyoto, Osaka, and Yokohama, offering a mix of culture, history, and culinary experiences.",
   "day_by_day_itineraries": [
     {
       "day": 1,
-      "date": "2024-11-10",
-      "summary": "Arrive in Shanghai and explore the Bund, immersed in the city's stunning skyline.",
+      "date": "2024-11-12",
+      "summary": "Arrive in Kyoto and explore iconic temples and shrines, enjoying the city's historic charm.",
       "activities": [
         {
-          "time": "14:00",
-          "activity_name": "The Bund (Waitan), Shanghai",
+          "time": "16:30",
+          "activity_name": "Kiyomizu-dera",
           "location": {
-            "name": "The Bund (Waitan)",
-            "city": "Shanghai",
+            "name": "Kiyomizu-dera",
+            "city": "Kyoto",
             "coordinates": {
-              "latitude": 31.239694,
-              "longitude": 121.49115
+              "latitude": 34.9946662,
+              "longitude": 135.784661
             },
-            "place_id": "ChIJq8D8lUdwsjURWas45M1WbXo",
-            "photo_url": "https://lh3.googleusercontent.com/places/ANXAkqE9yuv6xVZMSIjAQjxA-pNe-ZJAG5KkFPWP834Hveu1n8-iIL0dB0BfmgHGMY0k77-A3yetYOw72RwTjZeV6wMd7EgmGzzDZGa6A=s1600-w800"
+            "place_id": "ChIJB_vchdMIAWARujTEUIZlr2I",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNpVtNFdzcTijNkzt1rPynp22YaYAoy9OI3pmtlRaVgTWRDuWPmKgUyAUMxe9lc-L4l4Gx74G5-zyQq56WaemGFaEQxHQC-eyPz8LIN8nWpjoBJCZECOfMxacQNng2btvnxioRMWpgDytKX7opQZvRefNf2N_aXnCU2xn79Rj6fOprv&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
           },
-          "description": "A scenic waterfront area lined with historic buildings, offering breathtaking views of the modern skyscrapers across the Huangpu River."
+          "description": "A UNESCO World Heritage site, famous for its wooden stage that offers breathtaking views, especially during the cherry blossom season."
         },
         {
-          "time": "16:00",
-          "activity_name": "Oriental Pearl TV Tower, Shanghai",
+          "time": "18:30",
+          "activity_name": "Dinner at Nishiki Market",
           "location": {
-            "name": "Oriental Pearl TV Tower",
-            "city": "Shanghai",
+            "name": "Nishiki Market",
+            "city": "Kyoto",
             "coordinates": {
-              "latitude": 31.2396889,
-              "longitude": 121.4997553
+              "latitude": 35.0050258,
+              "longitude": 135.764723
             },
-            "place_id": "ChIJ29SwJftwsjURZYXg4jufPhY",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DO605rUeCtjNUcnqZKIfuhau4y93eQ1BuW9P8wkwYKmTpYMAfr85kBeIYP0XwosIFjKbaBRrp2r3USan5sGSeI4Yd2904o0hTi3N7kjhUpz-y_Rz-ywTU6O3T033bZDslfUC_5_e_X6rwQ41Ad4g8Xbrbd6atFe6XdfCetD92ZOBvBF&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+            "place_id": "ChIJT8uMzZwIAWARnGzsARCjnrY",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWq4cWlh8yzsuyLpK7t_YRmpUbW4ilaUjEsYei7MdcT8eeTHzSe7s32EieZulhS4zv0F73_nxtTYeODtR_7JQ_QUaHW6OpzVG3l1kA7Nmk8WhXXwzcIZ0YXGnXDeOa_oa2l5o8K9CO5Fcmd0-AAq3hg79ref6sm6t5Hp8FjI6oJbrxBk&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "A unique TV tower with stunning observation decks, providing panoramic views of Shanghai from its towering heights."
+          "description": "Enjoy an array of local delicacies, from fresh seafood to traditional sweets in Kyoto\u2019s famous food market."
         },
         {
-          "time": "19:00",
-          "activity_name": "Dinner at Nanjing Road, Shanghai",
+          "time": "20:00",
+          "activity_name": "Stroll through Gion District",
           "location": {
-            "name": "Nanjing Road",
-            "city": "Shanghai",
+            "name": "Gion District",
+            "city": "Kyoto",
             "coordinates": {
-              "latitude": 31.23575,
-              "longitude": 121.47972
+              "latitude": 35.0037816,
+              "longitude": 135.777245
             },
-            "place_id": "ChIJxS5frERwsjURarZMDHvsuuM",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWquURwsoAMZ726oEtc6ITqW5ED1m21YsToOD5-DQ_xsb0PaRdde8GizBzXtrAW1Lt7WEaGZrOO4DA4-tXlC5-qA6HFmw0dW1e8c42OpLlSeNBOnVXIYXeUfvSqFn1zv22KuOtkaaOvYvWGnsA4gFUxF8BqtzBoxsCUC2xgNMxyi7Wo&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJZ3vGwcMIAWARtO-YE6oEyw0",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOeAVq4tRAKoR9-dkIGA86DdV7sxAqB1RQ2qsxd6yYKToPSXuLHoNrYlYmQoyJHOWkT3a839RcVfBCOJhq7hVU8fs_KRBopyLKVwkuQrKCej91kSAx7s8K3y0RH-uLEx9Z9iL8O1BBhLb5mxdbikqy24kweNYTW6uMvout3QhvazPot&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Famous shopping street offering various dining options with local cuisine and international food."
+          "description": "Walk through this historic district, known for its traditional wooden machiya houses, and catch a glimpse of Geishas."
         },
         {
-          "time": "21:00",
-          "activity_name": "Huangpu River Cruise, Shanghai",
+          "time": "21:30",
+          "activity_name": "Relax at a local Ryokan",
           "location": {
-            "name": "Huangpu River",
-            "city": "Shanghai",
+            "name": "Ryokan",
+            "city": "Kyoto",
             "coordinates": {
-              "latitude": 31.1491099,
-              "longitude": 121.45631
+              "latitude": 35.0280951,
+              "longitude": 135.742678
             },
-            "place_id": "ChIJ6wT69V5ksjURwSznQ8ExnfA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqG3CbYkjZ9_3kk2eaVpK6s4xHsZtTQu4bTNNJsQQK1CnsDx_L4U2C0EtYt7iiSdEk3ZhTe-KJJIrUoxdWYLcQMOIY6XxD_6SAR08LbQAb6zOod_kvgrajicIQyM8W3c2oezbD5oHGzlYFZ-1s7k1yBlHfkHviC0PdJoAoWhLVD3J5R&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJS0Z11ecHAWARg29nUjbG_Uk",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrS6T66TOwH5KBwuUHGNw0I-c61tLIFZvS8YjuXI8Cm7n3v6n4q0sWTIuKBSXAp86HX3HCrSyvSS8KP1za4Q3DTPrDBgKMpNtIKtiuNjxDIyYinE7fAxmWOqWyryMkMyHJ94u3s6yGB5IsbapAC-suNdQBJc2pSxEVOqVFiyRNcwZYW&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Enjoy a peaceful cruise on the Huangpu River while admiring the illuminated city skyline and landmarks."
+          "description": "Experience overnight stay in a traditional Japanese inn and enjoy its serene ambiance."
         }
       ]
     },
     {
       "day": 2,
-      "date": "2024-11-11",
-      "summary": "Discover the cultural heritage of Shanghai with visits to Yu Garden and Tianzifang.",
+      "date": "2024-11-13",
+      "summary": "Travel to Osaka to explore vibrant shopping districts and culinary hotspots, ending the day with some cultural exploration.",
       "activities": [
         {
           "time": "09:00",
-          "activity_name": "Yu Garden, Shanghai",
+          "activity_name": "Hankyu Umeda Main Store",
           "location": {
-            "name": "Yu Garden",
-            "city": "Shanghai",
+            "name": "Hankyu Umeda Main Store",
+            "city": "Osaka",
             "coordinates": {
-              "latitude": 31.2272355,
-              "longitude": 121.492094
+              "latitude": 34.70281860000001,
+              "longitude": 135.4985323
             },
-            "place_id": "ChIJidPZMUGHrTUR29eIuHbpoIQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPk7VTAneVSmjJ39pdH_kCjF_DyiN003OW_ZBNPrtQVmDYA5xFKvMDwZLVQHIrZJOkco2QaYxqIXiVZz3GrSstk09vnqcCStB0hocdzZVII6ASx6IQG1D3Tg83hJ55-AHK6SBhweyLteMpK1drozuiMnTSAN-heVGt7geDPDLVKq6wl&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+            "place_id": "ChIJ67mcWJLmAGARrUf0FlFtm7w",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOrVTR5_wwH1An67NJvPqUyl9-9vPsNfKgQecC6Cb63HAz8grumJrVHR5ojiA9VpIhByC2aOvPeyyMT-FsOZNtmCsYrerzUOV4NyZinp1OJR5GWNss6OmC8Ze_pz9fCCgGW5vkMGl-HcMj7Rnx4K5Zh5PaNadhN0tMXImCUwnH2mZk&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
           },
-          "description": "Explore this classical Chinese garden famed for its beautiful landscaping, traditional architecture, and koi ponds."
+          "description": "Shop in one of the largest department stores in Japan, featuring everything from luxury goods to local souvenirs."
         },
         {
           "time": "12:00",
-          "activity_name": "Tianzifang, Shanghai",
+          "activity_name": "Lunch at Dotonbori",
           "location": {
-            "name": "Tianzifang",
-            "city": "Shanghai",
+            "name": "Dotonbori",
+            "city": "Osaka",
             "coordinates": {
-              "latitude": 31.20881199999999,
-              "longitude": 121.468898
+              "latitude": 34.6687234,
+              "longitude": 135.5012971
             },
-            "place_id": "ChIJ2-UI76F6sjURj_HAeG5PMhE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPjzZu_o5BFQHoL-_xHseMpD3BK_8Ft3I0temtFAKT5lKf3b1ZxwEcI9lnaE8lU0m3gmk1a2CE_QDBSH64z-V88PYMClEnqBpI8YV576BE-J92_QNYTUoaLX9KSq8uEmn6p8q-eHgbdQf-wNAsz-4rKijiefWVSVYYpyUYrba8k6NNn&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+            "place_id": "ChIJ_fmKgRPnAGARkKWLtCYTu7g",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMDajFCaUgKP9oi0D0WSYyWEVagC5Zr7Pgdw_iIPGjY20F7JcwSYm3mYUgcLyheedfbspSFPaLyK9PZRCTfRZi4P2480J229Kh7zo04SCwYRdUARhsvQqq4pRbJ5LUAlTyT9csFocv_xlQXrtdqISuoTBs2VCmMXOZlF-cilvIC6SQ&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Stroll through this artsy neighborhood filled with quaint shops, galleries, and cafes, perfect for lunch and local crafts."
+          "description": "Savor Osaka\u2019s street food culture with takoyaki and okonomiyaki in this bustling entertainment district."
         },
         {
-          "time": "15:00",
-          "activity_name": "Shanghai Wild Animal Park, Shanghai",
+          "time": "14:00",
+          "activity_name": "T\u014ddai-ji Temple",
           "location": {
-            "name": "Shanghai Wild Animal Park",
-            "city": "Shanghai",
+            "name": "T\u014ddai-ji",
+            "city": "Nara",
             "coordinates": {
-              "lat": 31.0547658,
-              "lng": 121.7243301
+              "latitude": 34.6889851,
+              "longitude": 135.8398158
             },
-            "place_id": "ChIJ6_xMJGpwsjUR-29bPK4JLLo",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMNnP_c1-nxRuDumNsdQJtLWa2yLMS3cYR_89Ao0i3u-CvDvHGQHzG_VpldOHbP4NPuQiLo0Q7z6IDTtLC853Mika-8Cp6ByqWIUtBTYRZMsA5l8sN6WukPwubpzSAXBXZsO3_C08bh_6qMbSOKES5TqBahaExf1JrJXoE2M2UbAdgF&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
+            "place_id": "ChIJ3XYIepA5AWARjzzVnT-skPg",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOERiNRFTz04b74Qn5n38aSBTxht-ivc7iQ1o6JgsgBuc1sDvSL7K_b_-QLPWBd-Df_IxJOqLAO2VyVwpHe_NWX21dqoblRZwMvRFkQ-iDKDahiyWvALYQZ9ZVOxAtMeV1nTvllNLclKyEqsVCA-IE7dyUU5-KvR44wdJoOFEZY2kwV&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
           },
-          "description": "Visit this large wildlife park to see over a hundred species of animals, with opportunities for family-friendly activities."
+          "description": "Visit this historic temple, known for its Great Buddha statue and beautiful architectural style."
         },
         {
-          "time": "19:00",
-          "activity_name": "Dinner at Hot Pot Restaurant, Shanghai",
+          "time": "17:00",
+          "activity_name": "Byodoin Temple",
           "location": {
-            "name": "Local Hot Pot Restaurant",
-            "city": "Shanghai",
+            "name": "Byodoin",
+            "city": "Osaka",
             "coordinates": {
-              "latitude": 31.2509094,
-              "longitude": 121.4877395
+              "latitude": 34.8892908,
+              "longitude": 135.8076783
             },
-            "place_id": "ChIJjdwLBKtxsjURQn9QFgLSfI8",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpZDeFKgjZku9ZUV11rjBd0hAnecx5VA4dG6GSPb5wLRX5ebmsffWAG8EJkMxF2ngAoFVYgylduyxhD8d-Nn1fme50yD_AZyEoK70R94sJNhvTVjxT6C18kRfnMCOhC3DZNn8pEUSomJXOOu3Q_BYHdirH3g8asgQDj_bEVd3Elqxc1&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJqyva4AwRAWARpAf6j5MUhGA",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DM7BFwmjD4icH28gfWjxnLpl_lcW3igQUwnVe_CbTgrOIWt_mJN4e_V08jGobRBzthRlJlK0924chJmlkBKo-SOkJSxXvXzZwB8pisl_o8X5DL4ADpy07uf7Iys8TAIHxQOg7TlPfjjZJcUr-6L-qbDoSW0-fKC-ZFBjUHtMayVoJoo&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
           },
-          "description": "Experience the local culinary tradition with a delicious mala hot pot dinner."
+          "description": "A stunning temple featuring a beautiful pond and garden, notable for its Phoenix Hall, which is depicted on the 10 yen coin."
         }
       ]
     },
     {
       "day": 3,
-      "date": "2024-11-12",
-      "summary": "Travel to Chongqing, immerse yourself in the local culture, and indulge in spicy mala cuisine.",
+      "date": "2024-11-14",
+      "summary": "A day in Yokohama featuring interactive exhibits and cultural experiences, before heading back.",
       "activities": [
         {
-          "time": "08:00",
-          "activity_name": "Travel to Chongqing from Shanghai",
+          "time": "09:00",
+          "activity_name": "Cup Noodles Museum Yokohama",
           "location": {
-            "name": "Chongqing",
-            "city": "Chongqing",
+            "name": "Cup Noodles Museum Yokohama",
+            "city": "Yokohama",
             "coordinates": {
-              "latitude": 29.5656843,
-              "longitude": 106.5511838
+              "latitude": 35.4554755,
+              "longitude": 139.6388669
             },
-            "place_id": "ChIJQ0_m87o0kzYRIbOI3BaGn94",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpSQZ_JMLe8u7BDgvV7Vqqmzd_uYlbE0_CiDrPYX8R2PifZLufWDcmbNreaJrvh37UXa6IAsmXI1TyD8lrrBDYmqWUJ3W8YRZK3HSqbKXodermTx1F2qZGNiA-4eFHW_LPEd4eGagjOSUHes-Oh76zUDhbh2uKV14wW63kEmB6xa60w&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJ3ZNhe1dcGGARvjq5QHdmaHM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DMHM6TDdI5TMDjdDVdR5MQpyky1QAzdmnXr38_WtMeI_rMN4ycCt7xmhLzPtBy3euNcvhuMQxgzXXG18fSwAZBYhK6js2waaAXkXl6Z2xrwZvwkfnVOXRHjM5EFif3e-S72TDOReRouOrwVOHaamIBwGpzvN7MrHg77zh1if5Cub4Hf&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM},"
           },
-          "description": "Catch a morning flight or train from Shanghai to Chongqing."
+          "description": "Learn about the history of instant noodles, and even design your own cup noodle."
         },
         {
           "time": "12:00",
-          "activity_name": "Lunch at Chongqing Hot Pot Restaurant, Chongqing",
+          "activity_name": "Lunch in Yokohama Chinatown",
           "location": {
-            "name": "Chongqing Hot Pot",
-            "city": "Chongqing",
+            "name": "Yokohama Chinatown",
+            "city": "Yokohama",
             "coordinates": {
-              "latitude": 29.745012,
-              "longitude": 106.494383
+              "latitude": 35.4434459,
+              "longitude": 139.6460909
             },
-            "place_id": "ChIJOwbuD3rT7DYR8vwZFX8rCTw",
-            "photo_url": "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
+            "place_id": "ChIJ__-Le-9cGGARNY-CTSHwq5A",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNEatIsKPgLBkyAfx2_zL9UnEf99WkEoITowQ2HZmigONywtPCB17Wc-xB0y9gKpegJSmmBpeKZ5Itc6WGVgAuIiVrF9Cix-M-sLX7cx_8s3RhuzGZvkvix41Y2gQ45iuFddEdLSRyKQ1X6CF4EYPPhVe38lUAOVCg5-M2DGijpmVyP&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Savor the authentic flavors of Chongqing's famous spicy hot pot."
+          "description": "Explore the vibrant streets of one of the largest Chinatowns in the world, tasting various Chinese cuisines."
         },
         {
-          "time": "14:30",
-          "activity_name": "Three Gorges Museum, Chongqing",
+          "time": "14:00",
+          "activity_name": "Yamashita Park",
           "location": {
-            "name": "Three Gorges Museum",
-            "city": "Chongqing",
+            "name": "Yamashita Park",
+            "city": "Yokohama",
             "coordinates": {
-              "latitude": 29.5620795,
-              "longitude": 106.5504808
+              "latitude": 35.4457655,
+              "longitude": 139.6497793
             },
-            "place_id": "ChIJ4RM-JaQ0kzYRo8HBJwsmdiE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpU3UO4o_iDQ1_f91mhxL3gt40zli6bpDC2fEQsFfcpdN3aiPvlmrB9gzjkpe6wPoe27dZwWE5vBwCdAzfe0TJWdr9EryXT6l5OzKbR_ZA9PyWByIYcHcpGHqrycA6wT7tg_4UhoPhMbWyL8iIHHbz_OCwlPmk87hEhX9FiTMDE4ZJq&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJt1e7seJcGGARbDdyYvFJuuM",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNQ7O29ctkpYQzifYO7MuimK7VLsYxGaiQVnUWQnQ1bNDXYkUUbk82Xh-gr1G_ikH3Bg9ZHsdvCNjt5XWGJM7pXfNXfCkGuEfwTWZ_pum8dMq0IE4U9NmnyOTLODl0vgguEM4WBuRFNo1c3p4pUf2vrDi6pByh7CylOV4mWExTf13fo&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Discover the history and culture of the Three Gorges region through engaging exhibits."
+          "description": "Enjoy a stroll along the waterfront park, taking in views of the bay and iconic Red Brick Warehouse."
         },
         {
-          "time": "18:00",
-          "activity_name": "Dinner at a Local Restaurant, Chongqing",
+          "time": "16:00",
+          "activity_name": "Return to Kyoto",
           "location": {
-            "name": "Local Cuisine Restaurant",
-            "city": "Chongqing",
+            "name": "",
+            "city": "",
             "coordinates": {},
             "place_id": "",
             "photo_url": ""
           },
-          "description": "Experience traditional Chongqing dishes in a cozy, local atmosphere."
-        }
-      ]
-    },
-    {
-      "day": 4,
-      "date": "2024-11-13",
-      "summary": "Enjoy more of Chongqing's attractions and the beautiful scenery.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Ciqikou Ancient Town, Chongqing",
-          "location": {
-            "name": "Ciqikou Ancient Town",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 29.58177,
-              "longitude": 106.4501576
-            },
-            "place_id": "ChIJm7KCCvjL7DYRtrpQJzkrJ9M",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWr3vMxopaQqx5AqtkcVYt_xNw4nM9JtI8ezzL79uUkiuu7YVYUjT3r0ixvZCB8-Q0mwtFXE4jE5xgAsROnjDpHDarxdkj4qCPPhkBR8_8q-aLwuEl-riuO6JyikC6-mHOGsJLx9bRuMx99oOhpbLm77G2xYipYCsSPYEwUMHlzGMM1Y&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Wander through this ancient town filled with historic architecture, shops, and street food."
-        },
-        {
-          "time": "13:00",
-          "activity_name": "Lunch at Local Street Food, Chongqing",
-          "location": {
-            "name": "Street Vendors",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 29.555901,
-              "longitude": 106.577495
-            },
-            "place_id": "ChIJIb92Z4Y0kzYRg9o6eV5fzR4",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrlvr0t7ay45cqFktau0cQWfz6K0n4u3AwVEKZJohAp5Fk9AH9gjUteGVG68vZyPhOQ-n1EgGBwetcbkNjdCvZ60yQiy21A7Wyf_eUoCRPmHB-sEtNvqfZfQrhtkFl6WFtQj8jZX2wLGYwJUfqguh34v-bHzkXY9HRFFvL31i9tzenv&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Try delicious local specialties from renowned street food vendors."
-        },
-        {
-          "time": "15:00",
-          "activity_name": "Riverside Park, Chongqing",
-          "location": {
-            "name": "Riverside Park",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 29.583993,
-              "longitude": 106.583954
-            },
-            "place_id": "ChIJbfK5s58zkzYROVnTWu9M6FE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqPTi6vAd6v1_NOke599aVd0QNJSr4a6LW2YxjGRIMnY_RbMTQUVSpNJ1xjFdq70HnZaaoWSrmVykHhN64pSlmPFlDnnp8Fyk7VLVKCEV1Fu7OHAUAjPMBVQ7xPXatO0JSOPtCMNRWmJX_t7goXm4lvbPQp_DBh5uIMPJlIYsso7RmS&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Relax in this beautiful park that offers scenic views of the Yangtze River."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Mala Dinner, Chongqing",
-          "location": {
-            "name": "Mala Restaurant",
-            "city": "Chongqing",
-            "coordinates": {
-              "latitude": 29.55074999999999,
-              "longitude": 106.54789
-            },
-            "place_id": "ChIJxVZh7Lk0kzYRq8-urDGOyf0",
-            "photo_url": "https://i.postimg.cc/8zLP2XNf/Image-16-10-24-at-2-27-PM.jpg"
-          },
-          "description": "Indulge in tantalizing mala dishes that Chongqing is famous for."
-        }
-      ]
-    },
-    {
-      "day": 5,
-      "date": "2024-11-14",
-      "summary": "Return to Shanghai and continue exploring.",
-      "activities": [
-        {
-          "time": "08:00",
-          "activity_name": "Travel back to Shanghai from Chongqing",
-          "location": {
-            "name": "Shanghai",
-            "city": "Shanghai",
-            "coordinates": {},
-            "place_id": "shanghai-shanghai-china-31230416-121473701",
-            "photo_url": "https://lh3.googleusercontent.com/places/ANXAkqE-AywDsL-__703h3EYZ3wW0otWJtpZP_TE7Gw0DZdpjSNhe9t2HAcW6pfTOaGqpyFuvxv1PPrcDLIUod3ZqDC8Ok3bmJDfPSA=s1600-w800"
-          },
-          "description": "Board a morning train or flight back to Shanghai."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch at a Dim Sum Restaurant, Shanghai",
-          "location": {
-            "name": "Local Dim Sum Restaurant",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.23457059999999,
-              "longitude": 121.4708037
-            },
-            "place_id": "ChIJA5s-SUBwsjURFhARLaLPojs",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrzf5S1n3DLdFm0I_3t8PHDOlrY80Pr7j0VrjklKxZnfbwypJf9oPWPQhNjH59DQ5CI1ZT1bqd96Rr357KpUERwCiYyXJs_uB42C9ouPzhhzwBfhqRvNt9ERrGi6_w7DmwKI2F092Kf9FWNcn2yj5P1K6daPTmfZvJ6QxQkjFqoHhH3&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Enjoy a delightful lunch at a restaurant specializing in dim sum."
-        },
-        {
-          "time": "14:30",
-          "activity_name": "Shanghai World Financial Center, Shanghai",
-          "location": {
-            "name": "Shanghai World Financial Center",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.2345644,
-              "longitude": 121.5074394
-            },
-            "place_id": "ChIJwefaxOVwsjURO6kUnqabBCA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPXJYqgmMC7trsixvkWoLVTOKhaW1lzTI7-cTFTtseEzs_xAYkjpjtsqmEivXQwx5it7wLvuK7KLl7dN16ZK5E1IB20YJCyZDo0tmZ-Z8dIbtF-1KNjZtMF2SGbWC4szmKK5PU3nfoGEyBMOHUc5dMOcDYGvRYzPM9an86FzBkjKj8&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
-          },
-          "description": "Visit this iconic skyscraper with an observation deck for breathtaking views of the city."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Dinner at a Shanghai Restaurant, Shanghai",
-          "location": {
-            "name": "Local Restaurant",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.23457059999999,
-              "longitude": 121.4708037
-            },
-            "place_id": "ChIJA5s-SUBwsjURFhARLaLPojs",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoSbuyouV_6-yFnkocLqDyGoNSi-CCUu1J6mVDUtxDu9DLoW_bCpY_Otn6ujTKzX0he4WGY7io1Lt2RYufZc9U8rv4cs4n-_E_eKJOLLgGoh7F6m1hvS14lileldmzMoCu_vLi1AdNe0hNeSEOInj1lVjqcw2fa6tyXrELy40zZPVjU&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Dine at a local restaurant and enjoy Shanghai's distinct culinary offerings."
-        }
-      ]
-    },
-    {
-      "day": 6,
-      "date": "2024-11-15",
-      "summary": "Experience more sightseeing in Shanghai: art and shopping.",
-      "activities": [
-        {
-          "time": "10:00",
-          "activity_name": "Shanghai Museum, Shanghai",
-          "location": {
-            "name": "Shanghai Museum",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.22833069999999,
-              "longitude": 121.4755278
-            },
-            "place_id": "ChIJPWUSbWlwsjURbNvIw3tOTE0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpAnNENEm42iqVKnonnQ1H9gYn14uZaBGEs6ZY4-ue_hvdIH9G-xqgu1DvABSzcKROwt84r8-rIVlD9YXy7r1pmSYTtjMmOt6mduPgnDgXu1_3QllUMcyVUe_XdSxgKJqBhebbtHywniAPpYkq5pEIX1CYZY21XG0SUZv97dKdj7fo8&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Explore a vast collection of Chinese art, artifacts and historical exhibits."
-        },
-        {
-          "time": "12:30",
-          "activity_name": "Lunch at a Near Museum Caf\u00e9, Shanghai",
-          "location": {
-            "name": "Museum Caf\u00e9",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.2285615,
-              "longitude": 121.4760239
-            },
-            "place_id": "ChIJPWUSbWlwsjURjYNLkOXNZGw",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrm2qDWMrCVR-UTo6eYjQkgPnknPRoBY-FS_ddgdVXa8m_1eQUeWZEDBaTC64vBXu6h0_yojfXl66wVcmefjryPLh6DR0TmFnd0l8jlh1xebJ-3heHAx66sMUnAmro5K0fxVKa7zeiQ3NQ8hX0PwvNHK4-tp-k4IEccHx_Ym11lWbQU&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM",
-            "description": "Relax and grab a bite at the museum's caf\u00e9."
-          }
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Shopping at Xintiandi, Shanghai",
-          "location": {
-            "name": "Xintiandi",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.21652,
-              "longitude": 121.475105
-            },
-            "place_id": "ChIJcVgGUHFwsjURDPLrdEiQT1Q",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWr03rnHwepS8pQfEVLA-8gT31ksLBdiOy0uQnIMCp3niNd4dQPxtzwZIXFRGrzi3o012sgm7AQsCKf6AW4jl8m3hHowaWwwgiS6bROPYDKXvzPVVIhT0xA8TGr2ofWZpAGu_ZLnyvYjL1CkOVRdWplPowb-KsNvi9QmCQoNCDobuyS5&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Stroll through this upscale shopping and dining district with boutiques and cafes."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Dinner at a Famous Restaurant, Shanghai",
-          "location": {
-            "name": "Local Famous Restaurant",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.23457059999999,
-              "longitude": 121.4708037
-            },
-            "place_id": "ChIJA5s-SUBwsjURFhARLaLPojs",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqmXfCGYv1scYqcChc1-YEhh7HTGFXXZlDPVZVzMUZJqCyW3iPfnZP72zbYiAVmzru-Uw6bs_rL-NnXhCOrQDJCuhKOBjhJ4qyoDiR2pa4PWJBpQRJEhoMkDHVGNNVHdlWk7VVPB7dKdxqtSsTGPkI-8CoFrfIzwo1wmVIHqhZuUNvF&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Taste Shanghai's famous dishes in a highly recommended dining spot."
-        }
-      ]
-    },
-    {
-      "day": 7,
-      "date": "2024-11-16",
-      "summary": "Explore more of Shanghai's historical and cultural spots.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Visit Jade Buddha Temple, Shanghai",
-          "location": {
-            "name": "Jade Buddha Temple",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.2413822,
-              "longitude": 121.4450914
-            },
-            "place_id": "ChIJY2v3jN9vsjURmJotCOxoanY",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWopfiUJZdU5TGjMAMH9uttU_OTCQcamCi-aycDdiT6E7Q0PXl2ttGomCy6ee8jozbWrSmB14OxDeuI4my1yGJLVwYf_vcXjtoTcdUEXc4I4BEh2PIo-9w3ahtZJsyL86y07wDn1WKWqM4_qykvmO1sQ3tfoj_dxfYkHCHwxCSV1gCMv&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Experience Buddhism at this active temple home to two stunning jade Buddha statues."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch at Local Noodles Restaurant, Shanghai",
-          "location": {
-            "name": "Noodles Restaurant",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.2361696,
-              "longitude": 121.4802723
-            },
-            "place_id": "ChIJw84DTltwsjURU77aaEIJoTI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqnSFwOPh8JAnXqsGgWGfDnp7AoCHpaX_XfpSoQ3uJS9V35uovOjtaReEK8HwF1WFFxOE678pjw5AXDyh1vmvqYnfCaoy41xGl8PqzU9cAtMaC4LwbIqNA401YAIl5hXamedHQQiSaE_Ey7LCKVur2Ty9DNob3FcrijeVlFlHYRv1m0&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Taste authentic Shanghai noodles at a local favorite spot."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Shanghai Propaganda Poster Art Centre, Shanghai",
-          "location": {
-            "name": "Propaganda Poster Art Centre",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.2109052,
-              "longitude": 121.4261246
-            },
-            "place_id": "ChIJY1m5yFFlsjUR5f2tnuV-u9E",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqUUOrKGXXm9PeZ-paoSrZgkmyXrkVR3Vdu9deRlzIgfvLs1kRzhIyZZyBchuwwuuLsglujke5BaSRfNA1wMPRIEVArjwuKgfgdwzLqrPg8pqOkctBNVoEMi_lhYtQhQzcipy1PeQw1xvx7vGKz8MGxoTjoDD14E0Tv0ZDNAPy0CUnA&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Explore fascinating propaganda posters from China\u2019s revolutionary past."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Dinner at a Traditional Restaurant, Shanghai",
-          "location": {
-            "name": "Traditional Restaurant",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.2212359,
-              "longitude": 121.4635902
-            },
-            "place_id": "ChIJMa4ROwxwsjUR46G4qL0sMZk",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoMH4B39uNejmOVaNVWmZeZhe2JAcpMn_87PmDFcB2_Lviws9FaOS74EGPuEupMIUJPzsy6dGWMbUCBqZUB95E866E3rjctfPh_YboyDTZbK9JMVevkul-eYNfULZeFvXdgMmvEzSnI5eXFTdbXWjOaGOh0sARYA89PTR3w1CIcScuU&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "End the day with a dinner featuring classic Shanghai cuisine."
-        }
-      ]
-    },
-    {
-      "day": 8,
-      "date": "2024-11-17",
-      "summary": "Final explore day in Shanghai, indulging in more local specialties.",
-      "activities": [
-        {
-          "time": "10:00",
-          "activity_name": "Visit Tiananmen Square, Beijing",
-          "location": {
-            "name": "Tiananmen Square",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 39.9054895,
-              "longitude": 116.3976317
-            },
-            "place_id": "ChIJ2XRD3Jh2YzYRE1lUrcku6io",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOh7j_pOATKsLYJ1ITPCuh6gqSbskIWlfbSLel3_FNjDw68M1kS0unu-GiBgsCVEN-vocznT1qTAuLCW0Nw9-CZB5lewLjyOgl5mppobk2ED0vC3N4h3jAFOKMXcRCDK4BA772jtlcQFvXCT05mhTIDK-eqbIy2rmyFy1uKdOq87Ulk&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "A historic site known for its vast size and significance in modern Chinese history."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch at Peking Duck Restaurant, Beijing",
-          "location": {
-            "name": "Famous Peking Duck Restaurant",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 39.915462,
-              "longitude": 116.421249
-            },
-            "place_id": "ChIJMzYkES2t8TURdL08FpqY9zQ",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOZnLZ42qOrI1Ez5Npn38BiIry2QRnNhQksqH1OSH_qw55RYDpw9Yu4psevsVTnDZSO17qkYiSYCtDMBsglSLZF2KgNmAxUaJiwVjlgG25Vi-8g87fuPwNVWJ9MvtRQjgUgBnLhzA_svl2zBc9LnJwNLnllmYxF_veLw8vXW51egpxM&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Enjoy a famous Beijing dish at a renowned local eatery."
-        },
-        {
-          "time": "15:00",
-          "activity_name": "Visit Temple of Heaven, Beijing",
-          "location": {
-            "name": "Temple of Heaven",
-            "city": "Beijing",
-            "coordinates": {
-              "latitude": 39.8821803,
-              "longitude": 116.4066056
-            },
-            "place_id": "ChIJ65H_GWBN8DURag4RO0UVLDc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DNfwm2gAd-V0Gbj0JZGcpQvzdOxdiX3_x2da4Mp6R0zCKRGTGhq8TPGib55k8cGZMYsjE46RbU25RsRuRkN0cutvc7sb0hplrvXcLGobk4c52m8vd2e6jkX0NR-rou6kjRzC665ZfGDasW4XSIVkREXpEI8dftSRw-gY-A6s-1OTPJv&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Explore this magnificent complex where emperors of the Ming and Qing dynasties would pray for a good harvest."
-        },
-        {
-          "time": "19:00",
-          "activity_name": "Farewell Dinner at Top Restaurant, Shanghai",
-          "location": {
-            "name": "Top Restaurant",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.23844,
-              "longitude": 121.48979
-            },
-            "place_id": "ChIJKyuYjFdwsjURvVe38TrKPJU",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOMgpjZuaWIkMARDxdeuxASKaS8o472R5knqRMB5Umkn11-OeD76yli0VOx1PjTvhuDnat0bzMTIsgcQetUjFbpDDMflqZGrG_bNxb5i6ffGUHf2e0qPy8i2QKktllHYBegRmP_RLlNK3Aluv18JmIMdMqiWgm_St8cnn9Be99H4xjE&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Enjoy a memorable farewell dinner at an iconic restaurant in Shanghai."
-        }
-      ]
-    },
-    {
-      "day": 9,
-      "date": "2024-11-18",
-      "summary": "Leisurely activities before departure.",
-      "activities": [
-        {
-          "time": "09:00",
-          "activity_name": "Relax in Century Park, Shanghai",
-          "location": {
-            "name": "Century Park",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.212134,
-              "longitude": 121.543724
-            },
-            "place_id": "ChIJuccQ7El3sjURFulj6_8THUg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOSpqPELXHvxMNsSKPfVqinC-saeZNO0irRRUI-P850lrqdmV6GxokObyFmhCKWumnFf6SDSx0hfBzcjphcyQTK_FbLv0KxOiW81HYc95ckpw0n6SoKVTLDw_oYSFdWo737AtQj-pE51pRepgK7D6P9cGttrKoia1NZw0RexnltXb1c&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Spend the morning relaxing and enjoying nature in Shanghai's largest park."
-        },
-        {
-          "time": "12:00",
-          "activity_name": "Lunch at Caf\u00e9, Shanghai",
-          "location": {
-            "name": "Caf\u00e9 in Century Park",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.2087526,
-              "longitude": 121.4614348
-            },
-            "place_id": "ChIJwQvXFaR6sjURTCm1PKnQNg0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPcX6Gn0cpylMo_kf_S6mkLh_ELuHFZuu28u7TXi_92PaLYkQxMtoSDg9jSSA_qZffhWNnLcRUaTbLRBNqM3eElabSc7DxBqISM7lrnZ1VRc6BmkMZ-8dxC5qJcHHb5GwzHwg0zwa9sLqNNltd2MTYILjgDs4ZQXCNGTUAR97NJFsyn&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Enjoy a light lunch at one of the caf\u00e9s located inside Century Park."
-        },
-        {
-          "time": "14:00",
-          "activity_name": "Pack and Prepare for Departure",
-          "location": {
-            "name": "Hotel",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.2409934,
-              "longitude": 121.5201153
-            },
-            "place_id": "ChIJJ-lyaiBxsjURIxGNTTz4NSA",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWr7IZ0ntpoXBN4SWQKJor6MrJG686TgrLubv6O2MuWLiTrw6PncjUHCKb_l4gDiPGcuJoRAakJrYJSU0MnrbwlTxY9Ig_GmsYw4xz4Gu754xMLU5Ejg1vGJDgQyW2DSrRogNpfcAFR61i9T-euWqhV-z8YtwKJ24JiPiC-zWvFGWm8h&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Check out from the hotel and prepare for your journey back."
-        },
-        {
-          "time": "17:00",
-          "activity_name": "Departure from Shanghai",
-          "location": {
-            "name": "Shanghai Airport",
-            "city": "Shanghai",
-            "coordinates": {
-              "latitude": 31.1443439,
-              "longitude": 121.808273
-            },
-            "place_id": "ChIJwVCVdt6PrTURXzUsyXET5Mk",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrOsqIhBQDI8_1to1ntyw_9rMdjLCqiUr7OwNz9Av_b5OO9vtjL0cK_Gu_zAGfU8D_wxarRCKqhexjPiiNeDMJm-06L-gFepZAfrSSlO8UB26MDVU5Zq81UKHCpTiYqbL0cbhuxGaVo_0q1AiWCtebgwYoBVtl6FcS6_NTD3XCrU9FV&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Head to the airport for your departure."
+          "description": "Head back to Kyoto for departure."
         }
       ]
     }

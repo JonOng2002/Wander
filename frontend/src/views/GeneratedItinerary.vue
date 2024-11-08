@@ -1,6 +1,6 @@
 <template>
   <div class="generated-itinerary">
-    <AppNavbar class="sticky-top"></AppNavbar>
+  
 
     <!-- Show Overlay.vue when loading -->
     <Overlay v-if="loading" />
@@ -45,6 +45,7 @@
                       ? `url(${activity.location.photo_url})`
                       : 'none',
                   }">
+                  <div class="gradient-overlay"></div>
                   <div class="text-container">
                     <div class="time-column">{{ activity.time }}</div>
                     <div class="place-column">
@@ -394,26 +395,36 @@ app-navbar {
 }
 
 .itinerary-item {
+  position: relative; /* Establish positioning context for the overlay */
   background-color: #f8f9fa;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  /* Indicates clickable */
-  align-items: center;
-  justify-content: center;
+  cursor: pointer; /* Indicate the card is clickable */
   overflow: hidden;
-  height: 200px;
-  /* Adjust height as necessary */
+  height: 200px; /* Adjust height as necessary */
   display: flex;
-  transition: transform 0.3s ease;
+  align-items: flex-end; /* Ensure content is aligned to the bottom */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Ensure both properties transition smoothly */
 }
 
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Cover the full width of the card */
+  height: 100%; /* Cover the full height of the card */
+  background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity as needed */
+  border-radius: 10px; /* Match the border radius of the card */
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect */
 .itinerary-item:hover {
-  transform: scale(1.05);
-  /* Slightly scale up the card */
+  transform: scale(1.05); /* Scale up on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deepen the shadow for a pop-out effect */
 }
-
 
 .overlay-text {
   position: absolute;
@@ -432,11 +443,6 @@ app-navbar {
   /* Ensure text aligns to the left */
 }
 
-.itinerary-item:hover {
-  background-color: #e9ecef;
-  /* Light hover effect */
-}
-
 /* .time-column {
   text-align: left;
   font-weight: bold;
@@ -444,14 +450,13 @@ app-navbar {
 } */
 
 .text-container {
-  width: 200px;
-  /* Set fixed width for uniformity */
-  max-width: 100%;
+  position: relative; /* Keep text above the gradient overlay */
+  z-index: 2; /* Make sure text is above the overlay */
+  color: whitesmoke;
+  width: 100%;
   text-align: left;
-  word-wrap: break-word;
-  /* Break words if they're too long */
-  white-space: normal;
-  /* Allow text to wrap to next line */
+  word-wrap: break-word; /* Break words if they are too long */
+  white-space: normal; /* Allow text to wrap */
 }
 
 .time-column {
@@ -568,12 +573,13 @@ app-navbar {
   display: flex;
   align-items: center;
   margin-bottom: 60px;
-  /* Add space below the button */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .back-button:hover {
   color: #333;
   /* Darker color on hover */
+  transform: scale(1.05); /* Slightly increase size */
 }
 
 .back-button i {

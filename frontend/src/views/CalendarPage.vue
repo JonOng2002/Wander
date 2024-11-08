@@ -41,10 +41,15 @@
           <p id="endDate">To: {{ formatDate(range.end) }}</p>
         </div>
 
+        <!-- Error Message -->
+        <div class="error-message" v-if="errorMessage">
+          {{ errorMessage }}
+        </div>
+
         <!-- Action Buttons -->
         <div class="action-buttons">
           <button class="btn-back" @click="goBack">←</button>
-          <button class="btn-primary" @click="goToNextStep">Continue</button>
+          <button class="btn-primary" @click="goToNextStep" :disabled="isContinueDisabled" >Continue</button>
         </div>
       </div>
     </div>
@@ -53,7 +58,7 @@
 
 <script setup>
 import router from '@/router';
-import { ref, computed, nextTick, onMounted } from 'vue';
+import { ref, computed, nextTick, onMounted, watch } from 'vue';
 import { useScreens } from 'vue-screen-utils';
 const { mapCurrent } = useScreens({ xs: '0px', sm: '640px', md: '768px', lg: '1024px' });
 const columns = mapCurrent({ lg: 2 }, 1);
@@ -62,6 +67,8 @@ const { countryCode, tripType } = router.currentRoute.value.query;
 
 const today = new Date();
 today.setDate(today.getDate() - 1);
+
+const errorMessage = ref('');
 
 const disablePastDates = ref([{ start: null, end: today }]);
 
@@ -90,20 +97,44 @@ const goBack = () => {
 };
 
 const goToNextStep = () => {
-  if (range.value.start && range.value.end) {
-    router.push({
-      name: 'TagsPage',
-      query: {
-        start: range.value.start,
-        end: range.value.end,
-        countryCode,
-        tripType,
-      },
-    });
-  } else {
-    alert('Please select a valid date range.');
+  if (isContinueDisabled.value) {
+    alert('Please select a valid date range of not more than 10 days.');
+    return;
   }
+  router.push({
+    name: 'TagsPage',
+    query: {
+      start: range.value.start,
+      end: range.value.end,
+      countryCode,
+      tripType,
+    },
+  });
 };
+
+watch(range, () => {
+  if (range.value.start && range.value.end) {
+    const startDate = new Date(range.value.start);
+    const endDate = new Date(range.value.end);
+    // Calculate difference in days, including both start and end dates
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
+    if (dayDiff > 10) {
+      errorMessage.value = 'Please select a range of not more than 10 days.';
+    } else {
+      errorMessage.value = '';
+    }
+  } else {
+    errorMessage.value = '';
+  }
+});
+
+const isContinueDisabled = computed(() => {
+  // Disable if there's an error or dates are not selected
+  if (errorMessage.value) return true;
+  if (!range.value.start || !range.value.end) return true;
+  return false;
+});
 
 onMounted(async () => {
   await nextTick();
@@ -322,6 +353,20 @@ onMounted(async () => {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  padding-left: 0.5rem;
+}
+
+
+
 /* Responsive Adjustments */
 @media screen and (max-width: 768px) {
   .content-wrapper {
@@ -331,10 +376,15 @@ onMounted(async () => {
   .form-section {
     padding: 1rem 2rem;
     height: auto;
+    text-align: center; 
+    align-items: center;
   }
 
   .btn-primary {
     width: auto;
+  }
+  .action-buttons{
+    justify-content: center;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -351,20 +401,6 @@ onMounted(async () => {
   .action-buttons{
     justify-content: center;
   }
-  .btn-primary{
-    background: linear-gradient(90deg, #3f94a7, #6fb3d2); /* Gradient colors */
-  color: white;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 25px; /* Rounded edges */
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-left: 1rem; /* Space between buttons */
-  height: 50px;
-  flex-grow: 1; /* Allow the button to expand to available space */
-  max-width: 400px;
-  }
+
 }
 </style>

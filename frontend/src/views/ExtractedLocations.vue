@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <p class="header-interested mb-5 mt-2">Interested? Scroll down for more info</p>
+    <p class="header-interested mb-5 mt-2">Interested? Click the images for more info</p>
     <br /><br />
 
     <p class="video-header">From your video</p>
@@ -776,7 +776,7 @@ li {
   color: #ff9800; /* Orange color for ratings */
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (max-width: 1199px) {
   .card {
     width: 90%;
     /* Allow full-width for smaller screens */
@@ -801,10 +801,7 @@ li {
   background-color: #45a049; /* Darker green on hover */
 }
 
-/* Optional: Additional styles for SavePlaceButton */
-.save-place-button {
-  /* Add any additional styles if needed */
-}
+
 
 /* Loading Indicator Styles (Optional) */
 .loading {

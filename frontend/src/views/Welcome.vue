@@ -11,9 +11,29 @@
 
             <h1 id="#brand">wander.</h1>
         </div>
-        <div ref="threeContainer" class="three-container"></div>
+        <div ref="threeContainer" class="three-container">
 
-        <div class="container">
+            <!-- Buttons for scrolling -->
+            <div class="scroll-buttons">
+                <button class="explore-button" @click="scrollToExplore">
+                    <div class="explore-button-text">
+                        <p>Explore Wander now</p>
+                    </div>
+                </button>
+                <button class="signup-button" @click="scrollToSignUp">
+                    <div class="signup-button-text">
+                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
+                        </div>
+                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
+                        </div>
+                        <p>Skip</p>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+
+        <div ref="exploreSection" class="container">
             <div class="left-text">
                 <p>Welcome to</p>
                 <p style="font-family: Lobster Two; font-size: larger; color: #3f94a7;">wander :</p>
@@ -217,7 +237,7 @@
             <h3>What are you waiting for? Start <span>Wander</span>ing.</h3><br>
         </div>
 
-        <div class="auth-buttons">
+        <div ref="signUpSection" class="auth-buttons">
             <button @click="navigateTologin" class="login-btn">Log in</button>
             <button @click="navigateTosignup" class="signup-btn">Sign up</button>
         </div>
@@ -287,6 +307,8 @@ export default {
         const carouselTrack = ref(null);
         let globe = null;
         let renderer = null;
+        // const exploreSection = ref(null);
+        // const signUpSection = ref(null);
 
         const camera = new THREE.PerspectiveCamera(
             75,
@@ -312,6 +334,31 @@ export default {
         }
 
 
+        const setupIntersectionObserver = () => {
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: [0, 0.2, 0.4, 0.6, 0.8, 1]
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.target === threeContainer.value) {
+                        const opacity = entry.intersectionRatio;
+                        if (globe) {
+                            globe.material.opacity = opacity;
+                            globe.children[0].material.opacity = opacity * 0.1;
+                        }
+                    }
+                    // if (entry.target === carouselSection.value) {
+                    //     carouselSection.value.style.opacity = entry.intersectionRatio;
+                    // }
+                });
+            }, options);
+
+            observer.observe(threeContainer.value);
+            // observer.observe(carouselSection.value);
+        };
 
         onMounted(() => {
 
@@ -479,6 +526,7 @@ export default {
                     const pmremGenerator = new THREE.PMREMGenerator(renderer);
                     scene.environment = pmremGenerator.fromScene(scene).texture;
 
+                    setupIntersectionObserver();
 
                     function animate() {
                         requestAnimationFrame(animate);
@@ -521,6 +569,15 @@ export default {
         this.stopAutoScroll();
     },
     methods: {
+        // Scroll to Explore section
+        scrollToExplore() {
+            this.$refs.exploreSection.scrollIntoView({ behavior: 'smooth' });
+        },
+        // Scroll to Sign Up section
+        scrollToSignUp() {
+            this.$refs.signUpSection.scrollIntoView({ behavior: 'smooth' });
+        },
+
         typeText() {
             if (this.charIndex < this.displayTextArray[this.displayTextArrayIndex].length) {
                 if (!this.typeStatus) this.typeStatus = true;
@@ -592,6 +649,131 @@ export default {
 </script>
 
 <style scoped>
+.scroll-buttons {
+    position: absolute;
+    /* Make the buttons overlay the three-container */
+    bottom: 150px;
+    /* Align to the bottom of the three-container */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    /* Distribute the buttons evenly */
+    align-items: center;
+    /* Center buttons vertically */
+    padding: 10px 20px;
+    /* Adjust padding as necessary */
+    z-index: 9999;
+    /* Ensure the buttons are on top */
+}
+
+/* Center the Explore button directly under the globe */
+.explore-button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Keep the Sign Up button on the far right */
+.signup-button {
+    margin-left: auto;
+}
+
+.explore-button-text {
+    font-size: 2rem;
+}
+
+.signup-button-text {
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: center;
+    /* Center items horizontally */
+    animation: bounce 2s 30;
+    color: #a3a7ae;
+    gap: 8px;
+    /* Add space between the chevrons and the text */
+    animation: bounce 2s 30;
+    color: #a3a7ae;
+}
+
+.signup-button-text p {
+    padding-left: 18px;
+    padding-top: 5px;
+    font-size: 1.5rem;
+}
+
+.chevron {
+    border-right:
+        4px solid #a3a7ae;
+    border-bottom:
+        4px solid #a3a7ae;
+    width: 30px;
+    height: 30px;
+}
+
+#chevron-arrow-down {
+    transform: rotate(45deg);
+}
+
+.explore-button,
+.signup-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: rgba(63, 148, 167, 1);
+}
+
+.signup-button:hover {
+    background-color: rgba(63, 148, 167, 1);
+    transform: scale(1.05);
+    color: white;
+}
+
+.explore-button-text p {
+    width: 0;
+    overflow: hidden;
+    /* Ensure the text is not visible until the typewriter effect*/
+    border-right: 2px solid white;
+    /* The cursor*/
+    font-size: 2rem;
+    white-space: nowrap;
+    /* Keeps the text on a single line */
+    animation: typing 2s forwards, blinking 1.5s step-end infinite;
+    ;
+}
+
+/* The typing animation */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blinking {
+
+    from,
+    to {
+        border-right-color: transparent;
+    }
+
+    50% {
+        border-right-color: white;
+    }
+}
+
 .main-container-1 {
     height: auto;
     overflow-y: hidden;
@@ -611,6 +793,16 @@ export default {
     color: black;
     margin: 0;
     padding: 0;
+}
+
+.three-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    /* Increase the height to make the globe bigger */
+    overflow: hidden;
+    top: 0;
+    z-index: 1;
 }
 
 
@@ -673,6 +865,24 @@ export default {
         top: 0;
         margin-bottom: 150px;
     }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
+    }
 }
 
 @media (min-width: 1200px) {
@@ -693,6 +903,24 @@ export default {
         height: 80vh;
         overflow: visible;
     }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
+    }
 }
 
 @media (min-width: 768px) and (max-width: 921px) {
@@ -702,6 +930,24 @@ export default {
         width: 100vw;
         height: 85vh;
         overflow: visible;
+    }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
     }
 }
 

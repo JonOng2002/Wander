@@ -35,16 +35,18 @@ export default {
       link: this.tiktokLink,
       currentPlaceholder: '', // Current placeholder that is being animated
       placeholders: [
-        'Paste a Tiktok Link here!',
-        'Search for TikTok Japan',
-        'Search for TikTok Thailand',
-        'Search for TikTok USA',
-        'Search for TikTok England',
-        'Search for TikTok Australia'
+        'Paste your TikTok link to get started!',
+        'Discover new destinations with your TikTok link!',
+        '#asia',
+        '#europe',
+        '#america',
+        '#africa',
+        '#oceania',
+        '#traveltiktok',
       ],
       placeholderIndex: 0,
       MIN_ANIMATION_DELAY: 50, // Minimum delay between adding letters
-      MAX_ANIMATION_DELAY: 90, // Maximum delay between adding letters
+      MAX_ANIMATION_DELAY: 80, // Maximum delay between adding letters
       DELAY_AFTER_ANIMATION: 1000, // Delay after the animation ends
     };
   },

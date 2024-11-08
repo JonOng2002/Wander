@@ -9,9 +9,9 @@
                 crossorigin="anonymous">
 
 
-            <h1>wander.</h1>
+            <h1 v-motion-slide-visible-once-top>wander.</h1>
         </div>
-        <div ref="threeContainer" class="three-container"></div>
+        <div ref="threeContainer" class="three-container" v-motion-slide-visible-once-top></div>
 
         <div class="container">
             <div class="left-text">
@@ -574,6 +574,7 @@ export default {
 </script>
 
 <style scoped>
+
 .main-container-1 {
     height: auto;
     overflow-y: hidden;

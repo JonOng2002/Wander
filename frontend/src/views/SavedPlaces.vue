@@ -79,8 +79,8 @@
     </button>
 
     <div class="carousel-content">
-      <h1>Archive Your Journey</h1>
-      <h4>Detail Your Trips | Make Lasting Memories</h4>
+      <h1>Travel The World</h1>
+      <h4>Start Exploring | Plan your trips</h4>
     </div>
   </div>
 
@@ -91,12 +91,15 @@
     </div>
 
     <div class="dropdown-container" v-motion-slide-visible-once-top>
-      <div class="dropdown">
-        <select @change="filterPlaces" class="dropdown-btn form-select me-2">
-          <option value="">Select Filter</option>
+      <div class="filter-button">
+        <select @change="filterPlaces" class="custom-select  form-select me-2">
+          <option value="">
+            Select Filter
+          </option>
           <option value="alphabetical">Filter by Alphabet</option>
           <option value="recently-added">Filter by Recently Added</option>
         </select>
+        <span class="arrow-down">&#9662;</span> <!-- Custom arrow icon -->
       </div>
 
       <div class="dropdown">
@@ -124,14 +127,14 @@
     v-else-if="filteredPlaces && filteredPlaces.length === 0"
     class="empty-message"
   >
-    <p>No places saved yet.</p>
+    <p>No places saved yet. Start exploring now!</p>
   </div>
 
   <div v-else class="card-grid">
     <transition-group name="list" tag="div" class="transition-wrapper">
       <div
         v-for="place in filteredPlaces"
-        :key="place.place_id"
+        :key="place.place_id" 
         class="card-container"
         ref="cardRefs"
         v-motion-slide-visible-once-top
@@ -217,7 +220,7 @@
   >
     <div class="modal-content">
       <h3>Are you sure you want to delete all saved places?</h3>
-      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">
+      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2 confirm-modal-btn">
         Yes, Delete All
       </button>
       <button
@@ -230,14 +233,7 @@
     </div>
   </div>
 
-  <div class="popup-container">
-    <div v-if="showPopup" class="popup">
-      <p>Added to itinerary!</p>
-    </div>
-    <div v-if="showRemovePopup" class="popup" style="background-color: #f44336">
-      <p>Removed from itinerary!</p>
-    </div>
-  </div>
+
 </template>
 
 <script>
@@ -610,9 +606,7 @@ export default {
     const filterRecentlyAdded = () => {
       // Ensure that each place has a 'dateAdded' field. If not, this will not sort correctly.
       // You might need to add 'dateAdded' when saving places.
-      filteredPlaces.value = [...savedPlaces.value].sort(
-        (a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)
-      );
+      filteredPlaces.value = [...savedPlaces.value].reverse();
     };
 
     const confirmDeleteAllPlaces = async () => {
@@ -683,7 +677,7 @@ export default {
 
 #carouselExampleInterval {
   position: relative;
-  height: 550px;
+  height: 60vh;
   /* Fixed height */
   /* Set your desired height here */
   overflow: hidden;
@@ -779,6 +773,9 @@ export default {
 }
 
 .form-select {
+  appearance: none; /* Remove the default arrow */
+  -webkit-appearance: none; /* Remove arrow in WebKit browsers */
+  -moz-appearance: none; /* Remove arrow in Mozilla browsers */
   background-color: #222;
   color: white;
   border: none;
@@ -788,12 +785,52 @@ export default {
   transition: background-color 0.3s ease;
 }
 
+.filter-button {
+  position: relative;
+  display: inline-block;
+  flex: 1;
+  width: auto; /* Set to auto to reduce width */
+  transition: background-color 0.4s ease;
+}
+
+.filter-button:hover {
+  background-color: #3f94a7;
+}
+
+.custom-select {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 1rem;
+  padding-right: 2.5rem; /* Add space for the custom arrow */
+  border: none;
+  background-color: #222;
+  color: white;
+  font-size: 1rem;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.arrow-down {
+    position: absolute;
+  top: 50%;
+  right: 1rem; /* Adjust the position to match your design */
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: white;
+  pointer-events: none; /* Make sure the arrow doesn't interfere with clicks */
+}
+
 /* Container to align dropdowns side by side */
 .dropdown-container {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
   margin-left: 60px;
+  margin-right: 40px;
+  flex-wrap: wrap;
+
   /* Adjust this value to align the dropdowns with the text */
 }
 
@@ -816,9 +853,18 @@ export default {
   padding: 16px;
 }
 
+.dropdown-btn,
+.form-select {
+  width: 100%; /* Make all elements the same width */
+  padding: 16px; /* Uniform padding */
+  font-size: 1rem; /* Uniform font size */
+  box-sizing: border-box; /* Include padding and border in the element’s total width and height */
+}
+
+
 /* Change button color on hover */
 .dropdown-btn:hover {
-  background-color: #555;
+  background-color:#3f94a7;
 }
 
 /* Dropdown content styling */
@@ -848,7 +894,7 @@ export default {
 
 /* Change background color on hover */
 .dropdown-content a:hover {
-  background-color: #333;
+  background-color: #17a2b8;
 }
 
 /* Show dropdown on hover */
@@ -857,6 +903,15 @@ export default {
 }
 
 /* <=========== CARD GRID LAYOUT =============> */
+
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Adjust this if necessary */
+  font-size: 1rem; /* Optional: to make the text more readable */
+  color: #333; /* Optional: customize text color */
+}
 
 .transition-wrapper {
   display: contents;
@@ -880,6 +935,7 @@ export default {
   row-gap: 4rem;
   padding: 2rem;
   /* Padding around the grid */
+  margin-bottom: 50px;
 }
 
 .card-container {
@@ -1091,101 +1147,56 @@ export default {
   transform: translateY(-5px);
 }
 
-/* <=========== BREAKPOINTS =============> */
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 items per row on medium screens */
-  }
-
-  .sticky-top {
-    padding: 0 3vw;
-  }
-
-  .overlay-text {
-    font-size: 1.2rem;
-  }
-
-  .content h1 {
-    font-size: 6rem;
-  }
-
-  .content h4 {
-    font-size: 1.5rem;
-  }
-
-  .carousel-content h1 {
-    font-size: 4rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1.5rem;
-  }
+.confirm-modal-btn {
+  background-color: black; /* Red color similar to the second image */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.3s, ease;
 }
 
-@media (max-width: 992px) {
-  .carousel-content h1 {
-    font-size: 3rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1.2rem;
-  }
+.view-full-itinerary-btn {
+  background-color: black; /* Blue color */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 1s, ease;
 }
 
-@media (max-width: 768px) {
-  .dropdown-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 2x2 grid */
-    gap: 1rem;
-    /* Consistent gap between buttons */
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-    /* 1 item per row on small screens */
-  }
-
-  .sticky-top {
-    padding: 0 2vw;
-  }
-
-  .overlay-text {
-    font-size: 1rem;
-  }
-
-  .content h1 {
-    font-size: 3rem;
-  }
-
-  .content h4 {
-    font-size: 1.2rem;
-  }
-
-  .carousel-content h1 {
-    font-size: 2rem;
-  }
-
-  .carousel-content h4 {
-    font-size: 1rem;
-  }
+.close-modal-btn {
+  background-color: black; /* Blue color */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 1s, ease;
 }
 
-@media (max-width: 576px) {
-  .dropdown-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* Consistent gap between buttons */
-  }
-
-  .sticky-top {
-    padding: 0 1.5vw;
-  }
+.close-modal-btn:hover {
+  background-color: #3f94a7;
 }
+
+.view-full-itinerary-btn:hover {
+  background-color: #3f94a7;
+}
+
+.confirm-modal-btn:hover {
+  background-color: red;
+}
+
 
 /* Toast Notification Styles */
 .custom-toast {
@@ -1326,4 +1337,100 @@ export default {
     transform: scaleX(1);
   }
 }
+
+
+/* <=========== BREAKPOINTS =============> */
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 items per row on medium screens */
+  }
+
+  .sticky-top {
+    padding: 0 3vw;
+  }
+
+  .overlay-text {
+    font-size: 1.2rem;
+  }
+
+  .content h1 {
+    font-size: 6rem;
+  }
+
+  .content h4 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 4rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .carousel-content h1 {
+    font-size: 3rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    /* 1 item per row on small screens */
+  }
+
+  .sticky-top {
+    padding: 0 2vw;
+  }
+
+  .overlay-text {
+    font-size: 1rem;
+  }
+
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content h4 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-content h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-content h4 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .dropdown-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 2x2 grid */
+    gap: 1rem;
+    /* Consistent gap between buttons */
+  }
+} 
+
+
 </style>

@@ -2,6 +2,7 @@
   <div class="homepage">
     <header class="header-container">
       <!-- Fading Background Images -->
+      <div class="gradientoverlay"></div>
       <div class="backgrounds-container">
         <img
           class="background showing"
@@ -48,7 +49,7 @@
         <p class="searchBarSubtext">Discover new destinations and explore the world from your favourite Tiktok videos.</p>
         <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
         <LoadingBar :isLoading="isLoading" v-if="isLoading" />
-        <div v-if="errorMessage">{{ errorMessage }}</div>
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
       </div>
     </header>
 
@@ -178,12 +179,13 @@ export default {
           }
         );
         const data = response.data.openai_response;
+        
         if (data.error)
           throw new Error("Error generating response from OpenAI.");
         this.extractedLocationsState.setLocationInfo(data.location_info);
         this.extractedLocationsState.setRelatedPlaces(data.related_places);
       } catch (error) {
-        this.errorMessage = "Error generating response from OpenAI.";
+        this.errorMessage = "Error generating response from OpenAI. Please try again";
       } finally {
         this.isLoading = false;
       }
@@ -240,6 +242,19 @@ html, body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.gradientoverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Set a slightly darker default */
+  transition: background-color 0.4s ease, transform 0.4s ease;
+  /* Smooth color and scale transition */
+  z-index: 1;
 }
 
 .backgrounds-container {
@@ -329,6 +344,13 @@ p {
     width: 100%; /* Adjust width of the search bar */
     margin: 0 auto; /* Center search bar */
   }
+}
+.error-message {
+  color: white; /* Dark red text color */
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 </style>
