@@ -22,11 +22,11 @@
                 </button>
                 <button class="signup-button" @click="scrollToSignUp">
                     <div class="signup-button-text">
-                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
-                        </div>
-                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
-                        </div>
                         <p>Skip</p>
+                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
+                        </div>
+                        <div style="margin-left: 20px;" id="chevron-arrow-down" class="chevron">
+                        </div>
                     </div>
                 </button>
             </div>
@@ -536,8 +536,14 @@ export default {
                         renderer.setPixelRatio(window.devicePixelRatio); // Add this line
                         renderer.render(scene, camera);
                     }
-
                     animate();
+                    // window.addEventListener('DOMContentLoaded', () => {
+                    //     // Check if the necessary DOM elements are available
+                    //     const gridSection = document.querySelector('.grid-section');
+                    //     if (gridSection) {
+                    //         animate();
+                    //     }
+                    // });
                 },
                 undefined,
                 (error) => {
@@ -661,7 +667,6 @@ export default {
     /* Distribute the buttons evenly */
     align-items: center;
     /* Center buttons vertically */
-    padding: 10px 20px;
     /* Adjust padding as necessary */
     z-index: 9999;
     /* Ensure the buttons are on top */
@@ -677,30 +682,35 @@ export default {
 /* Keep the Sign Up button on the far right */
 .signup-button {
     margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 50px;
 }
 
 .explore-button-text {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    padding: 5px;
+    margin: 0;
+
 }
 
 .signup-button-text {
     display: flex;
     flex-direction: column;
+    right: 2px;
     /* Stack items vertically */
     align-items: center;
     /* Center items horizontally */
     animation: bounce 2s 30;
     color: #a3a7ae;
-    gap: 8px;
+    /* gap: 8px; */
     /* Add space between the chevrons and the text */
     animation: bounce 2s 30;
     color: #a3a7ae;
 }
 
 .signup-button-text p {
-    padding-left: 18px;
-    padding-top: 5px;
     font-size: 1.5rem;
+    rotate: 90deg;
 }
 
 .chevron {
@@ -708,8 +718,9 @@ export default {
         4px solid #a3a7ae;
     border-bottom:
         4px solid #a3a7ae;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
+    right: 11px;
 }
 
 #chevron-arrow-down {
@@ -718,8 +729,8 @@ export default {
 
 .explore-button,
 .signup-button {
-    padding: 10px 20px;
-    font-size: 1.1rem;
+    padding: 0;
+    font-size: 1rem;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.8);
     border: none;
@@ -728,15 +739,6 @@ export default {
     transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-.explore-button:hover {
-    background-color: rgba(63, 148, 167, 1);
-}
-
-.signup-button:hover {
-    background-color: rgba(63, 148, 167, 1);
-    transform: scale(1.05);
-    color: white;
-}
 
 .explore-button-text p {
     width: 0;
@@ -744,11 +746,20 @@ export default {
     /* Ensure the text is not visible until the typewriter effect*/
     border-right: 2px solid white;
     /* The cursor*/
-    font-size: 2rem;
+    font-size: 1.5rem;
     white-space: nowrap;
     /* Keeps the text on a single line */
-    animation: typing 2s forwards, blinking 1.5s step-end infinite;
+    animation: typing 5s forwards infinite, blinking 1.5s step-end infinite;
     ;
+}
+
+@media (min-width: 375px) and (max-width: 567px) {
+    .signup-button {
+        margin-left: auto;
+        margin-right: 20px;
+        margin-top: 100px;
+        top: 100px;
+    }
 }
 
 /* The typing animation */
@@ -1144,6 +1155,7 @@ export default {
         height: 100vh;
         padding: 0 20px;
     }
+
     .left-text {
         font-size: 5.5vw;
         flex: 3;
@@ -1686,11 +1698,13 @@ export default {
         font-weight: bolder;
         margin-left: 0;
     }
+
     .subheading {
         text-align: right;
         display: flex;
         align-items: center;
     }
+
     .circles {
         justify-content: right;
         display: flex;
