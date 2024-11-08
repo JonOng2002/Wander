@@ -7,7 +7,7 @@
                 <!-- Follow Us Section -->
                 <div class="footer-column">
                     <h1 class="wander-logo footer-heading">wander.</h1>
-                    <h9>© 2024 Wander, an SMU project</h9>
+                    <h6>© 2024 Wander, an SMU project</h6>
                 </div>
 
                 <!-- Popular Destinations -->

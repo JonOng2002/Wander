@@ -1,6 +1,6 @@
 <template>
   <div class="generated-itinerary">
-    <AppNavbar class="sticky-top"></AppNavbar>
+  
 
     <!-- Show Overlay.vue when loading -->
     <Overlay v-if="loading" />

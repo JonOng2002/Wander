@@ -233,14 +233,7 @@
     </div>
   </div>
 
-  <div class="popup-container">
-    <div v-if="showPopup" class="popup">
-      <p>Added to itinerary!</p>
-    </div>
-    <div v-if="showRemovePopup" class="popup" style="background-color: #f44336">
-      <p>Removed from itinerary!</p>
-    </div>
-  </div>
+
 </template>
 
 <script>

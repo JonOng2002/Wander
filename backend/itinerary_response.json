@@ -1,205 +1,138 @@
 {
-  "country": "Malaysia",
-  "itinerary_summary": "A delightful 3-day getaway to Cameron Highlands, Malaysia, filled with culinary experiences, breathtaking scenery, and romantic explorations of one of the country's most famous hill stations.",
+  "country": "Canada",
+  "itinerary_summary": "A weekend exploration of Toronto, focusing on nature, wildlife, and beautiful parks, highlighted by visits to iconic landmarks.",
   "day_by_day_itineraries": [
     {
       "day": 1,
       "date": "2024-11-09",
-      "summary": "Arrival and exploration of the local cuisine and attractions in Cameron Highlands.",
+      "summary": "Discover the vibrant city of Toronto, focusing on its stunning parks and nature-oriented activities.",
       "activities": [
         {
           "time": "09:00 AM",
-          "activity_name": "Breakfast at The Coffee College",
+          "activity_name": "Breakfast at First Canadian Place",
           "location": {
-            "name": "The Coffee College",
-            "city": "Cameron Highlands",
+            "name": "First Canadian Place",
+            "city": "Toronto",
             "coordinates": {
-              "latitude": 4.4699605,
-              "longitude": 101.374269
+              "latitude": 43.6480631,
+              "longitude": -79.3799293
             },
-            "place_id": "ChIJ40SMm4lXyjERlNtGTm4G25M",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoUPsPYuVMXBofkoliU5HzcbjdeTE-g2EpIQH32sJ5isBqIuVfpuEYzbT5QJB19wnQa4GBux6NhcqVwPjVkkAu4mtAoz0J45Uya6kSApVHilFTn-SUWM1L0eCLEfHdLVf51e7pySj3gn20HXrvL-rXQNhvpaBLJJ5UKxvaSZ6NcQQz1&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Start your day with a hearty breakfast featuring local dishes and freshly brewed coffee."
+          "description": "Start your day with a delightful breakfast at one of the iconic restaurants in the First Canadian Place, a great way to fuel up before a day of exploration."
         },
         {
-          "time": "11:00 AM",
-          "activity_name": "Visit Boh Tea Plantation",
+          "time": "10:30 AM",
+          "activity_name": "Stroll through High Park",
           "location": {
-            "name": "Boh Tea Plantation",
-            "city": "Cameron Highlands",
+            "name": "High Park",
+            "city": "Toronto",
             "coordinates": {
-              "latitude": 4.474703,
-              "longitude": 101.357851
+              "latitude": 43.6465,
+              "longitude": -79.4633
             },
-            "place_id": "boh-tea-plantation-cameron-highlands-malaysia-474703-101357851",
-            "photo_url": "https://lh3.googleusercontent.com/places/ANXAkqHdM5QD-wAfB3MPg9clYpPA9jnQ59atcvul7ECdrTogE0lRNyD7u35rFEqVBQaQY68fDFJ7GIIklAKxzmHdiXib9YVXFfldTE4=s1600-w800"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Explore the breathtaking views and learn about the tea-making process at this iconic plantation."
+          "description": "Enjoy a leisurely walk in High Park, Toronto's largest public park, featuring beautiful gardens and scenic walking trails."
         },
         {
-          "time": "02:00 PM",
-          "activity_name": "Lunch at The Dining Room, Cameron Highlands Resort",
+          "time": "01:00 PM",
+          "activity_name": "Visit the Royal Ontario Museum",
           "location": {
-            "name": "The Dining Room",
-            "city": "Cameron Highlands",
+            "name": "Royal Ontario Museum",
+            "city": "Toronto",
             "coordinates": {
-              "latitude": 4.487699999999999,
-              "longitude": 101.3784149
+              "latitude": 43.6677097,
+              "longitude": -79.3947771
             },
-            "place_id": "ChIJya6GtzBYyjERwvA1X_mGE-o",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrdFAGFedxyaXB_jri-lbATpj5tEvrjt8MdUF488O9uyDmFOo8DyVUDbVId1Stg58XylibiMOPgmW4T0sjljLg7On7zNi_kYfNgZIExabzes6U_9oQYkWI_U93bJPK57_xtb1fr3RE6Hwk-PbEOPhkG0MLFVE2QzlqOb5A7R5giqz__&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "ChIJE-Xa87o0K4gRkvXFHuE0hMk",
+            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoJupIeQt7qRoDF6qIVf22B4s4zynOPv6qB_1mygO0TppDuklE3_9kfG65lQIrOgO99Sn8ZFLyGDxjR2orB1CUptj6C-d8aVL9ZcNCiD0FVyIo2hstwbg_jJBZt1jFGQZRSM3H5bZ3-jWa5KH5aGdhkUCFymD_XFYMBKcNVvk2rXwP_&key=AIzaSyDxfqXGrK9aFtOUhkLXA0Jj9O89MPo2FsM"
           },
-          "description": "Indulge in a sumptuous lunch amidst the lush greenery of the resort."
+          "description": "Explore the Royal Ontario Museum, known for its natural history exhibits, and discover fascinating wildlife displays."
         },
         {
           "time": "04:00 PM",
-          "activity_name": "Explore the Mossy Forest",
+          "activity_name": "Relax at Toronto Islands",
           "location": {
-            "name": "Mossy Forest",
-            "city": "Cameron Highlands",
+            "name": "Toronto Islands",
+            "city": "Toronto",
             "coordinates": {
-              "latitude": 4.5243623,
-              "longitude": 101.3818728
+              "latitude": 43.6178,
+              "longitude": -79.3768
             },
-            "place_id": "ChIJo9L1sORYyjERRIwZ7lvUuEU",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWoiCBtPan7xNMY637LBRBIFWoJlMOAcp7wCW21oVYrSNrWUtEJgP8A8CQvahV5qBTaWQdl8fWR5tWQoD700VL2gbTNDb30S8dPYVMOaZxStGTlKhkWsdh33RsG4QBALyf41HltTwvSsdfmvp1F-nfkFagZ3aZ9npPYH2oiiDv4_F5y8&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Walk through the enchanted Mossy Forest and enjoy the unique flora and cool climate."
+          "description": "Take a ferry to the Toronto Islands, where you can relax in nature, enjoy views of the city skyline, and take a stroll through scenic pathways."
         }
       ]
     },
     {
       "day": 2,
       "date": "2024-11-10",
-      "summary": "A day filled with local attractions, savoring traditional Malaysian cuisine, and visiting markets.",
+      "summary": "Continue your journey in Toronto while discovering more of the city\u2019s natural beauty and cultural sites.",
       "activities": [
         {
           "time": "09:00 AM",
-          "activity_name": "Breakfast at Aunty John's Cafe",
+          "activity_name": "Breakfast at St. Lawrence Market",
           "location": {
-            "name": "Aunty John's Cafe",
-            "city": "Cameron Highlands",
+            "name": "St. Lawrence Market",
+            "city": "Toronto",
             "coordinates": {
-              "latitude": 4.4759771,
-              "longitude": 101.3807486
+              "latitude": 43.6488,
+              "longitude": -79.3725
             },
-            "place_id": "ChIJNTA_IOdZyjERGYZKtYX1hDg",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpSKYX0BV585TAv5rYM_UCTCJ4TE3ap8c9rL2SxZpQg5kOjWxzPgc94CJtPSOlPaci9ib8qe-TYkMbWqEZvvUHl8rrmiBSYDevTu6xJFGNsLVyZUx2ponQkH7QIFW7Z7_X75sB6qlCfNXdSpCN1gPRvO6BR2RG6LX0xRJJajhFieD2F&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Delight in traditional Malaysian breakfast options at this beloved local cafe."
+          "description": "Start your day with a unique breakfast at the famous St. Lawrence Market, known for its fresh produce and variety of food stalls."
         },
         {
           "time": "11:00 AM",
-          "activity_name": "Visit the Strawberry Farm, Big Red Strawberry Farm",
+          "activity_name": "Explore the Allan Gardens Conservatory",
           "location": {
-            "name": "Big Red Strawberry Farm",
-            "city": "Cameron Highlands",
+            "name": "Allan Gardens Conservatory",
+            "city": "Toronto",
             "coordinates": {
-              "latitude": 4.4954885,
-              "longitude": 101.3866714
+              "latitude": 43.6625,
+              "longitude": -79.3736
             },
-            "place_id": "ChIJq3UYLkpYyjEROxx6pDrQEaw",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrOSFStLNRqXHxjoLwiC8Wc1jP9AOHb6QRMMtxjOnPwcJHiC1KD2q9GdJoUmgHH1VivmxCD4Jt8N4IMjv5H5hiqxQ9xXOv3OBcjVQ74boXzDB0Nt62xJ_LhZQ402iHPUkdLcr8cyTuaHdUnFSSL3jHz4711njtC4NFYRdaX2zIRe6OS&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Pick your own strawberries and sample delicious strawberry treats in this family-friendly farm."
+          "description": "Visit Allan Gardens Conservatory, a beautiful botanic garden featuring tropical plants and a tranquil setting amidst the city."
         },
         {
           "time": "01:00 PM",
-          "activity_name": "Lunch at the Vegetable Market",
+          "activity_name": "Visit the Toronto Botanical Garden",
           "location": {
-            "name": "Vegetable Market",
-            "city": "Cameron Highlands",
+            "name": "Toronto Botanical Garden",
+            "city": "Toronto",
             "coordinates": {
-              "latitude": 4.5040862,
-              "longitude": 101.4069267
+              "latitude": 43.7116,
+              "longitude": -79.3763
             },
-            "place_id": "ChIJIzPbN6NZyjERl8u26qltNf0",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpG4H4UFhA7G4T9fyg0ZO2S42olT7IxliZkKLyjqU1ZwQSxE9rZqQQaH_FpuCWu0jS1_5BXcM4QlsKeN2rxTBRuXa4bk4nQHr72pk5W9L7CBkdvriUAJrKuD0ZJt89PCXvqBwaSBCHgxvJCNhJmnqLk7MmLCZzJZExt4JChwgpAKNGk&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Experience the local flavors by tasting satay and fresh produce from local vendors."
+          "description": "Explore the lush landscapes at the Toronto Botanical Garden, showcasing various themed gardens and a wealth of biodiversity."
         },
         {
           "time": "03:00 PM",
-          "activity_name": "Visit Tanah Rata Town",
+          "activity_name": "Visit the Distillery District",
           "location": {
-            "name": "Tanah Rata Town",
-            "city": "Cameron Highlands",
+            "name": "Distillery District",
+            "city": "Toronto",
             "coordinates": {
-              "latitude": 4.470611,
-              "longitude": 101.376639
+              "latitude": 43.6502,
+              "longitude": -79.3603
             },
-            "place_id": "ChIJSQTy4oRXyjERnWj12CUE5Hk",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWpLQvTkvvNWTJtX5BrjdXhoKhEjhyWeuIlaDDo4zDaVb3QlTyDH3-gVBG0fYTEHgMqjoyxXIlllSBTMLgK3pzJOLV_yWjYEeqvPaz_1pbs_IqTPOHaTh1-jRyUxKELs0H-MM4T-wWGs1I7gIqdTCsSqkeJ0a0Br1Nu0ZXWK2num2EnA&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
+            "place_id": "",
+            "photo_url": ""
           },
-          "description": "Stroll through Tanah Rata, visit local shops and cafes, and embrace the town's charm."
-        }
-      ]
-    },
-    {
-      "day": 3,
-      "date": "2024-11-11",
-      "summary": "Wrap up your adventure with more culinary highlights and scenic views before departure.",
-      "activities": [
-        {
-          "time": "09:00 AM",
-          "activity_name": "Breakfast at T Cafe",
-          "location": {
-            "name": "T Cafe",
-            "city": "Cameron Highlands",
-            "coordinates": {
-              "latitude": 4.4708645,
-              "longitude": 101.378887
-            },
-            "place_id": "ChIJ2_bfFyhYyjERbqINHyIFbvY",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWrPKDdqlluOwxH7SlmTkVwzA-0FFn7HHiGcY7uEVzu4PqZg3QS1M5IAEeAUfKiz86xCBJlfJBrvM1ZAKoRokT_TAONtK6NLcXa87t_HqiZs08J6zvhGsc3abiR4OKsscV2X84ddwE2vYPidaA0d4rvu5NGw43rTKWlaOIlFbOFp92GY&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Enjoy a delicious breakfast with a stunning view of the hills."
-        },
-        {
-          "time": "11:00 AM",
-          "activity_name": "Visit the Time Tunner Museum",
-          "location": {
-            "name": "Time Tunnel Museum",
-            "city": "Cameron Highlands",
-            "coordinates": {
-              "latitude": 4.4971958,
-              "longitude": 101.3951569
-            },
-            "place_id": "ChIJ9c4NvLZZyjERUwAtLYrmJGI",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqi2GOE8ptrORr7Jynp0wgfEQzUalcAs8A_Pg3KBZVLbvUIRUn4Wm5vqnIho_vXH3XrQrvIMhMM_lQgHP2Bj5LZJzTqfCsP7FDfb-rMizkEw5R6y4VbBw98JoEs0ojNQoCM8OI2ynagWShu5LVgHUr_uT4WTElYjY6hUuEQbX5tkTnE&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Discover the history of Cameron Highlands through unique exhibits at this engaging museum."
-        },
-        {
-          "time": "01:00 PM",
-          "activity_name": "Lunch at the Cameron Valley Tea House 2",
-          "location": {
-            "name": "Cameron Valley Tea House 2",
-            "city": "Cameron Highlands",
-            "coordinates": {
-              "latitude": 4.457422,
-              "longitude": 101.3661076
-            },
-            "place_id": "ChIJtdU-uodXyjERuzijzMXE7jE",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWq1F-vNQhE9g4_TAmP7uDPImtwr4PA4CqbINAWak-G53_YlqPkByIEoaVF0gCbJ_dR_AcCm-cMVkHWMhhkt1jxJuVKp4bgoFbalZxgCp42MTxQFZgnX38EY2zh272UligXgoCzmhc7oDnmGsVQZbh6jgVW-_2TMe8hU44HM9yyHdKE&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Savor more tea and snacks while overlooking the beautiful tea gardens."
-        },
-        {
-          "time": "03:00 PM",
-          "activity_name": "Shopping for Souvenirs at Brinchang Night Market",
-          "location": {
-            "name": "Brinchang Night Market",
-            "city": "Cameron Highlands",
-            "coordinates": {
-              "latitude": 4.487383299999999,
-              "longitude": 101.373392
-            },
-            "place_id": "ChIJ601waQxZyjERlhu8_dqt4wc",
-            "photo_url": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdDdOWqLsL2-7zcy-dRhmnD9zatsfGXCLSWhlr5RWKOjO3y8ja_nT9rz7y3HHJtgF9iPovVfZQyTg164pLOATRkVWrXHf7S9Yumk-4miJIapyVQ0yBLNEVykyjZgJ1CKuuargoMUdCLzizlEonyFM0JtBjriZx8EfZt-Qrwy-poZsk75064T&key=AIzaSyCN3VJAiz0Y5R9hMSC2FxcM1Mm_7DVN0VM"
-          },
-          "description": "Pick up souvenirs and enjoy local street food at one of the local markets."
+          "description": "Conclude your trip with a visit to the Distillery District, where you can wander through historic brick buildings, enjoy art galleries, and relax at outdoor cafes."
         }
       ]
     }

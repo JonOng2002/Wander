@@ -58,7 +58,7 @@ const routes = [
     path: "/country/:country", // Ensure the param is named 'country'
     name: "DestinationDetails",
     component: DestinationDetails,
-    props: true, // Pass route params as props to the component
+    props: false, // Pass route params as props to the component
   },
   { path: "/locationdate", name: "LocationDate", component: LocationDate },
   { path: "/calendar", name: "CalendarPage", component: CalendarPage },
