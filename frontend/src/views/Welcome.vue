@@ -649,7 +649,7 @@ export default {
 .scroll-buttons {
     position: absolute;
     /* Make the buttons overlay the three-container */
-    bottom: 170px;
+    bottom: 150px;
     /* Align to the bottom of the three-container */
     left: 0;
     right: 0;
@@ -682,16 +682,19 @@ export default {
 
 .signup-button-text {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: center;
+    /* Center items horizontally */
     animation: bounce 2s 30;
     color: #a3a7ae;
-    gap: 8px; /* Add space between the chevrons and the text */
+    gap: 8px;
+    /* Add space between the chevrons and the text */
     animation: bounce 2s 30;
     color: #a3a7ae;
 }
 
-.signup-button-text p{
+.signup-button-text p {
     padding-left: 18px;
     padding-top: 5px;
     font-size: 1.5rem;
@@ -820,6 +823,24 @@ export default {
         top: 0;
         margin-bottom: 150px;
     }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
+    }
 }
 
 @media (min-width: 1200px) {
@@ -840,6 +861,24 @@ export default {
         height: 80vh;
         overflow: visible;
     }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
+    }
 }
 
 @media (min-width: 768px) and (max-width: 921px) {
@@ -849,6 +888,24 @@ export default {
         width: 100vw;
         height: 85vh;
         overflow: visible;
+    }
+
+    .scroll-buttons {
+        position: absolute;
+        /* Make the buttons overlay the three-container */
+        bottom: -5px;
+        /* Align to the bottom of the three-container */
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        /* Distribute the buttons evenly */
+        align-items: center;
+        /* Center buttons vertically */
+        padding: 10px 20px;
+        /* Adjust padding as necessary */
+        z-index: 9999;
+        /* Ensure the buttons are on top */
     }
 }
 
