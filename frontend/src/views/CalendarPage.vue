@@ -383,6 +383,9 @@ onMounted(async () => {
   .btn-primary {
     width: auto;
   }
+  .action-buttons{
+    justify-content: center;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrapper {
@@ -398,20 +401,6 @@ onMounted(async () => {
   .action-buttons{
     justify-content: center;
   }
-  .btn-primary{
-    background: linear-gradient(90deg, #3f94a7, #6fb3d2); /* Gradient colors */
-  color: white;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 25px; /* Rounded edges */
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-left: 1rem; /* Space between buttons */
-  height: 50px;
-  flex-grow: 1; /* Allow the button to expand to available space */
-  max-width: 400px;
-  }
+
 }
 </style>
