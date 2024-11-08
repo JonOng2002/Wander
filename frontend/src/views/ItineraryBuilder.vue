@@ -24,7 +24,7 @@
     <div class="secondary_header">
       <div class="secondary_content">
         <div class="header-with-tooltip">
-          <h2>Manage Your Itinerary<div class="tooltip-container ">
+          <h2>Manage Your Itinerary<div class="tooltip-container tt1">
             <span class="question-mark" aria-label="Tooltip">
               <font-awesome-icon :icon="['fas', 'circle-info']" class="custom-icon" />
               <span class="tooltip-text">
@@ -147,14 +147,14 @@ import { getAuth } from "firebase/auth";
 import { useRouter } from "vue-router";
 import { gsap } from "gsap";
 import StarRating from "@/components/StarRating.vue";
-import { autoAnimate } from "@formkit/auto-animate/vue"; // Ensure auto-animate is registered
+import { vAutoAnimate } from "@formkit/auto-animate/vue"; // Ensure auto-animate is registered
 
 
 export default {
   name: "ItineraryBuilder",
   components: { StarRating },
   directives: {
-    autoAnimate,
+    vAutoAnimate,
   },
   setup() {
     const itineraryPlaces = ref([]); // Itinerary places from Firebase
