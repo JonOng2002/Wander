@@ -23,14 +23,15 @@
           <button @click="goBack" class="dropdown-btn">Back to Destinations</button>
         </div>
 
-        <div class="dropdown">
+        <div class="filter-button">
           <!-- Styled Dropdown Filter Menu -->
-          <select v-model="sortOption" @change="updateSortCriteria" class="dropdown-btn form-select me-2" aria-label="Sort Attractions">
+          <select v-model="sortOption" @change="updateSortCriteria" class="custom-select  form-select me-2" aria-label="Sort Attractions">
             <option value="popularity-desc">Sort By Popularity: High to Low (Default)</option>
             <option value="popularity-asc">Sort By Popularity: Low to High</option>
             <option value="rating-desc">Sort By Rating: High to Low</option>
             <option value="rating-asc">Sort By Rating: Low to High</option>
           </select>
+          <span class="arrow-down">&#9662;</span> <!-- Custom arrow icon -->
         </div>
       </div>
     </div>
@@ -842,6 +843,145 @@ export default {
 </script>
 
 <style scoped>
+/* <====================== secondary header ===================> */
+.secondary_header {
+  position: relative;
+  padding: 1rem 0;
+  margin-top: 2.4rem;
+  /* Add spacing above the header */
+  margin-bottom: 4rem;
+  /* Add spacing below the header */
+  text-align: left;
+  /* Center align the text */
+}
+
+.secondary_content {
+  padding: 0 60px;
+}
+
+.secondary_content h5 {
+  color: rgb(166, 163, 163);
+  margin-bottom: 1rem;
+}
+
+/* Container to align dropdowns side by side */
+.dropdown-container {
+  display: flex;
+  flex-direction: row; /* Horizontal layout */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center; /* Vertically center items */
+  gap: 1rem; /* Space between buttons */
+  margin-top: 1rem;
+  margin-left: 60px;
+  margin-right: 40px;
+}
+
+.filter-button {
+  position: relative;
+  display: inline-block;
+  width: auto; /* Set to auto to reduce width */
+  transition: background-color 0.4s ease;
+}
+
+.filter-button:hover {
+  background-color: #3f94a7;
+}
+
+.custom-select {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 1rem;
+  padding-right: 2.5rem; /* Add space for the custom arrow */
+  border: none;
+  background-color: #222;
+  color: white;
+  font-size: 1rem;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.arrow-down {
+    position: absolute;
+  top: 50%;
+  right: 1rem; /* Adjust the position to match your design */
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: white;
+  pointer-events: none; /* Make sure the arrow doesn't interfere with clicks */
+}
+
+/* Style the dropdown button */
+.dropdown-btn {
+  background-color: #222;
+  /* Dark background color */
+  color: #fff;
+  /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 16px;
+}
+
+/* Change button color on hover */
+.dropdown-btn:hover {
+  background-color:#3f94a7;
+}
+
+/* Dropdown content styling */
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: #222;
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  padding: 10px 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  transform: translateY(-10px);
+}
+
+.dropdown-content:hover {
+  background-color: #3f94a7
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown content links */
+.dropdown-content a {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+/* Change background color on hover */
+.dropdown-content a:hover {
+  background-color:#3f94a7;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* ====================== Header Card ====================== */
 .header-card {
   width: 100%;
@@ -913,60 +1053,6 @@ export default {
   z-index: 100;
 }
 
-/* Style the dropdown button */
-.dropdown-btn {
-  background-color: #222;
-  color: #fff;
-  padding: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-btn:hover {
-  background-color: #555;
-}
-
-/* Dropdown content styling */
-.dropdown-content {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  background-color: #222;
-  min-width: 200px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  z-index: 9999;
-  top: 100%;
-  left: 0;
-  padding: 10px 0;
-  transition: opacity 0.3s ease, transform 0.5s ease;
-  transform: translateY(-10px);
-}
-
-.dropdown:hover .dropdown-content {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-content a {
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-content a:hover {
-  background-color: #333;
-}
 
 /* ====================== Primary Styles ====================== */
 .destination-details {
@@ -1073,6 +1159,8 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   padding: 2rem;
+  /* Padding around the grid */
+  margin-bottom: 50px;
 }
 
 .card-container {
