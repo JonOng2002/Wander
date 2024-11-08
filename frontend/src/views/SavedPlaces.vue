@@ -220,7 +220,7 @@
   >
     <div class="modal-content">
       <h3>Are you sure you want to delete all saved places?</h3>
-      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2">
+      <button @click="confirmDeleteAllPlaces" type="button" class="btn mb-2 confirm-modal-btn">
         Yes, Delete All
       </button>
       <button
@@ -798,6 +798,11 @@ export default {
   position: relative;
   display: inline-block;
   width: auto; /* Set to auto to reduce width */
+  transition: background-color 0.4s ease;
+}
+
+.filter-button:hover {
+  background-color: #3f94a7;
 }
 
 .custom-select {
@@ -866,7 +871,7 @@ export default {
 
 /* Change button color on hover */
 .dropdown-btn:hover {
-  background-color: #555;
+  background-color:#3f94a7;
 }
 
 /* Dropdown content styling */
@@ -896,7 +901,7 @@ export default {
 
 /* Change background color on hover */
 .dropdown-content a:hover {
-  background-color: #333;
+  background-color: #17a2b8;
 }
 
 /* Show dropdown on hover */
@@ -1150,7 +1155,7 @@ export default {
 }
 
 .confirm-modal-btn {
-  background-color: #ff4d4d; /* Red color similar to the second image */
+  background-color: black; /* Red color similar to the second image */
   color: white;
   padding: 0.6rem 1.5rem;
   font-size: 1rem;
@@ -1159,11 +1164,24 @@ export default {
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, ease;
+}
+
+.view-full-itinerary-btn {
+  background-color: black; /* Blue color */
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 1s, ease;
 }
 
 .close-modal-btn {
-  background-color: #1e90ff; /* Blue color */
+  background-color: black; /* Blue color */
   color: white;
   padding: 0.6rem 1.5rem;
   font-size: 1rem;
@@ -1171,7 +1189,19 @@ export default {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 1s, ease;
+}
+
+.close-modal-btn:hover {
+  background-color: #3f94a7;
+}
+
+.view-full-itinerary-btn:hover {
+  background-color: #3f94a7;
+}
+
+.confirm-modal-btn:hover {
+  background-color: red;
 }
 
 

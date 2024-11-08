@@ -814,6 +814,10 @@ export default {
 </script>
 
 <style scoped>
+.no-itineraries-message {
+    color: #666;
+}
+
 /* ******************** header  container ******************* */
 /* General styling for grid items */
 .container-fluid {
@@ -1060,6 +1064,7 @@ export default {
     margin-bottom: 50px;
     width: 100%;
     max-width: 1600px;
+    z-index: 1;
     /* Increased max width */
 }
 

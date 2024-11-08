@@ -488,7 +488,7 @@ export default {
 }
 
 .dropdown-btn:hover {
-  background-color: #555;
+  background-color:#17a2b8;
 }
 
 /* <=========== CARD GRID LAYOUT =============> */
@@ -547,7 +547,8 @@ export default {
 .empty-message {
   text-align: center;
   margin-top: 2rem;
-  font-size: 1.5rem;
+  margin-bottom: 65px;
+  font-size: 1rem;
   color: #666;
 }
 
