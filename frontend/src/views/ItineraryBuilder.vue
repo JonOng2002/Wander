@@ -44,12 +44,22 @@
           </button>
         </div>
         <div class="dropdown">
-          <button @click="generateItinerary" class="dropdown-btn">
-            Build Your Itinerary
-          </button>
+          <button
+  @click="generateItinerary"
+  class="dropdown-btn"
+  :disabled="!canGenerateItinerary"
+>
+  Build Your Itinerary
+</button>
         </div>
       </div>
+      <div v-if="itineraryPlaces.length > 0 && !canGenerateItinerary" class="warning-message">
+        <p style="font-size:x-large">You need to have places of the same country to generate an itinerary.</p>
+      </div>
     </div>
+
+    <!-- Warning Message -->
+    
 
     <!-- Loading and Empty States -->
     <div v-if="loading" class="empty-message">Loading itinerary...</div>
@@ -136,7 +146,7 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick } from "vue"; // Removed 'watch' and added 'nextTick'
+import { ref, onMounted, nextTick, computed } from "vue"; // Removed 'watch' and added 'nextTick'
 import {
   getFirestore,
   doc,
@@ -170,7 +180,16 @@ export default {
     const toastType = ref(""); // 'add', 'remove', 'error'
 
     let toastTimeout = null; // Keep track of the toast timeout
-    let progressBarAnimation = null; // Keep track of the progress bar animation
+    let progressBarAnimation = null; // Keep track of the progress bar 
+    
+    const canGenerateItinerary = computed(() => {
+      if (itineraryPlaces.value.length === 0) {
+        return false;
+      }
+      const countries = itineraryPlaces.value.map((place) => place.country);
+      const uniqueCountries = new Set(countries);
+      return uniqueCountries.size === 1;
+    });
 
     // Fetch itinerary places from Firebase when component mounts
     onMounted(async () => {
@@ -377,6 +396,7 @@ export default {
       progressBar,
       showToast,
       closeToast,
+      canGenerateItinerary,
     };
   },
 };
@@ -397,8 +417,12 @@ export default {
   object-fit: cover; /* Ensures the image covers the container */
   object-position: center; /* Centers the image */
 }
-
-
+.warning-message {
+  color: red;
+  margin-top: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+}
 
 
 .carousel-inner,
@@ -455,7 +479,7 @@ export default {
   position: relative;
   padding: 1rem 0;
   margin-top: 2.4rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   text-align: left;
 }
 
@@ -491,6 +515,19 @@ export default {
   background-color:#17a2b8;
 }
 
+/* Disabled state for the button */
+.dropdown-btn:disabled {
+  background-color: #ccc; /* Light gray background */
+  color: #666;            /* Dark gray text */
+  cursor: not-allowed;    /* Change cursor to indicate disabled state */
+  opacity: 0.6;           /* Reduce opacity */
+}
+
+/* Prevent hover effects on disabled buttons */
+.dropdown-btn:disabled:hover {
+  background-color: #ccc;
+}
+
 /* <=========== CARD GRID LAYOUT =============> */
 
 .card-grid {
@@ -498,8 +535,8 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   row-gap: 4rem;
-  padding: 2rem;
-  margin: 50px;
+  padding: 0 2rem 2rem 2rem;
+  margin: 0 50px 0 0 ;
 }
 
 .transition-wrapper {

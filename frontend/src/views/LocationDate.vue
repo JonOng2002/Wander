@@ -517,7 +517,7 @@ onBeforeUnmount(() => {
   .image-card {
     width: 100%;
     /* Makes image-card take full width */
-    max-width: 500px;
+
     /* Optional: restricts width to avoid excessive stretching */
     height: 40vh;
     /* Adjust height to fit smaller screens */
@@ -548,7 +548,7 @@ onBeforeUnmount(() => {
 
   .form-section {
     padding: 1rem 2rem;
-    text-align: center;
+
   }
 
   .trip-options,

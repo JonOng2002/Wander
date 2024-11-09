@@ -186,7 +186,9 @@
                             <img src="../assets/about-scroll/scroll-7.jpeg" alt="Ocean thumbnail 3" />
                         </div>
                     </div>
-                    <h2 class="subheading-text">choose <span style="font-size: larger; font-family: Lobster Two; color: white; background-color: #3f94a7;">wander</span></h2>
+                    <h2 class="subheading-text">choose <span
+                            style="font-size: larger; font-family: Lobster Two; color: white; background-color: #3f94a7;">wander</span>
+                    </h2>
                 </div>
             </div>
         </div>
@@ -224,6 +226,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ColorManagement } from 'three';
+import { nextTick } from 'vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -327,23 +330,26 @@ export default {
                 }
             });
 
-            if (document.querySelector(".grid-section")) {
-                gridTl.add("start")
-                    .from(".grid-layout", {
-                        ease: "power1",
-                        scale: 3
-                    }, "start")
-                    .from(".column-1 .grid-image", {
-                        duration: 0.4,
-                        xPercent: i => -((i + 1) * 40 + i * 100),
-                        yPercent: i => (i + 1) * 40 + i * 100
-                    }, "start")
-                    .from(".column-3 .grid-image", {
-                        duration: 0.4,
-                        xPercent: i => (i + 1) * 40 + i * 100,
-                        yPercent: i => (i + 1) * 40 + i * 100
-                    }, "start");
-            }
+            nextTick(() => {
+                if (document.querySelector(".grid-section")) {
+                    gridTl.add("start")
+                        .from(".grid-layout", {
+                            ease: "power1",
+                            scale: 3
+                        }, "start")
+                        .from(".column-1 .grid-image", {
+                            duration: 0.4,
+                            xPercent: i => -((i + 1) * 40 + i * 100),
+                            yPercent: i => (i + 1) * 40 + i * 100
+                        }, "start")
+                        .from(".column-3 .grid-image", {
+                            duration: 0.4,
+                            xPercent: i => (i + 1) * 40 + i * 100,
+                            yPercent: i => (i + 1) * 40 + i * 100
+                        }, "start");
+                }
+            })
+
 
             // Parallax effect for the parallax section
             gsap.from(".parallax-section", {
@@ -591,7 +597,68 @@ export default {
 }
 
 
+
+@media (min-width: 768px) and (max-width: 921px) {
+    .main-container-1 #brand {
+        font-size: 95x !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .main-container-1 #brand {
+        font-size: 70px !important;
+    }
+}
+
+
+@media(max-width: 575px) and (min-width: 0px) {
+    .main-container-1 #brand {
+        font-size: 50px !important;
+    }
+}
+
+@media(max-width: 575px) and (min-width: 0px) {
+    .three-container {
+        width: 100vw;
+        height: 70vh;
+        overflow: hidden;
+        top: 0;
+    }
+}
+
+
 @media (min-width: 992px) and (max-width: 1200px) {
+    .three-container {
+        width: 100vw;
+        height: 100vh;
+        /* Increase the height to make the globe bigger */
+        overflow: hidden;
+        top: 0;
+    }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .three-container {
+        width: 100vw;
+        height: 100vh;
+        /* Increase the height to make the globe bigger */
+        overflow: hidden;
+        top: 0;
+    }
+}
+
+@media (max-width:576px) {
+    .three-container {
+        width: 100vw;
+        height: 70vh;
+        overflow: hidden;
+        top: 0;
+        margin-bottom: 150px;
+    }
+}
+
+@media (min-width: 1200px) {
     .three-container {
         width: 100vw;
         height: 100vh;
@@ -802,6 +869,34 @@ export default {
     object-fit: contain;
 }
 
+@media (min-width:375px) and (max-width: 575px) {
+    .container {
+        flex-direction: column;
+        width: 100vw;
+        margin-bottom: 60px;
+        background-color: #000000;
+        color: white;
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        padding: 0 20px;
+    }
+
+    .left-text {
+        font-size: 5.5vw;
+        flex: 3;
+        margin-top: 100px;
+        margin-bottom: 90px;
+    }
+
+    .right-text {
+        font-size: 3vw;
+        margin-bottom: 100px;
+        padding-bottom: 100px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
 
 @media (min-width: 767px) and (max-width: 991px) {
 
@@ -850,12 +945,13 @@ export default {
     .left-text {
         font-size: 8vw;
         flex: 3;
-        margin-bottom: 50px;
-        padding-top: 0px
+        margin-bottom: 60px;
+        padding-top: 0px;
+        line-height: 1;
     }
 
     .right-text {
-        font-size: 5vw;
+        font-size: 3vw;
         padding-bottom: 100px;
         padding-left: 20px;
         padding-right: 20px;
@@ -906,6 +1002,9 @@ export default {
     padding-right: 50px;
 }
 
+
+
+
 .image-section {
     flex: 1;
     border-radius: 20px;
@@ -922,6 +1021,12 @@ export default {
     flex: 1;
     padding-left: 80px;
 }
+
+.text-section-2 {
+    flex: 1;
+    padding-right: 80px;
+}
+
 
 .divider {
     width: 100%;
@@ -941,9 +1046,61 @@ export default {
     font-size: 1rem;
 }
 
+@media (min-width: 375px) and (max-width: 767px) {
+    .project-container {
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .text-section {
+        padding-left: 0;
+        padding-top: 20px;
+    }
+
+    .image-section {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .image-section video {
+        width: 100%;
+        height: auto;
+    }
+
+    .project-number {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media(max-width:575px) {
+    .wander-container h1 {
+        font-size: 2rem;
+        line-height: 1;
+        line-wrap: wrap;
+        text-align: center;
+
+        span.typed-text {
+            color: #3f94a7;
+        }
+    }
+
+    .blinking-cursor {
+        font-size: 2rem;
+        animation: 1s blink step-end infinite;
+    }
+}
+
 @media (min-width: 576px) and (max-width: 766px) {
     .wander-container h1 {
-        font-size: 1.5rem;
+        margin-top: 1px;
+        font-size: 1.8rem;
         line-height: 1;
 
         span.typed-text {
@@ -959,7 +1116,7 @@ export default {
 
 @media (min-width: 767px) and (max-width: 991px) {
     .wander-container h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
         line-height: 1;
 
         span.typed-text {
@@ -977,9 +1134,9 @@ export default {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 992px) {
     h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: normal;
 
         span.typed-text {
@@ -1167,6 +1324,7 @@ export default {
     font-family: Arial, sans-serif;
 }
 
+
 .headline h1 {
     font-size: 2.5rem;
     font-weight: bold;
@@ -1224,5 +1382,59 @@ export default {
     font-size: 5rem;
     font-weight: bold;
     margin: 0;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .subheading {
+        justify-content: flex-end;
+    }
+
+    .circle {
+        width: 35px;
+        height: 35px;
+    }
+
+    .subheading-text {
+        font-size: 3rem;
+    }
+}
+
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .circle {
+        width: 30px;
+        height: 30px;
+    }
+
+    .subheading-text {
+        font-size: 2.5rem;
+        font-weight: bolder;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 575px) {
+    .circle {
+        width: 25px;
+        height: 25px;
+        justify-content: right;
+    }
+
+    .subheading-text {
+        font-size: 2.5rem;
+        font-weight: bolder;
+        margin-left: 0;
+    }
+
+    .subheading {
+        text-align: right;
+        display: flex;
+        align-items: center;
+    }
+
+    .circles {
+        justify-content: right;
+        display: flex;
+        margin-right: 0;
+    }
 }
 </style>

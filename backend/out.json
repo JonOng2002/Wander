@@ -1,78 +1,72 @@
 {
   "location_info": {
-    "place_name": "Tokyo",
+    "place_name": "Shibuya",
     "country": "Japan",
     "city": "Tokyo",
-    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF1CuCtTFxqFDoOfUnj-P11Bm_ifmDw1s1Nlt-hRGO4I8MbFJb_ykDmHkcLWAf9Ey-HE1efeoHpP6oZzKDOywEktfMvopE3Msk=s1600-w800",
+    "place_png": "https://lh3.googleusercontent.com/places/ANXAkqGm6EZm5impV27GU0B4AdTXM0rQ0YmP9iDP7Fh5qB0cp3QmZXAXhEWj9IBq4IfJ4JPsCzW9jj62Y4Hfsnl6XpNuBHxR63QPYZI=s1600-w600",
     "coordinates": {
-      "latitude": 35.6764225,
-      "longitude": 139.650027
+      "latitude": 35.6619707,
+      "longitude": 139.703795
     },
     "activities": [
-      "Explore the bustling streets of Shibuya",
-      "Visit the historic Senso-ji Temple",
-      "Marvel at the views from Tokyo Tower",
-      "Experience the tranquility of Ueno Park",
-      "Shop in the fashionable district of Harajuku",
-      "Enjoy sushi at Tsukiji Outer Market"
+      "Shopping in Shibuya 109",
+      "Visiting the famous Shibuya Crossing",
+      "Exploring the vibrant nightlife"
     ],
-    "location_summary": "Tokyo, Japan's capital, is a vibrant metropolis that blends tradition with modernity. It is famous for its eclectic neighborhoods, historical landmarks, and advanced technology.",
-    "vicinity": "Tokyo, Japan"
+    "location_summary": "Shibuya is a bustling district in Tokyo known for its iconic crossroads, shopping, and youth culture.",
+    "vicinity": "Shibuya City"
   },
   "related_places": [
     {
-      "place_name": "Kyoto",
+      "place_name": "Harajuku",
       "country": "Japan",
-      "city": "Kyoto",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqFhUb_YENj1ybGqMVzejr6hQGN-s8Yp8uAwevQBmgJupIkKz1KQXwkeXTdnLEVJvIQ_OK84H8Y_N0WrOx3Lq8uwKRaZBVeVkHg=s1600-w800",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqH4RDYF0vcIyjhFWyt7Vlzn4q7eRLNLR_1BQg0quJIMuwQb1y9J_J9tWHtiyURl7IKHbDz2F__r7NWfg5uW8qeGZV4ccHXg35M=s1600-w800",
       "coordinates": {
-        "latitude": 35.011564,
-        "longitude": 135.7681489
+        "latitude": 35.6699682,
+        "longitude": 139.709008
       },
       "activities": [
-        "Visit Kinkaku-ji (Golden Pavilion)",
-        "Explore the traditional Gion district",
-        "Walk through Fushimi Inari Taisha shrine",
-        "Discover ancient temples and gardens"
+        "Shopping on Takeshita Street",
+        "Visiting Meiji Shrine",
+        "Exploring fashion boutiques"
       ],
-      "location_summary": "Kyoto is known for its classical Buddhist temples, as well as gardens, imperial palaces, Shinto shrines, and traditional wooden houses.",
-      "vicinity": "Kyoto"
+      "location_summary": "Harajuku is famous for its colorful street fashion and youth culture, making it a hotspot for trendy shops and unique cafes.",
+      "vicinity": "Jingumae"
     },
     {
-      "place_name": "Osaka",
+      "place_name": "Akihabara",
       "country": "Japan",
-      "city": "Osaka",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqG_OA7RzCh0dKVNuw9BRSbZt8QABQn07tkCi_ufZcgrQ4KAN8xVod5p1xJ6L4L25gXZA-YtlNOh15-LkP9-hDsV7ZbkJDD9ot0=s1600-w711",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqF1CuCtTFxqFDoOfUnj-P11Bm_ifmDw1s1Nlt-hRGO4I8MbFJb_ykDmHkcLWAf9Ey-HE1efeoHpP6oZzKDOywEktfMvopE3Msk=s1600-w800",
       "coordinates": {
-        "latitude": 34.6937249,
-        "longitude": 135.5022535
+        "latitude": 35.6996473,
+        "longitude": 139.7713703
       },
       "activities": [
-        "Visit Osaka Castle",
-        "Enjoy street food at Dotonbori",
-        "Aquarium of Osaka",
-        "Shop at Shinsaibashi shopping district"
+        "Shopping for electronics",
+        "Exploring anime and manga shops",
+        "Visiting themed cafes"
       ],
-      "location_summary": "Osaka is known for modern architecture, nightlife, and hearty street food. It's a major economic hub and offers a vibrant urban experience.",
-      "vicinity": "Osaka"
+      "location_summary": "Akihabara, known as the electronics district of Tokyo, is a paradise for tech lovers and anime fans alike.",
+      "vicinity": "Tokyo, Japan"
     },
     {
-      "place_name": "Nara",
+      "place_name": "Asakusa",
       "country": "Japan",
-      "city": "Nara",
-      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqE7CGTelnYgPqBafHNng4ywu1G4q8HoUVY9KaZV57gtuvY3mDezBDER7BCo9Yn4XWBbrZ8UK0k1bA6_izoznVg4CZn2-ctF2lE=s1600-w800",
+      "city": "Tokyo",
+      "place_png": "https://lh3.googleusercontent.com/places/ANXAkqEtbhd-J0oEHQ3R_Fn8VuCeBwiq68RbBSDBiOUa2YjqfQJxj2m3r8fU7abW70yZ3BPPkAJfMezXS2t8dNf9IPcdH5I9LZtCDsw=s1600-w800",
       "coordinates": {
-        "latitude": 34.685109,
-        "longitude": 135.8048019
+        "latitude": 35.7185858,
+        "longitude": 139.7958849
       },
       "activities": [
-        "Explore Nara Park with free-roaming deer",
-        "Visit Todai-ji Temple and see the Great Buddha",
-        "Wander through historic streets",
-        "Experience traditional tea ceremonies"
+        "Visiting Senso-ji Temple",
+        "Exploring street food stalls",
+        "Shopping for souvenirs"
       ],
-      "location_summary": "Nara is famous for its ancient temples and friendly deer, offering a peaceful atmosphere and a glimpse into Japan's historical roots.",
-      "vicinity": "Nara"
+      "location_summary": "Asakusa is known for its traditional atmosphere, featuring ancient temples and vibrant street markets.",
+      "vicinity": "Asakusa"
     }
   ]
 }

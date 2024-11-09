@@ -126,7 +126,7 @@ export default {
         console.log("User signed out");
         this.displayName = ""; // Clear the display name
         this.email = ""; // Clear the email
-        this.$router.push("/login"); // Redirect to the main page
+        this.$router.push("/log-in"); // Redirect to the main page
       } catch (error) {
         console.error("Error signing out:", error);
       }

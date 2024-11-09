@@ -49,7 +49,7 @@
         <p class="searchBarSubtext">Discover new destinations and explore the world from your favourite Tiktok videos.</p>
         <SearchBar :disabled="isLoading" @submit-Link="handleLinkSubmit" />
         <LoadingBar :isLoading="isLoading" v-if="isLoading" />
-        <div v-if="errorMessage">{{ errorMessage }}</div>
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
       </div>
     </header>
 
@@ -185,7 +185,7 @@ export default {
         this.extractedLocationsState.setLocationInfo(data.location_info);
         this.extractedLocationsState.setRelatedPlaces(data.related_places);
       } catch (error) {
-        this.errorMessage = "Error generating response from OpenAI.";
+        this.errorMessage = "Error generating response from OpenAI. Please try again";
       } finally {
         this.isLoading = false;
       }
@@ -344,6 +344,13 @@ p {
     width: 100%; /* Adjust width of the search bar */
     margin: 0 auto; /* Center search bar */
   }
+}
+.error-message {
+  color: white; /* Dark red text color */
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 </style>
