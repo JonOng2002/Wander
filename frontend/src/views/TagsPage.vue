@@ -390,7 +390,7 @@ button.selected {
 
     width: 100%;
     /* Makes image-card take full width */
-    max-width: 500px;
+
     /* Optional: restricts width to avoid excessive stretching */
     height: 40vh;
     /* Adjust height to fit smaller screens */
@@ -431,7 +431,7 @@ button.selected {
 
     width: 100%;
     /* Makes image-card take full width */
-    max-width: 600px;
+    
     /* Optional: restricts width to avoid excessive stretching */
     height: 40vh;
     /* Adjust height to fit smaller screens */
