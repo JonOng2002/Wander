@@ -1,7 +1,7 @@
 # Wander
 
 ## URL to the First Page of Our Application Hosted on Vercel
-https://wander-g8t9.vercel.app/
+https://wander-g8t9.vercel.app
 
 ## URL to Our Git Repository
 https://github.com/JonOng2002/Wander
