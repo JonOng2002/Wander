@@ -52,8 +52,9 @@ VUE_APP_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
 ```
 
 4. Run the development frontend server:
+```
 npm run serve
-
+```
 This command will start the Vue development server and enable the proxy setup in vue.config.js for API requests.
 
 
