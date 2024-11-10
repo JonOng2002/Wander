@@ -336,6 +336,23 @@ export default {
     },
   },
 
+  watch: {
+    locationInfo: {
+      handler(newVal) {
+        this.initializeData(newVal, this.relatedPlaces);
+      },
+      deep: true,
+      immediate: true, // Ensures the handler is called immediately with the initial value
+    },
+    relatedPlaces: {
+      handler(newVal) {
+        this.initializeData(this.locationInfo, newVal);
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+
   // Define methods
   methods: {
     /**
@@ -603,6 +620,7 @@ export default {
     // If handleScroll is not defined, remove these lines or define the method
     // window.addEventListener('scroll', this.handleScroll);
   },
+  
 
   beforeUnmount() {
     // Remove scroll listener if handleScroll is defined
