@@ -26,17 +26,19 @@ Virtual environment tool (e.g., venv or virtualenv)
 ```
 cd WAD2_Project/WadProj
 ```
+
 Frontend Setup:
 
 1. Navigate to the frontend directory:
 ```
 cd frontend
 ```
-3. Install the frontend dependencies:
+2. Install the frontend dependencies:
 ```
 npm install
 ```
-5. Set up environment variables: Ensure that the .env file exists and contains the necessary configurations for running the frontend server.
+
+3. Set up environment variables: Ensure that the .env file exists and contains the necessary configurations for running the frontend server.
 ```
 VUE_APP_GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY_HERE
 
@@ -49,7 +51,7 @@ VUE_APP_FIREBASE_APP_ID=YOUR_FIREBASE_APP_ID
 VUE_APP_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
 ```
 
-3. Run the development frontend server:
+4. Run the development frontend server:
 npm run serve
 
 This command will start the Vue development server and enable the proxy setup in vue.config.js for API requests.
