@@ -189,18 +189,6 @@ Ensure that you have the following installed:
 3. You can also sign up using your **Google** or **Facebook** account.
 4. Click on the **'Sign Up Now'** button to access the app.
 
-## Customize Configuration
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## License
-
-[Specify your project's license here.]
-
-## Contact
-
-[Provide contact information or links for users to reach out.]
-
----
 
 *This README was generated to provide clear and organized instructions for setting up and using the Wander project.*
