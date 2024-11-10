@@ -55,6 +55,9 @@ Ensure that you have the following installed:
         VUE_APP_FIREBASE_MESSAGING_SENDER_ID=YOUR_FIREBASE_MESSAGING_SENDER_ID
         VUE_APP_FIREBASE_APP_ID=YOUR_FIREBASE_APP_ID
         VUE_APP_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
+
+        
+        VUE_APP_UNSPLASH_ACCESS_KEY=YOUR_UNSPLASH_API_KEY_HERE
         ```
 
     4. **Run the Development Frontend Server**
