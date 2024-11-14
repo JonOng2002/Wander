@@ -245,15 +245,15 @@ export default {
       const countryRef = doc(db, "countries", this.country);
       let allAttractions = []; // Declare allAttractions
       try {
-        // console.log(`Fetching attractions for ${this.country} from Firestore...`);
+        
         const countryDoc = await getDoc(countryRef);
         if (countryDoc.exists()) {
-          // console.log(`Fetched attractions from Firestore for ${this.country}`);
+  
           this.attractions = countryDoc.data().attractions;
           this.loading = false;
         } else {
           const cities = this.getCountryCities(this.country);
-          // console.log(`No attractions in Firestore for ${this.country}, fetching from API...`)
+
           if (cities.length === 0) {
             this.errorMessage = "No cities available for the selected country.";
             this.loading = false;
