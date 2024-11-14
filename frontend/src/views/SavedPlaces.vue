@@ -511,7 +511,7 @@ export default {
               generatedItineraries: arrayUnion(placeData),
             });
 
-            console.log("Place added to itinerary:", placeData);
+            
           } catch (error) {
             console.error("Error adding itinerary to Firebase:", error);
             // Optionally, revert the local state change if Firebase update fails
