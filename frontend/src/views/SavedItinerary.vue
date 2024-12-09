@@ -908,7 +908,7 @@ export default {
     /* Set a slightly darker default */
     transition: background-color 0.4s ease, transform 0.4s ease;
     /* Smooth color and scale transition */
-    z-index: 1;
+    z-index: 20;
 }
 
 .one:hover .gradientoverlay {
